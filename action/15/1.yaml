@@ -1,0 +1,26 @@
+name: Deploy via SSH
+
+on:
+  push:
+    branches:
+      - main  # 當推送到 main 分支時觸發工作流程
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Deploy to server
+      run: |
+        rsync -avz --exclude='.git*' --exclude='node_modules' ./ username@192.168.1.1:/path/to/your/app/
+        ssh username@192.168.1.1 'cd /path/to/your/app/ && npm install && npm run build'
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
