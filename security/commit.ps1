@@ -1,4 +1,4 @@
-12..29 | ForEach-Object { 
+2..14 | ForEach-Object { 
     $pageNumber = $_.ToString()
     $fileToAdd = "$pageNumber"
     
