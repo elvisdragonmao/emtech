@@ -1,17 +1,17 @@
-### 第二十天：**渲染 Markdown 文件：自動生成和更新項目文檔**
+## 第二十天：**渲染 Markdown 文件：自動生成和更新項目文檔**
 
 在這篇教程中，我們將學習如何使用 GitHub Actions 自動生成和更新 Markdown 文件。我們的重點是使用 Actions 自動更新 `README.md` 文件，從 `fonts.json` 文件中生成一個格式化的字體列表。這包括讀取 JSON 文件內容、生成 Markdown 表格，以及在 README 文件中更新這些內容。
 
-### **1. 技術背景**
+## **1. 技術背景**
 
 - **Markdown**: 用於編寫格式化文本，常見於 README 文件。
 - **GitHub Actions**: 自動化工作流工具，可用來生成和更新 Markdown 文件。
 
-### **2. GitHub Actions 工作流程**
+## **2. GitHub Actions 工作流程**
 
 我們將設定 GitHub Actions 自動更新 `README.md` 文件。當 `Database/fonts.json` 文件有變動時，工作流程會自動執行，生成新的 Markdown 表格並更新 README 文件。
 
-#### **步驟 1：創建 GitHub Actions 工作流程**
+### **步驟 1：創建 GitHub Actions 工作流程**
 
 在 `.github/workflows` 目錄下創建一個新的 YAML 文件，例如 `update-font-list.yml`，並添加以下內容：
 
@@ -60,7 +60,7 @@ jobs:
 
 這個工作流程會在 `Database/fonts.json` 文件發生變更時自動執行，並更新 `README.md` 文件中的字體列表。
 
-#### **步驟 2：編寫生成 Markdown 的腳本**
+### **步驟 2：編寫生成 Markdown 的腳本**
 
 在 `src/workflows` 目錄下創建 `update-readme.js` 文件，並添加以下內容：
 
@@ -124,13 +124,13 @@ fs.writeFileSync(readmeFilePath, updatedReadmeContent);
 console.log('README.md has been updated');
 ```
 
-### **3. 腳本解析**
+## **3. 腳本解析**
 
 - **讀取 JSON 文件**: 腳本從 `Database/fonts.json` 讀取字體數據。
 - **生成 Markdown 表格**: `generateMarkdownTable` 函數將 JSON 數據轉換為 Markdown 格式的表格。
 - **更新 README 文件**: 腳本讀取 `README.md` 文件，並將生成的 Markdown 表格插入到標記為 `<!-- fonts table start -->` 和 `<!-- fonts table end -->` 之間的區域。
 
-### **4. 小結**
+## **4. 小結**
 
 通過今天的教程，我們學習了如何使用 GitHub Actions 自動生成和更新 Markdown 文件。我們通過編寫腳本來從 JSON 文件生成 Markdown 表格，並將其更新到 `README.md` 文件中。這樣的自動化流程能夠確保文檔始終保持最新狀態，並且減少了手動更新的工作量。
 

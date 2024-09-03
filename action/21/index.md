@@ -1,12 +1,12 @@
-### 自動化多平台 Python 應用打包
+## 自動化多平台 Python 應用打包
 
 為了支援多平台的 Python 應用打包（例如 Windows、macOS 和 Linux），我們可以使用 GitHub Actions 和 PyInstaller 配合使用。以下是一步步的詳細指南，介紹如何在 GitHub Actions 中設置自動化打包，生成適用於不同作業系統的可執行文件。
 
-### **1. 準備工作**
+## **1. 準備工作**
 
 首先，確保你的 Python 應用準備好了。假設我們仍使用前面示例中的 `hello.py` 文件。
 
-### **2. 設置 GitHub Actions**
+## **2. 設置 GitHub Actions**
 
 我們需要配置 GitHub Actions 來在不同的操作系統上運行 PyInstaller。以下是一個例子，展示了如何在 macOS、Windows 和 Linux 上自動化打包過程。
 
@@ -56,7 +56,7 @@ jobs:
           path: dist/hello${{ matrix.os == 'windows-latest' && '.exe' || '' }}  # 根據平台確定擴展名
 ```
 
-### **3. 詳細步驟解析**
+## **3. 詳細步驟解析**
 
 - **Checkout repository**: 檢出 GitHub repository 的代碼。
 - **Set up Python**: 安裝指定版本的 Python。
@@ -64,7 +64,7 @@ jobs:
 - **Build application**: 使用 PyInstaller 打包 Python 應用，根據運行的操作系統環境變量來確定可執行文件的名稱和擴展名。
 - **Archive artifacts**: 上傳生成的可執行文件作為 GitHub Actions 的構建產物，供後續下載或分發使用。
 
-### **4. 完整的工作流程示例**
+## **4. 完整的工作流程示例**
 
 這個配置會在 Ubuntu、macOS 和 Windows 上運行 PyInstaller 來打包 `hello.py` 文件，並將生成的可執行文件上傳為工作流產物。
 
@@ -110,10 +110,10 @@ jobs:
           path: dist/hello${{ matrix.os == 'windows-latest' && '.exe' || '' }}
 ```
 
-### **5. 測試和驗證**
+## **5. 測試和驗證**
 
 推送更改到 GitHub repository，然後檢查 GitHub Actions 頁面來確保工作流程成功運行。檢查生成的可執行文件是否能在對應的操作系統上正常運行。
 
-### **6. 小結**
+## **6. 小結**
 
 通過這篇教程，我們學會了如何在 GitHub Actions 中設置多平台的自動打包流程。這樣，我們可以在不同的操作系統上生成對應的可執行文件，並自動化打包和分發過程，提高了開發效率和應用的可用性。如果有任何問題或需要進一步的幫助，隨時告訴我！

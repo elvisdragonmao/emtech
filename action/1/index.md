@@ -1,5 +1,3 @@
-
-
 # 靠著那 GitHub Actions，凡事都能做
 
 在這個系列的文章中，我們將深入了解並掌握 GitHub Actions 的使用方法。GitHub Actions 是 GitHub 提供的一項強大的 CI/CD（持續整合/持續部署）服務，能夠自動化我們的開發流程。除了能夠進行基本的測試與自動化部署之外，還可以進行爬蟲、資料分析、在各個作業系統環境打包和優化程式等等。正如這個系列的標題，只需要寫好一次流程，之後都可以交給 GitHub Action。在這 30 天裡每天都會有一個實作專題和相應的技巧學習。
@@ -8,32 +6,34 @@
 
 ## 什麼是 GitHub Actions？
 
-GitHub Actions 是一個集成在 GitHub 平台上的 CI/CD 工具，它能幫助開發者將各種工作流自動化。CI/CD 是現代軟體開發流程中不可或缺的部分，CI 代表「持續整合」（Continuous Integration），CD 則代表「持續部署」（Continuous Deployment）。這兩者的核心目標是將程式的整合與部署自動化，確保代碼在合併、測試和部署過程中始終保持高質量和高效率。
+GitHub Actions 是一個集成在 GitHub 平台上的 CI/CD 工具，**它能幫助開發者將各種工作流自動化**。CI/CD 是現代軟體開發流程中不可或缺的部分，CI 代表「持續整合」（Continuous Integration），CD 則代表「持續部署」（Continuous Deployment）。這兩者的核心目標是將程式的整合與部署自動化，確保程式在合併、測試和部署過程中始終保持高質量和高效率。
 
 ## 為什麼需要 CI/CD？
 
 隨著軟體專案規模的擴大，手動進行測試、整合和部署變得既繁瑣又容易出錯。CI/CD 的出現旨在解決這個問題，它能夠自動執行以下操作：
 
-- **自動測試**：每當有新代碼提交時，自動運行測試，確保新代碼不會破壞現有功能。
-- **自動部署**：在測試通過後，自動將代碼部署到生產環境，縮短發布周期。
+- **自動測試**：每當有新程式提交時，自動運行測試，確保新程式不會破壞現有功能。
+- **自動部署**：在測試通過後，自動將程式部署到生產環境，縮短發布周期。
 - **自動化工作流**：將不同的任務（如測試、編譯、部署）串聯起來，自動完成整個流程。
 
-當然，CI/CD 還有許多其他功能，例如自動化文檔生成、自動化性能測試、自動化安全掃描等。這些功能都能幫助開發者提高工作效率，減少錯誤，並確保代碼的質量和穩定性。
+當然，CI/CD 還有許多其他功能，例如自動化文檔生成、自動化性能測試、自動化安全掃描等。這些功能都能幫助開發者提高工作效率，減少錯誤，並確保程式的質量和穩定性。
 
 ## 如何開始使用 GitHub Actions？
 
-現在，我們來實際操作一下，看看如何在自己的專案中設置 GitHub Actions。
+我們來看看如何在自己的專案中設置 GitHub Actions。這裡我們以一個簡單的 Node.js 專案為例，設置一個基本的 CI（持續整合）工作流。這個工作流將在每次有程式提交時運行測試，確保程式的質量。
+
+這裡可以先看看就好，後面會有一步步的實作。
 
 **第一步：創建 Workflow 文件**
 
-首先，我們需要在專案的根目錄下創建一個 `.github/workflows` 資料夾。這個資料夾中將存放所有的工作流文件。工作流文件使用 YAML 語法編寫，文件名可以自定義。例如，我們可以創建一個名為 `ci.yml` 的文件。
+要使用 GitHub Actions，我們需要在專案的根目錄下創建一個 `.github/workflows` 資料夾。這個資料夾中將存放所有的工作流文件。工作流文件使用 YAML 語法編寫，文件名可以自定義。例如，我們可以創建一個名為 `ci.yml` 的文件。
 
 **第二步：編寫 Workflow 配置**
 
 在 `ci.yml` 文件中，我們可以開始編寫一個簡單的工作流配置。以下是一個基本範例：
 
 ```yaml
-name: CI for MyProject
+name: Node Test
 
 on: [push]
 
@@ -52,11 +52,11 @@ jobs:
 
 這個工作流配置文件做了以下幾件事：
 
-1. **name**: 定義了這個工作流的名稱 `CI for MyProject`。
-2. **on**: 設置了工作流的觸發條件，這裡設定為每當有代碼被推送（push）到倉庫時觸發。
+1. **name**: 定義了這個工作流的名稱 `Node Test`。
+2. **on**: 設置了工作流的觸發條件，這裡設定為每當有程式被推送（push）到倉庫時觸發。
 3. **jobs**: 定義了工作流中的任務。這裡只有一個名為 `build` 的任務。
 4. **runs-on**: 設定任務執行的環境，這裡選擇使用 `ubuntu-latest`。
-5. **steps**: 定義了任務中的步驟。這裡的步驟包括檢出代碼、設置 Node.js 環境、安裝依賴和運行測試。
+5. **steps**: 定義了任務中的步驟。這裡的步驟包括檢出程式、設置 Node.js 環境、安裝依賴和運行測試。
 
 **第三步：推送到 GitHub**
 
@@ -64,13 +64,13 @@ jobs:
 
 ## GitHub Actions 的基本概念
 
-要了解 GitHub Actions 的運作方式，首先要掌握一些基本概念：
+GitHub Actions 的核心概念包括工作流（Workflow）、任務（Job）、步驟（Step）和動作（Action）。這些概念之間有著明確的層次關係，你可以想一個大任務裡面有很多個子任務。
 
-1. **Workflow（工作流）**：工作流是一次要執行的整個過程，它由多個任務（Job）組成。你可以將工作流視為一系列自動化操作的集合。每個工作流會根據你設置的條件觸發，例如在每次 push 代碼後運行測試。
+1. **Workflow（工作流）**：工作流是一次要執行的整個過程，它由多個任務（Job）組成。你可以將工作流視為一系列自動化操作的集合。每個工作流會根據你設置的條件觸發，例如在每次 push 程式後運行測試。
    
-2. **Job（任務）**：每個工作流由一個或多個任務組成。任務是工作流中的一個邏輯單位，通常每個任務會在不同的環境中執行不同的操作，例如在 Linux 上執行測試，在 Windows 上編譯代碼。
+2. **Job（任務）**：每個工作流由一個或多個任務組成。任務是工作流中的一個邏輯單位，通常每個任務會在不同的環境中執行不同的操作，例如在 Linux 上執行測試，在 Windows 上編譯程式。
    
-3. **Step（步驟）**：每個任務由多個步驟組成。步驟是任務中的具體操作，例如檢出代碼、設置環境、運行命令等。
+3. **Step（步驟）**：每個任務由多個步驟組成。步驟是任務中的具體操作，例如檢出程式、設置環境、運行命令等。
    
 4. **Action（動作）**：動作是每個步驟中執行的具體命令或操作。例如，使用一個設定好的 Node.js 環境，或運行一個 shell 腳本。
 
@@ -85,7 +85,7 @@ YAML 是一種簡單易讀的配置語法，用於編寫工作流文件。在 YA
   - uses: actions/checkout@v2
   - name: Set up Node.js
   ```
-- **縮排**：縮排用於表示層次結構。正確的縮排是 YAML 文件能否正確解析的關鍵。
+- **縮排**：縮排用於表示層次結構。你只要不小心多打一個你的檔案就會爆了。
 
 ## 進階配置：多任務與 Marketplace Actions
 
@@ -122,22 +122,22 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
     node-version: '14'
 ```
 
-這樣，你就不需要手動編寫設置環境的代碼，直接引用這個 Action 即可。
+這樣，你就不需要手動編寫設置環境的程式，直接引用這個 Action 即可。
 
-## 綜合練習
+## 綜合練習 - 創建一個 Node.js 專案並設置 Jest 測試
 
 現在，試著在你的專案中創建一個工作流，配置一個簡單的 CI/CD 任務，並推送到 GitHub 上運行。這將幫助你鞏固今天學到的知識。
 
-我們來一步步建立一個簡單的 Node.js 專案，並使用 GitHub Actions 進行自動化測試。這個專案將包括一個簡單的功能函數，以及一個測試文件。然後，我們將設置 GitHub Actions，自動化測試流程。
+我們來建立一個簡單的 Node.js 專案，並使用 GitHub Actions 進行自動化測試。這個專案將包括一個簡單的功能函數，以及一個測試文件。然後，我們將設置 GitHub Actions 自動化測試流程。
 
 ### 第一步：創建 Node.js 專案
 
-1. **建立專案資料夾**  
-   首先，在你的電腦上創建一個新的資料夾，並進入這個資料夾：
+1. **建立倉庫**  
+   首先，請你先在 GitHub 上創建一個新的倉庫，並將其克隆到本地。這個倉庫將用於存放我們的 Node.js 專案。
 
    ```bash
-   mkdir simple-nodejs-project
-   cd simple-nodejs-project
+    git clone <你的倉庫地址>
+    cd <倉庫名>
    ```
 
 2. **初始化 Node.js 專案**  
@@ -148,7 +148,7 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
    ```
 
 3. **安裝 Jest 測試框架**  
-   安裝 `Jest`，這是一個流行的 JavaScript 測試框架。
+   安裝 `Jest`，這是一個常見的 JavaScript 測試框架。
 
    ```bash
    npm install jest --save-dev
@@ -206,34 +206,33 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
        - name: Set up Node.js
          uses: actions/setup-node@v2
          with:
-           node-version: '14'
+           node-version: '20'
        - run: npm install
        - run: npm test
    ```
 
-   這個工作流會在每次有代碼推送（push）到 GitHub 的時候自動運行，它將執行以下步驟：
-   - 檢出代碼
+   這個工作流會在每次有程式推送（push）到 GitHub 的時候自動運行，它將執行以下步驟：
+   - 檢出程式
    - 設置 Node.js 環境
-   - 安裝依賴
+   - 安裝依賴套件
    - 運行測試
 
-2. **推送代碼到 GitHub**  
-   將這個專案推送到你的 GitHub repository。首先，初始化 Git 資料夾，然後將所有文件提交到 Git：
+2. **推送程式到 GitHub**  
+   將這個專案推送到你的 GitHub repository。
 
    ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/你的用戶名/你的倉庫名.git
-   git push -u origin main
+   git add -A
+   git commit -m "Add Node.js project with Jest tests"
+   git push
    ```
 
 ### 第四步：檢查 GitHub Actions 執行狀況
 
-推送完代碼後，打開你的 GitHub repository，點擊 "Actions" 標籤頁。你會看到 GitHub Actions 自動運行了我們配置的 CI 工作流。當測試通過時，你會看到綠色的標誌，表示一切正常。如果測試失敗，GitHub Actions 會給出詳細的錯誤信息，幫助你排查問題。
+推送完程式後，打開你的 GitHub repository，點擊 "Actions" 標籤頁。你會看到 GitHub Actions 自動運行了我們配置的 CI 工作流。當測試通過時，你會看到綠色的標誌，表示一切正常。如果測試失敗，GitHub Actions 會給出詳細的錯誤信息，幫助你排查問題。
 
 
 ## 結語
 
-在今天的學習中，我們初步了解了 GitHub Actions 的基本概念和配置方法，並親自實作了一個簡單的工作流。在接下來的文章中，我們將深入探討更多進階的功能和技巧，讓你能夠更靈活地運用 GitHub Actions 來自動化你的開發流程。
+今天我們初步了解了 GitHub Actions 的基本概念和配置方法，並親自實作了一個簡單的工作流。在這個系列當中我都會以 Node.js 作為範例的語言，但是 GitHub Actions 並不限於 Node.js，它支援多種語言和環境，包括 Python、Java、Go、Docker 等等。無論你使用什麼語言，都可以使用 GitHub Actions 來自動化你的工作流程，而且設定的邏輯也都大同小異。
+
+在接下來的文章中，我們將深入探討更多進階的功能和技巧，讓你能夠更靈活地運用 GitHub Actions 來自動化你的開發流程。
