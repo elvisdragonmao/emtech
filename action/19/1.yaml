@@ -1,0 +1,23 @@
+name: Manage GitHub Issues
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Label new issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.issue;
+            const labels = ['new-issue'];
+            await github.issues.addLabels({
+              ...issue,
+              labels
+            });

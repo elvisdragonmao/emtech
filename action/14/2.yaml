@@ -1,0 +1,31 @@
+name: Deploy to Heroku
+
+on:
+  push:
+    branches:
+      - main  # 當推送到 main 分支時觸發工作流程
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build application
+      run: npm run build
+
+    - name: Deploy to Heroku
+      uses: akshatp/gh-action-heroku-deploy@v2
+      with:
+        api_key: ${{ secrets.HEROKU_API_KEY }}
+        app_name: ${{ secrets.HEROKU_APP_NAME }}

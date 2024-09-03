@@ -1,0 +1,30 @@
+name: Code Review with Coderabbit
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Coderabbit Code Review
+        env:
+          CODERABBIT_API_KEY: ${{ secrets.CODERABBIT_API_KEY }}
+        run: |
+          curl -X POST "https://api.coderabbit.io/review" \
+          -H "Authorization: Bearer $CODERABBIT_API_KEY" \
+          -H "Content-Type: application/json" \
+          -d '{
+                "repository": "${{ github.repository }}",
+                "branch": "${{ github.ref }}",
+                "commit": "${{ github.sha }}",
+                "message": "Automated code review"
+              }'

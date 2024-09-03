@@ -1,0 +1,22 @@
+   name: Notify Slack
+
+   on:
+     push:
+       branches:
+         - main
+     pull_request:
+
+   jobs:
+     notify:
+       runs-on: ubuntu-latest
+
+       steps:
+         - name: Checkout code
+           uses: actions/checkout@v2
+
+         - name: Notify Slack
+           uses: slackapi/slack-github-action@v1
+           with:
+             slack-token: ${{ secrets.SLACK_TOKEN }}
+             channel-id: 'C1234567890'  # 替換為你的頻道 ID
+             text: '工作流程已完成！查看詳細信息：[工作流程鏈接](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})'
