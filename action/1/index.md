@@ -1,5 +1,7 @@
 # 靠著那 GitHub Actions，凡事都能做
 
+> 腓立比書 4 章 13 節「我靠著那加給我力量的 (ymal)，凡事都能做」
+
 在這個系列的文章中，我們將深入了解並掌握 GitHub Actions 的使用方法。GitHub Actions 是 GitHub 提供的一項強大的 CI/CD（持續整合/持續部署）服務，能夠自動化我們的開發流程。除了能夠進行基本的測試與自動化部署之外，還可以進行爬蟲、資料分析、在各個作業系統環境打包和優化程式等等。正如這個系列的標題，只需要寫好一次流程，之後都可以交給 GitHub Action。在這 30 天裡每天都會有一個實作專題和相應的技巧學習。
 
 ---
@@ -133,12 +135,14 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
 ### 第一步：創建 Node.js 專案
 
 1. **建立倉庫**  
-   首先，請你先在 GitHub 上創建一個新的倉庫，並將其克隆到本地。這個倉庫將用於存放我們的 Node.js 專案。
+   首先，請你先在 GitHub 上創建一個新的倉庫，並將其克隆到本地。這個倉庫將用於存放我們的 Node.js 專案。如果你已經有現成的 Node.js 專案也可以直接使用。
 
    ```bash
     git clone <你的倉庫地址>
     cd <倉庫名>
    ```
+
+   > 沒有使用過 Git 和 GitHub 嗎? 你可以參考我之前寫的 [這篇文章](https://emtech.cc/post/github-and-git/)
 
 2. **初始化 Node.js 專案**  
    使用 `npm init` 初始化專案。這會創建一個 `package.json` 文件，用於管理專案的依賴和腳本。
@@ -235,4 +239,4 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
 
 今天我們初步了解了 GitHub Actions 的基本概念和配置方法，並親自實作了一個簡單的工作流。在這個系列當中我都會以 Node.js 作為範例的語言，但是 GitHub Actions 並不限於 Node.js，它支援多種語言和環境，包括 Python、Java、Go、Docker 等等。無論你使用什麼語言，都可以使用 GitHub Actions 來自動化你的工作流程，而且設定的邏輯也都大同小異。
 
-在接下來的文章中，我們將深入探討更多進階的功能和技巧，讓你能夠更靈活地運用 GitHub Actions 來自動化你的開發流程。
+今天的文章資訊量來蠻大的，因為我希望能夠帶大家完整的體驗一次 GitHub Actions 的完整使用流程。在接下來的文章中，我們將會回到 Hello World，一步一步地深入探討更多進階的功能和技巧，讓你能夠更靈活地運用 GitHub Actions 來自動化你的開發流程。

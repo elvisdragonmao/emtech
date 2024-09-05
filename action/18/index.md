@@ -1,5 +1,7 @@
 ## 第十八天：**把 Issue 同步到 Notion：編寫自定義 GitHub Action**
 
+> 白居易在看到滿滿的 issue 後不經感嘆：「野火燒不盡，春風吹又生。」然後毅然決然地把 issue 同步到 Notion，這樣就不會忘記了。
+
 今天，我們將介紹如何編寫一個自定義的 GitHub Action，將 GitHub 的 issue 自動同步到 Notion。這個工具將使你能夠將 GitHub 的問題跟踪和管理整合到 Notion 的資料庫中，讓問題管理更加高效。
 
 ## **1. 技術背景**
