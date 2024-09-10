@@ -1,0 +1,31 @@
+name: 自動提交和推送
+
+on:
+    schedule:
+        - cron: "0 0 * * *" # 每天凌晨12點執行一次
+    workflow_dispatch: # 手動觸發
+
+jobs:
+    commit:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: 檢出代碼
+              uses: actions/checkout@v2
+
+            - name: 進行修改
+              run: |
+                  echo "Update on $(date)" >> update.log
+                  # 你可以在這裡添加更多自動化變更的指令
+
+            - name: 提交變更
+              run: |
+                  git config --global user.email "your-email@example.com"
+                  git config --global user.name "Your Name"
+                  git add .
+                  git commit -m "Automated commit on $(date)"
+
+            - name: 推送代碼
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: git push origin main

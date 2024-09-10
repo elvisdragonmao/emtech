@@ -1,0 +1,3 @@
+{
+  "extends": "prettier-config-google"
+}

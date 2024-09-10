@@ -1,5 +1,7 @@
 ## 自動化多平台 Python 應用打包
 
+> 不如虎穴，焉得虎子，說明了 pyinstaller 要打包 macOS 的執行檔一定要在 macOS 環境運行。
+
 為了支援多平台的 Python 應用打包（例如 Windows、macOS 和 Linux），我們可以使用 GitHub Actions 和 PyInstaller 配合使用。以下是一步步的詳細指南，介紹如何在 GitHub Actions 中設置自動化打包，生成適用於不同作業系統的可執行文件。
 
 ## **1. 準備工作**
