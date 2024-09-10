@@ -1,0 +1,23 @@
+name: 有朋自遠方來，不亦樂乎？
+
+on: [push]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: 執行一行 Shell 指令
+              run: echo "有朋自遠方來，不亦樂乎？"
+
+            - name: 列出當前目錄
+              run: ls -la
+
+            - name: 顯示當前目錄
+              run: pwd
+
+            - name: 顯示環境變數
+              run: env

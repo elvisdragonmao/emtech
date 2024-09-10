@@ -1,14 +1,8 @@
-### 第四天：檔案操作—壓縮與解壓縮
+### 壓縮與解壓縮 - 上傳工件（artifact）
 
-在今天的文章中，我們將學習如何使用 GitHub Actions 來進行檔案壓縮和解壓縮操作。我們會詳細介紹如何在工作流程中壓縮工作目錄，並將其上傳為工件（artifact）。此外，我們還會探討如何在工作流程中解壓縮檔案，以便進行後續操作。
+> 宋·張端義《貴耳集》上卷：「言簡理盡，遂成王言。」可見檔案壓縮十分重要。
 
-#### 技巧：使用 Actions 壓縮和解壓縮文件
-
-1. **壓縮文件**：
-   - 在工作流程中，我們可以使用 Shell 指令來壓縮指定目錄或檔案，然後將壓縮檔案上傳為 GitHub Actions 工件，以供後續使用或下載。
-   
-2. **解壓縮文件**：
-   - 下載已上傳的工件後，可以在工作流程中解壓縮這些檔案，進行進一步的處理或測試。
+今天我們要來探討如何使用 GitHub Actions 來進行檔案壓縮和解壓縮操作，並將其上傳為工件（artifact）。
 
 #### 實作：壓縮工作目錄並上傳作為工件
 
@@ -18,7 +12,7 @@
 **步驟 2：編寫 YAML 配置文件**
 
 ```yaml
-name: Compress and Upload Artifacts
+name: 壓縮並上傳為工件
 
 on:
   push:
@@ -30,15 +24,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out the code
+    - name: 檢出代碼
       uses: actions/checkout@v2
 
-    - name: Compress files
+    - name: 壓縮檔案
       run: |
         mkdir compressed
         tar -czf compressed/files.tar.gz .  # 壓縮當前目錄中的所有檔案和子目錄，並存儲為 files.tar.gz
     
-    - name: Upload compressed files
+    - name: 上傳工件
       uses: actions/upload-artifact@v3
       with:
         name: compressed-files
@@ -70,11 +64,11 @@ git push origin main
 **步驟 2：編寫 YAML 配置文件**
 
 ```yaml
-name: Download and Extract Artifacts
+name: 下載並解壓縮工件
 
 on:
   workflow_run:
-    workflows: ["Compress and Upload Artifacts"]
+    workflows: ["壓縮並上傳為工件"]
     types:
       - completed
 
@@ -83,16 +77,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Download artifacts
+    - name: 下載工件
       uses: actions/download-artifact@v3
       with:
         name: compressed-files
     
-    - name: Extract files
+    - name: 解壓縮檔案
       run: |
         tar -xzf compressed-files/files.tar.gz -C extracted  # 解壓縮到指定目錄
 
-    - name: List extracted files
+    - name: 列出檔案
       run: |
         ls -R extracted  # 列出解壓縮後的檔案
 ```
@@ -109,6 +103,8 @@ git add .github/workflows/download-and-extract.yml
 git commit -m "Add workflow to download and extract artifacts"
 git push origin main
 ```
+
+以今天的例子你可能會想說，沒事這樣壓縮和解壓縮檔案有什麼用？但這只是一個基本的練習。但在實際的開發中通常情況會更加複雜。例如，當你需要將檔案上傳到遠端伺服器時，通常會先壓縮檔案以節省傳輸時間和成本。同時，當你從遠端伺服器下載檔案時，也需要先解壓縮檔案以進行後續操作。
 
 **應用範例：**
 - **資料處理：** 在工作流程中自動下載、解壓縮並處理外部數據檔案。
@@ -133,4 +129,4 @@ git push origin main
 
 #### 結語
 
-今天我們學習了如何在 GitHub Actions 中進行檔案壓縮和解壓縮操作。通過這些操作，我們可以更靈活地處理檔案，並提升自動化流程的效率。希望這些實作教學和技巧對你的開發工作有所幫助。
+今天我們學習了如何在 GitHub Actions 中進行檔案壓縮和解壓縮操作。通過這些操作，我們可以更靈活地處理檔案，並提升自動化流程的效率。希望這些實作教學和技巧對你的開發工作有所幫助。明天我們要來探討如何使用 prettier 來格式化代碼，統一風格並提高可讀性。
