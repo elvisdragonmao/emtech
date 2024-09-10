@@ -1,0 +1,41 @@
+name: Prettier Check
+
+on: [push, pull_request]
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install prettier
+
+      - name: Run Prettier check
+        id: prettier
+        run: npx prettier —check .
+
+      - name: Run Prettier format (if needed)
+        if: ${{ failure() }}
+        run: npx prettier —write .
+
+      - name: Create Pull Request
+        if: ${{ failure() }}
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "fix: format code with Prettier"
+          branch: prettier-fixes
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          signoff: true
+          delete-branch: true
+          title: "fix: format code with Prettier"
+          body: "This pull request fixes the code formatting issues identified by Prettier."

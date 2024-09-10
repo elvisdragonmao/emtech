@@ -113,7 +113,7 @@ build
 2. 編寫 YAML 配置文件來自動運行 Prettier：
 
    ```yaml
-   name: Format Code
+   name: 格式化代碼
 
    on:
      push:
@@ -125,18 +125,18 @@ build
        runs-on: ubuntu-latest
 
        steps:
-         - name: Check out the code
+         - name: 檢出代碼
            uses: actions/checkout@v2
 
-         - name: Install dependencies
+         - name: 安裝依賴套件
            run: |
              npm install
              npm install --save-dev prettier
 
-         - name: Run Prettier
+         - name: 格式化代碼
            run: npx prettier --write .
 
-         - name: Commit formatted code
+         - name: 提交格式化後的代碼
            run: |
              git config --global user.name "GitHub Actions"
              git config --global user.email "actions@github.com"
@@ -165,7 +165,7 @@ git push origin main
 
 ## 常用技巧與注意事項
 
-1. **配置文件的優先級：**
+1. **Prettier 配置文件：**
 
    - `.prettierrc` 配置文件可以使用 JSON、YAML 或 JavaScript 格式。
    - `.prettierignore` 文件的規則類似於 `.gitignore` 文件。

@@ -1,0 +1,32 @@
+name: 格式化代碼
+
+on:
+    push:
+        branches:
+            - main # 當推送到 main 分支時觸發
+
+jobs:
+    format:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: 檢出代碼
+              uses: actions/checkout@v2
+
+            - name: 安裝依賴套件
+              run: |
+                  npm install
+                  npm install --save-dev prettier
+
+            - name: 格式化代碼
+              run: npx prettier --write .
+
+            - name: 提交格式化後的代碼
+              run: |
+                  git config --global user.name "GitHub Actions"
+                  git config --global user.email "actions@github.com"
+                  git add .
+                  git commit -m "Apply Prettier formatting"
+                  git push
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
