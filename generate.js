@@ -2,13 +2,13 @@ const fs = require("fs");
 const path = require("path");
 const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
-
-// Markdown-it 設定
+let postsMeta = [];
+// Updated Markdown-it setup with new highlight.js API
 const md = markdownIt({
     highlight: (str, lang) => {
         if (lang && hljs.getLanguage(lang)) {
             try {
-                return hljs.highlight(lang, str).value;
+                return hljs.highlight(str, { language: lang }).value;
             } catch (__) {}
         }
         return ""; // use external default escaping
@@ -22,6 +22,11 @@ function initDist() {
     }
     fs.mkdirSync("dist");
     fs.mkdirSync("dist/static");
+    fs.mkdirSync("dist/posts");
+    fs.mkdirSync("dist/posts/clean");
+    fs.mkdirSync("dist/posts/meta", { recursive: true });
+    fs.mkdirSync("dist/meta/tags", { recursive: true });
+    fs.mkdirSync("dist/meta/categories", { recursive: true });
 }
 
 // 複製靜態資源
@@ -43,7 +48,6 @@ function copyStatic() {
 // 讀取文章並生成 HTML 和 JSON
 function processPosts() {
     const postsDir = "post";
-    const postsMeta = [];
 
     const postFolders = fs
         .readdirSync(postsDir)
@@ -56,12 +60,20 @@ function processPosts() {
         const markdownFile = path.join(postPath, "index.md");
 
         if (fs.existsSync(markdownFile)) {
+            console.log(`➤ Processing post: ${postID}`);
             const markdownContent = fs.readFileSync(markdownFile, "utf8");
             const postMeta = extractFrontMatter(markdownContent);
-            const htmlContent = md.render(
-                markdownContent.replace(/^---[\s\S]+---/, "")
-            ); // 移除 front matter
+            let htmlContent = md.render(
+                markdownContent.replace(/---[\s\S]+?---/, "")
+            ); // 移除 front matter，但不要移除文章中的分段符號
+            // 找到第一行的 h1 標題
 
+            // 如果沒有 title，則從文章內容中找到第一個 h1 標題
+
+            if (!postMeta.title) {
+                postMeta.title = htmlContent.match(/<h1>(.*?)<\/h1>/)[1];
+            }
+            console.log(postMeta.title);
             const postMetaObj = {
                 ...postMeta,
                 id: postID,
@@ -76,14 +88,14 @@ function processPosts() {
 
             // 生成完整的 HTML 頁面
             const fullPostHtml = fs
-                .readFileSync("views/pages/post.html", "utf8")
+                .readFileSync("view/pages/post.html", "utf8")
                 .replace("{{title}}", postMetaObj.title)
                 .replace("{{content}}", htmlContent);
             fs.mkdirSync(`dist/posts/${postID}`, { recursive: true });
             fs.writeFileSync(`dist/posts/${postID}/index.html`, fullPostHtml);
 
             // 生成乾淨的內容頁面
-            // const cleanPostHtml = fs.readFileSync('views/pages/clean.html', 'utf8')
+            // const cleanPostHtml = fs.readFileSync('view/pages/clean.html', 'utf8')
             //   .replace('{{content}}', htmlContent);
             const cleanPostHtml = htmlContent;
             fs.writeFileSync(`dist/posts/clean/${postID}.html`, cleanPostHtml);
@@ -110,40 +122,61 @@ function processPosts() {
     });
 
     // 生成 tags 和 categories 的 json
-    generateTagsAndCategories(postsMeta);
+    generateTagsAndCategories();
 }
 
 // 提取 front matter
 function extractFrontMatter(content) {
     const frontMatterMatch = content.match(/---[\s\S]+?---/);
+    let meta = {};
     if (frontMatterMatch) {
         const frontMatter = frontMatterMatch[0];
         const lines = frontMatter.split("\n").slice(1, -1); // 去掉 '---'
-        const meta = {};
+        meta = {};
         lines.forEach((line) => {
-            const [key, value] = line.split(":");
-            meta[key.trim()] = eval(value.trim()); // 轉換為陣列或字串
+            const [key, value] = line.split(": ");
+            const trimmedKey = key.trim();
+            const trimmedValue = value.trim();
+
+            // 檢查是否為陣列格式
+            if (trimmedValue.startsWith("[") && trimmedValue.endsWith("]")) {
+                // 用正則表達式將每個元素加上雙引號，處理字串內容、特殊字符和空格
+                const fixedValue = trimmedValue.replace(
+                    /("[^"]+"|[^,\[\]\s]+(?:\s+[^,\[\]\s]+)*)/g,
+                    '"$1"'
+                );
+                // 移除多餘的雙引號（避免連續引號問題）
+                const sanitizedValue = fixedValue.replace(/"{2,}/g, '"');
+                meta[trimmedKey] = JSON.parse(sanitizedValue);
+            } else if (trimmedKey === "date") {
+                // 將日期轉換為 JavaScript timestamp
+                meta[trimmedKey] = new Date(trimmedValue).getTime();
+            } else {
+                // 處理為字串，並去除包裹的引號
+                meta[trimmedKey] = trimmedValue.replace(/^['"]|['"]$/g, "");
+            }
         });
-        return meta;
     }
-    return {};
+
+    return meta;
 }
 
 // 生成 tags 和 categories 的 json 檔
-function generateTagsAndCategories(postsMeta) {
+function generateTagsAndCategories() {
     const tagsMap = {};
     const categoriesMap = {};
-
     postsMeta.forEach((post) => {
-        post.tags.forEach((tag) => {
-            if (!tagsMap[tag]) tagsMap[tag] = [];
-            tagsMap[tag].push(post);
-        });
-
-        post.categories.forEach((category) => {
-            if (!categoriesMap[category]) categoriesMap[category] = [];
-            categoriesMap[category].push(post);
-        });
+        console.log(post);
+        if (post.tags)
+            post.tags.forEach((tag) => {
+                if (!tagsMap[tag]) tagsMap[tag] = [];
+                tagsMap[tag].push(post);
+            });
+        if (post.categories)
+            post.categories.forEach((category) => {
+                if (!categoriesMap[category]) categoriesMap[category] = [];
+                categoriesMap[category].push(post);
+            });
     });
 
     // 輸出 tags 和 categories
@@ -166,7 +199,7 @@ function generateTagsAndCategories(postsMeta) {
 }
 
 // Sitemap 和 RSS 生成
-function generateSitemapAndRSS(postsMeta) {
+function generateSitemapAndRSS() {
     const sitemapContent = postsMeta
         .map((post) => `<url><loc>/posts/${post.id}/index.html</loc></url>`)
         .join("\n");
@@ -187,15 +220,32 @@ function generateSitemapAndRSS(postsMeta) {
 
 // 主程式流程
 function generateSite() {
-    console.log("Generating site...");
+    console.log(
+        "\x1b[33m%s\x1b[0m",
+        `  
+         ##         
+        ####        
+ ######      ###### 
+  ######    ######  
+    #### ## ####    
+    #   #  #   #    
+  ####  ####  ####  
+ ################## 
+        ####        
+         ##         
+                                                            
+`
+    );
+    console.log("\x1b[32m%s\x1b[0m", "emtech Site Generator v1.0");
+    console.log("\x1b[34m%s\x1b[0m", "➤ Generating site...");
     initDist();
-    console.log("Copying static files...");
+    console.log("\x1b[34m%s\x1b[0m", "➤ Copying static files...");
     copyStatic();
-    console.log("Processing posts...");
+    console.log("\x1b[34m%s\x1b[0m", "➤ Processing posts...");
     processPosts();
-    console.log("Generating sitemap and RSS...");
+    console.log("\x1b[34m%s\x1b[0m", "➤ Generating sitemap and RSS...");
     generateSitemapAndRSS();
-    console.log("Site generated!");
+    console.log("\x1b[35m%s\x1b[0m", "➤ Site generated!");
 }
 
 generateSite();
