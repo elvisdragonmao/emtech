@@ -1,0 +1,12 @@
+{
+    "name": "emtech",
+    "packageManager": "yarn@4.2.2",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "node generate.js"
+    },
+    "devDependencies": {
+        "highlight.js": "^11.10.0",
+        "markdown-it": "^14.1.0"
+    }
+}

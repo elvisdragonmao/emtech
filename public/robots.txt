@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /posts/clean/
+Disallow: /posts/meta/
+
+Allow: /

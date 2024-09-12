@@ -5,109 +5,152 @@
 
 ![](demo.png)
 
-## How to deploy?
-
-### Prerequisites
-
-- Node.js (version >= 14)
-- Git
-- A platform that supports static website deployment, such as GitHub Pages, Netlify, or Vercel
-
-### Deployment Steps
-
-#### 1. Clone the Repository
-
-First, clone the repository to your local environment:
-
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+npm init -y
+npm install fs-extra markdown-it
 ```
 
-#### 2. Install Dependencies
 
-If your project requires any tools to convert or display Markdown files (e.g., Docusaurus, MkDocs, or Docsify), follow these steps to install the necessary dependencies.
+在專案根目錄下，確保你已經有以下結構：
 
-For example, if you are using Docsify:
-
-```bash
-npm install -g docsify-cli
+```plaintext
+/static                // 靜態資源目錄
+/views                 // HTML 模板和 partials
+/public                // 公開資源
+/posts                 // 文章 markdown 檔案
+  └ /{postID}          // 每篇文章獨立資料夾，裡面包含 index.md 和圖片等
+dist/                  // 最後輸出的資料夾
+generate.js            // 生成器程式
 ```
 
-#### 3. Local Preview
+# 靜態網頁生成器
 
-You can preview your Markdown files locally using Docsify or another tool.
+我想要自己撰寫我的靜態 SPA 網頁生成器。輸出在 dist 資料夾。他會執行以下幾個步驟：
 
-To preview with Docsify:
+使用 Node.js 來處理，搭配 markdown-it 來解析 markdown，fs 來讀取檔案，以及 highlight.js 來處理程式碼高亮。
+## 靜態資源處理
 
-```bash
-docsify serve docs
+1. 刪除 dist 資料夾
+2. 建立 dist 資料夾
+3. 建立 dist/static 資料夾
+4. 讀取 static 資料夾的檔案，複製到 dist 中的 static 資料夾
+5. 複製 index.html 到 dist 中
+6. 複製 /view/pages/*.html 到 dist 中的 /$1/index.html
+7. 複製 /public/ 下的所有檔案到 dist 的根目錄
+
+## 文章列表生成
+
+
+1. 讀取 /posts/ 下的所有資料夾，每個資料夾都是一篇文章。我會讀取這些資料夾中的 index.md，然後轉換成 HTML。
+
+在 `index.md` 的最上面會有以下設定：
+
+```markdown
+---
+authors: elvismao
+tags: [HTML, CSS, JS]
+categories: ["不用庫 也能酷 - 玩轉 CSS & Js 特效"]
+date: 2023-09-15
+---
 ```
 
-This will start a local server, and you can view the documentation in your browser at `http://localhost:3000`.
+請以 json 格式輸出：
 
-#### 4. Deploy to GitHub Pages
-
-If you wish to deploy the files to GitHub Pages, follow these steps.
-
-##### 4.1 Create the gh-pages Branch
-
-You need to deploy the documentation to the `gh-pages` branch for GitHub Pages:
-
-```bash
-docsify init ./docs
+```json
+[
+  {
+    "authors": "elvismao",
+    "tags": ["HTML", "CSS", "JS"],
+    "categories": ["不用庫 也能酷 - 玩轉 CSS & Js 特效"],
+    "date": "2023-09-15",
+    "title": "Day1 相見歡 - 庫就不酷嗎？",
+    "id": "2023ironman-1",
+    "thumbnail": "thumbnail.webp"
+  }
+]
 ```
 
-##### 4.2 Automate Deployment
+如果沒有指定 `thumbnail`，如果目錄底下有 `thumbnail.webp` 就使用它。
 
-You can automate the deployment process using GitHub Actions. Here’s a simple GitHub Actions configuration. Place it in `.github/workflows/deploy.yml`:
+同時要支援 Admonitions。透過 markdown-it-container 插件來處理 Admonitions 並自訂樣式
 
-```yaml
-name: Deploy to GitHub Pages
+```markdown
+:::note
 
-on:
-  push:
-    branches:
-      - main  # Deploy when changes are pushed to the main branch
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+:::
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+:::tip
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
 
-    - name: Install Docsify
-      run: npm install -g docsify-cli
+:::
 
-    - name: Build and Deploy
-      run: |
-        docsify init ./docs
-        docsify serve
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+:::info
+
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+:::warning
+
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+:::danger
+
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
+
+:::
 ```
 
-#### 5. Deploy to Other Platforms (e.g., Netlify or Vercel)
+並且可以設定標題
 
-If you prefer to deploy your documentation to other platforms like Netlify or Vercel, follow these steps.
+```markdown
+:::note[Your Title **with** some _Markdown_ `syntax`!]
 
-##### 5.1 Deploy to Netlify
+Some **content** with some _Markdown_ `syntax`.
 
-1. Sign in to [Netlify](https://www.netlify.com/) and connect your GitHub account.
-2. Select your project repository.
-3. Set the `build command` to `docsify serve docs`, and set the `publish directory` to `docs`.
-4. Click **Deploy**.
+:::
+```
 
-##### 5.2 Deploy to Vercel
+這個物件請複製到以下幾個地方：
 
-1. Sign in to [Vercel](https://vercel.com/) and connect your GitHub account.
-2. Select your project repository.
-3. Set the `build command` to `docsify serve docs` and the `output directory` to `docs`.
-4. Click **Deploy**.
+1. dist/posts/meta/posts.json
+2. dist/posts/meta/{id}.json
+
+以及根據 tags 和 categories 生成以下幾個檔案：
+
+1. dist/meta/tags/{tag}.json
+2. dist/meta/categories/{categories}.json
+
+使用 reduce 或其他函數來有效生成基於 tags、categories 的 json 資料，但每個 json 都應該要保留文章的 id、title、date、thumbnail、authors、tags、categories。
+
+我們需要生成兩份 HTML，一份是 /posts/{postID}/index.html，另一份是 /posts/clean/{postID}.html。前者是完整的文章頁面，後者是只有文章內容的頁面，不包含 header 和 footer。完整的頁面會將剛才 json 中的資料注入到 /views/pages/post.html 中 (如 {{title}})，文章內文注入到 {{content}} 中。而 clean 頁面則會將文章內文注入到 /views/pages/clean.html 中。
+放到 dist 中的 /posts/clean/{id}.html 下。
+
+## 處理文章圖片
+
+將 /post/{id}/ 底下 index.md 以外的檔案複製到 dist/static/{id}/ 底下
+
+
+## 靜態網頁生成
+
+最後是靜態網頁生成的部分。/views/pages/*.hmtl 下的所有檔案都會被複製到 dist 中的 /{id}/index.html，/views/pages/index.html 會被複製到 dist/index.html。
+
+## 渲染 partials
+
+將 /dist/posts/*.html、/views/pages/index.html、以及 /dist/{id}/index.html 中的 partials 都渲染出來。例如：
+
+```html
+{{header}}
+```
+
+會被替換成 /views/partials/header.html 的內容。
+
+## 生成 sitemap
+
+* SEO 相關處理：自動生成 sitemap。
+* RSS Feed：自動生成 RSS feed 讓使用者能夠訂閱更新。
