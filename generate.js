@@ -2,6 +2,12 @@ const fs = require("fs");
 const path = require("path");
 const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
+let analyze = {
+    pages: 0,
+    posts: 0,
+    tags: 0,
+    categories: 0
+};
 let postsMeta = [];
 // Updated Markdown-it setup with new highlight.js API
 const md = markdownIt({
@@ -41,8 +47,14 @@ function copyStatic() {
     viewFiles.forEach((file) => {
         const dirName = path.basename(file, ".html");
         fs.mkdirSync(`dist/${dirName}`, { recursive: true });
-        fs.copyFileSync(`view/pages/${file}`, `dist/${dirName}/index.html`);
+
+        // 讀取檔案內容
+        let fileContent = fs.readFileSync(`view/pages/${file}`, "utf8");
+        fileContent = renderPartials(fileContent);
+        fs.writeFileSync(`dist/${dirName}/index.html`, fileContent);
     });
+    analyze.pages = viewFiles.length;
+    fs.rmSync("dist/home", { recursive: true });
 }
 
 // 讀取文章並生成 HTML 和 JSON
@@ -55,25 +67,27 @@ function processPosts() {
             fs.lstatSync(path.join(postsDir, folder)).isDirectory()
         );
 
+    const postHTML = renderPartials(
+        fs.readFileSync("view/pages/post.html", "utf8")
+    );
+
     postFolders.forEach((postID) => {
         const postPath = path.join(postsDir, postID);
         const markdownFile = path.join(postPath, "index.md");
-
+        console.log(markdownFile);
         if (fs.existsSync(markdownFile)) {
             console.log(`➤ Processing post: ${postID}`);
             const markdownContent = fs.readFileSync(markdownFile, "utf8");
             const postMeta = extractFrontMatter(markdownContent);
             let htmlContent = md.render(
                 markdownContent.replace(/---[\s\S]+?---/, "")
-            ); // 移除 front matter，但不要移除文章中的分段符號
-            // 找到第一行的 h1 標題
-
-            // 如果沒有 title，則從文章內容中找到第一個 h1 標題
+            );
 
             if (!postMeta.title) {
                 postMeta.title = htmlContent.match(/<h1>(.*?)<\/h1>/)[1];
+                // remove the first h1 tag
+                htmlContent = htmlContent.replace(/<h1>.*?<\/h1>/, "");
             }
-            console.log(postMeta.title);
             const postMetaObj = {
                 ...postMeta,
                 id: postID,
@@ -87,10 +101,11 @@ function processPosts() {
             postsMeta.push(postMetaObj);
 
             // 生成完整的 HTML 頁面
-            const fullPostHtml = fs
-                .readFileSync("view/pages/post.html", "utf8")
-                .replace("{{title}}", postMetaObj.title)
-                .replace("{{content}}", htmlContent);
+            const fullPostHtml = renderPartials(
+                postHTML
+                    .replace("{{title}}", postMetaObj.title)
+                    .replace("{{content}}", htmlContent)
+            );
             fs.mkdirSync(`dist/posts/${postID}`, { recursive: true });
             fs.writeFileSync(`dist/posts/${postID}/index.html`, fullPostHtml);
 
@@ -99,11 +114,15 @@ function processPosts() {
             //   .replace('{{content}}', htmlContent);
             const cleanPostHtml = htmlContent;
             fs.writeFileSync(`dist/posts/clean/${postID}.html`, cleanPostHtml);
-
+            console.log(markdownFile);
             // 複製文章內的圖片等資源
             fs.cpSync(postPath, `dist/static/${postID}`, {
                 recursive: true,
-                filter: (src) => src !== markdownFile
+                filter: (src) => {
+                    return (
+                        src.split("\\").pop().split("/").pop() !== "index.md"
+                    );
+                }
             });
         }
     });
@@ -165,16 +184,21 @@ function extractFrontMatter(content) {
 function generateTagsAndCategories() {
     const tagsMap = {};
     const categoriesMap = {};
+    const tags = {};
+    const categories = {};
     postsMeta.forEach((post) => {
-        console.log(post);
         if (post.tags)
             post.tags.forEach((tag) => {
                 if (!tagsMap[tag]) tagsMap[tag] = [];
+                tags[tag] = tags[tag] ? tags[tag] + 1 : 1;
                 tagsMap[tag].push(post);
             });
         if (post.categories)
             post.categories.forEach((category) => {
                 if (!categoriesMap[category]) categoriesMap[category] = [];
+                categories[category] = categories[category]
+                    ? categories[category] + 1
+                    : 1;
                 categoriesMap[category].push(post);
             });
     });
@@ -196,6 +220,42 @@ function generateTagsAndCategories() {
             JSON.stringify(posts, null, 2)
         );
     }
+
+    fs.writeFileSync(
+        "dist/meta/tags.json",
+        JSON.stringify({ tags, categories }, null, 2)
+    );
+    // calcalate the number of posts in each tag and category
+
+    analyze.tags = Object.keys(tagsMap).length;
+    analyze.categories = Object.keys(categoriesMap).length;
+    analyze.posts = postsMeta.length;
+}
+
+// 生成 partials，go through all the .html in dist and replace {{partial}} with the content of the partial file
+const partials = fs
+    .readdirSync("view/partials")
+    .filter((file) => file.endsWith(".html"));
+
+// a json object to store the partials content
+const partialsContent = {};
+
+// read all the partials and store them in the partialsContent object
+
+partials.forEach((partial) => {
+    const partialContent = fs.readFileSync(`view/partials/${partial}`, "utf8");
+    partialsContent[path.basename(partial, ".html")] = partialContent;
+});
+
+function renderPartials(htmlContent) {
+    const partialsKeys = Object.keys(partialsContent);
+    partialsKeys.forEach((partialKey) => {
+        htmlContent = htmlContent.replace(
+            new RegExp(`{{${partialKey}}}`, "g"),
+            partialsContent[partialKey]
+        );
+    });
+    return htmlContent;
 }
 
 // Sitemap 和 RSS 生成
@@ -244,8 +304,13 @@ function generateSite() {
     console.log("\x1b[34m%s\x1b[0m", "➤ Processing posts...");
     processPosts();
     console.log("\x1b[34m%s\x1b[0m", "➤ Generating sitemap and RSS...");
+
     generateSitemapAndRSS();
     console.log("\x1b[35m%s\x1b[0m", "➤ Site generated!");
+    console.log("\x1b[36m%s\x1b[0m", `➤ Pages: ${analyze.pages}`);
+    console.log("\x1b[36m%s\x1b[0m", `➤ Posts: ${analyze.posts}`);
+    console.log("\x1b[36m%s\x1b[0m", `➤ Tags: ${analyze.tags}`);
+    console.log("\x1b[36m%s\x1b[0m", `➤ Categories: ${analyze.categories}`);
 }
 
 generateSite();
