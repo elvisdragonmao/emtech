@@ -11,6 +11,10 @@ let analyze = {
 let postsMeta = [];
 // Updated Markdown-it setup with new highlight.js API
 const md = markdownIt({
+    html: true,
+    linkify: true,
+    // typographer: true,
+    // quotes: '「」‘’“”',
     highlight: (str, lang) => {
         if (lang && hljs.getLanguage(lang)) {
             try {
@@ -38,7 +42,6 @@ function initDist() {
 // 複製靜態資源
 function copyStatic() {
     fs.cpSync("static", "dist/static", { recursive: true });
-    fs.copyFileSync("view/pages/home.html", "dist/index.html");
     fs.cpSync("public", "dist", { recursive: true });
     const viewFiles = fs
         .readdirSync("view/pages")
@@ -54,6 +57,7 @@ function copyStatic() {
         fs.writeFileSync(`dist/${dirName}/index.html`, fileContent);
     });
     analyze.pages = viewFiles.length;
+    fs.copyFileSync("dist/home/index.html", "dist/index.html");
     fs.rmSync("dist/home", { recursive: true });
 }
 
@@ -74,11 +78,18 @@ function processPosts() {
     postFolders.forEach((postID) => {
         const postPath = path.join(postsDir, postID);
         const markdownFile = path.join(postPath, "index.md");
-        console.log(markdownFile);
         if (fs.existsSync(markdownFile)) {
             console.log(`➤ Processing post: ${postID}`);
-            const markdownContent = fs.readFileSync(markdownFile, "utf8");
+            let markdownContent = fs
+                .readFileSync(markdownFile, "utf8")
+                .replace(/<!--[\s\S]+?-->/g, "");
             const postMeta = extractFrontMatter(markdownContent);
+            // turn image url if not set path like ![](image.webp) to ![](/static/postID/image.webp)
+            // don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
+            markdownContent = markdownContent.replace(
+                /!\[(.*?)\]\((?!\/|http)(.*?)\)/g,
+                `![](/static/${postID}/$2)`
+            );
             let htmlContent = md.render(
                 markdownContent.replace(/---[\s\S]+?---/, "")
             );
@@ -88,10 +99,16 @@ function processPosts() {
                 // remove the first h1 tag
                 htmlContent = htmlContent.replace(/<h1>.*?<\/h1>/, "");
             }
+
+            // get description from the first paragraph of the post
+            if (!postMeta.description)
+                postMeta.description = htmlContent.match(/<p>(.*?)<\/p>/)[1];
+
             const postMetaObj = {
                 ...postMeta,
                 id: postID,
                 title: postMeta.title || "無標題文章",
+                description: postMeta.description || "無描述",
                 thumbnail:
                     postMeta.thumbnail ||
                     (fs.existsSync(path.join(postPath, "thumbnail.webp"))
@@ -103,8 +120,8 @@ function processPosts() {
             // 生成完整的 HTML 頁面
             const fullPostHtml = renderPartials(
                 postHTML
-                    .replace("{{title}}", postMetaObj.title)
-                    .replace("{{content}}", htmlContent)
+                    .replaceAll("{{title}}", postMetaObj.title)
+                    .replaceAll("{{content}}", htmlContent)
             );
             fs.mkdirSync(`dist/posts/${postID}`, { recursive: true });
             fs.writeFileSync(`dist/posts/${postID}/index.html`, fullPostHtml);
@@ -292,25 +309,22 @@ function generateSite() {
   ####  ####  ####  
  ################## 
         ####        
-         ##         
-                                                            
+         ##                                                                
 `
     );
     console.log("\x1b[32m%s\x1b[0m", "emtech Site Generator v1.0");
     console.log("\x1b[34m%s\x1b[0m", "➤ Generating site...");
+    console.time("Execution Time");
     initDist();
     console.log("\x1b[34m%s\x1b[0m", "➤ Copying static files...");
     copyStatic();
     console.log("\x1b[34m%s\x1b[0m", "➤ Processing posts...");
     processPosts();
     console.log("\x1b[34m%s\x1b[0m", "➤ Generating sitemap and RSS...");
-
     generateSitemapAndRSS();
-    console.log("\x1b[35m%s\x1b[0m", "➤ Site generated!");
-    console.log("\x1b[36m%s\x1b[0m", `➤ Pages: ${analyze.pages}`);
-    console.log("\x1b[36m%s\x1b[0m", `➤ Posts: ${analyze.posts}`);
-    console.log("\x1b[36m%s\x1b[0m", `➤ Tags: ${analyze.tags}`);
-    console.log("\x1b[36m%s\x1b[0m", `➤ Categories: ${analyze.categories}`);
+    console.table(analyze);
+    console.log("\x1b[35m%s\x1b[0m", "➤ Site generated successfully!");
+    console.timeEnd("Execution Time");
 }
 
 generateSite();

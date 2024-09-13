@@ -3,7 +3,8 @@
     "packageManager": "yarn@4.2.2",
     "version": "1.0.0",
     "scripts": {
-        "build": "node generate.js"
+        "build": "node emblog/generate.js",
+        "server": "node emblog/server.js"
     },
     "dependencies": {
         "highlight.js": "^11.10.0",

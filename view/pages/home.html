@@ -1,12 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>emtech</title>
-</head>
-<body>
-    <h1>emtech</h1>
-    {{nav}}
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>emtech</title>
+        <link rel="stylesheet" href="/static/style.css" />
+    </head>
+    <body>
+        <!-- {{nav}} -->
+        <nav>
+            <div class="title">毛哥EM資訊密技</div>
+            <ul>
+                <li><a href="/post">文章</a></li>
+                <li><a href="/tags">Tags</a></li>
+            </ul>
+            <div class="right"></div>
+        </nav>
+        <div class="main-container">
+            <header>
+                <div>
+                    <h2>歡迎來到 emfont beta</h2>
+                </div>
+                <div>
+                    <h2>有朋自遠方來不意樂乎?</h2>
+                </div>
+            </header>
+            <main>
+                <section>
+                    <div id="categories">
+                        <a href="/categories/featured">推薦</a>
+                        <a href="/categories/tech">科技</a>
+                    </div>
+                    <div id="posts">
+                        <article>
+                            <div
+                                class="hero"
+                                style="
+                                    background-image: url('/static/7zip/thumbnail.webp');
+                                "
+                            ></div>
+                            <div class="info">
+                                <div class="categories">科技</div>
+                                <h3><a href="">文章標題</a></h3>
+                                <p>文章內容</p>
+                                <div class="tags">
+                                    <a href="">#科技</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+                <aside>
+                    <div id="about">
+                        <h2>關於我</h2>
+                    </div>
+                    <div id="featured">
+                        <h2>精選文章</h2>
+                    </div>
+                    <div id="tags">
+                        <h2>標籤</h2>
+                    </div>
+                </aside>
+            </main>
+        </div>
+        <footer>
+            <p>&copy; 2024 emtech</p>
+        </footer>
+        <script>
+            // fetch from /meta/tags.json like this
+            //             {
+            //   "tags": {
+            //     "HTML": 32,
+            //     "CSS": 35,
+            //     "JS": 20,
+            //     "Js": 1,
+            //   },
+            //   "categories": {
+            //     "心得": 1,
+            //     "活動心得": 1,
+            //     "軟體分享": 12,
+            //   }
+            // }
+            fetch("/meta/tags.json")
+                .then((res) => res.json())
+                .then((data) => {
+                    const tags = data.tags;
+                    const categories = data.categories;
+                    const tagsElement = document.querySelector("#tags");
+                    const categoriesElement =
+                        document.querySelector("#categories");
+                    for (const tag in tags) {
+                        const tagElement = document.createElement("a");
+                        tagElement.href = `/tags/${tag}`;
+                        tagElement.textContent = `#${tag} (${tags[tag]})`;
+                        tagsElement.appendChild(tagElement);
+                    }
+                    for (const category in categories) {
+                        const categoryElement = document.createElement("a");
+                        categoryElement.href = `/categories/${category}`;
+                        categoryElement.textContent = `${category}`;
+                        categoryElement.setAttribute(
+                            "data-categories",
+                            category
+                        );
+                        categoriesElement.appendChild(categoryElement);
+                    }
+                    document
+                        .querySelectorAll("#categories a")
+                        .forEach((link) => {
+                            link.addEventListener("click", function (event) {
+                                event.preventDefault();
+                                loadCategoryPosts(
+                                    link.getAttribute("data-categories")
+                                );
+                            });
+                        });
+                });
+
+            const loadCategoryPosts = (category) => {
+                fetch(`/meta/categories/${category}.json`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        //example data
+                        //                         [
+                        //   {
+                        //     "authors": "elvismao",
+                        //     "categories": [
+                        //       "心得"
+                        //     ],
+                        //     "series": [
+                        //       "不用庫 也能酷 - 玩轉 CSS & Js 特效"
+                        //     ],
+                        //     "date": 1697241600000,
+                        //     "title": "Day30 三十天的血與淚 - 密技",
+                        //     "description": "不知不覺，三十天的鐵人賽就要結束了。一開始還覺得時間很漫長，但到了二十幾天之後我開始發現時間不多了，十分珍惜每一次能夠和大家分享的機會。",
+                        //     "id": "2023ironman-30",
+                        //     "thumbnail": ""
+                        //   }
+                        // ]
+                        const postsElement = document.querySelector("#posts");
+                        postsElement.innerHTML = "";
+                        data.forEach((post) => {
+                            const article = document.createElement("article");
+                            article.innerHTML = `
+            <div
+                class="hero"
+                style="
+                    background-image: url('/static/${
+                        post.thumbnail ? post.thumbnail : "7zip/thumbnail.webp"
+                    }');
+                "
+            ></div>
+            <div class="info">
+                <div class="categories
+                ">${post.categories.join(", ")}</div>
+                <h3><a href="/post/${post.id}">${post.title}</a></h3>
+                <p>${post.description}</p>
+                <div class="tags">
+                    ${post.categories
+                        .map(
+                            (category) =>
+                                `<a href="/categories/${category}">#${category}</a>`
+                        )
+                        .join("")}
+                </div>
+            </div>
+            `;
+                            postsElement.appendChild(article);
+                        });
+                    });
+            };
+            loadCategoryPosts("featured");
+        </script>
+    </body>
 </html>
