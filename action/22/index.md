@@ -6,7 +6,7 @@
 
 # **1. 設置 GitHub Actions 工作流程**
 
-首先，我們需要創建一個 GitHub Actions 工作流程來運行爬蟲腳本。以下是一個基本的工作流程示例：
+首先，我們需要創建一個 GitHub Actions 工作流程來運行爬蟲腳本。以下是一個基本的工作流程範例：
 
 ```yaml
 name: Run Web Scraper
@@ -48,7 +48,7 @@ jobs:
 
 假設我們有一個爬蟲腳本 `scraper.py`，該腳本從某個網站抓取數據並將其存儲到本地文件。
 
-以下是一個示例爬蟲腳本，使用 `requests` 和 `BeautifulSoup` 來抓取數據：
+以下是一個範例爬蟲腳本，使用 `requests` 和 `BeautifulSoup` 來抓取數據：
 
 ```python
 # scraper.py
@@ -120,9 +120,9 @@ beautifulsoup4
 - **雲存儲**：將數據上傳到雲存儲服務（如 AWS S3、Google Cloud Storage）。
 - **電子郵件**：通過電子郵件發送數據或通知。
 
-## 示例：將數據存儲到 SQLite
+## 範例：將數據存儲到 SQLite
 
-以下是一個將數據存儲到 SQLite 數據庫的爬蟲腳本示例：
+以下是一個將數據存儲到 SQLite 數據庫的爬蟲腳本範例：
 
 ```python
 # scraper.py

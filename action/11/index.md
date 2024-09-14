@@ -84,7 +84,7 @@
 
 2. **在 CI/CD 中使用 Secrets**
 
-   在 GitHub Actions 工作流程中，你可以直接使用 Secrets，如上所示。以下是一個示例工作流程，它使用 Secrets 來設置環境變數，並運行 Node.js 應用：
+   在 GitHub Actions 工作流程中，你可以直接使用 Secrets，如上所示。以下是一個範例工作流程，它使用 Secrets 來設置環境變數，並運行 Node.js 應用：
 
    ```yaml
    name: Node.js CI

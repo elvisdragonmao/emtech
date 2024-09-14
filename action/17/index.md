@@ -23,7 +23,7 @@ my-custom-action/
 
 ### **步驟 2：編寫 Action 配置文件**
 
-在 `action.yml` 文件中，我們需要定義 Action 的輸入、執行和輸出。以下是 `action.yml` 的示例內容：
+在 `action.yml` 文件中，我們需要定義 Action 的輸入、執行和輸出。以下是 `action.yml` 的範例內容：
 
 ```yaml
 name: 'Update Notion to Discord'
@@ -222,7 +222,7 @@ my-custom-action/
 
 ### **步驟 2：編寫 Action 配置文件**
 
-在 `action.yml` 文件中，我們需要定義 Action 的輸入、執行和輸出。以下是 `action.yml` 的示例內容：
+在 `action.yml` 文件中，我們需要定義 Action 的輸入、執行和輸出。以下是 `action.yml` 的範例內容：
 
 ```yaml
 name: 'Update Notion to Discord'

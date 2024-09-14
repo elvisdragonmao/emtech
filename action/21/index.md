@@ -6,7 +6,7 @@
 
 ## **1. 準備工作**
 
-首先，確保你的 Python 應用準備好了。假設我們仍使用前面示例中的 `hello.py` 文件。
+首先，確保你的 Python 應用準備好了。假設我們仍使用前面範例中的 `hello.py` 文件。
 
 ## **2. 設置 GitHub Actions**
 
@@ -66,7 +66,7 @@ jobs:
 - **Build application**: 使用 PyInstaller 打包 Python 應用，根據運行的操作系統環境變量來確定可執行文件的名稱和擴展名。
 - **Archive artifacts**: 上傳生成的可執行文件作為 GitHub Actions 的構建產物，供後續下載或分發使用。
 
-## **4. 完整的工作流程示例**
+## **4. 完整的工作流程範例**
 
 這個配置會在 Ubuntu、macOS 和 Windows 上運行 PyInstaller 來打包 `hello.py` 文件，並將生成的可執行文件上傳為工作流產物。
 

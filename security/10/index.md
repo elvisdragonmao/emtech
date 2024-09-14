@@ -136,7 +136,7 @@ Broken Authentication 通常發生在認證過程中存在的缺陷，如缺乏�
 
 4. **加密傳輸：** 確保所有的認證信息都通過加密的 HTTPS 協議進行傳輸，以防止中間人攻擊。
 
-以下是如何在 Node.js 中實施登錄嘗試限制的示例：
+以下是如何在 Node.js 中實施登錄嘗試限制的範例：
 
 ```javascript
 const express = require('express');

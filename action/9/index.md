@@ -126,7 +126,7 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
 
    快照測試允許你對函數的輸出進行快照，並在以後的測試中比較這些快照。這對於測試 UI 組件和其他需要驗證輸出一致性的功能非常有用。
 
-   **示例：**
+   **範例：**
 
    ```javascript
    const myFunction = require('./myFunction');
@@ -142,7 +142,7 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
 
    Jest 支援模組模擬，允許你替換模組中的依賴套件以進行測試。
 
-   **示例：**
+   **範例：**
 
    ```javascript
    const myModule = require('./myModule');
@@ -162,7 +162,7 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
 
    Jest 支援異步測試，允許你測試異步代碼，如回調、Promises 和 async/await。
 
-   **示例（回調）：**
+   **範例（回調）：**
 
    ```javascript
    function fetchData(callback) {
@@ -179,7 +179,7 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
    });
    ```
 
-   **示例（Promises）：**
+   **範例（Promises）：**
 
    ```javascript
    function fetchData() {
@@ -197,7 +197,7 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
    });
    ```
 
-   **示例（async/await）：**
+   **範例（async/await）：**
 
    ```javascript
    async function fetchData() {

@@ -110,7 +110,7 @@ Insecure File Upload 是指網站或應用允許用戶上傳文件，但未對�
 
 4. **安全地處理上傳文件：** 不將上傳的文件存儲在可執行的目錄中，並對文件名稱進行處理以防止目錄遍歷攻擊。
 
-以下是如何在 Node.js 中實施文件上傳檢查的示例：
+以下是如何在 Node.js 中實施文件上傳檢查的範例：
 
 ```javascript
 const multer = require('multer');
