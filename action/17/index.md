@@ -203,7 +203,7 @@ jobs:
 
 ## **5. 運行和測試**
 
-當您將更改推送到 GitHub 存儲庫後，GitHub Actions 將會自動運行您的工作流程。您可以查看 Actions 頁面，確保自定義 Action 正確執行並更新 Discord 頻道標題。
+當你將更改推送到 GitHub 存儲庫後，GitHub Actions 將會自動運行你的工作流程。你可以查看 Actions 頁面，確保自定義 Action 正確執行並更新 Discord 頻道標題。
 
 ## JavaScript 版本
 
@@ -379,4 +379,4 @@ jobs:
 
 ## **小結**
 
-今天我們學習了如何使用 Bash 腳本編寫 GitHub Actions 自定義 Action。我們編寫了一個簡單的 Bash 腳本，從 Notion 獲取待辦事項並更新 Discord 頻道的標題。通過這個實踐，我們了解了如何使用 Shell 腳本來實現自動化操作，並且學會了如何配置和使用自定義 Actions。希望這篇教程對您有所幫助！
+今天我們學習了如何使用 Bash 腳本編寫 GitHub Actions 自定義 Action。我們編寫了一個簡單的 Bash 腳本，從 Notion 獲取待辦事項並更新 Discord 頻道的標題。通過這個實踐，我們了解了如何使用 Shell 腳本來實現自動化操作，並且學會了如何配置和使用自定義 Actions。希望這篇教程對你有所幫助！

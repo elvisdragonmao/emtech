@@ -4,6 +4,8 @@
 
 今天，我們將深入了解如何在 CI/CD 流程中使用 ESLint 進行程式碼品質檢查。ESLint 是一個熱門的 JavaScript 代碼靜態分析工具，用於識別和修復代碼中的問題。通過將 ESLint 集成到 GitHub Actions 中，我們可以確保提交到代碼庫的代碼遵循一定的代碼規範，提高代碼質量，降低錯誤率。
 
+我們同時也會練習使用 pylint，這是一個 Python 代碼檢查工具，可以說是 Python 版本的 ESLint。通過將 ESLint 和 pylint 集成到 CI/CD 流程中，我們可以在代碼推送和拉取請求時自動運行代碼檢查，確保代碼符合規範。
+
 ## 實作：配置基本的 CI 工作流程運行 ESLint 和 pylint 測試
 
 **步驟 1：設置 ESLint**
@@ -76,7 +78,7 @@
    }
    ```
 
-**步驟 2：設置 pylint（Python 用戶可選）**
+**步驟 2：設置 pylint**
 
 1. **初始化 Python 專案**
 
@@ -133,7 +135,7 @@
    在專案根目錄下創建 `.github/workflows/ci.yml` 文件，配置工作流程以運行 ESLint 和 pylint：
 
    ```yaml
-   name: CI Workflow
+   name: eslint and pylint CI
 
    on:
      push:
@@ -154,7 +156,7 @@
        - name: Set up Node.js
          uses: actions/setup-node@v2
          with:
-           node-version: '14'
+           node-version: '20'
 
        - name: Install dependencies
          run: npm install
@@ -172,7 +174,7 @@
        - name: Set up Python
          uses: actions/setup-python@v2
          with:
-           python-version: '3.8'
+           python-version: '3.11'
 
        - name: Install dependencies
          run: |
@@ -186,7 +188,7 @@
 
    **YAML 文件解析：**
    - **`on:`** 定義觸發事件（推送和拉取請求）。
-   - **`jobs:`** 定義工作流程中的工作（`lint` 和 `pylint`）。
+   - **`jobs:`** 定義工作流程中的工作（`ESLint` 和 `pylint`）。
    - **`steps:`** 定義每個工作的具體步驟，包括檢出代碼、設置環境、安裝依賴、運行檢查。
 
 2. **提交工作流程配置**
@@ -230,8 +232,6 @@
 
 ## 結語
 
-今天我們學習了如何在 CI/CD 流程中使用 ESLint 和 pylint 進行代碼質量檢查。通過將 ESLint 和 pylint 集成到 GitHub Actions 中，我們可以在代碼推送和拉取請求時自動運行代碼檢查，確保代碼符合質量標準。這樣可以提高代碼質量，降低錯誤率，並促進團隊
+今天我們學習了如何在 CI/CD 流程中使用 ESLint 和 pylint 進行代碼質量檢查。通過將 ESLint 和 pylint 集成到 GitHub Actions 中，我們可以在代碼推送和拉取請求時自動運行代碼檢查，提高代碼品質，降低錯誤率。
 
-協作。
-
-明天，我們將繼續探索 GitHub Actions 的更多應用，敬請期待！
+而明天我們要來寫更多測試。明天要來討論的是如何使用 Jest 來撰寫單元測試。

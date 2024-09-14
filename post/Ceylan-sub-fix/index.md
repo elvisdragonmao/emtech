@@ -11,9 +11,9 @@ date: 2023-03-14
 
 <!--more-->
 
-首先，請先安裝[油猴（Tampermonkey）](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)這個擴充功能。您可以在 Chrome、Edge 或 Firefox 的擴充功能商店下載它。接著，到 [Greasy Fork 網站](https://greasyfork.org/zh-TW/scripts/461789-%E9%8C%AB%E8%98%AD%E8%A8%82%E9%96%B1%E6%A0%A1%E6%AD%A3)安裝我開發的程式即可。有時 YouTube 會顯示錯誤，這時您只需要重新整理頁面就好了。
+首先，請先安裝[油猴（Tampermonkey）](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)這個擴充功能。你可以在 Chrome、Edge 或 Firefox 的擴充功能商店下載它。接著，到 [Greasy Fork 網站](https://greasyfork.org/zh-TW/scripts/461789-%E9%8C%AB%E8%98%AD%E8%A8%82%E9%96%B1%E6%A0%A1%E6%AD%A3)安裝我開發的程式即可。有時 YouTube 會顯示錯誤，這時你只需要重新整理頁面就好了。
 
-如果您擔心我會不會盜取您的個人資料，那麼別擔心！在您安裝程式時，您可以查看程式碼，以確保您的資料是安全的。不過程式碼非常簡潔，有些難以閱讀，所以這裡提供比較好閱讀的版本。
+如果你擔心我會不會盜取你的個人資料，那麼別擔心！在你安裝程式時，你可以查看程式碼，以確保你的資料是安全的。不過程式碼非常簡潔，有些難以閱讀，所以這裡提供比較好閱讀的版本。
 
 ```js
 (function () {
@@ -53,4 +53,4 @@ date: 2023-03-14
 
 不過你可能會說"喔我沒有讀過大學，我看不懂"，沒關係我也沒有，但你可以請ChatGPT解釋給你聽。
 
-現在，您可以輕鬆地修正錫蘭 YouTube 的訂閱數，成為網路上的大王。
+現在，你可以輕鬆地修正錫蘭 YouTube 的訂閱數，成為網路上的大王。

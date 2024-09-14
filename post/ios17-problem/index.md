@@ -40,7 +40,7 @@ iOS & iPadOS 17 Beta Release Notes
 已知問題
 * VoiceOver 可能無法在某些文本字段中朗讀預測文本。 (108858169)
 解決方法：用戶可以在設置應用中暫時禁用預測文本。
-* 創建個人語音後，您可能無法選擇此語音用於現場演講。 (109580709)
+* 創建個人語音後，你可能無法選擇此語音用於現場演講。 (109580709)
 解決方法：重新啟動設備，然後再試一次。
 
 ### AirPlay
@@ -224,7 +224,7 @@ Foundation
 
 ### StoreKit
 新功能
-* 您可以使用新的showManageSubscriptions(in:) API和訂閱組ID一起顯示用戶擁有的訂閱以及該組中提供的其他計劃選項。（87853800）
+* 你可以使用新的showManageSubscriptions(in:) API和訂閱組ID一起顯示用戶擁有的訂閱以及該組中提供的其他計劃選項。（87853800）
 * 用戶可以訪問新的Product.SubscriptionInfo.Status.all序列
 
 好的，繼續使用繁體中文。
