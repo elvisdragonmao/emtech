@@ -137,8 +137,8 @@ PDF 檔案可以採用 40 位加密或 128 位加密，通過使用命令選項 
 ### 權限
 使用者的許可權可以使用 allow 命令選項設定，可以設定的許可權如下：
 
-* `Printing`：允許高質量列印
-* `DegradedPrinting`：允許高質量列印
+* `Printing`：允許高品質列印
+* `DegradedPrinting`：允許高品質列印
 * `ModifyContents`：允許修改檔案內容
 * `CopyContents`：允許複製
 * `ModifyAnnotations`：允許添加註釋

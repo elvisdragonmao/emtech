@@ -4,7 +4,7 @@ $folderPath = Get-Location
 $mdFiles = Get-ChildItem -Path $folderPath -Recurse -Include *.md, *.yaml
 foreach ($file in $mdFiles) {
     $content = Get-Content -Path $file.FullName -Raw
-    $updatedContent = $content -replace '您', '你'
+    $updatedContent = $content -replace "質量", "品質"
     # Write the updated content back to the file without adding a new line at the end
     [System.IO.File]::WriteAllText($file.FullName, $updatedContent)
 }
