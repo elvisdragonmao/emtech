@@ -1,6 +1,8 @@
 # emtech
 毛哥EM資訊密技
 
+This is a WIP project for generating static website for emtech. Preview at beta.emtech.cc
+
 <https://emtech.cc>
 
 ![](demo.png)
