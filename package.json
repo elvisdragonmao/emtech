@@ -4,10 +4,12 @@
     "version": "1.0.0",
     "scripts": {
         "build": "node emblog/generate.js",
-        "server": "node emblog/server.js"
+        "server": "node emblog/server.js",
+        "gradient": "node emblog/gradient.js"
     },
     "dependencies": {
         "highlight.js": "^11.10.0",
-        "markdown-it": "^14.1.0"
+        "markdown-it": "^14.1.0",
+        "sharp": "^0.33.5"
     }
 }

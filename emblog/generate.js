@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
+const sharp = require("sharp");
 let analyze = {
     pages: 0,
     posts: 0,
@@ -62,7 +63,7 @@ function copyStatic() {
 }
 
 // 讀取文章並生成 HTML 和 JSON
-function processPosts() {
+async function processPosts() {
     const postsDir = "post";
 
     const postFolders = fs
@@ -75,11 +76,20 @@ function processPosts() {
         fs.readFileSync("view/pages/post.html", "utf8")
     );
 
-    postFolders.forEach((postID) => {
+    for (const postID of postFolders) {
         const postPath = path.join(postsDir, postID);
         const markdownFile = path.join(postPath, "index.md");
         if (fs.existsSync(markdownFile)) {
             console.log(`➤ Processing post: ${postID}`);
+            fs.cpSync(postPath, `dist/static/${postID}`, {
+                recursive: true,
+                filter: (src) => {
+                    return (
+                        src.split("\\").pop().split("/").pop() !== "index.md"
+                    );
+                }
+            });
+
             let markdownContent = fs
                 .readFileSync(markdownFile, "utf8")
                 .replace(/<!--[\s\S]+?-->/g, "");
@@ -103,17 +113,28 @@ function processPosts() {
             // get description from the first paragraph of the post
             if (!postMeta.description)
                 postMeta.description = htmlContent.match(/<p>(.*?)<\/p>/)[1];
-
+            const thumbnail =
+                postMeta.thumbnail ||
+                (fs.existsSync(path.join(postPath, "thumbnail.webp"))
+                    ? `/static/${postID}/thumbnail.webp`
+                    : "");
+            if (
+                !postMeta.colors &&
+                thumbnail.includes(".") &&
+                !thumbnail.includes("http")
+            ) {
+                console.log("finding" + path.join("..", "dist", thumbnail));
+                postMeta.colors = await findRepresentativeColors(
+                    path.join("dist", thumbnail) //.replaceAll("\\", "/")
+                );
+                console.log(postMeta.colors);
+            }
             const postMetaObj = {
                 ...postMeta,
                 id: postID,
-                title: postMeta.title || "無標題文章",
-                description: postMeta.description || "無描述",
-                thumbnail:
-                    postMeta.thumbnail ||
-                    (fs.existsSync(path.join(postPath, "thumbnail.webp"))
-                        ? "thumbnail.webp"
-                        : "")
+                title: postMeta.title || "無題",
+                description: postMeta.description || null,
+                thumbnail
             };
             postsMeta.push(postMetaObj);
 
@@ -133,16 +154,8 @@ function processPosts() {
             fs.writeFileSync(`dist/posts/clean/${postID}.html`, cleanPostHtml);
             console.log(markdownFile);
             // 複製文章內的圖片等資源
-            fs.cpSync(postPath, `dist/static/${postID}`, {
-                recursive: true,
-                filter: (src) => {
-                    return (
-                        src.split("\\").pop().split("/").pop() !== "index.md"
-                    );
-                }
-            });
-        }
-    });
+        } else console.warn(`➤ No markdown file found for post: ${postID}`);
+    }
 
     // 輸出 posts.json 和每篇文章的 json
     fs.mkdirSync("dist/posts/meta", { recursive: true });
@@ -295,8 +308,88 @@ function generateSitemapAndRSS() {
     );
 }
 
+async function calculateAverageColor(imagePath, region) {
+    const { width, height } = await sharp(imagePath).metadata();
+
+    // 定義各區域
+    const regions = {
+        topLeft: {
+            left: 0,
+            top: 0,
+            width: Math.floor(width / 3),
+            height: Math.floor(height / 3)
+        },
+        center: {
+            left: Math.floor(width / 3),
+            top: Math.floor(height / 3),
+            width: Math.floor(width / 3),
+            height: Math.floor(height / 3)
+        },
+        bottomRight: {
+            left: Math.floor((2 * width) / 3),
+            top: Math.floor((2 * height) / 3),
+            width: Math.floor(width / 3),
+            height: Math.floor(height / 3)
+        }
+    };
+
+    const regionInfo = regions[region];
+
+    // 確認區域大小是否足夠
+    const extracted = await sharp(imagePath)
+        .extract(regionInfo)
+        .raw()
+        .ensureAlpha()
+        .toBuffer({ resolveWithObject: true });
+
+    const data = extracted.data;
+    const pixelCount = data.length / 4; // 總像素數 (每個像素佔 4 個字節: RGBA)
+
+    // 設定 sampleSize 為不超過總像素數
+    const sampleSize = Math.min(10, pixelCount);
+
+    const colors = {};
+
+    // 取樣像素顏色
+    for (let i = 0; i < sampleSize; i++) {
+        const pixelIndex = i * 4; // RGBA 每個像素佔 4 個字節
+        const colorKey = [0, 1, 2]
+            .map((offset) =>
+                data[pixelIndex + offset].toString(16).padStart(2, "0")
+            )
+            .join("");
+
+        if (colors[colorKey]) {
+            colors[colorKey]++;
+        } else {
+            colors[colorKey] = 1;
+        }
+    }
+
+    // 找到最常出現的顏色
+    const mostFrequentColor = Object.keys(colors).reduce((a, b) =>
+        colors[a] > colors[b] ? a : b
+    );
+    return "#" + mostFrequentColor;
+}
+
+async function findRepresentativeColors(imagePath) {
+    console.log(imagePath);
+    const topLeftColor = await calculateAverageColor(imagePath, "topLeft");
+    const centerColor = await calculateAverageColor(imagePath, "center");
+    const bottomRightColor = await calculateAverageColor(
+        imagePath,
+        "bottomRight"
+    );
+    return `linear-gradient(135deg, ${topLeftColor}, ${centerColor}, ${bottomRightColor})`;
+    return [topLeftColor, centerColor, bottomRightColor];
+    console.log(
+        `<div style="width: 100px; height: 100px; background: linear-gradient(135deg, ${topLeftColor}, ${centerColor}, ${bottomRightColor});"></div>`
+    );
+}
+
 // 主程式流程
-function generateSite() {
+async function generateSite() {
     console.log(
         "\x1b[33m%s\x1b[0m",
         `  
@@ -319,7 +412,7 @@ function generateSite() {
     console.log("\x1b[34m%s\x1b[0m", "➤ Copying static files...");
     copyStatic();
     console.log("\x1b[34m%s\x1b[0m", "➤ Processing posts...");
-    processPosts();
+    await processPosts();
     console.log("\x1b[34m%s\x1b[0m", "➤ Generating sitemap and RSS...");
     generateSitemapAndRSS();
     console.table(analyze);

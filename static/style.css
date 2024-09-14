@@ -40,6 +40,10 @@ nav li {
 nav ul {
     text-align: center;
 }
+
+.right {
+    justify-content: flex-end;
+}
 .main-container {
     max-width: 1240px;
     margin: auto;
@@ -92,11 +96,27 @@ article {
 }
 
 article .hero {
-    height: 10rem;
+    aspect-ratio: 120 / 63;
+    background-repeat: no-repeat;
+    width: 100%;
     background-color: #e8e8e8;
+    background-size: contain;
+    background-position: center;
 }
+/* 
+article .hero::before {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+} */
+
+
 article .info {
     padding: 1rem 2rem;
+}
+
+h3 {
+    margin-bottom: 1rem;
 }
 
 aside {
@@ -109,7 +129,7 @@ aside > div {
     min-height: 10rem;
     padding: 1rem;
 }
-#tags > a{
+#tags > a {
     display: inline-block;
     margin-right: 1rem;
 }

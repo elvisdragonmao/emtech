@@ -12,9 +12,13 @@
             <div class="title">毛哥EM資訊密技</div>
             <ul>
                 <li><a href="/post">文章</a></li>
-                <li><a href="/tags">Tags</a></li>
+                <li><a href="/tags">分類</a></li>
+                <li><a href="/about">關於我</a></li>
             </ul>
-            <div class="right"></div>
+            <div class="right">
+                <input type="text" placeholder="搜尋" />
+                <button>搜尋</button>
+            </div>
         </nav>
         <div class="main-container">
             <header>
@@ -27,28 +31,8 @@
             </header>
             <main>
                 <section>
-                    <div id="categories">
-                        <a href="/categories/featured">推薦</a>
-                        <a href="/categories/tech">科技</a>
-                    </div>
-                    <div id="posts">
-                        <article>
-                            <div
-                                class="hero"
-                                style="
-                                    background-image: url('/static/7zip/thumbnail.webp');
-                                "
-                            ></div>
-                            <div class="info">
-                                <div class="categories">科技</div>
-                                <h3><a href="">文章標題</a></h3>
-                                <p>文章內容</p>
-                                <div class="tags">
-                                    <a href="">#科技</a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                    <div id="categories"></div>
+                    <div id="posts"></div>
                 </section>
                 <aside>
                     <div id="about">
@@ -146,15 +130,14 @@
             <div
                 class="hero"
                 style="
-                    background-image: url('/static/${
-                        post.thumbnail ? post.thumbnail : "7zip/thumbnail.webp"
-                    }');
-                "
+                    background-image: url('${
+                        post.thumbnail|| ""}'),
+                    ${post.colors || ""};"
             ></div>
             <div class="info">
                 <div class="categories
                 ">${post.categories.join(", ")}</div>
-                <h3><a href="/post/${post.id}">${post.title}</a></h3>
+                <h3><a href="/posts/${post.id}">${post.title}</a></h3>
                 <p>${post.description}</p>
                 <div class="tags">
                     ${post.categories
@@ -170,7 +153,7 @@
                         });
                     });
             };
-            loadCategoryPosts("featured");
+            loadCategoryPosts("軟體分享");
         </script>
     </body>
 </html>
