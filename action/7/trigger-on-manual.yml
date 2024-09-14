@@ -1,0 +1,12 @@
+name: On Manual Trigger
+
+on:
+  workflow_dispatch: # 允許手動觸發
+
+jobs:
+  manual-task:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run a script
+        run: echo "This job was manually triggered."

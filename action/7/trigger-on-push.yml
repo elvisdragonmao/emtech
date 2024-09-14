@@ -1,0 +1,17 @@
+name: On Push Event
+
+on:
+  push:
+    branches:
+      - main # 當推送到 main 分支時觸發工作流程
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Run a script
+        run: echo "Code was pushed to the main branch."

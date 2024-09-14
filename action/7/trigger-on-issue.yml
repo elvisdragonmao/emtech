@@ -1,0 +1,16 @@
+name: On Issue Event
+
+on:
+  issues:
+    types: [opened, edited] # 當 Issue 創建或更新時觸發工作流程
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Notify
+        run: echo "An Issue was created or edited."

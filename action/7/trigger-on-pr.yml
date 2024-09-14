@@ -1,0 +1,17 @@
+   name: On Pull Request Event
+
+   on:
+     pull_request:
+       branches:
+         - main  # 當拉取請求目標分支為 main 時觸發工作流程
+
+   jobs:
+     review:
+       runs-on: ubuntu-latest
+
+       steps:
+       - name: Check out the code
+         uses: actions/checkout@v2
+
+       - name: Run a script
+         run: echo "A Pull Request was created or updated against the main branch."
