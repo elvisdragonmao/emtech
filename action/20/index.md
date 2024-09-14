@@ -2,7 +2,7 @@
 
 > 司馬遷如果使用 GitHub Action 就可以自動更新《史記》了。
 
-在這篇教程中，我們將學習如何使用 GitHub Actions 自動生成和更新 Markdown 文件。我們的重點是使用 Actions 自動更新 `README.md` 文件，從 `fonts.json` 文件中生成一個格式化的字體列表。這包括讀取 JSON 文件內容、生成 Markdown 表格，以及在 README 文件中更新這些內容。
+在這篇教程中，我們將探討如何使用 GitHub Actions 自動生成和更新 Markdown 文件。我們的重點是使用 Actions 自動更新 `README.md` 文件，從 `fonts.json` 文件中生成一個格式化的字體列表。這包括讀取 JSON 文件內容、生成 Markdown 表格，以及在 README 文件中更新這些內容。
 
 ## **1. 技術背景**
 
@@ -134,6 +134,6 @@ console.log('README.md has been updated');
 
 ## **4. 小結**
 
-通過今天的教程，我們學習了如何使用 GitHub Actions 自動生成和更新 Markdown 文件。我們通過編寫腳本來從 JSON 文件生成 Markdown 表格，並將其更新到 `README.md` 文件中。這樣的自動化流程能夠確保文檔始終保持最新狀態，並且減少了手動更新的工作量。
+通過今天的教程，我們探討了如何使用 GitHub Actions 自動生成和更新 Markdown 文件。我們通過編寫腳本來從 JSON 文件生成 Markdown 表格，並將其更新到 `README.md` 文件中。這樣的自動化流程能夠確保文檔始終保持最新狀態，並且減少了手動更新的工作量。
 
 如果你有任何問題或需要進一步的幫助，隨時告訴我！

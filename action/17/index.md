@@ -379,4 +379,4 @@ jobs:
 
 ## **小結**
 
-今天我們學習了如何使用 Bash 腳本編寫 GitHub Actions 自定義 Action。我們編寫了一個簡單的 Bash 腳本，從 Notion 獲取待辦事項並更新 Discord 頻道的標題。通過這個實踐，我們了解了如何使用 Shell 腳本來實現自動化操作，並且學會了如何配置和使用自定義 Actions。希望這篇教程對你有所幫助！
+今天我們探討了如何使用 Bash 腳本編寫 GitHub Actions 自定義 Action。我們編寫了一個簡單的 Bash 腳本，從 Notion 獲取待辦事項並更新 Discord 頻道的標題。通過這個實踐，我們了解了如何使用 Shell 腳本來實現自動化操作，並且學會了如何配置和使用自定義 Actions。希望這篇教程對你有所幫助！

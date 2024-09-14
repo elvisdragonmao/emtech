@@ -229,4 +229,4 @@ jobs:
 
 ## **小結**
 
-今天我們學習了如何編寫一個 GitHub Action 來將 GitHub 的 issue 同步到 Notion。通過這個實踐，我們掌握了如何使用 Node.js 和 GitHub Actions 來自動化從 GitHub 獲取問題並更新 Notion 資料庫的過程。希望這篇教程能幫助你更高效地管理問題並保持項目組織的井然有序。
+今天我們探討了如何編寫一個 GitHub Action 來將 GitHub 的 issue 同步到 Notion。通過這個實踐，我們掌握了如何使用 Node.js 和 GitHub Actions 來自動化從 GitHub 獲取問題並更新 Notion 資料庫的過程。希望這篇教程能幫助你更高效地管理問題並保持項目組織的井然有序。

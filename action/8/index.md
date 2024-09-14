@@ -232,6 +232,6 @@
 
 ## 結語
 
-今天我們學習了如何在 CI/CD 流程中使用 ESLint 和 pylint 進行代碼質量檢查。通過將 ESLint 和 pylint 集成到 GitHub Actions 中，我們可以在代碼推送和拉取請求時自動運行代碼檢查，提高代碼品質，降低錯誤率。
+今天我們探討了如何在 CI/CD 流程中使用 ESLint 和 pylint 進行代碼質量檢查。通過將 ESLint 和 pylint 集成到 GitHub Actions 中，我們可以在代碼推送和拉取請求時自動運行代碼檢查，提高代碼品質，降低錯誤率。
 
 而明天我們要來寫更多測試。明天要來討論的是如何使用 Jest 來撰寫單元測試。
