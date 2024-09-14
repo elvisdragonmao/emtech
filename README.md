@@ -81,7 +81,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '20'
 
     - name: Install Docsify
       run: npm install -g docsify-cli

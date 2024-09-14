@@ -16,7 +16,7 @@ runs:
     - name: Run script
       uses: actions/setup-node@v3
       with:
-        node-version: '12'
+        node-version: '20'
     - run: npm install
     - run: node script.js
       env:

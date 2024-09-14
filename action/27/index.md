@@ -51,7 +51,7 @@
          - name: Set up Node.js
            uses: actions/setup-node@v3
            with:
-             node-version: '16'
+             node-version: '20'
 
          - name: Cache node_modules
            uses: actions/cache@v3
