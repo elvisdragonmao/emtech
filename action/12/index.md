@@ -88,7 +88,7 @@ jobs:
 
 上面的例子展示了如何僅在 `main` 分支上運行測試。
 
-### **範例：根據環境變數的值運行任務**
+### 範例：根據環境變數的值運行任務
 
 你也可以根據環境變數的值來決定是否運行特定任務：
 
@@ -108,11 +108,44 @@ jobs:
         run: echo "Deploying to production..."
 ```
 
-## **實作練習：條件性部署**
+### 範例：使用 `git diff` 檢查是否有變更
+
+像是前面的 git 練習，我們可以確認有編輯檔案後再來 commit。
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Check for changes
+        run: git diff --exit-code
+      - name: Commit changes
+        if: success()
+        run: git commit -am "Auto commit"
+```
+
+### 範例：Prettier 檢查是否通過
+
+這是我們第六天的練習。我們可以使用 Prettier 來檢查代碼是否符合規範，如果不符合，則自動格式化代碼。這裡我們可以使用 `failure()` 函數來判斷是否有錯誤，然後運行格式化代碼的命令。
+
+```yaml
+# ...
+      - name: Run Prettier check
+        id: prettier
+        run: npx prettier —check .
+
+      - name: Run Prettier format (if needed)
+        if: ${{ failure() }}
+        run: npx prettier —write .
+```
+## 實作練習：條件性部署
 
 這是一個簡單的專案，示範如何根據不同的分支進行條件性部署。例如，當代碼推送到 `main` 分支時，自動部署到生產環境；當推送到 `develop` 分支時，則部署到測試環境。
 
-### **步驟 1：設置環境變數**
+### 步驟 1：設置環境變數
 
 在 `.github/workflows/deploy.yml` 中設置：
 
@@ -122,7 +155,7 @@ env:
   STAGING_URL: https://staging.example.com
 ```
 
-### **步驟 2：配置條件性部署**
+### 步驟 2：配置條件性部署
 
 ```yaml
 jobs:
@@ -144,8 +177,6 @@ jobs:
 
 這個工作流程根據當前分支名稱，選擇性地部署到不同的環境。
 
-## **小結**
+## 結語
 
-環境變數和條件運行是 GitHub Actions 中非常強大的工具，能夠幫助你根據不同的情境來靈活地控制工作流程。無論是在不同的平台上測試代碼，還是根據分支部署應用，這些功能都能大幅提升你的工作效率和代碼品質。
-
-希望你在這篇文章中能夠探討到如何有效地利用這些工具來構建更加強大和靈活的 CI/CD 工作流程。
+環境變數和條件運行是 GitHub Actions 中非常強大的工具，能夠幫助你根據不同的情境來靈活地控制工作流程。無論是在不同的平台上測試代碼，還是根據分支部署應用，這些功能都能大幅提升你的工作效率和代碼品質。明天我們要來談談自動化 Docker 構建，敬請期待！
