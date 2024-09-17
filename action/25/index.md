@@ -6,6 +6,8 @@
 
 在現代軟體開發中，安全性是至關重要的。自動化的安全掃描可以幫助我們及時發現並修補漏洞，從而提高應用程序的安全性。本文將介紹如何使用 GitHub 的 Dependabot 來自動檢查依賴的安全性，並使用 GitHub Actions 檢查是否洩漏 secrets。
 
+> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/25>
+
 ## 部分 1: 使用 Dependabot 進行依賴安全性檢查
 
 ### 步驟 1: 設置 Dependabot

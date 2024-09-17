@@ -4,6 +4,8 @@
 
 為了支援多平台的 Python 應用打包（例如 Windows、macOS 和 Linux），我們可以使用 GitHub Actions 和 PyInstaller 配合使用。以下是一步步的詳細指南，介紹如何在 GitHub Actions 中設置自動化打包，生成適用於不同作業系統的可執行文件。
 
+> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/21>
+
 ## **1. 準備工作**
 
 首先，確保你的 Python 應用準備好了。假設我們仍使用前面範例中的 `hello.py` 文件。

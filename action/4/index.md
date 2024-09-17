@@ -4,6 +4,7 @@
 
 今天我們要來探討如何使用 GitHub Actions 來進行檔案壓縮和解壓縮操作，並將其上傳為工件（artifact）。
 
+> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/4>
 
 ## 國小複習：GitHub 的 Artifact 是什麼？
 

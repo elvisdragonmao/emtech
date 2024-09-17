@@ -4,6 +4,8 @@
 
 在這篇教程中，我們將探討如何集成外部 API 和服務，自動化 GitHub issue 管理，並使用 Coderabbit 自動進行代碼審查。我們將使用 GitHub Actions 來實現這些自動化功能。
 
+> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/19>
+
 ## **1. 技術背景**
 
 - **GitHub API**: 允許我們與 GitHub 平台進行交互，包括管理 issues。

@@ -2,6 +2,8 @@
 
 > 孔子能從心所欲不逾矩。正是因為他能夠自定義 Actions，把 Notion 待辦事項放到 Discord 頻道。
 
+> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/17>
+
 今天，我們將介紹如何使用 Bash 腳本編寫 GitHub Actions，自動從 Notion 獲取待辦事項並更新到 Discord 頻道。這是一個很好的實踐案例，能幫助你了解如何利用 Bash 腳本和 GitHub Actions 進行自動化操作。
 
 ## **1. 了解 Bash 自定義 Actions**

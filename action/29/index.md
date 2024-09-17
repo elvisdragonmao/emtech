@@ -6,6 +6,8 @@
 
 在持續運行的開源或企業倉庫中，管理問題（issues）和拉取請求（PRs）是維護工作的重要部分。隨著時間的推移，未處理的 issue 和 PR 可能會累積，影響倉庫的健康和開發效率。使用 GitHub Actions 進行自動化維護和清理，可以減少手動工作，確保倉庫保持整潔。本文將介紹如何設置 GitHub Actions 來自動關閉長時間未處理的 issue 和 PR，提升維護效率。
 
+> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/29>
+
 ## 為什麼需要自動化維護？
 
 未處理的 issue 和 PR 可能會影響倉庫的運行效率。自動化維護有助於：

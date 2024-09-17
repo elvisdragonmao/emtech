@@ -4,6 +4,8 @@
 
 在這篇教程中，我們將探討如何使用 GitHub Actions 來自動運行 Python 爬蟲腳本，並處理和存儲抓取的數據。這個過程包括設置 GitHub Actions 工作流程、運行爬蟲腳本以及將結果存儲到不同的地方（如文件或數據庫）。
 
+> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/22>
+
 # **1. 設置 GitHub Actions 工作流程**
 
 首先，我們需要創建一個 GitHub Actions 工作流程來運行爬蟲腳本。以下是一個基本的工作流程範例：

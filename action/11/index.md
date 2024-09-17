@@ -8,6 +8,8 @@
 
 今天，我們將探討如何在 GitHub Actions 中使用 Secrets，並展示如何在 Node.js 程式中安全地讀取這些秘密。
 
+> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/11>
+
 ## 技巧：甚麼是 Secrets？
 
 **Secrets** 是 GitHub 提供的一種功能，用來儲存和管理敏感資料。這些資料在工作流程中可以安全地使用，但不會被暴露在日志或其他地方。

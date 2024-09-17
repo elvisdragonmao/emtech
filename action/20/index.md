@@ -4,6 +4,8 @@
 
 在這篇教程中，我們將探討如何使用 GitHub Actions 自動生成和更新 Markdown 文件。我們的重點是使用 Actions 自動更新 `README.md` 文件，從 `fonts.json` 文件中生成一個格式化的字體列表。這包括讀取 JSON 文件內容、生成 Markdown 表格，以及在 README 文件中更新這些內容。
 
+> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/20>
+
 ## **1. 技術背景**
 
 - **Markdown**: 用於編寫格式化文本，常見於 README 文件。
