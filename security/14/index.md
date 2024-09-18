@@ -7,6 +7,7 @@
 **1. 創建基本網站**
 
 - **步驟：** 設置 Node.js 和 SQLite 環境，創建基本的 HTML、CSS 和 JavaScript 文件。
+
   ```bash
   mkdir open-redirect-example
   cd open-redirect-example
@@ -15,33 +16,39 @@
   ```
 
 - **index.js**
+
   ```javascript
-  const express = require('express');
-  const sqlite3 = require('sqlite3').verbose();
+  const express = require("express");
+  const sqlite3 = require("sqlite3").verbose();
   const app = express();
   const port = 3000;
 
-  const db = new sqlite3.Database(':memory:');
+  const db = new sqlite3.Database(":memory:");
 
   // 建立資料庫表格
   db.serialize(() => {
-    db.run('CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT)');
-    db.run('INSERT INTO users (name, email) VALUES (?, ?)', ['Bob', 'bob@example.com']);
+    db.run(
+      "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT)",
+    );
+    db.run("INSERT INTO users (name, email) VALUES (?, ?)", [
+      "Bob",
+      "bob@example.com",
+    ]);
   });
 
-  app.use(express.static('public'));
+  app.use(express.static("public"));
   app.use(express.urlencoded({ extended: true }));
 
-  app.get('/', (req, res) => {
-    db.get('SELECT * FROM users WHERE id = 1', (err, row) => {
+  app.get("/", (req, res) => {
+    db.get("SELECT * FROM users WHERE id = 1", (err, row) => {
       if (err) throw err;
-      res.sendFile(__dirname + '/public/index.html');
+      res.sendFile(__dirname + "/public/index.html");
     });
   });
 
-  app.get('/redirect', (req, res) => {
+  app.get("/redirect", (req, res) => {
     const { url } = req.query;
-    res.redirect(url || '/');
+    res.redirect(url || "/");
   });
 
   app.listen(port, () => {
@@ -50,23 +57,27 @@
   ```
 
 - **public/index.html**
+
   ```html
-  <!DOCTYPE html>
+  <!doctype html>
   <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Redirect Example</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <h1>Welcome to Open Redirect Example</h1>
-    <a href="/redirect?url=http://localhost:3000" id="redirectLink">Click here to be redirected</a>
-  </body>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Open Redirect Example</title>
+      <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+      <h1>Welcome to Open Redirect Example</h1>
+      <a href="/redirect?url=http://localhost:3000" id="redirectLink"
+        >Click here to be redirected</a
+      >
+    </body>
   </html>
   ```
 
 - **public/styles.css**
+
   ```css
   body {
     font-family: Arial, sans-serif;
@@ -83,29 +94,33 @@
 **2. 建立釣魚攻擊頁面**
 
 - **釣魚頁面（public/phishing.html）**
-  ```html
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phishing Page</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        margin: 50px;
-      }
 
-      h1 {
-        color: red;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>You have been redirected to a phishing page!</h1>
-    <p>If you entered any sensitive information, please contact support immediately.</p>
-  </body>
+  ```html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Phishing Page</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin: 50px;
+        }
+
+        h1 {
+          color: red;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>You have been redirected to a phishing page!</h1>
+      <p>
+        If you entered any sensitive information, please contact support
+        immediately.
+      </p>
+    </body>
   </html>
   ```
 
@@ -122,19 +137,20 @@
 1. **驗證和限制重定向 URL**
 
    - **步驟：** 修改 `index.js`，僅允許重定向到信任的域名。
+
      ```javascript
-     app.get('/redirect', (req, res) => {
+     app.get("/redirect", (req, res) => {
        const { url } = req.query;
-       const allowedDomains = ['localhost:3000'];
+       const allowedDomains = ["localhost:3000"];
        try {
          const parsedUrl = new URL(url, `http://${req.headers.host}`);
          if (allowedDomains.includes(parsedUrl.hostname)) {
            res.redirect(url);
          } else {
-           res.status(400).send('Invalid redirect URL');
+           res.status(400).send("Invalid redirect URL");
          }
        } catch (e) {
-         res.status(400).send('Invalid URL');
+         res.status(400).send("Invalid URL");
        }
      });
      ```

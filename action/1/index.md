@@ -47,13 +47,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: 設置 Node.js 環境
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'
-    - run: npm install
-    - run: npm test
+      - uses: actions/checkout@v2
+      - name: 設置 Node.js 環境
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+      - run: npm install
+      - run: npm test
 ```
 
 這個工作流配置文件做了以下幾件事：
@@ -73,11 +73,8 @@ jobs:
 GitHub Actions 的核心概念包括工作流（Workflow）、任務（Job）、步驟（Step）和動作（Action）。你可以想一個大任務裡面有很多個子任務。
 
 1. **Workflow（工作流）**：工作流是一次要執行的整個過程，它由多個任務（Job）組成。你可以將工作流視為一系列自動化操作的集合。每個工作流會根據你設置的條件觸發，例如在每次 push 程式後運行測試。
-   
 2. **Job（任務）**：每個工作流由一個或多個任務組成。任務是工作流中的一個邏輯單位，通常每個任務會在不同的環境中執行不同的操作，例如在 Linux 上執行測試，在 Windows 上編譯程式等。
-   
 3. **Step（步驟）**：每個任務由多個步驟組成。步驟是任務中的具體操作，例如檢出程式、設置環境、運行命令等。
-   
 4. **Action（動作）**：動作是每個步驟中執行的具體命令或操作。例如，使用一個設定好的 Node.js 環境，或運行一個 shell 腳本。
 
 ### YAML 格式簡介
@@ -88,8 +85,8 @@ YAML 是一種簡單易讀的配置語法，跟 Json 有些類似，常用於編
 - **列表**：使用 `-` 開頭的行表示列表中的每一項。例如：
   ```yaml
   steps:
-  - uses: actions/checkout@v2
-  - name: Set up Node.js
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
   ```
 - **縮排**：縮排用於表示層次結構。你只要不小心多打一個你的檔案就會爆了。
 
@@ -125,7 +122,7 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
 - name: Set up Node.js
   uses: actions/setup-node@v2
   with:
-    node-version: '20'
+    node-version: "20"
 ```
 
 這樣你就不需要手動編寫設置環境的程式，直接引用這個 Action 即可。你也可以自己把常用的 Action 上架至 Marketplace。
@@ -188,31 +185,31 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
    創建一個名為 `index.test.js` 的測試文件，放在專案根目錄中。這個測試文件將測試我們的 `add` 函數是否正常運行：
 
    ```javascript
-   const add = require('./index');
+   const add = require("./index");
 
-   test('adds 1 + 2 to equal 3', () => {
+   test("adds 1 + 2 to equal 3", () => {
      expect(add(1, 2)).toBe(3);
    });
    ```
 
-  現在你可以在本地嘗試運行測試：
+現在你可以在本地嘗試運行測試：
 
-  ```bash
-  npm test
-  ```
+```bash
+npm test
+```
 
-  這時候你的輸出應該是類似這樣的：
+這時候你的輸出應該是類似這樣的：
 
-  ```bash
+```bash
 $ npm test
 > 1@1.0.0 test
 > jest
 
- PASS  ./index.test.js
-  √ adds 1 + 2 to equal 3 (3 ms)
+PASS  ./index.test.js
+√ adds 1 + 2 to equal 3 (3 ms)
 
-Test Suites: 1 passed, 1 total                                                                                     
-Tests:       1 passed, 1 total                                                                                     
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
 Snapshots:   0 total
 Time:        0.57 s
 Ran all test suites.
@@ -233,16 +230,17 @@ Ran all test suites.
        runs-on: ubuntu-latest
 
        steps:
-       - uses: actions/checkout@v2
-       - name: Set up Node.js
-         uses: actions/setup-node@v2
-         with:
-           node-version: '20'
-       - run: npm install
-       - run: npm test
+         - uses: actions/checkout@v2
+         - name: Set up Node.js
+           uses: actions/setup-node@v2
+           with:
+             node-version: "20"
+         - run: npm install
+         - run: npm test
    ```
 
    這個工作流會在每次有程式推送（push）到 GitHub 的時候自動運行，它將執行以下步驟：
+
    - 檢出程式
    - 設置 Node.js 環境
    - 安裝依賴套件
@@ -260,7 +258,6 @@ Ran all test suites.
 ### 第四步：檢查 GitHub Actions 執行狀況
 
 推送完程式後，打開你的 GitHub repository，點擊 "Actions" 標籤頁。你會看到 GitHub Actions 自動運行了我們配置的 CI 工作流。當測試通過時，你會看到綠色的標誌，表示一切正常。如果測試失敗，GitHub Actions 會給出詳細的錯誤信息，幫助你排查問題。
-
 
 ## 結語
 

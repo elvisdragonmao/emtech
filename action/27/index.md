@@ -53,7 +53,7 @@
          - name: Set up Node.js
            uses: actions/setup-node@v3
            with:
-             node-version: '20'
+             node-version: "20"
 
          - name: Cache node_modules
            uses: actions/cache@v3
@@ -73,6 +73,7 @@
    ```
 
    **解釋**:
+
    - `actions/cache@v3`: 設置快取插件。
    - `path`: 指定需要快取的目錄，如 `node_modules` 和 `~/.npm`。
    - `key`: 唯一標識快取條目的鍵，通常使用文件哈希值。
@@ -108,7 +109,7 @@
          - name: Set up Python
            uses: actions/setup-python@v4
            with:
-             python-version: '3.10'
+             python-version: "3.10"
 
          - name: Cache Python packages
            uses: actions/cache@v3
@@ -126,6 +127,7 @@
    ```
 
    **解釋**:
+
    - `path`: 指定需要快取的目錄，如 `~/.cache/pip`。
    - `key`: 使用 `requirements.txt` 文件的哈希值來生成唯一鍵。
    - `restore-keys`: 允許使用部分鍵來恢復快取。

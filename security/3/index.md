@@ -1,11 +1,13 @@
 ### Day 3: Command Injection——當網站變成駭客的控制台
 
 #### 簡介：什麼是 Command Injection？
+
 Command Injection 是一種安全漏洞，允許攻擊者通過網站的表單或輸入框注入並執行任意系統命令。這種攻擊的後果可以非常嚴重，因為攻擊者可以直接操控伺服器的操作系統，執行任何他們想要的命令。
 
 #### 開發爛網站：逐步創建脆弱的 Command Injection 應用
 
 1. **初始化專案並設置 Node.js 環境**
+
    - **目標：** 設置基本的專案環境，與前兩天的步驟類似。
    - **步驟：**
      - 創建一個新目錄並初始化專案：
@@ -20,24 +22,27 @@ Command Injection 是一種安全漏洞，允許攻擊者通過網站的表單�
        ```
 
 2. **設置 Express 應用與簡單的路由**
+
    - **目標：** 創建一個簡單的網站，允許用戶輸入一個命令，並在伺服器上執行。
    - **步驟：**
+
      - 在 `index.js` 中，設置 Express 應用和一個簡單的表單：
+
        ```javascript
-       const express = require('express');
-       const bodyParser = require('body-parser');
-       const { exec } = require('child_process');
+       const express = require("express");
+       const bodyParser = require("body-parser");
+       const { exec } = require("child_process");
        const app = express();
 
-       app.set('view engine', 'ejs');
+       app.set("view engine", "ejs");
        app.use(bodyParser.urlencoded({ extended: true }));
-       app.use(express.static('public'));
+       app.use(express.static("public"));
 
-       app.get('/', (req, res) => {
-         res.render('index');
+       app.get("/", (req, res) => {
+         res.render("index");
        });
 
-       app.post('/execute', (req, res) => {
+       app.post("/execute", (req, res) => {
          const userInput = req.body.command;
          exec(userInput, (error, stdout, stderr) => {
            if (error) {
@@ -49,31 +54,36 @@ Command Injection 是一種安全漏洞，允許攻擊者通過網站的表單�
        });
 
        app.listen(3000, () => {
-         console.log('Server is running on http://localhost:3000');
+         console.log("Server is running on http://localhost:3000");
        });
        ```
+
      - **說明：** 我們使用 Node.js 的 `exec` 函數來執行用戶輸入的命令，並將結果返回給用戶。
 
 3. **創建 EJS 模板與前端頁面**
+
    - **目標：** 設計一個簡單的前端頁面，讓用戶輸入命令。
    - **步驟：**
      - 創建 `views/index.ejs` 文件，並加入以下內容：
        ```html
-       <!DOCTYPE html>
+       <!doctype html>
        <html lang="en">
-       <head>
-           <meta charset="UTF-8">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <head>
+           <meta charset="UTF-8" />
+           <meta
+             name="viewport"
+             content="width=device-width, initial-scale=1.0"
+           />
            <title>Command Injection Vulnerable Site</title>
-           <link rel="stylesheet" href="/styles.css">
-       </head>
-       <body>
+           <link rel="stylesheet" href="/styles.css" />
+         </head>
+         <body>
            <h1>Command Injection Playground</h1>
            <form method="POST" action="/execute">
-               <input type="text" name="command" placeholder="Enter command" />
-               <button type="submit">Execute</button>
+             <input type="text" name="command" placeholder="Enter command" />
+             <button type="submit">Execute</button>
            </form>
-       </body>
+         </body>
        </html>
        ```
      - **說明：** 用戶可以通過這個頁面輸入他們想要執行的命令，並將結果顯示在頁面上。
@@ -106,11 +116,11 @@ Command Injection 是利用應用程式將未經驗證的用戶輸入直接傳�
 以下是修復過的代碼，其中使用了 `execFile` 來限制只執行特定的命令：
 
 ```javascript
-app.post('/execute', (req, res) => {
+app.post("/execute", (req, res) => {
   const userInput = req.body.command;
 
   // 僅允許執行 'ls' 命令，並禁止其他命令
-  if (userInput === 'ls') {
+  if (userInput === "ls") {
     execFile(userInput, (error, stdout, stderr) => {
       if (error) {
         res.send(`Error: ${stderr}`);

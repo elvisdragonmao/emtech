@@ -32,22 +32,20 @@ HTML就是這樣建立一個又一個地”元素” (element) 。因為寫HTML�
 
 以下是常的文字元素。
 
-
 ```html
-<p>段落
+<p>
+  段落
   <b>粗體</b>
   <i>斜體</i>
   <s>刪除線</s>
   <u>底線</u>
-  H<sup>+</sup>
-CO<sub>2</sub>
+  H<sup>+</sup> CO<sub>2</sub>
 </p>
-
 ```
 
 `<p>`元素代表段落區塊(paragraph)。`<b>`是粗體(bold)、`<i>`是斜體(italic)、`<s>`是劃掉(strike)、`<u>`是底線(underline)。`<sup>`是上標(superscript)、`<sub>`是下標(subscript)。你可以記super在上面，而訂閱按鈕Subscribe在影片下方等你去按。
 
-**粗體***斜體*~~刪除線~~
+**粗體\***斜體\*~~刪除線~~
 <u>底線</u>
 H<sup>+</sup> CO<sub>2</sub>
 
@@ -56,7 +54,8 @@ H<sup>+</sup> CO<sub>2</sub>
 也許你有發現，在HTML中一個以上的tab、空格、換行都視為一個空格，因此你可以自由地排版保持程式的簡潔。但是如果你想要換行的話，你可以使用`<br>`元素換行，`<hr>`插入分隔線(Horizontal Rule)。而如果你想要插入一個空白的話，你可以使用`&nbsp;`。
 
 ```html
-橫線<hr />
+橫線
+<hr />
 換行<br />
 ```
 
@@ -87,7 +86,6 @@ H<sup>+</sup> CO<sub>2</sub>
   <li>b</li>
   <li>c</li>
 </ul>
-
 ```
 
 - a
@@ -104,7 +102,6 @@ H<sup>+</sup> CO<sub>2</sub>
   <li>b</li>
   <li>c</li>
 </ol>
-
 ```
 
 1. a
@@ -117,17 +114,19 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <ul>
-         <li>玉米濃湯</li>
-         <li>鮪魚吐司</li>
-         <li>薯條
-            <ul>
-              <li>鹽味</li>
-              <li>胡椒鹽</li>
-              <li>番茄醬</li>
-            </ul>
-         </li>
-     </ul>
+  <li>玉米濃湯</li>
+  <li>鮪魚吐司</li>
+  <li>
+    薯條
+    <ul>
+      <li>鹽味</li>
+      <li>胡椒鹽</li>
+      <li>番茄醬</li>
+    </ul>
+  </li>
+</ul>
 ```
+
 <ul>
          <li>玉米濃湯</li>
          <li>鮪魚吐司</li>
@@ -168,15 +167,16 @@ H<sup>+</sup> CO<sub>2</sub>
 如果你想要插入圖片，你可以使用`<img>` (image)元素，並在`src` (source)屬性中指定圖片的來源，`alt`( alternative text)屬性中填入圖片的敘述。如果圖片無法顯示時就會使用這個替代文字，而Google也會透過這個文字了解圖片內容。
 
 ```html
-<img src="來源" alt="文字敘述">
-
+<img src="來源" alt="文字敘述" />
 ```
 
 比如說這個是從Google首頁抓下來的圖片，我們可以這樣寫:
 
 ```html
-<img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google">
-
+<img
+  src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+  alt="Google"
+/>
 ```
 
 ![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
@@ -185,7 +185,10 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <a href="https://www.google.com/">
-  <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google">
+  <img
+    src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+    alt="Google"
+  />
 </a>
 ```
 
@@ -218,7 +221,6 @@ H<sup>+</sup> CO<sub>2</sub>
     <td>Swedish</td>
   </tr>
 </table>
-
 ```
 
 <table>
@@ -326,20 +328,20 @@ H<sup>+</sup> CO<sub>2</sub>
   </tr>
 </table>
 
-
 ## 輸入框
 
 接下來是輸入框，輸入框是用`<input>`元素建立的，而`<input>`元素有很多種類，我們可以用`type`屬性來指定，比如說我們要建立一個文字輸入框，我們可以這樣寫:
 
 ```html
-<input type="text">
+<input type="text" />
 ```
+
 <input type="text">
 
 如果給他加入`value`屬性，就可以預設輸入框的內容了:
 
 ```html
-<input type="text" value="Hello World!">
+<input type="text" value="Hello World!" />
 ```
 
 <input type="text" value="Hello World!">
@@ -347,7 +349,7 @@ H<sup>+</sup> CO<sub>2</sub>
 而如果我們要建立一個密碼輸入框，我們可以這樣寫:
 
 ```html
-<input type="password">
+<input type="password" />
 ```
 
 <input type="password">
@@ -357,7 +359,7 @@ H<sup>+</sup> CO<sub>2</sub>
 如果我們要建立一個勾選框，我們可以這樣寫:
 
 ```html
-<input type="checkbox">
+<input type="checkbox" />
 ```
 
 <input type="checkbox">
@@ -365,10 +367,9 @@ H<sup>+</sup> CO<sub>2</sub>
 如果我們要建立一個單選框，我們可以這樣寫:
 
 ```html
-<input type="radio" name="color" value="red"> red<br>
-<input type="radio" name="color" value="green"> green<br>
-<input type="radio" name="color" value="blue"> blue
-
+<input type="radio" name="color" value="red" /> red<br />
+<input type="radio" name="color" value="green" /> green<br />
+<input type="radio" name="color" value="blue" /> blue
 ```
 
 <input type="radio" name="color" value="red"> red<br>
@@ -398,7 +399,15 @@ HTML還有很多種輸入框，比如說日期、時間、檔案、顏色等等�
 iframe是用來嵌入網頁的，比如說我們要嵌入YouTube影片，你可以到YouTube影片的分享裡面，點選嵌入，然後複製貼上到你的網頁裡面:
 
 ```html
-<iframe width="560" height="315" src="https://www.youtube.com/embed/lOecpIqOjjY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/lOecpIqOjjY"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
 ```
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lOecpIqOjjY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -408,7 +417,10 @@ iframe是用來嵌入網頁的，比如說我們要嵌入YouTube影片，你可�
 Audio是用來播放音樂的，我們可以用`<audio>`元素建立，然後用`src`屬性指定音樂的網址:
 
 ```html
-<audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls></audio>
+<audio
+  src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+  controls
+></audio>
 ```
 
 <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls></audio>
@@ -441,7 +453,6 @@ Video是用來播放影片的，我們可以用`<video>`元素建立，然後用
 {{% notice notice "注意" %}}
 感謝你的注意
 {{% /notice %}}
-
 
 ### HTML5 版面
 

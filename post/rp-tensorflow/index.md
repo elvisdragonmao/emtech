@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [Raspberry Pi, Tensorflow, Python, Jupyter Notebook,機器學習]
+tags: [Raspberry Pi, Tensorflow, Python, Jupyter Notebook, 機器學習]
 categories: [製作教學]
 date: 2024-05-01
 ---
@@ -54,11 +54,11 @@ source venv/bin/activate
 
 這裡節錄一小段，你可以看到不同的版本對應的 Python 版本和 Raspberry Pi 版本。
 
-|Device|OS|Distribution|Architecture|Python ver|Note|
-|:--|:--|:--|:--|:--|:--|
-|RaspberryPi3/4,PiZero|Ubuntu 21.04/Debian/RaspberryPiOS|Hirsute/Bullseye|aarch64 / armv8|3.9.x|64bit, glibc2.33/glibc2.31|
-|RaspberryPi3/4|Ubuntu 22.04|Jammy|aarch64 / armv8|3.10.x|64bit, glibc2.35|
-|RaspberryPi4/5,PiZero|Debian/RaspberryPiOS|Bookworm|aarch64 / armv8|3.11.x|64bit, glibc2.36|
+| Device                | OS                                | Distribution     | Architecture    | Python ver | Note                       |
+| :-------------------- | :-------------------------------- | :--------------- | :-------------- | :--------- | :------------------------- |
+| RaspberryPi3/4,PiZero | Ubuntu 21.04/Debian/RaspberryPiOS | Hirsute/Bullseye | aarch64 / armv8 | 3.9.x      | 64bit, glibc2.33/glibc2.31 |
+| RaspberryPi3/4        | Ubuntu 22.04                      | Jammy            | aarch64 / armv8 | 3.10.x     | 64bit, glibc2.35           |
+| RaspberryPi4/5,PiZero | Debian/RaspberryPiOS              | Bookworm         | aarch64 / armv8 | 3.11.x     | 64bit, glibc2.36           |
 
 可以看到我們的 Raspberry Pi 5 要的是 `Python 3.11.x`，因此我們到 [release](https://github.com/PINTO0309/Tensorflow-bin/releases/) 下載最新發布的 `tensorflow-X.X.0.post1-cp311-none-linux_aarch64.whl` 檔案就可以了。
 
@@ -82,6 +82,7 @@ wget https://www.piwheels.org/simple/scipy/scipy-1.2.1-cp35-cp35m-linux_armv7l.w
 pip install scipy-1.2.1-cp35-cp35m-linux_armv7l.whl
 pip install scipy
 ```
+
 接著安裝 keras。
 
 ```bash

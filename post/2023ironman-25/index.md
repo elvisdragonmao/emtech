@@ -16,7 +16,7 @@ date: 2023-10-09
 ![](layout.webp)
 
 ```html
-<input type="checkbox" id="menu">
+<input type="checkbox" id="menu" />
 <label for="menu">
   <div></div>
   <div></div>
@@ -24,6 +24,7 @@ date: 2023-10-09
   <span class="cover"></span>
 </label>
 ```
+
 ```css
 label {
   width: 3rem;
@@ -58,11 +59,13 @@ label div {
   z-index: -1;
 }
 ```
+
 可以看到我們已經有了漢堡選單的樣子。`<label>` 使用 flex 來垂直排列並且置中，`gap` 來設定間距，並設定 `position: relative` 來讓 `position: absolute` 的 `.cover` 可以定位到相同位置。
 
 > 如果已經看不懂的話可以複習:
-> * [Day3 用 Flex 切遍天下](https://ithelp.ithome.com.tw/articles/10320146)
-> * [Day6 你怎在這? 攻克 Position](https://ithelp.ithome.com.tw/articles/10322719)
+>
+> - [Day3 用 Flex 切遍天下](https://ithelp.ithome.com.tw/articles/10320146)
+> - [Day6 你怎在這? 攻克 Position](https://ithelp.ithome.com.tw/articles/10322719)
 
 藍色圓形我們希望能夠填滿整個畫面，所以我們使用 `100vmax` 來選擇 `vw` 和 `vh` 之間比較大的值，這樣可以確保能夠蓋滿畫面但是長寬還是依樣來保持圓形。你會發現只有蓋住螢幕一半是因為我們把她往左上角移動了一半，所以只有一半的圓形在畫面上。沒關係我們為了安全起見設定大一點。最後使用 `z-index` 來讓他在最底層。
 
@@ -71,7 +74,7 @@ label div {
 ![漢堡配料 In](open.gif)
 
 ```html
-<input type="checkbox" id="menu" checked>
+<input type="checkbox" id="menu" checked />
 <label for="menu">
   <div></div>
   <div></div>
@@ -86,6 +89,7 @@ label div {
   </span>
 </label>
 ```
+
 ```css
 body {
   overflow: hidden;
@@ -257,7 +261,7 @@ label > div:nth-child(3) {
 ![發射漢堡選單](split.gif)
 
 ```html
-<input type="checkbox" id="menu" checked>
+<input type="checkbox" id="menu" checked />
 <label for="menu">
   <div>🥩</div>
   <div>🥬</div>
@@ -325,6 +329,7 @@ div {
   font-size: 1.5rem;
 }
 ```
+
 > `user-select: none;` 可以讓使用者無法選取文字，這樣就不會在點擊時有文字被選取的問題了。
 
 加上昨天的相黏效果，變得更可愛了。

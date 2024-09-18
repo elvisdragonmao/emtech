@@ -43,13 +43,13 @@ div {
 ```
 
 ### 動畫
+
 我們分析一下，DVD 反彈動畫需要的動畫
 
-* 水平移動 - `translateX()`
-* 垂直移動 - `translateY()`
-* 水平碰撞時改變顏色
-* 垂直碰撞時改變顏色
-
+- 水平移動 - `translateX()`
+- 垂直移動 - `translateY()`
+- 水平碰撞時改變顏色
+- 垂直碰撞時改變顏色
 
 #### 移動動畫
 
@@ -77,7 +77,8 @@ div {
   width: 100px;
   height: 100px;
   background: blue;
-  animation: horizontal 2.6s infinite linear alternate,
+  animation:
+    horizontal 2.6s infinite linear alternate,
     vertical 2s infinite linear alternate;
 }
 
@@ -103,13 +104,13 @@ div {
 
 欸等等，垂直移動效果加上去之後，水平移動的效果就沒了!因為兩個都是使用 `transform` 屬性，所以其中一個被蓋過去了。但我們的動畫是要同時執行，變色動畫都還沒加上去啊!在之前常見的解決方法有
 
-* 使用 `top`、`left` 屬性代替 `transform` 屬性
-* 外面再包一層 `div`，讓 兩個 `div` 同時移動
+- 使用 `top`、`left` 屬性代替 `transform` 屬性
+- 外面再包一層 `div`，讓 兩個 `div` 同時移動
 
 而今天我們有一個更加優雅的解決方法，就是使用 `animation-composition` 屬性，讓兩個動畫同時執行。我們給 `div` 加上 `animation-composition` 屬性，並且設定 `accumulate` 值。
 
 ```css
-    animation-composition: accumulate;
+animation-composition: accumulate;
 ```
 
 ![](https://emtech.cc/post/2023ironman-18/both.gif)
@@ -125,25 +126,25 @@ div {
 > 複習: [Day7 幫我開濾鏡 filter](https://ithelp.ithome.com.tw/articles/10323423)
 
 ```css
-div{
-/* 同上 */
-    animation: 
-        horizontal 2.6s infinite linear alternate,
-        vertical 2s infinite  linear alternate,
-        colorX 26s infinite,
-        colorY 14s infinite;
-    animation-composition: accumulate;
+div {
+  /* 同上 */
+  animation:
+    horizontal 2.6s infinite linear alternate,
+    vertical 2s infinite linear alternate,
+    colorX 26s infinite,
+    colorY 14s infinite;
+  animation-composition: accumulate;
 }
 
 @keyframes colorX {
-    to {
-        filter: hue-rotate(360deg);
-    }
+  to {
+    filter: hue-rotate(360deg);
+  }
 }
 @keyframes colorY {
-    to {
-        filter: hue-rotate(360deg);
-    }
+  to {
+    filter: hue-rotate(360deg);
+  }
 }
 ```
 
@@ -152,11 +153,11 @@ div{
 怎麼說呢，顏色是漸漸變而不是直接變，這樣看起來就不是很像 DVD 動畫了。而這個時候我們就要拿出 `step()`。`steps()` 是一個可以讓動畫在指定時間內，依照指定的步數來執行的函式，而不是漸變。中間可以填入數字代表中間要經過幾個顏色。
 
 ```css
-     animation: 
-        horizontal 2.6s infinite linear alternate,
-        vertical 2s infinite  linear alternate,
-        colorX 26s infinite steps(10),
-        colorY 14s infinite steps(7);
+animation:
+  horizontal 2.6s infinite linear alternate,
+  vertical 2s infinite linear alternate,
+  colorX 26s infinite steps(10),
+  colorY 14s infinite steps(7);
 ```
 
 ![](https://emtech.cc/post/2023ironman-18/step.gif)
@@ -171,11 +172,13 @@ div{
 
 ```css
 @keyframes colorX {
-  from{
-    filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(245deg) brightness(116%) contrast(153%);
+  from {
+    filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(245deg)
+      brightness(116%) contrast(153%);
   }
   to {
-    filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(605deg) brightness(116%) contrast(153%);
+    filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(605deg)
+      brightness(116%) contrast(153%);
   }
 }
 ```
@@ -187,8 +190,9 @@ div{
 ![](https://emtech.cc/post/2023ironman-18/okay.gif)
 
 ```html
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/DVD_logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/DVD_logo.svg" />
 ```
+
 ```css
 body {
   background: #000;
@@ -197,8 +201,10 @@ body {
 
 img {
   width: 100px;
-  animation: horizontal 2.6s infinite linear alternate,
-    vertical 2s infinite linear alternate, colorX 26s infinite steps(10),
+  animation:
+    horizontal 2.6s infinite linear alternate,
+    vertical 2s infinite linear alternate,
+    colorX 26s infinite steps(10),
     colorY 14s infinite steps(7);
   animation-composition: accumulate;
 }

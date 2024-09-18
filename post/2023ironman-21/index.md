@@ -15,14 +15,14 @@ date: 2023-10-05
 
 就性能上來說兩者基本上沒有區別，所以我們都歸於 CSS 動畫。你可以根據使用情境來選擇使用哪一種。比如說滑鼠互動可以使用 `transition`，出場動畫可以使用 `@keyframes`。
 
->　複習：[Day4 自己動! @keyframes 與 Transition](https://ithelp.ithome.com.tw/articles/10321376)
+> 複習：[Day4 自己動! @keyframes 與 Transition](https://ithelp.ithome.com.tw/articles/10321376)
 
 ### JavaScript `requestAnimationFrame()`
 
 `requestAnimationFrame()` 會在瀏覽器畫下一幀繪制之前調用。因此比設定固定時間重繪的 `setTimeout()` 或 `setInterval()`效率高得多。開發人員可以通過簡單地改變元素的樣式（或者更新畫布繪制等等）來創建動畫。
 
 > 備註: 不管是 CSS 動畫還是 JavaScript 動畫，如果你離開當前頁面，動畫就會停止。比如說 [Day10 永無止境跑馬燈 - 不同螢幕 相同速度](https://ithelp.ithome.com.tw/articles/10326819) 的跑馬燈就是如此。
-> 
+>
 > 如果你想要在背景執行動畫，可以使用 [Web Worker](https://developer.mozilla.org/zh-TW/docs/Web/API/Web_Workers_API/Using_web_workers)。
 
 ## 就是要對決
@@ -35,11 +35,10 @@ date: 2023-10-05
 
 ![](warn.webp)
 
-
 請你搜尋gfx.webrender.debug.profiler-ui
 
-*  `gfx.webrender.debug.profiler-ui` 設為 `FPS`，
-*  `gfx.webrender.debug.profiler-ui` 設為 `true` (點擊加號)。
+- `gfx.webrender.debug.profiler-ui` 設為 `FPS`，
+- `gfx.webrender.debug.profiler-ui` 設為 `true` (點擊加號)。
 
 > 記得先設成 `FPS` 再設成 `true`，不然整個畫面會被資訊轟炸，比 Minecraft 的 F3 還要誇張好幾倍。
 
@@ -90,6 +89,7 @@ date: 2023-10-05
   }
 }
 ```
+
 ```js
 const boxes = [];
 const button = document.getElementById("toggle-button");

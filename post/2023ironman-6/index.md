@@ -8,11 +8,13 @@ date: 2023-09-20
 # Day6 你怎在這? 攻克 Position
 
 在使用 CSS 做網站時幾乎一定會使用到 position 屬性，不過你真的知道它的原理和使用方式嗎？雖然乍看之下感覺很複雜但其實超簡單，你只需要幾分鐘就能完全理解了。
+
 <!--more-->
+
 ## 語法
 
 ```css
-position: 屬性
+position: 屬性;
 ```
 
 ## Static - 該怎樣就怎樣
@@ -44,7 +46,8 @@ https://codepen.io/edit-mr/pen/rNoYOKZ
 <div class="sun">Fixed</div>
 <div class="cloud">Static</div>
 <div class="cloud relative">Relative</div>
-<div class="building">Relative
+<div class="building">
+  Relative
   <div class="roof">Absolute</div>
 </div>
 ```
@@ -94,11 +97,12 @@ body {
 ```
 
 在這裡你可以看到
-* 太陽設定為 `fixed`，所以就算滾輪滾動也不會改變位置。
-* 第一朵雲因為沒有設定 `position`，所以就是預設的 `static`，所以它會在原本的位置。雖然他有設定 `left: 20%;` 但是因為他是 `static` 所以沒有效果。
-* 第二朵雲設定為 `relative`，所以他會在原本的位置，但是可以使用 `top, bottom, left, right` 來偏移位置。
-* 建築物設定為 `relative`，所以他會在原本的位置，我們使用 `right` 來偏移到正中間。可以看到它是元素左邊在最中間，因為對齊點是左上角。
-* 裡面的黑色屋頂設定為 `absolute`，所以他會以外面的 `relative` 為對齊點，並且不佔據原本的位置。我們使用 `top: 0; left: 50%;` 來定位他，但這樣會讓他在建築物裡面，因此我們可以使用 `margin-top: -70px;` 來把他拉上去。
+
+- 太陽設定為 `fixed`，所以就算滾輪滾動也不會改變位置。
+- 第一朵雲因為沒有設定 `position`，所以就是預設的 `static`，所以它會在原本的位置。雖然他有設定 `left: 20%;` 但是因為他是 `static` 所以沒有效果。
+- 第二朵雲設定為 `relative`，所以他會在原本的位置，但是可以使用 `top, bottom, left, right` 來偏移位置。
+- 建築物設定為 `relative`，所以他會在原本的位置，我們使用 `right` 來偏移到正中間。可以看到它是元素左邊在最中間，因為對齊點是左上角。
+- 裡面的黑色屋頂設定為 `absolute`，所以他會以外面的 `relative` 為對齊點，並且不佔據原本的位置。我們使用 `top: 0; left: 50%;` 來定位他，但這樣會讓他在建築物裡面，因此我們可以使用 `margin-top: -70px;` 來把他拉上去。
 
 ## 實際用途
 

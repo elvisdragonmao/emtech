@@ -29,7 +29,7 @@
 
    on:
      schedule:
-       - cron: '0 0 * * *'  # 每天午夜運行
+       - cron: "0 0 * * *" # 每天午夜運行
 
    jobs:
      cleanup:
@@ -42,7 +42,7 @@
          - name: Set up Python
            uses: actions/setup-python@v3
            with:
-             python-version: '3.9'
+             python-version: "3.9"
 
          - name: Install dependencies
            run: |
@@ -55,6 +55,7 @@
    ```
 
    **解釋**:
+
    - `on.schedule`: 設置自動運行的時間間隔，此處為每天午夜。
    - `actions/setup-python`: 配置 Python 環境。
    - `cleanup_issues.py`: 自定義 Python 腳本，用於處理未處理的 issue。
@@ -102,6 +103,7 @@
    ```
 
    **解釋**:
+
    - `get_old_issues()`: 獲取超過指定天數的舊 issue。
    - `close_issues()`: 關閉過期的 issue。
    - 使用 GitHub API 來獲取和更新 issue。
@@ -121,7 +123,7 @@
 
    on:
      schedule:
-       - cron: '0 0 * * *'  # 每天午夜運行
+       - cron: "0 0 * * *" # 每天午夜運行
 
    jobs:
      cleanup:
@@ -134,7 +136,7 @@
          - name: Set up Python
            uses: actions/setup-python@v3
            with:
-             python-version: '3.9'
+             python-version: "3.9"
 
          - name: Install dependencies
            run: |
@@ -147,6 +149,7 @@
    ```
 
    **解釋**:
+
    - 同樣的調度設置和 Python 環境配置。
 
 2. **編寫清理腳本**
@@ -192,6 +195,7 @@
    ```
 
    **解釋**:
+
    - `get_old_prs()`: 獲取超過指定天數的舊 PR。
    - `close_prs()`: 關閉過期的 PR。
 

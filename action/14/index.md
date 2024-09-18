@@ -32,41 +32,42 @@ name: Deploy to S3
 on:
   push:
     branches:
-      - main  # 當推送到 main 分支時觸發工作流程
+      - main # 當推送到 main 分支時觸發工作流程
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build application
-      run: npm run build
+      - name: Build application
+        run: npm run build
 
-    - name: Deploy to S3
-      uses: jakejarvis/s3-sync-action@v0.5.7
-      with:
-        args: --acl public-read --follow-symlinks --exclude '.git/*' --exclude 'README.md'
-      env:
-        SOURCE_DIR: './build'
-        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Deploy to S3
+        uses: jakejarvis/s3-sync-action@v0.5.7
+        with:
+          args: --acl public-read --follow-symlinks --exclude '.git/*' --exclude 'README.md'
+        env:
+          SOURCE_DIR: "./build"
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
 ### **步驟 4：設置 GitHub Secrets**
 
 在 GitHub 倉庫的 "Secrets and variables" 部分，設置以下 secrets：
+
 - `AWS_S3_BUCKET`: 你的 S3 存儲桶名稱
 - `AWS_ACCESS_KEY_ID`: 你的 AWS 訪問密鑰 ID
 - `AWS_SECRET_ACCESS_KEY`: 你的 AWS 密鑰
@@ -90,37 +91,38 @@ name: Deploy to Heroku
 on:
   push:
     branches:
-      - main  # 當推送到 main 分支時觸發工作流程
+      - main # 當推送到 main 分支時觸發工作流程
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build application
-      run: npm run build
+      - name: Build application
+        run: npm run build
 
-    - name: Deploy to Heroku
-      uses: akshatp/gh-action-heroku-deploy@v2
-      with:
-        api_key: ${{ secrets.HEROKU_API_KEY }}
-        app_name: ${{ secrets.HEROKU_APP_NAME }}
+      - name: Deploy to Heroku
+        uses: akshatp/gh-action-heroku-deploy@v2
+        with:
+          api_key: ${{ secrets.HEROKU_API_KEY }}
+          app_name: ${{ secrets.HEROKU_APP_NAME }}
 ```
 
 ### **步驟 3：設置 GitHub Secrets**
 
 在 GitHub 倉庫的 "Secrets and variables" 部分，設置以下 secrets：
+
 - `HEROKU_API_KEY`: 你的 Heroku API 密鑰
 - `HEROKU_APP_NAME`: 你的 Heroku 應用名稱
 

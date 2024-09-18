@@ -18,7 +18,7 @@ name: On Push Event
 on:
   push:
     branches:
-      - main  # 當推送到 main 分支時觸發工作流程
+      - main # 當推送到 main 分支時觸發工作流程
 ```
 
 ## 常見的事件類型
@@ -43,21 +43,22 @@ on:
    on:
      push:
        branches:
-         - main  # 當推送到 main 分支時觸發工作流程
+         - main # 當推送到 main 分支時觸發工作流程
 
    jobs:
      build:
        runs-on: ubuntu-latest
 
        steps:
-       - name: Check out the code
-         uses: actions/checkout@v2
+         - name: Check out the code
+           uses: actions/checkout@v2
 
-       - name: Run a script
-         run: echo "Code was pushed to the main branch."
+         - name: Run a script
+           run: echo "Code was pushed to the main branch."
    ```
 
    **YAML 文件解析：**
+
    - **`on: push:`** 指定當推送到 `main` 分支時觸發此工作流程。
    - **`jobs:`** 定義要執行的工作（在這裡是 `build`）。
    - **`steps:`** 設定工作流程的具體步驟，包括檢出代碼和執行腳本。
@@ -72,21 +73,22 @@ on:
    on:
      pull_request:
        branches:
-         - main  # 當拉取請求目標分支為 main 時觸發工作流程
+         - main # 當拉取請求目標分支為 main 時觸發工作流程
 
    jobs:
      review:
        runs-on: ubuntu-latest
 
        steps:
-       - name: Check out the code
-         uses: actions/checkout@v2
+         - name: Check out the code
+           uses: actions/checkout@v2
 
-       - name: Run a script
-         run: echo "A Pull Request was created or updated against the main branch."
+         - name: Run a script
+           run: echo "A Pull Request was created or updated against the main branch."
    ```
 
    **YAML 文件解析：**
+
    - **`on: pull_request:`** 指定當拉取請求創建或更新時觸發此工作流程。
    - **`branches:`** 設定拉取請求目標分支（在這裡是 `main`）。
 
@@ -99,21 +101,22 @@ on:
 
    on:
      issues:
-       types: [opened, edited]  # 當 Issue 創建或更新時觸發工作流程
+       types: [opened, edited] # 當 Issue 創建或更新時觸發工作流程
 
    jobs:
      notify:
        runs-on: ubuntu-latest
 
        steps:
-       - name: Check out the code
-         uses: actions/checkout@v2
+         - name: Check out the code
+           uses: actions/checkout@v2
 
-       - name: Notify
-         run: echo "An Issue was created or edited."
+         - name: Notify
+           run: echo "An Issue was created or edited."
    ```
 
    **YAML 文件解析：**
+
    - **`on: issues:`** 指定當 Issue 創建或更新時觸發此工作流程。
    - **`types:`** 設定要觸發的事件類型（在這裡是 `opened` 和 `edited`）。
 
@@ -126,18 +129,19 @@ on:
 
    on:
      schedule:
-       - cron: '0 0 * * *'  # 每天午夜 12 點觸發工作流程
+       - cron: "0 0 * * *" # 每天午夜 12 點觸發工作流程
 
    jobs:
      daily-task:
        runs-on: ubuntu-latest
 
        steps:
-       - name: Run a script
-         run: echo "起床重睡"
+         - name: Run a script
+           run: echo "起床重睡"
    ```
 
    **YAML 文件解析：**
+
    - **`on: schedule:`** 設定定時觸發工作流程。
    - **`cron:`** 使用 cron 表達式來設定觸發時間（在這裡是每日午夜 12 點）。
 
@@ -149,35 +153,41 @@ on:
    name: On Manual Trigger
 
    on:
-     workflow_dispatch:  # 允許手動觸發
+     workflow_dispatch: # 允許手動觸發
 
    jobs:
      manual-task:
        runs-on: ubuntu-latest
 
        steps:
-       - name: Run a script
-         run: echo "This job was manually triggered."
+         - name: Run a script
+           run: echo "This job was manually triggered."
    ```
 
    **YAML 文件解析：**
+
    - **`on: workflow_dispatch:`** 允許手動觸發工作流程。
 
 ## 常見的應用案例
 
 1. **自動化測試：**
+
    - 使用 `push` 事件觸發工作流程，運行單元測試以確保新代碼不會破壞現有功能。
 
 2. **自動部署：**
+
    - 使用 `push` 事件觸發工作流程，當代碼推送到 `main` 分支時自動部署到生產環境。
 
 3. **PR 驗證：**
+
    - 使用 `pull_request` 事件觸發工作流程，在拉取請求創建或更新時自動運行測試和代碼審查。
 
 4. **Issue 通知：**
+
    - 使用 `issues` 事件觸發工作流程，當 Issue 創建或更新時自動發送通知或執行其他操作。
 
 5. **定期任務：**
+
    - 使用 `schedule` 事件觸發工作流程，定期執行備份、清理或其他例行任務。
 
 6. **手動控制：**

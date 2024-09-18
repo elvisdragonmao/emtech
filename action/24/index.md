@@ -33,18 +33,18 @@
 
    ```javascript
    // test.js
-   import http from 'k6/http';
-   import { sleep, check } from 'k6';
+   import http from "k6/http";
+   import { sleep, check } from "k6";
 
    export const options = {
      vus: 10, // Number of virtual users
-     duration: '30s', // Test duration
+     duration: "30s", // Test duration
    };
 
    export default function () {
-     const response = http.get('https://example.com');
+     const response = http.get("https://example.com");
      check(response, {
-       'status is 200': (r) => r.status === 200,
+       "status is 200": (r) => r.status === 200,
      });
      sleep(1);
    }
@@ -92,7 +92,7 @@
          - name: Set up k6
            uses: actions/setup-node@v3
            with:
-             node-version: '20'
+             node-version: "20"
 
          - name: Install k6
            run: |

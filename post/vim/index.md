@@ -71,16 +71,16 @@ $ vim [filename]
 
 以下是一些常用的 Vim 指令：
 
-* `:w` - 保存文件
-* `:q` - 退出 Vim
-* `:w` [filename] - 將文件另存為 [filename]
-* `:x` - 保存文件並退出 Vim
-* `dd` - 刪除光標所在的行
-* `u` - 撤消上一個操作
-* `ctrl + r` - 還原上一個撤銷的操作
-* `yy` - 複製光標所在的行
-* `p` - 在光標下面粘貼複製的文本
-* `:` [行數] - 跳到文件中的第 [行數] 行
-* `/` [內容] - 在文件中搜索 [內容]
+- `:w` - 保存文件
+- `:q` - 退出 Vim
+- `:w` [filename] - 將文件另存為 [filename]
+- `:x` - 保存文件並退出 Vim
+- `dd` - 刪除光標所在的行
+- `u` - 撤消上一個操作
+- `ctrl + r` - 還原上一個撤銷的操作
+- `yy` - 複製光標所在的行
+- `p` - 在光標下面粘貼複製的文本
+- `:` [行數] - 跳到文件中的第 [行數] 行
+- `/` [內容] - 在文件中搜索 [內容]
 
 Vim 的命令很多，但只需要熟悉一些常用指令即可快速操作。希望這篇文章能對你快速上手 Vim 有所幫助。如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM資訊密技

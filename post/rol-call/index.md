@@ -18,9 +18,9 @@ date: 2023-05-01
 
 首先，我們先來看一下最終的成果。這是我們要製作的點名系統的演示網頁。你可以點擊[這裡](https://edit-mr.github.io/roll-call)查看完整的演示網頁。他有以下幾個功能
 
--   點名:點擊學生姓名，即可完成點名
--   新增學生:輸入學生姓名點擊新增按鈕，即可新增學生
--   查詢歷史出席紀錄:輸入學生姓名點擊查詢按鈕，即可查詢歷史出席紀錄
+- 點名:點擊學生姓名，即可完成點名
+- 新增學生:輸入學生姓名點擊新增按鈕，即可新增學生
+- 查詢歷史出席紀錄:輸入學生姓名點擊查詢按鈕，即可查詢歷史出席紀錄
 
 好了，我們現在就開始製作這個點名系統吧 w
 
@@ -48,49 +48,45 @@ https://docs.google.com/spreadsheets/d/1m0F6pOejN-ldKFIrFwssmoEPB3EPDmSQJKEPr9T8
 const id = "1m0F6pOejN-ldKFIrFwssmoEPB3EPDmSQJKEPr9T88-E";
 
 function doGet(e) {
-    let t = e.parameter,
-        a = SpreadsheetApp.openById(id).getSheets();
-    switch (t.type) {
-        case "call":
-            if (!t.time) return ContentService.createTextOutput(!1);
-            return (
-                a[0].appendRow([t.name, t.time, t.remain]),
-                ContentService.createTextOutput(!0)
-            );
-        case "list":
-            var r = a[1]
-                .getRange(2, 1, a[1].getLastRow() - 1, a[1].getLastColumn())
-                .getValues()
-                .filter(e => "" !== e[0])
-                .map(e => ({ name: e[0], left: e[2] }));
-            return ContentService.createTextOutput(
-                JSON.stringify(r)
-            ).setMimeType(ContentService.MimeType.JSON);
-        case "search":
-            var [n, ...r] = a[0].getDataRange().getValues();
-            let [u, i, p] = n,
-                s = n.indexOf(u),
-                m = n.indexOf(i),
-                c = n.indexOf(p),
-                l = r
-                    .filter(e => e[s] === t.name)
-                    .map(e => ({ time: e[m], left: e[c] }));
-            return ContentService.createTextOutput(
-                JSON.stringify(l)
-            ).setMimeType(ContentService.MimeType.JSON);
-        case "new":
-            let f = a[1].getLastRow() + 1;
-            return (
-                a[1].appendRow([
-                    t.name,
-                    `=COUNTIF('紀錄'!A:A,A${f})`,
-                    `=D${f}-B${f}`,
-                ]),
-                ContentService.createTextOutput(!0)
-            );
-        default:
-            return ContentService.createTextOutput("別亂撞我～");
-    }
+  let t = e.parameter,
+    a = SpreadsheetApp.openById(id).getSheets();
+  switch (t.type) {
+    case "call":
+      if (!t.time) return ContentService.createTextOutput(!1);
+      return (
+        a[0].appendRow([t.name, t.time, t.remain]),
+        ContentService.createTextOutput(!0)
+      );
+    case "list":
+      var r = a[1]
+        .getRange(2, 1, a[1].getLastRow() - 1, a[1].getLastColumn())
+        .getValues()
+        .filter((e) => "" !== e[0])
+        .map((e) => ({ name: e[0], left: e[2] }));
+      return ContentService.createTextOutput(JSON.stringify(r)).setMimeType(
+        ContentService.MimeType.JSON,
+      );
+    case "search":
+      var [n, ...r] = a[0].getDataRange().getValues();
+      let [u, i, p] = n,
+        s = n.indexOf(u),
+        m = n.indexOf(i),
+        c = n.indexOf(p),
+        l = r
+          .filter((e) => e[s] === t.name)
+          .map((e) => ({ time: e[m], left: e[c] }));
+      return ContentService.createTextOutput(JSON.stringify(l)).setMimeType(
+        ContentService.MimeType.JSON,
+      );
+    case "new":
+      let f = a[1].getLastRow() + 1;
+      return (
+        a[1].appendRow([t.name, `=COUNTIF('紀錄'!A:A,A${f})`, `=D${f}-B${f}`]),
+        ContentService.createTextOutput(!0)
+      );
+    default:
+      return ContentService.createTextOutput("別亂撞我～");
+  }
 }
 ```
 
@@ -122,398 +118,390 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
 第一個是影片說明的方法，就是建立一個叫做`用戶名.github.io`的倉庫，然後建立一個`index.html`的檔案並貼上以下程式。
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>簡易點名系統</title>
-        <meta name="theme-color" content="3B4252" />
-        <style>
-            h1 {
-                /* 標題顏色 */
-                color: var(--nord7);
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>簡易點名系統</title>
+    <meta name="theme-color" content="3B4252" />
+    <style>
+      h1 {
+        /* 標題顏色 */
+        color: var(--nord7);
+      }
 
-            body {
-                /* 背景顏色 */
-                background-color: var(--nord0);
-            }
+      body {
+        /* 背景顏色 */
+        background-color: var(--nord0);
+      }
 
-            body {
-                /* 可選顏色 */
-                --nord0: #2e3440;
-                --nord1: #3b4252;
-                --nord2: #434c5e;
-                --nord3: #4c566a;
-                --nord4: #d8dee9;
-                --nord5: #e5e9f0;
-                --nord6: #eceff4;
-                --nord7: #8fbcbb;
-                --nord8: #88c0d0;
-                --nord9: #81a1c1;
-                --nord10: #5e81ac;
-                --nord11: #bf616a;
-                --nord12: #d08770;
-                --nord13: #ebcb8b;
-                --nord14: #a3be8c;
-                --nord15: #b48ead;
-                --black: #000;
-                --line: #4c566a;
-            }
+      body {
+        /* 可選顏色 */
+        --nord0: #2e3440;
+        --nord1: #3b4252;
+        --nord2: #434c5e;
+        --nord3: #4c566a;
+        --nord4: #d8dee9;
+        --nord5: #e5e9f0;
+        --nord6: #eceff4;
+        --nord7: #8fbcbb;
+        --nord8: #88c0d0;
+        --nord9: #81a1c1;
+        --nord10: #5e81ac;
+        --nord11: #bf616a;
+        --nord12: #d08770;
+        --nord13: #ebcb8b;
+        --nord14: #a3be8c;
+        --nord15: #b48ead;
+        --black: #000;
+        --line: #4c566a;
+      }
 
-            main,
-            nav {
-                display: flex;
-            }
+      main,
+      nav {
+        display: flex;
+      }
 
-            .call button,
-            button:hover {
-                background-color: var(--nord2);
-            }
+      .call button,
+      button:hover {
+        background-color: var(--nord2);
+      }
 
-            button,
-            section > div {
-                background-color: var(--nord1);
-                box-shadow: rgba(0, 0, 0, 0.2) 0 0 0.5rem;
-            }
+      button,
+      section > div {
+        background-color: var(--nord1);
+        box-shadow: rgba(0, 0, 0, 0.2) 0 0 0.5rem;
+      }
 
-            main,
-            section > div {
-                padding: 1rem;
-                width: 100%;
-            }
+      main,
+      section > div {
+        padding: 1rem;
+        width: 100%;
+      }
 
-            footer,
-            footer a {
-                color: var(--nord4);
-            }
+      footer,
+      footer a {
+        color: var(--nord4);
+      }
 
-            .search button,
-            button,
-            input,
-            section > div {
-                box-shadow: rgba(0, 0, 0, 0.2) 0 0 0.5rem;
-            }
+      .search button,
+      button,
+      input,
+      section > div {
+        box-shadow: rgba(0, 0, 0, 0.2) 0 0 0.5rem;
+      }
 
-            body,
-            button,
-            h2,
-            html {
-                text-align: center;
-            }
+      body,
+      button,
+      h2,
+      html {
+        text-align: center;
+      }
 
-            * {
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
-                font-family: Arial, "微軟正黑體", Helvetica, sans-serif;
-                color: var(--nord6);
-            }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Arial, "微軟正黑體", Helvetica, sans-serif;
+        color: var(--nord6);
+      }
 
-            body,
-            html {
-                min-height: 100%;
-            }
+      body,
+      html {
+        min-height: 100%;
+      }
 
-            main {
-                flex-direction: column;
-                height: 100vh;
-                height: 100dvh;
-                max-width: 500px;
-                margin: 0 auto;
-            }
+      main {
+        flex-direction: column;
+        height: 100vh;
+        height: 100dvh;
+        max-width: 500px;
+        margin: 0 auto;
+      }
 
-            nav {
-                justify-content: space-between;
-            }
+      nav {
+        justify-content: space-between;
+      }
 
-            button {
-                display: block;
-                height: 50px;
-                width: calc(1 / 3 * 100% - 1rem);
-                line-height: 50px;
-                border-radius: 1rem;
-                text-decoration: none;
-                border: none;
-                cursor: pointer;
-                transition: background-color 0.2s ease-in-out;
-            }
+      button {
+        display: block;
+        height: 50px;
+        width: calc(1 / 3 * 100% - 1rem);
+        line-height: 50px;
+        border-radius: 1rem;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
 
-            #call,
-            .search,
-            footer {
-                display: flex;
-            }
+      #call,
+      .search,
+      footer {
+        display: flex;
+      }
 
-            .call button {
-                width: calc(1 / 4 * 100% - 1rem);
-                margin: 0.5rem;
-            }
+      .call button {
+        width: calc(1 / 4 * 100% - 1rem);
+        margin: 0.5rem;
+      }
 
-            button:hover {
-                filter: brightness(1.2);
-            }
+      button:hover {
+        filter: brightness(1.2);
+      }
 
-            button:active {
-                background-color: var(--nord3);
-                filter: brightness(1.5);
-            }
+      button:active {
+        background-color: var(--nord3);
+        filter: brightness(1.5);
+      }
 
-            section {
-                flex-grow: 1;
-                margin: 1rem 0;
-                position: relative;
-            }
+      section {
+        flex-grow: 1;
+        margin: 1rem 0;
+        position: relative;
+      }
 
-            footer {
-                justify-content: flex-end;
-                align-items: flex-end;
-            }
+      footer {
+        justify-content: flex-end;
+        align-items: flex-end;
+      }
 
-            section > div {
-                border-radius: 1rem;
-                overflow-x: hidden;
-                overflow-y: auto;
-                position: absolute;
-                height: 100%;
-                transition: opacity 0.5s ease-in-out;
-            }
+      section > div {
+        border-radius: 1rem;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: absolute;
+        height: 100%;
+        transition: opacity 0.5s ease-in-out;
+      }
 
-            #add,
-            #history {
-                opacity: 0;
-            }
+      #add,
+      #history {
+        opacity: 0;
+      }
 
-            #call {
-                z-index: 2;
-                flex-wrap: wrap;
-                justify-content: space-between;
-            }
+      #call {
+        z-index: 2;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
 
-            .search {
-                justify-content: center;
-                align-items: center;
-            }
+      .search {
+        justify-content: center;
+        align-items: center;
+      }
 
-            .search button,
-            input {
-                height: 2rem;
-                width: 50%;
-                border-radius: 0.5rem;
-                border: transparent;
-                padding: 0 1rem;
-                background-color: var(--nord3);
-                color: var(--nord4);
-            }
+      .search button,
+      input {
+        height: 2rem;
+        width: 50%;
+        border-radius: 0.5rem;
+        border: transparent;
+        padding: 0 1rem;
+        background-color: var(--nord3);
+        color: var(--nord4);
+      }
 
-            h2,
-            table {
-                width: 100%;
-            }
+      h2,
+      table {
+        width: 100%;
+      }
 
-            input:focus {
-                outline: transparent;
-            }
+      input:focus {
+        outline: transparent;
+      }
 
-            .search button {
-                margin-left: 1rem;
-                width: auto;
-                line-height: 100%;
-            }
+      .search button {
+        margin-left: 1rem;
+        width: auto;
+        line-height: 100%;
+      }
 
-            table {
-                border-collapse: collapse;
-                margin-top: 1rem;
-            }
+      table {
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
 
-            tr {
-                border-bottom: 1px solid var(--line);
-            }
+      tr {
+        border-bottom: 1px solid var(--line);
+      }
 
-            td {
-                padding: 0.5rem;
-            }
+      td {
+        padding: 0.5rem;
+      }
 
-            h2 {
-                margin-top: 2rem;
-                font-weight: 600;
-            }
+      h2 {
+        margin-top: 2rem;
+        font-weight: 600;
+      }
 
-            #status {
-                margin: 0.5rem 0 1rem;
-                color: var(--nord13);
-                font-size: 1.3rem;
-            }
-        </style>
-    </head>
+      #status {
+        margin: 0.5rem 0 1rem;
+        color: var(--nord13);
+        font-size: 1.3rem;
+      }
+    </style>
+  </head>
 
-    <body>
-        <main>
-            <h1>簡易點名系統</h1>
-            <h2 id="status">歡迎使用</h2>
-            <nav>
-                <button onclick="searchA()">查詢紀錄</button
-                ><button onclick="callA()">點名</button
-                ><button onclick="addA()">新增學生</button>
-            </nav>
-            <section>
-                <div id="history">
-                    <div class="search">
-                        <input type="text" /><button>搜尋</button>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>時間</td>
-                                <td>剩下課堂</td>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-                <div id="call">
-                    <h2>載入中</h2>
-                </div>
-                <div id="add">
-                    <div class="search">
-                        <input type="text" /><button>新增</button>
-                    </div>
-                </div>
-            </section>
-            <footer>
-                <a href="edit-mr.github.io/">毛哥EM</a>製作 |
-                <a href="https://emtech.cc/post/roll-call">教學</a>
-            </footer>
-        </main>
-        <script>
-            //部屬連結放這裡
-            var url =
-                "https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9MHDxWaOYXFwZgE3rRHDzCakzTxs/exec";
-            const [history, call, add] = ["history", "call", "add"].map(t =>
-                    document.getElementById(t)
-                ),
-                searchA = () => {
-                    (history.style.opacity = 1),
-                        (history.style.zIndex = 2),
-                        (call.style.opacity = add.style.opacity = 0),
-                        (call.style.zIndex = add.style.zIndex = 1);
-                },
-                callA = () => {
-                    (history.style.opacity = add.style.opacity = 0),
-                        (history.style.zIndex = add.style.zIndex = 1),
-                        (call.style.opacity = 1),
-                        (call.style.zIndex = 2);
-                },
-                addA = () => {
-                    (history.style.opacity = call.style.opacity = 0),
-                        (history.style.zIndex = call.style.zIndex = 1),
-                        (add.style.opacity = 1),
-                        (add.style.zIndex = 2);
-                };
-            fetch(url + "?type=list")
-                .then(t => t.json())
-                .then(t => {
-                    let e = document.getElementById("call");
-                    (e.innerHTML = ""),
-                        t.forEach((t, n) => {
-                            let a = document.createElement("button");
-                            (a.textContent = t.name),
-                                (a.id = `student-${n + 1}`),
-                                a.addEventListener("click", () => {
-                                    rollCall(t.name, t.left, n + 1);
-                                }),
-                                e.appendChild(a);
-                        });
-                })
-                .catch(t => console.error(t));
-            const status = document.getElementById("status");
-            function rollCall(t, e, n) {
-                status.innerHTML = `${t} 點名中...`;
-                var a = new Date(),
-                    a = a
-                        .toLocaleString("zh-TW", {
-                            year: "numeric",
-                            month: "2-digit",
-                            day: "2-digit",
-                            hour: "numeric",
-                            minute: "numeric",
-                            second: "numeric",
-                            hour12: !0,
-                        })
-                        .replace("-", "/")
-                        .replace(" ", " ");
-                fetch(url + `?type=call&name=${t}&time=${a}&remain=${e}`)
-                    .then(a => {
-                        a.ok
-                            ? ((status.innerHTML = `${t} 已點名成功！剩餘課堂：${
-                                  e - 1
-                              }`),
-                              (document.getElementById(
-                                  "student-" + n
-                              ).style.backgroundColor = "var(--nord14)"))
-                            : ((status.innerHTML = `${t} 已點名失敗！剩餘課堂：${e}`),
-                              (document.getElementById(
-                                  "student-" + n
-                              ).style.backgroundColor = "var(--nord11)"));
-                    })
-                    .catch(t => {
-                        status.innerHTML = `發生錯誤：${t}`;
-                    });
-            }
-            const searchBtn = document.querySelector("#history button"),
-                searchInput = document.querySelector("#history input"),
-                historyTableBody = document.querySelector("#history tbody");
-            searchBtn.addEventListener("click", () => {
-                status.innerHTML = "搜尋中...";
-                let t = searchInput.value,
-                    e = `${e}?type=search&name=${encodeURIComponent(t)}`;
-                fetch(e)
-                    .then(t => t.json())
-                    .then(t => {
-                        let e = document.querySelector("#history table tbody");
-                        (e.innerHTML = ""),
-                            t.forEach(t => {
-                                let n = document.createElement("tr"),
-                                    a = document.createElement("td"),
-                                    l = document.createElement("td");
-                                var r = new Date(t.time);
-                                (a.textContent = r
-                                    .toLocaleString("zh-TW", {
-                                        year: "numeric",
-                                        month: "2-digit",
-                                        day: "2-digit",
-                                        hour: "numeric",
-                                        minute: "numeric",
-                                        second: "numeric",
-                                        hour12: !0,
-                                    })
-                                    .replace("-", "/")
-                                    .replace(" ", " ")),
-                                    (l.textContent = t.left),
-                                    n.appendChild(a),
-                                    n.appendChild(l),
-                                    e.appendChild(n),
-                                    (status.innerHTML = "搜尋完成");
-                            });
-                    })
-                    .catch(t => (status.innerHTML = t));
+  <body>
+    <main>
+      <h1>簡易點名系統</h1>
+      <h2 id="status">歡迎使用</h2>
+      <nav>
+        <button onclick="searchA()">查詢紀錄</button
+        ><button onclick="callA()">點名</button
+        ><button onclick="addA()">新增學生</button>
+      </nav>
+      <section>
+        <div id="history">
+          <div class="search"><input type="text" /><button>搜尋</button></div>
+          <table>
+            <thead>
+              <tr>
+                <td>時間</td>
+                <td>剩下課堂</td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div id="call">
+          <h2>載入中</h2>
+        </div>
+        <div id="add">
+          <div class="search"><input type="text" /><button>新增</button></div>
+        </div>
+      </section>
+      <footer>
+        <a href="edit-mr.github.io/">毛哥EM</a>製作 |
+        <a href="https://emtech.cc/post/roll-call">教學</a>
+      </footer>
+    </main>
+    <script>
+      //部屬連結放這裡
+      var url =
+        "https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9MHDxWaOYXFwZgE3rRHDzCakzTxs/exec";
+      const [history, call, add] = ["history", "call", "add"].map((t) =>
+          document.getElementById(t),
+        ),
+        searchA = () => {
+          (history.style.opacity = 1),
+            (history.style.zIndex = 2),
+            (call.style.opacity = add.style.opacity = 0),
+            (call.style.zIndex = add.style.zIndex = 1);
+        },
+        callA = () => {
+          (history.style.opacity = add.style.opacity = 0),
+            (history.style.zIndex = add.style.zIndex = 1),
+            (call.style.opacity = 1),
+            (call.style.zIndex = 2);
+        },
+        addA = () => {
+          (history.style.opacity = call.style.opacity = 0),
+            (history.style.zIndex = call.style.zIndex = 1),
+            (add.style.opacity = 1),
+            (add.style.zIndex = 2);
+        };
+      fetch(url + "?type=list")
+        .then((t) => t.json())
+        .then((t) => {
+          let e = document.getElementById("call");
+          (e.innerHTML = ""),
+            t.forEach((t, n) => {
+              let a = document.createElement("button");
+              (a.textContent = t.name),
+                (a.id = `student-${n + 1}`),
+                a.addEventListener("click", () => {
+                  rollCall(t.name, t.left, n + 1);
+                }),
+                e.appendChild(a);
             });
-            const addBtn = document.querySelector("#add button"),
-                addInput = document.querySelector("#add input");
-            addBtn.addEventListener("click", () => {
-                let t = addInput.value;
-                t &&
-                    ((status.innerHTML = "新增中..."),
-                    fetch(`${url}?type=new&name=${encodeURIComponent(t)}`)
-                        .then(t => (status.innerHTML = "新增成功"))
-                        .catch(t => {
-                            status.innerHTML = t;
-                        }));
-            });
-        </script>
-    </body>
+        })
+        .catch((t) => console.error(t));
+      const status = document.getElementById("status");
+      function rollCall(t, e, n) {
+        status.innerHTML = `${t} 點名中...`;
+        var a = new Date(),
+          a = a
+            .toLocaleString("zh-TW", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "numeric",
+              minute: "numeric",
+              second: "numeric",
+              hour12: !0,
+            })
+            .replace("-", "/")
+            .replace(" ", " ");
+        fetch(url + `?type=call&name=${t}&time=${a}&remain=${e}`)
+          .then((a) => {
+            a.ok
+              ? ((status.innerHTML = `${t} 已點名成功！剩餘課堂：${e - 1}`),
+                (document.getElementById("student-" + n).style.backgroundColor =
+                  "var(--nord14)"))
+              : ((status.innerHTML = `${t} 已點名失敗！剩餘課堂：${e}`),
+                (document.getElementById("student-" + n).style.backgroundColor =
+                  "var(--nord11)"));
+          })
+          .catch((t) => {
+            status.innerHTML = `發生錯誤：${t}`;
+          });
+      }
+      const searchBtn = document.querySelector("#history button"),
+        searchInput = document.querySelector("#history input"),
+        historyTableBody = document.querySelector("#history tbody");
+      searchBtn.addEventListener("click", () => {
+        status.innerHTML = "搜尋中...";
+        let t = searchInput.value,
+          e = `${e}?type=search&name=${encodeURIComponent(t)}`;
+        fetch(e)
+          .then((t) => t.json())
+          .then((t) => {
+            let e = document.querySelector("#history table tbody");
+            (e.innerHTML = ""),
+              t.forEach((t) => {
+                let n = document.createElement("tr"),
+                  a = document.createElement("td"),
+                  l = document.createElement("td");
+                var r = new Date(t.time);
+                (a.textContent = r
+                  .toLocaleString("zh-TW", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "numeric",
+                    minute: "numeric",
+                    second: "numeric",
+                    hour12: !0,
+                  })
+                  .replace("-", "/")
+                  .replace(" ", " ")),
+                  (l.textContent = t.left),
+                  n.appendChild(a),
+                  n.appendChild(l),
+                  e.appendChild(n),
+                  (status.innerHTML = "搜尋完成");
+              });
+          })
+          .catch((t) => (status.innerHTML = t));
+      });
+      const addBtn = document.querySelector("#add button"),
+        addInput = document.querySelector("#add input");
+      addBtn.addEventListener("click", () => {
+        let t = addInput.value;
+        t &&
+          ((status.innerHTML = "新增中..."),
+          fetch(`${url}?type=new&name=${encodeURIComponent(t)}`)
+            .then((t) => (status.innerHTML = "新增成功"))
+            .catch((t) => {
+              status.innerHTML = t;
+            }));
+      });
+    </script>
+  </body>
 </html>
 ```
 

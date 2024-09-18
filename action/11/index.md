@@ -1,7 +1,7 @@
 # 告訴你一個大秘密：如何在 GitHub Actions 中使用 Secrets
 
 > 水果冰淇淋喜歡你，GitHub Secrets 在這裡。
-> 
+>
 > 《易經》：「亂之所生也，則言語以為階。君不密則失臣，臣不密則失身」說明了把 token 存在 Secrets 的重要性。
 
 在開發過程中，我們常常需要處理敏感資訊，如 API 金鑰、密碼和其他機密資料。為了保護這些敏感資訊不被暴露，我們可以使用 GitHub Actions 的 Secrets 功能來安全地管理和使用這些資料。
@@ -46,13 +46,13 @@
        runs-on: ubuntu-latest
 
        steps:
-       - name: Check out code
-         uses: actions/checkout@v2
+         - name: Check out code
+           uses: actions/checkout@v2
 
-       - name: Use API Key
-         run: echo "The API key is ${{ secrets.API_KEY }}"
-         env:
-           API_KEY: ${{ secrets.API_KEY }}
+         - name: Use API Key
+           run: echo "The API key is ${{ secrets.API_KEY }}"
+           env:
+             API_KEY: ${{ secrets.API_KEY }}
    ```
 
    在這個例子中，`${{ secrets.API_KEY }}` 用於獲取儲存在 GitHub Secrets 中的 API 金鑰。這樣，API 金鑰就能安全地用於工作流程中，而不會被暴露。
@@ -84,7 +84,7 @@
      在你的 Node.js 程式中，使用 `dotenv` 模組來加載 `.env` 文件中的變數：
 
      ```javascript
-     require('dotenv').config();
+     require("dotenv").config();
 
      const apiKey = process.env.API_KEY;
      console.log(`Your API key is ${apiKey}`);
@@ -107,21 +107,21 @@
        runs-on: ubuntu-latest
 
        steps:
-       - name: Check out code
-         uses: actions/checkout@v2
+         - name: Check out code
+           uses: actions/checkout@v2
 
-       - name: Set up Node.js
-         uses: actions/setup-node@v2
-         with:
-           node-version: '16'
+         - name: Set up Node.js
+           uses: actions/setup-node@v2
+           with:
+             node-version: "16"
 
-       - name: Install dependencies
-         run: npm install
+         - name: Install dependencies
+           run: npm install
 
-       - name: Run application
-         run: node app.js
-         env:
-           API_KEY: ${{ secrets.API_KEY }}
+         - name: Run application
+           run: node app.js
+           env:
+             API_KEY: ${{ secrets.API_KEY }}
    ```
 
    在這個例子中，`API_KEY` 環境變數從 GitHub Secrets 中讀取，並用於運行 Node.js 應用。

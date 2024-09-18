@@ -8,7 +8,9 @@ date: 2023-09-19
 # Day5 載入中… Animation-delay
 
 假設你今天想製作這個載入動畫…
+
 <!--more-->
+
 https://codepen.io/edit-mr/pen/YzdzvdV
 
 ![Alt text](https://emtech.cc/post/2023ironman-5/loading.gif)
@@ -33,7 +35,6 @@ main>(.left>(.wheelBox>.wheel*2)+.box>div*25)+.right>.wheel*3
 CSS 設定一下寬高、形狀、與排列方式
 
 > 提示: `border-radius` 設定大於等於 `50%` 即可生成圓形
-> 
 
 ```css
 .box div,
@@ -101,7 +102,7 @@ animation: 1.5s ease-in-out infinite zoom;
   20% {
     transform: scale(0.7);
   }
-	40% {
+  40% {
     transform: scale(1);
   }
 }
@@ -128,28 +129,28 @@ animation: 1.5s ease-in-out infinite zoom;
 我們在 HTML 用行內 CSS 個別設定元素的延遲就可以了。可以使用 Emmet 生成再微調。
 
 ```html
-<div class=box>
-        <div style="animation-delay: .0s"></div>
-        <div style="animation-delay: .1s"></div>
-        <div style="animation-delay: .2s"></div>
-        <div style="animation-delay: .3s"></div>
-        <div style="animation-delay: .4s"></div>
-        <div style="animation-delay: .1s"></div>
-        <div style="animation-delay: .2s"></div>
-        <div style="animation-delay: .3s"></div>
-        <div style="animation-delay: .4s"></div>
-        <div style="animation-delay: .5s"></div>
-        <div style="animation-delay: .2s"></div>
-        <div style="animation-delay: .3s"></div>
-        <div style="animation-delay: .4s"></div>
-        <div style="animation-delay: .5s"></div>
-        <div style="animation-delay: .6s"></div>
-        <div style="animation-delay: .3s"></div>
-        <div style="animation-delay: .4s"></div>
-        <div style="animation-delay: .5s"></div>
-        <div style="animation-delay: .6s"></div>
-        <div style="animation-delay: .7s"></div>
-      </div>
+<div class="box">
+  <div style="animation-delay: .0s"></div>
+  <div style="animation-delay: .1s"></div>
+  <div style="animation-delay: .2s"></div>
+  <div style="animation-delay: .3s"></div>
+  <div style="animation-delay: .4s"></div>
+  <div style="animation-delay: .1s"></div>
+  <div style="animation-delay: .2s"></div>
+  <div style="animation-delay: .3s"></div>
+  <div style="animation-delay: .4s"></div>
+  <div style="animation-delay: .5s"></div>
+  <div style="animation-delay: .2s"></div>
+  <div style="animation-delay: .3s"></div>
+  <div style="animation-delay: .4s"></div>
+  <div style="animation-delay: .5s"></div>
+  <div style="animation-delay: .6s"></div>
+  <div style="animation-delay: .3s"></div>
+  <div style="animation-delay: .4s"></div>
+  <div style="animation-delay: .5s"></div>
+  <div style="animation-delay: .6s"></div>
+  <div style="animation-delay: .7s"></div>
+</div>
 ```
 
 這樣就能夠做出最上面的動畫啦! 如果你跟我一樣使用 Firefox Developer Edition，在偵錯工具可以看到動畫時間軸曲線。
@@ -173,13 +174,17 @@ https://codepen.io/edit-mr/pen/LYMZeZE?editors=1100
 旋轉動畫很簡單：
 
 ```css
-@keyframes spin { to { transform: rotate(360deg) } }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 ```
 
 在正方形上面套用，讓他無限旋轉。預設速度 ease 又漸入漸出效果。
 
 ```css
-animation: spin 2s infinte
+animation: spin 2s infinte;
 ```
 
 我有在正方形裡面再包一層正方形，讓我可以讓每個正方形再旋轉一點，使每一個的開始點和結束點不太一樣。所有的參數你都可以調整看看。

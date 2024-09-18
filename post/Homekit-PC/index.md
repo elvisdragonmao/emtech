@@ -35,10 +35,10 @@ date: 2024-01-09
 
 ## 需要的材料
 
--   ESP32
--   杜邦線
--   電晶體
--   麵包板
+- ESP32
+- 杜邦線
+- 電晶體
+- 麵包板
 
 當然，你可以使用任意你手邊可連接 Wi-Fi 的開發板，不過需要自行修改程式喔。
 
@@ -93,12 +93,9 @@ date: 2024-01-09
 https://dl.espressif.com/dl/package_esp32_index.json
 ```
 
-   ![::img-medium](url.webp)
-4. 請你進入 BOARDS MANAGER 並搜尋 esp32。安裝 Espressif 開發的的 ESP-32 套件。
-   ![::img-medium](driver.jpg)
-5. 請點擊左邊第三個的圖書標誌並搜尋 HomeSpan 並安裝。
-   ![::img-medium](homespan.webp)
-6. 貼上以下程式碼:
+![::img-medium](url.webp) 4. 請你進入 BOARDS MANAGER 並搜尋 esp32。安裝 Espressif 開發的的 ESP-32 套件。
+![::img-medium](driver.jpg) 5. 請點擊左邊第三個的圖書標誌並搜尋 HomeSpan 並安裝。
+![::img-medium](homespan.webp) 6. 貼上以下程式碼:
 
 ```ino
 #include "HomeSpan.h"
@@ -191,6 +188,7 @@ void loop() {
 ```
 466-37-726
 ```
+
 這樣就完成囉!你可以編輯程式來添加更多功能或修改 pin 碼。
 
 ![新增至 HomeKit](homekit.webp)

@@ -135,14 +135,15 @@ jobs:
 
 ```yaml
 # ...
-      - name: Run Prettier check
-        id: prettier
-        run: npx prettier —check .
+- name: Run Prettier check
+  id: prettier
+  run: npx prettier —check .
 
-      - name: Run Prettier format (if needed)
-        if: ${{ failure() }}
-        run: npx prettier —write .
+- name: Run Prettier format (if needed)
+  if: ${{ failure() }}
+  run: npx prettier —write .
 ```
+
 ## 實作練習：條件性部署
 
 這是一個簡單的專案，示範如何根據不同的分支進行條件性部署。例如，當代碼推送到 `main` 分支時，自動部署到生產環境；當推送到 `develop` 分支時，則部署到測試環境。

@@ -1,11 +1,13 @@
 ### Day 6: Sensitive Data Exposure——當你的數據成為公開秘密
 
 #### 簡介：什麼是敏感數據曝光漏洞？
+
 敏感數據曝光漏洞發生在網站未能妥善保護敏感信息時，導致這些數據在無意中被公開或洩露。這種漏洞通常包括明文密碼、API 金鑰或個人識別信息等敏感數據。攻擊者可以通過不安全的網站配置或未經加密的存儲，輕易獲取這些數據。
 
 #### 開發爛網站：逐步構建易受敏感數據曝光攻擊的應用
 
 1. **初始化專案並設置 Node.js 環境**
+
    - **目標：** 創建一個新的 Node.js 專案，並設置一個不安全的配置來儲存和顯示敏感數據。
    - **步驟：**
      - 創建專案目錄並初始化：
@@ -20,50 +22,57 @@
        ```
 
 2. **設置 Express 應用與敏感數據曝光**
+
    - **目標：** 構建一個簡單的應用，儲存並展示明文密碼等敏感數據。
    - **步驟：**
+
      - 在 `index.js` 中設置 Express 應用，並配置 SQLite 資料庫來儲存用戶數據：
+
        ```javascript
-       const express = require('express');
-       const bodyParser = require('body-parser');
-       const sqlite3 = require('sqlite3').verbose();
+       const express = require("express");
+       const bodyParser = require("body-parser");
+       const sqlite3 = require("sqlite3").verbose();
        const app = express();
 
-       app.set('view engine', 'ejs');
+       app.set("view engine", "ejs");
        app.use(bodyParser.urlencoded({ extended: true }));
-       app.use(express.static('public'));
+       app.use(express.static("public"));
 
        // 設置 SQLite 資料庫
-       const db = new sqlite3.Database(':memory:');
+       const db = new sqlite3.Database(":memory:");
        db.serialize(() => {
-         db.run('CREATE TABLE users (username TEXT, password TEXT)');
+         db.run("CREATE TABLE users (username TEXT, password TEXT)");
        });
 
-       app.get('/', (req, res) => {
-         res.render('index');
+       app.get("/", (req, res) => {
+         res.render("index");
        });
 
-       app.post('/register', (req, res) => {
+       app.post("/register", (req, res) => {
          const { username, password } = req.body;
          // 插入明文密碼到資料庫
-         db.run('INSERT INTO users (username, password) VALUES (?, ?)', [username, password]);
-         res.send('User registered successfully!');
+         db.run("INSERT INTO users (username, password) VALUES (?, ?)", [
+           username,
+           password,
+         ]);
+         res.send("User registered successfully!");
        });
 
-       app.get('/users', (req, res) => {
-         db.all('SELECT * FROM users', (err, rows) => {
+       app.get("/users", (req, res) => {
+         db.all("SELECT * FROM users", (err, rows) => {
            if (err) {
-             res.status(500).send('Database error');
+             res.status(500).send("Database error");
            } else {
-             res.render('users', { users: rows });
+             res.render("users", { users: rows });
            }
          });
        });
 
        app.listen(3000, () => {
-         console.log('Server is running on http://localhost:3000');
+         console.log("Server is running on http://localhost:3000");
        });
        ```
+
      - **說明：** 我們設置了一個可以儲存和展示明文密碼的網站。用戶通過 `/register` 路徑註冊，密碼以明文形式儲存到 SQLite 資料庫中。可以通過 `/users` 路徑查看所有用戶的敏感數據。
 
 3. **創建 EJS 模板與前端頁面**
@@ -71,51 +80,67 @@
    - **步驟：**
      - 在 `views/index.ejs` 中創建註冊頁面：
        ```html
-       <!DOCTYPE html>
+       <!doctype html>
        <html lang="en">
-       <head>
-           <meta charset="UTF-8">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <head>
+           <meta charset="UTF-8" />
+           <meta
+             name="viewport"
+             content="width=device-width, initial-scale=1.0"
+           />
            <title>Sensitive Data Exposure</title>
-           <link rel="stylesheet" href="/styles.css">
-       </head>
-       <body>
+           <link rel="stylesheet" href="/styles.css" />
+         </head>
+         <body>
            <h1>Register</h1>
            <form method="POST" action="/register">
-               <input type="text" name="username" placeholder="Enter username" required />
-               <input type="password" name="password" placeholder="Enter password" required />
-               <button type="submit">Register</button>
+             <input
+               type="text"
+               name="username"
+               placeholder="Enter username"
+               required
+             />
+             <input
+               type="password"
+               name="password"
+               placeholder="Enter password"
+               required
+             />
+             <button type="submit">Register</button>
            </form>
            <a href="/users">View All Users</a>
-       </body>
+         </body>
        </html>
        ```
      - 在 `views/users.ejs` 中創建用戶列表頁面：
        ```html
-       <!DOCTYPE html>
+       <!doctype html>
        <html lang="en">
-       <head>
-           <meta charset="UTF-8">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <head>
+           <meta charset="UTF-8" />
+           <meta
+             name="viewport"
+             content="width=device-width, initial-scale=1.0"
+           />
            <title>All Users</title>
-           <link rel="stylesheet" href="/styles.css">
-       </head>
-       <body>
+           <link rel="stylesheet" href="/styles.css" />
+         </head>
+         <body>
            <h1>All Users</h1>
            <table>
-               <tr>
-                   <th>Username</th>
-                   <th>Password</th>
-               </tr>
-               <% users.forEach(user => { %>
-                   <tr>
-                       <td><%= user.username %></td>
-                       <td><%= user.password %></td>
-                   </tr>
-               <% }); %>
+             <tr>
+               <th>Username</th>
+               <th>Password</th>
+             </tr>
+             <% users.forEach(user => { %>
+             <tr>
+               <td><%= user.username %></td>
+               <td><%= user.password %></td>
+             </tr>
+             <% }); %>
            </table>
            <a href="/">Back to Register</a>
-       </body>
+         </body>
        </html>
        ```
      - **說明：** 用戶可以在註冊頁面中輸入帳號和密碼，並查看所有用戶的密碼。這樣會公開顯示所有註冊用戶的敏感數據。
@@ -135,37 +160,41 @@
 以下是修復過的代碼，使用 bcrypt 加密密碼並更新存儲方式：
 
 ```javascript
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 // 更新註冊路由以加密密碼
-app.post('/register', (req, res) => {
+app.post("/register", (req, res) => {
   const { username, password } = req.body;
-  
+
   // 加密密碼
   bcrypt.hash(password, saltRounds, (err, hash) => {
     if (err) {
-      return res.status(500).send('Server error');
+      return res.status(500).send("Server error");
     }
 
     // 插入加密後的密碼到資料庫
-    db.run('INSERT INTO users (username, password) VALUES (?, ?)', [username, hash], (err) => {
-      if (err) {
-        res.status(500).send('Database error');
-      } else {
-        res.send('User registered successfully!');
-      }
-    });
+    db.run(
+      "INSERT INTO users (username, password) VALUES (?, ?)",
+      [username, hash],
+      (err) => {
+        if (err) {
+          res.status(500).send("Database error");
+        } else {
+          res.send("User registered successfully!");
+        }
+      },
+    );
   });
 });
 
 // 更新用戶列表頁面以顯示加密後的密碼（示範用途，實際應用中應避免顯示密碼）
-app.get('/users', (req, res) => {
-  db.all('SELECT * FROM users', (err, rows) => {
+app.get("/users", (req, res) => {
+  db.all("SELECT * FROM users", (err, rows) => {
     if (err) {
-      res.status(500).send('Database error');
+      res.status(500).send("Database error");
     } else {
-      res.render('users', { users: rows });
+      res.render("users", { users: rows });
     }
   });
 });
@@ -178,6 +207,7 @@ app.get('/users', (req, res) => {
 ---
 
 **延伸學習主題：**
+
 - 深入了解加密技術及其在數據保護中的應用。
 - 探索如何進行安全的密碼管理和存儲。
 - 學習如何使用 HTTPS 和其他安全協議來保護數據傳輸。

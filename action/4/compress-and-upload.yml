@@ -1,25 +1,25 @@
 name: 壓縮並上傳為工件
 
 on:
-    push:
-        branches:
-            - main # 觸發條件：當代碼推送到 main 分支時
+  push:
+    branches:
+      - main # 觸發條件：當代碼推送到 main 分支時
 
 jobs:
-    compress:
-        runs-on: ubuntu-latest
+  compress:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: 檢出代碼
-              uses: actions/checkout@v2
+    steps:
+      - name: 檢出代碼
+        uses: actions/checkout@v2
 
-            - name: 壓縮檔案
-              run: |
-                  mkdir compressed
-                  tar -czf compressed/files.tar.gz .  # 壓縮當前目錄中的所有檔案和子目錄，並存儲為 files.tar.gz
+      - name: 壓縮檔案
+        run: |
+          mkdir compressed
+          tar -czf compressed/files.tar.gz .  # 壓縮當前目錄中的所有檔案和子目錄，並存儲為 files.tar.gz
 
-            - name: 上傳工件
-              uses: actions/upload-artifact@v3
-              with:
-                  name: compressed-files
-                  path: compressed/files.tar.gz
+      - name: 上傳工件
+        uses: actions/upload-artifact@v3
+        with:
+          name: compressed-files
+          path: compressed/files.tar.gz

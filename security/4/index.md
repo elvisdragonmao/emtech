@@ -1,11 +1,13 @@
 ### Day 4: LDAP Injection——當目錄查詢變成駭客的武器
 
 #### 簡介：什麼是 LDAP Injection？
+
 LDAP Injection 是一種攻擊手法，讓攻擊者能夠注入和執行不受信任的 LDAP 查詢，從而繞過身份驗證或未授權訪問敏感信息。這種漏洞通常存在於不安全的 LDAP 查詢構造中，攻擊者可以操控查詢結果，甚至獲得系統管理權限。
 
 #### 開發爛網站：逐步構建易受 LDAP Injection 攻擊的應用
 
 1. **初始化專案並設置 Node.js 環境**
+
    - **目標：** 創建一個新的 Node.js 專案，並安裝相關套件來模擬 LDAP 查詢。
    - **步驟：**
      - 創建專案目錄並初始化：
@@ -20,35 +22,40 @@ LDAP Injection 是一種攻擊手法，讓攻擊者能夠注入和執行不受�
        ```
 
 2. **設置 Express 應用與 LDAP 模擬**
+
    - **目標：** 構建一個簡單的應用，模擬 LDAP 查詢操作，並引入漏洞。
    - **步驟：**
+
      - 在 `index.js` 中設置 Express 應用並模擬 LDAP 查詢：
+
        ```javascript
-       const express = require('express');
-       const bodyParser = require('body-parser');
-       const ldap = require('ldapjs');
+       const express = require("express");
+       const bodyParser = require("body-parser");
+       const ldap = require("ldapjs");
        const app = express();
 
-       app.set('view engine', 'ejs');
+       app.set("view engine", "ejs");
        app.use(bodyParser.urlencoded({ extended: true }));
-       app.use(express.static('public'));
+       app.use(express.static("public"));
 
        // 模擬 LDAP 伺服器數據
        const users = [
-         { uid: 'admin', password: 'admin123', role: 'administrator' },
-         { uid: 'user', password: 'user123', role: 'user' },
+         { uid: "admin", password: "admin123", role: "administrator" },
+         { uid: "user", password: "user123", role: "user" },
        ];
 
        // 模擬 LDAP 查詢
        function ldapSearch(uid, password) {
-         return users.find(user => user.uid === uid && user.password === password);
+         return users.find(
+           (user) => user.uid === uid && user.password === password,
+         );
        }
 
-       app.get('/', (req, res) => {
-         res.render('index');
+       app.get("/", (req, res) => {
+         res.render("index");
        });
 
-       app.post('/login', (req, res) => {
+       app.post("/login", (req, res) => {
          const { uid, password } = req.body;
          // 構造 LDAP 查詢
          const filter = `(uid=${uid})(password=${password})`;
@@ -57,37 +64,46 @@ LDAP Injection 是一種攻擊手法，讓攻擊者能夠注入和執行不受�
          if (result) {
            res.send(`Welcome ${result.role}`);
          } else {
-           res.send('Invalid credentials');
+           res.send("Invalid credentials");
          }
        });
 
        app.listen(3000, () => {
-         console.log('Server is running on http://localhost:3000');
+         console.log("Server is running on http://localhost:3000");
        });
        ```
+
      - **說明：** 我們模擬了一個 LDAP 查詢，直接使用用戶輸入來構造查詢，這使得系統容易受到 LDAP Injection 攻擊。
 
 3. **創建 EJS 模板與前端頁面**
+
    - **目標：** 設計一個用戶登入頁面，供用戶輸入 LDAP 資料。
    - **步驟：**
      - 在 `views/index.ejs` 中創建前端頁面：
        ```html
-       <!DOCTYPE html>
+       <!doctype html>
        <html lang="en">
-       <head>
-           <meta charset="UTF-8">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <head>
+           <meta charset="UTF-8" />
+           <meta
+             name="viewport"
+             content="width=device-width, initial-scale=1.0"
+           />
            <title>LDAP Injection Vulnerable Site</title>
-           <link rel="stylesheet" href="/styles.css">
-       </head>
-       <body>
+           <link rel="stylesheet" href="/styles.css" />
+         </head>
+         <body>
            <h1>LDAP Injection Playground</h1>
            <form method="POST" action="/login">
-               <input type="text" name="uid" placeholder="Enter UID" />
-               <input type="password" name="password" placeholder="Enter Password" />
-               <button type="submit">Login</button>
+             <input type="text" name="uid" placeholder="Enter UID" />
+             <input
+               type="password"
+               name="password"
+               placeholder="Enter Password"
+             />
+             <button type="submit">Login</button>
            </form>
-       </body>
+         </body>
        </html>
        ```
      - **說明：** 用戶可以在這個表單中輸入帳號和密碼，提交後進行 LDAP 查詢。
@@ -120,7 +136,7 @@ LDAP Injection 攻擊利用了應用程式在構造 LDAP 查詢時未對用戶�
 以下是修復過的代碼，通過檢查用戶輸入來防範 LDAP Injection：
 
 ```javascript
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   const { uid, password } = req.body;
 
   // 驗證輸入並使用安全的查詢構造
@@ -129,7 +145,7 @@ app.post('/login', (req, res) => {
   if (result) {
     res.send(`Welcome ${result.role}`);
   } else {
-    res.send('Invalid credentials');
+    res.send("Invalid credentials");
   }
 });
 ```
@@ -141,6 +157,7 @@ app.post('/login', (req, res) => {
 ---
 
 **延伸學習主題：**
+
 - 探索更複雜的 LDAP 查詢語法和注入技巧。
 - 深入了解目錄服務的安全性最佳實踐。
 - 學習如何使用現代框架和庫來保護應用免受 LDAP Injection 攻擊。

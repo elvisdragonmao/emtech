@@ -22,7 +22,6 @@ body {
     background: linear-gradient(90deg, yellow, green);
   }
 }
-
 ```
 
 ![bruh](bruh.gif)
@@ -59,9 +58,9 @@ body {
 
 ### `background-size`
 
- `background-size` 如果不搭配 `background-position` 的會可以做出這種左邊維持不動，右邊比例不同漸層的效果。
+`background-size` 如果不搭配 `background-position` 的會可以做出這種左邊維持不動，右邊比例不同漸層的效果。
 
- ![左邊維持不動，右邊比例不同漸層](size.gif)
+![左邊維持不動，右邊比例不同漸層](size.gif)
 
 ```css
 body {
@@ -128,7 +127,6 @@ div {
     transform: translate(0, 0);
   }
 }
-
 ```
 
 ### filter

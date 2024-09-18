@@ -1,11 +1,13 @@
 ### Day 11: Cross-Site Scripting (XSS)——黑客的秘密武器：如何利用 XSS 竊取 Cookie
 
 #### 簡介：什麼是 Cross-Site Scripting (XSS)？
+
 Cross-Site Scripting（XSS）是一種安全漏洞，允許攻擊者在網站上注入並執行惡意腳本，這些腳本可以在受害者的瀏覽器上運行。XSS 攻擊可以竊取敏感信息，如 Cookie 和登錄憑證，並進一步進行其他惡意操作。
 
 #### 開發爛網站：打造 XSS 漏洞網站
 
 1. **初始化專案並設置 Node.js 環境**
+
    - **目標：** 創建一個簡單的 Node.js 應用，展示一個包含 XSS 漏洞的表單，並示範如何利用這個漏洞進行攻擊。
    - **步驟：**
      - 創建專案目錄並初始化：
@@ -20,76 +22,91 @@ Cross-Site Scripting（XSS）是一種安全漏洞，允許攻擊者在網站上
        ```
 
 2. **設置 Express 應用和 XSS 漏洞**
+
    - **目標：** 構建一個允許用戶提交評論的應用，但未對輸入進行正確的清理，從而造成 XSS 漏洞。
    - **步驟：**
+
      - 在 `index.js` 中設置 Express 應用：
+
        ```javascript
-       const express = require('express');
-       const sqlite3 = require('sqlite3').verbose();
-       const ejs = require('ejs');
+       const express = require("express");
+       const sqlite3 = require("sqlite3").verbose();
+       const ejs = require("ejs");
        const app = express();
 
-       app.set('view engine', 'ejs');
-       app.use(express.static('public'));
+       app.set("view engine", "ejs");
+       app.use(express.static("public"));
        app.use(express.urlencoded({ extended: true }));
 
        // 設置 SQLite 資料庫
-       const db = new sqlite3.Database(':memory:');
+       const db = new sqlite3.Database(":memory:");
        db.serialize(() => {
-         db.run('CREATE TABLE comments (id INTEGER PRIMARY KEY, content TEXT)');
+         db.run("CREATE TABLE comments (id INTEGER PRIMARY KEY, content TEXT)");
        });
 
-       app.get('/', (req, res) => {
-         db.all('SELECT * FROM comments', (err, rows) => {
+       app.get("/", (req, res) => {
+         db.all("SELECT * FROM comments", (err, rows) => {
            if (err) throw err;
-           res.render('index', { comments: rows });
+           res.render("index", { comments: rows });
          });
        });
 
-       app.post('/comment', (req, res) => {
+       app.post("/comment", (req, res) => {
          const { content } = req.body;
-         db.run('INSERT INTO comments (content) VALUES (?)', [content], (err) => {
-           if (err) throw err;
-           res.redirect('/');
-         });
+         db.run(
+           "INSERT INTO comments (content) VALUES (?)",
+           [content],
+           (err) => {
+             if (err) throw err;
+             res.redirect("/");
+           },
+         );
        });
 
        app.listen(3000, () => {
-         console.log('Server is running on http://localhost:3000');
+         console.log("Server is running on http://localhost:3000");
        });
        ```
+
      - **說明：** 這段代碼允許用戶提交和顯示評論，但未對提交的內容進行清理或轉義，這使得 XSS 攻擊成為可能。
 
 3. **創建 EJS 模板和評論頁面**
+
    - **目標：** 設計一個用戶可以提交和查看評論的頁面，展示 XSS 漏洞的效果。
    - **步驟：**
+
      - 在 `views/index.ejs` 中創建評論頁面：
+
        ```html
-       <!DOCTYPE html>
+       <!doctype html>
        <html lang="en">
-       <head>
-           <meta charset="UTF-8">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <head>
+           <meta charset="UTF-8" />
+           <meta
+             name="viewport"
+             content="width=device-width, initial-scale=1.0"
+           />
            <title>XSS Example</title>
-           <link rel="stylesheet" href="/styles.css">
-       </head>
-       <body>
+           <link rel="stylesheet" href="/styles.css" />
+         </head>
+         <body>
            <h1>Submit a Comment</h1>
            <form action="/comment" method="POST">
-               <label for="content">Comment:</label>
-               <textarea name="content" id="content" required></textarea>
-               <button type="submit">Submit</button>
+             <label for="content">Comment:</label>
+             <textarea name="content" id="content" required></textarea>
+             <button type="submit">Submit</button>
            </form>
 
            <h2>Comments</h2>
            <ul>
-               <% comments.forEach(comment => { %>
-                   <li><%= comment.content %></li>
-               <% }); %>
+             <% comments.forEach(comment => { %>
+             <li><%= comment.content %></li>
+             <% }); %>
            </ul>
-       </body>
+         </body>
        </html>
        ```
+
      - **說明：** 用戶可以在這個頁面上提交評論和查看已提交的評論。由於未進行內容轉義，提交的內容會被直接顯示在頁面上，可能包含惡意腳本。
 
 #### 漏洞深挖：XSS 如何發生？
@@ -105,15 +122,16 @@ XSS 漏洞發生在應用程序將用戶輸入的數據直接插入到頁面中�
 防範 XSS 涉及對所有用戶輸入進行適當的處理，防止惡意代碼的執行。以下是一些具體的防範措施：
 
 1. **內容轉義：** 在插入用戶輸入到 HTML 中之前，確保所有特殊字符（如 `<`、`>`、`&`）都被轉義，以防止腳本執行。
+
    ```javascript
    function escapeHTML(str) {
      return str.replace(/[&<>"']/g, function (match) {
        const escape = {
-         '&': '&amp;',
-         '<': '&lt;',
-         '>': '&gt;',
-         '"': '&quot;',
-         "'": '&#39;'
+         "&": "&amp;",
+         "<": "&lt;",
+         ">": "&gt;",
+         '"': "&quot;",
+         "'": "&#39;",
        };
        return escape[match];
      });
@@ -121,8 +139,12 @@ XSS 漏洞發生在應用程序將用戶輸入的數據直接插入到頁面中�
    ```
 
 2. **使用內容安全政策（CSP）：** 部署 CSP 可以幫助限制網站加載的資源和腳本，減少 XSS 攻擊的風險。
+
    ```html
-   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self';">
+   <meta
+     http-equiv="Content-Security-Policy"
+     content="default-src 'self'; script-src 'self';"
+   />
    ```
 
 3. **避免直接在 HTML 中插入未處理的用戶輸入：** 使用模板引擎（如 EJS）時，確保對動態內容進行適當的轉義。

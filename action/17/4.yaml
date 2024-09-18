@@ -1,18 +1,18 @@
-name: 'Update Notion to Discord'
-description: 'Fetch tasks from Notion and update Discord channel'
+name: "Update Notion to Discord"
+description: "Fetch tasks from Notion and update Discord channel"
 inputs:
   notion_database_id:
-    description: 'Notion database ID'
+    description: "Notion database ID"
     required: true
   notion_token:
-    description: 'Notion API token'
+    description: "Notion API token"
     required: true
   discord_channel_id:
-    description: 'Discord channel ID'
+    description: "Discord channel ID"
     required: true
   discord_token:
-    description: 'Discord bot token'
+    description: "Discord bot token"
     required: true
 runs:
-  using: 'node12'
-  main: 'src/index.js'
+  using: "node12"
+  main: "src/index.js"

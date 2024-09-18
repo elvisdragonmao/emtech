@@ -26,24 +26,52 @@ date: 2023-10-03
 ```
 
 ```css
-div:target{
+div:target {
   background: yellow;
 }
 ```
 
 ![:target 範例](https://emtech.cc/post/2023ironman-19/target.gif)
+
 ## 實作
 
 那我們就裝飾一下這個版面和 Lightbox 就好啦!先從維基共享資源抓幾張圖片。
 
 ```html
-<div id="one"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG" alt=""></div>
-<div id="two"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg" alt=""></div>
-<div id="three"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg" alt=""></div>
+<div id="one">
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG"
+    alt=""
+  />
+</div>
+<div id="two">
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg"
+    alt=""
+  />
+</div>
+<div id="three">
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg"
+    alt=""
+  />
+</div>
 <section>
-  <a href="#one"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG" alt=""></a>
-  <a href="#two"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg" alt=""></a>
-  <a href="#three"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg" alt=""></a>
+  <a href="#one"
+    ><img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG"
+      alt=""
+  /></a>
+  <a href="#two"
+    ><img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg"
+      alt=""
+  /></a>
+  <a href="#three"
+    ><img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg"
+      alt=""
+  /></a>
 </section>
 <a href="#" id="close">✖</a>
 ```
@@ -51,13 +79,13 @@ div:target{
 連結有點亂我簡化一下，架構長這樣。
 
 ```html
-<div id="one"><img src="" alt=""></div>
-<div id="two"><img src="" alt=""></div>
-<div id="three"><img src="" alt=""></div>
+<div id="one"><img src="" alt="" /></div>
+<div id="two"><img src="" alt="" /></div>
+<div id="three"><img src="" alt="" /></div>
 <section>
-  <a href="#one"><img src="" alt=""></a>
-  <a href="#two"><img src="" alt=""></a>
-  <a href="#three"><img src="" alt=""></a>
+  <a href="#one"><img src="" alt="" /></a>
+  <a href="#two"><img src="" alt="" /></a>
+  <a href="#three"><img src="" alt="" /></a>
 </section>
 <a href="#" id="close">✖</a>
 ```
@@ -82,6 +110,7 @@ a img {
   display: block;
 }
 ```
+
 接下來來設計 Lightbox。我們希望他能置中並且背景有些許的模糊。因此設定在 `:target` 時背景使用 `filter` 來 blur 以及不透明度降低。而 Lightbox 本身則是使用 `transform` 來置中。
 
 ```css
@@ -123,14 +152,14 @@ div:target ~ section {
   font-size: 2rem;
 }
 ```
+
 針對幾個可能有疑惑的 CSS 補充說明一下
 
-* `pointer-events: none` 這個屬性可以讓滑鼠事件穿透，也就是讓滑鼠點不到他。因為如果使用 `display: none` 隱藏顯示就不會有淡入淡出效果。
-* `object-fit: contain` 這個屬性可以讓圖片維持比例並且完整顯示在容器內。設定 `width` 和 `height` 等於是限定範圍，圖片會盡量放到最大但是不會超出。
-* `z-index` 這個屬性可以設定元素的疊層順序，數字越大越在上面。因為我們希望 Lightbox 在最上面，所以設定為 2。
-* `calc()` 這個函式可以讓你做數學運算，這邊是為了讓圖片寬度和高度稍微比螢幕小一點。
-* `position: fixed` 這個屬性可以讓元素固定在螢幕上，不會隨著滾動而移動。方便我們定位原色到正中間。
-
+- `pointer-events: none` 這個屬性可以讓滑鼠事件穿透，也就是讓滑鼠點不到他。因為如果使用 `display: none` 隱藏顯示就不會有淡入淡出效果。
+- `object-fit: contain` 這個屬性可以讓圖片維持比例並且完整顯示在容器內。設定 `width` 和 `height` 等於是限定範圍，圖片會盡量放到最大但是不會超出。
+- `z-index` 這個屬性可以設定元素的疊層順序，數字越大越在上面。因為我們希望 Lightbox 在最上面，所以設定為 2。
+- `calc()` 這個函式可以讓你做數學運算，這邊是為了讓圖片寬度和高度稍微比螢幕小一點。
+- `position: fixed` 這個屬性可以讓元素固定在螢幕上，不會隨著滾動而移動。方便我們定位原色到正中間。
 
 最後加上一點動畫讓整體看起來更順暢。為了方便我就這樣寫，不過平常少用 `*` 會比較好，因為塞太多容易影響到效能。
 
@@ -148,13 +177,40 @@ https://codepen.io/edit-mr/pen/jOXpJXX
 ![純 CSS 做出圖片 Lightbox](https://emtech.cc/post/2023ironman-19/final.gif)
 
 ```html
-<div id="one"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG" alt=""></div>
-<div id="two"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg" alt=""></div>
-<div id="three"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg" alt=""></div>
+<div id="one">
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG"
+    alt=""
+  />
+</div>
+<div id="two">
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg"
+    alt=""
+  />
+</div>
+<div id="three">
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg"
+    alt=""
+  />
+</div>
 <section>
-  <a href="#one"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG" alt=""></a>
-  <a href="#two"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg" alt=""></a>
-  <a href="#three"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg" alt=""></a>
+  <a href="#one"
+    ><img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG"
+      alt=""
+  /></a>
+  <a href="#two"
+    ><img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg"
+      alt=""
+  /></a>
+  <a href="#three"
+    ><img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg"
+      alt=""
+  /></a>
 </section>
 <a href="#" id="close">✖</a>
 ```

@@ -19,9 +19,7 @@ Microsoft Store 是 Windows 內建的應用程式商店。理論上它應該是�
 
 ![複製連結](microsoft-store.webp)
 
-
 如果是在應用程式中找到的，請點擊`分享`並選擇`複製連結`。
-
 
 ![複製連結](minecraft.webp)
 
@@ -41,7 +39,6 @@ Microsoft Store 是 Windows 內建的應用程式商店。理論上它應該是�
 
 你會看到有很多不同的檔案適用於不同架構的電腦(如 x86、x64、ARM)。下載你的電腦架構的版本當中數字最大最新的版本即可。
 
-
 {{% notice tip "我的電腦是什麼架構?" %}}
 
 如果你不知道你的電腦是什麼架構的，請按下`Win+R`並輸入`msinfo32`。在`系統摘要說明`中你可以看到`系統類型`。如果是`x64-based PC`請下載`x64`的版本，如果是`x86-based PC`請下載`x86`的版本。如果你的電腦是 ARM 架構的，請下載 ARM 的版本。
@@ -52,10 +49,10 @@ Microsoft Store 是 Windows 內建的應用程式商店。理論上它應該是�
 
 ### 依賴套件
 
-有一些軟體會需要安裝依賴套件。例如 Spotify 就需要安裝 
+有一些軟體會需要安裝依賴套件。例如 Spotify 就需要安裝
 
-* Microsoft.WindowsAppRuntime.1.2_2000.802.31.0_x64__8wekyb3d8bbwe.msix
-* Microsoft.VCLibs.140.00_14.0.32530.0_x64__8wekyb3d8bbwe.appx
+- Microsoft.WindowsAppRuntime.1.2_2000.802.31.0_x64\_\_8wekyb3d8bbwe.msix
+- Microsoft.VCLibs.140.00_14.0.32530.0_x64\_\_8wekyb3d8bbwe.appx
 
 ![依賴套件](spotify.webp)
 

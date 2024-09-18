@@ -25,7 +25,6 @@ Line 在 2024/04/17 推出了新的 Messaging API，其中一個功能是可以�
 
 如果你要求在載入動畫仍然可見時再次顯示該動畫，則該動畫將繼續顯示，並且動畫消失之前的時間將被第二個請求中指定的秒數覆蓋。
 
-
 > 適用於 iOS 或 Android 的 LINE：13.16.0 或更高版本
 
 以下是一個範例的呼叫方式
@@ -48,7 +47,6 @@ curl -v -X POST https://api.line.me/v2/bot/chat/loading/start \
 
 > 請到 [Line Developers](https://developers.line.biz/console/) => 新增或選取Provider => Create a new channel => Message API。
 
-
 ### 2. 建立 Google App Script
 
 打開 [Google App Script](https://script.google.com/u/0/home/projects/create)，並貼上以下程式碼。
@@ -56,7 +54,7 @@ curl -v -X POST https://api.line.me/v2/bot/chat/loading/start \
 我們希望在使用 doPost 接收到訊息時，回覆使用者一個思考中的動畫。等待 5 秒後，回應說「好喔」。記得將 `token` 替換成你的 Channel Access Token。
 
 ```javascript
-const token = "XXXXXXXXXXXXXXXXXXXXXXXXXXXx="
+const token = "XXXXXXXXXXXXXXXXXXXXXXXXXXXx=";
 
 function doPost(e) {
   var contents = JSON.parse(e.postData.contents);
@@ -68,42 +66,44 @@ function doPost(e) {
 
   // Set a timer to end the loading animation and send a reply after 5 seconds
   Utilities.sleep(5000);
-  sendReply(replyToken, '好喔');
+  sendReply(replyToken, "好喔");
 }
 
 function sendLoading(chatId, seconds) {
-  var url = 'https://api.line.me/v2/bot/chat/loading/start';
+  var url = "https://api.line.me/v2/bot/chat/loading/start";
   var payload = {
-    "chatId": chatId,
-    "loadingSeconds": seconds
+    chatId: chatId,
+    loadingSeconds: seconds,
   };
   var options = {
-    'method': 'post',
-    'contentType': 'application/json',
-    'headers': {
-      'Authorization': 'Bearer ' + token,
+    method: "post",
+    contentType: "application/json",
+    headers: {
+      Authorization: "Bearer " + token,
     },
-    'payload': JSON.stringify(payload)
+    payload: JSON.stringify(payload),
   };
   UrlFetchApp.fetch(url, options);
 }
 
 function sendReply(replyToken, message) {
-  var url = 'https://api.line.me/v2/bot/message/reply';
+  var url = "https://api.line.me/v2/bot/message/reply";
   var payload = {
-    "replyToken": replyToken,
-    "messages": [{
-      "type": "text",
-      "text": message
-    }]
+    replyToken: replyToken,
+    messages: [
+      {
+        type: "text",
+        text: message,
+      },
+    ],
   };
   var options = {
-    'method': 'post',
-    'contentType': 'application/json',
-    'headers': {
-      'Authorization': 'Bearer ' + token,
+    method: "post",
+    contentType: "application/json",
+    headers: {
+      Authorization: "Bearer " + token,
     },
-    'payload': JSON.stringify(payload)
+    payload: JSON.stringify(payload),
   };
   UrlFetchApp.fetch(url, options);
 }
@@ -126,6 +126,7 @@ function sendReply(replyToken, message) {
 ![成果](result.gif)
 
 ## 結語
+
 以上就是使用 Line Messaging API 顯示思考中動畫的方法，希望能夠對你有幫助。如果你有任何建議或問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://em-tec.github.io/)。
 
 > 參考資料: https://developers.line.biz/en/docs/messaging-api/use-loading-indicator/

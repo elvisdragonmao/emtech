@@ -1,11 +1,13 @@
 ### Day 5: XML External Entity (XXE)——當 XML 變成駭客的秘密武器
 
 #### 簡介：什麼是 XXE 漏洞？
+
 XML External Entity (XXE) 漏洞是一種攻擊手法，利用 XML 處理中的外部實體來訪問應用程式內部的敏感信息或進行外部連接。攻擊者可以通過特製的 XML 請求讀取伺服器上的文件、進行內部端口掃描，甚至發送請求到內部系統。
 
 #### 開發爛網站：逐步構建易受 XXE 攻擊的應用
 
 1. **初始化專案並設置 Node.js 環境**
+
    - **目標：** 創建一個新的 Node.js 專案，並安裝解析 XML 的套件。
    - **步驟：**
      - 創建專案目錄並初始化：
@@ -20,18 +22,21 @@ XML External Entity (XXE) 漏洞是一種攻擊手法，利用 XML 處理中的�
        ```
 
 2. **設置 Express 應用與 XXE 漏洞**
+
    - **目標：** 構建一個簡單的應用，並引入 XXE 漏洞。
    - **步驟：**
+
      - 在 `index.js` 中設置 Express 應用，並處理 XML 請求：
+
        ```javascript
-       const express = require('express');
-       const bodyParser = require('body-parser');
-       const xml2js = require('xml2js');
+       const express = require("express");
+       const bodyParser = require("body-parser");
+       const xml2js = require("xml2js");
        const app = express();
 
-       app.use(bodyParser.text({ type: 'application/xml' }));
+       app.use(bodyParser.text({ type: "application/xml" }));
 
-       app.get('/', (req, res) => {
+       app.get("/", (req, res) => {
          res.send(`
            <h1>XML External Entity (XXE) Playground</h1>
            <form method="POST" action="/parse-xml">
@@ -41,12 +46,12 @@ XML External Entity (XXE) 漏洞是一種攻擊手法，利用 XML 處理中的�
          `);
        });
 
-       app.post('/parse-xml', (req, res) => {
+       app.post("/parse-xml", (req, res) => {
          const xml = req.body;
 
          xml2js.parseString(xml, (err, result) => {
            if (err) {
-             res.status(400).send('Invalid XML');
+             res.status(400).send("Invalid XML");
            } else {
              res.json(result);
            }
@@ -54,9 +59,10 @@ XML External Entity (XXE) 漏洞是一種攻擊手法，利用 XML 處理中的�
        });
 
        app.listen(3000, () => {
-         console.log('Server is running on http://localhost:3000');
+         console.log("Server is running on http://localhost:3000");
        });
        ```
+
      - **說明：** 我們設置了一個接受 XML 請求的簡單應用，並將其解析為 JSON 以便顯示結果。此應用對 XML 中的外部實體處理缺乏防護，容易受到 XXE 攻擊。
 
 3. **測試 XXE 漏洞**
@@ -90,9 +96,9 @@ XXE 漏洞利用了 XML 解析器處理外部實體時的漏洞。當 XML 解析
 以下是修復過的代碼，通過禁用外部實體來防範 XXE 漏洞：
 
 ```javascript
-const xml2js = require('xml2js');
+const xml2js = require("xml2js");
 
-app.post('/parse-xml', (req, res) => {
+app.post("/parse-xml", (req, res) => {
   const xml = req.body;
 
   // 使用禁用外部實體的 XML 解析器選項
@@ -102,13 +108,13 @@ app.post('/parse-xml', (req, res) => {
     strict: true,
     // 禁用 DTD 解析以防止 XXE 攻擊
     dtd: {
-      ignore: true
-    }
+      ignore: true,
+    },
   });
 
   parser.parseString(xml, (err, result) => {
     if (err) {
-      res.status(400).send('Invalid XML');
+      res.status(400).send("Invalid XML");
     } else {
       res.json(result);
     }
@@ -123,6 +129,7 @@ app.post('/parse-xml', (req, res) => {
 ---
 
 **延伸學習主題：**
+
 - 深入了解 XML 解析庫的安全設置與最佳實踐。
 - 探索其他 XML 相關的安全問題，如 XML Bomb。
 - 學習如何使用更安全的數據格式，如 JSON，來避免類似的漏洞。

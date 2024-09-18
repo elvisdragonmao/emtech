@@ -11,7 +11,6 @@ date: 2023-10-01
 
 <!--more-->
 
-
 ![](https://emtech.cc/post/2023ironman-17/curve.webp)
 
 然而在 CSS 實現貝茲曲線一直都沒有一個優雅的方法。我在這個中秋連假和家人一起到墾丁露營，我一邊看著大海海浪一邊喝著椰子水思考這個問題…
@@ -24,7 +23,7 @@ date: 2023-10-01
 
 ```html
 <div></div>
-``` 
+```
 
 ```css
 div {
@@ -68,7 +67,6 @@ https://codepen.io/edit-mr/pen/dywjOyw
 
 ![](https://emtech.cc/post/2023ironman-17/wave.gif)
 
-
 這裡關於置中我想補充一個點，就是因為我們已經在使用 `transform: rotate()` 屬性旋轉，所以我沒有用 `translate()`來置中。因為我們知道寬度是150vw，所以只需要把多出來的50vw切一半丟到左邊就可以了。
 
 ![](https://emtech.cc/post/2023ironman-17/why25.svg)
@@ -84,13 +82,13 @@ https://codepen.io/edit-mr/pen/JjwBbgg
 ```html
 <main>
   <div></div>
-  <div class=“second”></div>
+  <div class="“second”"></div>
   <h2>40%</h2>
 </main>
 ```
 
 ```css
-body { 
+body {
   overflow: hidden;
   display: flex;
   justify-content: center;

@@ -54,11 +54,12 @@
            uses: slackapi/slack-github-action@v1
            with:
              slack-token: ${{ secrets.SLACK_TOKEN }}
-             channel-id: 'C1234567890'  # 替換為你的頻道 ID
-             text: '工作流程已完成！查看詳細信息：[工作流程鏈接](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})'
+             channel-id: "C1234567890" # 替換為你的頻道 ID
+             text: "工作流程已完成！查看詳細信息：[工作流程鏈接](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
    ```
 
    **解釋**:
+
    - `slack-token`: 使用 GitHub Secrets 存儲你的 Slack Token。
    - `channel-id`: 你的 Slack 頻道 ID。
    - `text`: 訊息文本，包括工作流程鏈接。
@@ -81,30 +82,30 @@
    在 `src` 目錄下創建一個腳本文件，例如 `generate-report.js`，並添加以下內容：
 
    ```javascript
-   import fs from 'fs';
-   import path from 'path';
+   import fs from "fs";
+   import path from "path";
 
-   const reportFilePath = path.join(__dirname, 'report.md');
+   const reportFilePath = path.join(__dirname, "report.md");
 
    // 模擬生成報告的內容
    const reportContent = `
    # 工作流程報告
-
+   
    **日期**: ${new Date().toLocaleDateString()}
-
+   
    ## 總結
-
+   
    本次工作流程運行成功。
-
+   
    ## 詳細信息
-
+   
    - [工作流程鏈接](https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID})
    `;
 
    // 將報告內容寫入文件
-   fs.writeFileSync(reportFilePath, reportContent, 'utf8');
+   fs.writeFileSync(reportFilePath, reportContent, "utf8");
 
-   console.log('報告已生成');
+   console.log("報告已生成");
    ```
 
 ### 步驟 2: 配置 GitHub Actions 生成報告文件
@@ -133,7 +134,7 @@
          - name: Set up Node.js
            uses: actions/setup-node@v3
            with:
-             node-version: '20'
+             node-version: "20"
 
          - name: Install dependencies
            run: npm install
@@ -151,6 +152,7 @@
    ```
 
    **解釋**:
+
    - `Generate report`: 運行生成報告的腳本。
    - `Commit and push report`: 將生成的報告文件提交到 repository。
 

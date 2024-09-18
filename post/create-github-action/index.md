@@ -42,17 +42,17 @@ branding:
   icon: activity
 inputs:
   repo:
-    description: 'The GitHub repository name.'
+    description: "The GitHub repository name."
     required: true
   NOTION_API_KEY:
-    description: 'The Notion API key.'
+    description: "The Notion API key."
     required: true
   NOTION_DATABASE_ID:
-    description: 'The ID of the Notion database.'
+    description: "The ID of the Notion database."
     required: true
 runs:
-  using: 'node20'
-  main: 'index.js'
+  using: "node20"
+  main: "index.js"
 ```
 
 這個文件中包含了 Action 的名稱、作者、描述、輸入參數、運行環境等等。你可以根據你的需求修改這個文件。branding 中的 color 和 icon 是用來設置 Action 在 Marketplace 上的顏色和圖標的。你可以在 [GitHub Actions Branding Cheat Sheet](https://haya14busa.github.io/github-action-brandings/) 這個實用的工具中找到更多的顏色和圖標。
@@ -67,16 +67,16 @@ const core = require("@actions/core");
 // const { markdownToBlocks } = require("@tryfabric/martian");
 
 async function main() {
-    const repo = core.getInput("repo");
-    const notionToken = core.getInput("NOTION_API_KEY");
-    const notionDatabaseId = core.getInput("NOTION_DATABASE_ID");
+  const repo = core.getInput("repo");
+  const notionToken = core.getInput("NOTION_API_KEY");
+  const notionDatabaseId = core.getInput("NOTION_DATABASE_ID");
 
-    // ...
+  // ...
 }
 
-main().catch(error => {
-    console.error(error);
-    process.exit(1);
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
 });
 ```
 
@@ -146,9 +146,9 @@ jobs:
       - name: Notion GitHub Issues Automation
         uses: Edit-Mr/GitHub-issue-2-Notion@main
         with:
-            repo: ${{ github.repository }}
-            NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-            NOTION_DATABASE: ${{ secrets.NOTION_DATABASE_ID }}
+          repo: ${{ github.repository }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE: ${{ secrets.NOTION_DATABASE_ID }}
 ```
 
 這個文件中包含了工作流程的名稱、觸發條件、工作、步驟等等。這裡我們使用了 `Edit-Mr/GitHub-issue-2-Notion@main` 來引入我們的 Action。

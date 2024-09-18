@@ -20,20 +20,70 @@ date: 2023-09-27
 ```html
 <h1>顏色選單</h1>
 <div class="color-picker">
-  <div class="color-option" style="background-color: #7aaaf1" onclick="changeColor('#7aaaf1')"></div>
-  <div class="color-option" style="background-color: #8683ff" onclick="changeColor('#8683ff')"></div>
-  <div class="color-option" style="background-color: #e683bc" onclick="changeColor('#e683bc')"></div>
-  <div class="color-option" style="background-color: #ff788c" onclick="changeColor('#ff788c')"></div>
-  <div class="color-option" style="background-color: #ff8d7b" onclick="changeColor('#ff8d7b')"></div>
-  <div class="color-option" style="background-color: #f8d175" onclick="changeColor('#f8d175')"></div>
-  <div class="color-option" style="background-color: #9ac78f" onclick="changeColor('#9ac78f')"></div>
-  <div class="color-option" style="background-color: #7dc4ca" onclick="changeColor('#7dc4ca')"></div>
-  <div class="color-option" style="background-color: #FFFFFF" onclick="changeColor('#FFFFFF')"></div>
-  <div class="color-option" style="background-color: #565c6a" onclick="changeColor('#565c6a')"></div>
-  <div class="color-option" style="background-color: #6b5762" onclick="changeColor('#6b5762')"></div>
-  <div class="color-option" id="color"> <input type="color" onchange="document.getElementById('color').style.backgroundColor=this.value;changeColor(this.value)"></div>
+  <div
+    class="color-option"
+    style="background-color: #7aaaf1"
+    onclick="changeColor('#7aaaf1')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #8683ff"
+    onclick="changeColor('#8683ff')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #e683bc"
+    onclick="changeColor('#e683bc')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #ff788c"
+    onclick="changeColor('#ff788c')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #ff8d7b"
+    onclick="changeColor('#ff8d7b')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #f8d175"
+    onclick="changeColor('#f8d175')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #9ac78f"
+    onclick="changeColor('#9ac78f')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #7dc4ca"
+    onclick="changeColor('#7dc4ca')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #FFFFFF"
+    onclick="changeColor('#FFFFFF')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #565c6a"
+    onclick="changeColor('#565c6a')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #6b5762"
+    onclick="changeColor('#6b5762')"
+  ></div>
+  <div class="color-option" id="color">
+    <input
+      type="color"
+      onchange="document.getElementById('color').style.backgroundColor=this.value;changeColor(this.value)"
+    />
+  </div>
 </div>
 ```
+
 輸入框被點擊並選擇顏色之後會觸發 onchange 事件。我們會把顏色傳給 `changeColor()` 這個函式更改背景，順便把自己的顏色也改成相同顏色。我們來加上一點簡單的 CSS。
 
 ## CSS
@@ -58,7 +108,7 @@ body {
   border-radius: 2.5vmax;
   gap: 0.5vmax;
   padding: 0.5vmax 1vmax;
-  box-shadow: 0 .3vmax 1vmax #00000022;
+  box-shadow: 0 0.3vmax 1vmax #00000022;
 }
 
 .color-option {
@@ -106,7 +156,7 @@ body {
 最後讓我們建立一個 `changeColor()` 函式，這個函式會把傳進來的顏色設定成背景顏色。
 
 ```js
-const changeFontColor = c => document.body.style.background = c;
+const changeFontColor = (c) => (document.body.style.background = c);
 ```
 
 這是ES6的寫法，如果你不習慣可以改成
@@ -126,20 +176,70 @@ https://codepen.io/edit-mr/pen/abPVWBJ
 ```html
 <h1>顏色選單</h1>
 <div class="color-picker">
-  <div class="color-option" style="background-color: #7aaaf1" onclick="changeFontColor('#7aaaf1')"></div>
-  <div class="color-option" style="background-color: #8683ff" onclick="changeFontColor('#8683ff')"></div>
-  <div class="color-option" style="background-color: #e683bc" onclick="changeFontColor('#e683bc')"></div>
-  <div class="color-option" style="background-color: #ff788c" onclick="changeFontColor('#ff788c')"></div>
-  <div class="color-option" style="background-color: #ff8d7b" onclick="changeFontColor('#ff8d7b')"></div>
-  <div class="color-option" style="background-color: #f8d175" onclick="changeFontColor('#f8d175')"></div>
-  <div class="color-option" style="background-color: #9ac78f" onclick="changeFontColor('#9ac78f')"></div>
-  <div class="color-option" style="background-color: #7dc4ca" onclick="changeFontColor('#7dc4ca')"></div>
-  <div class="color-option" style="background-color: #FFFFFF" onclick="changeFontColor('#FFFFFF')"></div>
-  <div class="color-option" style="background-color: #565c6a" onclick="changeFontColor('#565c6a')"></div>
-  <div class="color-option" style="background-color: #6b5762" onclick="changeFontColor('#6b5762')"></div>
-  <div class="color-option" id="color"> <input type="color" onchange="document.getElementById('color').style.backgroundColor=this.value;changeFontColor(this.value)"></div>
+  <div
+    class="color-option"
+    style="background-color: #7aaaf1"
+    onclick="changeFontColor('#7aaaf1')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #8683ff"
+    onclick="changeFontColor('#8683ff')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #e683bc"
+    onclick="changeFontColor('#e683bc')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #ff788c"
+    onclick="changeFontColor('#ff788c')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #ff8d7b"
+    onclick="changeFontColor('#ff8d7b')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #f8d175"
+    onclick="changeFontColor('#f8d175')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #9ac78f"
+    onclick="changeFontColor('#9ac78f')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #7dc4ca"
+    onclick="changeFontColor('#7dc4ca')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #FFFFFF"
+    onclick="changeFontColor('#FFFFFF')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #565c6a"
+    onclick="changeFontColor('#565c6a')"
+  ></div>
+  <div
+    class="color-option"
+    style="background-color: #6b5762"
+    onclick="changeFontColor('#6b5762')"
+  ></div>
+  <div class="color-option" id="color">
+    <input
+      type="color"
+      onchange="document.getElementById('color').style.backgroundColor=this.value;changeFontColor(this.value)"
+    />
+  </div>
 </div>
 ```
+
 ```css
 body {
   display: flex;
@@ -192,9 +292,11 @@ body {
   font-size: 1.5rem;
 }
 ```
+
 ```js
-const changeFontColor = (a) => document.body.style.background = a;
+const changeFontColor = (a) => (document.body.style.background = a);
 ```
+
 以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

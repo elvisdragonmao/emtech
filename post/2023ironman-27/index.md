@@ -60,6 +60,7 @@ date: 2023-10-11
   </div>
 </main>
 ```
+
 ```css
 * {
   margin: 0;
@@ -182,9 +183,9 @@ aside {
 
 大概講幾個有趣的點:
 
-* 圖片來源是 [Font Awesome](https://fontawesome.com/)
-* `<aside>` 裡面的背景是用 `linear-gradient` 做的。先是背景灰色，然後是藍色、白色。感覺像是分成不同元素但為了方便就用一個漸層充當。
-* 設定 `max-width: 1170px` 再加上 `margin: 0 auto` 來讓版面置中。
+- 圖片來源是 [Font Awesome](https://fontawesome.com/)
+- `<aside>` 裡面的背景是用 `linear-gradient` 做的。先是背景灰色，然後是藍色、白色。感覺像是分成不同元素但為了方便就用一個漸層充當。
+- 設定 `max-width: 1170px` 再加上 `margin: 0 auto` 來讓版面置中。
 
 其他的沒什麼特別的。如果看不懂的話可以複習 [Day3 用 Flex 切遍天下](https://emtech.cc/post/2023ironman-3/)
 
@@ -200,9 +201,10 @@ const white = document.querySelector("header");
 
 ```js
 document.addEventListener("scroll", () =>
-  white.classList.toggle("fixedNav", white.getBoundingClientRect().bottom < 0)
+  white.classList.toggle("fixedNav", white.getBoundingClientRect().bottom < 0),
 );
 ```
+
 > `element.classList.toggle` 會在 class 存在時移除，不存在時加上。如果填寫兩個參數，第一個是要添加或移除的 class；第二個參數是布林值，會在布林值為 true 時加上，false 時移除。
 
 ## 滾動效果
@@ -233,11 +235,14 @@ HTML 加上圖片
 
 ```html
 <!-- ... -->
-  <nav>
-    <div>
-        <img src="https://ithelp.ithome.com.tw/storage/image/nav_logo.svg" alt="">
-      <ul class="left">
-<!-- ... -->
+<nav>
+  <div>
+    <img src="https://ithelp.ithome.com.tw/storage/image/nav_logo.svg" alt="" />
+    <ul class="left">
+      <!-- ... -->
+    </ul>
+  </div>
+</nav>
 ```
 
 iT 邦幫忙的作法是把右邊的選單用 `transform:translate()` 往左平移遮住它。我把上面的選單設成半透明讓你看。

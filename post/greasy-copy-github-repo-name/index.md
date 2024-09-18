@@ -28,7 +28,7 @@ date: 2024-05-13
 如果你的瀏覽器還沒有安裝 Tampermonkey，可以到 [Tampermonkey 官網](https://www.tampermonkey.net/)下載並安裝。
 
 ### 2. 安裝腳本
-    
+
 點擊 [這裡](https://greasyfork.org/en/scripts/494749-copy-github-repo-name) 進入 Greasy Fork 安裝頁面，點擊安裝即可。
 
 ![安裝腳本](install.webp)

@@ -13,13 +13,14 @@ date: 2021-08-13
 
 {{% notice info "儲存影像" %}}
 
-* 開發者:毛哥EM(我)
-* 軟體類型:ios捷徑
-* 下載位置:
-   [iCloud](https://www.icloud.com/shortcuts/1929e97c60ff4fada8b237a3823ceb85)
-{{% /notice %}}
+- 開發者:毛哥EM(我)
+- 軟體類型:ios捷徑
+- 下載位置:
+  [iCloud](https://www.icloud.com/shortcuts/1929e97c60ff4fada8b237a3823ceb85)
+  {{% /notice %}}
 
 捷徑有兩個不同模式，分別是「Safari網頁」和「網址下載」。原理不太一樣，詳細差異如下。
+
 ## Safari網頁
 
 只適用於Safari。
@@ -27,6 +28,7 @@ date: 2021-08-13
 這個版本是直接下載**當前**網頁中所有包含圖像標籤'<img>'的元素並一一下載。
 
 ## 網址下載
+
 此版本適用於任何瀏覽器，甚至是複製網址即可。
 
 這個版本的原理是用捷徑重新讀取輸入的網址的網頁並抓取中所有能被捷徑判斷為圖片的影像。
@@ -43,5 +45,5 @@ date: 2021-08-13
 
 {{% notice tip "小提醒" %}}
 
-* 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。
-{{% /notice %}}
+- 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。
+  {{% /notice %}}

@@ -27,12 +27,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Linux 作業系統作為主要運行平台
+    runs-on: ubuntu-latest # Linux 作業系統作為主要運行平台
 
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.9]  # 可以根據需要調整 Python 版本
+        python-version: [3.9] # 可以根據需要調整 Python 版本
 
     steps:
       - name: Checkout repository
@@ -57,7 +57,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: hello-executable-${{ matrix.os }}
-          path: dist/hello${{ matrix.os == 'windows-latest' && '.exe' || '' }}  # 根據平台確定擴展名
+          path: dist/hello${{ matrix.os == 'windows-latest' && '.exe' || '' }} # 根據平台確定擴展名
 ```
 
 ## **3. 詳細步驟解析**

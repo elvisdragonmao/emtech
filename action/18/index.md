@@ -32,25 +32,25 @@ github-issue-2-notion/
 在 `action.yml` 文件中，定義 Action 的輸入、執行和輸出。以下是 `action.yml` 的內容：
 
 ```yaml
-name: 'Sync GitHub Issues to Notion'
-description: 'Synchronize GitHub issues to a Notion database'
+name: "Sync GitHub Issues to Notion"
+description: "Synchronize GitHub issues to a Notion database"
 inputs:
   repo:
-    description: 'The GitHub repository (e.g., owner/repo)'
+    description: "The GitHub repository (e.g., owner/repo)"
     required: true
   NOTION_API_KEY:
-    description: 'The API key for the Notion integration'
+    description: "The API key for the Notion integration"
     required: true
   NOTION_DATABASE_ID:
-    description: 'The ID of the Notion database'
+    description: "The ID of the Notion database"
     required: true
 runs:
-  using: 'node12'
+  using: "node12"
   steps:
     - name: Run script
       uses: actions/setup-node@v3
       with:
-        node-version: '20'
+        node-version: "20"
     - run: npm install
     - run: node script.js
       env:
@@ -71,111 +71,119 @@ const axios = require("axios");
 const { markdownToBlocks } = require("@tryfabric/martian");
 
 async function main() {
-    const repo = core.getInput("repo");
-    const notionToken = core.getInput("NOTION_API_KEY");
-    const notionDatabaseId = core.getInput("NOTION_DATABASE_ID");
+  const repo = core.getInput("repo");
+  const notionToken = core.getInput("NOTION_API_KEY");
+  const notionDatabaseId = core.getInput("NOTION_DATABASE_ID");
 
-    // GitHub Issues API URL
-    const issuesUrl = `https://api.github.com/repos/${repo}/issues?state=all`;
+  // GitHub Issues API URL
+  const issuesUrl = `https://api.github.com/repos/${repo}/issues?state=all`;
 
-    // Fetch issues from GitHub
-    const issuesResponse = await axios.get(issuesUrl, {
+  // Fetch issues from GitHub
+  const issuesResponse = await axios.get(issuesUrl, {
+    headers: {
+      "User-Agent": "request",
+      Authorization: `token ${process.env.GITHUB_TOKEN}`,
+    },
+  });
+
+  for (const issue of issuesResponse.data) {
+    const issueId = issue.id;
+    const notionUrl = `https://api.notion.com/v1/databases/${notionDatabaseId}/query`;
+
+    // Check if the issue already exists in Notion
+    const notionResponse = await axios.post(
+      notionUrl,
+      {
+        filter: {
+          property: "ID",
+          number: {
+            equals: issueId,
+          },
+        },
+      },
+      {
         headers: {
-            "User-Agent": "request",
-            "Authorization": `token ${process.env.GITHUB_TOKEN}`
-        }
-    });
-    
-    for (const issue of issuesResponse.data) {
-        const issueId = issue.id;
-        const notionUrl = `https://api.notion.com/v1/databases/${notionDatabaseId}/query`;
+          Authorization: `Bearer ${notionToken}`,
+          "Notion-Version": "2022-06-28",
+          "Content-Type": "application/json",
+        },
+      },
+    );
 
-        // Check if the issue already exists in Notion
-        const notionResponse = await axios.post(notionUrl, {
-            filter: {
-                property: "ID",
-                number: {
-                    equals: issueId
-                }
-            }
-        }, {
-            headers: {
-                Authorization: `Bearer ${notionToken}`,
-                "Notion-Version": "2022-06-28",
-                "Content-Type": "application/json"
-            }
-        });
-
-        const body = {
-            parent: { database_id: notionDatabaseId },
-            icon: {
-                emoji: "⚡"
+    const body = {
+      parent: { database_id: notionDatabaseId },
+      icon: {
+        emoji: "⚡",
+      },
+      properties: {
+        Name: {
+          title: [
+            {
+              text: {
+                content: issue.title,
+              },
             },
-            properties: {
-                Name: {
-                    title: [
-                        {
-                            text: {
-                                content: issue.title
-                            }
-                        }
-                    ]
-                },
-                ID: {
-                    number: issueId
-                },
-                State: {
-                    select: {
-                        name: issue.state.charAt(0).toUpperCase() + issue.state.slice(1)
-                    }
-                },
-                Status: {
-                    status: {
-                        name: "Not started"
-                    }
-                },
-                Labels: {
-                    multi_select: issue.labels.map(label => ({
-                        name: label.name
-                    }))
-                },
-                URL: {
-                    url: issue.html_url
-                }
-            },
-            children: issue.body != null ? markdownToBlocks(issue.body) : []
-        };
+          ],
+        },
+        ID: {
+          number: issueId,
+        },
+        State: {
+          select: {
+            name: issue.state.charAt(0).toUpperCase() + issue.state.slice(1),
+          },
+        },
+        Status: {
+          status: {
+            name: "Not started",
+          },
+        },
+        Labels: {
+          multi_select: issue.labels.map((label) => ({
+            name: label.name,
+          })),
+        },
+        URL: {
+          url: issue.html_url,
+        },
+      },
+      children: issue.body != null ? markdownToBlocks(issue.body) : [],
+    };
 
-        if (notionResponse.data.results.length > 0) {
-            console.log(`Issue ${issueId} already exists in Notion, updating it`);
-            // Update existing issue
-            const notionPageId = notionResponse.data.results[0].id;
-            delete body.properties.Status;
-            await axios.patch(`https://api.notion.com/v1/pages/${notionPageId}`, body, {
-                headers: {
-                    Authorization: `Bearer ${notionToken}`,
-                    "Content-Type": "application/json",
-                    "Notion-Version": "2022-06-28"
-                }
-            });
-        } else {
-            console.log(`Creating new issue ${issueId} in Notion`);
-            // Create new issue
-            await axios.post("https://api.notion.com/v1/pages", body, {
-                headers: {
-                    Authorization: `Bearer ${notionToken}`,
-                    "Content-Type": "application/json",
-                    "Notion-Version": "2022-06-28"
-                }
-            });
-            console.log(`Issue ${issueId} created in Notion`);
-        }
+    if (notionResponse.data.results.length > 0) {
+      console.log(`Issue ${issueId} already exists in Notion, updating it`);
+      // Update existing issue
+      const notionPageId = notionResponse.data.results[0].id;
+      delete body.properties.Status;
+      await axios.patch(
+        `https://api.notion.com/v1/pages/${notionPageId}`,
+        body,
+        {
+          headers: {
+            Authorization: `Bearer ${notionToken}`,
+            "Content-Type": "application/json",
+            "Notion-Version": "2022-06-28",
+          },
+        },
+      );
+    } else {
+      console.log(`Creating new issue ${issueId} in Notion`);
+      // Create new issue
+      await axios.post("https://api.notion.com/v1/pages", body, {
+        headers: {
+          Authorization: `Bearer ${notionToken}`,
+          "Content-Type": "application/json",
+          "Notion-Version": "2022-06-28",
+        },
+      });
+      console.log(`Issue ${issueId} created in Notion`);
     }
+  }
 }
 
-main().catch(error => {
-    console.error(error);
-    process.exit(1);
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
 });
 ```
 
@@ -202,15 +210,15 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Sync issues to Notion
-      uses: ./path-to-your-action  # 使用自定義 Action 的路徑
-      with:
-        repo: ${{ github.repository }}
-        NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-        NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+      - name: Sync issues to Notion
+        uses: ./path-to-your-action # 使用自定義 Action 的路徑
+        with:
+          repo: ${{ github.repository }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
 ```
 
 ## **3. 補充知識**

@@ -8,7 +8,9 @@ date: 2023-09-17
 # Day3 用 Flex 切遍天下
 
 當你拿到一張設計圖要照著做出來你的第一反應是什麼呢？是直接套 bootstrap 再說嗎？但我幾乎所有的切版**只要是整齊能畫出網格的，我都會使用flex。**而這個網格也不一定是正方形，只要是矩形就可以了。
+
 <!--more-->
+
 什麼意思呢？假設 Google 拿了一張首頁的設計圖給我要我照著做出來（假設）
 
 那麼我會先看出來整個頁面被包在一個和螢幕一樣大的 flex 方框，垂直排列。而排完剩餘的空間全部給一個空白的方框。而上面的 nav 目錄方框裡面分左右兩個方框，靠兩側對齊。
@@ -24,24 +26,24 @@ date: 2023-09-17
 ```html
 <!-- section>div*4 -->
 <section>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
 </section>
 ```
 
 ```css
 section {
-    background: #191d88; /* bg #191d88 */
-    padding: 5px; /* p5 */
+  background: #191d88; /* bg #191d88 */
+  padding: 5px; /* p5 */
 }
 
 div {
-    width: 100px; /* w100 */
-    height: 100px; /* h100 */
-    background: #ffc436; /* bg #ffc436 */
-    margin: 20px; /* m20 */
+  width: 100px; /* w100 */
+  height: 100px; /* h100 */
+  background: #ffc436; /* bg #ffc436 */
+  margin: 20px; /* m20 */
 }
 ```
 
@@ -56,11 +58,11 @@ div {
 ## 方向 **flex-direction**
 
 ```css
-section{
-    flex-direction: row; /* 預設左到右 */
-    flex-direction: row-reverse; /* 右到左 */
-    flex-direction: column; /* 上到下 */
-    flex-direction: column-reverse; /* 下到上 */
+section {
+  flex-direction: row; /* 預設左到右 */
+  flex-direction: row-reverse; /* 右到左 */
+  flex-direction: column; /* 上到下 */
+  flex-direction: column-reverse; /* 下到上 */
 }
 ```
 
@@ -88,7 +90,7 @@ flex-wrap: wrap-reverse; /* 換行但從下到上排 */
 
 ```css
 .flex-container {
-  flex-flow: <'flex-direction'> || <'flex-wrap'>
+  flex-flow: < "flex-direction" > || < "flex-wrap" >;
 }
 ```
 
@@ -115,7 +117,8 @@ justify-content: flex-start | flex-end | center | space-between | space-around;
 是上一個屬性的多行版本，比較少用，但排列方式也有多一些，但注意 `stretch` 在高度被限制的情況下不會正常伸展。
 
 ```css
-align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+align-content: flex-start | flex-end | center | space-between | space-around |
+  stretch;
 ```
 
 ![Untitled](https://emtech.cc/post/2023ironman-3/align-content.webp)
@@ -143,7 +146,6 @@ https://codepen.io/edit-mr/pen/ZEVWaqq
 你也可以使用今天所學到的語法複製一個 Google 的網頁。重點在排版所以按鍵的陰影和顏色可以直接打開開發者工具查看喔。我先做了一個範例提供大家參考，也能實現搜尋功能。如果有任何問題也歡迎留言。
 
 > [範例網站](https://sysh-tech-volunteer.github.io/Web-Design-Camp/practice/google.html) | [原檔HTML](https://github.com/SYSH-Tech-Volunteer/Web-Design-Camp/blob/main/practice/google.html) | [原檔CSS](https://github.com/SYSH-Tech-Volunteer/Web-Design-Camp/blob/main/practice/google.css)
-> 
 
 以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
 

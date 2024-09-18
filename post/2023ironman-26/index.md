@@ -27,7 +27,6 @@ https://codepen.io/edit-mr/pen/ExGrxjX
 > 因為如果元素很長，可能到半個畫面都空白之後他才出現會很奇怪。所以我們只要有任何一部分有顯示在畫面上就可以觸發動畫了，這樣滾動起來會比較順暢。  
 > 如果你想要的話可以自己改成等整個元素顯示出來再觸發動畫，或是設置一些延遲時間以及增加動畫長度。後者我比較推薦。
 
-
 ## 實作
 
 先打點簡單的內容。我們幫需要動畫的內容加上 `aos` 這個 class。這樣我們只要偵測這些元素是否出現在畫面上。如果有的話就加上 `ed` 這個 class。這樣我們就可以用 CSS 來做動畫了。
@@ -39,7 +38,9 @@ https://codepen.io/edit-mr/pen/ExGrxjX
 ```html
 <h1 class="aos">Animate On Scroll</h1>
 <p class="aos">
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, mollitia magni nemo eius obcaecati aliquam ex nisi maiores. Autem hic illo quas amet ipsam. Eos tempore repellat sint illum tenetur!
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, mollitia magni
+  nemo eius obcaecati aliquam ex nisi maiores. Autem hic illo quas amet ipsam.
+  Eos tempore repellat sint illum tenetur!
 </p>
 <h2 class="aos">Scroll</h2>
 <div></div>
@@ -48,6 +49,7 @@ https://codepen.io/edit-mr/pen/ExGrxjX
 <div class="aos"></div>
 <div class="aos"></div>
 ```
+
 ```css
 body {
   max-width: 600px;
@@ -162,7 +164,9 @@ https://codepen.io/edit-mr/pen/rNoPBZe
 ```html
 <h1 class="aos slideIn">Animate On Scroll</h1>
 <p class="aos slideIn">
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, mollitia magni nemo eius obcaecati aliquam ex nisi maiores. Autem hic illo quas amet ipsam. Eos tempore repellat sint illum tenetur!
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, mollitia magni
+  nemo eius obcaecati aliquam ex nisi maiores. Autem hic illo quas amet ipsam.
+  Eos tempore repellat sint illum tenetur!
 </p>
 <h2 class="aos slideIn">Scroll</h2>
 <div class="aos"></div>
@@ -171,6 +175,7 @@ https://codepen.io/edit-mr/pen/rNoPBZe
 <div class="aos zoom"></div>
 <div class="aos slideIn"></div>
 ```
+
 ```css
 body {
   max-width: 600px;
@@ -234,6 +239,7 @@ div {
   }
 }
 ```
+
 ```js
 function isElementInViewport(el) {
   const rect = el.getBoundingClientRect();

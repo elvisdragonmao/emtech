@@ -11,7 +11,6 @@ date: 2023-09-29
 
 <!--more-->
 
-
 ![成果](https://emtech.cc/post/2023ironman-15/final.gif)
 
 這個雖然是一種 `radio` 選單，但對於選擇數字這種有連續性，或著是比較短的文字，使用這種風格都是一種不錯的選擇。可以讓版面更乾淨，也比下拉式選單或著是傳統的radio都更方便操作。重點是不用寫一行 JavaScript，只要純 CSS 就可以完成。
@@ -28,11 +27,11 @@ date: 2023-09-29
 
 ```html
 <div class="hope-container">
-  <input type="radio" name="hope" value="0">
-  <input type="radio" name="hope" value="1">
-  <input type="radio" name="hope" value="2" checked="">
-  <input type="radio" name="hope" value="3">
-  <input type="radio" name="hope" value="4">
+  <input type="radio" name="hope" value="0" />
+  <input type="radio" name="hope" value="1" />
+  <input type="radio" name="hope" value="2" checked="" />
+  <input type="radio" name="hope" value="3" />
+  <input type="radio" name="hope" value="4" />
   <div class="hope-selected"></div>
   <div class="hope-label">
     <div>0</div>
@@ -58,7 +57,7 @@ CSS 的部分我想要製作使用新擬物化設計 Neumorphism，或是說 Sof
 * {
   padding: 0;
   margin: 0;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 body {
   display: flex;
@@ -72,10 +71,13 @@ body {
   border-radius: 2rem;
   position: relative;
   display: flex;
-  box-shadow: 3px 3px 6px #b8b9be inset, -3px -3px 6px #fff inset;
+  box-shadow:
+    3px 3px 6px #b8b9be inset,
+    -3px -3px 6px #fff inset;
   background-color: #e6e7ee;
 }
 ```
+
 ### 選擇框
 
 這是裡面看不到的輸入框
@@ -150,6 +152,7 @@ body {
   left: 8rem;
 }
 ```
+
 裡面的數字變色一下，不然紫色實在太暗了
 
 ```css
@@ -173,6 +176,7 @@ body {
   color: #e6e7ee;
 }
 ```
+
 好啦，這樣就做完了!
 
 https://codepen.io/edit-mr/pen/LYMmQOE

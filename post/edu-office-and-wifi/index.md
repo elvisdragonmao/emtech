@@ -17,9 +17,9 @@ date: 2022-12-01
 
 {{% notice info "教育體系單一簽入服務" %}}
 
-* 開發者:教育部
-* 程式類型:官方網站
-* 網址:<https://www.sso.edu.tw/register>
+- 開發者:教育部
+- 程式類型:官方網站
+- 網址:<https://www.sso.edu.tw/register>
   {{% /notice %}}
 
 ### 啟用Eduroam
@@ -52,10 +52,10 @@ date: 2022-12-01
 
 {{% notice info "Eduroam" %}}
 
-* 開發者:泛歐洲科研與教育網路協會
-* 服務地區:全球
-* 程式類型:官方網站
-* 官網:<https://eduroam.org/>(不用到這裡)
+- 開發者:泛歐洲科研與教育網路協會
+- 服務地區:全球
+- 程式類型:官方網站
+- 官網:<https://eduroam.org/>(不用到這裡)
   {{% /notice %}}
 
 #### iPhone & iPad / Windows 10 & 11
@@ -65,13 +65,13 @@ date: 2022-12-01
 
 #### Android
 
-* 「設定」→「Wi-Fi」，找到「eduroam」訊號
-* 「安全性」應該已自動選取「802.1X EAP」
-* 「EAP方法」請選擇「PEAP」
-* 「階段2驗證」選「MSCHAPV2」(目前選「無」也可以過)
-* 「CA憑證」選「不進行驗證」(手機可能會說阿很危險bluhbluh不用理他)
-* 「身分」請填 「`自訂英文@mail.edu.tw`」
-* 「匿名身分」空白即可
+- 「設定」→「Wi-Fi」，找到「eduroam」訊號
+- 「安全性」應該已自動選取「802.1X EAP」
+- 「EAP方法」請選擇「PEAP」
+- 「階段2驗證」選「MSCHAPV2」(目前選「無」也可以過)
+- 「CA憑證」選「不進行驗證」(手機可能會說阿很危險bluhbluh不用理他)
+- 「身分」請填 「`自訂英文@mail.edu.tw`」
+- 「匿名身分」空白即可
 
 #### Windows7
 

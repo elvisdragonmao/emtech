@@ -68,9 +68,9 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
    然後，在同一目錄下創建一個 `sum.test.js` 文件，編寫測試代碼：
 
    ```javascript
-   const sum = require('./sum');
+   const sum = require("./sum");
 
-   test('adds 1 + 2 to equal 3', () => {
+   test("adds 1 + 2 to equal 3", () => {
      expect(sum(1, 2)).toBe(3);
    });
    ```
@@ -97,19 +97,19 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
        runs-on: ubuntu-latest
 
        steps:
-       - name: Check out code
-         uses: actions/checkout@v2
+         - name: Check out code
+           uses: actions/checkout@v2
 
-       - name: Set up Node.js
-         uses: actions/setup-node@v2
-         with:
-           node-version: '20'
+         - name: Set up Node.js
+           uses: actions/setup-node@v2
+           with:
+             node-version: "20"
 
-       - name: Install dependencies
-         run: npm install
+         - name: Install dependencies
+           run: npm install
 
-       - name: Run tests
-         run: npm test
+         - name: Run tests
+           run: npm test
    ```
 
 **步驟 3：檢查工作流程結果**
@@ -131,9 +131,9 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
    **範例：**
 
    ```javascript
-   const myFunction = require('./myFunction');
+   const myFunction = require("./myFunction");
 
-   test('matches the snapshot', () => {
+   test("matches the snapshot", () => {
      expect(myFunction()).toMatchSnapshot();
    });
    ```
@@ -147,16 +147,16 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
    **範例：**
 
    ```javascript
-   const myModule = require('./myModule');
+   const myModule = require("./myModule");
 
-   jest.mock('./myDependency', () => {
+   jest.mock("./myDependency", () => {
      return {
-       myFunction: jest.fn(() => 'mocked value')
+       myFunction: jest.fn(() => "mocked value"),
      };
    });
 
-   test('uses the mocked dependency', () => {
-     expect(myModule()).toBe('mocked value');
+   test("uses the mocked dependency", () => {
+     expect(myModule()).toBe("mocked value");
    });
    ```
 
@@ -169,13 +169,13 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
    ```javascript
    function fetchData(callback) {
      setTimeout(() => {
-       callback('data');
+       callback("data");
      }, 1000);
    }
 
-   test('fetches data asynchronously', (done) => {
+   test("fetches data asynchronously", (done) => {
      fetchData((data) => {
-       expect(data).toBe('data');
+       expect(data).toBe("data");
        done();
      });
    });
@@ -187,14 +187,14 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
    function fetchData() {
      return new Promise((resolve) => {
        setTimeout(() => {
-         resolve('data');
+         resolve("data");
        }, 1000);
      });
    }
 
-   test('fetches data asynchronously with promises', () => {
+   test("fetches data asynchronously with promises", () => {
      return fetchData().then((data) => {
-       expect(data).toBe('data');
+       expect(data).toBe("data");
      });
    });
    ```
@@ -205,14 +205,14 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
    async function fetchData() {
      return new Promise((resolve) => {
        setTimeout(() => {
-         resolve('data');
+         resolve("data");
        }, 1000);
      });
    }
 
-   test('fetches data asynchronously with async/await', async () => {
+   test("fetches data asynchronously with async/await", async () => {
      const data = await fetchData();
-     expect(data).toBe('data');
+     expect(data).toBe("data");
    });
    ```
 

@@ -44,7 +44,7 @@ sudo certbot certonly --manual --preferred-challenges dns -d example.com -d *.ex
 em@raspberrypi:/ssl $ sudo certbot certonly --manual --preferred-challenges dns -d '*.elvismao.com'
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Enter email address (used for urgent renewal and security notices)
- (Enter 'c' to cancel): 
+ (Enter 'c' to cancel):
 ```
 
 輸入你的郵箱地址，然後按下 Enter 鍵。

@@ -9,7 +9,6 @@ date: 2023-12-31
 
 Firefox 有著卓越的性能及隱私保護，加上他有許多實用的開發者工具，一直是我的愛用的瀏覽器。然而，Firefox 目前還沒有內建中文翻譯功能，因此，今天我要來和你分享如何不透過擴充功能，只需要透過「書籤」就能夠在 Firefox 一鍵翻譯網站。
 
-
 <!--more-->
 
 ## 翻譯網站的方法
@@ -33,7 +32,7 @@ Firefox 有著卓越的性能及隱私保護，加上他有許多實用的開發
 在編輯書籤的視窗中，我們要修改網址。把網址改成以下的程式，編輯顯示的標題 (如:翻譯) 然後按下「儲存」。
 
 ```js
-javascript:window.location.href=`https://translate.google.com.tw/translate?sl=auto&tl=zh-TW&u=${window.location.href}`
+javascript: window.location.href = `https://translate.google.com.tw/translate?sl=auto&tl=zh-TW&u=${window.location.href}`;
 ```
 
 ![修改網址::img-medium](title.webp)

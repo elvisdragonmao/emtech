@@ -16,7 +16,6 @@ date: 2024-06-30
 如果你還沒有使用過 Certbot 建立 SSL 憑證，可以參考我之前的文章：[如何使用 Certbot 申請免費的 SSL 憑證，並使用 DNS 驗證?](https://emtech.cc/post/setup-ssl-certificate-nginx-certbot/)。
 {{% /notice %}}
 
-
 ## 問題描述
 
 當你嘗試更新 Certbot SSL 憑證時，可能會遇到以下錯誤訊息：
@@ -28,7 +27,6 @@ Failed to renew certificate example.com with error: The manual plugin is not wor
 ![Failed to renew certificate](failed.webp)
 
 這表示 Certbot 無法使用手動插件進行非交互式更新，需要提供身份驗證腳本。
-
 
 ### 解決方案
 
@@ -44,11 +42,13 @@ Failed to renew certificate example.com with error: The manual plugin is not wor
 ##### 1. 安裝插件
 
 對於 Apache 伺服器：
+
 ```bash
 sudo apt-get install python3-certbot-apache
 ```
 
 對於 Nginx 伺服器：
+
 ```bash
 sudo apt-get install python3-certbot-nginx
 ```
@@ -58,11 +58,13 @@ sudo apt-get install python3-certbot-nginx
 根據你的伺服器類型，運行以下命令：
 
 對於 Apache：
+
 ```bash
 sudo certbot --apache
 ```
 
 對於 Nginx：
+
 ```bash
 sudo certbot --nginx
 ```
@@ -127,6 +129,7 @@ sleep 60
 ##### 2. 使用手動身份驗證腳本更新憑證
 
 運行以下命令來更新憑證：
+
 ```bash
 sudo certbot renew --manual --manual-auth-hook /path/to/auth-script.sh
 ```
@@ -140,15 +143,16 @@ sudo systemctl restart apache2
 ```
 
 對於 Nginx 伺服器：
+
 ```bash
 sudo systemctl restart nginx
 ```
 
 檢查憑證狀態以確保更新成功：
+
 ```bash
 sudo certbot certificates
 ```
-
 
 ### 結論
 

@@ -1,11 +1,13 @@
 ### Day 12: Cross-Site Request Forgery (CSRF)——利用用戶會話執行未授權操作
 
 #### 簡介：什麼是 Cross-Site Request Forgery (CSRF)？
+
 Cross-Site Request Forgery（CSRF）是一種攻擊，利用用戶的已驗證會話向受信任的網站發送未授權的請求。簡單來說，CSRF 可以讓攻擊者冒用用戶身份來執行一些用戶本不會執行的操作，如更改帳戶設置或提交表單。
 
 #### 開發爛網站：打造 CSRF 漏洞網站
 
 1. **初始化專案並設置 Node.js 環境**
+
    - **目標：** 創建一個簡單的 Node.js 應用，展示 CSRF 漏洞如何被利用，並示範如何修復這個漏洞。
    - **步驟：**
      - 創建專案目錄並初始化：
@@ -20,46 +22,55 @@ Cross-Site Request Forgery（CSRF）是一種攻擊，利用用戶的已驗證�
        ```
 
 2. **設置 Express 應用和 CSRF 漏洞**
+
    - **目標：** 創建一個用戶可以更新其個人信息的應用，但未對請求進行有效驗證，這使得 CSRF 攻擊成為可能。
    - **步驟：**
+
      - 在 `index.js` 中設置 Express 應用：
+
        ```javascript
-       const express = require('express');
-       const sqlite3 = require('sqlite3').verbose();
-       const bodyParser = require('body-parser');
-       const ejs = require('ejs');
+       const express = require("express");
+       const sqlite3 = require("sqlite3").verbose();
+       const bodyParser = require("body-parser");
+       const ejs = require("ejs");
        const app = express();
 
-       app.set('view engine', 'ejs');
-       app.use(express.static('public'));
+       app.set("view engine", "ejs");
+       app.use(express.static("public"));
        app.use(bodyParser.urlencoded({ extended: true }));
 
        // 設置 SQLite 資料庫
-       const db = new sqlite3.Database(':memory:');
+       const db = new sqlite3.Database(":memory:");
        db.serialize(() => {
-         db.run('CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, email TEXT)');
-         db.run('INSERT INTO users (username, email) VALUES (?, ?)', ['user1', 'user1@example.com']);
+         db.run(
+           "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, email TEXT)",
+         );
+         db.run("INSERT INTO users (username, email) VALUES (?, ?)", [
+           "user1",
+           "user1@example.com",
+         ]);
        });
 
-       app.get('/', (req, res) => {
-         db.get('SELECT * FROM users WHERE id = 1', (err, row) => {
+       app.get("/", (req, res) => {
+         db.get("SELECT * FROM users WHERE id = 1", (err, row) => {
            if (err) throw err;
-           res.render('index', { user: row });
+           res.render("index", { user: row });
          });
        });
 
-       app.post('/update', (req, res) => {
+       app.post("/update", (req, res) => {
          const { email } = req.body;
-         db.run('UPDATE users SET email = ? WHERE id = 1', [email], (err) => {
+         db.run("UPDATE users SET email = ? WHERE id = 1", [email], (err) => {
            if (err) throw err;
-           res.redirect('/');
+           res.redirect("/");
          });
        });
 
        app.listen(3000, () => {
-         console.log('Server is running on http://localhost:3000');
+         console.log("Server is running on http://localhost:3000");
        });
        ```
+
      - **說明：** 這段代碼允許用戶提交其電子郵件地址以更新帳戶信息，但未使用 CSRF 保護，這使得 CSRF 攻擊成為可能。
 
 3. **創建 EJS 模板和更新頁面**
@@ -67,22 +78,31 @@ Cross-Site Request Forgery（CSRF）是一種攻擊，利用用戶的已驗證�
    - **步驟：**
      - 在 `views/index.ejs` 中創建頁面：
        ```html
-       <!DOCTYPE html>
+       <!doctype html>
        <html lang="en">
-       <head>
-           <meta charset="UTF-8">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <head>
+           <meta charset="UTF-8" />
+           <meta
+             name="viewport"
+             content="width=device-width, initial-scale=1.0"
+           />
            <title>CSRF Example</title>
-           <link rel="stylesheet" href="/styles.css">
-       </head>
-       <body>
+           <link rel="stylesheet" href="/styles.css" />
+         </head>
+         <body>
            <h1>Update Email</h1>
            <form action="/update" method="POST">
-               <label for="email">Email:</label>
-               <input type="email" name="email" id="email" value="<%= user.email %>" required>
-               <button type="submit">Update</button>
+             <label for="email">Email:</label>
+             <input
+               type="email"
+               name="email"
+               id="email"
+               value="<%= user.email %>"
+               required
+             />
+             <button type="submit">Update</button>
            </form>
-       </body>
+         </body>
        </html>
        ```
      - **說明：** 用戶可以在這個頁面上更新其電子郵件。由於未使用 CSRF 保護，攻擊者可以利用此頁面發送未授權請求。
@@ -100,25 +120,31 @@ CSRF 攻擊利用了用戶的已驗證會話來執行未授權的操作。當用
 防範 CSRF 攻擊的關鍵是使用 CSRF 令牌來驗證請求的合法性。以下是一些具體的防範措施：
 
 1. **使用 CSRF 令牌：** 在表單中添加一個隨機生成的 CSRF 令牌，並在伺服器端驗證該令牌是否有效。
+
 #### 修復漏洞：如何防範 CSRF（繼續）
 
 2. **使用 CSRF 令牌（續）**
+
    - **步驟：**
+
      - 安裝 `csurf` 模組來生成和驗證 CSRF 令牌：
        ```bash
        npm install csurf
        ```
      - 在 `index.js` 中配置 CSRF 保護：
+
        ```javascript
-       const csurf = require('csurf');
-       const session = require('express-session');
+       const csurf = require("csurf");
+       const session = require("express-session");
 
        // 設置 session 中間件
-       app.use(session({
-         secret: 'your-secret-key',
-         resave: false,
-         saveUninitialized: true
-       }));
+       app.use(
+         session({
+           secret: "your-secret-key",
+           resave: false,
+           saveUninitialized: true,
+         }),
+       );
 
        // 設置 CSRF 中間件
        app.use(csurf());
@@ -127,40 +153,50 @@ CSRF 攻擊利用了用戶的已驗證會話來執行未授權的操作。當用
          next();
        });
 
-       app.get('/', (req, res) => {
-         db.get('SELECT * FROM users WHERE id = 1', (err, row) => {
+       app.get("/", (req, res) => {
+         db.get("SELECT * FROM users WHERE id = 1", (err, row) => {
            if (err) throw err;
-           res.render('index', { user: row, csrfToken: res.locals.csrfToken });
+           res.render("index", { user: row, csrfToken: res.locals.csrfToken });
          });
        });
 
-       app.post('/update', (req, res) => {
+       app.post("/update", (req, res) => {
          const { email } = req.body;
-         db.run('UPDATE users SET email = ? WHERE id = 1', [email], (err) => {
+         db.run("UPDATE users SET email = ? WHERE id = 1", [email], (err) => {
            if (err) throw err;
-           res.redirect('/');
+           res.redirect("/");
          });
        });
        ```
+
      - 修改 `views/index.ejs`，在表單中添加 CSRF 令牌：
        ```html
-       <!DOCTYPE html>
+       <!doctype html>
        <html lang="en">
-       <head>
-           <meta charset="UTF-8">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <head>
+           <meta charset="UTF-8" />
+           <meta
+             name="viewport"
+             content="width=device-width, initial-scale=1.0"
+           />
            <title>CSRF Example</title>
-           <link rel="stylesheet" href="/styles.css">
-       </head>
-       <body>
+           <link rel="stylesheet" href="/styles.css" />
+         </head>
+         <body>
            <h1>Update Email</h1>
            <form action="/update" method="POST">
-               <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-               <label for="email">Email:</label>
-               <input type="email" name="email" id="email" value="<%= user.email %>" required>
-               <button type="submit">Update</button>
+             <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+             <label for="email">Email:</label>
+             <input
+               type="email"
+               name="email"
+               id="email"
+               value="<%= user.email %>"
+               required
+             />
+             <button type="submit">Update</button>
            </form>
-       </body>
+         </body>
        </html>
        ```
      - **說明：** CSRF 令牌被嵌入到每個表單中，伺服器在處理請求時檢查該令牌是否有效。如果令牌不匹配，請求將被拒絕。

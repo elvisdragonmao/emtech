@@ -11,8 +11,8 @@ date: 2023-09-18
 
 - @keyframes - 動作效果
 - transition - 轉場效果
-<!--more-->
-我們今天都拿 PowerPoint 來舉例，雖然感覺現在的學生都快只認識 Canva 了(順帶一提 Canva 就是 CSS 動畫)
+  <!--more-->
+  我們今天都拿 PowerPoint 來舉例，雖然感覺現在的學生都快只認識 Canva 了(順帶一提 Canva 就是 CSS 動畫)
 
 你可以想像 `@Keyframes` 是 PowerPoint的動畫
 
@@ -49,7 +49,9 @@ transition: background 1s;
 你可以在後面用逗號分隔其他元素
 
 ```css
-transition: background 1s, color 2s;
+transition:
+  background 1s,
+  color 2s;
 ```
 
 秒數也可以用毫秒 ms，但我習慣使用秒因為比較短。如果是零點幾零可以省略。比如說以下幾個都是一樣效果
@@ -57,7 +59,7 @@ transition: background 1s, color 2s;
 ```css
 transition: background 500ms;
 transition: background 0.5s;
-transition: background .5s; /* 是不是看起來超舒服! */
+transition: background 0.5s; /* 是不是看起來超舒服! */
 ```
 
 以下是一個按鈕範例。你可以看到放大屬性 `scale` 有設定 `transition` 所以會漸變，而背景顏色則沒有。
@@ -69,6 +71,7 @@ https://codepen.io/edit-mr/pen/mdaPYLv
 ```html
 <a href="">按鈕</a>
 ```
+
 ```css
 a:hover {
   background-color: #ffffff4a;
@@ -97,10 +100,9 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 ```
+
 > 記得設定 `display:none` 不會有淡出效果，請用 `opacity:0;` 然後 `pointer-event: none;` 以防止誤觸。
-> 
 
 下面是一個設定 Width 的範例
 
@@ -110,14 +112,15 @@ https://codepen.io/edit-mr/pen/RwEamev
 
 ```css
 a::after {
-  transition: width .5s ease-out;
+  transition: width 0.5s ease-out;
   content: "";
   height: 2px;
   display: block;
   background: red;
   width: 0em;
 }
-a:hover::after,a:active::after {
+a:hover::after,
+a:active::after {
   width: 100%;
 }
 /* 以下只是裝飾 */
@@ -139,21 +142,22 @@ body {
   align-items: center;
 }
 ```
+
 ## @keyframes
 
 要使用 keyframes 我們需要先建立一個動畫，再套用到元素上。他的語法是
 
 ```css
-@keyframes 動畫名稱{
+@keyframes 動畫名稱 {
   0% {
-		/* 要套用的CSS */
+    /* 要套用的CSS */
   }
-	30% {
-		/* 要套用的CSS */
+  30% {
+    /* 要套用的CSS */
   }
-/* ...(中間可以放更多) */
+  /* ...(中間可以放更多) */
   100% {
-		/* 要套用的CSS */
+    /* 要套用的CSS */
   }
 }
 ```
@@ -162,12 +166,12 @@ body {
 
 ```css
 @keyframes drive {
-		0% {
-        left: 0;
-    }
-    100% {
-        left: 50%;
-    }
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 50%;
+  }
 }
 ```
 
@@ -175,12 +179,12 @@ body {
 
 ```css
 @keyframes drive {
-		from {
-        left: 0;
-    }
-    to {
-        left: 50%;
-    }
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
 }
 ```
 
@@ -188,9 +192,9 @@ body {
 
 ```css
 @keyframes drive {
-    to {
-        left: 50%
-    }
+  to {
+    left: 50%;
+  }
 }
 ```
 

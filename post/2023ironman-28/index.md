@@ -5,7 +5,7 @@ series: ["不用庫 也能酷 - 玩轉 CSS & Js 特效"]
 date: 2023-10-12
 ---
 
-# Day28 純 JavaScript Slider (ft.  CSS scroll-snap-type)
+# Day28 純 JavaScript Slider (ft. CSS scroll-snap-type)
 
 今天我們要來製作Slider效果。不過要用一個你應該沒有看過有人這樣做但卻很簡單的方法。
 
@@ -17,7 +17,7 @@ date: 2023-10-12
 
 這時 CSS 又出現了。向你介紹：` scroll-snap-type`。
 
-##  scroll-snap-type
+## scroll-snap-type
 
 這個屬性可以讓元素上下或左右滑動時一滑就是整頁。我覺得最讚的是可以在筆電上面的觸控板直接往右滾，而且因為是內建語法所以非常順暢。使用用法如下:
 
@@ -38,6 +38,7 @@ scroll-snap-type: x mandatory;
 scroll-snap-type: y proximity;
 scroll-snap-type: both mandatory;
 ```
+
 建議設定成 `mandatory`比較能確保有被吸附到。
 
 我的用法如下，外元素設定`scroll-snap-type: x mandatory`，內元素設定對齊位置`  scroll-snap-align: center`置中。完整版面如下:
@@ -56,6 +57,7 @@ scroll-snap-type: both mandatory;
   <button onclick="foward()">❯</button>
 </section>
 ```
+
 ```css
 * {
   padding: 0;
@@ -115,13 +117,12 @@ section button:first-child:hover {
 
 我還加上了往左右的按鈕，這樣用滑鼠點擊或是滑動，就這麼簡單。最後來加上 JavaScript，讓按鈕可以點擊。
 
-
-##  JavaScript
+## JavaScript
 
 先用變數用來追蹤當前顯示的圖片的索引。一開始它被設定為0，代表第一張圖片。
 
 ```js
-let currentIndex = 0
+let currentIndex = 0;
 ```
 
 接下來是往左右的函式。在滾動之前，它會檢查是否可以向前或向後查看圖片。如果可以，就會增加或減少 currentIndex，然後調用 `scrollToCurrentIndex()` 函式。
@@ -149,7 +150,7 @@ function scrollToCurrentIndex() {
   const scrollPosition = itemWidth * currentIndex;
   itemsContainer.scrollTo({
     left: scrollPosition,
-    behavior: "smooth"
+    behavior: "smooth",
   });
   hideButton();
 }
@@ -169,7 +170,7 @@ const hideButton = () => {
 ```js
 itemsContainer.addEventListener("scroll", function () {
   currentIndex = Math.round(
-    itemsContainer.scrollLeft / itemDivs[0].offsetWidth
+    itemsContainer.scrollLeft / itemDivs[0].offsetWidth,
   );
   hideButton();
 });
@@ -216,28 +217,28 @@ itemsContainer.addEventListener("scroll", function () {
   hideButton();
 });
 ```
+
 ## 成果
 
 > 因為我今天是用桌機所以沒有觸控板給我滾。如果你不喜觀滾動條的話可以用 CSS 隱藏。
-> 
- ```css
-  /* Hide scrollbar for Chrome, Safari and Opera */
+
+```css
+/* Hide scrollbar for Chrome, Safari and Opera */
 .example::-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .example {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-} 
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 ```
 
 https://codepen.io/edit-mr/pen/dywrReK
 
 ![成果](final.gif)
 
-
-以上就是我今天的分享，我們使用少許的程式碼就做出這個性能十分不錯的陽春 slider。你可以再加上一點裝飾，比如在底下放上顯示當前圖片的小圓點，或是加上自動播放。如果你有興趣可以自己試試看，抓取個數、移動的距離、以及移動的函數上面都有提供。 *也需這個系列出書之後就會提到呢!* 歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，我們使用少許的程式碼就做出這個性能十分不錯的陽春 slider。你可以再加上一點裝飾，比如在底下放上顯示當前圖片的小圓點，或是加上自動播放。如果你有興趣可以自己試試看，抓取個數、移動的距離、以及移動的函數上面都有提供。 _也需這個系列出書之後就會提到呢!_ 歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

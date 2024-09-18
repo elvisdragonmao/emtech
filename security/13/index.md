@@ -7,6 +7,7 @@
 **1. 創建基本網站**
 
 - **步驟：** 設置 Node.js 和 SQLite 環境，創建基本的 HTML、CSS 和 JavaScript 文件。
+
   ```bash
   mkdir clickjacking-example
   cd clickjacking-example
@@ -15,27 +16,33 @@
   ```
 
 - **index.js**
+
   ```javascript
-  const express = require('express');
-  const sqlite3 = require('sqlite3').verbose();
+  const express = require("express");
+  const sqlite3 = require("sqlite3").verbose();
   const app = express();
   const port = 3000;
 
-  const db = new sqlite3.Database(':memory:');
+  const db = new sqlite3.Database(":memory:");
 
   // 建立資料庫表格
   db.serialize(() => {
-    db.run('CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT)');
-    db.run('INSERT INTO users (name, email) VALUES (?, ?)', ['Alice', 'alice@example.com']);
+    db.run(
+      "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT)",
+    );
+    db.run("INSERT INTO users (name, email) VALUES (?, ?)", [
+      "Alice",
+      "alice@example.com",
+    ]);
   });
 
-  app.use(express.static('public'));
+  app.use(express.static("public"));
   app.use(express.urlencoded({ extended: true }));
 
-  app.get('/', (req, res) => {
-    db.get('SELECT * FROM users WHERE id = 1', (err, row) => {
+  app.get("/", (req, res) => {
+    db.get("SELECT * FROM users WHERE id = 1", (err, row) => {
       if (err) throw err;
-      res.sendFile(__dirname + '/public/index.html');
+      res.sendFile(__dirname + "/public/index.html");
     });
   });
 
@@ -45,23 +52,25 @@
   ```
 
 - **public/index.html**
+
   ```html
-  <!DOCTYPE html>
+  <!doctype html>
   <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clickjacking Example</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <h1>Welcome to Clickjacking Example</h1>
-    <button id="clickMe">Click Me!</button>
-  </body>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Clickjacking Example</title>
+      <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+      <h1>Welcome to Clickjacking Example</h1>
+      <button id="clickMe">Click Me!</button>
+    </body>
   </html>
   ```
 
 - **public/styles.css**
+
   ```css
   body {
     font-family: Arial, sans-serif;
@@ -78,30 +87,33 @@
 **2. 建立點擊劫持攻擊的 HTML**
 
 - **攻擊者的頁面（public/attacker.html）**
+
   ```html
-  <!DOCTYPE html>
+  <!doctype html>
   <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attacker's Page</title>
-    <style>
-      .hidden-frame {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        pointer-events: none;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Welcome to the Attacker's Page</h1>
-    <iframe src="http://localhost:3000" class="hidden-frame"></iframe>
-    <button onclick="alert('You just clicked the hidden button!')">Click Me!</button>
-  </body>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Attacker's Page</title>
+      <style>
+        .hidden-frame {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          pointer-events: none;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Welcome to the Attacker's Page</h1>
+      <iframe src="http://localhost:3000" class="hidden-frame"></iframe>
+      <button onclick="alert('You just clicked the hidden button!')">
+        Click Me!
+      </button>
+    </body>
   </html>
   ```
 
@@ -118,9 +130,10 @@
 1. **使用 X-Frame-Options 標頭**
 
    - **步驟：** 在 Node.js 中設置 `X-Frame-Options` 標頭，以防止網站被嵌入到 `iframe` 中。
+
      ```javascript
      app.use((req, res, next) => {
-       res.setHeader('X-Frame-Options', 'DENY');
+       res.setHeader("X-Frame-Options", "DENY");
        next();
      });
      ```
@@ -130,9 +143,10 @@
 2. **使用 Content Security Policy（CSP）**
 
    - **步驟：** 在 `index.js` 中添加 CSP 標頭：
+
      ```javascript
      app.use((req, res, next) => {
-       res.setHeader('Content-Security-Policy', "frame-ancestors 'none'");
+       res.setHeader("Content-Security-Policy", "frame-ancestors 'none'");
        next();
      });
      ```

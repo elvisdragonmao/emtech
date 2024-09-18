@@ -3,13 +3,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
 
-    - name: Deploy to Production
-      if: github.ref == 'refs/heads/main'
-      run: curl -X POST ${{ env.PRODUCTION_URL }}/deploy
+      - name: Deploy to Production
+        if: github.ref == 'refs/heads/main'
+        run: curl -X POST ${{ env.PRODUCTION_URL }}/deploy
 
-    - name: Deploy to Staging
-      if: github.ref == 'refs/heads/develop'
-      run: curl -X POST ${{ env.STAGING_URL }}/deploy
+      - name: Deploy to Staging
+        if: github.ref == 'refs/heads/develop'
+        run: curl -X POST ${{ env.STAGING_URL }}/deploy

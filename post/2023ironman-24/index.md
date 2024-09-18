@@ -50,7 +50,7 @@ https://codepen.io/edit-mr/pen/poqqoLr
   width: 100px;
   height: 100px;
   background-color: black;
-    transform: translate(0, -50%);
+  transform: translate(0, -50%);
 }
 ```
 
@@ -63,11 +63,12 @@ https://codepen.io/edit-mr/pen/poqqoLr
   position: relative;
   height: 100vh;
   background-color: #fff;
-    filter: contrast(20);
+  filter: contrast(20);
 }
 ```
 
 最後讓它動起來
+
 ```css
 .box {
   position: relative;
@@ -104,7 +105,6 @@ https://codepen.io/edit-mr/pen/poqqoLr
     transform: translate(calc(-50% - 100px), -50%);
   }
 }
-
 ```
 
 好，結束。
@@ -114,13 +114,13 @@ https://codepen.io/edit-mr/pen/poqqoLr
 你可以自由應用在你的網頁上。以下是幾個範例:
 
 來源: https://codepen.io/Chokcoco
-![](https://emtech.cc/post/2023ironman-24/water.gif) 
+![](https://emtech.cc/post/2023ironman-24/water.gif)
 ![](https://emtech.cc/post/2023ironman-24/circle.gif)
 
- ![](https://emtech.cc/post/2023ironman-24/fire.png)
+![](https://emtech.cc/post/2023ironman-24/fire.png)
 
 連結: https://codepen.io/YusukeNakaya/pen/vvEqVx
-![](https://emtech.cc/post/2023ironman-24/move.gif) 
+![](https://emtech.cc/post/2023ironman-24/move.gif)
 
 這個效果明天會使用到，你可以來猜猜看。我剩下六天了，接下來原則上都是蠻重要的內容，要來完成一些很常見的版面和許多人習慣直接套庫的東西。以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
 

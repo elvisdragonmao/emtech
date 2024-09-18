@@ -1,4 +1,5 @@
 # emtech
+
 毛哥EM資訊密技
 
 <https://emtech.cc>
@@ -68,30 +69,30 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Deploy when changes are pushed to the main branch
+      - main # Deploy when changes are pushed to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
 
-    - name: Install Docsify
-      run: npm install -g docsify-cli
+      - name: Install Docsify
+        run: npm install -g docsify-cli
 
-    - name: Build and Deploy
-      run: |
-        docsify init ./docs
-        docsify serve
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and Deploy
+        run: |
+          docsify init ./docs
+          docsify serve
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 #### 5. Deploy to Other Platforms (e.g., Netlify or Vercel)

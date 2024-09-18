@@ -74,7 +74,7 @@ Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴�
          - name: Set up Node.js
            uses: actions/setup-node@v3
            with:
-             node-version: '20'
+             node-version: "20"
 
          - name: Install Git Secrets
            run: |
@@ -85,6 +85,7 @@ Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴�
    ```
 
    **解釋**:
+
    - `Install Git Secrets`：安裝 `git-secrets` 工具，用於檢查代碼中的 secrets。
    - `Scan for secrets`：運行 `git-secrets` 檢查代碼庫中的敏感信息。
 

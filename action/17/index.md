@@ -28,23 +28,23 @@ my-custom-action/
 在 `action.yml` 文件中，我們需要定義 Action 的輸入、執行和輸出。以下是 `action.yml` 的範例內容：
 
 ```yaml
-name: 'Update Notion to Discord'
-description: 'Fetch tasks from Notion and update Discord channel'
+name: "Update Notion to Discord"
+description: "Fetch tasks from Notion and update Discord channel"
 inputs:
   notion_database_id:
-    description: 'Notion database ID'
+    description: "Notion database ID"
     required: true
   notion_token:
-    description: 'Notion API token'
+    description: "Notion API token"
     required: true
   discord_channel_id:
-    description: 'Discord channel ID'
+    description: "Discord channel ID"
     required: true
   discord_token:
-    description: 'Discord bot token'
+    description: "Discord bot token"
     required: true
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: Run script
       run: ./script.sh
@@ -69,10 +69,10 @@ update_tasks() {
     local notion_token="$NOTION_TOKEN"
     local discord_channel_id="$DISCORD_CHANNEL_ID"
     local discord_token="$DISCORD_TOKEN"
-    
+
     # 從 Notion 獲取待辦事項
     response=$(curl -s -X POST -H "Authorization: ${notion_token}" -H "Notion-Version: 2022-06-28" -H "Content-Type: application/json" "https://api.notion.com/v1/databases/${notion_database_id}/query")
-    
+
     if [ -n "$(echo "${response}" | jq '.results')" ]; then
         not_started_count=0
         in_progress_count=0
@@ -85,7 +85,7 @@ update_tasks() {
                 (( in_progress_count++ ))
             fi
         done
-        
+
         # 更新 Discord 頻道標題
         update_discord_channel_title "還有 ${not_started_count} 件事沒人做"
         update_discord_channel_title "${in_progress_count} 件事處理中"
@@ -100,7 +100,7 @@ update_discord_channel_title() {
     local channel_id="$DISCORD_CHANNEL_ID"
     local url="https://discord.com/api/v10/channels/${channel_id}"
     local token="Bot ${DISCORD_TOKEN}"
-    
+
     response=$(curl -s -X PATCH -H "Authorization: ${token}" -H "Content-Type: application/json" -d "{\"name\": \"${new_title}\"}" "${url}")
     updated_title=$(echo "${response}" | jq -r '.name')
     echo "Channel title updated successfully: ${updated_title}"
@@ -123,7 +123,7 @@ chmod +x script.sh
 
 在 `README.md` 文件中，簡單描述如何使用這個自定義 Action。例如：
 
-```markdown
+````markdown
 # Update Notion to Discord Action
 
 This GitHub Action fetches tasks from Notion and updates a Discord channel with the task counts.
@@ -150,18 +150,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Run custom action
-      uses: ./path-to-action
-      with:
-        notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
-        notion_token: ${{ secrets.NOTION_TOKEN }}
-        discord_channel_id: ${{ secrets.DISCORD_CHANNEL_ID }}
-        discord_token: ${{ secrets.DISCORD_TOKEN }}
+      - name: Run custom action
+        uses: ./path-to-action
+        with:
+          notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
+          notion_token: ${{ secrets.NOTION_TOKEN }}
+          discord_channel_id: ${{ secrets.DISCORD_CHANNEL_ID }}
+          discord_token: ${{ secrets.DISCORD_TOKEN }}
 ```
-```
+````
+
+````
 
 ## **3. 配置 GitHub Actions 工作流程**
 
@@ -190,7 +192,7 @@ jobs:
         notion_token: ${{ secrets.NOTION_TOKEN }}
         discord_channel_id: ${{ secrets.DISCORD_CHANNEL_ID }}
         discord_token: ${{ secrets.DISCORD_TOKEN }}
-```
+````
 
 ## **4. 設置 GitHub Secrets**
 
@@ -209,7 +211,6 @@ jobs:
 
 ## JavaScript 版本
 
-
 ### **步驟 1：設置專案結構**
 
 首先，我們需要創建一個新的 GitHub 存儲庫來容納我們的自定義 Action。在存儲庫中，創建以下目錄結構：
@@ -227,24 +228,24 @@ my-custom-action/
 在 `action.yml` 文件中，我們需要定義 Action 的輸入、執行和輸出。以下是 `action.yml` 的範例內容：
 
 ```yaml
-name: 'Update Notion to Discord'
-description: 'Fetch tasks from Notion and update Discord channel'
+name: "Update Notion to Discord"
+description: "Fetch tasks from Notion and update Discord channel"
 inputs:
   notion_database_id:
-    description: 'Notion database ID'
+    description: "Notion database ID"
     required: true
   notion_token:
-    description: 'Notion API token'
+    description: "Notion API token"
     required: true
   discord_channel_id:
-    description: 'Discord channel ID'
+    description: "Discord channel ID"
     required: true
   discord_token:
-    description: 'Discord bot token'
+    description: "Discord bot token"
     required: true
 runs:
-  using: 'node12'
-  main: 'src/index.js'
+  using: "node12"
+  main: "src/index.js"
 ```
 
 ### **步驟 3：編寫 Action 腳本**
@@ -252,62 +253,74 @@ runs:
 在 `src/index.js` 文件中，我們將編寫 JavaScript 代碼來完成具體的操作。以下是 `index.js` 的內容：
 
 ```javascript
-const core = require('@actions/core');
-const axios = require('axios');
+const core = require("@actions/core");
+const axios = require("axios");
 
 async function updateTasks() {
-    try {
-        // 讀取輸入參數
-        const notionDatabaseId = core.getInput('notion_database_id');
-        const notionToken = core.getInput('notion_token');
-        const discordChannelId = core.getInput('discord_channel_id');
-        const discordToken = core.getInput('discord_token');
-        
-        // 從 Notion 獲取待辦事項
-        const notionResponse = await axios.post(`https://api.notion.com/v1/databases/${notionDatabaseId}/query`, {}, {
-            headers: {
-                'Authorization': `Bearer ${notionToken}`,
-                'Notion-Version': '2022-06-28',
-                'Content-Type': 'application/json'
-            }
-        });
+  try {
+    // 讀取輸入參數
+    const notionDatabaseId = core.getInput("notion_database_id");
+    const notionToken = core.getInput("notion_token");
+    const discordChannelId = core.getInput("discord_channel_id");
+    const discordToken = core.getInput("discord_token");
 
-        let notStartedCount = 0;
-        let inProgressCount = 0;
+    // 從 Notion 獲取待辦事項
+    const notionResponse = await axios.post(
+      `https://api.notion.com/v1/databases/${notionDatabaseId}/query`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${notionToken}`,
+          "Notion-Version": "2022-06-28",
+          "Content-Type": "application/json",
+        },
+      },
+    );
 
-        // 解析 Notion API 的響應
-        notionResponse.data.results.forEach(result => {
-            const status = result.properties.Status.status.name;
-            if (status === 'Not started') {
-                notStartedCount++;
-            } else if (status === 'In progress') {
-                inProgressCount++;
-            }
-        });
+    let notStartedCount = 0;
+    let inProgressCount = 0;
 
-        // 更新 Discord 頻道標題
-        await axios.patch(`https://discord.com/api/v10/channels/${discordChannelId}`, {
-            name: `還有 ${notStartedCount} 件事沒人做`
-        }, {
-            headers: {
-                'Authorization': `Bot ${discordToken}`,
-                'Content-Type': 'application/json'
-            }
-        });
+    // 解析 Notion API 的響應
+    notionResponse.data.results.forEach((result) => {
+      const status = result.properties.Status.status.name;
+      if (status === "Not started") {
+        notStartedCount++;
+      } else if (status === "In progress") {
+        inProgressCount++;
+      }
+    });
 
-        await axios.patch(`https://discord.com/api/v10/channels/${discordChannelId}`, {
-            name: `${inProgressCount} 件事處理中`
-        }, {
-            headers: {
-                'Authorization': `Bot ${discordToken}`,
-                'Content-Type': 'application/json'
-            }
-        });
+    // 更新 Discord 頻道標題
+    await axios.patch(
+      `https://discord.com/api/v10/channels/${discordChannelId}`,
+      {
+        name: `還有 ${notStartedCount} 件事沒人做`,
+      },
+      {
+        headers: {
+          Authorization: `Bot ${discordToken}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
 
-        console.log('Discord channel title updated successfully');
-    } catch (error) {
-        core.setFailed(`Action failed with error: ${error.message}`);
-    }
+    await axios.patch(
+      `https://discord.com/api/v10/channels/${discordChannelId}`,
+      {
+        name: `${inProgressCount} 件事處理中`,
+      },
+      {
+        headers: {
+          Authorization: `Bot ${discordToken}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    console.log("Discord channel title updated successfully");
+  } catch (error) {
+    core.setFailed(`Action failed with error: ${error.message}`);
+  }
 }
 
 updateTasks();
@@ -356,16 +369,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Use custom action
-      uses: ./  # 使用自定義 Action 的路徑
-      with:
-        notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
-        notion_token: ${{ secrets.NOTION_TOKEN }}
-        discord_channel_id: ${{ secrets.DISCORD_CHANNEL_ID }}
-        discord_token: ${{ secrets.DISCORD_TOKEN }}
+      - name: Use custom action
+        uses: ./ # 使用自定義 Action 的路徑
+        with:
+          notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
+          notion_token: ${{ secrets.NOTION_TOKEN }}
+          discord_channel_id: ${{ secrets.DISCORD_CHANNEL_ID }}
+          discord_token: ${{ secrets.DISCORD_TOKEN }}
 ```
 
 ## **4. 設置 GitHub Secrets**

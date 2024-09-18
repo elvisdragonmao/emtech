@@ -11,10 +11,12 @@ shareImage = "https://emtech.cc/images/ironman2023-banner.webp"
 +++
 
 ---
+
 authors: elvismao
 tags: [HTML, CSS, JS]
 series: ["不用庫 也能酷 - 玩轉 CSS & Js 特效"]
 date: 2023-09-28
+
 ---
 
 # Day14 今天我想來點… 純 CSS 的開關
@@ -31,10 +33,10 @@ date: 2023-09-28
 
 寫 checkbox 的 CSS 時因為
 
-* `input` 是插入一個元素，而不是一個範圍，所以不能使用 `::before` 和 `::after` 來做。
-* checkbox 顯示一定是正方形，如果設置為其他長寬比塊白的地方還是可以點擊。
+- `input` 是插入一個元素，而不是一個範圍，所以不能使用 `::before` 和 `::after` 來做。
+- checkbox 顯示一定是正方形，如果設置為其他長寬比塊白的地方還是可以點擊。
   ![Alt text](checkbox-range.webp)
-* checkbox 無法設定背景顏色
+- checkbox 無法設定背景顏色
 
 問題那麼多，因此我們只需要input幫我們掛名存狀態，然後把它藏在角落裡面就好了。
 
@@ -45,12 +47,13 @@ date: 2023-09-28
 HTML 如下，我想用這個開關來控制背景顏色。
 
 ```html
-<input type="checkbox" id="switch">
+<input type="checkbox" id="switch" />
 <label class="toggle" for="switch"></label>
 <div class="light"></div>
 ```
 
 先簡單切版
+
 ```css
 *,
 label::after {
@@ -67,7 +70,7 @@ label {
   background: #e9e9eb;
   border-radius: 1rem;
   position: relative;
-  cursor:pointer;
+  cursor: pointer;
 }
 body {
   display: flex;
@@ -122,7 +125,7 @@ https://codepen.io/edit-mr/pen/KKbZjOq
 ![開關成果](https://emtech.cc/post/2023ironman-14/final.gif)
 
 ```html
-<input type="checkbox" id="switch">
+<input type="checkbox" id="switch" />
 <label class="toggle" for="switch"></label>
 <div class="light"></div>
 ```
@@ -181,6 +184,7 @@ input:checked ~ .light {
   background: #fff;
 }
 ```
+
 以上就是我今天的分享，你可以根據你的喜好增加陰影或其他動畫效果。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

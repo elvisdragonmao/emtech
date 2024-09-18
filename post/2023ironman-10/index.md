@@ -71,12 +71,12 @@ body {
   animation: marquee 2s forwards linear;
 }
 
-@keyframes marquee{
+@keyframes marquee {
   from {
-    transform: translateX(100vw)
+    transform: translateX(100vw);
   }
   to {
-    transform: translateX(-100%)
+    transform: translateX(-100%);
   }
 }
 ```
@@ -123,9 +123,12 @@ var loopTime = element_width / v; //每 delay 秒放入一個新的
 我們知道運行的時間，只需要在動畫結束時刪除就可以了，我給他多加一秒延遲緩衝，避免有延遲還沒跑完就被刪除了。記得單位是毫秒
 
 ```jsx
-setTimeout(() => {
-        marquee.removeChild(marqueeBox);
-      }, time * 1000 + 1000);
+setTimeout(
+  () => {
+    marquee.removeChild(marqueeBox);
+  },
+  time * 1000 + 1000,
+);
 ```
 
 ### 生成函式
@@ -167,7 +170,6 @@ element.style.animation = `marquee ${time}ms forwards linear`;
 https://codepen.io/edit-mr/pen/YzdZdKv
 ![跑馬燈成果](final.gif)
 
-
 ```html
 <div class="marquee">
   <div class="element">SALE</div>
@@ -180,7 +182,7 @@ body {
   display: flex;
   align-items: center;
   margin: 0;
-  overflow:hidden;
+  overflow: hidden;
 }
 .marquee {
   font-size: 3rem;
@@ -190,7 +192,7 @@ body {
   width: 100%;
   position: relative;
   font-family: Arial;
-  font-weight:800;
+  font-weight: 800;
   font-style: italic;
 }
 .element {
@@ -199,7 +201,7 @@ body {
   top: 0.2em;
 }
 
-@keyframes marquee{
+@keyframes marquee {
   from {
     transform: translateX(100vw);
   }

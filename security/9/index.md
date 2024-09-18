@@ -1,11 +1,13 @@
 ### Day 9: Insecure File Upload——文件上傳的陷阱：從不安全的上傳到惡意腳本的威脅
 
 #### 簡介：什麼是 Insecure File Upload？
+
 Insecure File Upload 是指網站或應用允許用戶上傳文件，但未對文件進行充分的檢查或限制。這可能會導致用戶上傳惡意腳本或病毒，並在伺服器上執行它們，從而使攻擊者能夠控制伺服器或竊取敏感數據。
 
 #### 開發爛網站：逐步構建不安全的文件上傳漏洞
 
 1. **初始化專案並設置 Node.js 環境**
+
    - **目標：** 創建一個簡單的 Node.js 應用，展示如何通過不安全的文件上傳來實現漏洞。
    - **步驟：**
      - 創建專案目錄並初始化：
@@ -20,50 +22,54 @@ Insecure File Upload 是指網站或應用允許用戶上傳文件，但未對�
        ```
 
 2. **設置 Express 應用和文件上傳功能**
+
    - **目標：** 構建一個允許文件上傳的基本應用，但未對文件進行適當檢查。
    - **步驟：**
+
      - 在 `index.js` 中設置 Express 應用：
+
        ```javascript
-       const express = require('express');
-       const multer = require('multer');
-       const path = require('path');
-       const fs = require('fs');
-       const ejs = require('ejs');
-       const sqlite3 = require('sqlite3').verbose();
+       const express = require("express");
+       const multer = require("multer");
+       const path = require("path");
+       const fs = require("fs");
+       const ejs = require("ejs");
+       const sqlite3 = require("sqlite3").verbose();
        const app = express();
 
-       app.set('view engine', 'ejs');
-       app.use(express.static('public'));
+       app.set("view engine", "ejs");
+       app.use(express.static("public"));
        app.use(express.urlencoded({ extended: true }));
 
        // 設置 SQLite 資料庫
-       const db = new sqlite3.Database(':memory:');
+       const db = new sqlite3.Database(":memory:");
        db.serialize(() => {
-         db.run('CREATE TABLE uploads (id INTEGER PRIMARY KEY, filename TEXT)');
+         db.run("CREATE TABLE uploads (id INTEGER PRIMARY KEY, filename TEXT)");
        });
 
        // 設置 Multer
-       const upload = multer({ dest: 'uploads/' });
+       const upload = multer({ dest: "uploads/" });
 
-       app.get('/', (req, res) => {
-         res.render('index');
+       app.get("/", (req, res) => {
+         res.render("index");
        });
 
-       app.post('/upload', upload.single('file'), (req, res) => {
+       app.post("/upload", upload.single("file"), (req, res) => {
          const file = req.file;
          if (file) {
            // 保存文件信息到資料庫
-           db.run('INSERT INTO uploads (filename) VALUES (?)', [file.filename]);
-           res.send('File uploaded successfully!');
+           db.run("INSERT INTO uploads (filename) VALUES (?)", [file.filename]);
+           res.send("File uploaded successfully!");
          } else {
-           res.send('No file uploaded!');
+           res.send("No file uploaded!");
          }
        });
 
        app.listen(3000, () => {
-         console.log('Server is running on http://localhost:3000');
+         console.log("Server is running on http://localhost:3000");
        });
        ```
+
      - **說明：** 這段代碼允許用戶上傳文件並將文件保存到 `uploads/` 目錄。注意，我們沒有對文件進行任何驗證或檢查，這就為攻擊者提供了機會。
 
 3. **創建 EJS 模板和上傳頁面**
@@ -71,21 +77,24 @@ Insecure File Upload 是指網站或應用允許用戶上傳文件，但未對�
    - **步驟：**
      - 在 `views/index.ejs` 中創建上傳頁面：
        ```html
-       <!DOCTYPE html>
+       <!doctype html>
        <html lang="en">
-       <head>
-           <meta charset="UTF-8">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <head>
+           <meta charset="UTF-8" />
+           <meta
+             name="viewport"
+             content="width=device-width, initial-scale=1.0"
+           />
            <title>File Upload</title>
-           <link rel="stylesheet" href="/styles.css">
-       </head>
-       <body>
+           <link rel="stylesheet" href="/styles.css" />
+         </head>
+         <body>
            <h1>File Upload</h1>
            <form action="/upload" method="POST" enctype="multipart/form-data">
-               <input type="file" name="file" required />
-               <button type="submit">Upload</button>
+             <input type="file" name="file" required />
+             <button type="submit">Upload</button>
            </form>
-       </body>
+         </body>
        </html>
        ```
      - **說明：** 用戶可以在這個頁面上選擇文件並上傳，這些文件將被保存到 `uploads/` 目錄中，而沒有任何安全檢查。
@@ -103,7 +112,6 @@ Insecure File Upload 是指網站或應用允許用戶上傳文件，但未對�
 防範不安全的文件上傳漏洞涉及多方面的措施，包括文件類型檢查、文件大小限制和存儲安全性。以下是防範措施的具體步驟：
 
 1. **檢查文件類型：** 僅允許特定類型的文件上傳，如 `.jpg`, `.png` 等圖像格式。可以使用文件擴展名和 MIME 類型進行檢查。
-   
 2. **限制文件大小：** 設置文件大小限制，防止上傳過大的文件，這可以減少拒絕服務攻擊的風險。
 
 3. **檢查文件內容：** 驗證文件的內容是否符合預期，例如確保上傳的文件實際上是圖片而不是可執行的腳本。
@@ -113,35 +121,37 @@ Insecure File Upload 是指網站或應用允許用戶上傳文件，但未對�
 以下是如何在 Node.js 中實施文件上傳檢查的範例：
 
 ```javascript
-const multer = require('multer');
-const path = require('path');
+const multer = require("multer");
+const path = require("path");
 
 // 設置 Multer 以僅允許圖片文件
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
-  }
+  },
 });
 
 const fileFilter = (req, file, cb) => {
   const allowedTypes = /jpeg|jpg|png/;
-  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+  const extname = allowedTypes.test(
+    path.extname(file.originalname).toLowerCase(),
+  );
   const mimetype = allowedTypes.test(file.mimetype);
-  
+
   if (mimetype && extname) {
     return cb(null, true);
   } else {
-    cb(new Error('Only images are allowed!'));
+    cb(new Error("Only images are allowed!"));
   }
 };
 
 const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
-  limits: { fileSize: 1 * 1024 * 1024 } // 最大文件大小 1MB
+  limits: { fileSize: 1 * 1024 * 1024 }, // 最大文件大小 1MB
 });
 ```
 
@@ -152,6 +162,7 @@ const upload = multer({
 ---
 
 **延伸學習主題：**
+
 - 深入了解文件上傳安全的最佳實踐。
 - 學習如何配置和使用 Web 應用防火牆（WAF）來防範常見漏洞。
 - 探索其他與文件相關的安全問題，如文件下載和存儲安全。

@@ -1,26 +1,26 @@
 name: 使用套件自動提交和推送
 
 on:
-    schedule:
-        - cron: "0 0 * * *"
-    workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
-    commit:
-        runs-on: ubuntu-latest
+  commit:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: 檢出代碼
-              uses: actions/checkout@v2
+    steps:
+      - name: 檢出代碼
+        uses: actions/checkout@v2
 
-            - name: 進行修改
-              run: |
-                  echo "Update on $(date)" >> update.log
+      - name: 進行修改
+        run: |
+          echo "Update on $(date)" >> update.log
 
-            - name: 自動提交
-              uses: stefanzweifel/git-auto-commit-action@v4
-              with:
-                  commit_message: "Automated commit on $(date)"
-                  branch: main
-                  commit_user_name: GitHub Actions
-                  commit_user_email: actions@github.com
+      - name: 自動提交
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Automated commit on $(date)"
+          branch: main
+          commit_user_name: GitHub Actions
+          commit_user_email: actions@github.com

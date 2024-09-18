@@ -1,11 +1,13 @@
 ### Day 2: NoSQL Injection——讓你的資料庫變成災難現場
 
 #### 簡介：什麼是 NoSQL Injection？
+
 NoSQL Injection 是一種針對 NoSQL 資料庫（例如 MongoDB）的攻擊技術。與 SQL Injection 類似，攻擊者通過操控查詢來達到未經授權的存取或操控資料的目的。這種攻擊特別容易出現在未對用戶輸入進行適當驗證和清理的應用中。
 
 #### 開發爛網站：一步步製作脆弱的 NoSQL 應用
 
 1. **初始化專案並設置 Node.js 環境**
+
    - **目標：** 建立專案結構和開發環境。
    - **步驟：**
      - 與第一天類似，先創建一個新目錄並初始化專案：
@@ -20,80 +22,99 @@ NoSQL Injection 是一種針對 NoSQL 資料庫（例如 MongoDB）的攻擊技�
        ```
 
 2. **設置 MongoDB 資料庫**
+
    - **目標：** 設置一個 MongoDB 資料庫來儲存用戶資料。
    - **步驟：**
+
      - 在 `index.js` 文件中，添加連接到 MongoDB 的代碼：
+
        ```javascript
-       const { MongoClient } = require('mongodb');
-       const express = require('express');
-       const bodyParser = require('body-parser');
+       const { MongoClient } = require("mongodb");
+       const express = require("express");
+       const bodyParser = require("body-parser");
        const app = express();
 
-       const url = 'mongodb://localhost:27017';
-       const dbName = 'vulnerable_site';
+       const url = "mongodb://localhost:27017";
+       const dbName = "vulnerable_site";
        let db;
 
-       MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
-         if (err) throw err;
-         db = client.db(dbName);
-         console.log(`Connected to database ${dbName}`);
-       });
+       MongoClient.connect(
+         url,
+         { useNewUrlParser: true, useUnifiedTopology: true },
+         (err, client) => {
+           if (err) throw err;
+           db = client.db(dbName);
+           console.log(`Connected to database ${dbName}`);
+         },
+       );
 
-       app.set('view engine', 'ejs');
+       app.set("view engine", "ejs");
        app.use(bodyParser.urlencoded({ extended: true }));
-       app.use(express.static('public'));
+       app.use(express.static("public"));
        ```
+
      - **說明：** 我們連接到本地 MongoDB 伺服器，並選擇名為 `vulnerable_site` 的資料庫。所有操作都將在這個資料庫中進行。
 
 3. **建立 Express 應用與基礎路由**
+
    - **目標：** 創建一個簡單的伺服器，並設置用戶登入和註冊路由。
    - **步驟：**
+
      - 在 `index.js` 中，設置 Express 應用和路由：
+
        ```javascript
-       app.get('/', (req, res) => {
-         res.render('index');
+       app.get("/", (req, res) => {
+         res.render("index");
        });
 
-       app.post('/login', (req, res) => {
+       app.post("/login", (req, res) => {
          const username = req.body.username;
          const password = req.body.password;
 
-         db.collection('users').findOne({ username: username, password: password }, (err, user) => {
-           if (user) {
-             res.send("Login successful!");
-           } else {
-             res.send("Login failed!");
-           }
-         });
+         db.collection("users").findOne(
+           { username: username, password: password },
+           (err, user) => {
+             if (user) {
+               res.send("Login successful!");
+             } else {
+               res.send("Login failed!");
+             }
+           },
+         );
        });
 
        app.listen(3000, () => {
-         console.log('Server is running on http://localhost:3000');
+         console.log("Server is running on http://localhost:3000");
        });
        ```
+
      - **說明：** 這段代碼創建了一個基本的登入系統，其中使用了 MongoDB 的 `findOne` 方法來查詢用戶資料。
 
 4. **創建 EJS 模板與前端頁面**
+
    - **目標：** 設計一個簡單的前端頁面，供用戶登入。
    - **步驟：**
      - 創建 `views/index.ejs` 文件，並加入以下內容：
        ```html
-       <!DOCTYPE html>
+       <!doctype html>
        <html lang="en">
-       <head>
-           <meta charset="UTF-8">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <head>
+           <meta charset="UTF-8" />
+           <meta
+             name="viewport"
+             content="width=device-width, initial-scale=1.0"
+           />
            <title>NoSQL Vulnerable Site</title>
-           <link rel="stylesheet" href="/styles.css">
-       </head>
-       <body>
+           <link rel="stylesheet" href="/styles.css" />
+         </head>
+         <body>
            <h1>Welcome to the NoSQL Vulnerable Site</h1>
            <form method="POST" action="/login">
-               <input type="text" name="username" placeholder="Username" />
-               <input type="password" name="password" placeholder="Password" />
-               <button type="submit">Login</button>
+             <input type="text" name="username" placeholder="Username" />
+             <input type="password" name="password" placeholder="Password" />
+             <button type="submit">Login</button>
            </form>
-       </body>
+         </body>
        </html>
        ```
      - **說明：** 這個模板與第一天的類似，只是標題有所不同。這個頁面將向用戶顯示一個簡單的登入表單。
@@ -126,18 +147,21 @@ NoSQL Injection 攻擊利用了 NoSQL 資料庫的靈活性。與 SQL 不同，N
 要防範 NoSQL Injection，最重要的就是對用戶輸入進行嚴格的驗證與清理，避免將原本應該是字符串的值直接嵌入到查詢中。以下是改進過的登入邏輯：
 
 ```javascript
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  if (typeof username === 'string' && typeof password === 'string') {
-    db.collection('users').findOne({ username: username, password: password }, (err, user) => {
-      if (user) {
-        res.send("Login successful!");
-      } else {
-        res.send("Login failed!");
-      }
-    });
+  if (typeof username === "string" && typeof password === "string") {
+    db.collection("users").findOne(
+      { username: username, password: password },
+      (err, user) => {
+        if (user) {
+          res.send("Login successful!");
+        } else {
+          res.send("Login failed!");
+        }
+      },
+    );
   } else {
     res.send("Invalid input!");
   }

@@ -17,7 +17,6 @@ date: 2023-09-30
 
 首先是 HTML，非常老實。一個時鐘，裡面3個指針，兩個中間的裝飾軸圓圈，以及12個數字。度數和數字分別用 CSS 變數和 HTML 屬性存放。當然你要都用 CSS 也可以，我只是想示範怎麼使用。
 
-
 ```html
 <div class="clock">
   <div class="hour-hand"></div>
@@ -42,7 +41,7 @@ date: 2023-09-30
 
 ## CSS
 
-CSS要怎麼畫出時鐘呢？我們會需要幫這個  `div` 添加幾個漸層。
+CSS要怎麼畫出時鐘呢？我們會需要幫這個 `div` 添加幾個漸層。
 
 ### 時間刻度 - conic-gradient
 
@@ -50,9 +49,7 @@ CSS要怎麼畫出時鐘呢？我們會需要幫這個  `div` 添加幾個漸層
 
 ![](https://emtech.cc/post/2023ironman-16/conic.webp)
 
-
 `conic-gradient` 的語法和其他漸層語法很相似。繞一圈跑，可以設定開始和結束的角度，沒寫角度就自動平分。比如說第一個：
-
 
 ```css
 div {
@@ -62,9 +59,7 @@ div {
 }
 ```
 
-
 如果你這樣打會得到一個錐形。和 `linear-graient` 的圖形原理相同，就是不給他過度的區域。
-
 
 ```css
 .one {
@@ -80,7 +75,6 @@ div {
 }
 ```
 
-
 最後把角度條寫一點就可以囉～
 
 ```css
@@ -94,7 +88,6 @@ div {
 `radial-gradient` 會從裡到外。一樣原理，不給他地方漸層就會出現圓形。~~讓他原形畢露~~
 
 ![](https://emtech.cc/post/2023ironman-16/radial.webp)
-
 
 ```css
 div {
@@ -115,10 +108,9 @@ div {
 
 ![](https://emtech.cc/post/2023ironman-16/prompt.webp)
 
-
 ```html
 <main>
-  <div class=“no”></div>
+  <div class="“no”"></div>
 </main>
 ```
 
@@ -183,12 +175,12 @@ main {
 指針就跟剛才的粉紅正方形一樣，只是長一點而已。選轉定位點記得放在中間上面喔，這樣才能指對方向。
 
 ```css
-  transform-origin: center center;
+transform-origin: center center;
 ```
 
 ### 在一起
 
-把以上所以的和在一起吧。  
+把以上所以的和在一起吧。
 
 ```css
 body {
@@ -311,6 +303,7 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 ```
+
 正當你以為終於結束的時候，你無意間看到了這個畫面…
 
 ![](https://emtech.cc/post/2023ironman-16/spin.gif)
@@ -347,6 +340,7 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 ```
+
 終於成功啦！有個87%像吧w
 
 https://codepen.io/edit-mr/pen/wvRXMLG

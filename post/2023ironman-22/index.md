@@ -68,27 +68,27 @@ div {
 一個變數 `box` 放著所有可能的字元，
 
 ```js
-const box = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+const box = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 ```
 
 `Math.random()` 會回傳一個 0 到 1 之間的數字
 
 ```js
-Math.random()
+Math.random();
 // 0.946621565811897
 ```
 
 `Math.random()*5` 會回傳一個 0 到 4 之間的數字
 
 ```js
-Math.random()*5
+Math.random() * 5;
 //4.603685644684928
 ```
 
 `Math.floor()` 會無條件捨去小數點
 
 ```js
-Math.floor(4.603685644684928)
+Math.floor(4.603685644684928);
 //4
 ```
 
@@ -117,9 +117,10 @@ const randomText = (amount) => {
 測試一下
 
 ```js
-randomText(10)
-//"XVDBHCCQ39" 
+randomText(10);
+//"XVDBHCCQ39"
 ```
+
 喔~😯
 
 ### 需要幾個
@@ -127,11 +128,13 @@ randomText(10)
 螢幕有大有小，字體大小又都不一樣。沒關係，量一下就好了。
 
 `<span>` 裡面有一個字母a。量螢幕大小除以字母大小就是大約需要多少個字母
+
 ```js
 const singleText = document.querySelector("span");
 const total =
-  window.innerWidth * window.innerHeight /
-  singleText.offsetWidth / singleText.offsetHeight;
+  (window.innerWidth * window.innerHeight) /
+  singleText.offsetWidth /
+  singleText.offsetHeight;
 //2736
 ```
 
@@ -139,37 +142,35 @@ const total =
 
 ### 解碼效果
 
-
-
 `settimeout`可以讓函式延遲執行
 
 ```js
-console.log("never gonna give you up")
+console.log("never gonna give you up");
 window.setTimeout(function () {
-  console.log("never gonna let you down")
+  console.log("never gonna let you down");
 }, 2000);
 
-  //never gonna give you up
-  //(過了兩秒)
-  //never gonna let you down
+//never gonna give you up
+//(過了兩秒)
+//never gonna let you down
 ```
 
 一個雙層迴圈，每6次洗牌多顯示一個字。直到最後6個字都顯示完畢。
 
 ```js
-  for (let j = 0; j <= titleText.length; j++) {
-    window.setTimeout(function () {
-      var current = j;
-      for (let k = 0; k <= 5; k++) {
-        window.setTimeout(function () {
-          var correct = titleText.slice(0, current);
-          correct += randomText(titleText.length - current);
-          title.innerText = correct;
-        }, 50 * k);
-      }
-    }, 300 * j);
-  }
-  ```
+for (let j = 0; j <= titleText.length; j++) {
+  window.setTimeout(function () {
+    var current = j;
+    for (let k = 0; k <= 5; k++) {
+      window.setTimeout(function () {
+        var correct = titleText.slice(0, current);
+        correct += randomText(titleText.length - current);
+        title.innerText = correct;
+      }, 50 * k);
+    }
+  }, 300 * j);
+}
+```
 
 迴圈的延遲邏輯大概是這樣。
 
@@ -195,9 +196,10 @@ document.onmousemove = (e) => bluh(e);
 我們把讀到的滑鼠位置，放進 CSS 屬性 `--x` 和 `--y` 裡面。讓遮罩來定位。
 
 ```js
-  bg.style.setProperty("--x", `${e.clientX}px`);
-  bg.style.setProperty("--y", `${e.clientY}px`);
+bg.style.setProperty("--x", `${e.clientX}px`);
+bg.style.setProperty("--y", `${e.clientY}px`);
 ```
+
 完整函式
 
 ```js
@@ -216,8 +218,8 @@ const bluh = (e) => {
 document.onmousemove = (e) => bluh(e);
 bluh();
 ```
-喔~😯
 
+喔~😯
 
 ### 遮罩 CSS 了解一下
 
@@ -325,8 +327,6 @@ const bluh = (e) => {
 document.onmousemove = (e) => bluh(e);
 bluh();
 ```
-
-
 
 以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
 

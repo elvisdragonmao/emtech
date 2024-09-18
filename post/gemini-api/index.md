@@ -46,7 +46,7 @@ curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generat
 
 可以看到我們只需要將問題放在 `text` 中，然後就可以得到回答了。
 
-```json
+````json
 {
   "candidates": [
     {
@@ -101,7 +101,7 @@ curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generat
     ]
   }
 }
-```
+````
 
 雖然很長看起來很可怕，但你只需要記得 `data.candidates[0].content.parts[0].text` 就是回答了。
 
@@ -111,16 +111,18 @@ curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generat
 
 ```json
 {
-  "contents":[
+  "contents": [
     {
-      "parts":[
-        {"text": "This image contains a sketch of a potential product along with some notes. \
+      "parts": [
+        {
+          "text": "This image contains a sketch of a potential product along with some notes. \
         Given the product sketch, describe the product as thoroughly as possible based on what you \
         see in the image, making sure to note all of the product features. Return output in json format: \
-        {description: description, features: [feature1, feature2, feature3, etc]}"},
+        {description: description, features: [feature1, feature2, feature3, etc]}"
+        },
         {
           "inline_data": {
-            "mime_type":"image/jpeg",
+            "mime_type": "image/jpeg",
             "data": "'$(base64 -w0 image.jpg)'"
           }
         }
@@ -174,113 +176,120 @@ Gemini 還有很多其他的設定，例如 `max_tokens` 用來設定最大回�
 ```html
 <!-- @format -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Gemini API 聊天 Demo</title>
-        <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gemini API 聊天 Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js
 "></script>
-        <style>
-            * {
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
-            }
-            body {
-                font-family: system-ui, -apple-system, BlinkMacSystemFont,
-                    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-                    "Helvetica Neue", sans-serif;
-                padding: 2rem;
-                display: flex;
-                flex-direction: column;
-                height: 100dvh;
-            }
-            #chatHistory {
-                flex-grow: 1;
-            }
-            .inputs {
-                display: flex;
-            }
-            #messageInput {
-                flex-grow: 1;
-            }
-            .inputs > * {
-                height: 2rem;
-                padding: 0.5rem;
-            }
-            #chatHistory > div {
-                margin-top: 1rem;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Gemini API 聊天 Demo</h1>
-<p>毛哥EM製作 <a href="https://emtech.cc/post/gemini-html">教學文章</a></p>
-        <div id="chatHistory">
-            <!-- Chat history will appear here -->
-        </div>
-        <div class="inputs">
-            <input type="password" id="apiKey" placeholder="API Key" />
-            <input
-                type="text"
-                id="messageInput"
-                placeholder="Type your message here..."
-            />
-            <button onclick="sendMessage()">Send</button>
-        </div>
-        <script>
-            const converter = new showdown.Converter();
-            let thread = [];
-            function sendMessage() {
-                var apiKey = document.getElementById("apiKey").value;
-                const message = document.getElementById("messageInput").value;
-                document.getElementById("chatHistory").innerHTML +=
-                    "<div><div class='author'>You:</div>" + message + "</div>";
-                thread.push({
-                    role: "user",
-                    parts: [{ text: message }],
-                });
-                console.log(apiKey);
-                fetch(
-                    "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" +
-                        apiKey,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            contents: thread,
-                        }),
-                    }
-                )
-                    .then(response => response.json())
-                    .then(data => {
-                        const msg = data.candidates[0].content.parts[0].text;
-                        document.getElementById("chatHistory").innerHTML +=
-                            "<div><div class='author'>Bot:</div>" +
-                            converter.makeHtml(msg) +
-                            "</div>";
-                        thread.push({
-                            role: "model",
-                            parts: [
-                                {
-                                    text: msg,
-                                },
-                            ],
-                        });
-                    })
-                    .catch(error => {
-                        console.error("Error:", error);
-                        document.getElementById("chatHistory").innerHTML +=
-                            "<div><div class='author'>Bot:</div>Error: " +
-                            error +
-                            "</div>";
-                    });
-            }
-        </script>
-    </body>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        height: 100dvh;
+      }
+      #chatHistory {
+        flex-grow: 1;
+      }
+      .inputs {
+        display: flex;
+      }
+      #messageInput {
+        flex-grow: 1;
+      }
+      .inputs > * {
+        height: 2rem;
+        padding: 0.5rem;
+      }
+      #chatHistory > div {
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Gemini API 聊天 Demo</h1>
+    <p>毛哥EM製作 <a href="https://emtech.cc/post/gemini-html">教學文章</a></p>
+    <div id="chatHistory">
+      <!-- Chat history will appear here -->
+    </div>
+    <div class="inputs">
+      <input type="password" id="apiKey" placeholder="API Key" />
+      <input
+        type="text"
+        id="messageInput"
+        placeholder="Type your message here..."
+      />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+    <script>
+      const converter = new showdown.Converter();
+      let thread = [];
+      function sendMessage() {
+        var apiKey = document.getElementById("apiKey").value;
+        const message = document.getElementById("messageInput").value;
+        document.getElementById("chatHistory").innerHTML +=
+          "<div><div class='author'>You:</div>" + message + "</div>";
+        thread.push({
+          role: "user",
+          parts: [{ text: message }],
+        });
+        console.log(apiKey);
+        fetch(
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" +
+            apiKey,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              contents: thread,
+            }),
+          },
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            const msg = data.candidates[0].content.parts[0].text;
+            document.getElementById("chatHistory").innerHTML +=
+              "<div><div class='author'>Bot:</div>" +
+              converter.makeHtml(msg) +
+              "</div>";
+            thread.push({
+              role: "model",
+              parts: [
+                {
+                  text: msg,
+                },
+              ],
+            });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            document.getElementById("chatHistory").innerHTML +=
+              "<div><div class='author'>Bot:</div>Error: " + error + "</div>";
+          });
+      }
+    </script>
+  </body>
 </html>
 ```
 
@@ -291,4 +300,5 @@ Gemini 還有很多其他的設定，例如 `max_tokens` 用來設定最大回�
 從這一段冷到發寒的對話中，我們可以看到 Gemini 的回答是有根據前面的對話繼續的。下一步我們來把它跟 Line 聊天機器人串再一起吧!
 
 ## 結語
+
 以上就是使用 Gemini API 製作線上對話網站的方法，希望你能從中學到一些東西。如果你有任何建議或問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://em-tec.github.io/)。

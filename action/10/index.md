@@ -40,19 +40,19 @@
            node-version: [18.x, 19.x, 20.x]
 
        steps:
-       - name: Check out code
-         uses: actions/checkout@v2
+         - name: Check out code
+           uses: actions/checkout@v2
 
-       - name: Set up Node.js
-         uses: actions/setup-node@v2
-         with:
-           node-version: ${{ matrix.node-version }}
+         - name: Set up Node.js
+           uses: actions/setup-node@v2
+           with:
+             node-version: ${{ matrix.node-version }}
 
-       - name: Install dependencies
-         run: npm install
+         - name: Install dependencies
+           run: npm install
 
-       - name: Run tests
-         run: npm test
+         - name: Run tests
+           run: npm test
    ```
 
    這個配置文件會在 `ubuntu-latest` 環境中，針對 Node.js 12.x、14.x 和 16.x 版本運行測試。

@@ -14,7 +14,6 @@ date: 2023-06-12
 
 CSS的功能是來裝飾HTML的，因此這部影片假設你已經會使用Codepen和HTML了，如果還沒有的話建議你先去看EP.2 十分鐘完結HTML喔。有一些部分可能比較難理解，但我相信你只要多練習幾次就可以了。
 
-
 ## 簡單的CSS
 
 首先請你先建立一個h1標題。
@@ -27,7 +26,7 @@ CSS的功能是來裝飾HTML的，因此這部影片假設你已經會使用Code
 
 ```css
 h1 {
-color: blue;
+  color: blue;
 }
 ```
 
@@ -37,8 +36,8 @@ color: blue;
 
 ```css
 h1 {
-color: blue;
-font-size: 50px;
+  color: blue;
+  font-size: 50px;
 }
 ```
 
@@ -46,17 +45,17 @@ font-size: 50px;
 
 ## 選擇器
 
-* 元素選擇器: 比如說`h1`就是選擇所有的h1元素
-* 所有後代: 比如說`*`就是選擇所有的元素
-* 後代選擇器: 比如說 `nav a`就是選擇所有nav裡面的a元素
-* 親代選擇器: 比如說 ` ol > li` 就是選擇所有ol裡面的li元素。而如果是ol裡的li裡的li就不會被選到。
-* 群組選擇器: 比如說 `nav, a`就是選擇所有nav元素和a元素
-* 相鄰兄弟: 比如說 ` h1 + p`就是選擇h1正後方的那一個p元素
-* 一般兄弟: 比如說 ` h1 ~ p`就是選擇h1後面的所有p元素
-* 屬性選擇器: 比如說 `a[href="https://twitter.com"]`就是選擇所有連結到twitter首頁的a元素
-  * 屬性網址包含某字是使用星號: `a[href*="tuts"]` (比如說nettuts.com、net.tutsplus.com、tutsplus.com)
-  * 屬性開頭是使用上箭頭caret符號: `a[href^="http"]`
-  * 屬性結尾是使用錢符號: `[href$=".jpg"]`
+- 元素選擇器: 比如說`h1`就是選擇所有的h1元素
+- 所有後代: 比如說`*`就是選擇所有的元素
+- 後代選擇器: 比如說 `nav a`就是選擇所有nav裡面的a元素
+- 親代選擇器: 比如說 ` ol > li` 就是選擇所有ol裡面的li元素。而如果是ol裡的li裡的li就不會被選到。
+- 群組選擇器: 比如說 `nav, a`就是選擇所有nav元素和a元素
+- 相鄰兄弟: 比如說 ` h1 + p`就是選擇h1正後方的那一個p元素
+- 一般兄弟: 比如說 ` h1 ~ p`就是選擇h1後面的所有p元素
+- 屬性選擇器: 比如說 `a[href="https://twitter.com"]`就是選擇所有連結到twitter首頁的a元素
+  - 屬性網址包含某字是使用星號: `a[href*="tuts"]` (比如說nettuts.com、net.tutsplus.com、tutsplus.com)
+  - 屬性開頭是使用上箭頭caret符號: `a[href^="http"]`
+  - 屬性結尾是使用錢符號: `[href$=".jpg"]`
 
 ### 權重
 
@@ -68,10 +67,10 @@ font-size: 50px;
 
 權重從高到低分別是
 
-* ID 選擇器
-* 類別選擇器、屬性選擇器、偽類選擇器(如:`root`)
-* 元素選擇器、偽元素選擇器
-* 任何元素選擇符`*`沒有權級
+- ID 選擇器
+- 類別選擇器、屬性選擇器、偽類選擇器(如:`root`)
+- 元素選擇器、偽元素選擇器
+- 任何元素選擇符`*`沒有權級
 
 記得是可以相加的喔，這裡有一個[計算機](https://specificity.keegan.st/)，如果不確定的話可以試試看。
 
@@ -91,13 +90,15 @@ font-size: 50px;
 
 ```css
 h1 {
-color: red; /* 顏色名稱 */
-color: #ff0000; /* 16進位HEX碼 */
-color: rgb(255, 0, 0); 
-color: rgba(255, 0, 0, 1); /* RBG加上A透明度 */
-color: hsl(0, 100%, 50%); /* HSL分別代表色相、飽和度、亮度 */
-color: hsla(0, 100%, 50%, 1); /* HSL加上A透明度 */
-color: color(display-p3 1 0 0 / 1); /* 使用color可以顯示RGB不能表示的顏色，我們之後再來討論 */
+  color: red; /* 顏色名稱 */
+  color: #ff0000; /* 16進位HEX碼 */
+  color: rgb(255, 0, 0);
+  color: rgba(255, 0, 0, 1); /* RBG加上A透明度 */
+  color: hsl(0, 100%, 50%); /* HSL分別代表色相、飽和度、亮度 */
+  color: hsla(0, 100%, 50%, 1); /* HSL加上A透明度 */
+  color: color(
+    display-p3 1 0 0 / 1
+  ); /* 使用color可以顯示RGB不能表示的顏色，我們之後再來討論 */
 }
 ```
 
@@ -107,38 +108,38 @@ color: color(display-p3 1 0 0 / 1); /* 使用color可以顯示RGB不能表示的
 
 ```css
 h1 {
-font-size: 100px; /* px是像素 */
-font-size: 10rem; /* rem是相對於系統設定的字體大小 */
-font-size: 10em; /* em是相對於父元素的字體大小 */
-font-size: 10vw; /* 10vw是相對於螢幕寬度10% */
-font-size: 10vh; /* 10vh是相對於螢幕高度的10% */
-font-size: 10vmin; /* vmin是相對於螢幕寬度和高度的最小值的百分比 */
-font-size: 10vmax; /* vmax是相對於螢幕寬度和高度的最大值的百分比 */
-font-size: 10%; /* %在不同時候的意思不太一樣，但原則上就是你想的那樣...嗯對 */
+  font-size: 100px; /* px是像素 */
+  font-size: 10rem; /* rem是相對於系統設定的字體大小 */
+  font-size: 10em; /* em是相對於父元素的字體大小 */
+  font-size: 10vw; /* 10vw是相對於螢幕寬度10% */
+  font-size: 10vh; /* 10vh是相對於螢幕高度的10% */
+  font-size: 10vmin; /* vmin是相對於螢幕寬度和高度的最小值的百分比 */
+  font-size: 10vmax; /* vmax是相對於螢幕寬度和高度的最大值的百分比 */
+  font-size: 10%; /* %在不同時候的意思不太一樣，但原則上就是你想的那樣...嗯對 */
 }
 ```
 
-* width跟height的%基準是父層
-* line-height以本身文字行高為基準
+- width跟height的%基準是父層
+- line-height以本身文字行高為基準
 
 接下來我們來有效率的一次認識所有常用的CSS語法吧
 
 ## 裝飾文字
 
 語法直接全上!
-  
+
 ```css
 h1 {
   color: red; /*顏色*/
-  font-size:1em; /*字體大小*/
+  font-size: 1em; /*字體大小*/
   letter-spacing: 10px; /*字體間距*/
   line-height: 1.5; /*行高。通常會用數字代表正常高的倍數 */
   font-weight: 500; /*字體粗細，數字最大900，越大越重，預設*/
-  text-decoration:underline; /*底線，最長是用none來把超連結醜醜的底線移除*/
-  font-style:italic; /*斜體*/
-  Opacity:0.5; /*不透明度*/
-  text-align:center; /*文字對齊方向*/
-  font-family:arial, sans-serif; /*字體，如果第一個沒有就依序往後*/
+  text-decoration: underline; /*底線，最長是用none來把超連結醜醜的底線移除*/
+  font-style: italic; /*斜體*/
+  opacity: 0.5; /*不透明度*/
+  text-align: center; /*文字對齊方向*/
+  font-family: arial, sans-serif; /*字體，如果第一個沒有就依序往後*/
 }
 ```
 
@@ -205,7 +206,6 @@ background-attachment: local; /* 一起動 */
 
 漸層的邏輯可以參考我的[網頁漸層指引](https://www.instagram.com/p/Cn99VUIvbLf/)(然後你可以順便按讚追蹤)
 
-
 語法可以直接寫多個顏色，在空白後寫佔的比例。
 
 ```css
@@ -217,7 +217,11 @@ background: linear-gradient(#333, #333 50%, #eee 75%, #333 75%);
 ```css
 background: linear-gradient(#e66465, #9198e5);
 background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
-background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+background: linear-gradient(
+  217deg,
+  rgba(255, 0, 0, 0.8),
+  rgba(255, 0, 0, 0) 70.71%
+);
 ```
 
 <img src=https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient/linear-gradient.png style="width:300px;display:inline;" />
@@ -227,12 +231,11 @@ background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
 
 邊框。分成border-top,border-bottom, border-left, border-right，或是使用border一次指定所有的
 
-
 ```css
 border-style: solid; /* 花邊，Solid是預設的直線 */
 border-width: 10px; /* 寬度 */
 border-color: #00ff00; /*邊框顏色 */
-border: solid 10px hsl(0 ,100%, 100%); /* 縮寫 */
+border: solid 10px hsl(0, 100%, 100%); /* 縮寫 */
 ```
 
 ### border-radius
@@ -245,6 +248,7 @@ border-radius: 左上角與右下角 右上角與左下角;
 border-radius: 左上角 右上角 右下角 左下角;
 border-top-left-radius: 10%;
 ```
+
 ### outline
 
 outline位置在border的外緣，但不佔用元素的任何空間。原則上我通常不會想用到它，因為border比較好用。
@@ -313,12 +317,12 @@ float是我比較少用的CSS，因為會遇到一些問題比如說float collap
 
 當然解決方法很多，列幾個
 
-* 元素的float參數不為none
-* 元素的position參數為absolute或fixed
-* 元素的display為inline-block
-* overflow參數不為visible的block元素
-* display參數為flow-root的元素
-  
+- 元素的float參數不為none
+- 元素的position參數為absolute或fixed
+- 元素的display為inline-block
+- overflow參數不為visible的block元素
+- display參數為flow-root的元素
+
 ### Clear
 
 ```css
@@ -334,8 +338,8 @@ clear: left|right|both;
 
 功能是設定**物件定位時所要的參考對像**。可以用的有
 
-```css 
-position:static | relative | absolute | fixed | sticky;
+```css
+position: static | relative | absolute | fixed | sticky;
 ```
 
 ### static 原始定位
@@ -394,16 +398,17 @@ translate的百分比基準是自己的width跟height
 來一個推方塊範例
 
 ```css
-.outer  {
+.outer {
   position: relative;
 }
 
 img {
   position: absolute;
-  top:50%;
+  top: 50%;
   left: 50%;
 }
 ```
+
 ![](https://i.imgur.com/Gswm945.png)
 
 再來往左上推: `transform: translate(-50%, -50%);`
@@ -416,7 +421,7 @@ img {
 
 當元素因為各種原因改變屬性質，比如說javascript改的或著是因為元素被點擊等等。會在指定時間平滑的切換過去，做出簡單的動畫。
 
-``` css
+```css
 transition: 屬性 轉換時間 延遲執行動畫的時間 速度;
 
 transition:all .3s 0s ease;// 設定全部 0.3秒轉換 沒有延遲 ease為預設值
@@ -449,7 +454,6 @@ Media可以告訴瀏覽器在不同的螢幕大小該如何呈現。這個是基
 }
 ```
 
-
 語法有很多不同的寫法，我決定教你一個雖然是最近出來，但是絕對是最好理解的屬性。
 
 ```css
@@ -469,19 +473,19 @@ font-size:2em;
 
 以下是一些常見的CSS偽類：
 
-* `:hover`：當滑鼠懸停在元素上方時應用的樣式。這是一個常見的偽類，常用於添加互動效果，例如當滑鼠懸停在按鈕上時改變其背景顏色。
-* `:active`：當元素被激活時應用的樣式。通常用於按下按鈕或鏈接時，以顯示按下效果。
-* `:visited`：應用於已訪問過的連結的樣式。這使得訪問過的連結可以與未訪問的連結區分開來。
-* `:first-child`：選擇父元素的第一個子元素。這使得我們可以針對列表中的第一個元素或表格中的第一列應用特定的樣式。
-* `:nth-child()`：選擇父元素中特定位置的子元素。這個偽類允許我們按照一定的模式選擇元素，例如 :nth-child(2n) 可以選擇所有偶數位置的元素。
+- `:hover`：當滑鼠懸停在元素上方時應用的樣式。這是一個常見的偽類，常用於添加互動效果，例如當滑鼠懸停在按鈕上時改變其背景顏色。
+- `:active`：當元素被激活時應用的樣式。通常用於按下按鈕或鏈接時，以顯示按下效果。
+- `:visited`：應用於已訪問過的連結的樣式。這使得訪問過的連結可以與未訪問的連結區分開來。
+- `:first-child`：選擇父元素的第一個子元素。這使得我們可以針對列表中的第一個元素或表格中的第一列應用特定的樣式。
+- `:nth-child()`：選擇父元素中特定位置的子元素。這個偽類允許我們按照一定的模式選擇元素，例如 :nth-child(2n) 可以選擇所有偶數位置的元素。
 
 比如說你想要元素在滑鼠放在上面時往上移一點，有選牌得感覺，你可以這樣打
 
-```css
+````css
 .card:hover{
   transform: translateX(-10px);
 }
- 
+
 這只是偽類的一小部分，還有其他更多的偽類可供使用。使用偽類，我們可以根據特定的條件和狀態來微調網頁的樣式，使其更具交互性和吸引力。
 
 
@@ -494,13 +498,12 @@ font-size:2em;
 
 ```html
 <p>大家好</p>
-```
+````
 
 ```css
 p::before {
   content: ”哈囉“;
 }
-
 ```
 
 哈囉大家好

@@ -15,7 +15,7 @@ name: Run Web Scraper
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 每天午夜運行一次
+    - cron: "0 0 * * *" # 每天午夜運行一次
   workflow_dispatch:
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.9'
+          python-version: "3.9"
 
       - name: Install dependencies
         run: |
@@ -100,19 +100,19 @@ beautifulsoup4
 
 1. **創建 GitHub Actions 工作流程文件**
 
-    在 `.github/workflows` 目錄下創建 `run-scraper.yml` 文件，並添加上述工作流程內容。
+   在 `.github/workflows` 目錄下創建 `run-scraper.yml` 文件，並添加上述工作流程內容。
 
 2. **創建爬蟲腳本**
 
-    將爬蟲腳本保存為 `scraper.py`。
+   將爬蟲腳本保存為 `scraper.py`。
 
 3. **創建依賴列表**
 
-    將 `requirements.txt` 文件添加到 repository 根目錄。
+   將 `requirements.txt` 文件添加到 repository 根目錄。
 
 4. **創建數據目錄**
 
-    確保 `data/` 目錄存在於 repository 中，以便存儲爬取的數據。
+   確保 `data/` 目錄存在於 repository 中，以便存儲爬取的數據。
 
 # **5. 使用不同存儲選項**
 

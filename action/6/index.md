@@ -24,54 +24,54 @@
 
 ### 步驟 1：設置 GitHub Actions 工作流程
 
-  在你的專案中，創建一個新的 GitHub Actions 工作流程文件，例如 `.github/workflows/create-pr.yml`。
+在你的專案中，創建一個新的 GitHub Actions 工作流程文件，例如 `.github/workflows/create-pr.yml`。
 
-  ```yaml
-  name: 建立 PR
+```yaml
+name: 建立 PR
 
-  on:
-    push:
-      branches:
-        - main # 當推送到 main 分支時觸發工作流程
+on:
+  push:
+    branches:
+      - main # 當推送到 main 分支時觸發工作流程
 
-  jobs:
-    create-pr:
-      runs-on: ubuntu-latest
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: 檢出代碼
-          uses: actions/checkout@v2
+    steps:
+      - name: 檢出代碼
+        uses: actions/checkout@v2
 
-        - name: 設置 Git
-          run: |
-            git config --global user.name "GitHub Actions"
-            git config --global user.email "actions@github.com"
+      - name: 設置 Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
 
-        - name: 安裝 GitHub CLI
-          run: sudo apt-get install gh
+      - name: 安裝 GitHub CLI
+        run: sudo apt-get install gh
 
-        - name: 創建新分支並進行變更
-          run: |
-            git checkout -b update-branch
-            echo "// Code change made by GitHub Actions" >> file.txt
-            git add file.txt
-            git commit -m "Automated commit by GitHub Actions"
+      - name: 創建新分支並進行變更
+        run: |
+          git checkout -b update-branch
+          echo "// Code change made by GitHub Actions" >> file.txt
+          git add file.txt
+          git commit -m "Automated commit by GitHub Actions"
 
-        - name: 推送變更並創建 Pull Request
-          run: |
-            git push origin update-branch
-            gh auth login --with-token < ${{ secrets.GITHUB_TOKEN }}
-            gh pr create --title "Automated PR" --body "This is an automated PR created by GitHub Actions" --base main --head update-branch
-  ```
+      - name: 推送變更並創建 Pull Request
+        run: |
+          git push origin update-branch
+          gh auth login --with-token < ${{ secrets.GITHUB_TOKEN }}
+          gh pr create --title "Automated PR" --body "This is an automated PR created by GitHub Actions" --base main --head update-branch
+```
 
-  **YAML 文件解析：**
+**YAML 文件解析：**
 
-  - **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
-  - **`actions/checkout@v2:`** 檢出代碼，以便進行後續操作。
-  - **`設置 Git:`** 配置 Git 用戶名和電子郵件，以便進行提交。
-  - **`安裝 GitHub CLI:`** 安裝 GitHub CLI 工具，用於創建 PR。
-  - **`創建新分支並進行變更:`** 創建新分支，進行代碼變更，並提交這些變更。
-  - **`推送變更並創建 Pull Request:`** 推送新分支到遠端，使用 `gh` CLI 創建 PR。
+- **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
+- **`actions/checkout@v2:`** 檢出代碼，以便進行後續操作。
+- **`設置 Git:`** 配置 Git 用戶名和電子郵件，以便進行提交。
+- **`安裝 GitHub CLI:`** 安裝 GitHub CLI 工具，用於創建 PR。
+- **`創建新分支並進行變更:`** 創建新分支，進行代碼變更，並提交這些變更。
+- **`推送變更並創建 Pull Request:`** 推送新分支到遠端，使用 `gh` CLI 創建 PR。
 
 ## 步驟 2：測試工作流程
 

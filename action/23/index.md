@@ -115,7 +115,7 @@
          - name: Set up Python
            uses: actions/setup-python@v3
            with:
-             python-version: '3.9'
+             python-version: "3.9"
 
          - name: Install dependencies
            run: |
@@ -142,7 +142,7 @@
          - name: Set up Python
            uses: actions/setup-python@v3
            with:
-             python-version: '3.9'
+             python-version: "3.9"
 
          - name: Install dependencies
            run: |
@@ -164,7 +164,7 @@
          - name: Set up Python
            uses: actions/setup-python@v3
            with:
-             python-version: '3.9'
+             python-version: "3.9"
 
          - name: Install dependencies
            run: |
@@ -205,6 +205,7 @@
 ### **工作流程解釋**
 
 - **`build` 階段**：
+
   - **Checkout code**：檢出代碼。
   - **Set up Python**：設置 Python 環境。
   - **Install dependencies**：安裝依賴。
@@ -212,12 +213,14 @@
   - **Upload build artifacts**：上傳構建產物。
 
 - **`test` 階段**：
+
   - **Checkout code**：檢出代碼。
   - **Set up Python**：設置 Python 環境。
   - **Install dependencies**：安裝依賴。
   - **Run tests**：運行單元測試。
 
 - **`deploy` 階段**：
+
   - **Checkout code**：檢出代碼。
   - **Set up Python**：設置 Python 環境。
   - **Install dependencies**：安裝依賴。

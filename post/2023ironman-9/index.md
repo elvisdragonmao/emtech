@@ -60,8 +60,6 @@ https://codepen.io/edit-mr/pen/jOXayXa
 
 ![時間數字範例](https://emtech.cc/post/2023ironman-9/mix-time.webp)
 
-
-
 ```html
 <h1>
   09:41

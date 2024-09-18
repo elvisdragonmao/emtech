@@ -11,14 +11,15 @@ date: 2021-09-08
 但是你是否有發現所有螢幕的桌布都只能設定一樣的。而如果你像我一樣兩個螢幕比例不同的話，其中一張比例會直接跑掉，十分的影響美觀。
 
 但是有了MultiWall，你不但可以幫不同的螢幕設定不同的桌布，還可以讓一張背景橫跨多個桌布來達到延伸的效果。
+
 <!--more-->
 
 {{% notice info "MultiWall" %}}
 
-* 開發者:is.gd
-* 軟體類型:免費軟體
-* 網址:[官網](http://windowbox.me/multiwall/downloads.php)
-{{% /notice %}}
+- 開發者:is.gd
+- 軟體類型:免費軟體
+- 網址:[官網](http://windowbox.me/multiwall/downloads.php)
+  {{% /notice %}}
 
 ## 使用教學
 
