@@ -1,4 +1,4 @@
-# 第八天：今天不講 DVD，來談談 CI/CD：eslint
+# 今天不講 DVD，來談談 CI/CD - eslint 與 pylint
 
 > 「知者不惑，仁者不憂，勇者不懼。」因為他們都有使用 eslint。
 

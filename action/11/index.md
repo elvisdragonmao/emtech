@@ -1,4 +1,4 @@
-# 告訴你一個大秘密：如何在 GitHub Actions 中使用 Secrets
+# 告訴你一個大秘密 - 如何在 GitHub Actions 中使用 Secrets
 
 > 水果冰淇淋喜歡你，GitHub Secrets 在這裡。
 >
@@ -113,7 +113,7 @@
          - name: Set up Node.js
            uses: actions/setup-node@v2
            with:
-             node-version: "16"
+             node-version: "20"
 
          - name: Install dependencies
            run: npm install

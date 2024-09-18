@@ -1,8 +1,8 @@
-## 第十六天：**版本控制與發布**
+## 自動化版本控制與發布
 
 > 秦始皇焚書坑儒時可以 force push 刪除紀錄，但誰知道有沒有人本地 `.git` 還留著呢！
 
-在現代軟體開發中版本控制十分重要。利用版本控制系統（如 Git），我們可以追蹤代碼變化、管理版本和標記釋出版本。今天，我們將探討如何使用 GitHub Actions 自動化版本控制和標記，以便在每次部署或發佈時自動創建 Git 標記並發布新版本。
+在現代軟體開發中版本控制十分重要。利用版本控制系統（如 Git），我們可以追蹤程式碼變化、管理版本和標記釋出版本。今天，我們將探討如何使用 GitHub Actions 自動化版本控制和標記，以便在每次部署或發佈時自動創建 Git 標記並發布新版本。
 
 > 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/16>
 
@@ -81,46 +81,6 @@ git push origin v1.0.0
 
 - **添加更新說明**：
   在創建釋出時，可以添加更新說明（Changelog），讓用戶了解新版本的改動內容。
-
-## 完整的範例工作流程\*\*
-
-以下是一個完整的範例工作流程，用於自動化版本標記和釋出：
-
-```yaml
-name: Versioning and Release
-
-on:
-  push:
-    tags:
-      - "v*.*.*"
-
-jobs:
-  release:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Git
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-
-      - name: Build application
-        run: |
-          # 如果有需要，編譯應用或執行其他建置步驟
-          echo "Building application..."
-
-      - name: Create Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            path/to/your/binary
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
 
 ## 小結
 

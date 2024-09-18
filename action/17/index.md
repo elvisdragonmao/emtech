@@ -1,18 +1,56 @@
-# 第十七天：**把 Notion 待辦事項放到 Discord 頻道：編寫自定義 Actions（Bash 版）**
+# 統計 Notion 待辦事項放到 Discord 頻道
 
 > 孔子能從心所欲不逾矩。正是因為他能夠自定義 Actions，把 Notion 待辦事項放到 Discord 頻道。
 
 > 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/17>
 
-今天，我們將介紹如何使用 Bash 腳本編寫 GitHub Actions，自動從 Notion 獲取待辦事項並更新到 Discord 頻道。這是一個很好的實踐案例，能幫助你了解如何利用 Bash 腳本和 GitHub Actions 進行自動化操作。
+今天，我們將介紹如何使用 Bash 腳本或 Node.js 編寫 GitHub Actions，自動從 Notion 獲取待辦事項並更新到 Discord 頻道。希望能透過這個小專題幫助你了解如何利用進行自動化操作呼叫 API。如果你不會使用 Notion 的話，~~那你該去學學。~~你可以參考大致的流程與程式的邏輯。
 
-## **1. 了解 Bash 自定義 Actions**
+
+
+## 事前準備：建立 Notion 資料庫並獲取 API
+
+我們在開始之前需要獲得幾個變數：
+
+### Notion 資料庫 ID
+
+在我們開始時做之前請先打開 Notion 建立一個資料庫。這裡我以中電會的 Notion 為例。可以看到左到右分別是預設的 To-do、In progress、Complete。我們將會從這個資料庫中獲取待辦事項。
+
+![建立資料庫](notion.webp)
+
+開啟資料庫連結並複製 ID。記得要點擊 view database 進入整個畫面都是資料庫的頁面喔。比如說如下的連結：
+
+```
+https://www.notion.so/6e7c50281a8b406dbxxxxxxxx7892659?v=fe8e4b0c57e24axxxxxxxxxx13271567
+```
+
+這個連結中的 `6e7c50281a8b406dbxxxxxxxx7892659` 就是資料庫 ID。
+
+![進入分頁並並複製 ID](view.webp)
+
+### 取得 API Token
+
+在 Notion 的設定中，可以取得 API Token。這個 Token 將會用來取得資料庫的資料。請記得不要將這個 Token 洩漏給他人。請至 [Notion Developers](https://www.notion.so/my-integrations) 取得 API，輸入基本資料並選擇要應用的 Workspace。
+
+請你複製這一串 Integration Token。生成完 API 之後，記得要邀請你剛才創建的機器人。點擊 Notion 右上角的三個點，Connect to，並選擇剛才創建的機器人。
+
+### 建立 Discord Bot
+
+在 Discord 開發者中心建立一個 Bot，並取得 Token。這個 Token 將會用來更新 Discord 頻道的標題。
+
+### Discord 頻道 ID
+
+在 Discord 中，請先開啟開發者模式，接著右鍵要更新的頻道，並複製頻道 ID。這個 ID 將用於更新頻道的標題。這個頻道原則上就是用來顯示數字用的，所以可以鎖定權限讓其他人不能在裡面聊天。
+
+
+
+今天我們會將一樣的專題分別使用 Bash 腳本或 Node.js 撰寫。首先讓我們先試著用 bash 寫看看。
+
+## Bash 版
 
 Bash 自定義 Actions 允許我們使用 Shell 腳本來執行操作。這是一種簡單且強大的方式，可以實現許多自動化需求。相較於 JavaScript 自定義 Actions，Bash 版本通常較為簡單，適合用來執行簡單的 Shell 命令和操作。
 
-## **2. 創建自定義 Bash Action**
-
-### **步驟 1：設置專案結構**
+### 步驟 1：設置專案結構
 
 首先，創建一個新的 GitHub 存儲庫來容納我們的自定義 Action。在存儲庫中，創建以下目錄結構：
 
@@ -23,9 +61,9 @@ my-custom-action/
 └── README.md
 ```
 
-### **步驟 2：編寫 Action 配置文件**
+### 步驟 2：編寫 Action 配置文件
 
-在 `action.yml` 文件中，我們需要定義 Action 的輸入、執行和輸出。以下是 `action.yml` 的範例內容：
+在 `action.yml` 文件中，我們需要定義 Action 的輸入、執行和輸出。以下是 `action.yml` 的內容：
 
 ```yaml
 name: "Update Notion to Discord"
@@ -54,6 +92,10 @@ runs:
         DISCORD_CHANNEL_ID: ${{ inputs.discord_channel_id }}
         DISCORD_TOKEN: ${{ inputs.discord_token }}
 ```
+
+欸你發現了嗎？我們這裡使用了一個之前沒使用過的參數 `composite`。這個參數可以讓我們在 Action 中執行多個步驟，這樣我們就可以在 Action 中執行多個 Shell 命令。同時我們還使用了之前沒使用過的 `inputs` 關鍵字，這個關鍵字可以讓我們在 Action 中訪問輸入的參數。
+
+`inputs` 關鍵字用於定義 Action 的輸入參數，這些參數可以在 Action 運行時從外部設置。在這個例子中，我們定義了四個輸入參數：`notion_database_id`、`notion_token`、`discord_channel_id` 和 `discord_token`。這些參數將用於從 Notion 獲取待辦事項並更新 Discord 頻道。當使用者第一次安裝 Action 時，他們需要提供這些參數的值。
 
 ### **步驟 3：編寫 Bash 腳本**
 
