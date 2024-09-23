@@ -8,17 +8,18 @@
     </head>
     <body>
         <nav>
-            <div class="title">
-                <img src="/static/img/logo.svg" alt="" />
-                毛哥EM資訊密技
-            </div>
+            <a href="/"
+                ><div class="title">
+                    <img src="/static/img/logo.svg" alt="" />
+                    毛哥EM資訊密技
+                </div></a
+            >
             <ul>
                 <li><a href="/post">文章</a></li>
                 <li><a href="/series">專欄</a></li>
                 <li><a href="/about">關於</a></li>
             </ul>
             <div class="right">
-                <a href="" target="_blank"></a>
                 <a href="" target="_blank"
                     ><img src="/static/img/dice.svg" alt="隨機文章"
                 /></a>
@@ -28,12 +29,11 @@
                 <a href="" target="_blank"
                     ><img src="/static/img/instagram.svg" alt="Instagram"
                 /></a>
-                <label for="search-toggle"></label>
                 <input type="checkbox" id="search-toggle" />
-                <a href="" target="_blank"
+                <input type="search" placeholder="搜尋" />
+                <label for="search-toggle"
                     ><img src="/static/img/search.svg" alt="Search"
-                /></a>
-                <input type="text" placeholder="搜尋" />
+                /></label>
             </div>
         </nav>
         <div class="main-container">
@@ -245,6 +245,7 @@
                             </div>
                         </article>
                     </div>
+                    <div class="more-post"></div>
                 </section>
                 <aside>
                     <div class="about">
@@ -273,15 +274,88 @@
                     </div>
                     <div class="recent">
                         <h2>近期瀏覽</h2>
-                    </div>
-                    <div class="featured">
-                        <h2>精選文章</h2>
+                        <h3>
+                            <a href=""
+                                >甚麼是福瑞 (Furry)？認識不獸控制的獸圈</a
+                            >
+                        </h3>
+                        <h3><a href="">你不知道的 git add -A 魔力</a></h3>
+                        <h3>
+                            <a href=""
+                                >解決 Certbot SSL 更新失敗 - The manual plugin
+                                is not ...</a
+                            >
+                        </h3>
+                        <h3><a href="">如何更改 SSH 預設端口</a></h3>
+                        <h3>
+                            <a href=""
+                                >啊我剛才 push 錯了! 如何在 Git 中撤銷提交</a
+                            >
+                        </h3>
                     </div>
                     <div class="tags">
                         <h2>標籤</h2>
+                        <a href="">
+                            標籤
+                            <div>20</div> </a
+                        ><a href="">
+                            標籤
+                            <div>20</div> </a
+                        ><a href="">
+                            標籤
+                            <div>20</div> </a
+                        ><a href="">
+                            標籤
+                            <div>20</div> </a
+                        ><a href="">
+                            標籤
+                            <div>20</div> </a
+                        ><a href="">
+                            標籤
+                            <div>20</div> </a
+                        ><a href="">
+                            標籤
+                            <div>20</div> </a
+                        ><a href="">
+                            標籤
+                            <div>20</div> </a
+                        ><a href="">
+                            標籤
+                            <div>20</div> </a
+                        ><a href="">
+                            標籤
+                            <div>20</div>
+                        </a>
+                    </div>
+                    <div class="time">
+                        <h2>毛哥EM資訊密技 已上線</h2>
+                        <p>3 年 113 天</p>
                     </div>
                 </aside>
             </main>
+            <footer>
+                <img src="/static/img/logo.svg" alt="" />
+                <div>
+                    <p>©2021 - 2024 By 毛哥EM</p>
+                    <p>
+                        毛哥EM資訊密技使用毛哥EM設計與開發的 emblog
+                        靜態網頁生成器生成。<br />原創文章採 CC BY
+                        授權，轉載請註明來源。部分圖片取自網路，若有侵權請與作者聯絡。
+                    </p>
+                </div>
+                <div>
+                    <a href="" target="_blank"
+                        ><img src="/static/img/github.svg" alt="GitHub"
+                    /></a>
+                    <a href="" target="_blank"
+                        ><img
+                            src="/static/img/instagram.svg"
+                            alt="Instagram" /></a
+                    ><a href="" target="_blank"
+                        ><img src="/static/img/rss.svg" alt="RSS"
+                    /></a>
+                </div>
+            </footer>
         </div>
         <footer>
             <p>&copy; 2024 emtech</p>

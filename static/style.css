@@ -5,9 +5,11 @@
 }
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-        sans-serif;
+    font-family: "GenYoGothic TW", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+        "Helvetica Neue", sans-serif;
+    background-color: #f2f4f8;
+    color: #363636;
 }
 
 a {
@@ -38,26 +40,50 @@ nav {
     position: fixed;
     width: 100%;
     padding: 1rem 3rem;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #dae1f8;
     display: flex;
     align-items: center;
-    height: 4rem;
+    height: 5.5rem;
     justify-content: space-between;
-    background-color: #fff;
+    font-size: 1.3125rem;
 }
 nav > * {
     flex: 1;
 }
+.title {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+}
+.title img {
+    height: 2rem;
+    display: block;
+    margin-right: 0.6rem;
+}
 
 nav li {
     display: inline;
+    margin-inline: 1rem;
 }
 nav ul {
     text-align: center;
 }
 
+nav a {
+    color: #363636;
+    cursor: pointer;
+}
+
+nav a::after {
+    display: none;
+}
+
 .right {
+    display: flex;
     justify-content: flex-end;
+    align-items: center;
+    gap: 1.5rem;
 }
 .main-container {
     max-width: 1240px;
@@ -65,16 +91,57 @@ nav ul {
     padding: 1rem;
     padding-top: 5rem;
 }
+
+nav label {
+    cursor: pointer;
+}
+
+.right img {
+    transition: all 0.3s;
+}
+
+.right img:hover {
+    color: #5f87ff;
+    scale: 1.1;
+}
+nav input[type="search"] {
+    border: 0px solid #363636;
+    border-radius: 1rem;
+    width: 0rem;
+    height: 2rem;
+    padding-inline: 0rem;
+    margin-left: -1rem;
+    transition: all 0.3s;
+}
+nav input[type="search"]:focus {
+    outline: none;
+    border-color: #5f87ff;
+}
+
+nav input[type="checkbox"] {
+    display: none;
+}
+
+#search-toggle:checked ~ input[type="search"] {
+    width: 10rem;
+    padding-inline: 1rem;
+    border: 1px solid #363636;
+}
+
 header {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     width: 100%;
+}
+
+.header-right {
+    width: 25rem;
 }
 
 header > div {
     flex: 1;
     height: 10rem;
-    border: solid 1px #000;
+    border: solid 1px #dae1f8;
     padding: 2rem;
 }
 main {
@@ -89,7 +156,7 @@ section {
 
 #categories {
     height: 3rem;
-    border: solid 1px #000;
+    border: solid 1px #dae1f8;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -107,7 +174,7 @@ section {
 }
 
 article {
-    border: solid 1px #000;
+    border: solid 1px #dae1f8;
 }
 
 article .hero {
@@ -138,7 +205,7 @@ aside {
 }
 
 aside > div {
-    border: solid 1px #000;
+    border: solid 1px #dae1f8;
     margin-bottom: 1rem;
     min-height: 10rem;
     padding: 1rem;
