@@ -4,12 +4,20 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-color: #5f87ff;
+    --black: #363636;
+    --background-color: #f2f4f8;
+    --border: solid 1px #dae1f8;
+    --border-radius: 1.875rem;
+}
+
 body {
     font-family: "GenYoGothic TW", system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
         "Helvetica Neue", sans-serif;
-    background-color: #f2f4f8;
-    color: #363636;
+    background-color: var(--background-color);
+    color: var(--black);
 }
 
 a {
@@ -71,7 +79,7 @@ nav ul {
 }
 
 nav a {
-    color: #363636;
+    color: var(--black);
     cursor: pointer;
 }
 
@@ -86,10 +94,7 @@ nav a::after {
     gap: 1.5rem;
 }
 .main-container {
-    max-width: 1240px;
-    margin: auto;
-    padding: 1rem;
-    padding-top: 5rem;
+    padding-top: 5.5rem;
 }
 
 nav label {
@@ -105,7 +110,7 @@ nav label {
     scale: 1.1;
 }
 nav input[type="search"] {
-    border: 0px solid #363636;
+    border: 0px solid var(--black);
     border-radius: 1rem;
     width: 0rem;
     height: 2rem;
@@ -125,38 +130,213 @@ nav input[type="checkbox"] {
 #search-toggle:checked ~ input[type="search"] {
     width: 10rem;
     padding-inline: 1rem;
-    border: 1px solid #363636;
+    border: 1px solid var(--black);
 }
 
 header {
     display: flex;
     gap: 1.5rem;
     width: 100%;
+    padding: 1.5rem;
 }
 
 .header-right {
     width: 25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+#header-playground {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: #1d1e22;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.3rem;
 }
 
-header > div {
-    flex: 1;
-    height: 10rem;
-    border: solid 1px #dae1f8;
-    padding: 2rem;
+#header-playground,
+.header-right {
+    height: min(100vh, 35rem);
+}
+
+#header-playground,
+.header-categories,
+.header-info,
+.header-newPost {
+    border: var(--border);
+    border-radius: var(--border-radius);
+}
+.header-title {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #1d1e22;
+    padding: 2rem 2rem 2rem 3rem;
+    font-weight: 600;
+    background: url("/static/img/headerTitleBg.svg") no-repeat top right / auto
+        100%;
+}
+.header-title h1 {
+    font-size: 3rem;
+}
+.header-title span {
+    display: block;
+    margin-left: 4rem;
+}
+
+.header-categories {
+    /* 2x2grid */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.1875rem;
+    background-color: #fff;
+    border-top: var(--border);
+    border-radius: var(--border-radius);
+}
+
+.header-categories-item {
+    display: flex;
+    height: 4rem;
+    gap: 1rem;
+    align-items: flex-end;
+    padding: 0.8rem;
+    font-size: 1.125rem;
+    border-radius: calc(var(--border-radius) / 30 * 19);
+}
+.header-categories-item {
+    color: #fff;
+}
+.header-categories .header-categories-item:first-child {
+    background: #8fbcbb;
+}
+
+.header-categories .header-categories-item:nth-child(2) {
+    background: #88c0d0;
+}
+
+.header-categories .header-categories-item:nth-child(3) {
+    background: #81a1c1;
+}
+
+.header-categories .header-categories-item:last-child {
+    background: #5e81ac;
+}
+
+.header-info {
+    height: 8rem;
+    background: url("https://raw.githubusercontent.com/emfont/emfont/main/og.png")
+        no-repeat center center / cover;
+}
+
+.header-newPost {
+    height: 12.5rem;
+    background-color: #fff;
+    padding: 0.8rem;
+    color: var(--black);
+}
+.header-newPost h2 {
+    padding: 0.5rem;
+}
+.header-newPost img {
+    width: 100%;
+    height: 8rem;
+    border-radius: calc(var(--border-radius) / 30 * 17.2);
+    object-fit: cover;
 }
 main {
     display: flex;
     gap: 1rem;
-    margin-block: 1rem;
+    width: 100%;
+    max-width: 976px;
+    padding: 1rem;
+    margin: 0 auto;
+    line-height: 1.5;
 }
 section {
     flex: 1;
     width: calc(100% - min(50vw, 20rem));
 }
+aside > * {
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    border: var(--border);
+}
+.about {
+    padding: 1.75rem 1.6rem 0;
+    background-color: #c5e0d5;
+    border: none;
+    overflow: hidden;
+}
 
+.about > .about-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.875rem;
+    font-weight: 700;
+}
+
+.about-name img {
+    height: 3.25rem;
+}
+
+.about-links {
+    height: 5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: -0.5rem;
+    margin-right: -3.5rem;
+}
+.about-links img {
+    width: 1rem;
+    filter: brightness(900%);
+}
+.about-links a {
+    background-color: #77c8a7;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1000px;
+    margin-top: 2rem;
+}
+
+.about-links a.about-rarr {
+    width: 6.3rem;
+    height: 5.375rem;
+    padding-left: 1.5625rem;
+    margin-top: 0;
+    justify-content: flex-start;
+}
+
+.about-rarr img {
+    width: 2rem;
+}
+
+.github-join {
+    color: #8b9bcc;
+    font-weight: 700;
+    padding-block: 1rem;
+    background: linear-gradient(253deg, #eef -7.84%, #dfdfff 105.14%);
+}
+.github-join p {
+    max-width: 8rem;
+    line-height: 1.4;
+}
 #categories {
-    height: 3rem;
-    border: solid 1px #dae1f8;
+    height: 4rem;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    background: #fff;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -166,15 +346,13 @@ section {
     overflow-x: scroll;
     white-space: nowrap;
 }
-
+#categories a {
+    color: var(--black);
+}
 #posts {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     gap: 1rem;
-}
-
-article {
-    border: solid 1px #dae1f8;
 }
 
 article .hero {
@@ -184,16 +362,14 @@ article .hero {
     background-color: #e8e8e8;
     background-size: contain;
     background-position: center;
+    border-radius: 1.875rem 1.875rem 0 0;
 }
-/* 
-article .hero::before {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-} */
 
 article .info {
+    border-radius: 0 0 1.875rem 1.875rem;
     padding: 1rem 2rem;
+    border: var(--border);
+    border-top: none;
 }
 
 h3 {
@@ -205,10 +381,9 @@ aside {
 }
 
 aside > div {
-    border: solid 1px #dae1f8;
+    border: var(--border);
     margin-bottom: 1rem;
-    min-height: 10rem;
-    padding: 1rem;
+    padding: 1.6rem;
 }
 #tags > a {
     display: inline-block;
