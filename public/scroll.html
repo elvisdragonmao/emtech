@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            h1 {
+                font-size: 3rem;
+            }
+            body {
+                --footer-height: 5rem;
+                text-align: center;
+            }
+            section {
+                margin: auto;
+            }
+            article {
+                height: 100vh;
+                width: 100vw;
+                position: relative;
+                transform-origin: top center;
+                background-color: antiquewhite;
+                background-size: 100vw 50px;
+            }
+            #next {
+                position: relative;
+                overflow: hidden;background-color: cadetblue;
+            }
+            #next article {
+                background-color: cornflowerblue;
+                height: 150vh;
+                scale: var(--scale);
+                transform-origin: top left;
+            }
+            footer {
+                height: var(--footer-height);
+                background-color: cadetblue;
+                width: 960px;
+                margin: auto;
+                margin-block: 40px;
+            }
+            .safe-area {
+                height: 100vh;
+            }
+            img {
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <article>
+                <h1>Post Transition</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Voluptates dolorem blanditiis veniam debitis porro sequi
+                    quia, quidem dolor enim aspernatur tempora ea facere
+                    laudantium temporibus necessitatibus voluptate magni,
+                    voluptatem sapiente.
+                </p>
+            </article>
+        </section>
+        <h2>Continue Reading</h2>
+        <section id="next">
+            <article>
+                <h1>Next Title</h1>
+                <img
+                    src="https://emtech.cc/thumbnail_6489982990487213925.webp"
+                    alt=""
+                />
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Aliquam illum molestiae voluptatum fugiat ex iure quod totam
+                    quidem possimus blanditiis vitae, saepe qui dolore adipisci
+                    deleniti, excepturi non placeat assumenda!
+                </p>
+            </article>
+        </section>
+        <footer>footer</footer>
+        <div class="safe-area"></div>
+        <script>
+            const next = document.querySelector("#next");
+            // scroll event for animation
+            window.addEventListener("scroll", () => {
+                let footerHeight =
+                    parseFloat(
+                        getComputedStyle(document.querySelector("footer"))
+                            .height
+                    ) + 80;
+                let originalHeight = Math.min(
+                    400,
+                    window.innerHeight - footerHeight
+                );
+                let toMove = window.innerHeight - originalHeight;
+                let canMove =
+                    window.innerHeight - originalHeight - footerHeight;
+                let height =
+                    originalHeight +
+                    (toMove / canMove) *
+                        (canMove - next.getBoundingClientRect().top);
+                let width = Math.max(
+                    960,
+                    960 +
+                        ((window.innerWidth - 960) / canMove) *
+                            (canMove - next.getBoundingClientRect().top)
+                );
+                console.log(height);
+                let scale = width / window.innerWidth;
+                console.log(height);
+                if (height > window.innerHeight) {
+                    next.style.height = "100%";
+                    next.style.width = `100%`;
+                    next.style.setProperty("--scale", 1);
+                } else {
+                    next.style.setProperty("--scale", scale);
+                    next.style.width = `${width}px`;
+
+                    next.style.height = `${Math.max(originalHeight, height)}px`;
+                }
+            });
+        </script>
+    </body>
+</html>
