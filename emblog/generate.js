@@ -26,6 +26,24 @@ const md = markdownIt({
     }
 });
 
+// Custom renderer for images to include figcaption
+md.renderer.rules.image = (tokens, idx, options, env, self) => {
+    const token = tokens[idx];
+    const src = token.attrs[token.attrIndex("src")][1];
+    const alt = token.content || ""; // Use alt as caption
+    const title = token.attrs[token.attrIndex("title")]
+        ? token.attrs[token.attrIndex("title")][1]
+        : "";
+
+    // Returning a figure with img and figcaption
+    return `
+        <figure>
+            <img src="${src}" alt="${alt}" title="${title}">
+            <figcaption>${alt}</figcaption>
+        </figure>
+    `;
+};
+
 // 清空並建立 dist 資料夾
 function initDist() {
     if (fs.existsSync("dist")) {
