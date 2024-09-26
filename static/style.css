@@ -32,8 +32,63 @@ body {
     display: none;
 }
 
+.toHome .home-page {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
 .displayPost .post-page {
     display: block;
+}
+
+.toHome .post-page {
+    z-index: 2;
+    /* animation: zoomAway .4s ease-out forwards; */
+    /* transform-origin: top; */
+}
+
+.toHome .transition {
+    animation: transition 1s forwards linear;
+    transform: rotate(10deg);
+    width: 130vw;
+    height: 400vh;
+    position: fixed;
+    top: -40vh;
+    left: -200%;
+    background-color: #fff;
+    z-index: 5000000;
+}
+
+@keyframes transition {
+    from {
+        left: -200%;
+    }
+    to {
+        left: 200%;
+    }
+}
+
+@keyframes zoomAway {
+    from {
+        /* transform: scale(100%); */
+        filter: opacity(1);
+    }
+    to {
+        /* transform: scale(120%); */
+        filter: opacity(0) blur(20px);
+    }
+    /* from {
+        transform: rotate(0);
+        filter: opacity(1);
+    }
+    to {
+        transform: rotate(-90deg);
+        filter: opacity(0);
+    } */
 }
 
 .post-page {
@@ -102,8 +157,16 @@ nav > * {
     align-items: center;
     font-weight: 700;
 }
+
+.title::after {
+    display: none;
+}
+.title:hover img {
+    transform: rotate(360deg);
+}
 .title img {
     height: 2rem;
+    transition: transform 0.3s;
     display: block;
     margin-right: 0.6rem;
 }
@@ -122,12 +185,38 @@ nav a,
     cursor: pointer;
 }
 
-.home-page a::after {
+.home-page a::after,
+.right a::after,
+.about-links a::after,
+#recent a::after,
+#tags a::after,
+footer a::after,
+article a::after {
     display: none;
 }
 
-nav a::after {
-    display: none;
+nav li a::after {
+    width: calc(100% + 2rem);
+    border-radius: 999px;
+    height: 2.5rem;
+    transform: none;
+    opacity: 0;
+    display: block;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transform-origin: center;
+    transition: transform 0.3s, opacity 0.3s;
+}
+nav li a:hover {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+nav li a:hover::after {
+    transform: translate(-50%, -50%);
+    opacity: 1;
 }
 
 .right {
@@ -145,13 +234,16 @@ nav label {
     cursor: pointer;
 }
 
-.right img {
+.right img,
+footer img {
     transition: all 0.3s;
 }
 
-.right img:hover {
-    color: var(--blue);
+.right img:hover,
+footer img:hover,
+.about-links a:hover {
     scale: 1.1;
+    transition: scale 0.3s;
 }
 nav input[type="search"] {
     border: 0px solid var(--black);
@@ -360,6 +452,10 @@ section {
     margin-top: 2rem;
 }
 
+.about-links a.about-rarr:hover {
+    scale: 1;
+}
+
 .about-links a.about-rarr {
     width: 6.3rem;
     height: 5.375rem;
@@ -367,17 +463,47 @@ section {
     margin-top: 0;
     justify-content: flex-start;
 }
-
 .about-rarr img {
+    transition: transform 0.3s;
     width: 2rem;
+}
+.about-rarr:hover img {
+    transform: translateX(0.5rem);
+}
+
+.about-rarr:active img {
+    transform: translateX(2rem);
 }
 
 .discord-join {
     color: #8b9bcc;
+    cursor: pointer;
     font-weight: 700;
     position: relative;
+    overflow: hidden;
     padding-block: 1rem;
+    transition: all 1s;
     background: linear-gradient(253deg, #eef -7.84%, #dfdfff 105.14%);
+}
+
+.discord-join::after {
+    width: 3rem;
+    height: 10rem;
+    background: linear-gradient(90deg, #ffffff00, #fff);
+    position: absolute;
+    top: -1rem;
+    left: -5rem;
+    content: "";
+    transform: rotate(10deg);
+    transition: all 1s;
+}
+.discord-join:hover {
+    filter: brightness(104%);
+}
+
+.discord-join:hover::after {
+    transform: rotate(10deg);
+    left: 120%;
 }
 .discord-join p {
     max-width: 8rem;
@@ -466,20 +592,35 @@ section {
     gap: 1rem;
 }
 
+article a {
+    color: var(--black);
+    transition: color 0.3s;
+}
+article:hover h3 a {
+    color: var(--blue);
+}
+
+article:hover .hero {
+    background-size: auto 110%;
+}
+article {
+    cursor: pointer;
+    border-radius: 1.875rem;
+    overflow: hidden;
+    border: 1px #d2dee6 solid;
+}
 article .hero {
     aspect-ratio: 120 / 63;
     background-repeat: no-repeat;
     width: 100%;
     background-color: #e8e8e8;
-    background-size: contain;
+    background-size: auto 100%;
     background-position: center;
-    border-radius: 1.875rem 1.875rem 0 0;
+    transition: background-size 0.2s ease-in-out;
 }
 
 article .info {
-    border-radius: 0 0 1.875rem 1.875rem;
     padding: 1.5rem;
-    border: var(--border);
     border-top: none;
     font-size: 0.8rem;
     background-color: #fff;
@@ -494,6 +635,7 @@ article .info {
 }
 .tags a::before {
     content: "#";
+    margin-right: 0.15rem;
     color: #a1a1a1;
 }
 h3 {
@@ -521,6 +663,13 @@ aside {
     top: 5.5rem;
 }
 
+#recent {
+    padding: 1rem 0;
+}
+#recent h2 {
+    margin-left: 1rem;
+}
+
 #recent h2,
 #tags h2 {
     font-size: 1.375rem;
@@ -528,13 +677,30 @@ aside {
     margin-bottom: 0.5rem;
 }
 #recent h3 {
-    padding-block: 0.6rem;
+    padding: 0.8rem 1rem;
+    position: relative;
     line-height: 1.2;
+    margin: 0;
+    transition: background-color 0.3s ease-out;
+}
+
+#recent h3::after {
+    width: calc(100% - 2rem);
+    content: "";
+    display: block;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
     border-bottom: 1px solid var(--dark-purple);
 }
 
-#recent h3:last-child {
-    border-bottom: none;
+#recent h3:hover {
+    background-color: #e8eeff;
+}
+
+#recent h3:last-child::after {
+    display: none;
 }
 #recent a,
 #tags a {
@@ -548,6 +714,12 @@ aside {
     background-color: var(--light-purple);
     padding: 0.3rem 0.5rem;
     border-radius: 0.3rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#tags > a:hover {
+    background-color: var(--dark-purple);
+    color: #fff;
 }
 #tags > a > div {
     display: inline-block;
@@ -558,6 +730,12 @@ aside {
     font-weight: 400;
     padding: 0.1rem 0.3rem;
     margin-left: 0.3rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#tags > a:hover > div {
+    background-color: var(--light-purple);
+    color: var(--dark-purple);
 }
 
 #time {
@@ -683,13 +861,25 @@ figure img {
 
 .header-categorie {
     padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
     border-radius: 1rem;
     color: #fff;
     background: rgba(255, 255, 255, 0.15);
 }
 
+.header-categorie:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
 .header-tag {
+    cursor: pointer;
+    transition: color 0.3s;
     color: rgba(255, 255, 255, 0.7);
+}
+
+.header-tag:hover {
+    color: rgba(255, 255, 255, 1);
 }
 
 .header-tag::before {

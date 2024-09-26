@@ -9,12 +9,10 @@
     </head>
     <body class="displayPost">
         <nav>
-            <a href="/"
-                ><div class="title">
-                    <img src="/static/img/logo.svg" alt="" />
-                    毛哥EM資訊密技
-                </div></a
-            >
+            <a href="/" class="title">
+                <img src="/static/img/logo.svg" alt="" />
+                毛哥EM資訊密技
+            </a>
             <ul>
                 <li><a href="/post">文章</a></li>
                 <li><a href="/series">專欄</a></li>
@@ -201,23 +199,25 @@
                                 /></a>
                             </div>
                         </div>
-                        <div class="discord-join">
-                            <img
-                                src="/static/img/discord.svg"
-                                class="discord-float"
-                            />
-                            <img
-                                src="/static/img/discord.svg"
-                                class="discord-float"
-                            />
-                            <img
-                                src="/static/img/discord.svg"
-                                class="discord-float"
-                            />
+                        <a href="">
+                            <div class="discord-join">
+                                <img
+                                    src="/static/img/discord.svg"
+                                    class="discord-float"
+                                />
+                                <img
+                                    src="/static/img/discord.svg"
+                                    class="discord-float"
+                                />
+                                <img
+                                    src="/static/img/discord.svg"
+                                    class="discord-float"
+                                />
 
-                            <h2>遇到問題嗎?</h2>
-                            <p>歡迎加入 Discord 與我們一起討論。</p>
-                        </div>
+                                <h2>遇到問題嗎?</h2>
+                                <p>歡迎加入 Discord 與我們一起討論。</p>
+                            </div></a
+                        >
                         <div class="sticky">
                             <div id="recent">
                                 <h2>近期瀏覽</h2>
@@ -319,12 +319,12 @@
                                 <div
                                     class="hero"
                                     style="
-                                        background-image: url('/static/img/thumbnail.webp'),
+                                        background-image: url('https://emtech.cc/ironman2023_2709523197975058030.webp'),
                                             linear-gradient(
                                                 135deg,
-                                                #fd7ce1,
-                                                #00e69b,
-                                                #00e99a
+                                                #000,
+                                                #000,
+                                                #000
                                             );
                                     "
                                 ></div>
@@ -927,58 +927,6 @@
                         <h1>毛哥EM<span>資訊密技</span></h1>
                     </div>
                 </div>
-                <script>
-                    const pre = document.createElement("pre");
-                    const playground =
-                        document.getElementById("header-playground");
-                    playground.appendChild(pre);
-
-                    let x = 1760,
-                        z = 0,
-                        y = 0;
-                    let donut = setInterval(() => {
-                        (z += 0.07), (y += 0.03);
-                        const a = [...new Array(x)].map((a, r) =>
-                                r % 80 === 79 ? "\n" : " "
-                            ),
-                            r = new Array(x).fill(0),
-                            t = Math.cos(z),
-                            e = Math.sin(z),
-                            n = Math.cos(y),
-                            o = Math.sin(y);
-                        for (let s = 0; s < 6.28; s += 0.07) {
-                            const c = Math.cos(s),
-                                h = Math.sin(s);
-                            for (let s = 0; s < 6.28; s += 0.02) {
-                                const v = Math.sin(s),
-                                    M = Math.cos(s),
-                                    i = c + 2,
-                                    l = 1 / (v * i * e + h * t + 5),
-                                    p = v * i * t - h * e,
-                                    d = 0 | (40 + 30 * l * (M * i * n - p * o)),
-                                    m = 0 | (12 + 15 * l * (M * i * o + p * n)),
-                                    f =
-                                        0 |
-                                        (8 *
-                                            ((h * e - v * c * t) * n -
-                                                v * c * e -
-                                                h * t -
-                                                M * c * o)),
-                                    y = d + 80 * m;
-                                m < 22 &&
-                                    m >= 0 &&
-                                    d >= 0 &&
-                                    d < 79 &&
-                                    l > r[y] &&
-                                    ((r[y] = l),
-                                    (a[y] = ".,-~:;=!*#$@"[f > 0 ? f : 0]));
-                            }
-                        }
-                        pre.innerHTML = a.join("");
-                    }, 50); /* JS by 
-              @housamz */
-                    clearInterval(donut);
-                </script>
                 <div class="header-right">
                     <div class="header-categories">
                         <a href="" class="header-categories-item">軟體分享</a
@@ -1460,6 +1408,7 @@
                 </div>
             </div>
         </footer>
+        <div class="transition"></div>
         <script>
             const header = document.querySelector("header");
             const footer = document.querySelector("footer");
@@ -1515,6 +1464,72 @@
                     }
                 });
             }
+
+            let x = 1760,
+                z = 0,
+                y = 0,
+                donut;
+            const startDonut = () => {
+                donut = setInterval(() => {
+                    (z += 0.07), (y += 0.03);
+                    const a = [...new Array(x)].map((a, r) =>
+                            r % 80 === 79 ? "\n" : " "
+                        ),
+                        r = new Array(x).fill(0),
+                        t = Math.cos(z),
+                        e = Math.sin(z),
+                        n = Math.cos(y),
+                        o = Math.sin(y);
+                    for (let s = 0; s < 6.28; s += 0.07) {
+                        const c = Math.cos(s),
+                            h = Math.sin(s);
+                        for (let s = 0; s < 6.28; s += 0.02) {
+                            const v = Math.sin(s),
+                                M = Math.cos(s),
+                                i = c + 2,
+                                l = 1 / (v * i * e + h * t + 5),
+                                p = v * i * t - h * e,
+                                d = 0 | (40 + 30 * l * (M * i * n - p * o)),
+                                m = 0 | (12 + 15 * l * (M * i * o + p * n)),
+                                f =
+                                    0 |
+                                    (8 *
+                                        ((h * e - v * c * t) * n -
+                                            v * c * e -
+                                            h * t -
+                                            M * c * o)),
+                                y = d + 80 * m;
+                            m < 22 &&
+                                m >= 0 &&
+                                d >= 0 &&
+                                d < 79 &&
+                                l > r[y] &&
+                                ((r[y] = l),
+                                (a[y] = ".,-~:;=!*#$@"[f > 0 ? f : 0]));
+                        }
+                    }
+                    pre.innerHTML = a.join("");
+                }, 50); /* JS by 
+              @housamz */
+            };
+            clearInterval(donut);
+
+            const switchToHome = () => {
+                document.body.classList.add("toHome");
+                // start  donut
+                startDonut();
+                // wait for .3s
+                setTimeout(() => {
+                    document.body.classList.remove("displayPost");
+                    setTimeout(() => {
+                        document.body.classList.remove("toHome");
+                    }, 500);
+                }, 500);
+            };
+
+            const pre = document.createElement("pre");
+            const playground = document.getElementById("header-playground");
+            playground.appendChild(pre);
         </script>
     </body>
 </html>
