@@ -39,6 +39,24 @@ body {
     top: 0;
     left: 0;
     z-index: 1;
+    animation: slideIn 1s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100vw);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+.toHome .home-page {
+}
+.toHome .post-page {
+    transition: all 1s;
+    /* opacity: 0; */
+    transform: translateX(100vw);
+    /* transform: scale(0.9); */
 }
 
 .displayPost .post-page {
@@ -51,7 +69,7 @@ body {
     /* transform-origin: top; */
 }
 
-.toHome .transition {
+/* .toHome .transition {
     animation: transition 1s forwards linear;
     transform: rotate(10deg);
     width: 130vw;
@@ -70,7 +88,7 @@ body {
     to {
         left: 200%;
     }
-}
+} */
 
 @keyframes zoomAway {
     from {

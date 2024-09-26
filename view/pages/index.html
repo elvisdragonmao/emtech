@@ -1521,10 +1521,8 @@
                 // wait for .3s
                 setTimeout(() => {
                     document.body.classList.remove("displayPost");
-                    setTimeout(() => {
-                        document.body.classList.remove("toHome");
-                    }, 500);
-                }, 500);
+                    document.body.classList.remove("toHome");
+                },1000);
             };
 
             const pre = document.createElement("pre");
