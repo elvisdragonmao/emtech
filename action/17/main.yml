@@ -1,0 +1,22 @@
+name: Update Notion to Discord
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use custom action
+        uses: ./ # 使用自定義 Action 的路徑
+        with:
+          notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
+          notion_token: ${{ secrets.NOTION_TOKEN }}
+          discord_channel_id: ${{ secrets.DISCORD_CHANNEL_ID }}
+          discord_token: ${{ secrets.DISCORD_TOKEN }}

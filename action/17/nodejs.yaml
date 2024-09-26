@@ -14,12 +14,5 @@ inputs:
     description: "Discord bot token"
     required: true
 runs:
-  using: "composite"
-  steps:
-    - name: Run script
-      run: ./script.sh
-      env:
-        NOTION_DATABASE_ID: ${{ inputs.notion_database_id }}
-        NOTION_TOKEN: ${{ inputs.notion_token }}
-        DISCORD_CHANNEL_ID: ${{ inputs.discord_channel_id }}
-        DISCORD_TOKEN: ${{ inputs.discord_token }}
+  using: "node20"
+  main: "app.js"

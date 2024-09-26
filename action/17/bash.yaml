@@ -1,5 +1,11 @@
 name: "Update Notion to Discord"
 description: "Fetch tasks from Notion and update Discord channel"
+
+on:
+  push:
+    branches:
+      - main  # 只在 push 到 main 分支時觸發
+
 inputs:
   notion_database_id:
     description: "Notion database ID"
@@ -13,6 +19,14 @@ inputs:
   discord_token:
     description: "Discord bot token"
     required: true
+
 runs:
-  using: "node12"
-  main: "src/index.js"
+  using: "composite"
+  steps:
+    - name: Run script
+      run: ./script.sh
+      env:
+        NOTION_DATABASE_ID: ${{ inputs.notion_database_id }}
+        NOTION_TOKEN: ${{ inputs.notion_token }}
+        DISCORD_CHANNEL_ID: ${{ inputs.discord_channel_id }}
+        DISCORD_TOKEN: ${{ inputs.discord_token }}
