@@ -11,20 +11,59 @@ let analyze = {
 };
 let postsMeta = [];
 // Updated Markdown-it setup with new highlight.js API
+
 const md = markdownIt({
     html: true,
     linkify: true,
-    // typographer: true,
-    // quotes: '「」‘’“”',
     highlight: (str, lang) => {
         if (lang && hljs.getLanguage(lang)) {
             try {
-                return hljs.highlight(str, { language: lang }).value;
+                const highlightedCode = hljs.highlight(str, {
+                    language: lang
+                }).value;
+
+                // Adding line numbers
+                const lines = highlightedCode
+                    .split("\n")
+                    .map(
+                        (line, idx) =>
+                            `<span class="line"><span class="ln">${
+                                idx + 1
+                            }</span><span class="cl">${line}</span></span>`
+                    )
+                    .join("\n");
+
+                return lines;
             } catch (__) {}
         }
-        return ""; // use external default escaping
+        return ""; // fallback case
     }
 });
+
+// Custom renderer for code block
+md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+    const token = tokens[idx];
+    const langClass = token.info ? `language-${token.info.trim()}` : "";
+    const langName = token.info || "code";
+
+    // Use the highlighted code with line numbers
+    const highlightedCode = md.options.highlight(
+        token.content,
+        token.info.trim()
+    );
+
+    // Wrap the code block in a div with a copy button
+    return `
+        <div class="code-block">
+            <div class="highlight">
+                <pre tabindex="0" class="chroma">
+                    <code class="${langClass} hljs" data-lang="${langName}">${highlightedCode}</code>
+                </pre>
+            </div>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+        </div>
+    `;
+};
 
 // Custom renderer for images to include figcaption
 md.renderer.rules.image = (tokens, idx, options, env, self) => {
@@ -39,7 +78,7 @@ md.renderer.rules.image = (tokens, idx, options, env, self) => {
     return `
         <figure>
             <img src="${src}" alt="${alt}" title="${title}">
-            <figcaption>${alt}</figcaption>
+            ${alt ? "<figcaption>" + alt + "</figcaption>" : ""}
         </figure>
     `;
 };
@@ -141,11 +180,10 @@ async function processPosts() {
                 thumbnail.includes(".") &&
                 !thumbnail.includes("http")
             ) {
-                console.log("finding" + path.join("..", "dist", thumbnail));
+                // console.log("finding" + path.join("..", "dist", thumbnail));
                 postMeta.colors = await findRepresentativeColors(
                     path.join("dist", thumbnail) //.replaceAll("\\", "/")
                 );
-                console.log(postMeta.colors);
             }
             const postMetaObj = {
                 ...postMeta,
@@ -392,7 +430,6 @@ async function calculateAverageColor(imagePath, region) {
 }
 
 async function findRepresentativeColors(imagePath) {
-    console.log(imagePath);
     const topLeftColor = await calculateAverageColor(imagePath, "topLeft");
     const centerColor = await calculateAverageColor(imagePath, "center");
     const bottomRightColor = await calculateAverageColor(
