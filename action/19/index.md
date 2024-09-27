@@ -4,7 +4,7 @@
 
 > 戰國時期張儀遊說各國開放 API 給秦整合，才能夠瓦解合縱聯盟。
 
-在這篇教程中，我們將探討如何集成外部 API 和服務，自動化 GitHub issue 管理，並使用 CodeRabbit 自動進行代碼審查，Vercel 與 Zeabur。我們將使用 GitHub Actions 來實現這些自動化功能。
+在這篇教程中，我們將探討如何集成外部 API 和服務，自動化 GitHub issue 管理，並使用 CodeRabbit 自動進行代碼審查，Vercel 與 Zeabur 來實現自動化部屬。
 
 > 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/19>
 

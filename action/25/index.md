@@ -1,16 +1,14 @@
-# 自動化安全掃描與漏洞檢查：使用 Dependabot 和 GitHub Actions
+# 自動化安全掃描與漏洞檢查 - 使用 Dependabot 和 GitHub Actions
 
 > 《山河頌》：「外賊易擋，家賊難防」套件的漏洞常常難以發現，還好有 Dependabot 可以定期檢查。
 
-**引言**
-
-在現代軟體開發中，安全性是至關重要的。自動化的安全掃描可以幫助我們及時發現並修補漏洞，從而提高應用程序的安全性。本文將介紹如何使用 GitHub 的 Dependabot 來自動檢查依賴的安全性，並使用 GitHub Actions 檢查是否洩漏 secrets。
+自動化的安全掃描可以幫助我們及時發現並修補漏洞，從而提高應用程序的安全性。本文將介紹如何使用 GitHub 的 Dependabot 來自動檢查依賴的安全性，並使用 GitHub Actions 檢查是否洩漏 secrets。
 
 > 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/25>
 
-## 部分 1: 使用 Dependabot 進行依賴安全性檢查
+## 使用 Dependabot 進行依賴安全性檢查
 
-### 步驟 1: 設置 Dependabot
+### 設置 Dependabot
 
 Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴項。它能夠定期掃描你的依賴項並向你報告漏洞，並且可以自動提交更新以修補已知的安全漏洞。
 
@@ -46,9 +44,11 @@ Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴�
 
    Dependabot 會在 GitHub 的 `Security` 標籤頁面下顯示依賴安全性警報。當檢測到安全漏洞時，它會創建拉取請求以更新相關依賴。
 
-## 部分 2: 使用 GitHub Actions 檢查 secrets 洩漏
+## 使用 GitHub Actions 檢查 secrets 洩漏
 
-### 步驟 1: 配置 GitHub Actions 工作流程
+我們可以使用 `git-secrets` 這個套件來檢查程式碼中是否存在 secrets 的洩漏。這有助於確保我們的代碼庫不會意外地包含敏感信息，例如 API 密鑰、憑證等。
+
+### 配置 GitHub Actions 工作流程
 
 1. **創建工作流程文件**
 
@@ -111,7 +111,7 @@ Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴�
 
    你可以配置 `git-secrets` 以檢查常見的密鑰模式，例如 AWS 密鑰或其他 API 密鑰。
 
-### 步驟 2: 確保 secrets 的安全
+### 確保 secrets 的安全
 
 - **不將敏感信息硬編碼到代碼中**：使用 GitHub 的 secrets 功能來存儲敏感信息，例如 API 密鑰和憑證。
 

@@ -1,0 +1,24 @@
+靠著那 GitHub Actions，凡事都能做
+Hello World - 運行 Shell 指令
+幫我結帳 - 自動化 Git 操作
+弄好了給你 - 上傳與下載工件（artifact）
+用 Prettier 統一天下 - 讓程式碼格式一致
+有意見就說 - 編輯後自動提 Pull Request
+時間差不多囉 - 事件觸發器
+今天不講 DVD，來談談 CI/CD - eslint 與 pylint
+Jest Do It - 運行單元測試
+啊我就怕不相容 - 多平台測試
+告訴你一個大秘密 - 如何在 GitHub Actions 中使用 Secrets
+一切都是有條件的 - 環境變數和條件運行
+在碼頭等你 - 自動化 Docker 構建
+直上天雲 - 自動化部屬
+這是我家鑰匙 - SSH 自動化部署
+#解放你的 Release - 自動化版本控制與發布
+用 GitHub Actions 把 Issue 同步到 Notion
+渲染 Markdown 文件 - 自動生成和更新項目文檔
+自動化性能測試：使用 GitHub Actions 進行負載測試與生成性能報告
+自動化安全掃描與漏洞檢查 - 使用 Dependabot 和 GitHub Actions
+集成通知服務 - 在 GitHub Actions 中配置 Slack 通知和生成報告文件
+優化工作流程運行時間：使用 GitHub Actions 快取來加速構建
+無國界倉庫 - 管理多倉庫的自動化工作流程
+鐵人賽怕忘記發文？讓 GitHub Action 每小時提醒你！

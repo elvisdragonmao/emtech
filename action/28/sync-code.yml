@@ -1,0 +1,35 @@
+name: Sync Code to Another Repository
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v3
+        with:
+          repository: source-repo/source-repo-name
+          token: ${{ secrets.SOURCE_REPO_TOKEN }}
+
+      - name: Set up Git
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Add and commit changes
+        run: |
+          git add .
+          git commit -m "Syncing code to another repository" || echo "No changes to commit"
+
+      - name: Push changes to target repository
+        run: |
+          git remote add target https://github.com/target-repo/target-repo-name.git
+          git push target main
+        env:
+          GITHUB_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}

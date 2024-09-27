@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/" # 根目錄
+    schedule:
+      interval: "daily" # 每天檢查更新
+  - package-ecosystem: "pip"
+    directory: "/" # 根目錄
+    schedule:
+      interval: "weekly" # 每周檢查更新

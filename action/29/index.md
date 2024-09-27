@@ -1,218 +1,172 @@
-# 自動化維護與清理：自動關閉長時間未處理的 Issue 和 PR
+# 鐵人賽怕忘記發文？讓 GitHub Action 每小時提醒你！
 
-> 《後漢書·卷六十六 陳王列傳》：「一屋不掃，何以掃天下？」
+倒數第二天了，各位今年有參加鐵人賽嗎？記得去年寫[【不用庫 也能酷 - 玩轉 CSS & Js 特效】](https://ithelp.ithome.com.tw/users/20139821/ironman/6133)的時候緊張到好幾天晚上做惡夢夢到忘記發文，不過今天我心裡特別平安，因為我寫了一個 GitHub Action 來提醒我每小時發文。
 
-**引言**
+![成果](remind.webp)
 
-在持續運行的開源或企業倉庫中，管理問題（issues）和拉取請求（PRs）是維護工作的重要部分。隨著時間的推移，未處理的 issue 和 PR 可能會累積，影響倉庫的健康和開發效率。使用 GitHub Actions 進行自動化維護和清理，可以減少手動工作，確保倉庫保持整潔。本文將介紹如何設置 GitHub Actions 來自動關閉長時間未處理的 issue 和 PR，提升維護效率。
+它的原理很簡單，就是每小時觸發一次 Action，然後使用靜態爬蟲爬取我的鐵人賽頁面，檢查是否有今天的文章，如果沒有就發送一封郵件給我。
+今天就讓我們一步步來實作這個 Action 吧！
 
 > 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/29>
+> 其實如果你有發現的話，這個 repo 底下一直有一個 check 資料夾，這個就是每天提醒我發文的 Action。
 
-## 為什麼需要自動化維護？
+## 實作爬蟲
 
-未處理的 issue 和 PR 可能會影響倉庫的運行效率。自動化維護有助於：
+### 觀察頁面
 
-- **保持倉庫整潔**：及時處理或關閉過期的問題和請求。
-- **提升開發效率**：減少維護人員的工作量，讓他們專注於當前和重要的問題。
-- **改進問題追蹤**：自動化的清理過程能夠讓倉庫的問題管理更加系統化和高效。
+我們先實作一個簡單的爬蟲，來爬取我的鐵人賽頁面，然後檢查是否有今天的文章。觀察一下可以發現鐵人賽每頁只會顯示 10 篇文章，所以我們需要根據日期來判斷今天是第幾天，要看第幾頁的資料。比如說要看第二頁的資料就是：
 
-## 技巧與實作
+```url
+https://ithelp.ithome.com.tw/users/20139821/ironman/7503?page=2
+```
 
-### 自動關閉未處理的 Issue
+再觀察一下可以發現顯示天數的 HTML 結構是這樣的：
 
-1. **創建工作流程文件**
+```html
+<span class="ir-qa-list__days ir-qa-list__days--profile ">DAY 1 </span>
+```
 
-   在你的倉庫中，創建一個工作流程文件，例如 `cleanup-issues.yml`，並加入以下內容：
+![鐵人賽頁面](ithome.webp)
 
-   ```yaml
-   name: Clean Up Old Issues
+所以我們只需要到正確的頁面找到有沒有這串文字就可以了。
 
-   on:
-     schedule:
-       - cron: "0 0 * * *" # 每天午夜運行
+### 初始化 Node.js 專案
 
-   jobs:
-     cleanup:
-       runs-on: ubuntu-latest
+首先我們先在 GitHub 上建立一個新的專案，然後在本地初始化一個專案。今天我們來使用 Yarn 來初始化專案。
 
-       steps:
-         - name: Checkout repository
-           uses: actions/checkout@v3
+```bash
+mkdir remind-me-to-post
+cd remind-me-to-post
+git init
+yarn init
+yarn add node-fetch
+```
 
-         - name: Set up Python
-           uses: actions/setup-python@v3
-           with:
-             python-version: "3.9"
+這裡我們使用 `node-fetch` 來發送 HTTP 請求，這樣我們就可以在 Action 中使用這個套件來爬取網頁。因為我們只是要檢查是否有今天的文章，所以不需要使用 Puppeteer 這種重量級的爬蟲套件，或是 Cheerio 這種解析 HTML 的套件。
 
-         - name: Install dependencies
-           run: |
-             pip install requests
+### 實作爬蟲
 
-         - name: Run issue cleanup script
-           run: python scripts/cleanup_issues.py
-           env:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-   ```
+```javascript
+import fetch from "node-fetch";
 
-   **解釋**:
+const now = new Date();
+const nowUTC8 = new Date(now.getTime() + 8 * 60 * 60 * 1000);
+// minus 2024/9/15, calculate how many days after.
+const days = Math.floor(
+  (nowUTC8 - new Date("2024-09-14")) / (24 * 60 * 60 * 1000)
+);
+const url =
+  "https://ithelp.ithome.com.tw/users/20139821/ironman/7503?page=" +
+  Math.ceil(days / 10);
 
-   - `on.schedule`: 設置自動運行的時間間隔，此處為每天午夜。
-   - `actions/setup-python`: 配置 Python 環境。
-   - `cleanup_issues.py`: 自定義 Python 腳本，用於處理未處理的 issue。
+fetch(url)
+  .then((res) => res.text())
+  .then((html) => {
+    // remove all tabs and spaces in the html
+    const htmlNoSpace = html.replace(/\s/g, "");
+    // check if html include <spanclass="ir-qa-list__daysir-qa-list__days--profile">DAY5</span>
+    //console.log(htmlNoSpace); // The raw HTML of the page
 
-2. **編寫清理腳本**
+    if (
+      !htmlNoSpace.includes(
+        `<spanclass="ir-qa-list__daysir-qa-list__days--profile">DAY${days}</span>`
+      )
+    ) {
+      // call discord webhook, and send message to discord
+      fetch(process.env.DISCORD_WEBHOOK, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          content: `@everyone 第${days}天的文章還沒發布喔！`
+        })
+      })
+        .then(() => {
+          console.log(
+            "Day",
+            days,
+            "not published yet. Message sent to Discord."
+          );
+        })
+        .catch((err) => {
+          console.error("Error sending message to Discord:", err);
+        });
+    }
+  })
+  .catch((err) => {
+    console.error("Error fetching page:", err);
+  });
+```
 
-   在 `scripts` 目錄中，創建 `cleanup_issues.py` 腳本，並加入以下內容：
+來看一下這段程式碼：
 
-   ```python
-   import requests
-   from datetime import datetime, timedelta
-   import os
+1. 首先我們取得現在的日期，然後計算到 2024/9/15 之後幾天。
+2. 根據天數計算出我們要爬取的頁面。
+3. 使用 `node-fetch` 發送 HTTP 請求，取得頁面的 HTML。
+4. 移除 HTML 中的空白字元，然後檢查是否有今天的文章。
+5. 如果沒有今天的文章，就使用 Discord Webhook 來發送訊息給我。
+6. 如果有任何錯誤，就印出錯誤訊息。
 
-   # GitHub API URL
-   API_URL = 'https://api.github.com/repos/{owner}/{repo}/issues'
-   TOKEN = os.getenv('GITHUB_TOKEN')
+### 設定 Discord Webhook 至 GitHub Secrets
 
-   # 設置要過期的天數
-   EXPIRY_DAYS = 30
+這裡我們使用 Discord Webhook 來發送訊息給我，所以我們需要先設定一個 Webhook。首先我們需要在 Discord 上建立一個伺服器，然後建立一個文字頻道，然後在頻道設定中找到 Webhook，然後建立一個 Webhook。
 
-   def get_old_issues():
-       headers = {'Authorization': f'token {TOKEN}'}
-       response = requests.get(API_URL.format(owner='your-username', repo='your-repo'), headers=headers)
-       issues = response.json()
+![Discord Webhook 設定](discord.webp)
 
-       old_issues = []
-       for issue in issues:
-           created_at = datetime.strptime(issue['created_at'], '%Y-%m-%dT%H:%M:%SZ')
-           if (datetime.utcnow() - created_at) > timedelta(days=EXPIRY_DAYS):
-               old_issues.append(issue)
+建立 Webhook 之後，我們就可以取得 Webhook 的 URL，然後設定到 GitHub 的 Secrets 中。
 
-       return old_issues
+### 撰寫 GitHub Action
 
-   def close_issues(issues):
-       headers = {'Authorization': f'token {TOKEN}', 'Accept': 'application/vnd.github.v3+json'}
-       for issue in issues:
-           issue_number = issue['number']
-           url = f'https://api.github.com/repos/{owner}/{repo}/issues/{issue_number}'
-           requests.patch(url, headers=headers, json={'state': 'closed'})
-           print(f'Closed issue #{issue_number}')
+接著我們就可以撰寫 GitHub Action 來執行這個爬蟲了。
 
-   if __name__ == '__main__':
-       old_issues = get_old_issues()
-       close_issues(old_issues)
-   ```
+```yaml
+# @format
 
-   **解釋**:
+name: 鐵人賽發文檢查
 
-   - `get_old_issues()`: 獲取超過指定天數的舊 issue。
-   - `close_issues()`: 關閉過期的 issue。
-   - 使用 GitHub API 來獲取和更新 issue。
+on:
+  # every hour from 12:00 to 23:00
+  schedule:
+    - cron: "0 4-16 * * *"
+  workflow_dispatch:
 
-3. **測試與驗證**
+jobs:
+  run-check:
+    runs-on: ubuntu-latest
 
-   提交工作流程文件和清理腳本到倉庫，檢查 GitHub Actions 是否按預期運行，並確保舊的 issue 被自動關閉。
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-### 自動關閉未處理的 PR
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - name: Change Directory to 'check'
+        run: cd check
 
-1. **創建工作流程文件**
+      - name: Install Dependencies
+        run: yarn install
+        working-directory: ./check
 
-   在倉庫中，創建一個工作流程文件，例如 `cleanup-prs.yml`，並加入以下內容：
+      - name: Run Node.js Script
+        run: node index.mjs
+        working-directory: ./check
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+```
 
-   ```yaml
-   name: Clean Up Old PRs
+這裡要注意由於 GitHub Action 的時區是 UTC，所以我們需要將時間 +8 小時，這樣才能在正確的時間執行 Action。這裡我們設定每小時執行一次，從凌晨 12 點 (因為這時候我通常還沒睡，或是一早能看到)。接下來是從中午 12 點到晚上 11 點每個小時執行一次。
 
-   on:
-     schedule:
-       - cron: "0 0 * * *" # 每天午夜運行
+### 執行 Action
 
-   jobs:
-     cleanup:
-       runs-on: ubuntu-latest
+最後我們就可以將這個 Action 推送到 GitHub 上，然後等待每個小時的提醒了。
 
-       steps:
-         - name: Checkout repository
-           uses: actions/checkout@v3
+```bash
+git add .
+git commit -m "feat: add remind me to post"
+git push origin main
+```
 
-         - name: Set up Python
-           uses: actions/setup-python@v3
-           with:
-             python-version: "3.9"
-
-         - name: Install dependencies
-           run: |
-             pip install requests
-
-         - name: Run PR cleanup script
-           run: python scripts/cleanup_prs.py
-           env:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-   ```
-
-   **解釋**:
-
-   - 同樣的調度設置和 Python 環境配置。
-
-2. **編寫清理腳本**
-
-   在 `scripts` 目錄中，創建 `cleanup_prs.py` 腳本，並加入以下內容：
-
-   ```python
-   import requests
-   from datetime import datetime, timedelta
-   import os
-
-   # GitHub API URL
-   API_URL = 'https://api.github.com/repos/{owner}/{repo}/pulls'
-   TOKEN = os.getenv('GITHUB_TOKEN')
-
-   # 設置要過期的天數
-   EXPIRY_DAYS = 30
-
-   def get_old_prs():
-       headers = {'Authorization': f'token {TOKEN}'}
-       response = requests.get(API_URL.format(owner='your-username', repo='your-repo'), headers=headers)
-       prs = response.json()
-
-       old_prs = []
-       for pr in prs:
-           created_at = datetime.strptime(pr['created_at'], '%Y-%m-%dT%H:%M:%SZ')
-           if (datetime.utcnow() - created_at) > timedelta(days=EXPIRY_DAYS):
-               old_prs.append(pr)
-
-       return old_prs
-
-   def close_prs(prs):
-       headers = {'Authorization': f'token {TOKEN}', 'Accept': 'application/vnd.github.v3+json'}
-       for pr in prs:
-           pr_number = pr['number']
-           url = f'https://api.github.com/repos/{owner}/{repo}/pulls/{pr_number}'
-           requests.patch(url, headers=headers, json={'state': 'closed'})
-           print(f'Closed PR #{pr_number}')
-
-   if __name__ == '__main__':
-       old_prs = get_old_prs()
-       close_prs(old_prs)
-   ```
-
-   **解釋**:
-
-   - `get_old_prs()`: 獲取超過指定天數的舊 PR。
-   - `close_prs()`: 關閉過期的 PR。
-
-3. **測試與驗證**
-
-   提交工作流程文件和清理腳本到倉庫，檢查 GitHub Actions 是否按預期運行，並確保舊的 PR 被自動關閉。
-
-## 高級配置
-
-### 管理權限和秘密
-
-確保 GitHub Token 擁有足夠的權限來讀取和修改 issue 和 PR 的狀態。使用 GitHub Secrets 來安全地管理這些敏感信息。
-
-### 定制化設置
-
-根據需要定制清理條件，例如過期天數，或在清理前發送通知。可以在腳本中添加額外的邏輯來適應不同的情況。
-
-## 小結
-
-自動化維護和清理是保持倉庫健康的重要策略。通過設置 GitHub Actions 自動關閉長時間未處理的 issue 和 PR，可以提高維護效率，確保倉庫的整潔。希望本文能幫助你實現自動化維護，提升工作流程的自動化程度。
+這樣我們就可以在每個小時收到提醒了，不用擔心忘記發文了！

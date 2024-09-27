@@ -1,16 +1,16 @@
-# 集成通知服務：在 GitHub Actions 中配置 Slack 通知和生成報告文件
+# 集成通知服務 - 在 GitHub Actions 中配置 Slack 通知和生成報告文件
 
 > 雅典軍隊如果有 Slack 通知，斐迪庇得斯就不用趕著從馬拉松跑回雅典了。
-
-**引言**
 
 在持續集成和持續部署 (CI/CD) 流程中，及時了解工作流程的狀態對於快速響應和改進至關重要。本文將介紹如何在 GitHub Actions 工作流程中集成 Slack 通知服務，以便在工作流程運行時獲得實時通知，以及如何生成報告文件來跟蹤工作流程的結果。
 
 > 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/26>
 
-## 部分 1: 在 GitHub Actions 中配置 Slack 通知
+今天的文章假設你會使用 Slack，並且已經有一個 Slack 工作區。如果你還沒有，可以參考 [Slack 官方文檔](https://slack.com/intl/zh-tw/help/articles/206845317-Create-a-Slack-workspace) 來創建一個。
 
-### 步驟 1: 創建 Slack 應用並獲取 Webhook URL
+## GitHub Actions 中配置 Slack 通知
+
+### 創建 Slack 應用並獲取 Webhook URL
 
 1. **創建 Slack 應用**
 
@@ -27,9 +27,9 @@
    4. 選擇要發送通知的頻道，並點擊 `Allow`。
    5. 複製 Webhook URL，稍後會在 GitHub Actions 中使用。
 
-### 步驟 2: 配置 GitHub Actions 工作流程
+### 配置 GitHub Actions 工作流程
 
-1. **創建或編輯工作流程文件**
+1. **創建工作流程文件**
 
    在 `.github/workflows` 目錄下創建一個新的工作流程文件，例如 `notify-slack.yml`，並加入以下內容：
 
@@ -73,9 +73,9 @@
    3. 點擊 `New repository secret`。
    4. 添加名為 `SLACK_TOKEN` 的 secret，並填入你的 Slack Token。
 
-## 部分 2: 生成報告文件
+## 生成報告文件
 
-### 步驟 1: 編寫生成報告的腳本
+### 編寫生成報告的腳本
 
 1. **創建報告生成腳本**
 
@@ -112,7 +112,7 @@
 
 1. **更新工作流程文件**
 
-   在 `.github/workflows` 目錄下創建或更新工作流程文件，例如 `generate-report.yml`，並加入以下內容：
+   在 `.github/workflows` 目錄下創建流程文件，例如 `generate-report.yml`，並加入以下內容：
 
    ```yaml
    name: Generate Report
@@ -158,4 +158,4 @@
 
 ## 小結
 
-在本文中，我們介紹了如何在 GitHub Actions 工作流程中配置 Slack 通知，以便實時了解工作流程的狀態，並如何生成報告文件以跟蹤工作流程的結果。
+在本文中，我們介紹了如何在 GitHub Actions 工作流程中配置 Slack 通知，以便實時了解工作流程的狀態，並如何生成報告文件以跟蹤工作流程的結果。當然今天的練習非常的簡單，你可以根據實際需求進行擴展，例如添加更多通知類型、生成更複雜的報告等。
