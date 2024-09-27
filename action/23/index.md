@@ -1,265 +1,163 @@
-# 設計和實作多階段 CI/CD 流程
+# 不在其位，不謀其政 - 多階段 CI/CD 流程
 
 > 子曰：「不在其位，不謀其政。」說明了多階段工作流程的重要性。
 
-在軟體開發中，設計一個穩定且高效的 CI/CD（持續集成與持續部署）流程是至關重要的。這不僅能夠提高開發效率，還能確保應用的品質。本文將通過一個具體範例展示如何使用 GitHub Actions 設計和實作一個多階段的 CI/CD 流程，包括構建、測試、部署和發布。
+設計一個穩定且高效的 CI/CD（持續集成與持續部署）流程是至關重要的。這不僅能夠提高開發效率，還能確保應用的品質。我們今天要在 Node.js 專案中使用 GitHub Actions 搭建一個多階段 CI/CD 流程，涵蓋構建、測試、部署和發布。
 
 > 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/23>
 
-## 專案背景
 
-我們將以一個簡單的 Python 應用為例，示範如何設置和管理 CI/CD 流程。該應用包含以下文件和功能：
+## 設置 Node.js 專案
 
-- **`app.py`**：應用主文件。
-- **`requirements.txt`**：依賴文件。
-- **`tests.py`**：測試文件。
-- **`setup.py`**：設置文件。
+在開始設計 CI/CD 流程之前，我們需要確保已經在 GitHub 上創建了一個 Node.js 專案，並在本地完成了基本的項目配置。你可以使用現有的專案，或是依照以下步驟簡單配置一個。
 
-## 步驟 1: 準備專案
-
-1. **創建專案文件夾**
-
+1. **初始化專案**：
    ```bash
-   mkdir my-python-app
-   cd my-python-app
+   mkdir node-ci-cd-demo
+   cd node-ci-cd-demo
+   npm init -y
    ```
 
-2. **初始化 Python 環境**
-
+2. **安裝必要的依賴項**：
    ```bash
-   python -m venv venv
-   source venv/bin/activate
+   npm install express
+   npm install --save-dev jest
    ```
 
-3. **創建 Python 應用**
-
-   在 `my-python-app` 目錄下創建以下文件：
-
-   - `app.py`：應用主文件。
-
-     ```python
-     # app.py
-     def main():
-         print("Hello, world!")
-
-     if __name__ == "__main__":
-         main()
-     ```
-
-   - `requirements.txt`：依賴文件。
-
-     ```text
-     # requirements.txt
-     ```
-
-   - `tests.py`：測試文件。
-
-     ```python
-     # tests.py
-     def test_main():
-         assert True
-     ```
-
-   - `setup.py`：設置文件。
-
-     ```python
-     # setup.py
-     from setuptools import setup
-
-     setup(
-         name='my-python-app',
-         version='0.1',
-         py_modules=['app'],
-         install_requires=[
-             'Click',
-         ],
-         entry_points='''
-             [console_scripts]
-             app=app:main
-         ''',
-     )
-     ```
-
-## 步驟 2: 設置 GitHub Actions 工作流程
-
-1. **創建 `.github/workflows` 目錄**
-
-   ```bash
-   mkdir -p .github/workflows
+3. **設置簡單的測試**：  
+   在 `package.json` 中添加一個簡單的測試腳本：
+   ```json
+   "scripts": {
+     "test": "jest"
+   }
    ```
 
-2. **創建 CI/CD 工作流程文件**
+## 使用 GitHub Actions 設計 CI/CD 流程
 
-   在 `.github/workflows` 目錄下創建 `ci-cd.yml` 文件，並加入以下內容：
+### 創建 GitHub Actions 工作流
 
-   ```yaml
-   name: CI/CD Pipeline
+在項目的根目錄下創建一個 `.github/workflows` 文件夾，並在其中創建一個名為 `ci.yml` 的文件。
 
-   on:
-     push:
-       branches:
-         - main
-     pull_request:
-       branches:
-         - main
-     workflow_dispatch:
+```yaml
+name: Node.js CI
 
-   jobs:
-     build:
-       runs-on: ubuntu-latest
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-       steps:
-         - name: Checkout code
-           uses: actions/checkout@v2
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-         - name: Set up Python
-           uses: actions/setup-python@v3
-           with:
-             python-version: "3.9"
+    strategy:
+      matrix:
+        node-version: [20.x, 18.x]
 
-         - name: Install dependencies
-           run: |
-             pip install -r requirements.txt
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-         - name: Build application
-           run: |
-             python setup.py build
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-         - name: Upload build artifacts
-           uses: actions/upload-artifact@v3
-           with:
-             name: build
-             path: build/
+      - name: Install dependencies
+        run: npm install
 
-     test:
-       runs-on: ubuntu-latest
-       needs: build
+      - name: Run tests
+        run: npm test
+```
 
-       steps:
-         - name: Checkout code
-           uses: actions/checkout@v2
+#### Step 2: 添加部署階段
 
-         - name: Set up Python
-           uses: actions/setup-python@v3
-           with:
-             python-version: "3.9"
+假設我們使用 Heroku 部署應用，我們可以在成功測試後自動將應用部署到 Heroku。
 
-         - name: Install dependencies
-           run: |
-             pip install -r requirements.txt
+1. 安裝 Heroku CLI 並獲取 API Token。
+2. 在 GitHub 的 repository settings 中，添加一個名為 `HEROKU_API_KEY` 的機密環境變量。
 
-         - name: Run tests
-           run: |
-             pytest
+然後，在 CI 工作流中添加部署步驟：
 
-     deploy:
-       runs-on: ubuntu-latest
-       needs: test
-       if: github.ref == 'refs/heads/main'
+```yaml
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-       steps:
-         - name: Checkout code
-           uses: actions/checkout@v2
+      - name: Login to Heroku
+        run: echo ${{ secrets.HEROKU_API_KEY }} | docker login --username=_ --password-stdin registry.heroku.com
 
-         - name: Set up Python
-           uses: actions/setup-python@v3
-           with:
-             python-version: "3.9"
+      - name: Deploy to Heroku
+        run: |
+          heroku container:push web --app your-heroku-app-name
+          heroku container:release web --app your-heroku-app-name
+```
 
-         - name: Install dependencies
-           run: |
-             pip install -r requirements.txt
+#### Step 3: 發布階段
 
-         - name: Deploy to server
-           run: |
-             rsync -avz build/ user@server:/path/to/deploy/
+如果你希望在完成部署後發布一個新的 Release，可以在工作流中添加以下步驟：
 
-     release:
-       runs-on: ubuntu-latest
-       needs: deploy
-       if: github.ref == 'refs/heads/main'
+```yaml
+  publish:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-       steps:
-         - name: Checkout code
-           uses: actions/checkout@v2
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v1.0.0
+          release_name: "First release"
+          draft: false
+          prerelease: false
+```
 
-         - name: Create release
-           uses: actions/create-release@v1
-           with:
-             tag_name: ${{ github.sha }}
-             release_name: Release ${{ github.sha }}
-             draft: false
-             prerelease: false
-           env:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+### 5. 部署 Node.js 應用
 
-         - name: Upload release assets
-           uses: actions/upload-release-asset@v1
-           with:
-             upload_url: ${{ steps.create_release.outputs.upload_url }}
-             asset_path: ./build/your-application
-             asset_name: your-application-${{ github.sha }}.tar.gz
-             asset_content_type: application/gzip
-   ```
+這裡以 **Heroku** 為例，介紹如何自動化部署 Node.js 應用：
 
-### **工作流程解釋**
+1. 首先，確保你已經將 Heroku 應用綁定到 GitHub repository。
+2. 在工作流文件中添加部署到 Heroku 的步驟，並確保 `HEROKU_API_KEY` 已正確配置。
+3. 當代碼推送到 `main` 分支時，GitHub Actions 將自動運行工作流，並在測試通過後將應用部署到 Heroku。
 
-- **`build` 階段**：
+### 6. 實用技巧
 
-  - **Checkout code**：檢出代碼。
-  - **Set up Python**：設置 Python 環境。
-  - **Install dependencies**：安裝依賴。
-  - **Build application**：構建應用。
-  - **Upload build artifacts**：上傳構建產物。
+#### **1. 並行運行測試**
+你可以使用 GitHub Actions 的矩陣功能來並行運行不同 Node.js 版本的測試，確保應用在不同環境下的穩定性。
 
-- **`test` 階段**：
+#### **2. 缓存 Node.js 依賴**
+使用 GitHub Actions 提供的 `cache` 功能來加速依賴的安裝過程。這可以顯著縮短 CI 的運行時間。
 
-  - **Checkout code**：檢出代碼。
-  - **Set up Python**：設置 Python 環境。
-  - **Install dependencies**：安裝依賴。
-  - **Run tests**：運行單元測試。
+```yaml
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+```
 
-- **`deploy` 階段**：
+#### **3. 使用 Lint 驗證代碼風格**
+你可以在 CI 過程中加入 ESLint 或 Prettier 來自動驗證代碼風格。
 
-  - **Checkout code**：檢出代碼。
-  - **Set up Python**：設置 Python 環境。
-  - **Install dependencies**：安裝依賴。
-  - **Deploy to server**：部署應用到伺服器（使用 `rsync`）。
+```yaml
+      - name: Run ESLint
+        run: npm run lint
+```
 
-- **`release` 階段**：
-  - **Checkout code**：檢出代碼。
-  - **Create release**：創建 GitHub Release。
-  - **Upload release assets**：上傳釋出資源。
+### 7. 結論
 
-## 步驟 3: 配置 Secrets
+設計一個穩定的 CI/CD 流程對於保證軟體的質量和部署效率至關重要。本文介紹了如何使用 GitHub Actions 搭建 Node.js 的多階段 CI/CD 流程，並涵蓋了構建、測試、部署和發布的自動化。通過實踐這些步驟和技巧，你可以更輕鬆地管理你的 Node.js 專案，並確保其在不同環境中的穩定性。
 
-1. **添加 GitHub Secrets**
-
-   - 進入 GitHub repository 的 `Settings` 頁面。
-   - 選擇 `Secrets` 和 `Actions`。
-   - 添加以下 Secrets：
-     - `GITHUB_TOKEN`：GitHub 自動生成的 token，用於創建和管理 releases。
-
-## 步驟 4: 測試工作流程
-
-1. **提交更改**
-
-   提交所有更改並推送到 GitHub：
-
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin <your-repo-url>
-   git push -u origin main
-   ```
-
-2. **檢查 Actions**
-
-   - 進入 GitHub repository 的 `Actions` 頁面。
-   - 查看每個工作流程階段的執行情況，確保所有階段都成功完成。
-
-## 步驟 5: 小結
-
-在本文中，我們設置了一個多階段 CI/CD 流程，涵蓋了構建、測試、部署和發布。這樣的工作流程可以確保代碼的品質和應用的穩定性，並自動化常見的開發和部署任務，提高開發效率。
+希望這篇文章對你有所幫助，並且能夠提高你在軟體開發中的自動化水平。如果有任何問題或建議，歡迎在下方留言。

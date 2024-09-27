@@ -5,7 +5,7 @@ $mdFiles = Get-ChildItem -Path $folderPath -Recurse -Include *.md, *.yaml
 foreach ($file in $mdFiles) {
     $content = Get-Content -Path $file.FullName -Raw
     # replace node-version: '16' (from 1 to 19) with node-version: '20'
-    $updatedContent = $content -replace "Google App Script", "Google Apps Script"
+    $updatedContent = $content -replace "actions/setup-node@v2", "actions/setup-node@v3"
     # Write the updated content back to the file without adding a new line at the end
     [System.IO.File]::WriteAllText($file.FullName, $updatedContent)
 }
