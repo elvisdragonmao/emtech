@@ -1,0 +1,34 @@
+name: crawl
+
+on:
+  schedule:
+    - cron: "0 * * * *" # Runs every hour
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "current"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run index.js
+        run: node index.js
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+      - name: 自動提交
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update data"
+          branch: main
+          commit_user_name: Edit-Mr
+          commit_user_email: info@elvismao.com
