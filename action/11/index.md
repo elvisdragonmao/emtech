@@ -14,7 +14,7 @@
 
 **Secrets** 是 GitHub 提供的一種功能，用來儲存和管理敏感資料。這些資料在工作流程中可以安全地使用，但不會被暴露在日志或其他地方。
 
-也許你會擔心，GitHub Action 裡面的 Log 不是會把所有的資料都印下來嗎？不用擔心，GitHub Actions 會自動過濾掉 Secrets，把他們全部變成 `***`。
+也許你會擔心，GitHub Actions 裡面的 Log 不是會把所有的資料都印下來嗎？不用擔心，GitHub Actions 會自動過濾掉 Secrets，把他們全部變成 `***`。
 
 ## 實作：設置和使用 API 金鑰進行身份驗證
 

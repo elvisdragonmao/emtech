@@ -262,9 +262,9 @@ date: 2022-08-14
 
 ![再看一次試算表](https://emtech.cc/images/gas.jpg)
 
-我們會使用GAS(Google App Script)來建立網頁應用程式來讀取表格資料。
+我們會使用GAS(Google Apps Script)來建立網頁應用程式來讀取表格資料。
 
-{{% notice info "Google App Script" %}}
+{{% notice info "Google Apps Script" %}}
 
 開發者:Google
 類型:免費網站（可付費升級）
@@ -347,7 +347,7 @@ function doGet() {
 接下來我們回到Github的網頁讓他來讀這個表格
 
 {{% notice notice "等等，不是做好表格網頁了，直接讓它顯示就好了啊幹嘛那麼麻煩？" %}}
-可以當然是可以，姑且不論網址有多長多醜，如果使用Google App Script建設的網站會出現橫幅很醜的一個警告，而且他超長讓你的版面整個跑掉。為了更好的使用者體驗既然都做了就做到底吧！
+可以當然是可以，姑且不論網址有多長多醜，如果使用Google Apps Script建設的網站會出現橫幅很醜的一個警告，而且他超長讓你的版面整個跑掉。為了更好的使用者體驗既然都做了就做到底吧！
 {{% /notice %}}
 
 ## 前端 讀取資料

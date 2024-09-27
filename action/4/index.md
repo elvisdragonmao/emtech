@@ -10,7 +10,7 @@
 
 簡單來說就是輸出的附件。在 GitHub Actions 中，Artifact 代表工作流程運行產生的檔案或資料。通過上傳 Artifact，我們可以將檔案保存起來，以便後續操作或共享。Artifact 可以是構建產生的檔案、測試報告、日誌等，通常用於構建、測試和部署流程中。通過 Artifact，我們可以方便地查看和下載工作流程運行產生的檔案，並進行後續操作。Artifact 會保存在 GitHub Actions 的工作流程中，並且可以在工作流程運行詳情頁面中查看和下載。
 
-我曾經有看到有人是使用 GitHub Action 在某天堂漫畫網站下載漫畫碎片，組裝完之後上傳到 GitHub 作為 Artifact 來下載。這樣的操作方式也是蠻很有趣的。有興趣進行相關*學術研究*的朋友可以參考一下。
+我曾經有看到有人是使用 GitHub Actions 在某天堂漫畫網站下載漫畫碎片，組裝完之後上傳到 GitHub 作為 Artifact 來下載。這樣的操作方式也是蠻很有趣的。有興趣進行相關*學術研究*的朋友可以參考一下。
 
 <https://github.com/jiayaoO3O/18-comic-finder>
 

@@ -1,10 +1,10 @@
-# 把 Issue 同步到 Notion - 編寫自定義 GitHub Action
+# 用 GitHub Actions 把 Issue 同步到 Notion
 
 > 白居易在看到滿滿的 issue 後不經感嘆：「野火燒不盡，春風吹又生。」然後毅然決然地把 issue 同步到 Notion，這樣就不會忘記了。
 
 > 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/18>
 
-今天，我們將介紹如何編寫一個自定義的 GitHub Action，將 GitHub 的 issue 自動同步到 Notion。這個工具將使你能夠將 GitHub 的問題跟踪和管理整合到 Notion 的資料庫中，讓問題管理更加高效。
+今天，我們將介紹如何編寫一個自定義的 GitHub Actions，將 GitHub 的 issue 自動同步到 Notion。這個工具將使你能夠將 GitHub 的問題跟踪和管理整合到 Notion 的資料庫中，讓問題管理更加高效。
 
 ![Demo](demo.webp)
 
@@ -231,4 +231,4 @@ jobs:
 
 ## 小結
 
-今天我們探討了如何編寫一個 GitHub Action 來將 GitHub 的 issue 同步到 Notion。通過這個實踐，我們掌握了如何使用 Node.js 和 GitHub Actions 來自動化從 GitHub 獲取問題並更新 Notion 資料庫的過程。希望這篇教程能幫助你更高效地管理問題並保持項目組織的井然有序。
+今天我們探討了如何編寫一個 GitHub Actions 來將 GitHub 的 issue 同步到 Notion。通過這個實踐，我們掌握了如何使用 Node.js 和 GitHub Actions 來自動化從 GitHub 獲取問題並更新 Notion 資料庫的過程。希望這篇教程能幫助你更高效地管理問題並保持項目組織的井然有序。

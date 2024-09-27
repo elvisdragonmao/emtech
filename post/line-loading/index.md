@@ -7,7 +7,7 @@ date: 2024-05-16
 
 # Line bot 新 API! Messaging API 顯示思考中動畫
 
-Line 在 2024/04/17 推出了新的 Messaging API，其中一個功能是可以顯示思考中動畫。讓使用者知道機器人正在思考中，並不是已讀不回。對於現在許多機器人會串接 LLM API 的應用來說，這個功能非常實用。為了讓大家更好理解，今天我們先不要急著串接生成式 AI，我們來使用 Google App Script 做一個簡單的 Demo 吧!
+Line 在 2024/04/17 推出了新的 Messaging API，其中一個功能是可以顯示思考中動畫。讓使用者知道機器人正在思考中，並不是已讀不回。對於現在許多機器人會串接 LLM API 的應用來說，這個功能非常實用。為了讓大家更好理解，今天我們先不要急著串接生成式 AI，我們來使用 Google Apps Script 做一個簡單的 Demo 吧!
 
 <!--more-->
 
@@ -47,9 +47,9 @@ curl -v -X POST https://api.line.me/v2/bot/chat/loading/start \
 
 > 請到 [Line Developers](https://developers.line.biz/console/) => 新增或選取Provider => Create a new channel => Message API。
 
-### 2. 建立 Google App Script
+### 2. 建立 Google Apps Script
 
-打開 [Google App Script](https://script.google.com/u/0/home/projects/create)，並貼上以下程式碼。
+打開 [Google Apps Script](https://script.google.com/u/0/home/projects/create)，並貼上以下程式碼。
 
 我們希望在使用 doPost 接收到訊息時，回覆使用者一個思考中的動畫。等待 5 秒後，回應說「好喔」。記得將 `token` 替換成你的 Channel Access Token。
 

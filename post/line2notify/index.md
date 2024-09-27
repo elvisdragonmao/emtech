@@ -36,9 +36,9 @@ https://notify-bot.line.me/my/ => 發行權杖 => 把那一串複製下來�
 > \* 記得換成電腦板模式
 >  權杖名稱是顯示在 `【 】` 中的文字，建議越短越好避免洗版
 
-### 建立API(Google App Script)
+### 建立API(Google Apps Script)
 
-{{% notice info "Google App Script" %}}
+{{% notice info "Google Apps Script" %}}
 
 開發者:Google
 類型:免費網站（可付費升級）

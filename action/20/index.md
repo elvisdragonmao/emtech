@@ -1,6 +1,6 @@
 ## 渲染 Markdown 文件 - 自動生成和更新項目文檔
 
-> 司馬遷如果使用 GitHub Action 就可以自動更新《史記》了。
+> 司馬遷如果使用 GitHub Actions 就可以自動更新《史記》了。
 
 在這篇教程中，我們將探討如何使用 GitHub Actions 自動生成和更新 Markdown 文件。
 
@@ -109,7 +109,7 @@ jobs:
         run: |
           if [[ "${{ steps.git-diff.outputs.changes }}" == "true" ]]; then
             git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
+            git config --local user.name "GitHub Actions"
             git add .
             git commit -m "📋 Update font list"
             git push

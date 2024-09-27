@@ -6,9 +6,9 @@ series: [複製貼上就能成為工程師]
 date: 2022-08-17
 ---
 
-# 【Github Action】自動部署你的 Hugo 網站
+# 【GitHub Actions】自動部署你的 Hugo 網站
 
-每次寫完文章還要打指令生成網站，麻煩死了！讓Github Action幫你自動部署，寫完文章直角上傳就好了！
+每次寫完文章還要打指令生成網站，麻煩死了！讓GitHub Actions幫你自動部署，寫完文章直角上傳就好了！
 
 <!--more-->
 
@@ -22,13 +22,13 @@ date: 2022-08-17
 平常我們寫完一篇文章，要先打指令生成靜態網站（生成在`public`資料夾裡面），再把它上傳到Github上面。
 除了過程十分的麻煩以外，因為網站資料是儲存在你自己的電腦裡面，所以假設你更變工作環境（比如說在手機上）你就沒辦法進行編輯。
 
-既然每次生成網站的指令都是一樣的，不如我們來建立一個Github Action來讓它自動部署吧
+既然每次生成網站的指令都是一樣的，不如我們來建立一個GitHub Actions來讓它自動部署吧
 
 # 設定 Github
 
 ## 設定 Access Token
 
-首先我們要先建立一個Repository 的 Access Token。這是一把鑰匙，我們要把鑰匙給Github Action的程式它才可以部署我們的網站
+首先我們要先建立一個Repository 的 Access Token。這是一把鑰匙，我們要把鑰匙給GitHub Actions的程式它才可以部署我們的網站
 
 請先到`Settings/Developer Settings`下的`Personal access tokens`生成一組`Access Token`。建議scope直接選repo的所有權限。
 
@@ -36,7 +36,7 @@ date: 2022-08-17
 
 ## 添加 Secrets
 
-因為我們的Github Action程式碼是公開的，但是我們不想要讓其他人看到剛才的那組Access Token，所以我們要建立一組Secret。當我們在程式說要「那個東西」的時候，他就會知道要來這裡找這組密碼。
+因為我們的GitHub Actions程式碼是公開的，但是我們不想要讓其他人看到剛才的那組Access Token，所以我們要建立一組Secret。當我們在程式說要「那個東西」的時候，他就會知道要來這裡找這組密碼。
 
 請到`Settings/Secrets`新增一組 Secrets，我這邊叫做 ACCESS_TOKEN，之後在腳本上會用到。
 
@@ -89,4 +89,4 @@ jobs:
 
 ![更改Branch](https://emtech.cc/images/hugo-githubAction-branch.jpg)
 
-這樣就大公告成囉！記得每次更新完部落格Github Action都需要大約30秒的執行時間才會完成部署。如果你想要查看它的進度狀態可以點擊最新紀錄的橘點看目前的即時狀態。如果變成綠色就是部署成功，如果是鴻森代表有問題（通常是文章中的語法有語法錯誤）。
+這樣就大公告成囉！記得每次更新完部落格GitHub Actions都需要大約30秒的執行時間才會完成部署。如果你想要查看它的進度狀態可以點擊最新紀錄的橘點看目前的即時狀態。如果變成綠色就是部署成功，如果是鴻森代表有問題（通常是文章中的語法有語法錯誤）。

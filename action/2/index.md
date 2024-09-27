@@ -2,7 +2,7 @@
 
 > 「有朋自遠方來，不亦樂乎」應該算是孔子的 Hello World 吧。
 
-今天我們要來探討如何在 GitHub Actions 中運行基本的 Shell 指令。你可以把 GitHub Action 想像成你的虛擬機接著 Bad USB，只需要先設定好，基本上你平常在虛擬機或電腦上的操作都可以直接運行。
+今天我們要來探討如何在 GitHub Actions 中運行基本的 Shell 指令。你可以把 GitHub Actions 想像成你的虛擬機接著 Bad USB，只需要先設定好，基本上你平常在虛擬機或電腦上的操作都可以直接運行。
 
 > 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/2>
 
@@ -118,4 +118,4 @@ jobs:
 
 今天我們探討了如何使用 GitHub Actions 執行基本的 Shell 指令，以及這些指令如何應用於實際場景。希望這些技巧能幫助你在未來的專案中更好地自動化流程、提高生產力。
 
-在這兩天我們都有使用 `actions/checkout@v2` 這個 Action，他到底是拿來幹嘛的呢？GitHub Action 如果編輯了檔案可以 push 嗎？這些問題我們將在明天的文章中一一解答。
+在這兩天我們都有使用 `actions/checkout@v2` 這個 Action，他到底是拿來幹嘛的呢？GitHub Actions 如果編輯了檔案可以 push 嗎？這些問題我們將在明天的文章中一一解答。

@@ -5,9 +5,9 @@ categories: [製作教學]
 date: 2024-04-01
 ---
 
-# 如何自製 GitHub Action 並上架至 Marketplace
+# 如何自製 GitHub Actions 並上架至 Marketplace
 
-GitHub Action 是 GitHub 提供的一個 CI/CD 服務，可以讓你在 GitHub 上自動化你的工作流程，幫你生成文件、測試安全性、部署應用程式等等。而 GitHub Marketplace 則是一個集成了 GitHub Action 的地方，你可以在這裡找到各種各樣的 Action 來幫助你的專案。在這篇文章中，我將教你如何自製 GitHub Action 並上架至 Marketplace。
+GitHub Actions 是 GitHub 提供的一個 CI/CD 服務，可以讓你在 GitHub 上自動化你的工作流程，幫你生成文件、測試安全性、部署應用程式等等。而 GitHub Marketplace 則是一個集成了 GitHub Actions 的地方，你可以在這裡找到各種各樣的 Action 來幫助你的專案。在這篇文章中，我將教你如何自製 GitHub Actions 並上架至 Marketplace。
 
 <!--more-->
 
@@ -80,7 +80,7 @@ main().catch((error) => {
 });
 ```
 
-這個文件中最上面引入了 `@actions/core` 這個庫，這樣就可以安全的讀取使用者設定的 GitHub Action Secrets 了。裡面可能是你的 API Key 或者其他敏感信息。這裡我們使用了 `core.getInput` 來讀取使用者設定的參數。底下我因為程式需要呼叫 API 所以引用了 `request` 以及 `@tryfabric/martian` 這兩個庫。你可以根據你的需求修改，因為不是必要的所以我註解掉了。
+這個文件中最上面引入了 `@actions/core` 這個庫，這樣就可以安全的讀取使用者設定的 GitHub Actions Secrets 了。裡面可能是你的 API Key 或者其他敏感信息。這裡我們使用了 `core.getInput` 來讀取使用者設定的參數。底下我因為程式需要呼叫 API 所以引用了 `request` 以及 `@tryfabric/martian` 這兩個庫。你可以根據你的需求修改，因為不是必要的所以我註解掉了。
 
 底下我們主要的程式放在 `main` 函數，裡面我們讀取了使用者設定的參數，然後進行一些操作。最後我們使用 `main().catch` 來捕獲異常，並且退出程序。
 

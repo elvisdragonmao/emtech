@@ -71,7 +71,7 @@ date: 2021-10-07
 
 1. 建立試算表(Google Sheet)
 2. 生成Line Notify仗權(若不需要Line通知可省略)
-3. 創建API(Google App Script)來處理資料、發送訊息、以及更新試算表
+3. 創建API(Google Apps Script)來處理資料、發送訊息、以及更新試算表
 4. 建立一個漂亮的網站方便操作
 
 ### 建立試算表(Google Sheet)
@@ -98,9 +98,9 @@ Line Notify是個比較冷門但是非常好用的工具。我們可以透過他
 
 請依照圖片步驟建立一個仗權，要給Line看這一串他才知道要傳送信息到哪裡。使用Line Lontify而不是Line機器人的原因是免費版的官方帳號一個月只能傳送500則訊息，但老師的學生數量大，可能會吃不消；且Line Notify設定較簡單。
 
-### 建立API(Google App Script)
+### 建立API(Google Apps Script)
 
-想要讓網站編輯試算表需要透過Google App Script(GAS)來完成。我們要建立四個API，分別用來:
+想要讓網站編輯試算表需要透過Google Apps Script(GAS)來完成。我們要建立四個API，分別用來:
 
 1. 紀錄出缺席
 2. 獲取學生列表(以進行報到)
@@ -311,7 +311,7 @@ function doGet(e) {
 
 HTML是網頁的檔案，有點像Word檔，而CSS是用來裝飾HTML的。你可以用它來決定字要多大、什麼顏色、間距要多少等。
 
-而我們在HTML檔中還插入了一些JavaScript來傳送和讀取資料和顯示資料。我使用了一個叫做jQuery的JavaScript函式庫，它可以讓程式變得更簡略。記得把傳送到的網址改成你剛才建的Google App Script的網址，其他你可以直接複製貼上。
+而我們在HTML檔中還插入了一些JavaScript來傳送和讀取資料和顯示資料。我使用了一個叫做jQuery的JavaScript函式庫，它可以讓程式變得更簡略。記得把傳送到的網址改成你剛才建的Google Apps Script的網址，其他你可以直接複製貼上。
 
 #### index.html
 

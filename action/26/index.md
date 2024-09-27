@@ -145,7 +145,7 @@
          - name: Commit and push report
            run: |
              git config --local user.email "action@github.com"
-             git config --local user.name "GitHub Action"
+             git config --local user.name "GitHub Actions"
              git add report.md
              git commit -m "📝 Update report"
              git push
