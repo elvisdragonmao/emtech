@@ -324,7 +324,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Use custom action
         uses: ./ # 使用自定義 Action 的路徑

@@ -46,7 +46,7 @@
 
        steps:
          - name: Checkout source repository
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
            with:
              repository: source-repo/source-repo-name
              token: ${{ secrets.SOURCE_REPO_TOKEN }}
@@ -71,7 +71,7 @@
 
    **解釋**:
 
-   - `actions/checkout@v2`: 下載源倉庫的代碼。
+   - `actions/checkout@v3`: 下載源倉庫的代碼。
    - `git config`: 設置 Git 用戶名和郵箱。
    - `git commit`: 提交代碼變更。
    - `git push`: 推送變更到目標倉庫。
@@ -133,7 +133,7 @@
 
        steps:
          - name: Checkout code
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Build project
            run: |

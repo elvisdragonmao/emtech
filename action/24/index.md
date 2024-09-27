@@ -87,7 +87,7 @@
 
        steps:
          - name: Checkout code
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Set up k6
            uses: actions/setup-node@v3

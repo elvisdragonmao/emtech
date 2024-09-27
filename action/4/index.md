@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: 檢出代碼
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 壓縮檔案
         run: |
@@ -53,7 +53,7 @@ jobs:
 **YAML 文件解析：**
 
 - **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
-- **`actions/checkout@v2:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
+- **`actions/checkout@v3:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
 - **`tar -czf:`** 使用 `tar` 命令來壓縮目錄或檔案。`-c` 創建壓縮檔案，`-z` 使用 gzip 壓縮，`-f` 指定檔案名。
 - **`actions/upload-artifact@v3:`** 上傳壓縮檔案作為工件，工件名為 `compressed-files`。
 

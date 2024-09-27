@@ -47,9 +47,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: 設置 Node.js 環境
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "20"
       - run: npm install
@@ -85,7 +85,7 @@ YAML 是一種簡單易讀的配置語法，跟 Json 有些類似，常用於編
 - **列表**：使用 `-` 開頭的行表示列表中的每一項。例如：
   ```yaml
   steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Node.js
   ```
 - **縮排**：縮排用於表示層次結構。你只要不小心多打一個你的檔案就會爆了。
@@ -120,7 +120,7 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
 
 ```yaml
 - name: Set up Node.js
-  uses: actions/setup-node@v2
+  uses: actions/setup-node@v3
   with:
     node-version: "20"
 ```
@@ -230,9 +230,9 @@ Ran all test suites.
        runs-on: ubuntu-latest
 
        steps:
-         - uses: actions/checkout@v2
+         - uses: actions/checkout@v3
          - name: Set up Node.js
-           uses: actions/setup-node@v2
+           uses: actions/setup-node@v3
            with:
              node-version: "20"
          - run: npm install

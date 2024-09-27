@@ -62,7 +62,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: true  # 找尋Hugo主題(true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod

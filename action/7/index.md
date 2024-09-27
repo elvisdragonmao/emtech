@@ -51,7 +51,7 @@ on:
 
        steps:
          - name: Check out the code
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Run a script
            run: echo "Code was pushed to the main branch."
@@ -81,7 +81,7 @@ on:
 
        steps:
          - name: Check out the code
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Run a script
            run: echo "A Pull Request was created or updated against the main branch."
@@ -109,7 +109,7 @@ on:
 
        steps:
          - name: Check out the code
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Notify
            run: echo "An Issue was created or edited."

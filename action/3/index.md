@@ -43,7 +43,7 @@ jobs:
 
     steps:
       - name: 檢出代碼
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 進行修改
         run: |
@@ -108,7 +108,7 @@ jobs:
 
     steps:
       - name: 檢出代碼
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 進行修改
         run: |

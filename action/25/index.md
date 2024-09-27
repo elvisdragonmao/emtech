@@ -69,7 +69,7 @@ Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴�
 
        steps:
          - name: Checkout code
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Set up Node.js
            uses: actions/setup-node@v3

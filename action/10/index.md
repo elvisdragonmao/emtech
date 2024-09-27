@@ -41,10 +41,10 @@
 
        steps:
          - name: Check out code
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Set up Node.js
-           uses: actions/setup-node@v2
+           uses: actions/setup-node@v3
            with:
              node-version: ${{ matrix.node-version }}
 

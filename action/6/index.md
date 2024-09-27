@@ -40,7 +40,7 @@ jobs:
 
     steps:
       - name: 檢出代碼
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 設置 Git
         run: |
@@ -67,7 +67,7 @@ jobs:
 **YAML 文件解析：**
 
 - **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
-- **`actions/checkout@v2:`** 檢出代碼，以便進行後續操作。
+- **`actions/checkout@v3:`** 檢出代碼，以便進行後續操作。
 - **`設置 Git:`** 配置 Git 用戶名和電子郵件，以便進行提交。
 - **`安裝 GitHub CLI:`** 安裝 GitHub CLI 工具，用於創建 PR。
 - **`創建新分支並進行變更:`** 創建新分支，進行代碼變更，並提交這些變更。
@@ -114,7 +114,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3

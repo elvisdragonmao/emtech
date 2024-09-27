@@ -38,7 +38,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 執行一行 Shell 指令
         run: echo "有朋自遠方來，不亦樂乎？"
@@ -118,4 +118,4 @@ jobs:
 
 今天我們探討了如何使用 GitHub Actions 執行基本的 Shell 指令，以及這些指令如何應用於實際場景。希望這些技巧能幫助你在未來的專案中更好地自動化流程、提高生產力。
 
-在這兩天我們都有使用 `actions/checkout@v2` 這個 Action，他到底是拿來幹嘛的呢？GitHub Actions 如果編輯了檔案可以 push 嗎？這些問題我們將在明天的文章中一一解答。
+在這兩天我們都有使用 `actions/checkout@v3` 這個 Action，他到底是拿來幹嘛的呢？GitHub Actions 如果編輯了檔案可以 push 嗎？這些問題我們將在明天的文章中一一解答。

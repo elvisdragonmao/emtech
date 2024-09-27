@@ -37,7 +37,7 @@
 
        steps:
          - name: Checkout repository
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Set up Python
            uses: actions/setup-python@v3
@@ -131,7 +131,7 @@
 
        steps:
          - name: Checkout repository
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Set up Python
            uses: actions/setup-python@v3

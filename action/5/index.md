@@ -128,7 +128,7 @@ build
 
             steps:
                 - name: 檢出代碼
-                  uses: actions/checkout@v2
+                  uses: actions/checkout@v3
 
                 - name: 安裝依賴套件
                   run: |
@@ -152,7 +152,7 @@ build
     **YAML 文件解析：**
 
     - **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
-    - **`actions/checkout@v2:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
+    - **`actions/checkout@v3:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
     - **`npm install:`** 安裝依賴套件。
     - **`npx prettier --write .`** 運行 Prettier 來格式化代碼。
     - **`git commit -m "Apply Prettier formatting"`** 提交格式化後的代碼。

@@ -47,7 +47,7 @@
 
        steps:
          - name: Check out code
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Use API Key
            run: echo "The API key is ${{ secrets.API_KEY }}"
@@ -108,10 +108,10 @@
 
        steps:
          - name: Check out code
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Set up Node.js
-           uses: actions/setup-node@v2
+           uses: actions/setup-node@v3
            with:
              node-version: "20"
 

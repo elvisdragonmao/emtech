@@ -48,7 +48,7 @@
 
        steps:
          - name: Checkout code
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Notify Slack
            uses: slackapi/slack-github-action@v1
@@ -129,7 +129,7 @@
 
        steps:
          - name: Checkout code
-           uses: actions/checkout@v2
+           uses: actions/checkout@v3
 
          - name: Set up Node.js
            uses: actions/setup-node@v3
