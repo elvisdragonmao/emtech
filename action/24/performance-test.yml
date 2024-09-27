@@ -1,0 +1,49 @@
+# @format
+
+name: Performance Testing
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  performance-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up k6
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install k6
+        run: |
+          curl -s https://dl.k6.io/signing.key | sudo apt-key add -
+          echo "deb https://dl.k6.io/deb/ stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install k6
+
+      - name: Run performance tests
+        run: k6 run test.js
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: performance-results
+          path: ./results/
+
+      - name: Deploy performance report to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p public
+          mv results/ public/
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'action@github.com'
+          git add public/
+          git commit -m 'Deploy performance report'
+          git push

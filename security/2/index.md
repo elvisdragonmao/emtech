@@ -45,7 +45,7 @@ NoSQL Injection 是一種針對 NoSQL 資料庫（例如 MongoDB）的攻擊技�
            if (err) throw err;
            db = client.db(dbName);
            console.log(`Connected to database ${dbName}`);
-         },
+         }
        );
 
        app.set("view engine", "ejs");
@@ -79,7 +79,7 @@ NoSQL Injection 是一種針對 NoSQL 資料庫（例如 MongoDB）的攻擊技�
              } else {
                res.send("Login failed!");
              }
-           },
+           }
          );
        });
 
@@ -160,7 +160,7 @@ app.post("/login", (req, res) => {
         } else {
           res.send("Login failed!");
         }
-      },
+      }
     );
   } else {
     res.send("Invalid input!");

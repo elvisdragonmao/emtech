@@ -41,10 +41,10 @@ SQL Injection（SQL 注入）是一種攻擊技術，攻擊者通過操控 SQL �
 
        db.serialize(() => {
          db.run(
-           "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)",
+           "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)"
          );
          db.run(
-           "INSERT INTO users (username, password) VALUES ('admin', 'password123')",
+           "INSERT INTO users (username, password) VALUES ('admin', 'password123')"
          );
        });
        ```
@@ -83,7 +83,7 @@ SQL Injection（SQL 注入）是一種攻擊技術，攻擊者通過操控 SQL �
              } else {
                res.send("Login failed!");
              }
-           },
+           }
          );
        });
 
@@ -209,7 +209,7 @@ app.post("/login", (req, res) => {
       } else {
         res.send("Login failed!");
       }
-    },
+    }
   );
 });
 ```

@@ -108,8 +108,8 @@ app.post("/parse-xml", (req, res) => {
     strict: true,
     // 禁用 DTD 解析以防止 XXE 攻擊
     dtd: {
-      ignore: true,
-    },
+      ignore: true
+    }
   });
 
   parser.parseString(xml, (err, result) => {

@@ -42,15 +42,15 @@ Man-in-the-Middle（MitM）攻擊是一種黑客干擾通信過程的攻擊方�
        const db = new sqlite3.Database(":memory:");
        db.serialize(() => {
          db.run(
-           "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)",
+           "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)"
          );
          db.run("INSERT INTO users (username, password) VALUES (?, ?)", [
            "Alice",
-           "password123",
+           "password123"
          ]);
          db.run("INSERT INTO users (username, password) VALUES (?, ?)", [
            "Bob",
-           "password456",
+           "password456"
          ]);
        });
 
@@ -69,7 +69,7 @@ Man-in-the-Middle（MitM）攻擊是一種黑客干擾通信過程的攻擊方�
              } else {
                res.send("Welcome, " + row.username);
              }
-           },
+           }
          );
        });
 
@@ -145,15 +145,15 @@ app.use(express.static("public"));
 const db = new sqlite3.Database(":memory:");
 db.serialize(() => {
   db.run(
-    "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)",
+    "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)"
   );
   db.run("INSERT INTO users (username, password) VALUES (?, ?)", [
     "Alice",
-    "password123",
+    "password123"
   ]);
   db.run("INSERT INTO users (username, password) VALUES (?, ?)", [
     "Bob",
-    "password456",
+    "password456"
   ]);
 });
 
@@ -172,14 +172,14 @@ app.post("/login", (req, res) => {
       } else {
         res.send("Welcome, " + row.username);
       }
-    },
+    }
   );
 });
 
 // HTTPS 設置
 const options = {
   key: fs.readFileSync("path/to/your/ssl/key"),
-  cert: fs.readFileSync("path/to/your/ssl/cert"),
+  cert: fs.readFileSync("path/to/your/ssl/cert")
 };
 
 https.createServer(options, app).listen(3443, () => {

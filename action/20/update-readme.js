@@ -11,7 +11,7 @@ const fontsFilePath = path.join(
   "..",
   "..",
   "Database",
-  "fonts.json",
+  "fonts.json"
 );
 const readmeFilePath = path.join(__dirname, "..", "..", "README.md");
 
@@ -29,7 +29,7 @@ function generateMarkdownTable(data) {
     "Class",
     "版本",
     "許可證",
-    "來源",
+    "來源"
   ];
   const rows = Object.entries(data).map(([id, details]) => {
     const {
@@ -39,7 +39,7 @@ function generateMarkdownTable(data) {
       class: className,
       version,
       license,
-      source,
+      source
     } = details;
     return [
       id,
@@ -50,14 +50,14 @@ function generateMarkdownTable(data) {
       className || "",
       version || "",
       license || "",
-      source || "",
+      source || ""
     ].join(" | ");
   });
 
   const table = [
     headers.join(" | "),
     headers.map(() => "---").join(" | "),
-    ...rows,
+    ...rows
   ].join("\n");
 
   return table;
@@ -72,7 +72,7 @@ const readmeContent = fs.readFileSync(readmeFilePath, "utf8");
 // Update the section of the README.md file where the table should be inserted
 const updatedReadmeContent = readmeContent.replace(
   /<!-- fonts table start -->[\s\S]*<!-- fonts table end -->/,
-  `<!-- fonts table start -->\n${markdownTable}\n<!-- fonts table end -->`,
+  `<!-- fonts table start -->\n${markdownTable}\n<!-- fonts table end -->`
 );
 
 // Write the updated README.md file

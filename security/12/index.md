@@ -43,11 +43,11 @@ Cross-Site Request Forgery（CSRF）是一種攻擊，利用用戶的已驗證�
        const db = new sqlite3.Database(":memory:");
        db.serialize(() => {
          db.run(
-           "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, email TEXT)",
+           "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, email TEXT)"
          );
          db.run("INSERT INTO users (username, email) VALUES (?, ?)", [
            "user1",
-           "user1@example.com",
+           "user1@example.com"
          ]);
        });
 
@@ -142,8 +142,8 @@ CSRF 攻擊利用了用戶的已驗證會話來執行未授權的操作。當用
          session({
            secret: "your-secret-key",
            resave: false,
-           saveUninitialized: true,
-         }),
+           saveUninitialized: true
+         })
        );
 
        // 設置 CSRF 中間件

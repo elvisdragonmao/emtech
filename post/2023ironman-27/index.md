@@ -201,7 +201,7 @@ const white = document.querySelector("header");
 
 ```js
 document.addEventListener("scroll", () =>
-  white.classList.toggle("fixedNav", white.getBoundingClientRect().bottom < 0),
+  white.classList.toggle("fixedNav", white.getBoundingClientRect().bottom < 0)
 );
 ```
 

@@ -1,3 +1,5 @@
+<!-- @format -->
+
 # 不在其位，不謀其政 - 多階段 CI/CD 流程
 
 > 子曰：「不在其位，不謀其政。」說明了多階段工作流程的重要性。
@@ -6,12 +8,12 @@
 
 > 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/23>
 
-
 ## 設置 Node.js 專案
 
 在開始設計 CI/CD 流程之前，我們需要確保已經在 GitHub 上創建了一個 Node.js 專案，並在本地完成了基本的項目配置。你可以使用現有的專案，或是依照以下步驟簡單配置一個。
 
 1. **初始化專案**：
+
    ```bash
    mkdir node-ci-cd-demo
    cd node-ci-cd-demo
@@ -19,6 +21,7 @@
    ```
 
 2. **安裝必要的依賴項**：
+
    ```bash
    npm install express
    npm install --save-dev jest
@@ -35,6 +38,8 @@
 ## 使用 GitHub Actions 設計 CI/CD 流程
 
 ### 創建 GitHub Actions 工作流
+
+#### 構建階段
 
 在項目的根目錄下創建一個 `.github/workflows` 文件夾，並在其中創建一個名為 `ci.yml` 的文件。
 
@@ -73,91 +78,88 @@ jobs:
         run: npm test
 ```
 
-#### Step 2: 添加部署階段
+#### 部署階段
 
-假設我們使用 Heroku 部署應用，我們可以在成功測試後自動將應用部署到 Heroku。
+這裡我們使用 Heroku 部署應用，因為我們這個系列還沒有用過。我們可以在成功測試後自動將應用部署到 Heroku。你也可以使用我們之前介紹的任何其他部署方式。
 
 1. 安裝 Heroku CLI 並獲取 API Token。
-2. 在 GitHub 的 repository settings 中，添加一個名為 `HEROKU_API_KEY` 的機密環境變量。
+2. 在 GitHub 的 repository settings 中，添加一個名為 `HEROKU_API_KEY` 的機密環境變數。
 
 然後，在 CI 工作流中添加部署步驟：
 
 ```yaml
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+deploy:
+  needs: build
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Login to Heroku
-        run: echo ${{ secrets.HEROKU_API_KEY }} | docker login --username=_ --password-stdin registry.heroku.com
+    - name: Login to Heroku
+      run: echo ${{ secrets.HEROKU_API_KEY }} | docker login --username=_ --password-stdin registry.heroku.com
 
-      - name: Deploy to Heroku
-        run: |
-          heroku container:push web --app your-heroku-app-name
-          heroku container:release web --app your-heroku-app-name
+    - name: Deploy to Heroku
+      run: |
+        heroku container:push web --app your-heroku-app-name
+        heroku container:release web --app your-heroku-app-name
 ```
 
-#### Step 3: 發布階段
+#### 發布階段
 
 如果你希望在完成部署後發布一個新的 Release，可以在工作流中添加以下步驟：
 
 ```yaml
-  publish:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+publish:
+  needs: deploy
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v1.0.0
-          release_name: "First release"
-          draft: false
-          prerelease: false
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v1.0.0
+        release_name: "First release"
+        draft: false
+        prerelease: false
 ```
 
-### 5. 部署 Node.js 應用
+最後把他們整合到一個完整的 CI/CD 流程中就可以了。你可以到上面的 GitHub 範例程式中查看完整的 `ci.yml` 文件。
 
-這裡以 **Heroku** 為例，介紹如何自動化部署 Node.js 應用：
+### 實用技巧
 
-1. 首先，確保你已經將 Heroku 應用綁定到 GitHub repository。
-2. 在工作流文件中添加部署到 Heroku 的步驟，並確保 `HEROKU_API_KEY` 已正確配置。
-3. 當代碼推送到 `main` 分支時，GitHub Actions 將自動運行工作流，並在測試通過後將應用部署到 Heroku。
-
-### 6. 實用技巧
+你發現了嗎? 我們在 CI/CD 流程中使用了 `needs` 關鍵字，這樣可以確保每個階段都在上一個階段成功後才執行。這樣可以確保流程的穩定性。以下是幾個實用的技巧，可以幫助你更好地設計 CI/CD 流程。
 
 #### **1. 並行運行測試**
+
 你可以使用 GitHub Actions 的矩陣功能來並行運行不同 Node.js 版本的測試，確保應用在不同環境下的穩定性。
 
 #### **2. 缓存 Node.js 依賴**
+
 使用 GitHub Actions 提供的 `cache` 功能來加速依賴的安裝過程。這可以顯著縮短 CI 的運行時間。
 
 ```yaml
-      - name: Cache Node.js modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+- name: Cache Node.js modules
+  uses: actions/cache@v3
+  with:
+    path: node_modules
+    key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+    restore-keys: |
+      ${{ runner.os }}-node-
 ```
 
 #### **3. 使用 Lint 驗證代碼風格**
+
 你可以在 CI 過程中加入 ESLint 或 Prettier 來自動驗證代碼風格。
 
 ```yaml
-      - name: Run ESLint
-        run: npm run lint
+- name: Run ESLint
+  run: npm run lint
 ```
 
-### 7. 結論
+## 小結
 
-設計一個穩定的 CI/CD 流程對於保證軟體的質量和部署效率至關重要。本文介紹了如何使用 GitHub Actions 搭建 Node.js 的多階段 CI/CD 流程，並涵蓋了構建、測試、部署和發布的自動化。通過實踐這些步驟和技巧，你可以更輕鬆地管理你的 Node.js 專案，並確保其在不同環境中的穩定性。
-
-希望這篇文章對你有所幫助，並且能夠提高你在軟體開發中的自動化水平。如果有任何問題或建議，歡迎在下方留言。
+設計一個穩定的 CI/CD 流程對於保證軟體的質量和部署效率都至關重要。本文介紹了如何使用 GitHub Actions 搭建 Node.js 的多階段 CI/CD 流程，並涵蓋了構建、測試、部署和發布的自動化。通過實踐這些步驟和技巧，你可以更輕鬆地管理你的 Node.js 專案，並確保其在不同環境中的穩定性。

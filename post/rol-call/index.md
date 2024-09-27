@@ -64,7 +64,7 @@ function doGet(e) {
         .filter((e) => "" !== e[0])
         .map((e) => ({ name: e[0], left: e[2] }));
       return ContentService.createTextOutput(JSON.stringify(r)).setMimeType(
-        ContentService.MimeType.JSON,
+        ContentService.MimeType.JSON
       );
     case "search":
       var [n, ...r] = a[0].getDataRange().getValues();
@@ -76,7 +76,7 @@ function doGet(e) {
           .filter((e) => e[s] === t.name)
           .map((e) => ({ time: e[m], left: e[c] }));
       return ContentService.createTextOutput(JSON.stringify(l)).setMimeType(
-        ContentService.MimeType.JSON,
+        ContentService.MimeType.JSON
       );
     case "new":
       let f = a[1].getLastRow() + 1;
@@ -384,7 +384,7 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
       var url =
         "https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9MHDxWaOYXFwZgE3rRHDzCakzTxs/exec";
       const [history, call, add] = ["history", "call", "add"].map((t) =>
-          document.getElementById(t),
+          document.getElementById(t)
         ),
         searchA = () => {
           (history.style.opacity = 1),
@@ -432,7 +432,7 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
               hour: "numeric",
               minute: "numeric",
               second: "numeric",
-              hour12: !0,
+              hour12: !0
             })
             .replace("-", "/")
             .replace(" ", " ");
@@ -475,7 +475,7 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
                     hour: "numeric",
                     minute: "numeric",
                     second: "numeric",
-                    hour12: !0,
+                    hour12: !0
                   })
                   .replace("-", "/")
                   .replace(" ", " ")),

@@ -73,15 +73,15 @@ function sendLoading(chatId, seconds) {
   var url = "https://api.line.me/v2/bot/chat/loading/start";
   var payload = {
     chatId: chatId,
-    loadingSeconds: seconds,
+    loadingSeconds: seconds
   };
   var options = {
     method: "post",
     contentType: "application/json",
     headers: {
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + token
     },
-    payload: JSON.stringify(payload),
+    payload: JSON.stringify(payload)
   };
   UrlFetchApp.fetch(url, options);
 }
@@ -93,17 +93,17 @@ function sendReply(replyToken, message) {
     messages: [
       {
         type: "text",
-        text: message,
-      },
-    ],
+        text: message
+      }
+    ]
   };
   var options = {
     method: "post",
     contentType: "application/json",
     headers: {
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + token
     },
-    payload: JSON.stringify(payload),
+    payload: JSON.stringify(payload)
   };
   UrlFetchApp.fetch(url, options);
 }

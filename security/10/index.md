@@ -43,7 +43,7 @@ Broken Authentication 是指網站或應用程序中存在的認證漏洞，使�
        const db = new sqlite3.Database(":memory:");
        db.serialize(() => {
          db.run(
-           "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)",
+           "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)"
          );
        });
 
@@ -61,7 +61,7 @@ Broken Authentication 是指網站或應用程序中存在的認證漏洞，使�
              (err) => {
                if (err) throw err;
                res.send("User registered successfully!");
-             },
+             }
            );
          });
        });
@@ -85,7 +85,7 @@ Broken Authentication 是指網站或應用程序中存在的認證漏洞，使�
              } else {
                res.send("User not found!");
              }
-           },
+           }
          );
        });
 
@@ -171,7 +171,7 @@ const app = express();
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 分鐘
   max: 5, // 每個 IP 最多嘗試 5 次
-  message: "Too many login attempts from this IP, please try again later.",
+  message: "Too many login attempts from this IP, please try again later."
 });
 
 app.use(express.json());

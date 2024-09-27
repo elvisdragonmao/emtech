@@ -242,8 +242,8 @@ async function updateTasks() {
         headers: {
           Authorization: `Bearer ${notionToken}`,
           "Notion-Version": "2022-06-28",
-          "Content-Type": "application/json",
-        },
+          "Content-Type": "application/json"
+        }
       }
     );
 
@@ -251,7 +251,7 @@ async function updateTasks() {
     let inProgressCount = 0;
 
     // 解析 Notion API 的響應
-    notionResponse.data.results.forEach(result => {
+    notionResponse.data.results.forEach((result) => {
       const status = result.properties.Status.status.name;
       if (status === "Not started") {
         notStartedCount++;
@@ -264,26 +264,26 @@ async function updateTasks() {
     await axios.patch(
       `https://discord.com/api/v10/channels/${discordChannelId}`,
       {
-        name: `還有 ${notStartedCount} 件事沒人做`,
+        name: `還有 ${notStartedCount} 件事沒人做`
       },
       {
         headers: {
           Authorization: `Bot ${discordToken}`,
-          "Content-Type": "application/json",
-        },
+          "Content-Type": "application/json"
+        }
       }
     );
 
     await axios.patch(
       `https://discord.com/api/v10/channels/${discordChannelId}`,
       {
-        name: `${inProgressCount} 件事處理中`,
+        name: `${inProgressCount} 件事處理中`
       },
       {
         headers: {
           Authorization: `Bot ${discordToken}`,
-          "Content-Type": "application/json",
-        },
+          "Content-Type": "application/json"
+        }
       }
     );
 

@@ -250,7 +250,7 @@ Gemini 還有很多其他的設定，例如 `max_tokens` 用來設定最大回�
           "<div><div class='author'>You:</div>" + message + "</div>";
         thread.push({
           role: "user",
-          parts: [{ text: message }],
+          parts: [{ text: message }]
         });
         console.log(apiKey);
         fetch(
@@ -259,12 +259,12 @@ Gemini 還有很多其他的設定，例如 `max_tokens` 用來設定最大回�
           {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              contents: thread,
-            }),
-          },
+              contents: thread
+            })
+          }
         )
           .then((response) => response.json())
           .then((data) => {
@@ -277,9 +277,9 @@ Gemini 還有很多其他的設定，例如 `max_tokens` 用來設定最大回�
               role: "model",
               parts: [
                 {
-                  text: msg,
-                },
-              ],
+                  text: msg
+                }
+              ]
             });
           })
           .catch((error) => {

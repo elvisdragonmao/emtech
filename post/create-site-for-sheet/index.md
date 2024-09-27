@@ -277,14 +277,14 @@ date: 2022-08-14
 ```js
 function doGet() {
   var spreadsheet = SpreadsheetApp.openById(
-    "1U-Q2XXXXXXXRsrh-QYCXXXXXXXXXQmGQ",
+    "1U-Q2XXXXXXXRsrh-QYCXXXXXXXXXQmGQ"
   ); // Sheet id
   var sheet = spreadsheet.getSheets()[0];
   var rowLength = sheet.getLastRow();
   var columnLength = sheet.getLastColumn();
   var data = sheet.getRange(3, 1, rowLength, columnLength).getValues();
   var dataExport = [
-    '<li class="table-header"><div class="col col-1">委託人姓名</div><div class="col col-2"++>委託項目</div><div class="col col-3">付款狀態</div><div class="col col-4">進度狀態</div></li>',
+    '<li class="table-header"><div class="col col-1">委託人姓名</div><div class="col col-2"++>委託項目</div><div class="col col-3">付款狀態</div><div class="col col-4">進度狀態</div></li>'
   ];
   var stat,
     ed = [];
@@ -303,7 +303,7 @@ function doGet() {
             data[i][4] +
             '</div><div class="col col-4 finished" data-label="進度狀態">' +
             data[i][3] +
-            "</div></li>",
+            "</div></li>"
         );
       } else {
         dataExport.push(
@@ -317,7 +317,7 @@ function doGet() {
             data[i][4] +
             '</div><div class="col col-4" data-label="進度狀態">' +
             data[i][3] +
-            "</div></li>",
+            "</div></li>"
         );
       }
     }
@@ -616,14 +616,14 @@ function doGet() {
 ```js
 function doGet() {
   var spreadsheet = SpreadsheetApp.openById(
-    "1U-Q2t9RI6Uce787RASQIRsrh-QYCvhCgn_UyOnrQmGQ",
+    "1U-Q2t9RI6Uce787RASQIRsrh-QYCvhCgn_UyOnrQmGQ"
   ); // Sheet id
   var sheet = spreadsheet.getSheets()[0];
   var rowLength = sheet.getLastRow();
   var columnLength = sheet.getLastColumn();
   var data = sheet.getRange(3, 1, rowLength, columnLength).getValues();
   var dataExport = [
-    '<li class="table-header"><div class="col col-1">委託人姓名</div><div class="col col-2"++>委託項目</div><div class="col col-3">付款狀態</div><div class="col col-4">進度狀態</div></li>',
+    '<li class="table-header"><div class="col col-1">委託人姓名</div><div class="col col-2"++>委託項目</div><div class="col col-3">付款狀態</div><div class="col col-4">進度狀態</div></li>'
   ];
   var stat,
     ed = [];
@@ -642,7 +642,7 @@ function doGet() {
             data[i][4] +
             '</div><div class="col col-4 finished" data-label="進度狀態">' +
             data[i][3] +
-            "</div></li>",
+            "</div></li>"
         );
       } else {
         dataExport.push(
@@ -656,7 +656,7 @@ function doGet() {
             data[i][4] +
             '</div><div class="col col-4" data-label="進度狀態">' +
             data[i][3] +
-            "</div></li>",
+            "</div></li>"
         );
       }
     }

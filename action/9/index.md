@@ -151,7 +151,7 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
 
    jest.mock("./myDependency", () => {
      return {
-       myFunction: jest.fn(() => "mocked value"),
+       myFunction: jest.fn(() => "mocked value")
      };
    });
 

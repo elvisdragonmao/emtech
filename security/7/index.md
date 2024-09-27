@@ -42,15 +42,15 @@ Insecure Direct Object References（IDOR）是一種漏洞，發生在用戶能�
        const db = new sqlite3.Database(":memory:");
        db.serialize(() => {
          db.run(
-           "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, email TEXT)",
+           "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, email TEXT)"
          );
          db.run("INSERT INTO users (username, email) VALUES (?, ?)", [
            "Alice",
-           "alice@example.com",
+           "alice@example.com"
          ]);
          db.run("INSERT INTO users (username, email) VALUES (?, ?)", [
            "Bob",
-           "bob@example.com",
+           "bob@example.com"
          ]);
        });
 
@@ -163,17 +163,17 @@ app.use(express.static("public"));
 const db = new sqlite3.Database(":memory:");
 db.serialize(() => {
   db.run(
-    "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, email TEXT)",
+    "CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, email TEXT)"
   );
   db.run("INSERT INTO users (id, username, email) VALUES (?, ?, ?)", [
     1,
     "Alice",
-    "alice@example.com",
+    "alice@example.com"
   ]);
   db.run("INSERT INTO users (id, username, email) VALUES (?, ?, ?)", [
     2,
     "Bob",
-    "bob@example.com",
+    "bob@example.com"
   ]);
 });
 

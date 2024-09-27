@@ -17,9 +17,9 @@ async function updateTasks() {
         headers: {
           Authorization: `Bearer ${notionToken}`,
           "Notion-Version": "2022-06-28",
-          "Content-Type": "application/json",
-        },
-      },
+          "Content-Type": "application/json"
+        }
+      }
     );
 
     let notStartedCount = 0;
@@ -39,27 +39,27 @@ async function updateTasks() {
     await axios.patch(
       `https://discord.com/api/v10/channels/${discordChannelId}`,
       {
-        name: `還有 ${notStartedCount} 件事沒人做`,
+        name: `還有 ${notStartedCount} 件事沒人做`
       },
       {
         headers: {
           Authorization: `Bot ${discordToken}`,
-          "Content-Type": "application/json",
-        },
-      },
+          "Content-Type": "application/json"
+        }
+      }
     );
 
     await axios.patch(
       `https://discord.com/api/v10/channels/${discordChannelId}`,
       {
-        name: `${inProgressCount} 件事處理中`,
+        name: `${inProgressCount} 件事處理中`
       },
       {
         headers: {
           Authorization: `Bot ${discordToken}`,
-          "Content-Type": "application/json",
-        },
-      },
+          "Content-Type": "application/json"
+        }
+      }
     );
 
     console.log("Discord channel title updated successfully");

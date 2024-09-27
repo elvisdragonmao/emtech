@@ -16,8 +16,8 @@ async function main() {
   const issuesResponse = await axios.get(issuesUrl, {
     headers: {
       "User-Agent": "request",
-      Authorization: `token ${process.env.GITHUB_TOKEN}`,
-    },
+      Authorization: `token ${process.env.GITHUB_TOKEN}`
+    }
   });
 
   for (const issue of issuesResponse.data) {
@@ -31,57 +31,57 @@ async function main() {
         filter: {
           property: "ID",
           number: {
-            equals: issueId,
-          },
-        },
+            equals: issueId
+          }
+        }
       },
       {
         headers: {
           Authorization: `Bearer ${notionToken}`,
           "Notion-Version": "2022-06-28",
-          "Content-Type": "application/json",
-        },
-      },
+          "Content-Type": "application/json"
+        }
+      }
     );
 
     const body = {
       parent: { database_id: notionDatabaseId },
       icon: {
-        emoji: "⚡",
+        emoji: "⚡"
       },
       properties: {
         Name: {
           title: [
             {
               text: {
-                content: issue.title,
-              },
-            },
-          ],
+                content: issue.title
+              }
+            }
+          ]
         },
         ID: {
-          number: issueId,
+          number: issueId
         },
         State: {
           select: {
-            name: issue.state.charAt(0).toUpperCase() + issue.state.slice(1),
-          },
+            name: issue.state.charAt(0).toUpperCase() + issue.state.slice(1)
+          }
         },
         Status: {
           status: {
-            name: "Not started",
-          },
+            name: "Not started"
+          }
         },
         Labels: {
           multi_select: issue.labels.map((label) => ({
-            name: label.name,
-          })),
+            name: label.name
+          }))
         },
         URL: {
-          url: issue.html_url,
-        },
+          url: issue.html_url
+        }
       },
-      children: issue.body != null ? markdownToBlocks(issue.body) : [],
+      children: issue.body != null ? markdownToBlocks(issue.body) : []
     };
 
     if (notionResponse.data.results.length > 0) {
@@ -96,9 +96,9 @@ async function main() {
           headers: {
             Authorization: `Bearer ${notionToken}`,
             "Content-Type": "application/json",
-            "Notion-Version": "2022-06-28",
-          },
-        },
+            "Notion-Version": "2022-06-28"
+          }
+        }
       );
     } else {
       console.log(`Creating new issue ${issueId} in Notion`);
@@ -107,8 +107,8 @@ async function main() {
         headers: {
           Authorization: `Bearer ${notionToken}`,
           "Content-Type": "application/json",
-          "Notion-Version": "2022-06-28",
-        },
+          "Notion-Version": "2022-06-28"
+        }
       });
       console.log(`Issue ${issueId} created in Notion`);
     }

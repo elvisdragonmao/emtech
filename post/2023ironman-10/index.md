@@ -127,7 +127,7 @@ setTimeout(
   () => {
     marquee.removeChild(marqueeBox);
   },
-  time * 1000 + 1000,
+  time * 1000 + 1000
 );
 ```
 

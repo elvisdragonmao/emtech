@@ -41,13 +41,13 @@ LDAP Injection 是一種攻擊手法，讓攻擊者能夠注入和執行不受�
        // 模擬 LDAP 伺服器數據
        const users = [
          { uid: "admin", password: "admin123", role: "administrator" },
-         { uid: "user", password: "user123", role: "user" },
+         { uid: "user", password: "user123", role: "user" }
        ];
 
        // 模擬 LDAP 查詢
        function ldapSearch(uid, password) {
          return users.find(
-           (user) => user.uid === uid && user.password === password,
+           (user) => user.uid === uid && user.password === password
          );
        }
 

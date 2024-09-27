@@ -28,11 +28,11 @@
   // 建立資料庫表格
   db.serialize(() => {
     db.run(
-      "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT)",
+      "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT)"
     );
     db.run("INSERT INTO users (name, email) VALUES (?, ?)", [
       "Alice",
-      "alice@example.com",
+      "alice@example.com"
     ]);
   });
 

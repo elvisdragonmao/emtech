@@ -101,7 +101,7 @@ jobs:
 
 4. **環境設置：**
 
-   - 使用 `export` 設置環境變量，或者使用 `source` 加載環境配置文件。
+   - 使用 `export` 設置環境變數，或者使用 `source` 加載環境配置文件。
    - ```yaml
      - name: Set environment variable
        run: export NODE_ENV=production

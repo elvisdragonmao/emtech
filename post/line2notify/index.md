@@ -65,11 +65,11 @@ function doPost(e) {
   var options = {
     method: "post",
     payload: {
-      message: id + "\n" + message, // 這裡是要傳送的訊息，我們第一行放了發送者的id，第二行放了訊息本身。可以自行修改。
+      message: id + "\n" + message // 這裡是要傳送的訊息，我們第一行放了發送者的id，第二行放了訊息本身。可以自行修改。
     },
     headers: {
-      Authorization: "Bearer " + token,
-    },
+      Authorization: "Bearer " + token
+    }
   };
 
   // 發送 POST 請求到 Line Notify API。會傳給剛才設定的權杖指定的群組或私人訊息。

@@ -4,7 +4,7 @@ description: "Fetch tasks from Notion and update Discord channel"
 on:
   push:
     branches:
-      - main  # 只在 push 到 main 分支時觸發
+      - main # 只在 push 到 main 分支時觸發
 
 inputs:
   notion_database_id:

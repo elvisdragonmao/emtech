@@ -164,8 +164,8 @@ function debug() {
     parameter: {
       name: "測試先生",
       time: "2021/10/10 22:46:00",
-      remain: 10,
-    },
+      remain: 10
+    }
   });
   Logger.log("Result: %s", Result);
 }
@@ -223,14 +223,14 @@ function doGet(e) {
     if (data[i][0] != "") {
       dataExport[i] = {
         name: data[i][0],
-        left: data[i][2],
+        left: data[i][2]
       };
     }
   }
   // 回傳JSON
   var dataExportFormat = JSON.stringify(dataExport);
   return ContentService.createTextOutput(dataExportFormat).setMimeType(
-    ContentService.MimeType.JSON,
+    ContentService.MimeType.JSON
   );
 }
 ```
@@ -259,7 +259,7 @@ function doPost(e) {
   }
   // 回傳JSON
   return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(
-    ContentService.MimeType.JSON,
+    ContentService.MimeType.JSON
   );
 }
 ```
@@ -389,7 +389,7 @@ HTML是網頁的檔案，有點像Word檔，而CSS是用來裝飾HTML的。你�
           var name = name.replace(" ", "");
 
           var data = {
-            name: name,
+            name: name
           };
 
           $.ajax({
@@ -415,7 +415,7 @@ HTML是網頁的檔案，有點像Word檔，而CSS是用來裝飾HTML的。你�
               console.log(response);
 
               alert("新增成功!!");
-            },
+            }
           });
         }
       });
@@ -570,7 +570,7 @@ HTML是網頁的檔案，有點像Word檔，而CSS是用來裝飾HTML的。你�
           $("#name").css("border", "1px solid #ff0000");
         } else {
           var data = {
-            name: name,
+            name: name
           };
           //Post到前面做的API，記得更改網址
           $.ajax({
@@ -595,7 +595,7 @@ HTML是網頁的檔案，有點像Word檔，而CSS是用來裝飾HTML的。你�
               //如果有資料的話顯示表格，否則提示查無資料
               if (content) {
                 document.getElementsByClassName(
-                  "table-striped",
+                  "table-striped"
                 )[0].style.display = "table";
               } else {
                 alert("查無資料");
@@ -603,7 +603,7 @@ HTML是網頁的檔案，有點像Word檔，而CSS是用來裝飾HTML的。你�
               var dataView = document.getElementById("dataView");
               dataView.innerHTML = content;
               $("#name").val("");
-            },
+            }
           });
         }
       });

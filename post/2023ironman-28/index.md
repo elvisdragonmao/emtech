@@ -150,7 +150,7 @@ function scrollToCurrentIndex() {
   const scrollPosition = itemWidth * currentIndex;
   itemsContainer.scrollTo({
     left: scrollPosition,
-    behavior: "smooth",
+    behavior: "smooth"
   });
   hideButton();
 }
@@ -170,7 +170,7 @@ const hideButton = () => {
 ```js
 itemsContainer.addEventListener("scroll", function () {
   currentIndex = Math.round(
-    itemsContainer.scrollLeft / itemDivs[0].offsetWidth,
+    itemsContainer.scrollLeft / itemDivs[0].offsetWidth
   );
   hideButton();
 });

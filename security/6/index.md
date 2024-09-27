@@ -53,7 +53,7 @@
          // 插入明文密碼到資料庫
          db.run("INSERT INTO users (username, password) VALUES (?, ?)", [
            username,
-           password,
+           password
          ]);
          res.send("User registered successfully!");
        });
@@ -183,7 +183,7 @@ app.post("/register", (req, res) => {
         } else {
           res.send("User registered successfully!");
         }
-      },
+      }
     );
   });
 });

@@ -49,7 +49,7 @@ function compareTables(newTable, oldTableFile) {
 
 async function sendDiscordMessage(changes) {
   const message = {
-    content: changes,
+    content: changes
   };
 
   try {
