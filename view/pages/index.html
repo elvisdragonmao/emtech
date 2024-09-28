@@ -199,27 +199,60 @@
                                 /></a>
                             </div>
                         </div>
-                        <a href="">
-                            <div class="discord-join">
-                                <img
-                                    src="/static/img/discord.svg"
-                                    class="discord-float"
-                                />
-                                <img
-                                    src="/static/img/discord.svg"
-                                    class="discord-float"
-                                />
-                                <img
-                                    src="/static/img/discord.svg"
-                                    class="discord-float"
-                                />
-
-                                <h2>遇到問題嗎?</h2>
-                                <p>歡迎加入 Discord 與我們一起討論。</p>
-                            </div></a
-                        >
                         <div class="sticky">
-                            <div id="recent">
+                            <div class="share">
+                                <div>分享</div>
+                                <a href=""
+                                    ><img
+                                        src="/static/img/facebook.svg"
+                                        alt="" /></a
+                                ><a href=""
+                                    ><img
+                                        src="/static/img/threads.svg"
+                                        alt="" /></a
+                                ><a href=""
+                                    ><img src="/static/img/x.svg" alt="" /></a
+                                ><a href=""
+                                    ><img
+                                        src="/static/img/linkdin.svg"
+                                        alt="" /></a
+                                ><a href=""
+                                    ><img src="/static/img/link.svg" alt=""
+                                /></a>
+                            </div>
+                            <div class="toc">
+                                <h2>目錄</h2>
+                                <ul>
+                                    <li class="current">
+                                        <a href="">什麼是福瑞 (Furry)？</a>
+                                    </li>
+                                    <li><a href="">為什麼有人喜歡福瑞？</a></li>
+                                    <li><a href="">福瑞文化的多樣性</a></li>
+                                    <li><a href="">福瑞文化的發展</a></li>
+                                    <li><a href="">福瑞文化的未來</a></li>
+                                </ul>
+                            </div>
+                            <a href="">
+                                <div class="discord-join">
+                                    <img
+                                        src="/static/img/discord.svg"
+                                        class="discord-float"
+                                    />
+                                    <img
+                                        src="/static/img/discord.svg"
+                                        class="discord-float"
+                                    />
+                                    <img
+                                        src="/static/img/discord.svg"
+                                        class="discord-float"
+                                    />
+
+                                    <h2>遇到問題嗎?</h2>
+                                    <p>歡迎加入 Discord 與我們一起討論。</p>
+                                </div></a
+                            >
+
+                            <div class="recent">
                                 <h2>近期瀏覽</h2>
                                 <h3>
                                     <a href=""
@@ -945,6 +978,10 @@
             <main>
                 <section>
                     <div class="categories">
+                        <div
+                            class="categories-left"
+                            onclick="categoriesMove(-1)"
+                        ></div>
                         <div id="categories">
                             <a href="/categories/心得" data-categories="心得"
                                 >心得</a
@@ -988,7 +1025,10 @@
                                 >捷徑分享</a
                             >
                         </div>
-                        <div class="categories-right"></div>
+                        <div
+                            class="categories-right"
+                            onclick="categoriesMove(1)"
+                        ></div>
                     </div>
                     <div id="posts">
                         <article>
@@ -1413,58 +1453,56 @@
             const header = document.querySelector("header");
             const footer = document.querySelector("footer");
             const next = document.querySelector(".next-post");
-            // get height of
-            // listen to window scroll when body have .post-page
-            if (document.body.classList.contains("displayPost")) {
-                window.addEventListener("scroll", () => {
-                    if (header.getBoundingClientRect().bottom < 0) {
-                        document.body.classList.add("nav-sticky");
-                    } else {
-                        document.body.classList.remove("nav-sticky");
-                    }
-                    let maxWidth = 1200 - 32;
-                    let footerHeight =
-                        parseFloat(
-                            getComputedStyle(document.querySelector("footer"))
-                                .height
-                        ) + 16;
-                    let originalHeight = Math.min(
-                        400,
-                        window.innerHeight - footerHeight
-                    );
-                    let toMove = window.innerHeight - originalHeight;
-                    let canMove =
-                        window.innerHeight - originalHeight - footerHeight;
-                    let height =
-                        originalHeight +
-                        (toMove / canMove) *
-                            (canMove - next.getBoundingClientRect().top);
-                    let width = Math.max(
-                        maxWidth,
-                        maxWidth +
-                            ((window.innerWidth - maxWidth) / canMove) *
-                                (canMove - next.getBoundingClientRect().top)
-                    );
-                    let scale = width / window.innerWidth;
-                    if (height > window.innerHeight) {
-                        next.style.height = "100%";
-                        next.style.width = `100%`;
-                        next.style.setProperty("--scale", 1);
-                        next.style.overflow = "unset";
-                        footer.style.marginBottom = "1rem";
-                    } else {
-                        next.style.setProperty("--scale", scale);
-                        next.style.width = `${width}px`;
-                        next.style.overflow = "hidden";
-                        next.style.height = `${Math.max(
-                            originalHeight,
-                            height
-                        )}px`;
-                        footer.style.marginBottom = "100vh";
-                    }
-                });
-            }
+            let currentPage = "post";
 
+            const postScrollAnimations = () => {
+                if (header.getBoundingClientRect().bottom < 0) {
+                    document.body.classList.add("nav-sticky");
+                } else {
+                    document.body.classList.remove("nav-sticky");
+                }
+                let maxWidth = Math.min(1200, window.innerWidth - 64) - 32;
+                let footerHeight =
+                    parseFloat(
+                        getComputedStyle(document.querySelector("footer"))
+                            .height
+                    ) + 64;
+                let originalHeight = Math.min(
+                    400,
+                    window.innerHeight - footerHeight
+                );
+                let toMove = window.innerHeight - originalHeight;
+                let canMove =
+                    window.innerHeight - originalHeight - footerHeight;
+                let height =
+                    originalHeight +
+                    (toMove / canMove) *
+                        (canMove - next.getBoundingClientRect().top);
+                let width = Math.max(
+                    maxWidth,
+                    maxWidth +
+                        ((window.innerWidth - maxWidth) / canMove) *
+                            (canMove - next.getBoundingClientRect().top)
+                );
+                let scale = width / window.innerWidth;
+                if (height > window.innerHeight) {
+                    next.style.height = "100%";
+                    next.style.width = `100%`;
+                    next.style.setProperty("--scale", 1);
+                    next.style.overflow = "unset";
+                    next.style.border = "none";
+                    footer.style.marginBottom = "1rem";
+                } else {
+                    next.style.setProperty("--scale", scale);
+                    next.style.width = `${width}px`;
+                    next.style.overflow = "hidden";
+                    next.style.border = "var(--border)";
+                    next.style.height = `${Math.max(originalHeight, height)}px`;
+                    footer.style.marginBottom = "100vh";
+                }
+            };
+
+            window.addEventListener("scroll", postScrollAnimations);
             let x = 1760,
                 z = 0,
                 y = 0,
@@ -1509,25 +1547,88 @@
                         }
                     }
                     pre.innerHTML = a.join("");
-                }, 50); /* JS by 
+                }, 50); /* JS by
               @housamz */
             };
             clearInterval(donut);
 
             const switchToHome = () => {
+                if (currentPage === "home") return;
+                currentPage = "home";
                 document.body.classList.add("toHome");
-                // start  donut
                 startDonut();
+                window.removeEventListener("scroll", postScrollAnimations);
+                footer.style.marginBottom = "1rem";
                 // wait for .3s
                 setTimeout(() => {
                     document.body.classList.remove("displayPost");
                     document.body.classList.remove("toHome");
-                },1000);
+                }, 500);
+            };
+
+            const switchToPost = () => {
+                if (currentPage === "post") return;
+                currentPage = "post";
+                document.body.classList.add("displayPost");
+                clearInterval(donut);
+                window.addEventListener("scroll", postScrollAnimations);
+                footer.style.marginBottom = "100vh";
             };
 
             const pre = document.createElement("pre");
             const playground = document.getElementById("header-playground");
             playground.appendChild(pre);
+
+            // copy button
+            function copyCode(button) {
+                const codeBlock =
+                    button.previousElementSibling.querySelector("code");
+                const codeLines = codeBlock.querySelectorAll(".cl");
+                let codeText = "";
+                codeLines.forEach((line) => {
+                    codeText += line.textContent + "\n";
+                });
+                navigator.clipboard.writeText(codeText);
+            }
+
+            // when link is pressed and is not target_blank, prevent default and switch to home
+            document.querySelectorAll("a").forEach((a) => {
+                a.addEventListener("click", (e) => {
+                    if (a.getAttribute("target") !== "_blank") {
+                        e.preventDefault();
+                        if (a.getAttribute("href").includes("/posts/"))
+                            switchToPost();
+                        else switchToHome();
+
+                        window.history.pushState(
+                            null,
+                            null,
+                            a.getAttribute("href")
+                        );
+                    }
+                });
+            });
+
+            const categoriesMove = (direction) => {
+                const categories = document.getElementById("categories");
+                const categoriesWidth =
+                    categories.getBoundingClientRect().width;
+                const categoriesLeft = parseFloat(
+                    getComputedStyle(categories).left
+                );
+                const categoriesRight = parseFloat(
+                    getComputedStyle(categories).right
+                );
+                if (direction === 1) {
+                    if (categoriesWidth + categoriesLeft > window.innerWidth) {
+                        categories.style.left = `${categoriesLeft - 200}px`;
+                    }
+                } else {
+                    if (categoriesLeft < 0) {
+                        categories.style.left = `${categoriesLeft + 200}px`;
+                    }
+                }
+            };
         </script>
     </body>
 </html>
