@@ -10,10 +10,7 @@
 * {
     scrollbar-width: thin; /* Makes the scrollbar thin */
     scrollbar-color: var(--dark-purple) transparent; /* Custom color */
-}
-::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 0, 0, 0.3); /* Color of the scrollbar handle */
-    border-radius: 10px; /* Rounded corners for a more minimalist look */
+    /* animation-duration: 4s!important; */
 }
 
 :root {
@@ -29,7 +26,9 @@
     --dark-filter: brightness(0) invert(91%) sepia(5%) saturate(1421%)
         hue-rotate(194deg) brightness(99%) contrast(96%);
 }
-
+html {
+    scroll-padding-top: 6rem;
+}
 body {
     font-family: "GenYoGothic TW", system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
@@ -42,6 +41,19 @@ body {
     display: none;
 }
 
+.transition {
+    position: fixed;
+    display: none;background-color: #fff;
+    transform: translate(-50%, -50%);z-index: 1000;
+    background-size: contain;
+}
+.smooth {
+    transition: all .5s ease;
+}
+.centered {
+    top: 50% !important;
+    left: 50% !important;
+}
 .toHome .home-page {
     display: block;
     position: absolute;
@@ -65,24 +77,27 @@ body {
 
 .toHome .post-page {
     transition: all 0.5s ease-in-out;
-    /* opacity: 0; */
     transform: translateX(100vw);
-    /* transform: scale(0.9); */
+    z-index: 2;
 }
 
 .displayPost .post-page {
     display: block;
 }
 
-.toHome .post-page {
-    z-index: 2;
-    /* animation: zoomAway .4s ease-out forwards; */
-    /* transform-origin: top; */
-}
-
 .post-page {
     display: none;
 }
+
+.toPost {
+    overflow: hidden;
+}
+
+.toPost .main-container {
+    transition: all 0.3s ease-in-out;
+    filter: opacity(0);
+}
+
 a {
     text-decoration: none;
     color: var(--blue);
@@ -216,7 +231,7 @@ nav li a:hover::after {
     align-items: center;
     gap: 1.5rem;
 }
-..recent-container {
+.recent-container {
     padding-top: 4.5rem;
     position: relative;
     background-color: var(--background-color);
@@ -497,8 +512,14 @@ section {
 .toc ul a {
     color: rgba(139, 155, 204, 0.6);
 }
-.toc ul li.current {
-    color: rgba(139, 155, 204, 0.6);
+.toc ul li a.current {
+    color: rgba(139, 155, 204);
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.toc ul li:has(.current):marker {
+    color: rgba(139, 155, 204);
 }
 .discord-join {
     color: var(--dark-purple);
@@ -590,6 +611,7 @@ section {
     width: 2rem;
     height: 100%;
     background: url(/static/img/larr.svg) no-repeat center center / 30%;
+    cursor: pointer;
 }
 .categories-right {
     transform: rotate(180deg);
@@ -659,8 +681,9 @@ aside {
     width: min(50vw, 20rem);
 }
 
-.main-container{
+.main-container {
     background-color: var(--background-color);
+    position: relative;
 }
 
 .post-page aside {
@@ -682,9 +705,6 @@ aside {
 .recent {
     padding: 1rem 0;
 }
-.recent h2 {
-    margin-left: 1rem;
-}
 
 .recent h2,
 #tags h2 {
@@ -692,6 +712,11 @@ aside {
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
+
+.recent h2 {
+    margin: 0.6rem 0 0rem 1.6rem;
+}
+
 .recent h3 {
     padding: 0.8rem 1.6rem;
     position: relative;
@@ -834,7 +859,7 @@ footer .logo {
     width: 100%;
     height: calc(100% - 5rem);
     background: #22272e;
-    animation: slideInTop 0.5s ease-out forwards;
+    animation: slideInTop 1s ease-in-out forwards;
 }
 
 @keyframes slideInTop {
@@ -953,9 +978,6 @@ figure img {
     border-bottom: none;
     padding: 2rem;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-.post-content {
-    /* padding: 1rem; */
 }
 
 .tldr {
@@ -1262,14 +1284,19 @@ blockquote::before {
     margin: auto;
     border-radius: var(--border-radius);
     border: var(--border);
+    width: 100%;
+    height: 100%;
+    --scale: 1;
+    overflow: unset;
+    border: none;
 }
 .next-post .post {
     scale: var(--scale);
     transform-origin: top left;
+    width: var(--scaleWidth);
 }
 
 .post {
-    width: 100vw;
     transform-origin: top center;
     background-size: 100vw 50px;
 }

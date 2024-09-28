@@ -74,7 +74,7 @@
                 <main>
                     <section class="post-container">
                         <div class="tldr">
-                            <h2>簡單來說</h2>
+                            <h2 id="簡單來說">簡單來說</h2>
                             <div>
                                 這篇文章的主旨在於介紹福瑞文化的定義、內涵及其多樣性，並澄清常見的刻板印象和誤解。
                             </div>
@@ -85,11 +85,16 @@
                                 <a href="">快速刪除</a
                                 >。本文將帶你深入探討獸迷文化，介紹福瑞（獸人）的定義、獸圈的生活、以及文化的多樣性。
                             </p>
-                            <h2>什麼是福瑞 (Furry)？</h2>
+                            <h2 id="什麼是福瑞-(Furry)？">
+                                什麼是福瑞 (Furry)？
+                            </h2>
                             <p>
                                 福瑞（Furry）這個詞，源自英文的
                                 “furry”，意指毛茸茸的動物。福瑞，或者說獸人，指的是擁有人類特徵的動物角色，例如能站立行走、會說話、擁有豐富表情的動物形象。
                             </p>
+                            <h2 id="為什麼有人喜歡福瑞？">
+                                為什麼有人喜歡福瑞？
+                            </h2>
                             <figure>
                                 <img
                                     src="/static/img/CloudCat 1.jpg"
@@ -223,13 +228,31 @@
                             <div class="toc">
                                 <h2>目錄</h2>
                                 <ul>
-                                    <li class="current">
-                                        <a href="">什麼是福瑞 (Furry)？</a>
+                                    <li>
+                                        <a href="#什麼是福瑞-(Furry)？"
+                                            >什麼是福瑞 (Furry)？</a
+                                        >
                                     </li>
-                                    <li><a href="">為什麼有人喜歡福瑞？</a></li>
-                                    <li><a href="">福瑞文化的多樣性</a></li>
-                                    <li><a href="">福瑞文化的發展</a></li>
-                                    <li><a href="">福瑞文化的未來</a></li>
+                                    <li>
+                                        <a href="#為什麼有人喜歡福瑞？"
+                                            >為什麼有人喜歡福瑞？</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="#福瑞文化的多樣性"
+                                            >福瑞文化的多樣性</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="#福瑞文化的發展"
+                                            >福瑞文化的發展</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="#福瑞文化的未來"
+                                            >福瑞文化的未來</a
+                                        >
+                                    </li>
                                 </ul>
                             </div>
                             <a href="">
@@ -692,7 +715,7 @@
                                     <p>歡迎加入 Discord 與我們一起討論。</p>
                                 </div>
                                 <div class="sticky">
-                                    <div id="recent">
+                                    <div class="recent">
                                         <h2>近期瀏覽</h2>
                                         <h3>
                                             <a href=""
@@ -1032,25 +1055,28 @@
                     </div>
                     <div id="posts">
                         <article>
-                            <div
-                                class="hero"
-                                style="
-                                    background-image: url('/static/img/thumbnail.webp'),
-                                        linear-gradient(
-                                            135deg,
-                                            #fd7ce1,
-                                            #00e69b,
-                                            #00e99a
-                                        );
-                                "
-                            ></div>
+                            <a href="/posts/MultiWall"
+                                ><div
+                                    class="hero"
+                                    style="
+                                        background-image: url('/static/img/thumbnail.webp'),
+                                            linear-gradient(
+                                                135deg,
+                                                #fd7ce1,
+                                                #00e69b,
+                                                #00e99a
+                                            );
+                                    "
+                                ></div
+                            ></a>
                             <div class="info">
                                 <div class="post-categories">軟體分享</div>
-                                <h3>
-                                    <a href="/posts/MultiWall"
-                                        >【MultiWall】讓不同螢幕放不同桌布</a
-                                    >
-                                </h3>
+
+                                <a href="/posts/MultiWall">
+                                    <h3>
+                                        【MultiWall】讓不同螢幕放不同桌布
+                                    </h3></a
+                                >
 
                                 <div class="tags">
                                     <a href="/categories/軟體分享">軟體分享</a>
@@ -1359,7 +1385,7 @@
                         <p>歡迎加入 Discord 與我們一起討論。</p>
                     </div>
                     <div class="sticky">
-                        <div id="recent">
+                        <div class="recent">
                             <h2>近期瀏覽</h2>
                             <h3>
                                 <a href=""
@@ -1486,14 +1512,11 @@
                 );
                 let scale = width / window.innerWidth;
                 if (height > window.innerHeight) {
-                    next.style.height = "100%";
-                    next.style.width = `100%`;
-                    next.style.setProperty("--scale", 1);
-                    next.style.overflow = "unset";
-                    next.style.border = "none";
+                    next.style = "";
                     footer.style.marginBottom = "1rem";
                 } else {
                     next.style.setProperty("--scale", scale);
+                    next.style.setProperty("--scaleWidth", "100vw");
                     next.style.width = `${width}px`;
                     next.style.overflow = "hidden";
                     next.style.border = "var(--border)";
@@ -1569,10 +1592,17 @@
             const switchToPost = () => {
                 if (currentPage === "post") return;
                 currentPage = "post";
-                document.body.classList.add("displayPost");
+                document.body.classList.add("toPost");
                 clearInterval(donut);
                 window.addEventListener("scroll", postScrollAnimations);
                 footer.style.marginBottom = "100vh";
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                }, 500);
+                setTimeout(() => {
+                    document.body.classList.add("displayPost");
+                    document.body.classList.remove("toPost");
+                }, 1000);
             };
 
             const pre = document.createElement("pre");
@@ -1595,10 +1625,69 @@
             document.querySelectorAll("a").forEach((a) => {
                 a.addEventListener("click", (e) => {
                     if (a.getAttribute("target") !== "_blank") {
+                        if (a.getAttribute("href").startsWith("#")) return;
                         e.preventDefault();
-                        if (a.getAttribute("href").includes("/posts/"))
+                        if (a.getAttribute("href").includes("/posts/")) {
                             switchToPost();
-                        else switchToHome();
+                            // check if there's a .hero image in the same article
+                            const hero = a
+                                .closest("article")
+                                .querySelector(".hero");
+                            if (hero) {
+                                const fixedBox =
+                                    document.querySelector(".transition");
+                                const postThumbnail =
+                                    document.querySelector(".post-thumbnail");
+                                const postThumbnailRect =
+                                    postThumbnail.getBoundingClientRect();
+                                fixedBox.style.backgroundImage =
+                                    hero.style.backgroundImage;
+                                console.log(hero.style.backgroundImage);
+                                const rect = hero.getBoundingClientRect();
+                                // match the size and position of the original box
+                                fixedBox.classList.remove("smooth");
+                                fixedBox.style.width = `${rect.width}px`;
+                                fixedBox.style.height = `${rect.height}px`;
+                                // display and hide original box
+                                hero.style.visibility = "hidden";
+                                postThumbnail.style.visibility = "hidden";
+                                fixedBox.style.display = "block";
+                                fixedBox.style.top = `${
+                                    rect.top + rect.height / 2
+                                }px`;
+                                fixedBox.style.left = `${
+                                    rect.left + rect.width / 2
+                                }px`;
+                                // Animate to center
+                                setTimeout(() => {
+                                    fixedBox.classList.add("smooth");
+                                    fixedBox.classList.add("centered");
+                                }, 10); // Slight delay to allow the transition to work
+
+                                setTimeout(() => {
+                                    fixedBox.classList.remove("centered");
+                                    fixedBox.style.width = `${postThumbnailRect.width}px`;
+                                    fixedBox.style.height = `${postThumbnailRect.height}px`;
+                                    fixedBox.style.left = `${
+                                        postThumbnailRect.left +
+                                        postThumbnailRect.width / 2
+                                    }px`;
+                                    fixedBox.style.top = `${
+                                        postThumbnailRect.top +
+                                        postThumbnailRect.height / 2 +
+                                        window.scrollY
+                                    }px`;
+
+                                    // scroll to the element position
+                                    // calc the top offset if box compare to the top of the body
+                                    setTimeout(() => {
+                                        postThumbnail.style.visibility =
+                                            "visible";
+                                        //   fixedBox.style.display = "none";
+                                    }, 500); // Match the duration of the animation (0.3s)
+                                }, 1000);
+                            }
+                        } else switchToHome();
 
                         window.history.pushState(
                             null,
@@ -1611,24 +1700,36 @@
 
             const categoriesMove = (direction) => {
                 const categories = document.getElementById("categories");
-                const categoriesWidth =
-                    categories.getBoundingClientRect().width;
-                const categoriesLeft = parseFloat(
-                    getComputedStyle(categories).left
-                );
-                const categoriesRight = parseFloat(
-                    getComputedStyle(categories).right
-                );
-                if (direction === 1) {
-                    if (categoriesWidth + categoriesLeft > window.innerWidth) {
-                        categories.style.left = `${categoriesLeft - 200}px`;
-                    }
-                } else {
-                    if (categoriesLeft < 0) {
-                        categories.style.left = `${categoriesLeft + 200}px`;
-                    }
-                }
+                categories.scrollTo({
+                    left: categories.scrollLeft + 200 * direction,
+                    behavior: "smooth"
+                });
             };
+
+            // highlight current h2 in .toc
+            const toc = document.querySelector(".toc");
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.id;
+                            const tocItem = toc.querySelector(
+                                `a[href="#${id}"]`
+                            );
+                            if (tocItem) {
+                                toc.querySelectorAll("a").forEach((a) =>
+                                    a.classList.remove("current")
+                                );
+                                tocItem.classList.add("current");
+                            }
+                        }
+                    });
+                },
+                { rootMargin: "0% 0% -80% 0%" }
+            );
+            document.querySelectorAll("h2").forEach((h2) => {
+                observer.observe(h2);
+            });
         </script>
     </body>
 </html>
