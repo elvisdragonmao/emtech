@@ -43,12 +43,14 @@ body {
 
 .transition {
     position: fixed;
-    display: none;background-color: #fff;
-    transform: translate(-50%, -50%);z-index: 1000;
+    display: none;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
     background-size: contain;
 }
 .smooth {
-    transition: all .5s ease;
+    transition: all 0.5s ease;
 }
 .centered {
     top: 50% !important;
@@ -83,8 +85,12 @@ body {
 
 .displayPost .post-page {
     display: block;
+    opacity: 1;
 }
-
+.toPost .post-page {
+    display: block;
+    opacity: 1;
+}
 .post-page {
     display: none;
 }
@@ -94,8 +100,7 @@ body {
 }
 
 .toPost .main-container {
-    transition: all 0.3s ease-in-out;
-    filter: opacity(0);
+    opacity: 0;
 }
 
 a {
@@ -684,6 +689,7 @@ aside {
 .main-container {
     background-color: var(--background-color);
     position: relative;
+    transition: opacity 0.3s;
 }
 
 .post-page aside {
