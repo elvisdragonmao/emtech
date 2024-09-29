@@ -1,13 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>emtech</title>
         <link rel="stylesheet" href="/static/style.css" />
-        <link rel="stylesheet" href="/static/nors.css" />
+        <link rel="stylesheet" href="/static/nord.css" />
+        <meta
+            name="description"
+            content="毛哥EM資訊密技，提供最新的資訊技術文章與教學。"
+        />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            href="https://emtech.cc/rss"
+        />
+        <!-- icons -->
+        <script type="application/ld+json">
+            {
+              "@context" : "https://schema.org",
+              "@type" : "WebSite",
+              "name" : "Example Company",
+              "alternateName": ["BT", "B-T", "Burnt Toast Shop"],
+              "url" : "https://example.com/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://query.example.com/search?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+              },"@context": "https://schema.org",
+              "@type": "WebSite",
+              "url": "https://www.example.com/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://query.example.com/search?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+
+            }
+        </script>
     </head>
-    <body class="displayPost">
+    <body class="">
         <nav>
             <a href="/" class="title">
                 <img src="/static/img/logo.svg" alt="" />
@@ -990,7 +1028,7 @@
                         ><a href="" class="header-categories-item">軟體分享</a
                         ><a href="" class="header-categories-item">軟體分享</a>
                     </div>
-                    <div class="header-info"></div>
+                    <a href=""> <div class="header-info"></div></a>
                     <a href="">
                         <div class="header-newPost">
                             <h2>最新文章</h2>
@@ -1525,7 +1563,6 @@
                 }
             };
 
-            window.addEventListener("scroll", postScrollAnimations);
             let x = 1760,
                 z = 0,
                 y = 0,
@@ -1573,7 +1610,17 @@
                 }, 50); /* JS by
               @housamz */
             };
-            clearInterval(donut);
+            // use url to get current page include /posts/
+
+            if (window.location.pathname.includes("/posts/")) {
+                currentPage = "post";
+                document.body.classList.add("displayPost");
+                window.addEventListener("scroll", postScrollAnimations);
+            } else {
+                currentPage = "home";
+                document.body.classList.remove("displayPost");
+                startDonut();
+            }
 
             const switchToHome = () => {
                 if (currentPage === "home") return;
@@ -1585,6 +1632,7 @@
                 // wait for .3s
                 setTimeout(() => {
                     document.body.classList.remove("displayPost");
+                    window.scrollTo(0, 0);
                     document.body.classList.remove("toHome");
                 }, 500);
             };

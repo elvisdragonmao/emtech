@@ -1,159 +1,397 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>emtech</title>
-        <link rel="stylesheet" href="/static/style.css" />
-    </head>
-    <body>
-        <!-- {{nav}} -->
-        <nav>
-            <div class="title">毛哥EM資訊密技</div>
-            <ul>
-                <li><a href="/post">文章</a></li>
-                <li><a href="/tags">分類</a></li>
-                <li><a href="/about">關於我</a></li>
-            </ul>
-            <div class="right">
-                <input type="text" placeholder="搜尋" />
-                <button>搜尋</button>
-            </div>
-        </nav>
-        <div class="main-container">
-            <header>
-                <div>
-                    <h2>歡迎來到 emfont beta</h2>
-                </div>
-                <div>
-                    <h2>有朋自遠方來不意樂乎?</h2>
-                </div>
-            </header>
-            <main>
-                <section>
-                    <div id="categories"></div>
-                    <div id="posts"></div>
-                </section>
-                <aside>
-                    <div id="about">
-                        <h2>關於我</h2>
-                    </div>
-                    <div id="featured">
-                        <h2>精選文章</h2>
-                    </div>
-                    <div id="tags">
-                        <h2>標籤</h2>
-                    </div>
-                </aside>
-            </main>
+<header>
+    <div id="header-playground">
+        <div class="header-title">
+            <h1>毛哥EM<span>資訊密技</span></h1>
         </div>
-        <footer>
-            <p>&copy; 2024 emtech</p>
-        </footer>
-        <script>
-            // fetch from /meta/tags.json like this
-            //             {
-            //   "tags": {
-            //     "HTML": 32,
-            //     "CSS": 35,
-            //     "JS": 20,
-            //     "Js": 1,
-            //   },
-            //   "categories": {
-            //     "心得": 1,
-            //     "活動心得": 1,
-            //     "軟體分享": 12,
-            //   }
-            // }
-            fetch("/meta/tags.json")
-                .then((res) => res.json())
-                .then((data) => {
-                    const tags = data.tags;
-                    const categories = data.categories;
-                    const tagsElement = document.querySelector("#tags");
-                    const categoriesElement =
-                        document.querySelector("#categories");
-                    for (const tag in tags) {
-                        const tagElement = document.createElement("a");
-                        tagElement.href = `/tags/${tag}`;
-                        tagElement.textContent = `#${tag} (${tags[tag]})`;
-                        tagsElement.appendChild(tagElement);
-                    }
-                    for (const category in categories) {
-                        const categoryElement = document.createElement("a");
-                        categoryElement.href = `/categories/${category}`;
-                        categoryElement.textContent = `${category}`;
-                        categoryElement.setAttribute(
-                            "data-categories",
-                            category
-                        );
-                        categoriesElement.appendChild(categoryElement);
-                    }
-                    document
-                        .querySelectorAll("#categories a")
-                        .forEach((link) => {
-                            link.addEventListener("click", function (event) {
-                                event.preventDefault();
-                                loadCategoryPosts(
-                                    link.getAttribute("data-categories")
-                                );
-                            });
-                        });
-                });
-
-            const loadCategoryPosts = (category) => {
-                fetch(`/meta/categories/${category}.json`)
-                    .then((res) => res.json())
-                    .then((data) => {
-                        //example data
-                        //                         [
-                        //   {
-                        //     "authors": "elvismao",
-                        //     "categories": [
-                        //       "心得"
-                        //     ],
-                        //     "series": [
-                        //       "不用庫 也能酷 - 玩轉 CSS & Js 特效"
-                        //     ],
-                        //     "date": 1697241600000,
-                        //     "title": "Day30 三十天的血與淚 - 密技",
-                        //     "description": "不知不覺，三十天的鐵人賽就要結束了。一開始還覺得時間很漫長，但到了二十幾天之後我開始發現時間不多了，十分珍惜每一次能夠和大家分享的機會。",
-                        //     "id": "2023ironman-30",
-                        //     "thumbnail": ""
-                        //   }
-                        // ]
-                        const postsElement = document.querySelector("#posts");
-                        postsElement.innerHTML = "";
-                        data.forEach((post) => {
-                            const article = document.createElement("article");
-                            article.innerHTML = `
-            <div
-                class="hero"
-                style="
-                    background-image: url('${
-                        post.thumbnail|| ""}'),
-                    ${post.colors || ""};"
-            ></div>
-            <div class="info">
-                <div class="categories
-                ">${post.categories.join(", ")}</div>
-                <h3><a href="/posts/${post.id}">${post.title}</a></h3>
-                <p>${post.description}</p>
-                <div class="tags">
-                    ${post.categories
-                        .map(
-                            (category) =>
-                                `<a href="/categories/${category}">#${category}</a>`
-                        )
-                        .join("")}
-                </div>
+    </div>
+    <div class="header-right">
+        <div class="header-categories">
+            <a href="" class="header-categories-item">軟體分享</a
+            ><a href="" class="header-categories-item">軟體分享</a
+            ><a href="" class="header-categories-item">軟體分享</a
+            ><a href="" class="header-categories-item">軟體分享</a>
+        </div>
+        <a href=""> <div class="header-info"></div></a>
+        <a href="">
+            <div class="header-newPost">
+                <h2>最新文章</h2>
+                <img src="/static/img/thumbnail.webp" alt="" /></div
+        ></a>
+    </div>
+</header>
+<main>
+    <section>
+        <div class="categories">
+            <div class="categories-left" onclick="categoriesMove(-1)"></div>
+            <div id="categories">
+                <a href="/categories/心得" data-categories="心得">心得</a
+                ><a href="/categories/活動心得" data-categories="活動心得"
+                    >活動心得</a
+                ><a href="/categories/軟體分享" data-categories="軟體分享"
+                    >軟體分享</a
+                ><a href="/categories/筆記" data-categories="筆記">筆記</a
+                ><a href="/categories/教學" data-categories="教學">教學</a
+                ><a href="/categories/網站分享" data-categories="網站分享"
+                    >網站分享</a
+                ><a href="/categories/製作教學" data-categories="製作教學"
+                    >製作教學</a
+                ><a href="/categories/別說我教的" data-categories="別說我教的"
+                    >別說我教的</a
+                ><a href="/categories/科技新聞" data-categories="科技新聞"
+                    >科技新聞</a
+                ><a href="/categories/debug" data-categories="debug">debug</a
+                ><a href="/categories/API 分享" data-categories="API 分享"
+                    >API 分享</a
+                ><a href="/categories/捷徑分享" data-categories="捷徑分享"
+                    >捷徑分享</a
+                >
             </div>
-            `;
-                            postsElement.appendChild(article);
-                        });
-                    });
-            };
-            loadCategoryPosts("軟體分享");
-        </script>
-    </body>
-</html>
+            <div class="categories-right" onclick="categoriesMove(1)"></div>
+        </div>
+        <div id="posts">
+            <article>
+                <a href="/posts/MultiWall"
+                    ><div
+                        class="hero"
+                        style="
+                            background-image: url('/static/img/thumbnail.webp'),
+                                linear-gradient(
+                                    135deg,
+                                    #fd7ce1,
+                                    #00e69b,
+                                    #00e99a
+                                );
+                        "
+                    ></div
+                ></a>
+                <div class="info">
+                    <div class="post-categories">軟體分享</div>
+
+                    <a href="/posts/MultiWall">
+                        <h3>【MultiWall】讓不同螢幕放不同桌布</h3></a
+                    >
+
+                    <div class="tags">
+                        <a href="/categories/軟體分享">軟體分享</a>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <div
+                    class="hero"
+                    style="
+                        background-image: url('/static/img/thumbnail.webp'),
+                            linear-gradient(135deg, #fd7ce1, #00e69b, #00e99a);
+                    "
+                ></div>
+                <div class="info">
+                    <div class="post-categories">軟體分享</div>
+                    <h3>
+                        <a href="/posts/MultiWall"
+                            >【MultiWall】讓不同螢幕放不同桌布</a
+                        >
+                    </h3>
+
+                    <div class="tags">
+                        <a href="/categories/軟體分享">軟體分享</a>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <div
+                    class="hero"
+                    style="
+                        background-image: url('/static/img/thumbnail.webp'),
+                            linear-gradient(135deg, #fd7ce1, #00e69b, #00e99a);
+                    "
+                ></div>
+                <div class="info">
+                    <div class="post-categories">軟體分享</div>
+                    <h3>
+                        <a href="/posts/MultiWall"
+                            >【MultiWall】讓不同螢幕放不同桌布</a
+                        >
+                    </h3>
+
+                    <div class="tags">
+                        <a href="/categories/軟體分享">軟體分享</a>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <div
+                    class="hero"
+                    style="
+                        background-image: url('/static/img/thumbnail.webp'),
+                            linear-gradient(135deg, #fd7ce1, #00e69b, #00e99a);
+                    "
+                ></div>
+                <div class="info">
+                    <div class="post-categories">軟體分享</div>
+                    <h3>
+                        <a href="/posts/MultiWall"
+                            >【MultiWall】讓不同螢幕放不同桌布</a
+                        >
+                    </h3>
+
+                    <div class="tags">
+                        <a href="/categories/軟體分享">軟體分享</a>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <div
+                    class="hero"
+                    style="
+                        background-image: url('/static/img/thumbnail.webp'),
+                            linear-gradient(135deg, #fd7ce1, #00e69b, #00e99a);
+                    "
+                ></div>
+                <div class="info">
+                    <div class="post-categories">軟體分享</div>
+                    <h3>
+                        <a href="/posts/MultiWall"
+                            >【MultiWall】讓不同螢幕放不同桌布</a
+                        >
+                    </h3>
+
+                    <div class="tags">
+                        <a href="/categories/軟體分享">軟體分享</a>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <div
+                    class="hero"
+                    style="
+                        background-image: url('/static/img/thumbnail.webp'),
+                            linear-gradient(135deg, #fd7ce1, #00e69b, #00e99a);
+                    "
+                ></div>
+                <div class="info">
+                    <div class="post-categories">軟體分享</div>
+                    <h3>
+                        <a href="/posts/MultiWall"
+                            >【MultiWall】讓不同螢幕放不同桌布</a
+                        >
+                    </h3>
+
+                    <div class="tags">
+                        <a href="/categories/軟體分享">軟體分享</a>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <div
+                    class="hero"
+                    style="
+                        background-image: url('/static/img/thumbnail.webp'),
+                            linear-gradient(135deg, #fd7ce1, #00e69b, #00e99a);
+                    "
+                ></div>
+                <div class="info">
+                    <div class="post-categories">軟體分享</div>
+                    <h3>
+                        <a href="/posts/MultiWall"
+                            >【MultiWall】讓不同螢幕放不同桌布</a
+                        >
+                    </h3>
+
+                    <div class="tags">
+                        <a href="/categories/軟體分享">軟體分享</a>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <div
+                    class="hero"
+                    style="
+                        background-image: url('/static/img/thumbnail.webp'),
+                            linear-gradient(135deg, #fd7ce1, #00e69b, #00e99a);
+                    "
+                ></div>
+                <div class="info">
+                    <div class="post-categories">軟體分享</div>
+                    <h3>
+                        <a href="/posts/MultiWall"
+                            >【MultiWall】讓不同螢幕放不同桌布</a
+                        >
+                    </h3>
+
+                    <div class="tags">
+                        <a href="/categories/軟體分享">軟體分享</a>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <div
+                    class="hero"
+                    style="
+                        background-image: url('/static/img/thumbnail.webp'),
+                            linear-gradient(135deg, #fd7ce1, #00e69b, #00e99a);
+                    "
+                ></div>
+                <div class="info">
+                    <div class="post-categories">軟體分享</div>
+                    <h3>
+                        <a href="/posts/MultiWall"
+                            >【MultiWall】讓不同螢幕放不同桌布</a
+                        >
+                    </h3>
+
+                    <div class="tags">
+                        <a href="/categories/軟體分享">軟體分享</a>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <div
+                    class="hero"
+                    style="
+                        background-image: url('/static/img/thumbnail.webp'),
+                            linear-gradient(135deg, #fd7ce1, #00e69b, #00e99a);
+                    "
+                ></div>
+                <div class="info">
+                    <div class="post-categories">軟體分享</div>
+                    <h3>
+                        <a href="/posts/MultiWall"
+                            >【MultiWall】讓不同螢幕放不同桌布</a
+                        >
+                    </h3>
+
+                    <div class="tags">
+                        <a href="/categories/軟體分享">軟體分享</a>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <div
+                    class="hero"
+                    style="
+                        background-image: url('/static/img/thumbnail.webp'),
+                            linear-gradient(135deg, #fd7ce1, #00e69b, #00e99a);
+                    "
+                ></div>
+                <div class="info">
+                    <div class="post-categories">軟體分享</div>
+                    <h3>
+                        <a href="/posts/MultiWall"
+                            >【MultiWall】讓不同螢幕放不同桌布</a
+                        >
+                    </h3>
+
+                    <div class="tags">
+                        <a href="/categories/軟體分享">軟體分享</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="more-post"></div>
+    </section>
+    <aside>
+        <div class="about">
+            <div class="about-name">
+                <img src="/static/img/EMprofile.png" alt="" />
+                毛哥EM
+            </div>
+            <p>一位喜歡把簡單的事，做得不簡單的高三生。</p>
+            <div class="about-links">
+                <a href=""><img src="/static/img/github-uwu.svg" alt="" /></a
+                ><a href=""><img src="/static/img/instagram.svg" alt="" /></a
+                ><a href="" class="about-rarr"
+                    ><img src="/static/img/rarr.svg" alt=""
+                /></a>
+            </div>
+        </div>
+        <div class="discord-join">
+            <img src="/static/img/discord.svg" class="discord-float" />
+            <img src="/static/img/discord.svg" class="discord-float" />
+            <img src="/static/img/discord.svg" class="discord-float" />
+
+            <h2>遇到問題嗎?</h2>
+            <p>歡迎加入 Discord 與我們一起討論。</p>
+        </div>
+        <div class="sticky">
+            <div class="recent">
+                <h2>近期瀏覽</h2>
+                <h3>
+                    <a href="">甚麼是福瑞 (Furry)？認識不獸控制的獸圈</a>
+                </h3>
+                <h3><a href="">你不知道的 git add -A 魔力</a></h3>
+                <h3>
+                    <a href=""
+                        >解決 Certbot SSL 更新失敗 - The manual plugin is not
+                        ...</a
+                    >
+                </h3>
+                <h3><a href="">如何更改 SSH 預設端口</a></h3>
+                <h3>
+                    <a href="">啊我剛才 push 錯了! 如何在 Git 中撤銷提交</a>
+                </h3>
+            </div>
+            <div id="tags">
+                <h2>標籤</h2>
+                <a href="">
+                    標籤
+                    <div>20</div> </a
+                ><a href="">
+                    標籤
+                    <div>20</div> </a
+                ><a href="">
+                    標籤
+                    <div>20</div> </a
+                ><a href="">
+                    標籤
+                    <div>20</div> </a
+                ><a href="">
+                    標籤
+                    <div>20</div> </a
+                ><a href="">
+                    標籤
+                    <div>20</div> </a
+                ><a href="">
+                    標籤
+                    <div>20</div> </a
+                ><a href="">
+                    標籤
+                    <div>20</div> </a
+                ><a href="">
+                    標籤
+                    <div>20</div> </a
+                ><a href="">
+                    標籤
+                    <div>20</div>
+                </a>
+            </div>
+            <div id="time">
+                <h2>毛哥EM資訊密技 已上線</h2>
+                <p>3 年 113 天</p>
+            </div>
+        </div>
+    </aside>
+</main>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "ProfilePage",
+        "image": "https://emtech.cc/static/img/EMprofile.png",
+        "url": "https://emtech.cc/",
+        "logo": "https://emtech.cc/static/img/EMprofile.png",
+        "name": "毛哥EM資訊密技",
+        "alternateName": ["毛哥EM", "emtech"],
+        "description": "毛哥EM資訊密技，提供最新的資訊技術文章與教學。",
+        "email": "info@elvismao.com",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "info@elvismao.com"
+        },
+        "foundingDate": "2021-06-04",
+        "numberOfEmployees": {
+            "@type": "QuantitativeValue",
+            "value": 1
+        },
+        "sameAs": ["https://www.instagram.com/emtech.cc/"]
+    }
+</script>

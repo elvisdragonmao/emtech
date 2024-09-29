@@ -1,16 +1,267 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>emtech</title>
-</head>
-<body>
-    <h1>emtech</h1>
-    {{nav}}
-    <h2>{{title}}</h2>
-    <article>
-        {{content}}
-    </article>
-</body>
-</html>
+<div class="post">
+    <header>
+        <div class="post-header">
+            <div class="header-tags">
+                <div class="header-categorie">原創</div>
+                <div class="header-categorie">閒聊</div>
+                <div class="header-tag">Furry</div>
+            </div>
+            <div class="title-box">
+                <h1>{{title}}</h1>
+            </div>
+            <div class="post-info">
+                <div class="meta">
+                    <img src="/static/img/doc.svg" alt="" /><span>1.7k</span>
+                </div>
+                <div class="meta">
+                    <img src="/static/img/clock.svg" alt="" /><span
+                        >5 分鐘</span
+                    >
+                </div>
+                <div class="meta">
+                    <img src="/static/img/date.svg" alt="" /><span
+                        >2024-8-30</span
+                    >
+                </div>
+            </div>
+            <img
+                src="/static/img/thumbnail.webp"
+                class="post-thumbnail"
+                alt=""
+            />
+        </div>
+    </header>
+    <main>
+        <section class="post-container">
+            <div class="tldr">
+                <h2 id="簡單來說">簡單來說</h2>
+                <div>{{tldr}}</div>
+            </div>
+            <div class="post-content">
+                {{content}}
+                <div class="author-container">
+                    <img
+                        src="/static/img/EMprofile.png"
+                        alt=""
+                        class="author-avatar"
+                    />
+                    <h3>毛哥EM</h3>
+                    <div class="author-social">
+                        <a href=""
+                            ><img src="/static/img/github-uwu.svg" alt="" /></a
+                        ><a href=""
+                            ><img src="/static/img/instagram.svg" alt=""
+                        /></a>
+                    </div>
+                    <p>一位喜歡把簡單的事，做得不簡單的高三生。</p>
+                    <div class="author-copyright">
+                        本文為原創文章，採 CC BY
+                        授權，轉載請註明來自毛哥EM資訊密技。
+                    </div>
+                </div>
+                <div class="post-tags">
+                    標籤:
+                    <div class="post-tag">Furry</div>
+                    <div class="post-tag">Furry</div>
+                    <div class="post-tag">Furry</div>
+                </div>
+            </div>
+        </section>
+        <aside>
+            {{about}}
+            <div class="sticky">
+                <div class="share">
+                    <div>分享</div>
+                    <a href=""><img src="/static/img/facebook.svg" alt="" /></a
+                    ><a href=""><img src="/static/img/threads.svg" alt="" /></a
+                    ><a href=""><img src="/static/img/x.svg" alt="" /></a
+                    ><a href=""><img src="/static/img/linkdin.svg" alt="" /></a
+                    ><a href=""><img src="/static/img/link.svg" alt="" /></a>
+                </div>
+                <div class="toc">
+                    <h2>目錄</h2>
+                    <ul>
+                        <li>
+                            <a href="#什麼是福瑞-(Furry)？"
+                                >什麼是福瑞 (Furry)？</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#為什麼有人喜歡福瑞？"
+                                >為什麼有人喜歡福瑞？</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#福瑞文化的多樣性">福瑞文化的多樣性</a>
+                        </li>
+                        <li>
+                            <a href="#福瑞文化的發展">福瑞文化的發展</a>
+                        </li>
+                        <li>
+                            <a href="#福瑞文化的未來">福瑞文化的未來</a>
+                        </li>
+                    </ul>
+                </div>
+                {{aside}}
+            </div>
+        </aside>
+        <div class="related-posts">
+            <h2>本系列其他文章</h2>
+            <div class="related-posts-container">
+                <article>
+                    <div
+                        class="hero"
+                        style="
+                            background-image: url('/static/img/thumbnail.webp'),
+                                linear-gradient(
+                                    135deg,
+                                    #fd7ce1,
+                                    #00e69b,
+                                    #00e99a
+                                );
+                        "
+                    ></div>
+                    <div class="info">
+                        <div class="post-categories">軟體分享</div>
+                        <h3>
+                            <a href="/posts/MultiWall"
+                                >【MultiWall】讓不同螢幕放不同桌布</a
+                            >
+                        </h3>
+
+                        <div class="tags">
+                            <a href="/categories/軟體分享">軟體分享</a>
+                        </div>
+                    </div>
+                </article>
+                <article>
+                    <div
+                        class="hero"
+                        style="
+                            background-image: url('https://emtech.cc/ironman2023_2709523197975058030.webp'),
+                                linear-gradient(135deg, #000, #000, #000);
+                        "
+                    ></div>
+                    <div class="info">
+                        <div class="post-categories">軟體分享</div>
+                        <h3>
+                            <a href="/posts/MultiWall"
+                                >【MultiWall】讓不同螢幕放不同桌布</a
+                            >
+                        </h3>
+
+                        <div class="tags">
+                            <a href="/categories/軟體分享">軟體分享</a>
+                        </div>
+                    </div>
+                </article>
+                <article>
+                    <div
+                        class="hero"
+                        style="
+                            background-image: url('/static/img/thumbnail.webp'),
+                                linear-gradient(
+                                    135deg,
+                                    #fd7ce1,
+                                    #00e69b,
+                                    #00e99a
+                                );
+                        "
+                    ></div>
+                    <div class="info">
+                        <div class="post-categories">軟體分享</div>
+                        <h3>
+                            <a href="/posts/MultiWall"
+                                >【MultiWall】讓不同螢幕放不同桌布</a
+                            >
+                        </h3>
+
+                        <div class="tags">
+                            <a href="/categories/軟體分享">軟體分享</a>
+                        </div>
+                    </div>
+                </article>
+                <article>
+                    <div
+                        class="hero"
+                        style="
+                            background-image: url('/static/img/thumbnail.webp'),
+                                linear-gradient(
+                                    135deg,
+                                    #fd7ce1,
+                                    #00e69b,
+                                    #00e99a
+                                );
+                        "
+                    ></div>
+                    <div class="info">
+                        <div class="post-categories">軟體分享</div>
+                        <h3>
+                            <a href="/posts/MultiWall"
+                                >【MultiWall】讓不同螢幕放不同桌布</a
+                            >
+                        </h3>
+
+                        <div class="tags">
+                            <a href="/categories/軟體分享">軟體分享</a>
+                        </div>
+                    </div>
+                </article>
+                <article>
+                    <div
+                        class="hero"
+                        style="
+                            background-image: url('/static/img/thumbnail.webp'),
+                                linear-gradient(
+                                    135deg,
+                                    #fd7ce1,
+                                    #00e69b,
+                                    #00e99a
+                                );
+                        "
+                    ></div>
+                    <div class="info">
+                        <div class="post-categories">軟體分享</div>
+                        <h3>
+                            <a href="/posts/MultiWall"
+                                >【MultiWall】讓不同螢幕放不同桌布</a
+                            >
+                        </h3>
+
+                        <div class="tags">
+                            <a href="/categories/軟體分享">軟體分享</a>
+                        </div>
+                    </div>
+                </article>
+                <article>
+                    <div
+                        class="hero"
+                        style="
+                            background-image: url('/static/img/thumbnail.webp'),
+                                linear-gradient(
+                                    135deg,
+                                    #fd7ce1,
+                                    #00e69b,
+                                    #00e99a
+                                );
+                        "
+                    ></div>
+                    <div class="info">
+                        <div class="post-categories">軟體分享</div>
+                        <h3>
+                            <a href="/posts/MultiWall"
+                                >【MultiWall】讓不同螢幕放不同桌布</a
+                            >
+                        </h3>
+
+                        <div class="tags">
+                            <a href="/categories/軟體分享">軟體分享</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+    <h2 class="continue">繼續閱讀...</h2>
+    <div class="next-post"></div>
+</div>
