@@ -56,16 +56,18 @@ body {
     top: 50% !important;
     left: 50% !important;
 }
-.toHome .home-page {
+.toHome .home-page, .toPost .home-page {
     display: block;
     position: absolute;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1;
+   
+}
+.toHome .home-page{
     animation: slideIn 0.5s forwards ease-in-out;
 }
-
 @keyframes slideIn {
     from {
         filter: brightness(0);

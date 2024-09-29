@@ -1589,20 +1589,71 @@
                 }, 500);
             };
 
-            const switchToPost = () => {
+            const switchToPost = (a) => {
                 if (currentPage === "post") return;
                 currentPage = "post";
                 document.body.classList.add("toPost");
                 clearInterval(donut);
-                window.addEventListener("scroll", postScrollAnimations);
-                footer.style.marginBottom = "100vh";
+                const hero = a.closest("article").querySelector(".hero");
+                if (hero) {
+                    const fixedBox = document.querySelector(".transition");
+                    const postThumbnail =
+                        document.querySelector(".post-thumbnail");
+                    fixedBox.style.backgroundImage = hero.style.backgroundImage;
+                    console.log(hero.style.backgroundImage);
+                    const rect = hero.getBoundingClientRect();
+                    fixedBox.classList.remove("smooth");
+                    fixedBox.style.width = `${rect.width}px`;
+                    fixedBox.style.height = `${rect.height}px`;
+                    hero.style.visibility = "hidden";
+                    postThumbnail.style.visibility = "hidden";
+                    fixedBox.style.display = "block";
+                    fixedBox.style.top = `${rect.top + rect.height / 2}px`;
+                    fixedBox.style.left = `${rect.left + rect.width / 2}px`;
+                    fixedBox.style.borderRadius = "1.875rem 1.875rem 0 0";
+                    footer.style.marginBottom = "100vh";
+                    setTimeout(() => {
+                        fixedBox.classList.add("smooth");
+                        fixedBox.style.borderRadius = "1.875rem";
+                        fixedBox.classList.add("centered");
+                    }, 10);
+
+                    setTimeout(() => {
+                        document.body.classList.add("displayPost");
+                        document.body.classList.remove("toPost");
+                        const postThumbnailRect =
+                            postThumbnail.getBoundingClientRect();
+                        fixedBox.classList.remove("centered");
+                        console.log(`${postThumbnailRect.width}px`);
+                        fixedBox.style.width = `${postThumbnailRect.width}px`;
+                        fixedBox.style.height = `${postThumbnailRect.height}px`;
+                        fixedBox.style.left = `${
+                            postThumbnailRect.left + postThumbnailRect.width / 2
+                        }px`;
+                        fixedBox.style.top = `${
+                            postThumbnailRect.top +
+                            postThumbnailRect.height / 2 +
+                            window.scrollY
+                        }px`;
+                        fixedBox.style.borderRadius = "var(--border-radius)";
+
+                        // scroll to the element position
+                        // calc the top offset if box compare to the top of the body
+                        setTimeout(() => {
+                            postThumbnail.style.visibility = "visible";
+                            hero.style.visibility = "visible";
+                            fixedBox.style.display = "none";
+                            window.addEventListener(
+                                "scroll",
+                                postScrollAnimations
+                            );
+                        }, 500); // Match the duration of the animation (0.3s)
+                    }, 1000);
+                }
+
                 setTimeout(() => {
                     window.scrollTo(0, 0);
                 }, 500);
-                setTimeout(() => {
-                    document.body.classList.add("displayPost");
-                    document.body.classList.remove("toPost");
-                }, 1000);
             };
 
             const pre = document.createElement("pre");
@@ -1628,70 +1679,8 @@
                         if (a.getAttribute("href").startsWith("#")) return;
                         e.preventDefault();
                         if (a.getAttribute("href").includes("/posts/")) {
-                            switchToPost();
+                            switchToPost(a);
                             // check if there's a .hero image in the same article
-                            const hero = a
-                                .closest("article")
-                                .querySelector(".hero");
-                            if (hero) {
-                                const fixedBox =
-                                    document.querySelector(".transition");
-                                const postThumbnail =
-                                    document.querySelector(".post-thumbnail");
-                                fixedBox.style.backgroundImage =
-                                    hero.style.backgroundImage;
-                                console.log(hero.style.backgroundImage);
-                                const rect = hero.getBoundingClientRect();
-                                // match the size and position of the original box
-                                fixedBox.classList.remove("smooth");
-                                fixedBox.style.width = `${rect.width}px`;
-                                fixedBox.style.height = `${rect.height}px`;
-                                // display and hide original box
-                                hero.style.visibility = "hidden";
-                                postThumbnail.style.visibility = "hidden";
-                                fixedBox.style.display = "block";
-                                fixedBox.style.top = `${
-                                    rect.top + rect.height / 2
-                                }px`;
-                                fixedBox.style.left = `${
-                                    rect.left + rect.width / 2
-                                }px`;
-                                fixedBox.style.borderRadius = "1.875rem 1.875rem 0 0";
-                                // Animate to center
-                                setTimeout(() => {
-                                    fixedBox.classList.add("smooth");
-                                    fixedBox.classList.add("centered");
-                                }, 10); // Slight delay to allow the transition to work
-
-                                setTimeout(() => {
-                                    const postThumbnailRect =
-                                        postThumbnail.getBoundingClientRect();
-                                    fixedBox.classList.remove("centered");
-                                    console.log(`${postThumbnailRect.width}px`);
-                                    fixedBox.style.width = `${postThumbnailRect.width}px`;
-                                    fixedBox.style.height = `${postThumbnailRect.height}px`;
-                                    fixedBox.style.left = `${
-                                        postThumbnailRect.left +
-                                        postThumbnailRect.width / 2
-                                    }px`;
-                                    fixedBox.style.top = `${
-                                        postThumbnailRect.top +
-                                        postThumbnailRect.height / 2 +
-                                        window.scrollY
-                                    }px`;
-                                    fixedBox.style.borderRadius = "var(--border-radius)";
-
-                                    // scroll to the element position
-                                    // calc the top offset if box compare to the top of the body
-                                    setTimeout(() => {
-                                        postThumbnail.style.visibility =
-                                            "visible";
-                                        hero.style.visibility = "visible";
-                                        fixedBox.style.display = "none";
-                                        //   fixedBox.style.display = "none";
-                                    }, 500); // Match the duration of the animation (0.3s)
-                                }, 1000);
-                            }
                         } else switchToHome();
 
                         window.history.pushState(
