@@ -1,0 +1,46 @@
+{
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "dateCreated": "2024-12-23T12:34:00-05:00",
+    "dateModified": "2024-12-26T14:53:00-05:00",
+    "mainEntity": {
+        "@id": "#main-author",
+
+        "@type": "Person", // Person 或 Organization
+        "name": "Angelo Huff",
+        "alternateName": "ahuff23",
+        "identifier": "123475623",
+        "interactionStatistic": [
+            {
+                "@type": "InteractionCounter",
+                "interactionType": "https://schema.org/FollowAction",
+                "userInteractionCount": 1
+            },
+            {
+                "@type": "InteractionCounter",
+                "interactionType": "https://schema.org/LikeAction",
+                "userInteractionCount": 5 //WriteAction：貼文數量。 ShareAction
+            }
+        ],
+        "agentInteractionStatistic": {
+            "@type": "InteractionCounter",
+            "interactionType": "https://schema.org/WriteAction",
+            "userInteractionCount": 2346
+        },
+        "description": "Defender of Truth",
+        "image": "https://example.com/avatars/ahuff23.jpg",
+        "sameAs": [
+            "https://www.example.com/real-angelo",
+            "https://example.com/profile/therealangelohuff"
+        ]
+    },
+    "hasPart": [
+        {
+            "@type": "Article",
+            "headline": "Things to see in NJ",
+            "url": "https://example.com/things-to-see-nj",
+            "datePublished": "2014-02-23T18:34:00Z",
+            "author": { "@id": "#main-author" }
+        }
+    ]
+}

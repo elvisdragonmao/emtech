@@ -1,0 +1,44 @@
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite", // "@type": "NewsArticle",
+    "name": "Example Company",
+    "alternateName": ["BT", "B-T", "Burnt Toast Shop"],
+    "url": "https://example.com/",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://query.example.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+    },
+    "query-input": "required name=search_term_string",
+    "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".headline", ".summary"]
+    },
+    "headline": "Title of a News Article",
+    "image": [
+        "https://example.com/photos/1x1/photo.jpg",
+        "https://example.com/photos/4x3/photo.jpg",
+        "https://example.com/photos/16x9/photo.jpg"
+    ],
+    "datePublished": "2024-01-05T08:00:00+08:00",
+    "dateModified": "2024-02-05T09:20:00+08:00",
+    "author": [
+        {
+            "@type": "Person",
+            "name": "Jane Doe",
+            "url": "https://example.com/profile/janedoe123"
+        },
+        {
+            "@type": "Person",
+            "name": "John Doe",
+            "url": "https://example.com/profile/johndoe123"
+        }
+    ],
+    "publisher": {
+        "name": "The Daily Bug",
+        "url": "https://www.example.com"
+    }
+}
