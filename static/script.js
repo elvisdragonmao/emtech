@@ -86,7 +86,7 @@ const startDonut = () => {
 };
 // use url to get current page include /p/
 
-if (window.location.pathname.includes("/p/")) {
+const initPost = () => {
     currentPage = "post";
     document.body.classList.add("displayPost");
     window.addEventListener("scroll", postScrollAnimations);
@@ -138,6 +138,9 @@ if (window.location.pathname.includes("/p/")) {
     document.querySelectorAll("h2").forEach((h2) => {
         observer.observe(h2);
     });
+};
+if (window.location.pathname.includes("/p/")) {
+    initPost();
 } else {
     currentPage = "home";
     document.body.classList.remove("displayPost");
@@ -145,13 +148,13 @@ if (window.location.pathname.includes("/p/")) {
 }
 
 const switchToHome = () => {
-  //  if (currentPage === "home") return;
+    if (currentPage === "home") document.body.classList = "toHome";
+    else document.body.classList.add("toHome");
     currentPage = "home";
-    document.body.classList = "toHome";
+
     startDonut();
     window.removeEventListener("scroll", postScrollAnimations);
     footer.style.marginBottom = "1rem";
-    // wait for .3s
     setTimeout(() => {
         document.body.classList.remove("displayPost");
         window.scrollTo(0, 0);
@@ -171,6 +174,8 @@ const switchToPost = (a) => {
             ready = true;
             return;
         }
+        const postThumbnail = document.querySelector(".post-thumbnail");
+        postThumbnail.style.visibility = "hidden";
         document.body.classList.add("displayPost");
         document.body.classList.remove("toPost");
         const postThumbnailRect = postThumbnail.getBoundingClientRect();
@@ -194,11 +199,11 @@ const switchToPost = (a) => {
             postThumbnail.style.visibility = "visible";
             hero.style.visibility = "visible";
             fixedBox.style.display = "none";
-            window.addEventListener("scroll", postScrollAnimations);
+            initPost();
         }, 500); // Match the duration of the animation (0.3s)
     };
     // fetch post content
-    const fetchPostContent = (url, retries = 0) => {
+    const fetchPostContent = (url, retries = 3000) => {
         fetch(url)
             .then((response) => {
                 document
@@ -209,12 +214,12 @@ const switchToPost = (a) => {
                 return response.text();
             })
             .then((data) => {
-                document.querySelector(".post-content").innerHTML = data;
+                document.querySelector(".post-page").innerHTML = data;
                 showPostContent();
             })
             .catch((error) => {
                 document.querySelector(".transition").classList.add("belive");
-                const retryDelay = retries + 3000;
+                const retryDelay = retries * 1.5;
                 console.error(
                     `Fetch failed, retrying in ${retryDelay / 1000} seconds...`,
                     error
@@ -223,12 +228,15 @@ const switchToPost = (a) => {
             });
     };
 
-    fetchPostContent(a.getAttribute("href").replace("/p/", "/p/clean/") + ".html");
+    fetchPostContent(
+        a.getAttribute("href").replace("/p/", "/p/clean/") + ".html"
+    );
 
     const hero = a.closest("article").querySelector(".hero");
+
+    const fixedBox = document.querySelector(".transition");
     if (hero) {
-        const fixedBox = document.querySelector(".transition");
-        const postThumbnail = document.querySelector(".post-thumbnail");
+        console.log(hero);
         fixedBox.style.backgroundImage = hero.style.backgroundImage;
         console.log(hero.style.backgroundImage);
         const rect = hero.getBoundingClientRect();
@@ -236,7 +244,6 @@ const switchToPost = (a) => {
         fixedBox.style.width = `${rect.width}px`;
         fixedBox.style.height = `${rect.height}px`;
         hero.style.visibility = "hidden";
-        postThumbnail.style.visibility = "hidden";
         fixedBox.style.display = "block";
         fixedBox.style.top = `${rect.top + rect.height / 2}px`;
         fixedBox.style.left = `${rect.left + rect.width / 2}px`;
