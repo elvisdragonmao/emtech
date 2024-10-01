@@ -18,6 +18,10 @@ const md = markdownIt({
     highlight: (str, lang) => {
         if (lang && hljs.getLanguage(lang)) {
             try {
+                // if last char is \n, remove it
+                if (str.slice(-1) === "\n") {
+                    str = str.slice(0, -1);
+                }
                 const highlightedCode = hljs.highlight(str, {
                     language: lang
                 }).value;
@@ -40,6 +44,36 @@ const md = markdownIt({
     }
 });
 
+// Function to create anchor-friendly IDs from text
+function slugify(text) {
+    return text
+        .toString()
+        .trim()
+        .replace(/\s+/g, "-") // Replace spaces with hyphens
+        .replace(
+            /[^\p{L}\p{N}\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF\-_]+/gu,
+            ""
+        ) // Remove all non-word characters except hyphens/underscores
+        .replace(/\-\-+/g, "-"); // Replace multiple hyphens with a single one
+}
+
+// Custom renderer for headings to include anchor IDs
+md.renderer.rules.heading_open = (tokens, idx, options, env, self) => {
+    const token = tokens[idx];
+    const level = token.tag.slice(1); // Get the heading level (h1, h2, etc.)
+
+    if (level == 2) {
+        // Only for h2 tags
+        const title = tokens[idx + 1].content; // Get the heading text content
+        const slug = slugify(title); // Generate slug based on the text content
+
+        // Add an id attribute for anchors
+        token.attrPush(["id", slug]);
+    }
+
+    return self.renderToken(tokens, idx, options);
+};
+
 // Custom renderer for code block
 md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     const token = tokens[idx];
@@ -56,9 +90,7 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     return `
         <div class="code-block">
             <div class="highlight">
-                <pre tabindex="0" class="chroma">
-                    <code class="${langClass} hljs" data-lang="${langName}">${highlightedCode}</code>
-                </pre>
+                <pre tabindex="0" class="chroma"><code class="${langClass} hljs" data-lang="${langName}">${highlightedCode}</code></pre>
             </div>
             <button class="code-copy" onclick="copyCode(this)">Copy</button>
         </div>
@@ -83,6 +115,51 @@ md.renderer.rules.image = (tokens, idx, options, env, self) => {
     `;
 };
 
+function renderPartials(htmlContent) {
+    if (!htmlContent) {
+        throw new Error("htmlContent is undefined or null");
+    }
+    const partialsKeys = Object.keys(partialsContent);
+    partialsKeys.forEach((partialKey) => {
+        htmlContent = htmlContent.replace(
+            new RegExp(`{{${partialKey}}}`, "g"),
+            partialsContent[partialKey]
+        );
+    });
+    return htmlContent;
+}
+
+// a json object to store the partials content
+const partialsContent = {};
+
+// read all the partials and store them in the partialsContent object
+
+const generatePartials = () => {
+    const partials = fs
+        .readdirSync("view/partials")
+        .filter((file) => file.endsWith(".html"))
+        .map((file) => file.replace(".html", ""));
+    partials.forEach((partial) => {
+        console.log(`➤ Reading partial: ${partial}`);
+        const partialContent = fs.readFileSync(
+            `view/partials/${partial}.html`,
+            "utf8"
+        );
+        partialsContent[partial] = partialContent;
+    });
+
+    // render partial in partialsContent
+    while (partials.length) {
+        partials.forEach((partial) => {
+            const rendered = renderPartials(partialsContent[partial]);
+            if (rendered !== partialsContent[partial]) {
+                partialsContent[partial] = rendered;
+            } else {
+                partials.splice(partials.indexOf(partial), 1);
+            }
+        });
+    }
+};
 // 清空並建立 dist 資料夾
 function initDist() {
     if (fs.existsSync("dist")) {
@@ -90,9 +167,9 @@ function initDist() {
     }
     fs.mkdirSync("dist");
     fs.mkdirSync("dist/static");
-    fs.mkdirSync("dist/posts");
-    fs.mkdirSync("dist/posts/clean");
-    fs.mkdirSync("dist/posts/meta", { recursive: true });
+    fs.mkdirSync("dist/p");
+    fs.mkdirSync("dist/p/clean");
+    fs.mkdirSync("dist/p/meta", { recursive: true });
     fs.mkdirSync("dist/meta/tags", { recursive: true });
     fs.mkdirSync("dist/meta/categories", { recursive: true });
 }
@@ -117,7 +194,15 @@ function copyStatic() {
     analyze.pages = viewFiles.length;
     fs.copyFileSync("dist/home/index.html", "dist/index.html");
     fs.rmSync("dist/home", { recursive: true });
+    fs.copyFileSync("dist/post/index.html", "dist/p/index.html");
+    fs.rmSync("dist/post", { recursive: true });
 }
+
+const replacePlaceholders = (template, replacements) =>
+    Object.keys(replacements).reduce(
+        (str, key) => str.replaceAll(`{{${key}}}`, replacements[key]),
+        template
+    );
 
 // 讀取文章並生成 HTML 和 JSON
 async function processPosts() {
@@ -129,7 +214,10 @@ async function processPosts() {
             fs.lstatSync(path.join(postsDir, folder)).isDirectory()
         );
 
-    const postHTML = renderPartials(
+    const postTemplate = renderPartials(
+        fs.readFileSync("view/partials/post.html", "utf8")
+    );
+    const postPageTemplate = renderPartials(
         fs.readFileSync("view/pages/post.html", "utf8")
     );
 
@@ -150,7 +238,7 @@ async function processPosts() {
             let markdownContent = fs
                 .readFileSync(markdownFile, "utf8")
                 .replace(/<!--[\s\S]+?-->/g, "");
-            const postMeta = extractFrontMatter(markdownContent);
+            let postMeta = extractFrontMatter(markdownContent);
             // turn image url if not set path like ![](image.webp) to ![](/static/postID/image.webp)
             // don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
             markdownContent = markdownContent.replace(
@@ -166,10 +254,18 @@ async function processPosts() {
                 // remove the first h1 tag
                 htmlContent = htmlContent.replace(/<h1>.*?<\/h1>/, "");
             }
-
+            const tldr = "";
             // get description from the first paragraph of the post
-            if (!postMeta.description)
+            if (postMeta.description) {
+                tldr = `<div class="tldr">
+                <h2>簡單來說</h2>
+                <div>
+                    ${postMeta.description}
+                </div>
+            </div>`;
+            } else {
                 postMeta.description = htmlContent.match(/<p>(.*?)<\/p>/)[1];
+            }
             const thumbnail =
                 postMeta.thumbnail ||
                 (fs.existsSync(path.join(postPath, "thumbnail.webp"))
@@ -185,43 +281,97 @@ async function processPosts() {
                     path.join("dist", thumbnail) //.replaceAll("\\", "/")
                 );
             }
-            const postMetaObj = {
+
+            const chineseCharCount = (
+                markdownContent.match(/[\u4e00-\u9fa5]/g) || []
+            ).length;
+            const englishWordCount = (markdownContent.match(/\b\w+\b/g) || [])
+                .length;
+            const length = chineseCharCount + englishWordCount;
+            // turn to k, if length > 1000. Fixed to 1 decimal place
+            postMeta.length =
+                length > 1000 ? (length / 1000).toFixed(1) + "k" : length;
+            if (!postMeta.readingTime) {
+                const chineseReadingSpeed = 300; // 每分鐘 300 字
+                const englishReadingSpeed = 200; // 每分鐘 200 單詞
+                const chineseReadingTime =
+                    chineseCharCount / chineseReadingSpeed;
+                const englishReadingTime =
+                    englishWordCount / englishReadingSpeed;
+                const totalReadingTime =
+                    chineseReadingTime + englishReadingTime;
+                postMeta.readingTime = Math.ceil(totalReadingTime) + " min";
+            }
+
+            postMeta = {
                 ...postMeta,
                 id: postID,
                 title: postMeta.title || "無題",
                 description: postMeta.description || null,
-                thumbnail
+                thumbnail,
+                length
             };
-            postsMeta.push(postMetaObj);
 
-            // 生成完整的 HTML 頁面
+            postsMeta.push(postMeta);
+            //<div class="header-categorie">閒聊</div> for each, combine all to a string
+            const headerCategories = postMeta.categories
+                ? postMeta.categories
+                      .map(
+                          (category) =>
+                              `<div class="header-categorie">${category}</div>`
+                      )
+                      .join("")
+                : "";
+            const headerTags = postMeta.tags
+                ? postMeta.tags
+                      .map((tag) => `<div class="header-tag">${tag}</div>`)
+                      .join("")
+                : "";
+            const postTags = postMeta.tags
+                ? postMeta.tags
+                      .map((tag) => `<div class="post-tag">${tag}</div>`)
+                      .join("")
+                : "";
+            const replacements = {
+                title: postMeta.title,
+                content: htmlContent,
+                tldr,
+                thumbnail: encodeURIComponent(thumbnail),
+                length: postMeta.length,
+                colors: postMeta.colors,
+                readingTime: postMeta.readingTime,
+                date: new Date(postMeta.date) // format of 2024-05-12
+                    .toISOString()
+                    .split("T")[0],
+                postTags,
+                headerCategories,
+                headerTags
+            };
             const fullPostHtml = renderPartials(
-                postHTML
-                    .replaceAll("{{title}}", postMetaObj.title)
-                    .replaceAll("{{content}}", htmlContent)
+                replacePlaceholders(postTemplate, replacements)
             );
-            fs.mkdirSync(`dist/posts/${postID}`, { recursive: true });
-            fs.writeFileSync(`dist/posts/${postID}/index.html`, fullPostHtml);
+            const fullPostPageHtml = renderPartials(
+                replacePlaceholders(postPageTemplate, {
+                    ...replacements,
+                    post: fullPostHtml
+                })
+            );
+            fs.writeFileSync(`dist/p/clean/${postID}.html`, fullPostHtml);
 
-            // 生成乾淨的內容頁面
-            // const cleanPostHtml = fs.readFileSync('view/pages/clean.html', 'utf8')
-            //   .replace('{{content}}', htmlContent);
-            const cleanPostHtml = htmlContent;
-            fs.writeFileSync(`dist/posts/clean/${postID}.html`, cleanPostHtml);
-            console.log(markdownFile);
-            // 複製文章內的圖片等資源
+            fs.mkdirSync(`dist/p/${postID}`, { recursive: true });
+            fs.writeFileSync(`dist/p/${postID}/index.html`, fullPostPageHtml);
         } else console.warn(`➤ No markdown file found for post: ${postID}`);
     }
 
     // 輸出 posts.json 和每篇文章的 json
-    fs.mkdirSync("dist/posts/meta", { recursive: true });
+    fs.mkdirSync("dist/p/meta", { recursive: true });
     fs.writeFileSync(
-        "dist/posts/meta/posts.json",
+        "dist/p/meta/posts.json",
         JSON.stringify(postsMeta, null, 2)
     );
     postsMeta.forEach((post) => {
         fs.writeFileSync(
-            `dist/posts/meta/${post.id}.json`,
+            `dist/p/meta/${post.id}.json`,
             JSON.stringify(post, null, 2)
         );
     });
@@ -316,32 +466,6 @@ function generateTagsAndCategories() {
     analyze.tags = Object.keys(tagsMap).length;
     analyze.categories = Object.keys(categoriesMap).length;
     analyze.posts = postsMeta.length;
-}
-
-// 生成 partials，go through all the .html in dist and replace {{partial}} with the content of the partial file
-const partials = fs
-    .readdirSync("view/partials")
-    .filter((file) => file.endsWith(".html"));
-
-// a json object to store the partials content
-const partialsContent = {};
-
-// read all the partials and store them in the partialsContent object
-
-partials.forEach((partial) => {
-    const partialContent = fs.readFileSync(`view/partials/${partial}`, "utf8");
-    partialsContent[path.basename(partial, ".html")] = partialContent;
-});
-
-function renderPartials(htmlContent) {
-    const partialsKeys = Object.keys(partialsContent);
-    partialsKeys.forEach((partialKey) => {
-        htmlContent = htmlContent.replace(
-            new RegExp(`{{${partialKey}}}`, "g"),
-            partialsContent[partialKey]
-        );
-    });
-    return htmlContent;
 }
 
 // Sitemap 和 RSS 生成
@@ -463,9 +587,13 @@ async function generateSite() {
     console.log("\x1b[32m%s\x1b[0m", "emtech Site Generator v1.0");
     console.log("\x1b[34m%s\x1b[0m", "➤ Generating site...");
     console.time("Execution Time");
+    console.log("\x1b[34m%s\x1b[0m", "➤ Reading partials...");
+    generatePartials();
+    console.log("\x1b[34m%s\x1b[0m", "➤ Initializing dist folder...");
     initDist();
     console.log("\x1b[34m%s\x1b[0m", "➤ Copying static files...");
     copyStatic();
+    //return;
     console.log("\x1b[34m%s\x1b[0m", "➤ Processing posts...");
     await processPosts();
     console.log("\x1b[34m%s\x1b[0m", "➤ Generating sitemap and RSS...");

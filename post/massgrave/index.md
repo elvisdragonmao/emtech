@@ -2,7 +2,7 @@
 authors: elvismao
 tags: [Office, Windows]
 categories: [軟體分享]
-date: 膽2023-01-19
+date: 2023-01-19
 ---
 
 # 【開源】快速免費啟用 Office 及 Windows
