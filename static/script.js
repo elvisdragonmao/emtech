@@ -145,9 +145,9 @@ if (window.location.pathname.includes("/p/")) {
 }
 
 const switchToHome = () => {
-    if (currentPage === "home") return;
+  //  if (currentPage === "home") return;
     currentPage = "home";
-    document.body.classList.add("toHome");
+    document.body.classList = "toHome";
     startDonut();
     window.removeEventListener("scroll", postScrollAnimations);
     footer.style.marginBottom = "1rem";
@@ -223,7 +223,7 @@ const switchToPost = (a) => {
             });
     };
 
-    fetchPostContent(a.getAttribute("href").replace("/p/", "/p/clean/"));
+    fetchPostContent(a.getAttribute("href").replace("/p/", "/p/clean/") + ".html");
 
     const hero = a.closest("article").querySelector(".hero");
     if (hero) {
