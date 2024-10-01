@@ -11,21 +11,14 @@ const postScrollAnimations = () => {
     }
     let maxWidth = Math.min(1200, window.innerWidth - 64) - 32;
     let footerHeight =
-        parseFloat(
-            getComputedStyle(document.querySelector("footer"))
-                .height
-        ) + 64;
-    let originalHeight = Math.min(
-        400,
-        window.innerHeight - footerHeight
-    );
+        parseFloat(getComputedStyle(document.querySelector("footer")).height) +
+        64;
+    let originalHeight = Math.min(400, window.innerHeight - footerHeight);
     let toMove = window.innerHeight - originalHeight;
-    let canMove =
-        window.innerHeight - originalHeight - footerHeight;
+    let canMove = window.innerHeight - originalHeight - footerHeight;
     let height =
         originalHeight +
-        (toMove / canMove) *
-            (canMove - next.getBoundingClientRect().top);
+        (toMove / canMove) * (canMove - next.getBoundingClientRect().top);
     let width = Math.max(
         maxWidth,
         maxWidth +
@@ -54,9 +47,7 @@ let x = 1760,
 const startDonut = () => {
     donut = setInterval(() => {
         (z += 0.07), (y += 0.03);
-        const a = [...new Array(x)].map((a, r) =>
-                r % 80 === 79 ? "\n" : " "
-            ),
+        const a = [...new Array(x)].map((a, r) => (r % 80 === 79 ? "\n" : " ")),
             r = new Array(x).fill(0),
             t = Math.cos(z),
             e = Math.sin(z),
@@ -86,20 +77,67 @@ const startDonut = () => {
                     d >= 0 &&
                     d < 79 &&
                     l > r[y] &&
-                    ((r[y] = l),
-                    (a[y] = ".,-~:;=!*#$@"[f > 0 ? f : 0]));
+                    ((r[y] = l), (a[y] = ".,-~:;=!*#$@"[f > 0 ? f : 0]));
             }
         }
         pre.innerHTML = a.join("");
     }, 50); /* JS by
   @housamz */
 };
-// use url to get current page include /posts/
+// use url to get current page include /p/
 
-if (window.location.pathname.includes("/posts/")) {
+if (window.location.pathname.includes("/p/")) {
     currentPage = "post";
     document.body.classList.add("displayPost");
     window.addEventListener("scroll", postScrollAnimations);
+
+    // highlight current h2 in .post-content and put in .toc
+    const postContent = document.querySelector(".post-content");
+    const toc = document.querySelector(".toc");
+    const ul = document.createElement("ul");
+    // Find all h2 elements in .post-content
+    const headers = Array.from(postContent.querySelectorAll("h2"));
+
+    // Create a list item for each h2 and add it to the table of contents
+    headers.forEach((header, index) => {
+        const listItem = document.createElement("li");
+        const link = document.createElement("a");
+
+        // Set the href to the id of the h2, and the text to the h2's text
+        link.href = `#${header.id}`;
+        link.textContent = header.textContent;
+
+        listItem.appendChild(link);
+        ul.appendChild(listItem);
+    });
+
+    toc.appendChild(ul);
+
+    // Create an intersection observer to highlight the current section in the table of contents
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    const tocItem = toc.querySelector(`a[href="#${id}"]`);
+                    if (tocItem) {
+                        toc.querySelectorAll("a").forEach((a) =>
+                            a.classList.remove("current")
+                        );
+                        tocItem.classList.add("current");
+                    }
+                }
+            });
+        },
+        { rootMargin: "0% 0% -80% 0%" }
+    );
+
+    // Observe each h2 element
+    headers.forEach((header) => observer.observe(header));
+
+    document.querySelectorAll("h2").forEach((h2) => {
+        observer.observe(h2);
+    });
 } else {
     currentPage = "home";
     document.body.classList.remove("displayPost");
@@ -129,8 +167,7 @@ const switchToPost = (a) => {
     const hero = a.closest("article").querySelector(".hero");
     if (hero) {
         const fixedBox = document.querySelector(".transition");
-        const postThumbnail =
-            document.querySelector(".post-thumbnail");
+        const postThumbnail = document.querySelector(".post-thumbnail");
         fixedBox.style.backgroundImage = hero.style.backgroundImage;
         console.log(hero.style.backgroundImage);
         const rect = hero.getBoundingClientRect();
@@ -153,8 +190,7 @@ const switchToPost = (a) => {
         setTimeout(() => {
             document.body.classList.add("displayPost");
             document.body.classList.remove("toPost");
-            const postThumbnailRect =
-                postThumbnail.getBoundingClientRect();
+            const postThumbnailRect = postThumbnail.getBoundingClientRect();
             fixedBox.classList.remove("centered");
             console.log(`${postThumbnailRect.width}px`);
             fixedBox.style.width = `${postThumbnailRect.width}px`;
@@ -175,10 +211,7 @@ const switchToPost = (a) => {
                 postThumbnail.style.visibility = "visible";
                 hero.style.visibility = "visible";
                 fixedBox.style.display = "none";
-                window.addEventListener(
-                    "scroll",
-                    postScrollAnimations
-                );
+                window.addEventListener("scroll", postScrollAnimations);
             }, 500); // Match the duration of the animation (0.3s)
         }, 1000);
     }
@@ -194,8 +227,7 @@ playground.appendChild(pre);
 
 // copy button
 function copyCode(button) {
-    const codeBlock =
-        button.previousElementSibling.querySelector("code");
+    const codeBlock = button.previousElementSibling.querySelector("code");
     const codeLines = codeBlock.querySelectorAll(".cl");
     let codeText = "";
     codeLines.forEach((line) => {
@@ -210,16 +242,12 @@ document.querySelectorAll("a").forEach((a) => {
         if (a.getAttribute("target") !== "_blank") {
             if (a.getAttribute("href").startsWith("#")) return;
             e.preventDefault();
-            if (a.getAttribute("href").includes("/posts/")) {
+            if (a.getAttribute("href").includes("/p/")) {
                 switchToPost(a);
                 // check if there's a .hero image in the same article
             } else switchToHome();
 
-            window.history.pushState(
-                null,
-                null,
-                a.getAttribute("href")
-            );
+            window.history.pushState(null, null, a.getAttribute("href"));
         }
     });
 });
@@ -232,27 +260,46 @@ const categoriesMove = (direction) => {
     });
 };
 
-// highlight current h2 in .toc
-const toc = document.querySelector(".toc");
-const observer = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const id = entry.target.id;
-                const tocItem = toc.querySelector(
-                    `a[href="#${id}"]`
-                );
-                if (tocItem) {
-                    toc.querySelectorAll("a").forEach((a) =>
-                        a.classList.remove("current")
-                    );
-                    tocItem.classList.add("current");
-                }
-            }
-        });
-    },
-    { rootMargin: "0% 0% -80% 0%" }
+// get tags from /meta/tags.json
+
+//{
+// "tags": {
+//     "HTML": 32,
+//     "C++": 1,
+//     "Twitter": 1,
+//     "OBS": 1,
+//     "Vim": 1,
+//     "HTTP": 1
+//   },
+//   "categories": {
+//     "心得": 1,
+//   }
+// }
+
+fetch("/meta/tags.json")
+    .then((response) => response.json())
+    .then((data) => {
+        const tags = data.tags;
+        const categories = data.categories;
+        const tagsElement = document.getElementById("tags");
+        const categoriesElement = document.getElementById("categories");
+        for (const [tag, count] of Object.entries(tags)) {
+            const a = document.createElement("a");
+            a.href = `/tag/${tag}`;
+            a.innerHTML = `${tag}<div>${count}</div>`;
+            tagsElement.appendChild(a);
+        }
+        // for (const [category, count] of Object.entries(categories)) {
+        //     const a = document.createElement("a");
+        //     a.href = `/category/${category}`;
+        //     a.textContent = `${category} (${count})`;
+        //     categoriesElement.appendChild(a);
+        // }
+    });
+
+const diffDays = Math.ceil(
+    (new Date() - new Date("2021-06-04")) / (1000 * 60 * 60 * 24)
 );
-document.querySelectorAll("h2").forEach((h2) => {
-    observer.observe(h2);
-});
+document.querySelector("#time p").textContent = `${Math.floor(
+    diffDays / 365
+)}年 ${diffDays % 365}天`;

@@ -310,6 +310,7 @@ header {
     align-items: center;
     color: #fff;
     font-size: 1.3rem;
+    border-radius: var(--border-radius);
 }
 
 #header-playground,
@@ -317,7 +318,6 @@ header {
     height: min(calc(100vh - 7.5rem), 35rem);
 }
 
-#header-playground,
 .header-categories,
 .header-info,
 .header-newPost {
@@ -383,12 +383,14 @@ a.header-categories-item {
 }
 
 .header-info {
-    height: 8rem;
+    height: 100%;
+    min-height: 8rem;
     background: url("https://raw.githubusercontent.com/emfont/emfont/main/og.png")
         no-repeat center center / cover;
     background-size: 100% auto;
     transition: background-size 0.3s;
     cursor: pointer;
+    width: 100%;
 }
 
 .header-info:hover {
@@ -534,7 +536,7 @@ section {
     font-weight: 800;
 }
 
-.toc ul li:has(a.current)::marker{
+.toc ul li:has(a.current)::marker {
     color: rgba(139, 155, 204);
 }
 .discord-join {
@@ -868,6 +870,10 @@ footer .logo {
     position: relative;
 }
 
+.post header:has(.post-thumbnail[src=""])::before {
+    height: calc(100% - 2rem);
+}
+
 .post header::before {
     content: "";
     position: absolute;
@@ -889,12 +895,13 @@ footer .logo {
 }
 
 figure img {
-    max-width: 450px;
+    max-width: 650px;
     max-height: 450px;
     display: block;
     margin: 0 auto;
     width: 100%;
     object-fit: contain;
+    border-radius: 1rem;
 }
 
 .header-tags {
@@ -1322,7 +1329,7 @@ blockquote::before {
     padding-top: 7rem;
 }
 
-@media (max-aspect-ratio: 1/1) {
+@media (max-aspect-ratio: 5/4) {
     aside,
     .related-posts::before,
     .related-posts::after,
@@ -1340,5 +1347,29 @@ blockquote::before {
     .footer-text {
         order: 1;
         flex: 0 0 100%;
+    }
+    #header-playground {
+        flex: 0 0 100%;
+        height: 100svh;
+        border-radius: 0;
+    }
+    .home-page header {
+        flex-wrap: wrap;
+        padding: 0 0 1.5rem 0;
+    }
+    .header-right {
+        height: unset;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        padding-inline: 1rem;
+    }
+    .header-right > * {
+        flex: 1;
+    }
+    .header-categories,
+    .header-info,
+    .header-newPost {
+        min-width: 20rem;
     }
 }
