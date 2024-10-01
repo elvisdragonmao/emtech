@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Windows, Microsoft Store, Terminal]
-categories: [軟體分享]
+categories: [軟體分享, 精選]
 date: 2023-12-05
 ---
 

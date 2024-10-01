@@ -261,21 +261,6 @@ const categoriesMove = (direction) => {
 };
 
 // get tags from /meta/tags.json
-
-//{
-// "tags": {
-//     "HTML": 32,
-//     "C++": 1,
-//     "Twitter": 1,
-//     "OBS": 1,
-//     "Vim": 1,
-//     "HTTP": 1
-//   },
-//   "categories": {
-//     "心得": 1,
-//   }
-// }
-
 fetch("/meta/tags.json")
     .then((response) => response.json())
     .then((data) => {
@@ -289,17 +274,76 @@ fetch("/meta/tags.json")
             a.innerHTML = `${tag}<div>${count}</div>`;
             tagsElement.appendChild(a);
         }
-        // for (const [category, count] of Object.entries(categories)) {
-        //     const a = document.createElement("a");
-        //     a.href = `/category/${category}`;
-        //     a.textContent = `${category} (${count})`;
-        //     categoriesElement.appendChild(a);
-        // }
+        for (const [category, count] of Object.entries(categories)) {
+            const a = document.createElement("a");
+            a.href = `/category/${category}`;
+            a.textContent = `${category}`;
+            categoriesElement.appendChild(a);
+        }
     });
 
+// Update uptime
 const diffDays = Math.ceil(
     (new Date() - new Date("2021-06-04")) / (1000 * 60 * 60 * 24)
 );
 document.querySelector("#time p").textContent = `${Math.floor(
     diffDays / 365
 )}年 ${diffDays % 365}天`;
+
+const updatePostList = (category) => {
+    // fetch from /meta/categories/${category}.json
+    fetch(`/meta/categories/${category}.json`)
+        .then((response) => response.json())
+        .then((data) => {
+            const posts = data;
+            const postList = document.getElementById("posts");
+            postList.innerHTML = "";
+            for (const post of posts) {
+                const article = document.createElement("article");
+                article.innerHTML = `
+                <a href="/posts/${post.id}"
+    ><div
+        class="hero"
+        style="
+            background-image: ${
+                post.thumbnail ? `url(${post.thumbnail})` : "none"
+            };,
+              %{post.colors};
+        "
+    ></div
+></a>
+<div class="info">
+    <div class="post-categories">${post.categories.join(", ")}</div>
+        </div>
+
+    <a href="/posts/MultiWall">
+        <h3>
+            【MultiWall】讓不同螢幕放不同桌布
+        </h3></a
+    >
+
+    <div class="tags">
+        <a href="/categories/軟體分享">軟體分享</a>
+    </div>
+</div>
+`;
+                postList.appendChild(article);
+            }
+        });
+};
+
+// Update post list when category is clicked
+document.querySelectorAll("#categories a").forEach((a) => {
+    a.addEventListener("click", () => {
+        updatePostList(a.textContent);
+    });
+});
+
+// Update post list when tag is clicked
+document.querySelectorAll("#tags a").forEach((a) => {
+    a.addEventListener("click", () => {
+        updatePostList(a.textContent);
+    });
+});
+
+updatePostList("精選");
