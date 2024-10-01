@@ -160,10 +160,71 @@ const switchToHome = () => {
 };
 
 const switchToPost = (a) => {
-    if (currentPage === "post") return;
+    // if (currentPage === "post") return;
     currentPage = "post";
     document.body.classList.add("toPost");
     clearInterval(donut);
+    let ready = false;
+
+    const showPostContent = () => {
+        if (!ready) {
+            ready = true;
+            return;
+        }
+        document.body.classList.add("displayPost");
+        document.body.classList.remove("toPost");
+        const postThumbnailRect = postThumbnail.getBoundingClientRect();
+        fixedBox.classList.remove("centered");
+        console.log(`${postThumbnailRect.width}px`);
+        fixedBox.style.width = `${postThumbnailRect.width}px`;
+        fixedBox.style.height = `${postThumbnailRect.height}px`;
+        fixedBox.style.left = `${
+            postThumbnailRect.left + postThumbnailRect.width / 2
+        }px`;
+        fixedBox.style.top = `${
+            postThumbnailRect.top +
+            postThumbnailRect.height / 2 +
+            window.scrollY
+        }px`;
+        fixedBox.style.borderRadius = "var(--border-radius)";
+
+        // scroll to the element position
+        // calc the top offset if box compare to the top of the body
+        setTimeout(() => {
+            postThumbnail.style.visibility = "visible";
+            hero.style.visibility = "visible";
+            fixedBox.style.display = "none";
+            window.addEventListener("scroll", postScrollAnimations);
+        }, 500); // Match the duration of the animation (0.3s)
+    };
+    // fetch post content
+    const fetchPostContent = (url, retries = 0) => {
+        fetch(url)
+            .then((response) => {
+                document
+                    .querySelector(".transition")
+                    .classList.remove("belive");
+                if (!response.ok)
+                    throw new Error("Network response was not ok");
+                return response.text();
+            })
+            .then((data) => {
+                document.querySelector(".post-content").innerHTML = data;
+                showPostContent();
+            })
+            .catch((error) => {
+                document.querySelector(".transition").classList.add("belive");
+                const retryDelay = retries + 3000;
+                console.error(
+                    `Fetch failed, retrying in ${retryDelay / 1000} seconds...`,
+                    error
+                );
+                setTimeout(() => fetchPostContent(url, retries), retryDelay);
+            });
+    };
+
+    fetchPostContent(a.getAttribute("href").replace("/p/", "/p/clean/"));
+
     const hero = a.closest("article").querySelector(".hero");
     if (hero) {
         const fixedBox = document.querySelector(".transition");
@@ -188,31 +249,7 @@ const switchToPost = (a) => {
         }, 10);
 
         setTimeout(() => {
-            document.body.classList.add("displayPost");
-            document.body.classList.remove("toPost");
-            const postThumbnailRect = postThumbnail.getBoundingClientRect();
-            fixedBox.classList.remove("centered");
-            console.log(`${postThumbnailRect.width}px`);
-            fixedBox.style.width = `${postThumbnailRect.width}px`;
-            fixedBox.style.height = `${postThumbnailRect.height}px`;
-            fixedBox.style.left = `${
-                postThumbnailRect.left + postThumbnailRect.width / 2
-            }px`;
-            fixedBox.style.top = `${
-                postThumbnailRect.top +
-                postThumbnailRect.height / 2 +
-                window.scrollY
-            }px`;
-            fixedBox.style.borderRadius = "var(--border-radius)";
-
-            // scroll to the element position
-            // calc the top offset if box compare to the top of the body
-            setTimeout(() => {
-                postThumbnail.style.visibility = "visible";
-                hero.style.visibility = "visible";
-                fixedBox.style.display = "none";
-                window.addEventListener("scroll", postScrollAnimations);
-            }, 500); // Match the duration of the animation (0.3s)
+            showPostContent();
         }, 1000);
     }
 
@@ -237,20 +274,6 @@ function copyCode(button) {
 }
 
 // when link is pressed and is not target_blank, prevent default and switch to home
-document.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", (e) => {
-        if (a.getAttribute("target") !== "_blank") {
-            if (a.getAttribute("href").startsWith("#")) return;
-            e.preventDefault();
-            if (a.getAttribute("href").includes("/p/")) {
-                switchToPost(a);
-                // check if there's a .hero image in the same article
-            } else switchToHome();
-
-            window.history.pushState(null, null, a.getAttribute("href"));
-        }
-    });
-});
 
 const categoriesMove = (direction) => {
     const categories = document.getElementById("categories");
@@ -280,6 +303,11 @@ fetch("/meta/tags.json")
             a.textContent = `${category}`;
             categoriesElement.appendChild(a);
         }
+        const first = categoriesElement.querySelector("a");
+        categoriesElement.insertBefore(
+            categoriesElement.querySelector("a[href='/category/精選']"),
+            first
+        );
     });
 
 // Update uptime
@@ -300,31 +328,24 @@ const updatePostList = (category) => {
             postList.innerHTML = "";
             for (const post of posts) {
                 const article = document.createElement("article");
+                // <a href="/tags/軟體分享">軟體分享</a>
+                const tags = post.tags.map(
+                    (tag) => `<a href="/tag/${tag}" class="tag">${tag}</a>`
+                );
                 article.innerHTML = `
-                <a href="/posts/${post.id}"
+                <a href="/p/${post.id}"
     ><div
         class="hero"
-        style="
-            background-image: ${
-                post.thumbnail ? `url(${post.thumbnail})` : "none"
-            };,
-              %{post.colors};
+        style="background-image: ${
+            post.thumbnail ? `url(${post.thumbnail})` : "none"
+        },${post.colors};
         "
     ></div
 ></a>
 <div class="info">
-    <div class="post-categories">${post.categories.join(", ")}</div>
-        </div>
-
-    <a href="/posts/MultiWall">
-        <h3>
-            【MultiWall】讓不同螢幕放不同桌布
-        </h3></a
-    >
-
-    <div class="tags">
-        <a href="/categories/軟體分享">軟體分享</a>
-    </div>
+    <div class="post-categories">${post.categories.join(" ")}</div>
+        <h3>${post.title}</h3>
+    <div class="tags">${tags.join("")}</div>
 </div>
 `;
                 postList.appendChild(article);
@@ -347,3 +368,23 @@ document.querySelectorAll("#tags a").forEach((a) => {
 });
 
 updatePostList("精選");
+
+document.body.addEventListener("click", (e) => {
+    const a = e.target.closest("a"); // Find the closest <a> element (in case of nested elements)
+
+    if (!a) return; // If no <a> was clicked, do nothing
+    console.log(a);
+    if (a.getAttribute("target") !== "_blank") {
+        if (a.getAttribute("href").startsWith("#")) return; // Allow internal anchor links
+        e.preventDefault(); // Prevent the default link behavior
+
+        if (a.getAttribute("href").includes("/p/")) {
+            switchToPost(a); // Handle post switch
+            // check if there's a .hero image in the same article
+        } else {
+            switchToHome(); // Handle home switch
+        }
+
+        window.history.pushState(null, null, a.getAttribute("href")); // Modify the browser history
+    }
+});

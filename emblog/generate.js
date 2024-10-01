@@ -336,7 +336,7 @@ async function processPosts() {
                 title: postMeta.title,
                 content: htmlContent,
                 tldr,
-                thumbnail: encodeURIComponent(thumbnail),
+                thumbnail: thumbnail,
                 length: postMeta.length,
                 colors: postMeta.colors,
                 readingTime: postMeta.readingTime,

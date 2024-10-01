@@ -49,6 +49,18 @@ body {
     z-index: 1000;
     background-size: contain;
 }
+.transition::after {
+    transition: opacity 0.3s;
+}
+.transition.belive::after {
+    content: "Patience is key in life...";
+    position: absolute;
+    bottom: -2rem;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 1;
+}
 .smooth {
     transition: all 0.5s ease;
 }
@@ -642,6 +654,7 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     gap: 1rem;
+    align-items: stretch;
 }
 
 article a {
@@ -660,6 +673,8 @@ article {
     border-radius: 1.875rem;
     overflow: hidden;
     border: 1px #d2dee6 solid;
+    display: flex;
+    flex-direction: column;
 }
 article .hero {
     aspect-ratio: 120 / 63;
@@ -676,6 +691,9 @@ article .info {
     border-top: none;
     font-size: 0.8rem;
     background-color: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .post-categories {
@@ -689,6 +707,10 @@ article .info {
     content: "#";
     margin-right: 0.15rem;
     color: #a1a1a1;
+}
+
+.info h3 {
+    flex-grow: 1;
 }
 h3 {
     margin-bottom: 0.5rem;
@@ -967,15 +989,19 @@ figure img {
     transform-origin: bottom left;
     font-size: 2.5rem;
 }
+.post-thumbnail[src=""] {
+    display: none;
+}
 
 .post-thumbnail {
-    max-height: 800px;
+    max-height: 550px;
     display: block;
     margin: 2rem auto;
     width: 100%;
     max-width: 980px;
     object-fit: contain;
     position: relative;
+    min-height: 3rem;
     z-index: 2;
     border-radius: var(--border-radius);
 }
@@ -1047,9 +1073,33 @@ figure img {
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
+.post-container ul {
+    padding-inline-start: 1.5rem;
+}
+
+.post-container ol {
+    padding-inline-start: 1.5rem;
+}
+.post-container li {
+    margin-bottom: 0.5rem;
+}
+
+.post-container li p {
+    margin-bottom: 0;
+}
+
+.post-container h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.post-container h4 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
 
 figure {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 figcaption {
