@@ -218,7 +218,7 @@ nav a,
 .right a::after,
 .about-links a::after,
 .recent a::after,
-#tags a::after,
+.aside-tags a::after,
 footer a::after,
 article a::after,
 .share a::after,
@@ -446,7 +446,7 @@ section {
 .share,
 .toc,
 .recent,
-#tags,
+.aside-tags,
 #time,
 .about,
 .discord-join {
@@ -747,7 +747,7 @@ aside {
     z-index: 3;
 }
 .recent,
-#tags {
+.aside-tags {
     color: var(--dark-purple);
     padding-bottom: 0;
 }
@@ -762,7 +762,7 @@ aside {
 }
 
 .recent h2,
-#tags h2 {
+.aside-tags h2 {
     font-size: 1.375rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -799,11 +799,63 @@ aside {
     display: none;
 }
 .recent a,
-#tags a {
+.aside-tags a {
     color: var(--dark-purple);
     font-weight: 500;
 }
-#tags > a {
+
+.aside-tags {
+    max-height: 20rem;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.3s;
+    padding-bottom: 1.8rem;
+}
+
+#hideTags {
+    display: none;
+}
+
+#hideTagsLabel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(0deg, #fff 30%, #fff0);
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    height: 3rem;
+    z-index: 2;
+}
+
+#hideTagsLabel::after {
+    content: "";
+    position: absolute;
+    bottom: 0.3rem;
+    left: 0rem;
+    width: 100%;
+    background: url(/static/img/larr.svg) no-repeat center center / contain;
+    pointer-events: none;
+    height: 1.3rem;
+    transform: rotate(270deg);
+    filter: brightness(2);
+    transition: bottom 0.3s;
+}
+#hideTagsLabel:hover::after {
+    bottom: 0rem;
+}
+
+body:has(#hideTags:checked) .aside-tags{
+    max-height: 100%;
+}
+body:has(#hideTags:checked) #hideTagsLabel {
+    background: transparent;
+}
+body:has(#hideTags:checked) #hideTagsLabel::after {
+    transform: rotate(90deg);
+}
+.aside-tags > a {
     display: inline-flex;
     align-items: center;
     margin: 0 0.5rem 0.5rem 0;
@@ -813,11 +865,11 @@ aside {
     transition: background-color 0.3s, color 0.3s;
 }
 
-#tags > a:hover {
+.aside-tags > a:hover {
     background-color: var(--dark-purple);
     color: #fff;
 }
-#tags > a > div {
+.aside-tags > a > div {
     display: inline-block;
     background-color: var(--dark-purple);
     border-radius: 1000px;
@@ -829,7 +881,7 @@ aside {
     transition: background-color 0.3s, color 0.3s;
 }
 
-#tags > a:hover > div {
+.aside-tags > a:hover > div {
     background-color: var(--light-purple);
     color: var(--dark-purple);
 }

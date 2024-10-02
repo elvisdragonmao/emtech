@@ -425,6 +425,10 @@ function generateTagsAndCategories() {
     const categoriesMap = {};
     const tags = {};
     const categories = {};
+    const search = []; // only title,discription, and id. for search
+
+    // order by date
+    postsMeta.sort((a, b) => b.date - a.date);
     postsMeta.forEach((post) => {
         if (post.tags)
             post.tags.forEach((tag) => {
@@ -440,11 +444,17 @@ function generateTagsAndCategories() {
                     : 1;
                 categoriesMap[category].push(post);
             });
+        search.push({
+            title: post.title,
+            description: post.description,
+            id: post.id
+        });
     });
 
     // 輸出 tags 和 categories
     fs.mkdirSync("dist/meta/tags", { recursive: true });
     fs.mkdirSync("dist/meta/categories", { recursive: true });
+    fs.writeFileSync("dist/meta/search.json", JSON.stringify(search, null, 2));
 
     for (const [tag, posts] of Object.entries(tagsMap)) {
         fs.writeFileSync(

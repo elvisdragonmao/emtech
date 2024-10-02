@@ -56,14 +56,14 @@ const postScrollAnimations = () => {
             let scale = width / window.innerWidth;
             if (height > window.innerHeight) {
                 next.style = "";
-             //   document.body.style.paddingBottom = "1rem";
+                //   document.body.style.paddingBottom = "1rem";
             } else {
                 next.style.setProperty("--scale", scale);
                 next.style.setProperty("--scaleWidth", "100vw");
                 next.style.width = `${width}px`;
                 console.log(next.getBoundingClientRect().top);
                 next.style.overflow = "hidden";
-              //  next.style.border = "var(--border)";
+                //  next.style.border = "var(--border)";
                 next.style.height = `${Math.max(originalHeight, height)}px`;
                 document.body.style.paddingBottom = "400vh";
             }
@@ -169,6 +169,9 @@ const initPost = (page) => {
         observer.observe(h2);
     });
     nextPosts.push(page.querySelector(".next-post"));
+
+    page.querySelector(".aside-tags").innerHTML =
+        document.querySelector(".aside-tags-loaded").innerHTML;
 };
 if (window.location.pathname.includes("/p/")) {
     initPost(document.querySelector(".post-page"));
@@ -185,7 +188,7 @@ const switchToHome = () => {
     nextPosts = [];
     startDonut();
     window.removeEventListener("scroll", postScrollAnimations);
-   // document.body.style.paddingBottom = "1rem";
+    // document.body.style.paddingBottom = "1rem";
     setTimeout(() => {
         document.body.classList.remove("displayPost");
         window.scrollTo(0, 0);
@@ -328,7 +331,8 @@ fetch("/meta/tags.json")
     .then((data) => {
         const tags = data.tags;
         const categories = data.categories;
-        const tagsElement = document.getElementById("tags");
+        const tagsElement = document.querySelector(".aside-tags");
+        tagsElement.classList.add("aside-tags-loaded");
         const categoriesElement = document.getElementById("categories");
         for (const [tag, count] of Object.entries(tags)) {
             const a = document.createElement("a");
