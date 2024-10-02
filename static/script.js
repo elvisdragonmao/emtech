@@ -1,7 +1,7 @@
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
-const next = document.querySelector(".next-post");
-let currentPage = "post";
+let currentPage = "post",
+    nextPosts = [];
 
 const postScrollAnimations = () => {
     if (header.getBoundingClientRect().bottom < 0) {
@@ -9,34 +9,65 @@ const postScrollAnimations = () => {
     } else {
         document.body.classList.remove("nav-sticky");
     }
-    let maxWidth = Math.min(1200, window.innerWidth - 64) - 32;
-    let footerHeight =
-        parseFloat(getComputedStyle(document.querySelector("footer")).height) +
-        64;
-    let originalHeight = Math.min(400, window.innerHeight - footerHeight);
-    let toMove = window.innerHeight - originalHeight;
-    let canMove = window.innerHeight - originalHeight - footerHeight;
-    let height =
-        originalHeight +
-        (toMove / canMove) * (canMove - next.getBoundingClientRect().top);
-    let width = Math.max(
-        maxWidth,
-        maxWidth +
-            ((window.innerWidth - maxWidth) / canMove) *
-                (canMove - next.getBoundingClientRect().top)
-    );
-    let scale = width / window.innerWidth;
-    if (height > window.innerHeight) {
-        next.style = "";
-        footer.style.marginBottom = "1rem";
-    } else {
-        next.style.setProperty("--scale", scale);
-        next.style.setProperty("--scaleWidth", "100vw");
-        next.style.width = `${width}px`;
-        next.style.overflow = "hidden";
-        next.style.border = "var(--border)";
-        next.style.height = `${Math.max(originalHeight, height)}px`;
-        footer.style.marginBottom = "100vh";
+    for (const next of nextPosts) {
+        const nextTop = next.getBoundingClientRect().top;
+        if (nextTop > window.innerHeight) {
+            next.style = "";
+            if (
+                nextTop < window.innerHeight * 2 &&
+                !next.classList.contains("loaded")
+            ) {
+                next.classList.add("loaded");
+                fetch(
+                    //  next.getAttribute("href").replace("/p/", "/p/clean/") +
+                    "/p/clean/microsoft-store.html"
+                )
+                    .then((response) => {
+                        if (!response.ok)
+                            throw new Error("Network response was not ok");
+                        return response.text();
+                    })
+                    .then((data) => {
+                        next.innerHTML = data;
+                        initPost(next);
+                    })
+                    .catch((error) => {
+                        console.error("Fetch failed", error);
+                        next.classList.remove("loaded");
+                    });
+            }
+        } else {
+            let maxWidth = Math.min(1200, window.innerWidth - 64) - 32;
+            let footerHeight = parseFloat(getComputedStyle(footer).height) + 64;
+            let originalHeight = Math.min(
+                400,
+                window.innerHeight - footerHeight
+            );
+            let toMove = window.innerHeight - originalHeight;
+            let canMove = window.innerHeight - originalHeight - footerHeight;
+            let height =
+                originalHeight + (toMove / canMove) * (canMove - nextTop);
+            let width = Math.max(
+                maxWidth,
+                maxWidth +
+                    ((window.innerWidth - maxWidth) / canMove) *
+                        (canMove - nextTop)
+            );
+            let scale = width / window.innerWidth;
+            if (height > window.innerHeight) {
+                next.style = "";
+             //   document.body.style.paddingBottom = "1rem";
+            } else {
+                next.style.setProperty("--scale", scale);
+                next.style.setProperty("--scaleWidth", "100vw");
+                next.style.width = `${width}px`;
+                console.log(next.getBoundingClientRect().top);
+                next.style.overflow = "hidden";
+              //  next.style.border = "var(--border)";
+                next.style.height = `${Math.max(originalHeight, height)}px`;
+                document.body.style.paddingBottom = "400vh";
+            }
+        }
     }
 };
 
@@ -85,15 +116,14 @@ const startDonut = () => {
   @housamz */
 };
 // use url to get current page include /p/
-
-const initPost = () => {
+window.addEventListener("scroll", postScrollAnimations);
+const initPost = (page) => {
     currentPage = "post";
     document.body.classList.add("displayPost");
-    window.addEventListener("scroll", postScrollAnimations);
 
     // highlight current h2 in .post-content and put in .toc
-    const postContent = document.querySelector(".post-content");
-    const toc = document.querySelector(".toc");
+    const postContent = page.querySelector(".post-content");
+    const toc = page.querySelector(".toc");
     const ul = document.createElement("ul");
     // Find all h2 elements in .post-content
     const headers = Array.from(postContent.querySelectorAll("h2"));
@@ -135,12 +165,13 @@ const initPost = () => {
     // Observe each h2 element
     headers.forEach((header) => observer.observe(header));
 
-    document.querySelectorAll("h2").forEach((h2) => {
+    page.querySelectorAll("h2").forEach((h2) => {
         observer.observe(h2);
     });
+    nextPosts.push(page.querySelector(".next-post"));
 };
 if (window.location.pathname.includes("/p/")) {
-    initPost();
+    initPost(document.querySelector(".post-page"));
 } else {
     currentPage = "home";
     document.body.classList.remove("displayPost");
@@ -151,10 +182,10 @@ const switchToHome = () => {
     if (currentPage === "home") document.body.classList = "toHome";
     else document.body.classList.add("toHome");
     currentPage = "home";
-
+    nextPosts = [];
     startDonut();
     window.removeEventListener("scroll", postScrollAnimations);
-    footer.style.marginBottom = "1rem";
+   // document.body.style.paddingBottom = "1rem";
     setTimeout(() => {
         document.body.classList.remove("displayPost");
         window.scrollTo(0, 0);
@@ -199,7 +230,7 @@ const switchToPost = (a) => {
             postThumbnail.style.visibility = "visible";
             hero.style.visibility = "visible";
             fixedBox.style.display = "none";
-            initPost();
+            initPost(document.querySelector(".post-page"));
         }, 500); // Match the duration of the animation (0.3s)
     };
     // fetch post content
@@ -216,6 +247,7 @@ const switchToPost = (a) => {
             .then((data) => {
                 document.querySelector(".post-page").innerHTML = data;
                 showPostContent();
+                nextPosts = [document.querySelector(".post-page")];
             })
             .catch((error) => {
                 document.querySelector(".transition").classList.add("belive");
@@ -248,7 +280,7 @@ const switchToPost = (a) => {
         fixedBox.style.top = `${rect.top + rect.height / 2}px`;
         fixedBox.style.left = `${rect.left + rect.width / 2}px`;
         fixedBox.style.borderRadius = "1.875rem 1.875rem 0 0";
-        footer.style.marginBottom = "100vh";
+        document.body.style.paddingBottom = "100vh";
         setTimeout(() => {
             fixedBox.classList.add("smooth");
             fixedBox.style.borderRadius = "1.875rem";
@@ -380,11 +412,11 @@ document.body.addEventListener("click", (e) => {
     const a = e.target.closest("a"); // Find the closest <a> element (in case of nested elements)
 
     if (!a) return; // If no <a> was clicked, do nothing
-    console.log(a);
+    // if link ""
     if (a.getAttribute("target") !== "_blank") {
         if (a.getAttribute("href").startsWith("#")) return; // Allow internal anchor links
         e.preventDefault(); // Prevent the default link behavior
-
+        if (a.getAttribute("href") === "") return;
         if (a.getAttribute("href").includes("/p/")) {
             switchToPost(a); // Handle post switch
             // check if there's a .hero image in the same article

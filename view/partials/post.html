@@ -43,9 +43,9 @@
                     />
                     <h3>毛哥EM</h3>
                     <div class="author-social">
-                        <a href=""
+                        <a href="https://github.com/Edit-Mr/" target="_blank"
                             ><img src="/static/img/github-uwu.svg" alt="" /></a
-                        ><a href=""
+                        ><a href="https://www.instagram.com/elvisdragonmao/" target="_blank"
                             ><img src="/static/img/instagram.svg" alt=""
                         /></a>
                     </div>
@@ -63,11 +63,30 @@
             <div class="sticky">
                 <div class="share">
                     <div>分享</div>
-                    <a href=""><img src="/static/img/facebook.svg" alt="" /></a
-                    ><a href=""><img src="/static/img/threads.svg" alt="" /></a
-                    ><a href=""><img src="/static/img/x.svg" alt="" /></a
-                    ><a href=""><img src="/static/img/linkdin.svg" alt="" /></a
-                    ><a href=""><img src="/static/img/link.svg" alt="" /></a>
+                    <a
+                        href="https://www.facebook.com/sharer.php?u=https://emtech.cc/p/{{postID}}&t={{title}}"
+                        target="_blank"
+                        ><img src="/static/img/facebook.svg" alt="" /></a
+                    ><a
+                        href="https://threads.net/intent/post?text={{title}}%0Ahttps://emtech.cc/p/{{postID}}"
+                        target="_blank"
+                        ><img src="/static/img/threads.svg" alt="" /></a
+                    ><a
+                        href="https://x.com/intent/tweet?text={{title}}&url=https://emtech.cc/p/{{postID}}&tw_p=tweetbutton"
+                        target="_blank"
+                        ><img src="/static/img/x.svg" alt="" /></a
+                    ><a href=""><img
+                        src="/static/img/link.svg"
+                        alt=""
+                        onclick="navigator.clipboard.writeText(window.location.href).then(() => { 
+                            const img = this;
+                            img.src = '/static/img/check.svg';
+                            setTimeout(() => {
+                                img.src = '/static/img/link.svg';
+                            }, 3000);
+                        })"
+                        title="複製連結"
+                    /></a>
                 </div>
                 <div class="toc">
                     <h2>目錄</h2>

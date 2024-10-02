@@ -238,6 +238,7 @@ async function processPosts() {
             let markdownContent = fs
                 .readFileSync(markdownFile, "utf8")
                 .replace(/<!--[\s\S]+?-->/g, "");
+
             let postMeta = extractFrontMatter(markdownContent);
             // turn image url if not set path like ![](image.webp) to ![](/static/postID/image.webp)
             // don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
@@ -291,6 +292,7 @@ async function processPosts() {
             // turn to k, if length > 1000. Fixed to 1 decimal place
             postMeta.length =
                 length > 1000 ? (length / 1000).toFixed(1) + "k" : length;
+            postMeta.lastUpdated = fs.statSync(markdownFile).mtime;
             if (!postMeta.readingTime) {
                 const chineseReadingSpeed = 300; // 每分鐘 300 字
                 const englishReadingSpeed = 200; // 每分鐘 200 單詞
@@ -345,7 +347,8 @@ async function processPosts() {
                     .split("T")[0],
                 postTags,
                 headerCategories,
-                headerTags
+                headerTags,
+                postID
             };
             const fullPostHtml = renderPartials(
                 replacePlaceholders(postTemplate, replacements)
@@ -468,23 +471,94 @@ function generateTagsAndCategories() {
     analyze.posts = postsMeta.length;
 }
 
+function getCurrentPubDate() {
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+    ];
+
+    const now = new Date();
+
+    const dayName = days[now.getUTCDay()];
+    const day = String(now.getUTCDate()).padStart(2, "0");
+    const month = months[now.getUTCMonth()];
+    const year = now.getUTCFullYear();
+
+    const hours = String(now.getUTCHours()).padStart(2, "0");
+    const minutes = String(now.getUTCMinutes()).padStart(2, "0");
+    const seconds = String(now.getUTCSeconds()).padStart(2, "0");
+
+    const pubDate = `${dayName}, ${day} ${month} ${year} ${hours}:${minutes}:${seconds} +0000`;
+
+    return pubDate;
+}
+
 // Sitemap 和 RSS 生成
 function generateSitemapAndRSS() {
+    const today = new Date().toISOString().split("T")[0];
     const sitemapContent = postsMeta
-        .map((post) => `<url><loc>/posts/${post.id}/index.html</loc></url>`)
+        .map(
+            (post) => ` <url>
+    <loc>https://emtech.cc/p/${post.id}</loc>
+    <lastmod>${new Date(post.lastUpdated).toISOString().split("T")[0]}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`
+        )
         .join("\n");
-    fs.writeFileSync("dist/sitemap.xml", `<urlset>${sitemapContent}</urlset>`);
+    fs.writeFileSync(
+        "dist/sitemap.xml",
+        `<?xml version="1.0" encoding="UTF-8"?>
+        <?xml-stylesheet type="text/xsl" href="https://emtech.cc/style.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://emtech.cc</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  ${sitemapContent}</urlset>`
+    );
 
     // 簡單 RSS 生成
     const rssItems = postsMeta
         .map(
             (post) =>
-                `<item><title>${post.title}</title><link>/posts/${post.id}/</link></item>`
+                `<item>
+      <title>${post.title}</title>
+      <link>https://emtech.cc/p/${post.id}</link>
+      <description>${post.description}</description>
+      <pubDate>${new Date(post.lastUpdated).toUTCString()}</pubDate>
+      <guid>https://emtech.cc/p/${post.id}</guid>
+    </item>`
         )
         .join("\n");
     fs.writeFileSync(
         "dist/rss.xml",
-        `<rss><channel>${rssItems}</channel></rss>`
+        `<?xml version="1.0" encoding="UTF-8"?>
+        <?xml-stylesheet type="text/xsl" href="https://emtech.cc/style.xsl"?>
+        <rss version="2.0">
+        <channel>
+        <title>毛哥EM資訊密技</title>
+        <link>https://emtech.cc</link>
+        <description>分享各種程式及軟體</description>
+        <language>zh-Hant</language>
+        <lastBuildDate>${getCurrentPubDate()}
+        </lastBuildDate>
+        <pubDate>${getCurrentPubDate()}</pubDate>
+        <ttl>1800</ttl>
+        ${rssItems}</channel></rss>`
     );
 }
 
