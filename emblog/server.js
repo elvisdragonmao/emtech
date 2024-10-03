@@ -55,7 +55,9 @@ const getContentType = (filePath) => {
         ".png": "image/png",
         ".jpg": "image/jpeg",
         ".gif": "image/gif",
-        ".svg": "image/svg+xml"
+        ".svg": "image/svg+xml",
+        ".xml": "application/xml",
+        ".xsl": "application/xml",
     };
     return mimeTypes[extname] || "application/octet-stream";
 };

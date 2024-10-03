@@ -1,7 +1,7 @@
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 let currentPage = "post",
-    nextPosts = [];
+    nextPosts = [],asideTags;
 
 const postScrollAnimations = () => {
     if (header.getBoundingClientRect().bottom < 0) {
@@ -169,9 +169,7 @@ const initPost = (page) => {
         observer.observe(h2);
     });
     nextPosts.push(page.querySelector(".next-post"));
-
-    page.querySelector(".aside-tags").innerHTML =
-        document.querySelector(".aside-tags-loaded").innerHTML;
+    if (asideTags) page.querySelector(".aside-tags").innerHTML = asideTags;
 };
 if (window.location.pathname.includes("/p/")) {
     initPost(document.querySelector(".post-page"));
@@ -340,6 +338,7 @@ fetch("/meta/tags.json")
             a.innerHTML = `${tag}<div>${count}</div>`;
             tagsElement.appendChild(a);
         }
+        asideTags = tagsElement.innerHTML;
         for (const [category, count] of Object.entries(categories)) {
             const a = document.createElement("a");
             a.href = `/category/${category}`;

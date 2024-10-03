@@ -816,7 +816,7 @@ aside {
     display: none;
 }
 
-#hideTagsLabel {
+.hideTagsLabel {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -829,7 +829,7 @@ aside {
     z-index: 2;
 }
 
-#hideTagsLabel::after {
+.hideTagsLabel::after {
     content: "";
     position: absolute;
     bottom: 0.3rem;
@@ -842,17 +842,17 @@ aside {
     filter: brightness(2);
     transition: bottom 0.3s;
 }
-#hideTagsLabel:hover::after {
+.hideTagsLabel:hover::after {
     bottom: 0rem;
 }
 
 body:has(#hideTags:checked) .aside-tags{
     max-height: 100%;
 }
-body:has(#hideTags:checked) #hideTagsLabel {
+body:has(#hideTags:checked) .hideTagsLabel {
     background: transparent;
 }
-body:has(#hideTags:checked) #hideTagsLabel::after {
+body:has(#hideTags:checked) .hideTagsLabel::after {
     transform: rotate(90deg);
 }
 .aside-tags > a {
@@ -1447,6 +1447,10 @@ blockquote::before {
     scale: var(--scale);
     transform-origin: top left;
     width: var(--scaleWidth);
+}
+
+.next-post header::before{
+    animation: unset;
 }
 
 .post {
