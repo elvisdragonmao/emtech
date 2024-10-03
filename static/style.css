@@ -913,7 +913,7 @@ body:has(#hideTags:checked) .hideTagsLabel::after {
     font-weight: 700;
 }
 footer {
-    max-width: calc(var(--max-width) - 2rem);
+    max-width: var(--max-width);
     margin: 1rem auto;
     padding: 1rem;
 }
