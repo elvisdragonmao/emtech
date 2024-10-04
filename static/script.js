@@ -1,8 +1,38 @@
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 let currentPage = "post",
-    nextPosts = [],asideTags;
+    nextPosts = [],
+    asideTags;
 
+// get read history page id and title from localStorage
+let readHistory = JSON.parse(localStorage.getItem("readHistory")) || [];
+// update read history list
+const updateReadHistory = (id) => {
+    if (id !== null && id !== undefined) readHistory.unshift(id);
+    readHistory.forEach((item, index) => {
+        if (item + "" == "null" || item + "" == "undefined") {
+            readHistory.splice(index, 1);
+        }
+        // remove duplicate
+        readHistory = readHistory.filter(
+            (v, i, a) => a.findIndex((t) => t.id === v.id) === i
+        );
+    });
+    localStorage.setItem("readHistory", JSON.stringify(readHistory));
+    document.querySelectorAll(".recent").forEach((list) => {
+        if (readHistory.length > 0)
+            list.innerHTML =
+                "<h2>近期瀏覽</h2>" +
+                readHistory
+                    .map(
+                        (id) => `<h3><a href="/p/${id.id}">${id.title}</a></h3>`
+                    )
+                    .join("");
+        else list.innerHTML = "";
+    });
+};
+
+updateReadHistory();
 const postScrollAnimations = () => {
     if (header.getBoundingClientRect().bottom < 0) {
         document.body.classList.add("nav-sticky");
@@ -61,7 +91,6 @@ const postScrollAnimations = () => {
                 next.style.setProperty("--scale", scale);
                 next.style.setProperty("--scaleWidth", "100vw");
                 next.style.width = `${width}px`;
-                console.log(next.getBoundingClientRect().top);
                 next.style.overflow = "hidden";
                 //  next.style.border = "var(--border)";
                 next.style.height = `${Math.max(originalHeight, height)}px`;
@@ -170,6 +199,15 @@ const initPost = (page) => {
     });
     nextPosts.push(page.querySelector(".next-post"));
     if (asideTags) page.querySelector(".aside-tags").innerHTML = asideTags;
+    const diffDays = Math.ceil(
+        (new Date() - new Date("2021-06-04")) / (1000 * 60 * 60 * 24)
+    );
+    page.querySelector("#time p").textContent = `${Math.floor(
+        diffDays / 365
+    )}年 ${diffDays % 365}天`;
+    const id = page.querySelector(".post").getAttribute("data-id");
+    const title = page.querySelector(".post-header h1").textContent;
+    if (title && id) updateReadHistory({ id, title });
 };
 if (window.location.pathname.includes("/p/")) {
     initPost(document.querySelector(".post-page"));
@@ -212,7 +250,6 @@ const switchToPost = (a) => {
         document.body.classList.remove("toPost");
         const postThumbnailRect = postThumbnail.getBoundingClientRect();
         fixedBox.classList.remove("centered");
-        console.log(`${postThumbnailRect.width}px`);
         fixedBox.style.width = `${postThumbnailRect.width}px`;
         fixedBox.style.height = `${postThumbnailRect.height}px`;
         fixedBox.style.left = `${
@@ -269,9 +306,7 @@ const switchToPost = (a) => {
 
     const fixedBox = document.querySelector(".transition");
     if (hero) {
-        console.log(hero);
         fixedBox.style.backgroundImage = hero.style.backgroundImage;
-        console.log(hero.style.backgroundImage);
         const rect = hero.getBoundingClientRect();
         fixedBox.classList.remove("smooth");
         fixedBox.style.width = `${rect.width}px`;
@@ -351,14 +386,6 @@ fetch("/meta/tags.json")
             first
         );
     });
-
-// Update uptime
-const diffDays = Math.ceil(
-    (new Date() - new Date("2021-06-04")) / (1000 * 60 * 60 * 24)
-);
-document.querySelector("#time p").textContent = `${Math.floor(
-    diffDays / 365
-)}年 ${diffDays % 365}天`;
 
 const updatePostList = (category) => {
     // fetch from /meta/categories/${category}.json

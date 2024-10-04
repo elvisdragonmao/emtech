@@ -758,6 +758,11 @@ aside {
 }
 
 .recent {
+    display: none;
+}
+
+.recent:has(h2) {
+    display: block;
     padding: 1rem 0;
 }
 
@@ -846,7 +851,7 @@ aside {
     bottom: 0rem;
 }
 
-body:has(#hideTags:checked) .aside-tags{
+body:has(#hideTags:checked) .aside-tags {
     max-height: 100%;
 }
 body:has(#hideTags:checked) .hideTagsLabel {
@@ -1449,7 +1454,7 @@ blockquote::before {
     width: var(--scaleWidth);
 }
 
-.next-post header::before{
+.next-post header::before {
     animation: unset;
 }
 
