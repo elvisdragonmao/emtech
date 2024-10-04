@@ -33,6 +33,15 @@ const updateReadHistory = (id) => {
 };
 
 updateReadHistory();
+const updateDate = (element) => {
+    const diffDays = Math.ceil(
+        (new Date() - new Date("2021-06-04")) / (1000 * 60 * 60 * 24)
+    );
+    element.textContent = `${Math.floor(diffDays / 365)}年 ${diffDays % 365}天`;
+};
+
+updateDate(document.querySelector(".home-page #time p"));
+
 const postScrollAnimations = () => {
     if (header.getBoundingClientRect().bottom < 0) {
         document.body.classList.add("nav-sticky");
@@ -199,12 +208,7 @@ const initPost = (page) => {
     });
     nextPosts.push(page.querySelector(".next-post"));
     if (asideTags) page.querySelector(".aside-tags").innerHTML = asideTags;
-    const diffDays = Math.ceil(
-        (new Date() - new Date("2021-06-04")) / (1000 * 60 * 60 * 24)
-    );
-    page.querySelector("#time p").textContent = `${Math.floor(
-        diffDays / 365
-    )}年 ${diffDays % 365}天`;
+    updateDate(page.querySelector("#time p"));
     const id = page.querySelector(".post").getAttribute("data-id");
     const title = page.querySelector(".post-header h1").textContent;
     if (title && id) updateReadHistory({ id, title });
@@ -248,18 +252,25 @@ const switchToPost = (a) => {
         postThumbnail.style.visibility = "hidden";
         document.body.classList.add("displayPost");
         document.body.classList.remove("toPost");
-        const postThumbnailRect = postThumbnail.getBoundingClientRect();
-        fixedBox.classList.remove("centered");
-        fixedBox.style.width = `${postThumbnailRect.width}px`;
-        fixedBox.style.height = `${postThumbnailRect.height}px`;
-        fixedBox.style.left = `${
-            postThumbnailRect.left + postThumbnailRect.width / 2
-        }px`;
-        fixedBox.style.top = `${
-            postThumbnailRect.top +
-            postThumbnailRect.height / 2 +
-            window.scrollY
-        }px`;
+        if (postThumbnail.getAttribute("src") !== "") {
+            console.log(postThumbnail.src);
+            const postThumbnailRect = postThumbnail.getBoundingClientRect();
+            fixedBox.classList.remove("centered");
+            fixedBox.style.width = `${postThumbnailRect.width}px`;
+            fixedBox.style.height = `${postThumbnailRect.height}px`;
+            fixedBox.style.left = `${
+                postThumbnailRect.left + postThumbnailRect.width / 2
+            }px`;
+            fixedBox.style.top = `${
+                postThumbnailRect.top +
+                postThumbnailRect.height / 2 +
+                window.scrollY
+            }px`;
+        }else{
+            console.log("no thumbnail");
+            fixedBox.style.width = "0";
+            fixedBox.style.height = "0";
+        }
         fixedBox.style.borderRadius = "var(--border-radius)";
 
         // scroll to the element position
@@ -451,7 +462,14 @@ document.body.addEventListener("click", (e) => {
             switchToPost(a); // Handle post switch
             // check if there's a .hero image in the same article
         } else {
-            switchToHome(); // Handle home switch
+            // if post category or tag is clicked
+            if (a.getAttribute("href").includes("/category/")) {
+                updatePostList(a.textContent);
+            } else if (a.getAttribute("href").includes("/tag/")) {
+                updatePostList(a.textContent);
+            } else {
+                switchToHome();
+            } // Handle home switch
         }
 
         window.history.pushState(null, null, a.getAttribute("href")); // Modify the browser history

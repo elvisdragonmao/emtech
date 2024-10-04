@@ -719,7 +719,7 @@ article .info {
 }
 
 .info h3,
-.recent h3 {
+.recent h3 a{
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2; /* number of lines to show */
@@ -965,6 +965,10 @@ footer .logo {
 
 .post header:has(.post-thumbnail[src=""])::before {
     height: calc(100% - 2rem);
+}
+
+.post header:has(.post-thumbnail[src=""]){
+    padding-bottom: 5rem;
 }
 
 .post header::before {
