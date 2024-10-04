@@ -1,0 +1,33 @@
+{
+    "rewrites": [
+        {
+            "source": "/post/:slug*",
+            "destination": "/p/:slug*"
+        },
+        {
+            "source": "/posts/:slug*",
+            "destination": "/p/:slug*"
+        },
+        {
+            "source": "/series/:slug*",
+            "destination": "/category/:slug*"
+        }
+    ],
+    "redirects": [
+        {
+            "source": "/random",
+            "destination": "/index.html",
+            "statusCode": 200
+        },
+        {
+            "source": "/category/:slug*",
+            "destination": "/index.html",
+            "statusCode": 200
+        },
+        {
+            "source": "/tag/:slug*",
+            "destination": "/index.html",
+            "statusCode": 200
+        }
+    ]
+}

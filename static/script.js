@@ -4,6 +4,15 @@ let currentPage = "post",
     nextPosts = [],
     asideTags;
 
+let search = [];
+
+// fetch /meta/search.json
+fetch("/meta/search.json")
+    .then((response) => response.json())
+    .then((data) => {
+        search = data;
+    });
+
 // get read history page id and title from localStorage
 let readHistory = JSON.parse(localStorage.getItem("readHistory")) || [];
 // update read history list
@@ -19,6 +28,8 @@ const updateReadHistory = (id) => {
         );
     });
     localStorage.setItem("readHistory", JSON.stringify(readHistory));
+    // get the latest 5 read history
+    readHistory = readHistory.slice(0, 5);
     document.querySelectorAll(".recent").forEach((list) => {
         if (readHistory.length > 0)
             list.innerHTML =
@@ -57,9 +68,48 @@ const postScrollAnimations = () => {
                 !next.classList.contains("loaded")
             ) {
                 next.classList.add("loaded");
+                // find random post with same tag but not read yet
+                const category = next.querySelectorAll(".header-categorie");
+                const categories = Array.from(category).map(
+                    (a) => a.textContent
+                );
+                // go through from first category to last, find the first post not read in localStorage
+                let randomPost = null;
+                for (const category of categories) {
+                    // fetch(`/meta/category/${category}.json`)
+                    fetch(`/meta/${category}.json`)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            const posts = data;
+                            for (const post of posts) {
+                                if (
+                                    !readHistory.find(
+                                        (item) => item.id === post.id
+                                    )
+                                ) {
+                                    randomPost = post;
+                                    break;
+                                }
+                            }
+                        });
+                    if (randomPost) break;
+                }
+                if (!randomPost && search.length > 0) {
+                    next.previousElementSibling.innerHTML =
+                        "這系列你都看過了，隨機推薦一篇給你!";
+                    randomPost =
+                        search[Math.floor(Math.random() * search.length)];
+                }
+                console.log(randomPost);
+                if (!randomPost) {
+                    next.previousElementSibling.innerHTML = "沒有更多文章了";
+                    next.classList.remove("loaded");
+                    continue;
+                }
+
                 fetch(
                     //  next.getAttribute("href").replace("/p/", "/p/clean/") +
-                    "/p/clean/microsoft-store.html"
+                    "/p/clean/" + randomPost.id + ".html"
                 )
                     .then((response) => {
                         if (!response.ok)
@@ -410,10 +460,18 @@ const updatePostList = (category) => {
             postList.innerHTML = "";
             for (const post of posts) {
                 const article = document.createElement("article");
-                // <a href="/tags/軟體分享">軟體分享</a>
-                const tags = post.tags.map(
-                    (tag) => `<a href="/tag/${tag}" class="tag">${tag}</a>`
-                );
+                const tags = post.tags
+                    ? post.tags.map(
+                          (tag) =>
+                              `<a href="/tag/${tag}" class="tag">${tag}</a>`
+                      )
+                    : [];
+                const categories = post.categories
+                    ? post.categories.map(
+                          (category) =>
+                              `<a href="/category/${category}" class="category">${category}</a>`
+                      )
+                    : [];
                 article.innerHTML = `
                 <a href="/p/${post.id}"
     ><div
@@ -425,9 +483,10 @@ const updatePostList = (category) => {
     ></div
 ></a>
 <div class="info">
-    <div class="post-categories">${post.categories.join(" ")}</div>
-        <h3>${post.title}</h3>
-    <div class="tags">${tags.join("")}</div>
+    <div class="post-categories">${categories.join(" ")}</div>
+        <a href="/p/${post.id}"
+    ><h3>${post.title}</h3></a>
+    <div class="tags">${tags.join(" ")}</div>
 </div>
 `;
                 postList.appendChild(article);
@@ -440,30 +499,51 @@ const updatePostList = (category) => {
         });
 };
 
-updatePostList("categories/精選");
+updatePostList("category/精選");
 
 document.body.addEventListener("click", (e) => {
-    const a = e.target.closest("a"); // Find the closest <a> element (in case of nested elements)
-
+    let a = e.target.closest("a"); // Find the closest <a> element (in case of nested elements)
     if (!a) return; // If no <a> was clicked, do nothing
-    // if link ""
+
     if (a.getAttribute("target") !== "_blank") {
         if (a.getAttribute("href").startsWith("#")) return; // Allow internal anchor links
-        e.preventDefault(); // Prevent the default link behavior
+        e.preventDefault();
         if (a.getAttribute("href") === "") return;
-        if (a.getAttribute("href").includes("/p/")) {
+        if (a.getAttribute("href") === "/") {
+            switchToHome();
+        } else if (a.getAttribute("href").includes("/p/")) {
             switchToPost(a); // Handle post switch
             // check if there's a .hero image in the same article
-        } else {
-            // if post category or tag is clicked
-            if (a.getAttribute("href").includes("/category/")) {
-                updatePostList("categories/" + a.textContent);
-            } else if (a.getAttribute("href").includes("/tag/")) {
-                updatePostList("tags/" + a.innerHTML.split("<")[0]);
-                if (currentPage !== "home") switchToHome();
-            } else switchToHome(); // Handle home switch
-        }
+        } else if (a.getAttribute("href").includes("/category/")) {
+            updatePostList("category/" + a.textContent);
+            if (currentPage !== "home") switchToHome();
+        } else if (a.getAttribute("href").includes("/tag/")) {
+            updatePostList("tag/" + a.getAttribute("href").split("/tag/")[1]);
+            if (currentPage !== "home") switchToHome();
+        } else if (a.getAttribute("href") === "/random") {
+            console.log(a.getAttribute("href"));
+            // get random post id from search.json
+            const randomId =
+                search[Math.floor(Math.random() * search.length)].id;
+            a = document.createElement("a");
+            a.setAttribute("href", `/p/${randomId}`);
+            switchToPost(a);
+        } else window.open(a.getAttribute("href"));
 
         window.history.pushState(null, null, a.getAttribute("href")); // Modify the browser history
     }
 });
+
+console.log(`
+    　　　　　 ／＞　　 フ
+    　　　　　|  　_　_ l
+    　 　　　／\` ミ_꒳ノ
+    　　 　 /　　　 　 |
+    　　　 /　 ヽ　　 ﾉ
+    　 　 │　　|　|　|
+    　／￣|　　 |　|　|
+    　| (￣ヽ＿_ヽ_)__)
+    　＼二つ
+    emtech.cc is generated with emblog by Elvis Mao
+    https://github.com/Edit-Mr/emblog
+    `);

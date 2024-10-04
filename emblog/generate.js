@@ -170,8 +170,8 @@ function initDist() {
     fs.mkdirSync("dist/p");
     fs.mkdirSync("dist/p/clean");
     fs.mkdirSync("dist/p/meta", { recursive: true });
-    fs.mkdirSync("dist/meta/tags", { recursive: true });
-    fs.mkdirSync("dist/meta/categories", { recursive: true });
+    fs.mkdirSync("dist/meta/tag", { recursive: true });
+    fs.mkdirSync("dist/meta/category", { recursive: true });
 }
 
 // 複製靜態資源
@@ -320,18 +320,24 @@ async function processPosts() {
                 ? postMeta.categories
                       .map(
                           (category) =>
-                              `<div class="header-categorie">${category}</div>`
+                              `<a href="/category/${category}"><div class="header-categorie">${category}</div></a>`
                       )
                       .join("")
                 : "";
             const headerTags = postMeta.tags
                 ? postMeta.tags
-                      .map((tag) => `<div class="header-tag">${tag}</div>`)
+                      .map(
+                          (tag) =>
+                              `<a href="/tag/${tag}"><div class="header-tag">${tag}</div></a>`
+                      )
                       .join("")
                 : "";
             const postTags = postMeta.tags
                 ? postMeta.tags
-                      .map((tag) => `<div class="post-tag">${tag}</div>`)
+                      .map(
+                          (tag) =>
+                              `<a href="/tag/${tag}"><div class="post-tag">${tag}</div></a>`
+                      )
                       .join("")
                 : "";
             const replacements = {
@@ -452,20 +458,20 @@ function generateTagsAndCategories() {
     });
 
     // 輸出 tags 和 categories
-    fs.mkdirSync("dist/meta/tags", { recursive: true });
-    fs.mkdirSync("dist/meta/categories", { recursive: true });
+    fs.mkdirSync("dist/meta/tag", { recursive: true });
+    fs.mkdirSync("dist/meta/category", { recursive: true });
     fs.writeFileSync("dist/meta/search.json", JSON.stringify(search, null, 2));
 
     for (const [tag, posts] of Object.entries(tagsMap)) {
         fs.writeFileSync(
-            `dist/meta/tags/${tag}.json`,
+            `dist/meta/tag/${tag}.json`,
             JSON.stringify(posts, null, 2)
         );
     }
 
     for (const [category, posts] of Object.entries(categoriesMap)) {
         fs.writeFileSync(
-            `dist/meta/categories/${category}.json`,
+            `dist/meta/category/${category}.json`,
             JSON.stringify(posts, null, 2)
         );
     }

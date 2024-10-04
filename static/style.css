@@ -129,7 +129,7 @@ a {
     position: relative;
 }
 
-a::after {
+.post-content a::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -212,18 +212,6 @@ nav a,
 .home-page a {
     color: var(--black);
     cursor: pointer;
-}
-
-.home-page a::after,
-.right a::after,
-.about-links a::after,
-.recent a::after,
-.aside-tags a::after,
-footer a::after,
-article a::after,
-.share a::after,
-.toc a::after {
-    display: none;
 }
 
 nav li a::after {
