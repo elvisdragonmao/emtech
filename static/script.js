@@ -253,7 +253,6 @@ const switchToPost = (a) => {
         document.body.classList.add("displayPost");
         document.body.classList.remove("toPost");
         if (postThumbnail.getAttribute("src") !== "") {
-            console.log(postThumbnail.src);
             const postThumbnailRect = postThumbnail.getBoundingClientRect();
             fixedBox.classList.remove("centered");
             fixedBox.style.width = `${postThumbnailRect.width}px`;
@@ -266,8 +265,7 @@ const switchToPost = (a) => {
                 postThumbnailRect.height / 2 +
                 window.scrollY
             }px`;
-        }else{
-            console.log("no thumbnail");
+        } else {
             fixedBox.style.width = "0";
             fixedBox.style.height = "0";
         }
@@ -276,9 +274,10 @@ const switchToPost = (a) => {
         // scroll to the element position
         // calc the top offset if box compare to the top of the body
         setTimeout(() => {
-            postThumbnail.style.visibility = "visible";
-            hero.style.visibility = "visible";
+            if (hero) hero.style.visibility = "visible";
             fixedBox.style.display = "none";
+
+            postThumbnail.style.visibility = "visible";
             initPost(document.querySelector(".post-page"));
         }, 500); // Match the duration of the animation (0.3s)
     };
@@ -312,10 +311,10 @@ const switchToPost = (a) => {
     fetchPostContent(
         a.getAttribute("href").replace("/p/", "/p/clean/") + ".html"
     );
-
-    const hero = a.closest("article").querySelector(".hero");
-
     const fixedBox = document.querySelector(".transition");
+    // check if hero exists a.closest("article").querySelector(".hero")
+
+    const hero = a.closest("article")?.querySelector(".hero");
     if (hero) {
         fixedBox.style.backgroundImage = hero.style.backgroundImage;
         const rect = hero.getBoundingClientRect();
@@ -333,11 +332,13 @@ const switchToPost = (a) => {
             fixedBox.style.borderRadius = "1.875rem";
             fixedBox.classList.add("centered");
         }, 10);
-
         setTimeout(() => {
             showPostContent();
         }, 1000);
-    }
+    } else
+        setTimeout(() => {
+            showPostContent();
+        }, 500);
 
     setTimeout(() => {
         window.scrollTo(0, 0);
@@ -400,7 +401,7 @@ fetch("/meta/tags.json")
 
 const updatePostList = (category) => {
     // fetch from /meta/categories/${category}.json
-    fetch(`/meta/categories/${category}.json`)
+    fetch(`/meta/${category}.json`)
         .then((response) => response.json())
         .then((data) => {
             const posts = data;
@@ -430,24 +431,21 @@ const updatePostList = (category) => {
 `;
                 postList.appendChild(article);
             }
+            // scroll to #categories
+            document.getElementById("categories").scrollIntoView({
+                behavior: "smooth"
+            });
+            if (currentPage == "home")
+                setTimeout(() => {
+            console.log("fuck")
+                    document.getElementById("categories").scrollIntoView({
+                        behavior: "smooth"
+                    });
+                }, 600);
         });
 };
 
-// Update post list when category is clicked
-document.querySelectorAll("#categories a").forEach((a) => {
-    a.addEventListener("click", () => {
-        updatePostList(a.textContent);
-    });
-});
-
-// Update post list when tag is clicked
-document.querySelectorAll("#tags a").forEach((a) => {
-    a.addEventListener("click", () => {
-        updatePostList(a.textContent);
-    });
-});
-
-updatePostList("精選");
+updatePostList("categories/精選");
 
 document.body.addEventListener("click", (e) => {
     const a = e.target.closest("a"); // Find the closest <a> element (in case of nested elements)
@@ -464,12 +462,11 @@ document.body.addEventListener("click", (e) => {
         } else {
             // if post category or tag is clicked
             if (a.getAttribute("href").includes("/category/")) {
-                updatePostList(a.textContent);
+                updatePostList("categories/" + a.textContent);
             } else if (a.getAttribute("href").includes("/tag/")) {
-                updatePostList(a.textContent);
-            } else {
-                switchToHome();
-            } // Handle home switch
+                updatePostList("tags/" + a.innerHTML.split("<")[0]);
+                if (currentPage !== "home") switchToHome();
+            } else switchToHome(); // Handle home switch
         }
 
         window.history.pushState(null, null, a.getAttribute("href")); // Modify the browser history
