@@ -400,6 +400,7 @@ fetch("/meta/tags.json")
     });
 
 const updatePostList = (category) => {
+    let delay = currentPage == "home" ? 0 : 500;
     // fetch from /meta/categories/${category}.json
     fetch(`/meta/${category}.json`)
         .then((response) => response.json())
@@ -431,17 +432,11 @@ const updatePostList = (category) => {
 `;
                 postList.appendChild(article);
             }
-            // scroll to #categories
-            document.getElementById("categories").scrollIntoView({
-                behavior: "smooth"
-            });
-            if (currentPage == "home")
-                setTimeout(() => {
-            console.log("fuck")
-                    document.getElementById("categories").scrollIntoView({
-                        behavior: "smooth"
-                    });
-                }, 600);
+            setTimeout(() => {
+                document.getElementById("categories").scrollIntoView({
+                    behavior: "smooth"
+                });
+            }, delay);
         });
 };
 
