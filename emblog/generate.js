@@ -85,6 +85,14 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
         token.content,
         token.info.trim()
     );
+    // count how many rows in the code block
+    const rows = highlightedCode.split("\n").length;
+    // add a class to the code block if it has more than 3 rows
+    let toggle = "";
+    if (rows > 3) {
+        toggle = `<input type="checkbox" class="code-toggle" id="code-toggle-${idx}">
+            <label for="code-toggle-${idx}" class="code-toggle-label"></label>`;
+    }
 
     // Wrap the code block in a div with a copy button
     return `
@@ -93,6 +101,7 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
                 <pre tabindex="0" class="chroma"><code class="${langClass} hljs" data-lang="${langName}">${highlightedCode}</code></pre>
             </div>
             <button class="code-copy" onclick="copyCode(this)">Copy</button>
+            ${toggle}
         </div>
     `;
 };
@@ -547,7 +556,7 @@ function generateSitemapAndRSS() {
   ${sitemapContent}</urlset>`
     );
 
-    // 簡單 RSS 生成
+    // RSS 生成
     const rssItems = postsMeta
         .map(
             (post) =>
