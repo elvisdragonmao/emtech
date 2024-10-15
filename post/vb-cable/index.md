@@ -7,6 +7,16 @@ date: 2021-08-14
 
 # 【Zoom】是個超讚綠幕!輕鬆去背到OBS
 
+{{notice}}
+
+Hello
+World
+* 開發者:Zoom Video Communications
+* 軟體類型:商業軟體
+* 下載位置:[官網](https://zoom.us/download)
+{{noticed}}
+
+
 使用OBS攝取Zoom的視窗。
 
 綠幕是拍片直播或視訊常用到的好幫手，因為它可以讓你輕鬆地去除掉背景。只需要在軟體中選擇綠幕顏色，並調整各種數據即可。但是如果沒有綠幕怎麼辦?這時可以使用電腦免費的視訊會議軟體Zoom達到一樣的效果。

@@ -3,7 +3,7 @@ const path = require("path");
 const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
 const sharp = require("sharp");
-const skipPost = 1;
+const skipPost = 0;
 let analyze = {
     pages: 0,
     posts: 0,
@@ -17,30 +17,28 @@ const md = markdownIt({
     html: true,
     linkify: true,
     highlight: (str, lang) => {
-      
-            try {
-                // if last char is \n, remove it
-                if (str.slice(-1) === "\n") {
-                    str = str.slice(0, -1);
-                }
-                const highlightedCode = hljs.highlight(str, {
-                    language: (lang || "plaintext").toLowerCase()
-                }).value;
+        try {
+            // if last char is \n, remove it
+            if (str.slice(-1) === "\n") {
+                str = str.slice(0, -1);
+            }
+            const highlightedCode = hljs.highlight(str, {
+                language: (lang || "plaintext").toLowerCase()
+            }).value;
 
-                // Adding line numbers
-                const lines = highlightedCode
-                    .split("\n")
-                    .map(
-                        (line, idx) =>
-                            `<span class="line"><span class="ln">${
-                                idx + 1
-                            }</span><span class="cl">${line}</span></span>`
-                    )
-                    .join("\n");
+            // Adding line numbers
+            const lines = highlightedCode
+                .split("\n")
+                .map(
+                    (line, idx) =>
+                        `<span class="line"><span class="ln">${
+                            idx + 1
+                        }</span><span class="cl">${line}</span></span>`
+                )
+                .join("\n");
 
-                return lines;
-            } catch (__) {}
-
+            return lines;
+        } catch (__) {}
     }
 });
 
@@ -388,7 +386,7 @@ async function processPosts() {
             };
             const fullPostHtml = renderPartials(
                 replacePlaceholders(postTemplate, replacements)
-            );
+            ).replaceAll("<p></p>", "");
             const fullPostPageHtml = renderPartials(
                 replacePlaceholders(postPageTemplate, {
                     ...replacements,

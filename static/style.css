@@ -662,7 +662,7 @@ section {
     overflow-x: auto;
 }
 
-.categories-title{
+.categories-title {
     margin-bottom: 1rem;
     text-align: center;
 }
@@ -1549,6 +1549,20 @@ blockquote::before {
     padding-top: 7rem;
 }
 
+.notice {
+    border-radius: 0.4rem;
+    padding: 1.2rem;
+    border-left: 4.8px solid #009400;
+    background: #e6f6e6;
+    color: #003100;
+}
+
+.notice > *:first-child {
+    font-weight: bold;
+}
+.notice > *:first-child::before{
+    
+}
 @media (max-aspect-ratio: 5/4) {
     aside,
     .related-posts::before,
@@ -1560,7 +1574,7 @@ blockquote::before {
     .right > * {
         display: none;
     }
-    .right{
+    .right {
         flex: 0;
     }
     .right .random {
