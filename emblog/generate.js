@@ -3,6 +3,7 @@ const path = require("path");
 const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
 const sharp = require("sharp");
+const skipPost = 1;
 let analyze = {
     pages: 0,
     posts: 0,
@@ -16,14 +17,14 @@ const md = markdownIt({
     html: true,
     linkify: true,
     highlight: (str, lang) => {
-        if (lang && hljs.getLanguage(lang)) {
+      
             try {
                 // if last char is \n, remove it
                 if (str.slice(-1) === "\n") {
                     str = str.slice(0, -1);
                 }
                 const highlightedCode = hljs.highlight(str, {
-                    language: lang
+                    language: (lang || "plaintext").toLowerCase()
                 }).value;
 
                 // Adding line numbers
@@ -39,8 +40,7 @@ const md = markdownIt({
 
                 return lines;
             } catch (__) {}
-        }
-        return ""; // fallback case
+
     }
 });
 
@@ -85,13 +85,18 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
         token.content,
         token.info.trim()
     );
+    if (!highlightedCode) {
+        return `<pre tabindex="0" class="chroma wtf"><code class="${langClass} hljs" data-lang="${langName}">${md.utils.escapeHtml(
+            token.content
+        )}</code></pre>`;
+    }
     // count how many rows in the code block
     const rows = highlightedCode.split("\n").length;
     // add a class to the code block if it has more than 3 rows
     let toggle = "";
-    if (rows > 3) {
+    if (rows > 5) {
         toggle = `<input type="checkbox" class="code-toggle" id="code-toggle-${idx}">
-            <label for="code-toggle-${idx}" class="code-toggle-label"></label>`;
+        <label for="code-toggle-${idx}" class="code-toggle-label"></label>`;
     }
 
     // Wrap the code block in a div with a copy button
@@ -172,15 +177,29 @@ const generatePartials = () => {
 // 清空並建立 dist 資料夾
 function initDist() {
     if (fs.existsSync("dist")) {
-        fs.rmSync("dist", { recursive: true });
+        //   fs.rmSync("dist", { recursive: true });
     }
-    fs.mkdirSync("dist");
-    fs.mkdirSync("dist/static");
-    fs.mkdirSync("dist/p");
-    fs.mkdirSync("dist/p/clean");
-    fs.mkdirSync("dist/p/meta", { recursive: true });
-    fs.mkdirSync("dist/meta/tag", { recursive: true });
-    fs.mkdirSync("dist/meta/category", { recursive: true });
+    if (!fs.existsSync("dist")) {
+        fs.mkdirSync("dist");
+    }
+    if (!fs.existsSync("dist/static")) {
+        fs.mkdirSync("dist/static");
+    }
+    if (!fs.existsSync("dist/p")) {
+        fs.mkdirSync("dist/p");
+    }
+    if (!fs.existsSync("dist/p/clean")) {
+        fs.mkdirSync("dist/p/clean");
+    }
+    if (!fs.existsSync("dist/p/meta")) {
+        fs.mkdirSync("dist/p/meta", { recursive: true });
+    }
+    if (!fs.existsSync("dist/meta/tag")) {
+        fs.mkdirSync("dist/meta/tag", { recursive: true });
+    }
+    if (!fs.existsSync("dist/meta/category")) {
+        fs.mkdirSync("dist/meta/category", { recursive: true });
+    }
 }
 
 // 複製靜態資源
@@ -205,6 +224,8 @@ function copyStatic() {
     fs.rmSync("dist/home", { recursive: true });
     fs.copyFileSync("dist/post/index.html", "dist/p/index.html");
     fs.rmSync("dist/post", { recursive: true });
+    fs.copyFileSync("dist/404/index.html", "dist/404.html");
+    fs.rmSync("dist/404", { recursive: true });
 }
 
 const replacePlaceholders = (template, replacements) =>
@@ -694,10 +715,12 @@ async function generateSite() {
     copyStatic();
     //return;
     console.log("\x1b[34m%s\x1b[0m", "➤ Processing posts...");
-    await processPosts();
-    console.log("\x1b[34m%s\x1b[0m", "➤ Generating sitemap and RSS...");
-    generateSitemapAndRSS();
-    console.table(analyze);
+    if (!skipPost) {
+        await processPosts();
+        console.log("\x1b[34m%s\x1b[0m", "➤ Generating sitemap and RSS...");
+        generateSitemapAndRSS();
+        console.table(analyze);
+    }
     console.log("\x1b[35m%s\x1b[0m", "➤ Site generated successfully!");
     console.timeEnd("Execution Time");
 }

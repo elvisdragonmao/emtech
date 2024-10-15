@@ -6,13 +6,6 @@ let currentPage = "post",
 
 let search = [];
 
-// fetch /meta/search.json
-fetch("/meta/search.json")
-    .then((response) => response.json())
-    .then((data) => {
-        search = data;
-    });
-
 // get read history page id and title from localStorage
 let readHistory = JSON.parse(localStorage.getItem("readHistory")) || [];
 // update read history list
@@ -52,112 +45,6 @@ const updateDate = (element) => {
 };
 
 updateDate(document.querySelector(".home-page #time p"));
-
-const postScrollAnimations = () => {
-    if (header.getBoundingClientRect().bottom < 0) {
-        document.body.classList.add("nav-sticky");
-    } else {
-        document.body.classList.remove("nav-sticky");
-    }
-    for (const next of nextPosts) {
-        const nextTop = next.getBoundingClientRect().top;
-        if (nextTop > window.innerHeight) {
-            next.style = "";
-            if (
-                nextTop < window.innerHeight * 2 &&
-                !next.classList.contains("loaded")
-            ) {
-                next.classList.add("loaded");
-                // find random post with same tag but not read yet
-                const category = next.querySelectorAll(".header-categorie");
-                const categories = Array.from(category).map(
-                    (a) => a.textContent
-                );
-                // go through from first category to last, find the first post not read in localStorage
-                let randomPost = null;
-                for (const category of categories) {
-                    // fetch(`/meta/category/${category}.json`)
-                    fetch(`/meta/${category}.json`)
-                        .then((response) => response.json())
-                        .then((data) => {
-                            const posts = data;
-                            for (const post of posts) {
-                                if (
-                                    !readHistory.find(
-                                        (item) => item.id === post.id
-                                    )
-                                ) {
-                                    randomPost = post;
-                                    break;
-                                }
-                            }
-                        });
-                    if (randomPost) break;
-                }
-                if (!randomPost && search.length > 0) {
-                    next.previousElementSibling.innerHTML =
-                        "這系列你都看過了，隨機推薦一篇給你!";
-                    randomPost =
-                        search[Math.floor(Math.random() * search.length)];
-                }
-                console.log(randomPost);
-                if (!randomPost) {
-                    next.previousElementSibling.innerHTML = "沒有更多文章了";
-                    next.classList.remove("loaded");
-                    continue;
-                }
-
-                fetch(
-                    //  next.getAttribute("href").replace("/p/", "/p/clean/") +
-                    "/p/clean/" + randomPost.id + ".html"
-                )
-                    .then((response) => {
-                        if (!response.ok)
-                            throw new Error("Network response was not ok");
-                        return response.text();
-                    })
-                    .then((data) => {
-                        next.innerHTML = data;
-                        initPost(next);
-                    })
-                    .catch((error) => {
-                        console.error("Fetch failed", error);
-                        next.classList.remove("loaded");
-                    });
-            }
-        } else {
-            let maxWidth = Math.min(1200, window.innerWidth - 64) - 32;
-            let footerHeight = parseFloat(getComputedStyle(footer).height) + 64;
-            let originalHeight = Math.min(
-                400,
-                window.innerHeight - footerHeight
-            );
-            let toMove = window.innerHeight - originalHeight;
-            let canMove = window.innerHeight - originalHeight - footerHeight;
-            let height =
-                originalHeight + (toMove / canMove) * (canMove - nextTop);
-            let width = Math.max(
-                maxWidth,
-                maxWidth +
-                    ((window.innerWidth - maxWidth) / canMove) *
-                        (canMove - nextTop)
-            );
-            let scale = width / window.innerWidth;
-            if (height > window.innerHeight) {
-                next.style = "";
-                //   document.body.style.paddingBottom = "1rem";
-            } else {
-                next.style.setProperty("--scale", scale);
-                next.style.setProperty("--scaleWidth", "100vw");
-                next.style.width = `${width}px`;
-                next.style.overflow = "hidden";
-                //  next.style.border = "var(--border)";
-                next.style.height = `${Math.max(originalHeight, height)}px`;
-                document.body.style.paddingBottom = "400vh";
-            }
-        }
-    }
-};
 
 let x = 1760,
     z = 0,
@@ -203,6 +90,174 @@ const startDonut = () => {
     }, 50); /* JS by
   @housamz */
 };
+
+const loadArticleList = async (postList, category) => {
+    return new Promise((resolve, reject) => {
+        fetch(`/meta/${category}.json`)
+            .then((response) => response.json())
+            .then((data) => {
+                const posts = data;
+                postList.innerHTML = "";
+                for (const post of posts) {
+                    const article = document.createElement("article");
+                    const tags = post.tags
+                        ? post.tags.map(
+                              (tag) =>
+                                  `<a href="/tag/${tag}" class="tag">${tag}</a>`
+                          )
+                        : [];
+                    const categories = post.categories
+                        ? post.categories.map(
+                              (category) =>
+                                  `<a href="/category/${category}" class="category">${category}</a>`
+                          )
+                        : [];
+                    article.innerHTML = `
+                    <a href="/p/${post.id}"
+        ><div
+            class="hero"
+            style="background-image: ${
+                post.thumbnail ? `url(${post.thumbnail})` : "none"
+            },${post.colors};
+            "
+        ></div
+    ></a>
+    <div class="info">
+        <div class="post-categories">${categories.join(" ")}</div>
+            <a href="/p/${post.id}"
+        ><h3>${post.title}</h3></a>
+        <div class="tags">${tags.join(" ")}</div>
+    </div>
+    `;
+                    postList.appendChild(article);
+                    resolve();
+                }
+            });
+    });
+};
+
+const postScrollAnimations = () => {
+    if (header.getBoundingClientRect().bottom < 0) {
+        document.body.classList.add("nav-sticky");
+    } else {
+        document.body.classList.remove("nav-sticky");
+    }
+    for (const next of nextPosts) {
+        const nextTop = next.getBoundingClientRect().top;
+        if (nextTop > window.innerHeight) {
+            next.style = "";
+            if (
+                nextTop < window.innerHeight * 2 &&
+                !next.classList.contains("loaded")
+            ) {
+                next.classList.add("loaded");
+                // find random post with same tag but not read yet
+
+                // Traverse backwards to find the closest <header> sibling
+                let headerSibling = next.previousElementSibling;
+                while (headerSibling && headerSibling.tagName !== "HEADER") {
+                    headerSibling = headerSibling.previousElementSibling;
+                }
+                const category = headerSibling.querySelectorAll(".header-tag");
+                const categories = Array.from(category).map(
+                    (a) => a.textContent
+                );
+                let randomPost = null;
+                // go through from first category to last, find the first post not read in localStorage
+                (async () => {
+                    // Use Promise.all to wait for all fetch requests
+                    const fetchPromises = categories.map(async (category) => {
+                        const response = await fetch(
+                            `/meta/tag/${category}.json`
+                        );
+                        const posts = await response.json();
+                        for (const post of posts) {
+                            if (
+                                !readHistory.find((item) => item.id === post.id)
+                            ) {
+                                randomPost = post;
+                                next.previousElementSibling.innerHTML =
+                                    "有關" + category + " 的其他文章";
+                                break;
+                            }
+                        }
+                    });
+
+                    // Wait for all fetches to complete
+                    await Promise.all(fetchPromises);
+
+                    // Check if a post has been found after all fetches
+                    if (!randomPost && search.length > 0) {
+                        next.previousElementSibling.innerHTML =
+                            "這系列你都看過了，推薦一篇給你!";
+                        randomPost =
+                            search[Math.floor(Math.random() * search.length)];
+                    }
+
+                    if (!randomPost) {
+                        next.previousElementSibling.innerHTML =
+                            "沒有更多文章了";
+                        next.classList.remove("loaded");
+                    }
+
+                    fetch(
+                        //  next.getAttribute("href").replace("/p/", "/p/clean/") +
+                        "/p/clean/" + randomPost.id + ".html"
+                    )
+                        .then((response) => {
+                            if (!response.ok)
+                                throw new Error("Network response was not ok");
+                            return response.text();
+                        })
+                        .then((data) => {
+                            next.innerHTML = data;
+                            initPost(next);
+                            window.history.pushState(
+                                null,
+                                null,
+                                `/p/${randomPost.id}`
+                            );
+                        })
+                        .catch((error) => {
+                            console.error("Fetch failed", error);
+                            next.classList.remove("loaded");
+                        });
+                })();
+            }
+        } else {
+            let maxWidth = Math.min(1200, window.innerWidth - 64) - 32;
+            let footerHeight = parseFloat(getComputedStyle(footer).height) + 32;
+            let originalHeight = Math.min(
+                400,
+                window.innerHeight - footerHeight
+            );
+            let toMove = window.innerHeight - originalHeight;
+            let canMove = window.innerHeight - originalHeight - footerHeight;
+            let height =
+                originalHeight + (toMove / canMove) * (canMove - nextTop);
+            let width = Math.max(
+                maxWidth,
+                maxWidth +
+                    ((window.innerWidth - maxWidth) / canMove) *
+                        (canMove - nextTop)
+            );
+            let scale = width / window.innerWidth;
+            if (height > window.innerHeight) {
+                next.style = "";
+                //   document.body.style.paddingBottom = "1rem";
+            } else {
+                next.style.setProperty("--scale", scale);
+                next.style.setProperty("--scaleWidth", "100vw");
+                next.style.width = `${width}px`;
+                next.style.overflow = "hidden";
+                //  next.style.border = "var(--border)";
+                next.style.height = `${Math.max(originalHeight, height)}px`;
+                document.body.style.paddingBottom = "400vh";
+            }
+        }
+    }
+};
+
 // use url to get current page include /p/
 window.addEventListener("scroll", postScrollAnimations);
 const initPost = (page) => {
@@ -262,6 +317,11 @@ const initPost = (page) => {
     const id = page.querySelector(".post").getAttribute("data-id");
     const title = page.querySelector(".post-header h1").textContent;
     if (title && id) updateReadHistory({ id, title });
+    const cat = page.querySelector(".header-categorie").textContent;
+    const related = page.querySelector(".related-posts");
+    // update .related-posts
+    loadArticleList(related.querySelector("div"), "category/" + cat);
+    related.querySelector("h2").textContent = cat + " 的其他文章";
 };
 if (window.location.pathname.includes("/p/")) {
     initPost(document.querySelector(".post-page"));
@@ -288,6 +348,7 @@ const switchToHome = () => {
 
 const switchToPost = (a) => {
     // if (currentPage === "post") return;
+    window.addEventListener("scroll", postScrollAnimations);
     currentPage = "post";
     document.body.classList.add("toPost");
     clearInterval(donut);
@@ -407,7 +468,14 @@ function copyCode(button) {
     codeLines.forEach((line) => {
         codeText += line.textContent + "\n";
     });
-    navigator.clipboard.writeText(codeText);
+
+    navigator.clipboard.writeText(codeText).then(() => {
+        button.style.background =
+            "url(/static/img/check.svg) no-repeat center center, #ffffff10";
+        setTimeout(() => {
+            button.style = "bluh";
+        }, 2000);
+    });
 }
 
 // when link is pressed and is not target_blank, prevent default and switch to home
@@ -449,54 +517,15 @@ fetch("/meta/tags.json")
         );
     });
 
-const updatePostList = (category) => {
+const updatePostList = async (category) => {
     let delay = currentPage == "home" ? 0 : 500;
-    // fetch from /meta/categories/${category}.json
-    fetch(`/meta/${category}.json`)
-        .then((response) => response.json())
-        .then((data) => {
-            const posts = data;
-            const postList = document.getElementById("posts");
-            postList.innerHTML = "";
-            for (const post of posts) {
-                const article = document.createElement("article");
-                const tags = post.tags
-                    ? post.tags.map(
-                          (tag) =>
-                              `<a href="/tag/${tag}" class="tag">${tag}</a>`
-                      )
-                    : [];
-                const categories = post.categories
-                    ? post.categories.map(
-                          (category) =>
-                              `<a href="/category/${category}" class="category">${category}</a>`
-                      )
-                    : [];
-                article.innerHTML = `
-                <a href="/p/${post.id}"
-    ><div
-        class="hero"
-        style="background-image: ${
-            post.thumbnail ? `url(${post.thumbnail})` : "none"
-        },${post.colors};
-        "
-    ></div
-></a>
-<div class="info">
-    <div class="post-categories">${categories.join(" ")}</div>
-        <a href="/p/${post.id}"
-    ><h3>${post.title}</h3></a>
-    <div class="tags">${tags.join(" ")}</div>
-</div>
-`;
-                postList.appendChild(article);
-            }
-            setTimeout(() => {
-                document.getElementById("categories").scrollIntoView({
-                    behavior: "smooth"
-                });
-            }, delay);
+    document.querySelector(".categories-title").textContent = category.split("/")[1];
+    await loadArticleList(document.getElementById("posts"), category);
+    setTimeout(() => {
+        document.getElementById("categories").scrollIntoView({
+            behavior: "smooth"
         });
+    }, delay);
 };
 
 updatePostList("category/精選");
@@ -521,7 +550,6 @@ document.body.addEventListener("click", (e) => {
             updatePostList("tag/" + a.getAttribute("href").split("/tag/")[1]);
             if (currentPage !== "home") switchToHome();
         } else if (a.getAttribute("href") === "/random") {
-            console.log(a.getAttribute("href"));
             // get random post id from search.json
             const randomId =
                 search[Math.floor(Math.random() * search.length)].id;
@@ -533,6 +561,56 @@ document.body.addEventListener("click", (e) => {
         window.history.pushState(null, null, a.getAttribute("href")); // Modify the browser history
     }
 });
+
+window.addEventListener("popstate", function (event) {
+    // create a fake a element with the current url and click it
+    const a = document.createElement("a");
+    a.href = window.location.href;
+    a.click();
+    // delete the fake a element
+    a.remove();
+});
+
+// fetch /meta/search.json
+fetch("/meta/search.json")
+    .then((response) => response.json())
+    .then((data) => {
+        search = data;
+        if (window.location.pathname === "/random") {
+            const randomId =
+                search[Math.floor(Math.random() * search.length)].id;
+            a = document.createElement("a");
+            a.setAttribute("href", `/p/${randomId}`);
+            switchToPost(a);
+            window.history.pushState(null, null, `/p/${randomId}`);
+        }
+        const latest = document.querySelector("a:has(.header-newPost)");
+        fetch(`/p/meta/${search[0].id}.json`)
+            .then((response) => response.json())
+            .then((data) => {
+                // {
+                //     "authors": "elvismao",
+                //     "tags": [
+                //       "HTML",
+                //       "CSS"
+                //     ],
+                //     "series": [
+                //       "不用庫 也能酷 - 玩轉 CSS & Js 特效"
+                //     ],
+                //     "date": 1694822400000,
+                //     "title": "Day2 如何打的更快 | Emmet &amp; 預測輸入",
+                //     "description": "記得我在國一寫HTML的時候，傻傻的在那裡打小於、h1、大於、標題、小於、斜線、大於。我的朋友甚至發現了一個偷吃步就是先打好一堆大於小於，然後再填空。",
+                //     "length": 1656,
+                //     "lastUpdated": "2024-10-15T03:20:38.489Z",
+                //     "readingTime": "6 min",
+                //     "id": "2023ironman-2",
+                //     "thumbnail": ""
+                //   }
+                latest.href = `/p/${data.id}`;
+                latest.querySelector("h3").textContent = data.title;
+                latest.querySelector("img").src = data.thumbnail;
+            });
+    });
 
 console.log(`
     　　　　　 ／＞　　 フ

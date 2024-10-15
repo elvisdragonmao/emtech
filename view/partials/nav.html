@@ -8,8 +8,8 @@
         <li><a href="/series">專欄</a></li>
         <li><a href="/about">關於</a></li>
     </ul> -->
-    <div class="right">
-        <a href="/random"><img src="/static/img/dice.svg" alt="隨機文章" /></a>
+    <form id="searchForm" class="right">
+        <a href="/random" class="random"><img src="/static/img/dice.svg" alt="隨機文章" /></a>
         <a href="https://github.com/Edit-Mr/emblog" target="_blank"
             ><img src="/static/img/github.svg" alt="GitHub"
         /></a>
@@ -17,9 +17,20 @@
             ><img src="/static/img/instagram.svg" alt="Instagram"
         /></a>
         <input type="checkbox" id="search-toggle" />
-        <input type="search" placeholder="搜尋" />
+        <input type="search" placeholder="搜尋" id="search" />
         <label for="search-toggle"
             ><img src="/static/img/search.svg" alt="Search"
         /></label>
-    </div>
+    </form>
 </nav>
+
+<script>
+    // if submit search form
+    document
+        .getElementById("searchForm")
+        .addEventListener("submit", function (e) {
+            e.preventDefault();
+            let search = document.getElementById("search").value;
+            window.location.href = `https://google.com/search?q=site:emtech.cc ${search}`;
+        });
+</script>

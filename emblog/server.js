@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
     try {
         // Decode the URL to handle special characters like Chinese
         let decodedUrl = decodeURIComponent(req.url);
-        
+
         // If the URL ends with "/" or doesn't include a ".", append "index.html"
         let filePath = path.join(baseDirectory, decodedUrl);
         if (filePath.endsWith("/") || !filePath.includes(".")) {
@@ -23,19 +23,26 @@ const server = http.createServer((req, res) => {
             res.end("400 Bad Request");
             return;
         }
-        console.log(filePath)
+        console.log(filePath);
         // Read and serve the requested file
         fs.readFile(filePath, (err, data) => {
             if (err) {
                 if (err.code === "ENOENT") {
-                    res.writeHead(404, { "Content-Type": "text/plain" });
-                    res.end("404 Not Found");
+                    data = fs.readFileSync(
+                        path.join(baseDirectory, "404.html")
+                    );
+                    res.writeHead(404, {
+                        "Content-Type": getContentType("404.html")
+                    });
+                    res.end(data);
                 } else {
                     res.writeHead(500, { "Content-Type": "text/plain" });
                     res.end("500 Internal Server Error");
                 }
             } else {
-                res.writeHead(200, { "Content-Type": getContentType(filePath) });
+                res.writeHead(200, {
+                    "Content-Type": getContentType(filePath)
+                });
                 res.end(data);
             }
         });
@@ -57,7 +64,7 @@ const getContentType = (filePath) => {
         ".gif": "image/gif",
         ".svg": "image/svg+xml",
         ".xml": "application/xml",
-        ".xsl": "application/xml",
+        ".xsl": "application/xml"
     };
     return mimeTypes[extname] || "application/octet-stream";
 };
@@ -74,7 +81,12 @@ fs.watch(
     path.join(__dirname, ".."),
     { recursive: true },
     (eventType, filename) => {
-        if (!generating && filename && !filename.includes("dist") && !filename.includes(".git")) {
+        if (
+            !generating &&
+            filename &&
+            !filename.includes("dist") &&
+            !filename.includes(".git")
+        ) {
             generating = true;
             console.log(`File changed: ${filename}. Running generate.js...`);
             exec("yarn build", (error, stdout, stderr) => {
