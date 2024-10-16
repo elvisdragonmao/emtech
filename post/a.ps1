@@ -1,13 +1,15 @@
-# Loop through directories 1 to 29
-1..29 | ForEach-Object {
-    $dir = "$_"
-    $file = "$dir\index.md"
+# Get the current folder path
+$folderPath = Get-Location
+# Get all .md files in the current folder and subfolders
+$mdFiles = Get-ChildItem -Path $folderPath -Recurse -Filter *.md
 
-    # Check if the file exists
-    if (Test-Path $file) {
-        # Get the first line of the file
-        $firstLine = Get-Content -Path $file -TotalCount 1
-        Write-Output "$firstLine"
-    } else {
-    }
+foreach ($file in $mdFiles) {
+    $content = Get-Content -Path $file.FullName -Raw
+   $updatedContent = $content -replace '{{% /notice %}}', "{{noticed}}"
+
+
+
+    # Write the updated content back to the file without adding a new line at the end
+    [System.IO.File]::WriteAllText($file.FullName, $updatedContent)
 }
+Write-Output "Replacement complete."

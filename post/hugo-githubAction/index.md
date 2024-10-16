@@ -12,7 +12,8 @@ date: 2022-08-17
 
 <!--more-->
 
-{{% notice notice "在開始之前" %}}
+{{notice}}
+在開始之前" %}}
 請先建立好部落格，並且將整個檔案的資料夾上傳到Github的`用戶名/用戶名.github.io`repository
 記住不是裡面的`public`子資料夾，是整個資料夾喔
 {{% /notice %}}

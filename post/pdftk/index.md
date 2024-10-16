@@ -21,7 +21,8 @@ date: 2022-09-06
 brew install pdftk
 ```
 
-{{% notice info "PDF Toolkit (pdftk)" %}}
+{{notice}}
+PDF Toolkit (pdftk)" %}}
 
 - 開發者:pdflabs
 - 軟體類型:終端機套件
@@ -32,7 +33,8 @@ brew install pdftk
 
 這裡提供安卓系統的安裝方法。請先到F-Droid下載Termux來模擬終端機。你可以直接下載apk或先下載F-Droid再下載。記得不要去Google Play下載，會有問題。
 
-{{% notice info "Termux" %}}
+{{notice}}
+Termux" %}}
 
 - 開發者:Termux
 - 軟體類型:安卓應用程式
@@ -104,7 +106,8 @@ pdftk *.pdf cat output combined.pdf
 pdftk A=one.pdf B=two.pdf cat A1-7 B1-5 A8 output combined.pdf
 ```
 
-{{% notice notice "小提醒" %}}
+{{notice}}
+小提醒" %}}
 注:檔名一定要正確,有時看著一樣確還差個/，最好使用Tab鍵來自動補全。
 {{% /notice %}}
 

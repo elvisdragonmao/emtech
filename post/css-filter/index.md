@@ -11,11 +11,13 @@ date: 2023-03-13
 
 <!--more-->
 
-{{% notice note "前提" %}}
+{{notice}}
+前提" %}}
 這篇文章假設你有基本的CSS能力
 {{% /notice %}}
 
-{{% notice info "CSS濾鏡生成器" %}}
+{{notice}}
+CSS濾鏡生成器" %}}
 
 - 開發者:毛哥EM(我)
 - 程式類型:免費開源網站

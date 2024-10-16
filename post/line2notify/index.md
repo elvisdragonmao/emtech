@@ -38,7 +38,8 @@ https://notify-bot.line.me/my/ => 發行權杖 => 把那一串複製下來�
 
 ### 建立API(Google Apps Script)
 
-{{% notice info "Google Apps Script" %}}
+{{notice}}
+Google Apps Script" %}}
 
 開發者:Google
 類型:免費網站（可付費升級）
@@ -84,7 +85,8 @@ function doPost(e) {
 - `id!="某人id"` - 只要某人
 - `id!="某人id" || id!="某人id"` - 只要某一群人
 
-{{% notice notice "小叮嚀" %}} 為避免程式碼站太多空間，可能會部分隱藏。請記得展開或直接複製。 {{% /notice %}}
+{{notice}}
+小叮嚀" %}} 為避免程式碼站太多空間，可能會部分隱藏。請記得展開或直接複製。 {{% /notice %}}
 
 ![GAS快速教學](https://emtech.cc/images/gas.jpg)
 

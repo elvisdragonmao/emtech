@@ -13,7 +13,8 @@ date: 2022-10-07
 
 ![效果比較](https://emtech.cc/images/EM-SFW-compare.png)
 
-{{% notice info "EM-SFW (Site for Webcam)" %}}
+{{notice}}
+EM-SFW (Site for Webcam)" %}}
 
 - 開發者:毛哥EM(我)
 - 程式類型:免費開源網站
@@ -55,7 +56,8 @@ date: 2022-10-07
 
 在影像模式中可以點擊右鍵並點選儲存圖片來下載當前影像，如老師想儲存他辛辛苦苦寫的黑板。不過儲存的是原始的影像，不會進行翻轉（但比例依舊會被拉長）
 
-{{% notice tip "提示" %}}
+{{notice}}
+提示" %}}
 
 如果你覺得這個免費的網站有幫助到你請分享讓更多人可以有更好的線上上課體驗，讓沒有理由不認真上課
 

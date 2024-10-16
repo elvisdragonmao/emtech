@@ -25,7 +25,8 @@ toc = true
 ### 設定Zoom
 
 請先到到官網下載並安裝。安裝方式和其他軟體差不多
-{{% notice info "Zoom" %}}
+{{notice}}
+Zoom" %}}
 
 - 開發者:Zoom Video Communications
 - 軟體類型:商業軟體
@@ -55,7 +56,8 @@ toc = true
 #### 縮小畫面
 
 回到視訊，點選最小化。視窗會小到你只能看到自己。
-{{% notice tip "小提醒" %}}
+{{notice}}
+小提醒" %}}
 如果縮小畫面還是有名字的話，可以把視窗放大再縮小一次。
 {{% /notice %}}
 
@@ -78,7 +80,8 @@ toc = true
 #### 放到最大
 
 可視情況調整
-{{% notice tip "小提醒" %}}
+{{notice}}
+小提醒" %}}
 要放到最大記得選「Fit to screen」而不是「Stretch to screen」，否則你的臉會變形。
 {{% /notice %}}
 

@@ -21,7 +21,8 @@ date: 2024-06-24
 sudo vim /etc/ssh/sshd_config
 ```
 
-{{% notice notice "Vim 基本操作" %}}
+{{notice}}
+Vim 基本操作" %}}
 
 - **打開文件**：輸入 `vim 文件名`。
 - **進入編輯模式**：按 `i` 鍵進入插入模式。

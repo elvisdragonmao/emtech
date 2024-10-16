@@ -11,7 +11,8 @@ date: 2023-04-28
 
 <!--more-->
 
-{{% notice info "CrossDown" %}}
+{{notice}}
+CrossDown" %}}
 
 - 網站: <https://edit-mr.github.io/CrossDown/>
 - Github: <https://github.com/Edit-Mr/CrossDown>

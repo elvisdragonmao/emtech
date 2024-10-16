@@ -61,7 +61,8 @@ Github的單位是`使用者/倉庫/檔案`。我們會在電腦裡放一個資�
 
 ## 使用Github Destop（限電腦，以PC做示範）
 
-{{% notice info "Gitub Destop" %}}
+{{notice}}
+Gitub Destop" %}}
 
 - 開發者:Github (Microsoft)
 - 軟體類型:免費軟體

@@ -14,7 +14,8 @@ date: 2021-09-08
 
 <!--more-->
 
-{{% notice info "MultiWall" %}}
+{{notice}}
+MultiWall" %}}
 
 - 開發者:is.gd
 - 軟體類型:免費軟體

@@ -11,7 +11,8 @@ date: 2021-08-13
 
 <!--more-->
 
-{{% notice info "儲存影像" %}}
+{{notice}}
+儲存影像" %}}
 
 - 開發者:毛哥EM(我)
 - 軟體類型:ios捷徑
@@ -43,7 +44,8 @@ date: 2021-08-13
 
 請在任意網頁按下分享鍵並選取捷徑，以及模式即可。下載的內容會直接儲存到相簿
 
-{{% notice tip "小提醒" %}}
+{{notice}}
+小提醒" %}}
 
 - 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。
   {{% /notice %}}

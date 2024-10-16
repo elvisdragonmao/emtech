@@ -450,7 +450,8 @@ Video是用來播放影片的，我們可以用`<video>`元素建立，然後用
 </div>
 ```
 
-{{% notice notice "注意" %}}
+{{notice}}
+注意" %}}
 感謝你的注意
 {{% /notice %}}
 

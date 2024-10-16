@@ -16,7 +16,8 @@ date: 2022-08-18
 
 這個專案是開源在Github上的，基本上可以安心使用。雖然已經很久沒有更新了，但目前沒有任何問題。
 
-{{% notice info "ShowDesktopPerMonitor" %}}
+{{notice}}
+ShowDesktopPerMonitor" %}}
 
 - 開發者:CryptKat
 - 類型:免費開源軟體

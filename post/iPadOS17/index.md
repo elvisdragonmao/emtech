@@ -113,11 +113,13 @@ _(正好下午是英文辯論賽，也許我拿MVP他也有功勞吧)_
 
 ![小問題，原則上不影響使用](15.webp)
 
-{{% notice info "我也要玩iOS17!" %}}
+{{notice}}
+我也要玩iOS17!" %}}
 如果你也想要跟我~~一起受災~~可以參考我寫的[這片文章](https://emtech.cc/post/apple-beta/)。
 {{% /notice %}}
 
-{{% notice info "我遇到軟體問題" %}}
+{{notice}}
+我遇到軟體問題" %}}
 我有整理翻譯[官方釋出錯誤及解決分案](https://em-tec.github.io/post/ios17-problem/)可以提供參考
 {{% /notice %}}
 

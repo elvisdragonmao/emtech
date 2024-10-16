@@ -11,13 +11,15 @@ date: 2021-08-13
 
 <!--more-->
 
-{{% notice info "簡訊實名制" %}}
+{{notice}}
+簡訊實名制" %}}
 
 - 開發者:毛哥EM(我)
 - 軟體類型:ios捷徑
 - 下載位置:[iCloud](https://www.icloud.com/shortcuts/1929e97c60ff4fada8b237a3823ceb85)
   {{% /notice %}}
-  {{% notice info "多人實名制" %}}
+  {{notice}}
+多人實名制" %}}
 - 開發者:毛哥EM(我)
 - 軟體類型:ios捷徑
 - 下載位置:[iCloud](https://www.icloud.com/shortcuts/a83fa309449b42e0831ee958dde32813)
@@ -27,7 +29,8 @@ date: 2021-08-13
 ## 多人怎麼辦？
 
 我有設計一個多人版的，但建議兩個都下載。因為如果只有一個人的話就不用再輸入人數了。
-{{% notice tip "小提醒" %}}
+{{notice}}
+小提醒" %}}
 
 - 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。
 - 你也可以用Siri執行這個捷徑。
