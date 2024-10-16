@@ -258,6 +258,18 @@ const postScrollAnimations = () => {
     }
 };
 
+const updatePostList = async (category) => {
+    let delay = currentPage == "home" ? 0 : 500;
+    document.querySelector(".categories-title").textContent =
+    decodeURI(category.split("/")[1]);
+    await loadArticleList(document.getElementById("posts"), category);
+    setTimeout(() => {
+        document.getElementById("categories").scrollIntoView({
+            behavior: "smooth"
+        });
+    }, delay);
+};
+
 // use url to get current page include /p/
 window.addEventListener("scroll", postScrollAnimations);
 const initPost = (page) => {
@@ -334,19 +346,6 @@ if (window.location.pathname.includes("/p/")) {
         window.location.pathname.slice(1)
     );
 }
-
-const updatePostList = async (category) => {
-    let delay = currentPage == "home" ? 0 : 500;
-    document.querySelector(".categories-title").textContent =
-    decodeURI(category.split("/")[1]);
-    await loadArticleList(document.getElementById("posts"), category);
-    setTimeout(() => {
-        document.getElementById("categories").scrollIntoView({
-            behavior: "smooth"
-        });
-    }, delay);
-};
-
 
 const switchToHome = () => {
     if (currentPage === "home") document.body.classList = "toHome";

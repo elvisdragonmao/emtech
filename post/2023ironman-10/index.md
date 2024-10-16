@@ -2,7 +2,7 @@
 authors: elvismao
 tags: [HTML, CSS, JS]
 categories: ["不用庫 也能酷 - 玩轉 CSS & Js 特效"]
-date: 2023-09-
+date: 2023-09-24
 ---
 
 # Day10 永無止境跑馬燈 - 不同螢幕 相同速度

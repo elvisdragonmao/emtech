@@ -2,7 +2,7 @@
 authors: elvismao
 tags: [HTML]
 categories: [網栈,教學]
-
+thumbnail: /static/webpallet-0/thumbnail.webp
 date: 2023-06-05
 ---
 
