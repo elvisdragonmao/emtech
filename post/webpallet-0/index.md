@@ -10,7 +10,7 @@ date: 2023-05-01
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。這是毛哥EM資訊密技的全新系列，我們將討論各種網頁設計的技術與技巧。
 
-<!--more-->
+
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/oBIl0DzXujw?si=H7eokhcI1sxLu0Se" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 

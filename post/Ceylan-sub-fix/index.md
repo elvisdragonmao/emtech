@@ -9,7 +9,7 @@ date: 2023-03-14
 
 大家都知道，錫蘭的 YouTube 訂閱數因為某些原因顯示不太準確。但現在，我有了一個好消息：我開發了一個程式，可以輕鬆自動修正它！想知道怎麼做嗎？繼續往下看！
 
-<!--more-->
+
 
 首先，請先安裝[油猴（Tampermonkey）](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)這個擴充功能。你可以在 Chrome、Edge 或 Firefox 的擴充功能商店下載它。接著，到 [Greasy Fork 網站](https://greasyfork.org/zh-TW/scripts/461789-%E9%8C%AB%E8%98%AD%E8%A8%82%E9%96%B1%E6%A0%A1%E6%AD%A3)安裝我開發的程式即可。有時 YouTube 會顯示錯誤，這時你只需要重新整理頁面就好了。
 

@@ -5,7 +5,7 @@ $mdFiles = Get-ChildItem -Path $folderPath -Recurse -Filter *.md
 
 foreach ($file in $mdFiles) {
     $content = Get-Content -Path $file.FullName -Raw
-   $updatedContent = $content -replace '" %}}', ""
+   $updatedContent = $content -replace '<!--more-->', ""
 
 
 

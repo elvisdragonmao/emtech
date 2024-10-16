@@ -9,7 +9,7 @@ date: 2022-09-06
 
 用PDF Toolkit (pdftk)一行指令完成各種PDF處裡！
 
-<!--more-->
+
 
 因為這是一個終端機用指令執行的套件，所以請開啟你的終端機(Terminal/Termux/Command)並用任意一個套件軟體安裝它。
 

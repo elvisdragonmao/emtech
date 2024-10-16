@@ -9,7 +9,7 @@ date: 2023-10-02
 
 今天我們要使用純 CSS 實現 DVD 反彈動畫，讓大家認識 `steps()` 以及 `animation-composition` 屬性的使用方式，並提供這個實用的應用。(應該吧...)
 
-<!--more-->
+
 
 ![](https://emtech.cc/post/2023ironman-18/final.gif)
 

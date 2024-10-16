@@ -9,7 +9,7 @@ date: 2023-02-22
 
 你是否有群組充滿著垃圾訊息？用Line Bot&Line Notify轉發重要訊息給自己！不用程式經驗，複製貼上就好了！
 
-<!--more-->
+
 
 ![某群組充斥著垃圾訊息](https://emtech.cc/images/line2notify-why.webp)
 

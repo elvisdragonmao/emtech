@@ -9,7 +9,7 @@ date: 2023-09-19
 
 假設你今天想製作這個載入動畫…
 
-<!--more-->
+
 
 https://codepen.io/edit-mr/pen/YzdzvdV
 

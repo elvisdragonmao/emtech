@@ -9,7 +9,7 @@ date: 2023-09-30
 
 今天我們要來製作一個時鐘。不使用圖片，只使用 CSS 來繪製。我的目標是可以做出類似於 Apple iOS17 StandBy 的時鐘效果。
 
-<!--more-->
+
 
 ![](https://emtech.cc/post/2023ironman-16/StandBy.webp)
 

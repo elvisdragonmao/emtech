@@ -9,7 +9,7 @@ date: 2023-09-29
 
 昨天我們做了一個開關，那麼我們今天就來做一個選單吧！
 
-<!--more-->
+
 
 ![成果](https://emtech.cc/post/2023ironman-15/final.gif)
 

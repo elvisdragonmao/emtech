@@ -9,7 +9,7 @@ date: 2023-10-01
 
 以往製作波浪效果不是使用 GIF 就是借助貝茲曲線。貝茲曲線就是 Ai 或是 Vectornator (現在叫做Curve) 裡面的鋼筆工具。隨便拉都會有波浪的感覺，且使用 SVG或 JavaScript Canvas 都不難實現。
 
-<!--more-->
+
 
 ![](https://emtech.cc/post/2023ironman-17/curve.webp)
 

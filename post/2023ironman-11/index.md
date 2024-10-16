@@ -9,7 +9,7 @@ date: 2023-09-25
 
 你有看過這種頁面往下滾，但圖片位置沒有往下的效果嗎？
 
-<!--more-->
+
 
 ![background-attachment:fixed](scrolling.gif)
 

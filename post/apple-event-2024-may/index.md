@@ -9,7 +9,7 @@ date: 2024-05-07
 
 在今天 2024 年 5 月 7 日的蘋果發布會 Apple Events 上，他們帶來全新的 iPad Pro、更大的 iPad Air，以及全新的 Apple Pencil Pro。讓我們來看看這次的發布會有哪些亮點，以及沒有在影片中提到的重點。
 
-<!--more-->
+
 
 ## 全新 iPad Pro：超薄、超強
 
