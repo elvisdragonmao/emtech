@@ -1,8 +1,6 @@
 ---
 authors: elvismao
-tags: []
-categories: [教學]
-series: [網栈]
+categories: [網栈,教學]
 date: 2023-05-01
 ---
 

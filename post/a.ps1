@@ -5,7 +5,8 @@ $mdFiles = Get-ChildItem -Path $folderPath -Recurse -Filter *.md
 
 foreach ($file in $mdFiles) {
     $content = Get-Content -Path $file.FullName -Raw
-$updatedContent = $content -replace 'series: \[\]', ""
+$updatedContent = $content -replace 'series: \["不用庫 也能酷 - 玩轉 CSS & Js 特效"\]', 'categories: ["不用庫 也能酷 - 玩轉 CSS & Js 特效"]'
+
 
 
 
