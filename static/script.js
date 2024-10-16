@@ -113,7 +113,7 @@ const loadArticleList = async (postList, category) => {
                           )
                         : [];
                     article.innerHTML = `
-                    <a href="/p/${post.id}"
+                    <a href="/p/${post.id}" aria-label="${post.title}"
         ><div
             class="hero"
             style="background-image: ${

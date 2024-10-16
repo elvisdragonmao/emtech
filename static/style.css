@@ -173,7 +173,7 @@ nav {
     top: 0;
 }
 .displayPost nav > * {
-    filter: invert(1);
+    filter: invert(100%) brightness(101%);
 }
 
 .nav-sticky nav > * {

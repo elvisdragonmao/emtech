@@ -43,10 +43,14 @@
                     />
                     <h3>毛哥EM</h3>
                     <div class="author-social">
-                        <a href="https://github.com/Edit-Mr/" target="_blank"
+                        <a
+                            href="https://github.com/Edit-Mr/"
+                            target="_blank"
+                            aria-label="GitHub"
                             ><img src="/static/img/github-uwu.svg" alt="" /></a
                         ><a
                             href="https://www.instagram.com/elvisdragonmao/"
+                            aria-label="Instagram"
                             target="_blank"
                             ><img src="/static/img/instagram.svg" alt=""
                         /></a>
@@ -68,28 +72,33 @@
                     <a
                         href="https://www.facebook.com/sharer.php?u=https://emtech.cc/p/{{postID}}&t={{title}}"
                         target="_blank"
+                        rel="noopener"
+                        aria-label="Facebook"
                         ><img src="/static/img/facebook.svg" alt="" /></a
                     ><a
                         href="https://threads.net/intent/post?text={{title}}%0Ahttps://emtech.cc/p/{{postID}}"
                         target="_blank"
+                        rel="noopener"
+                        aria-label="Threads"
                         ><img src="/static/img/threads.svg" alt="" /></a
                     ><a
                         href="https://x.com/intent/tweet?text={{title}}&url=https://emtech.cc/p/{{postID}}&tw_p=tweetbutton"
                         target="_blank"
+                        rel="noopener"
+                        aria-label="Twitter"
                         ><img src="/static/img/x.svg" alt="" /></a
-                    ><a href=""
-                        ><img
-                            src="/static/img/link.svg"
-                            alt=""
-                            onclick="navigator.clipboard.writeText(window.location.href).then(() => { 
+                    ><img
+                        src="/static/img/link.svg"
+                        alt=""
+                        onclick="navigator.clipboard.writeText(window.location.href).then(() => { 
                             const img = this;
                             img.src = '/static/img/check.svg';
                             setTimeout(() => {
                                 img.src = '/static/img/link.svg';
                             }, 3000);
                         })"
-                            title="複製連結"
-                    /></a>
+                        title="複製連結"
+                    />
                 </div>
                 <div class="toc">
                     <h2>目錄</h2>
