@@ -4,6 +4,7 @@ const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
 const sharp = require("sharp");
 const skipPost = 0;
+const cache = false;
 let analyze = {
     pages: 0,
     posts: 0,
@@ -174,8 +175,8 @@ const generatePartials = () => {
 };
 // 清空並建立 dist 資料夾
 function initDist() {
-    if (fs.existsSync("dist")) {
-        //   fs.rmSync("dist", { recursive: true });
+    if (!cache && fs.existsSync("dist")) {
+        fs.rmSync("dist", { recursive: true });
     }
     if (!fs.existsSync("dist")) {
         fs.mkdirSync("dist");
@@ -275,7 +276,7 @@ async function processPosts() {
                 `![](/static/${postID}/$2)`
             );
             let htmlContent = md.render(
-                markdownContent.replace(/---[\s\S]+?---/, "")
+                renderPartials(markdownContent.replace(/---[\s\S]+?---/, ""))
             );
 
             if (!postMeta.title) {
@@ -283,7 +284,7 @@ async function processPosts() {
                 // remove the first h1 tag
                 htmlContent = htmlContent.replace(/<h1>.*?<\/h1>/, "");
             }
-            const tldr = "";
+            let tldr = "";
             // get description from the first paragraph of the post
             if (postMeta.description) {
                 tldr = `<div class="tldr">
@@ -384,15 +385,14 @@ async function processPosts() {
                 headerTags,
                 postID
             };
-            const fullPostHtml = renderPartials(
-                replacePlaceholders(postTemplate, replacements)
-            ).replaceAll("<p></p>", "");
-            const fullPostPageHtml = renderPartials(
-                replacePlaceholders(postPageTemplate, {
-                    ...replacements,
-                    post: fullPostHtml
-                })
+            const fullPostHtml = replacePlaceholders(
+                postTemplate,
+                replacements
             );
+            const fullPostPageHtml = replacePlaceholders(postPageTemplate, {
+                ...replacements,
+                post: fullPostHtml
+            });
             fs.writeFileSync(`dist/p/clean/${postID}.html`, fullPostHtml);
 
             fs.mkdirSync(`dist/p/${postID}`, { recursive: true });

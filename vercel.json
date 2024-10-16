@@ -1,5 +1,13 @@
 {
+    "installCommand": "yarn",
+    "buildCommand": "yarn build",
+    "outputDirectory": "dist",
     "rewrites": [
+        { "source": "/tag/:slug*", "destination": "/index.html" },
+        { "source": "/category/:slug*", "destination": "/index.html" }
+    ],
+    "redirects": [
+        { "source": "/about", "destination": "/p/emblog", "permanent": false },
         {
             "source": "/post/:slug*",
             "destination": "/p/:slug*"
@@ -11,23 +19,8 @@
         {
             "source": "/series/:slug*",
             "destination": "/category/:slug*"
-        }
-    ],
-    "redirects": [
-        {
-            "source": "/random",
-            "destination": "/index.html",
-            "statusCode": 200
         },
-        {
-            "source": "/category/:slug*",
-            "destination": "/index.html",
-            "statusCode": 200
-        },
-        {
-            "source": "/tag/:slug*",
-            "destination": "/index.html",
-            "statusCode": 200
-        }
+        { "source": "/tag/", "destination": "/" },
+        { "source": "/category/", "destination": "/" }
     ]
 }

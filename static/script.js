@@ -519,7 +519,8 @@ fetch("/meta/tags.json")
 
 const updatePostList = async (category) => {
     let delay = currentPage == "home" ? 0 : 500;
-    document.querySelector(".categories-title").textContent = category.split("/")[1];
+    document.querySelector(".categories-title").textContent =
+        category.split("/")[1];
     await loadArticleList(document.getElementById("posts"), category);
     setTimeout(() => {
         document.getElementById("categories").scrollIntoView({
@@ -611,6 +612,11 @@ fetch("/meta/search.json")
                 latest.querySelector("img").src = data.thumbnail;
             });
     });
+
+// if user refresh page, scroll to top
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
 
 console.log(`
     　　　　　 ／＞　　 フ

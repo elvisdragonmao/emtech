@@ -1557,11 +1557,21 @@ blockquote::before {
     color: #003100;
 }
 
+.post-container .notice>*{
+    margin-bottom: .5rem;
+}
+
 .notice > *:first-child {
     font-weight: bold;
+    margin-top: 0;
 }
-.notice > *:first-child::before{
-    
+.notice > *:first-child::before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: .1em;
+    background: url(/static/img/bolt.svg) no-repeat center center / contain;
 }
 @media (max-aspect-ratio: 5/4) {
     aside,
