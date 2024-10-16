@@ -26,12 +26,12 @@ toc = true
 
 請先到到官網下載並安裝。安裝方式和其他軟體差不多
 {{notice}}
-Zoom" %}}
+Zoom
 
 - 開發者:Zoom Video Communications
 - 軟體類型:商業軟體
 - 下載位置:[官網](https://zoom.us/download)
-  {{% /notice %}}
+  {{noticed}}
 
 #### 登入Zoom
 
@@ -57,9 +57,9 @@ Zoom" %}}
 
 回到視訊，點選最小化。視窗會小到你只能看到自己。
 {{notice}}
-小提醒" %}}
+小提醒
 如果縮小畫面還是有名字的話，可以把視窗放大再縮小一次。
-{{% /notice %}}
+{{noticed}}
 
 ### OBS設定
 
@@ -81,9 +81,9 @@ Zoom" %}}
 
 可視情況調整
 {{notice}}
-小提醒" %}}
+小提醒
 要放到最大記得選「Fit to screen」而不是「Stretch to screen」，否則你的臉會變形。
-{{% /notice %}}
+{{noticed}}
 
 6.新增色鍵
 色鍵(Color Key)可以去除指定的顏色。你可以根據情況調整參數，自己試試看

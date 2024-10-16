@@ -62,12 +62,12 @@ Github的單位是`使用者/倉庫/檔案`。我們會在電腦裡放一個資�
 ## 使用Github Destop（限電腦，以PC做示範）
 
 {{notice}}
-Gitub Destop" %}}
+Gitub Destop
 
 - 開發者:Github (Microsoft)
 - 軟體類型:免費軟體
 - 網址:[Github](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
-  {{% /notice %}}
+  {{noticed}}
 
 Github Destop可以讓你有按鈕可以按，不用打指令也可以使用git。多少可以節省一點時間，但看起來就沒有那麼酷（
 下載Github Destop並安裝，原則上就是你也懂的一直下一步。安裝成功後他會叫你輸入剛才講的個人資訊，並且請你登入你的Github帳號。

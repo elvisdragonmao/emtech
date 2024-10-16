@@ -14,12 +14,12 @@ date: 2021-08-16
 其實主要的原因是因為它很短，比bit.ly短了一個字母，而且頁面超簡單，載入速度快。而它也有可以API可以使用(Apple官方的縮短網址ios捷徑就是使用is.gd)
 
 {{notice}}
-is.gd" %}}
+is.gd
 
 - 開發者:is.gd
 - 網站類型:免費網站
 - 網址:[is.gd](https://is.gd/)
-  {{% /notice %}}
+  {{noticed}}
   前往is.gd並在方框輸入你要縮短的URL(我以EM's Base為例為例)
   這時你可以直接按下Shorten來縮短，但是我們可以做更進一步的自訂。包括Lower case(全部小寫)，或Lower case pronounceable(可讀的小寫單字)。我通常會選擇Lower case pronounceable，我比較記得下來。最厲害的是你也可以自訂後面的網址！且完全免費！在輸入框填入想要的文字（六個字母以上）並按shorten即可。如果已經被使用過或不符合規定會提醒你。
 

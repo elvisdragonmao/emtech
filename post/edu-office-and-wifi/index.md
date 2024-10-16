@@ -16,12 +16,12 @@ date: 2022-12-01
 要使用這些服務要先到[教育體系單一簽入服務](https://www.sso.edu.tw/register)註冊帳號，必須填真實資料。電子郵件名稱可以自己設定，最後都是`自訂英文@mail.edu.tw`。如果發現已經註冊過可能是國中時就有使用了，忘記密碼就重新設定。
 
 {{notice}}
-教育體系單一簽入服務" %}}
+教育體系單一簽入服務
 
 - 開發者:教育部
 - 程式類型:官方網站
 - 網址:<https://www.sso.edu.tw/register>
-  {{% /notice %}}
+  {{noticed}}
 
 ### 啟用Eduroam
 
@@ -52,13 +52,13 @@ date: 2022-12-01
 我們學校有一些地方連得到有些地方連不到，圖一圖二我是確定可以的。要教室的無線基地台是**方形**的才能連eduroam喔
 
 {{notice}}
-Eduroam" %}}
+Eduroam
 
 - 開發者:泛歐洲科研與教育網路協會
 - 服務地區:全球
 - 程式類型:官方網站
 - 官網:<https://eduroam.org/>(不用到這裡)
-  {{% /notice %}}
+  {{noticed}}
 
 #### iPhone & iPad / Windows 10 & 11
 

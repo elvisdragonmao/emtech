@@ -12,10 +12,10 @@ date: 2024-06-30
 <!--more-->
 
 {{notice}}
-還沒有使用過 Certbot 建立 SSL 憑證嗎?" %}}
+還沒有使用過 Certbot 建立 SSL 憑證嗎?
 
 如果你還沒有使用過 Certbot 建立 SSL 憑證，可以參考我之前的文章：[如何使用 Certbot 申請免費的 SSL 憑證，並使用 DNS 驗證?](https://emtech.cc/post/setup-ssl-certificate-nginx-certbot/)。
-{{% /notice %}}
+{{noticed}}
 
 ## 問題描述
 

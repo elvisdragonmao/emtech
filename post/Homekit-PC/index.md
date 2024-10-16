@@ -16,11 +16,11 @@ date: 2024-01-09
 <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F676807707915952&width=300&show_text=false&height=676&appId" width="300" height="676" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 
 {{notice}}
-Android 能使用嗎?" %}}
+Android 能使用嗎?
 
 我們要使用的函式庫是 Homespan，它支援的是 Homekit 而不是 Matter 協議，因此可能無法在安卓裝置使用。你可以尋找其他函式庫或著替代解決方案。
 
-{{% /notice %}}
+{{noticed}}
 
 ## 原理
 
@@ -29,11 +29,11 @@ Android 能使用嗎?" %}}
 當然，Homekit 並沒有「開機按鈕」這種裝置，也沒有「電腦狀態感測器」。所以我們要~~騙~~和 Homekit 解釋這兩個分別是「燈泡開關」以及「室內溫度」。
 
 {{notice}}
-友善提醒" %}}
+友善提醒
 
 如果你不是一位創客不想要 DIY 的話，在網路上面可以找到直接類似功能的產品。或著是使用智慧開關，並在 BIOS 設定「通電時開機」即可。
 
-{{% /notice %}}
+{{noticed}}
 
 ## 需要的材料
 
@@ -202,12 +202,12 @@ void loop() {
 將電源開關開啟就會開機或關機了。記得開啟開關就是相當於按下按鈕。所以如果你一直開著就相當於長按開關，如果按太久就會強制關機。
 
 {{notice}}
-按電源鍵關機會傷電腦嗎?" %}}
+按電源鍵關機會傷電腦嗎?
 
 不會。即使是按下電腦電源關機還是走正常關機流程，所以並不會傷害電腦，不過你要確定的是關機前你的文件有先存檔喔。
 
 當然，不建議你使用智能插座直接斷電來關機。
 
-{{% /notice %}}
+{{noticed}}
 
 希望這篇文章能夠幫助到你。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)。
