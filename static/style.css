@@ -741,6 +741,10 @@ article .info {
 .tags {
     font-weight: 600;
 }
+
+.tags a {
+    margin-right: 0.4rem;
+}
 .tags a::before {
     content: "#";
     margin-right: 0.15rem;
