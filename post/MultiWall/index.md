@@ -29,12 +29,12 @@ MultiWall
 ### 設定桌布
 
 建議開啟軟體之後先按下Detect來偵測桌面
-![偵測桌面](https://emtech.cc/images/MultiWall-detect.png)
+![偵測桌面](MultiWall-detect.png)
 接著選擇模式:延伸圖片或分別用不同的圖片
-![選擇模式](https://emtech.cc/images/MultiWall-mode.png)
+![選擇模式](MultiWall-mode.png)
 接著選取你電腦上的桌布或示範例圖庫
-![選取圖片](https://emtech.cc/images/MultiWall-browse.png)
+![選取圖片](MultiWall-browse.png)
 你可以給圖片加上各種濾鏡或特效，但是我建議在導入軟體之前就先編輯好
 
 最後按下apply即可
-![Apply](https://emtech.cc/images/MultiWall-apply.png)
+![Apply](MultiWall-apply.png)

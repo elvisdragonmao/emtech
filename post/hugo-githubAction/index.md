@@ -30,7 +30,7 @@ date: 2022-08-17
 
 請先到`Settings/Developer Settings`下的`Personal access tokens`生成一組`Access Token`。建議scope直接選repo的所有權限。
 
-![生成Access Token](https://emtech.cc/images/hugo-githubAction-access-token.png)
+![生成Access Token](hugo-githubAction-access-token.png)
 
 ## 添加 Secrets
 
@@ -38,13 +38,13 @@ date: 2022-08-17
 
 請到`Settings/Secrets`新增一組 Secrets，我這邊叫做 ACCESS_TOKEN，之後在腳本上會用到。
 
-![添加Secrets](https://emtech.cc/images/hugo-githubAction-sectets.png)
+![添加Secrets](hugo-githubAction-sectets.png)
 
 ## 新增Workflow
 
 依序點擊Action，New，set up a workflow yourself，並貼上以下程式。名稱可以自己取，貼上完之後點擊Start Commit。
 
-![設定Workflow](https://emtech.cc/images/hugo-githubAction-access-workflow.jpg)
+![設定Workflow](hugo-githubAction-access-workflow.jpg)
 
 程式意思是當main分支有push操作時（就是你上傳或更變檔案），會生成靜態網頁。剛才不是說會生成在`public`這個資料夾，我們把它推送到 gh-pages 這個分支（當然你也可以自己取名）
 
@@ -85,6 +85,6 @@ jobs:
 
 新增完成後它會自己跑一次。不過我們還需要做一個設定。生成的網站是放在`gh-pages`這個分支，我們要輸入網址時，去讀取這個分支而不是main。所以請到`Settings/Pages/Branch`更改
 
-![更改Branch](https://emtech.cc/images/hugo-githubAction-branch.jpg)
+![更改Branch](hugo-githubAction-branch.jpg)
 
 這樣就大公告成囉！記得每次更新完部落格GitHub Actions都需要大約30秒的執行時間才會完成部署。如果你想要查看它的進度狀態可以點擊最新紀錄的橘點看目前的即時狀態。如果變成綠色就是部署成功，如果是鴻森代表有問題（通常是文章中的語法有語法錯誤）。

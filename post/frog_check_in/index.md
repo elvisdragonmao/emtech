@@ -17,7 +17,7 @@ date: 2021-10-07
 建議閱讀這篇文章: <https://emtech.cc/post/rol-call/>
 {{noticed}}
 
-![首頁](https://emtech.cc/images/frog_check_in-home.png)
+![首頁](frog_check_in-home.png)
 {{notice}}
 大眼蛙教練點名系統
 
@@ -30,10 +30,10 @@ date: 2021-10-07
 
 ### 新增學生
 
-![新增學生](https://emtech.cc/images/frog_check_in-add.png)
+![新增學生](frog_check_in-add.png)
 輸入名稱並按新增即可。<br />
 電腦會自動在Google Sheet建立好欄位。教練只需要到試算表設定學生的課程數就好了。如果沒有課了會用紅色表示，而未設定會被判斷為沒有課程。
-![試算表中的學生列表](https://emtech.cc/images/frog_check_in-student.PNG)
+![試算表中的學生列表](frog_check_in-student.PNG)
 {{notice}}
 超重要提醒
 
@@ -43,12 +43,12 @@ date: 2021-10-07
 
 ### 點名
 
-![點名畫面](https://emtech.cc/images/frog_check_in-check.png)
+![點名畫面](frog_check_in-check.png)
 網站會從表單取得學生名單並顯示。只需要點擊名稱即可完成報到。
 
 完成報到後會使用Line Notify通知完成報到的學生和報到時間到指定的群組。
 
-![報到成功會提示你還剩下幾堂課](https://emtech.cc/images/frog_check_in-checked.png)
+![報到成功會提示你還剩下幾堂課](frog_check_in-checked.png)
 {{notice}}
 提醒
 
@@ -57,7 +57,7 @@ date: 2021-10-07
 -   下方方框會顯示自開啟網頁後已完成報到的學生。
     {{noticed}}
     在試算表的「紀錄」可以看到之前學生的報到紀錄。當天的會以綠色做標記。
-    ![報到紀錄](https://emtech.cc/images/frog_check_in-record.png)
+    ![報到紀錄](frog_check_in-record.png)
     {{notice}}
     超重要提醒
 -   如果要刪除記錄（如誤按到）請**務必**要「**刪除整列**」。不可留空
@@ -65,7 +65,7 @@ date: 2021-10-07
 
 ### 查詢記錄
 
-![查詢毛宥恩的報到紀錄](https://emtech.cc/images/frog_check_in-search.png)
+![查詢毛宥恩的報到紀錄](frog_check_in-search.png)
 如果要查詢之前報到的紀錄，請到查詢頁面並輸入姓名。
 
 ## 教學
@@ -182,7 +182,7 @@ function debug() {
 | ---- | -------- | ------------------- | ---------- |
 | 1    | 測試先生 | 2021/10/10 22:46:00 | 10         |
 
-![GAS快速教學](https://emtech.cc/images/gas.jpg)
+![GAS快速教學](gas.jpg)
 
 做好了之後點擊執行▶️，你會需要授予你的程式讀取資料的權限。因為你寫的程式沒有被Google驗證過所以會顯示不安全，但我相信你不會把你的帳號搞爆，對吧
 

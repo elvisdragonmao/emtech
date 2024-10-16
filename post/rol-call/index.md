@@ -28,7 +28,7 @@ date: 2023-05-01
 
 請打開我建立的這個[範例文件](https://docs.google.com/spreadsheets/d/1m0F6pOejN-ldKFIrFwssmoEPB3EPDmSQJKEPr9T88-E/edit?usp=sharing)並建立副本
 
-![建立副本](https://emtech.cc/images/post/rol-call-new.webp)
+![建立副本](post/rol-call-new.webp)
 
 這樣 Google Sheet 就做好了。請複製這個文件的 ID，我們稍後會用到。ID 就是網址中的一長串字母和數字，比如說這個試算表:
 
@@ -98,7 +98,7 @@ function doGet(e) {
 https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9MHDxWaOYXFwZgE3rRHDzCakzTxs/exec
 ```
 
-![部屬網頁應用程式](https://emtech.cc/images/gas.jpg)
+![部屬網頁應用程式](gas.jpg)
 
 ## 步驟三：建立網頁
 
@@ -524,7 +524,7 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
 
 然後再到你的倉庫裡面，點擊 Settings，然後點擊左邊的 Pages，把 Branch 改成 main，然後按下 Save，就完成了！
 
-![Github Pages設定](https://emtech.cc/images/roll-call-pages.webp)
+![Github Pages設定](roll-call-pages.webp)
 
 好啦，現在你的網頁就完成了！你可以到網址`https://你的Github帳號.github.io/倉庫名稱`來使用你的網頁。
 

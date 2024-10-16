@@ -13,15 +13,15 @@ iOS、iPadOS、還有所有Apple的系統在正式發布之前都會向部分的
 
 首先請到Apple官網登入Apple ID來加入Beta計畫。如果沒有加入過beta請點選Sign Up，反之Sign In
 
-![登入](https://emtech.cc/images/apple-beta-sign.png)
+![登入](apple-beta-sign.png)
 
 並下載對應裝置的描述檔。下載時記得按同意下載描述檔
 
-![下載描述檔](https://emtech.cc/images/apple-beta-download.png)
+![下載描述檔](apple-beta-download.png)
 
 接著請到設定，在最上面就可以看到「已下載描述檔」。點擊安裝還有同意後後可能會須要重新啟動，這樣就成功加入Beta計畫啦。
 
-![安裝](https://emtech.cc/images/apple-beta-install.png)
+![安裝](apple-beta-install.png)
 
 到設定的一般-軟體更新就可以看到可以更新的最新版本囉（通常是beta結尾）
 

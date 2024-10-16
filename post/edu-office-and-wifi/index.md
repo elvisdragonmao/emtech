@@ -32,7 +32,7 @@ date: 2022-12-01
 記得Office的帳號是`自訂英文@ms.edu.tw`而不是`自訂英文@mail.edu.tw`喔!
 
 建立檔案即可線上編輯共用。共用鍵在右上角藍色按鈕。可輸入共用者Email或直接複製連結
-![共用](https://emtech.cc/images/edu-office-share.png)
+![共用](edu-office-share.png)
 
 ### 在自己電腦上登入(Windows)
 
@@ -40,10 +40,10 @@ date: 2022-12-01
 
 請到內建軟體Office登入學校帳號。
 
-![登入學校帳號](https://emtech.cc/images/edu-office-new.png)
-![選擇學校](https://emtech.cc/images/edu-office-school.png)
-![輸入帳號:自訂英文@ms.edu.tw](https://emtech.cc/images/edu-office-mail.png)
-![會跳轉到教育雲，輸入帳密](https://emtech.cc/images/edu-office-login.png)
+![登入學校帳號](edu-office-new.png)
+![選擇學校](edu-office-school.png)
+![輸入帳號:自訂英文@ms.edu.tw](edu-office-mail.png)
+![會跳轉到教育雲，輸入帳密](edu-office-login.png)
 
 ### 連接Wi-Fi
 

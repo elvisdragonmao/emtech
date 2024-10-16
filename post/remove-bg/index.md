@@ -20,7 +20,7 @@ Remove.bg
 
 進入到網站後可以直接上傳照片。上傳完成後可以直接下載，也可以做一些編輯如手動去背（如果AI沒去好）、添加濾鏡、背景顏色等。
 
-![Remove.bg介面](https://emtech.cc/images/remove-bg-site.jpg)
+![Remove.bg介面](remove-bg-site.jpg)
 
 ## ios捷徑（API）
 
@@ -45,18 +45,18 @@ Remove.bg一鍵去背
 
 Remove.bg提供每個帳號每個月50次的免費使用。對一般人來說已經很足夠了，但如果還需要更多的話可以升級方案<s>或再註冊一個帳號</s>
 
-![用捷徑去背](https://emtech.cc/images/remove-bg-api.jpg)
+![用捷徑去背](remove-bg-api.jpg)
 
 加入捷徑後請輸入剛才得到的API Key。
 
-![Remove.bg介面](https://emtech.cc/images/remove-bg-shortcutsSetup.PNG)
+![Remove.bg介面](remove-bg-shortcutsSetup.PNG)
 
 要使用時只需要分享圖片，並點選捷徑即可。是不是超方便的！
 
-![用捷徑去背](https://emtech.cc/images/remove-bg-shortcuts.jpg)
+![用捷徑去背](remove-bg-shortcuts.jpg)
 
 ### 製作教學
 
 從官方文件可以看出我們呼叫API至少需要提供API Key、大小、圖片，並以`Post`的方式傳遞到`https://api.remove.bg/v1.0/removebg`。所以捷徑只需要照著填入並儲存把回傳的圖片即可。實際設定如下
 
-![捷徑動作](https://emtech.cc/images/remove-bg-shortcutsBlock.jpg)
+![捷徑動作](remove-bg-shortcutsBlock.jpg)

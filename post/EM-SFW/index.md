@@ -9,7 +9,7 @@ date: 2022-10-07
 
 班上因為又有人確診又有人隔離又開始使用視訊會議，常常被反應黑板看不清楚。明明鏡頭很好、網路不錯、且畫質設定已經調到最高還是一樣。因此我做了一個簡單網站來顯示鏡頭畫面，用螢幕分享畫面的方式讓畫質明顯提升！且黑白不會左右顛倒，不用再去裝擴充外掛！
 
-![效果比較](https://emtech.cc/images/EM-SFW-compare.png)
+![效果比較](EM-SFW-compare.png)
 
 {{notice}}
 EM-SFW (Site for Webcam)
@@ -26,11 +26,11 @@ EM-SFW (Site for Webcam)
 
 你會看到一個簡單的設定畫面。你可以點擊`z`來開啟/關閉這個畫面。
 
-![EM-SFW介面](https://emtech.cc/images/EM-SFW.png)
+![EM-SFW介面](EM-SFW.png)
 
 接著到視訊會議軟體分享螢幕畫面。選擇分享分頁且不用分享音訊（因為也沒有）即可。
 
-![分享分頁](https://emtech.cc/images/EM-SFW-share1.png)
+![分享分頁](EM-SFW-share1.png)
 
 ### 超出畫面隱藏
 
@@ -42,7 +42,7 @@ EM-SFW (Site for Webcam)
 
 視訊畫面會被擠壓成視窗大小，適用於鏡頭畫面變形或老師太胖時...
 
-![如果視窗實在太扁](https://emtech.cc/images/EM-SFW-over.png)
+![如果視窗實在太扁](EM-SFW-over.png)
 
 ### 子母畫面
 

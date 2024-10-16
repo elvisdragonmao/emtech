@@ -12,7 +12,7 @@ date: 2022-08-14
 當你要分享表格給其他人看時，使用Google試算表把連結貼給別人是一個簡單快速的方法。除了可以套各種公式，修改資料會馬上同步，也可以開設權限讓其他人一起編輯。
 
 **罷特**如果只是要給別人看資料比如說客戶名單、訂單資訊、直接把整個試算表連結發給別人除了要載入很久且會出現一堆不需要的按鍵，整個畫面很醜很沒有質感。而且如果你把其他隱私的資料也放在裡面，都會被一次看光光。
-![試算表 不難看但沒什麼質感](https://emtech.cc/images/create-site-for-sheet-sheet.jpg)
+![試算表 不難看但沒什麼質感](create-site-for-sheet-sheet.jpg)
 
 # 怎麼辦？幫它抹上一層糖衣！
 
@@ -260,7 +260,7 @@ date: 2022-08-14
 
 我們先看一下試算表。在這裡我們可以看到每一行資料有5項，其中我希望第5項的資料可以放在付款狀態後面。現在請你先請你複製這個試算表的ID，也就是網址`https://docs.google.com/spreadsheets/d/`和`/`之間那一串(如`1fjX-prGu0hfb65LCQkrktWa-JavvjSz7tWMmYWAb7RA`)。等一下會用到。
 
-![再看一次試算表](https://emtech.cc/images/gas.jpg)
+![再看一次試算表](gas.jpg)
 
 我們會使用GAS(Google Apps Script)來建立網頁應用程式來讀取表格資料。
 
@@ -339,7 +339,7 @@ function doGet() {
 你可以根據自己的需求決定排法
 {{noticed}}
 
-![GAS快速教學](https://emtech.cc/images/gas.jpg)
+![GAS快速教學](gas.jpg)
 
 做好了之後點擊執行▶️，你會需要授予你的程式讀取資料的權限。因為你寫的程式沒有被Google驗證過所以會顯示不安全，但我相信你不會把你的帳號搞爆，對吧
 

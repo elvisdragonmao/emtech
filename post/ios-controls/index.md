@@ -71,6 +71,6 @@ ios的控制中心相較於安卓的開/關複雜許多，這篇文章我將快�
 
 接著到捷徑建立一個自動化操作。條件就是當專注模式被開啟，動作就是關閉藍牙/Wi-Fi。執行前不用詢問，要不要通知就看個人了
 
-![建立自動化操作](https://emtech.cc/images/ios-controls-shortcuts.jpeg)
+![建立自動化操作](ios-controls-shortcuts.jpeg)
 
 當然你不想用專注模式想放一個按鈕在主畫面也可以

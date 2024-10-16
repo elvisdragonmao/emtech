@@ -35,7 +35,7 @@ Office 雖然目前有提供免費線上版，且學校都有提供 Office365，
 
 請以**使用者管理員身分**打開 PowerShell。你可以在開始選單中找到它，或是在任何地方按下`Win+X`並選擇`Windows 終端機 (管理員)`。
 
-![開啟 PowerShell](https://emtech.cc/images/open-powershell.webp)
+![開啟 PowerShell](open-powershell.webp)
 
 ## 步驟 3: 輸入指令
 
@@ -53,7 +53,7 @@ irm https://massgrave.dev/get | iex
 
 這樣就進到軟體介面了。我們要啟用 office 所以請按鍵盤上的 4，然後點擊 2 來啟用 office。如果你要啟用 Windows 可以按 4，如果失敗其他的選項也可以試試看。
 
-![軟體畫面。貼上完指令記得按 enter](https://emtech.cc/images/massgrave.webp)
+![軟體畫面。貼上完指令記得按 enter](massgrave.webp)
 
 等幾秒就如果出現綠色的
 

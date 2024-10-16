@@ -9,7 +9,7 @@ date: 2023-02-22
 
 你是否有群組充滿著垃圾訊息？用Line Bot&Line Notify轉發重要訊息給自己！不用程式經驗，複製貼上就好了！
 
-![某群組充斥著垃圾訊息](https://emtech.cc/images/line2notify-why.webp)
+![某群組充斥著垃圾訊息](line2notify-why.webp)
 
 > [影片教學](https://www.instagram.com/reel/Cp9kNc9DWK1/)
 
@@ -86,7 +86,7 @@ function doPost(e) {
 {{notice}}
 小叮嚀 為避免程式碼站太多空間，可能會部分隱藏。請記得展開或直接複製。 {{noticed}}
 
-![GAS快速教學](https://emtech.cc/images/gas.jpg)
+![GAS快速教學](gas.jpg)
 
 做好了之後點擊執行▶️，你會需要授予你的程式讀取資料的權限。因為你寫的程式沒有被Google驗證過所以會顯示不安全，但我相信你不會把你的帳號搞爆，對吧。執行後會看到錯誤，這是正常的，因為我們直接執行沒有給他訊息。
 
