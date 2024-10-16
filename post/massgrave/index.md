@@ -2,7 +2,7 @@
 authors: elvismao
 tags: [Office, Windows]
 categories: [軟體分享]
-date: 膽2023-01-19
+date: 2023-01-19
 ---
 
 # 【開源】快速免費啟用 Office 及 Windows
@@ -43,13 +43,13 @@ Office 雖然目前有提供免費線上版，且學校都有提供 Office365，
 
 接著輸入這一串指令並按 enter 來打開這個軟體:
 
-```vat
+```bash
 irm https://get.activated.win | iex
 ```
 
 在 2024/8/31 以前你也可以打這一串。
 
-```bat
+```bash
 irm https://massgrave.dev/get | iex
 ```
 

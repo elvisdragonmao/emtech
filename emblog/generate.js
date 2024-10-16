@@ -251,154 +251,167 @@ async function processPosts() {
     );
 
     for (const postID of postFolders) {
-        const postPath = path.join(postsDir, postID);
-        const markdownFile = path.join(postPath, "index.md");
-        if (fs.existsSync(markdownFile)) {
-            console.log(`➤ Processing post: ${postID}`);
-            fs.cpSync(postPath, `dist/static/${postID}`, {
-                recursive: true,
-                filter: (src) => {
-                    return (
-                        src.split("\\").pop().split("/").pop() !== "index.md"
-                    );
+        try {
+            const postPath = path.join(postsDir, postID);
+            const markdownFile = path.join(postPath, "index.md");
+            if (fs.existsSync(markdownFile)) {
+                console.log(`➤ Processing post: ${postID}`);
+                fs.cpSync(postPath, `dist/static/${postID}`, {
+                    recursive: true,
+                    filter: (src) => {
+                        return (
+                            src.split("\\").pop().split("/").pop() !==
+                            "index.md"
+                        );
+                    }
+                });
+
+                let markdownContent = fs
+                    .readFileSync(markdownFile, "utf8")
+                    .replace(/<!--[\s\S]+?-->/g, "");
+
+                let postMeta = extractFrontMatter(markdownContent);
+                // turn image url if not set path like ![](image.webp) to ![](/static/postID/image.webp)
+                // don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
+                markdownContent = markdownContent.replace(
+                    /!\[(.*?)\]\((?!\/|http)(.*?)\)/g,
+                    `![](/static/${postID}/$2)`
+                );
+                let htmlContent = md.render(
+                    renderPartials(
+                        markdownContent.replace(/---[\s\S]+?---/, "")
+                    )
+                );
+
+                if (!postMeta.title) {
+                    postMeta.title = htmlContent.match(/<h1>(.*?)<\/h1>/)[1];
+                    // remove the first h1 tag
+                    htmlContent = htmlContent.replace(/<h1>.*?<\/h1>/, "");
                 }
-            });
-
-            let markdownContent = fs
-                .readFileSync(markdownFile, "utf8")
-                .replace(/<!--[\s\S]+?-->/g, "");
-
-            let postMeta = extractFrontMatter(markdownContent);
-            // turn image url if not set path like ![](image.webp) to ![](/static/postID/image.webp)
-            // don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
-            markdownContent = markdownContent.replace(
-                /!\[(.*?)\]\((?!\/|http)(.*?)\)/g,
-                `![](/static/${postID}/$2)`
-            );
-            let htmlContent = md.render(
-                renderPartials(markdownContent.replace(/---[\s\S]+?---/, ""))
-            );
-
-            if (!postMeta.title) {
-                postMeta.title = htmlContent.match(/<h1>(.*?)<\/h1>/)[1];
-                // remove the first h1 tag
-                htmlContent = htmlContent.replace(/<h1>.*?<\/h1>/, "");
-            }
-            let tldr = "";
-            // get description from the first paragraph of the post
-            if (postMeta.description) {
-                tldr = `<div class="tldr">
+                let tldr = "";
+                // get description from the first paragraph of the post
+                if (postMeta.description) {
+                    tldr = `<div class="tldr">
                 <h2>簡單來說</h2>
                 <div>
                     ${postMeta.description}
                 </div>
             </div>`;
-            } else {
-                postMeta.description = htmlContent.match(/<p>(.*?)<\/p>/)[1];
-            }
-            const thumbnail =
-                postMeta.thumbnail ||
-                (fs.existsSync(path.join(postPath, "thumbnail.webp"))
-                    ? `/static/${postID}/thumbnail.webp`
-                    : "");
-            if (
-                !postMeta.colors &&
-                thumbnail.includes(".") &&
-                !thumbnail.includes("http")
-            ) {
-                // console.log("finding" + path.join("..", "dist", thumbnail));
-                postMeta.colors = await findRepresentativeColors(
-                    path.join("dist", thumbnail) //.replaceAll("\\", "/")
+                } else {
+                    postMeta.description =
+                        htmlContent.match(/<p>(.*?)<\/p>/)[1];
+                }
+                const thumbnail =
+                    postMeta.thumbnail ||
+                    (fs.existsSync(path.join(postPath, "thumbnail.webp"))
+                        ? `/static/${postID}/thumbnail.webp`
+                        : "");
+                if (
+                    !postMeta.colors &&
+                    thumbnail.includes(".") &&
+                    !thumbnail.includes("http")
+                ) {
+                    // console.log("finding" + path.join("..", "dist", thumbnail));
+                    postMeta.colors = await findRepresentativeColors(
+                        path.join("dist", thumbnail) //.replaceAll("\\", "/")
+                    );
+                }
+
+                const chineseCharCount = (
+                    markdownContent.match(/[\u4e00-\u9fa5]/g) || []
+                ).length;
+                const englishWordCount = (
+                    markdownContent.match(/\b\w+\b/g) || []
+                ).length;
+                const length = chineseCharCount + englishWordCount;
+                // turn to k, if length > 1000. Fixed to 1 decimal place
+                postMeta.length =
+                    length > 1000 ? (length / 1000).toFixed(1) + "k" : length;
+                postMeta.lastUpdated = fs.statSync(markdownFile).mtime;
+                if (!postMeta.readingTime) {
+                    const chineseReadingSpeed = 300; // 每分鐘 300 字
+                    const englishReadingSpeed = 200; // 每分鐘 200 單詞
+                    const chineseReadingTime =
+                        chineseCharCount / chineseReadingSpeed;
+                    const englishReadingTime =
+                        englishWordCount / englishReadingSpeed;
+                    const totalReadingTime =
+                        chineseReadingTime + englishReadingTime;
+                    postMeta.readingTime = Math.ceil(totalReadingTime) + " min";
+                }
+
+                postMeta = {
+                    ...postMeta,
+                    id: postID,
+                    title: postMeta.title || "無題",
+                    description: postMeta.description || null,
+                    thumbnail,
+                    length
+                };
+
+                postsMeta.push(postMeta);
+                //<div class="header-categorie">閒聊</div> for each, combine all to a string
+                const headerCategories = postMeta.categories
+                    ? postMeta.categories
+                          .map(
+                              (category) =>
+                                  `<a href="/category/${category}"><div class="header-categorie">${category}</div></a>`
+                          )
+                          .join("")
+                    : "";
+                const headerTags = postMeta.tags
+                    ? postMeta.tags
+                          .map(
+                              (tag) =>
+                                  `<a href="/tag/${tag}"><div class="header-tag">${tag}</div></a>`
+                          )
+                          .join("")
+                    : "";
+                const postTags = postMeta.tags
+                    ? postMeta.tags
+                          .map(
+                              (tag) =>
+                                  `<a href="/tag/${tag}"><div class="post-tag">${tag}</div></a>`
+                          )
+                          .join("")
+                    : "";
+                const replacements = {
+                    title: postMeta.title,
+                    content: htmlContent,
+                    tldr,
+                    thumbnail: thumbnail,
+                    length: postMeta.length,
+                    colors: postMeta.colors,
+                    readingTime: postMeta.readingTime,
+                    date: new Date(postMeta.date) // format of 2024-05-12
+                        .toISOString()
+                        .split("T")[0],
+                    lastUpdated: postMeta.lastUpdated,
+                    postTags,
+                    headerCategories,
+                    headerTags,
+                    postID
+                };
+                const fullPostHtml = replacePlaceholders(
+                    postTemplate,
+                    replacements
                 );
-            }
+                const fullPostPageHtml = replacePlaceholders(postPageTemplate, {
+                    ...replacements,
+                    post: fullPostHtml
+                });
+                fs.writeFileSync(`dist/p/clean/${postID}.html`, fullPostHtml);
 
-            const chineseCharCount = (
-                markdownContent.match(/[\u4e00-\u9fa5]/g) || []
-            ).length;
-            const englishWordCount = (markdownContent.match(/\b\w+\b/g) || [])
-                .length;
-            const length = chineseCharCount + englishWordCount;
-            // turn to k, if length > 1000. Fixed to 1 decimal place
-            postMeta.length =
-                length > 1000 ? (length / 1000).toFixed(1) + "k" : length;
-            postMeta.lastUpdated = fs.statSync(markdownFile).mtime;
-            if (!postMeta.readingTime) {
-                const chineseReadingSpeed = 300; // 每分鐘 300 字
-                const englishReadingSpeed = 200; // 每分鐘 200 單詞
-                const chineseReadingTime =
-                    chineseCharCount / chineseReadingSpeed;
-                const englishReadingTime =
-                    englishWordCount / englishReadingSpeed;
-                const totalReadingTime =
-                    chineseReadingTime + englishReadingTime;
-                postMeta.readingTime = Math.ceil(totalReadingTime) + " min";
-            }
-
-            postMeta = {
-                ...postMeta,
-                id: postID,
-                title: postMeta.title || "無題",
-                description: postMeta.description || null,
-                thumbnail,
-                length
-            };
-
-            postsMeta.push(postMeta);
-            //<div class="header-categorie">閒聊</div> for each, combine all to a string
-            const headerCategories = postMeta.categories
-                ? postMeta.categories
-                      .map(
-                          (category) =>
-                              `<a href="/category/${category}"><div class="header-categorie">${category}</div></a>`
-                      )
-                      .join("")
-                : "";
-            const headerTags = postMeta.tags
-                ? postMeta.tags
-                      .map(
-                          (tag) =>
-                              `<a href="/tag/${tag}"><div class="header-tag">${tag}</div></a>`
-                      )
-                      .join("")
-                : "";
-            const postTags = postMeta.tags
-                ? postMeta.tags
-                      .map(
-                          (tag) =>
-                              `<a href="/tag/${tag}"><div class="post-tag">${tag}</div></a>`
-                      )
-                      .join("")
-                : "";
-            const replacements = {
-                title: postMeta.title,
-                content: htmlContent,
-                tldr,
-                thumbnail: thumbnail,
-                length: postMeta.length,
-                colors: postMeta.colors,
-                readingTime: postMeta.readingTime,
-                date: new Date(postMeta.date) // format of 2024-05-12
-                    .toISOString()
-                    .split("T")[0],
-                lastUpdated: postMeta.lastUpdated,
-                postTags,
-                headerCategories,
-                headerTags,
-                postID
-            };
-            const fullPostHtml = replacePlaceholders(
-                postTemplate,
-                replacements
-            );
-            const fullPostPageHtml = replacePlaceholders(postPageTemplate, {
-                ...replacements,
-                post: fullPostHtml
-            });
-            fs.writeFileSync(`dist/p/clean/${postID}.html`, fullPostHtml);
-
-            fs.mkdirSync(`dist/p/${postID}`, { recursive: true });
-            fs.writeFileSync(`dist/p/${postID}/index.html`, fullPostPageHtml);
-        } else console.warn(`➤ No markdown file found for post: ${postID}`);
+                fs.mkdirSync(`dist/p/${postID}`, { recursive: true });
+                fs.writeFileSync(
+                    `dist/p/${postID}/index.html`,
+                    fullPostPageHtml
+                );
+            } else console.warn(`➤ No markdown file found for post: ${postID}`);
+        } catch (error) {
+            console.error(`➤ Error processing post: ${postID}`);
+            console.error(error);
+        }
     }
 
     // 輸出 posts.json 和每篇文章的 json

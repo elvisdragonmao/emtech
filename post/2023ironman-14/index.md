@@ -1,22 +1,8 @@
-+++
-author = "毛哥EM"
-title = "Day14 今天我想來點… 純 CSS 的開關"
-date = "2023-09-28"
-series = ["不用庫 也能酷 - 玩轉 CSS & Js 特效"]
-tags = ["HTML", "CSS", "JS"]
-categories = [""]
-thumbnail = "https://emtech.cc/images/ironman2023.webp"
-featureImage = "https://emtech.cc/images/ironman2023-banner.webp"
-shareImage = "https://emtech.cc/images/ironman2023-banner.webp"
-+++
-
 ---
-
 authors: elvismao
 tags: [HTML, CSS, JS]
 series: ["不用庫 也能酷 - 玩轉 CSS & Js 特效"]
 date: 2023-09-28
-
 ---
 
 # Day14 今天我想來點… 純 CSS 的開關

@@ -138,7 +138,7 @@ date: 2024-09-24
 
    確保你的 `.env` 文件被列在 `.gitignore` 文件中，以避免將敏感資訊提交到版本控制系統中。
 
-   ```gitignore
+   ```plaintext
    .env
    ```
 

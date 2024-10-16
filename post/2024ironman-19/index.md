@@ -4,9 +4,8 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-10-02
 ---
-<!-- @format -->
 
-## 萬籟聚集 - 自動化 Issue 管理與集成第三方服務
+# 萬籟聚集 - 自動化 Issue 管理與集成第三方服務
 
 > 戰國時期張儀遊說各國開放 API 給秦整合，才能夠瓦解合縱聯盟。
 

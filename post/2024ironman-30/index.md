@@ -4,7 +4,8 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-10-13
 ---
-## 是時候 Action 了。
+
+# 是時候 Action 了。
 
 > 愛爾蘭詩人葉慈：「學習不是注滿一桶水，而是點燃一把火。
 
