@@ -38,8 +38,8 @@
                 </style>
             </head>
             <body>
-                <h2>毛哥EM資訊密技 文章列表</h2>
-                <p>我知道一定會有人不小心跑來這裡，所以乾脆稍微裝飾一下。當作是小彩蛋吧w</p>
+                <h2>毛哥EM資訊密技 RSS Feed</h2>
+                <p>別只看這個 XML 很可愛，歡迎提交這個網址給你習慣的 RSS 閱讀器訂閱毛哥EM資訊密技喔w</p>
                 <table>
                     <tr>
                         <th>Element Name</th>

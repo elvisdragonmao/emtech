@@ -380,6 +380,7 @@ async function processPosts() {
                 date: new Date(postMeta.date) // format of 2024-05-12
                     .toISOString()
                     .split("T")[0],
+                lastUpdated: postMeta.lastUpdated,
                 postTags,
                 headerCategories,
                 headerTags,
@@ -591,7 +592,7 @@ function generateSitemapAndRSS() {
     fs.writeFileSync(
         "dist/rss.xml",
         `<?xml version="1.0" encoding="UTF-8"?>
-        <?xml-stylesheet type="text/xsl" href="https://emtech.cc/style.xsl"?>
+        <?xml-stylesheet type="text/xsl" href="/style.xsl"?>
         <rss version="2.0">
         <channel>
         <title>毛哥EM資訊密技</title>

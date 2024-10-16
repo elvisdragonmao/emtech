@@ -335,6 +335,19 @@ if (window.location.pathname.includes("/p/")) {
     );
 }
 
+const updatePostList = async (category) => {
+    let delay = currentPage == "home" ? 0 : 500;
+    document.querySelector(".categories-title").textContent =
+    decodeURI(category.split("/")[1]);
+    await loadArticleList(document.getElementById("posts"), category);
+    setTimeout(() => {
+        document.getElementById("categories").scrollIntoView({
+            behavior: "smooth"
+        });
+    }, delay);
+};
+
+
 const switchToHome = () => {
     if (currentPage === "home") document.body.classList = "toHome";
     else document.body.classList.add("toHome");
@@ -520,18 +533,6 @@ fetch("/meta/tags.json")
             first
         );
     });
-
-const updatePostList = async (category) => {
-    let delay = currentPage == "home" ? 0 : 500;
-    document.querySelector(".categories-title").textContent =
-    decodeURI(category.split("/")[1]);
-    await loadArticleList(document.getElementById("posts"), category);
-    setTimeout(() => {
-        document.getElementById("categories").scrollIntoView({
-            behavior: "smooth"
-        });
-    }, delay);
-};
 
 updatePostList("category/精選");
 
