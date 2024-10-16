@@ -173,13 +173,14 @@ nav {
     top: 0;
 }
 .displayPost nav > * {
-    filter: invert(100%) brightness(101%);
+    filter: invert(100%);
+    /* filter: invert(100%) brightness(101%); */
 }
 
-.displayPost nav .title {
+/* .displayPost nav .title {
     color: #000;
     filter: invert(1);
-}
+} */
 .nav-sticky nav > * {
     filter: none;
 }
@@ -385,12 +386,12 @@ header {
     font-size: 1.125rem;
     border-radius: calc(var(--border-radius) / 30 * 19);
 }
-a.header-categories-item {
+/* a.header-categories-item {
     color: #000;
 }
 a.header-categories-item span {
     filter: invert(1);
-}
+} */
 .header-categories .header-categories-item:first-child {
     background: #8fbcbb;
 }
