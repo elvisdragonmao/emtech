@@ -176,6 +176,10 @@ nav {
     filter: invert(100%) brightness(101%);
 }
 
+.displayPost nav .title {
+    color: #000;
+    filter: invert(1);
+}
 .nav-sticky nav > * {
     filter: none;
 }
@@ -382,7 +386,10 @@ header {
     border-radius: calc(var(--border-radius) / 30 * 19);
 }
 a.header-categories-item {
-    color: #fff;
+    color: #000;
+}
+a.header-categories-item span {
+    filter: invert(1);
 }
 .header-categories .header-categories-item:first-child {
     background: #8fbcbb;
@@ -1557,8 +1564,8 @@ blockquote::before {
     color: #003100;
 }
 
-.post-container .notice>*{
-    margin-bottom: .5rem;
+.post-container .notice > * {
+    margin-bottom: 0.5rem;
 }
 
 .notice > *:first-child {
@@ -1570,7 +1577,7 @@ blockquote::before {
     display: inline-block;
     width: 1em;
     height: 1em;
-    margin-right: .1em;
+    margin-right: 0.1em;
     background: url(/static/img/bolt.svg) no-repeat center center / contain;
 }
 @media (max-aspect-ratio: 5/4) {
