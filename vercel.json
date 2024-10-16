@@ -21,6 +21,7 @@
             "destination": "/category/:slug*"
         },
         { "source": "/tag/", "destination": "/" },
-        { "source": "/category/", "destination": "/" }
+        { "source": "/category/", "destination": "/" },
+        { "source": "/p/", "destination": "/" }
     ]
 }

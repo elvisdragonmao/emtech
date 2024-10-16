@@ -329,6 +329,10 @@ if (window.location.pathname.includes("/p/")) {
     currentPage = "home";
     document.body.classList.remove("displayPost");
     startDonut();
+    if(window.location.pathname.includes("/category/") || window.location.pathname.includes("/tag/")) 
+    updatePostList(// all the url after the domain
+        window.location.pathname.slice(1)
+    );
 }
 
 const switchToHome = () => {
@@ -520,7 +524,7 @@ fetch("/meta/tags.json")
 const updatePostList = async (category) => {
     let delay = currentPage == "home" ? 0 : 500;
     document.querySelector(".categories-title").textContent =
-        category.split("/")[1];
+    decodeURI(category.split("/")[1]);
     await loadArticleList(document.getElementById("posts"), category);
     setTimeout(() => {
         document.getElementById("categories").scrollIntoView({
