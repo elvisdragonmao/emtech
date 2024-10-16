@@ -12,7 +12,7 @@ date: 2023-05-29
 
 <!--more-->
 
-{{< youtube lOecpIqOjjY >}}
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/lOecpIqOjjY?si=kh_Yr1m4bhFP2sGe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 相信大家看過Word檔對吧，Word檔是要用Microsoft Word打開的文件，副檔名是.docx
 

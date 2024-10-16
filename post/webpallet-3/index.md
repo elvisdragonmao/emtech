@@ -14,6 +14,8 @@ date: 2023-06-12
 
 CSS的功能是來裝飾HTML的，因此這部影片假設你已經會使用Codepen和HTML了，如果還沒有的話建議你先去看EP.2 十分鐘完結HTML喔。有一些部分可能比較難理解，但我相信你只要多練習幾次就可以了。
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/WrNpToBObo0?si=ObuDcZHDTcmjBs2y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## 簡單的CSS
 
 首先請你先建立一個h1標題。
