@@ -4,6 +4,7 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-09-29
 ---
+
 # 解放你的 Release - 自動化版本控制與發布
 
 > 秦始皇焚書坑儒時可以 force push 刪除紀錄，但誰知道有沒有人本地 `.git` 還留著呢！
@@ -14,11 +15,11 @@ date: 2024-09-29
 
 ## 認識 Git 標記和發布
 
-- **Git 標記（Tag）**：
-  標記是 Git 中用來給特定提交賦予一個名稱的方式。通常用於標記特定的版本（例如 `v1.0.0`），這樣在回顧歷史版本時，可以很方便地找到。
+-   **Git 標記（Tag）**：
+    標記是 Git 中用來給特定提交賦予一個名稱的方式。通常用於標記特定的版本（例如 `v1.0.0`），這樣在回顧歷史版本時，可以很方便地找到。
 
-- **發布（Release）**：
-  發布是 GitHub 提供的一個功能，允許你從標記中創建釋出版本。釋出版本可以包括二進位文件、更新說明等，並且會顯示在 GitHub 的釋出頁面上。
+-   **發布（Release）**：
+    發布是 GitHub 提供的一個功能，允許你從標記中創建釋出版本。釋出版本可以包括二進位文件、更新說明等，並且會顯示在 GitHub 的釋出頁面上。
 
 ## 設置 GitHub Actions 工作流程
 
@@ -32,31 +33,31 @@ date: 2024-09-29
 name: Create Release
 
 on:
-  push:
-    tags:
-      - "v*.*.*" # 當推送以 'v' 開頭的標記時觸發工作流程
+    push:
+        tags:
+            - "v*.*.*" # 當推送以 'v' 開頭的標記時觸發工作流程
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
+    release:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
 
-      - name: Set up Git
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+            - name: Set up Git
+              run: |
+                  git config user.name "GitHub Actions"
+                  git config user.email "actions@github.com"
 
-      - name: Create Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            path/to/your/binary
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Create Release
+              id: create_release
+              uses: softprops/action-gh-release@v1
+              with:
+                  files: |
+                      path/to/your/binary
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### 步驟 2：創建和推送 Git 標記
@@ -79,14 +80,14 @@ git push origin v1.0.0
 
 ## 補充提醒
 
-- **版本號自動增加**：
-  如果需要自動增量版本號，可以使用一些工具來生成版本號，如 `npm version` 或其他版本管理工具，並在工作流程中自動創建標記。
+-   **版本號自動增加**：
+    如果需要自動增量版本號，可以使用一些工具來生成版本號，如 `npm version` 或其他版本管理工具，並在工作流程中自動創建標記。
 
-- **自動發布二進位文件**：
-  將編譯好的二進位文件（如應用程序包或安裝程序）附加到釋出版本中。這樣用戶可以直接下載使用，提供更方便的更新方式。
+-   **自動發布二進位文件**：
+    將編譯好的二進位文件（如應用程序包或安裝程序）附加到釋出版本中。這樣用戶可以直接下載使用，提供更方便的更新方式。
 
-- **添加更新說明**：
-  在創建釋出時，可以添加更新說明（Changelog），讓用戶了解新版本的改動內容。
+-   **添加更新說明**：
+    在創建釋出時，可以添加更新說明（Changelog），讓用戶了解新版本的改動內容。
 
 ## 小結
 

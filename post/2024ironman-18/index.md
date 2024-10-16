@@ -4,6 +4,7 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-10-01
 ---
+
 # 用 GitHub Actions 把 Issue 同步到 Notion
 
 > 白居易在看到滿滿的 issue 後不經感嘆：「野火燒不盡，春風吹又生。」然後毅然決然地把 issue 同步到 Notion，這樣就不會忘記了。
@@ -41,28 +42,28 @@ github-issue-2-notion/
 name: "Sync GitHub Issues to Notion"
 description: "Synchronize GitHub issues to a Notion database"
 inputs:
-  repo:
-    description: "The GitHub repository (e.g., owner/repo)"
-    required: true
-  NOTION_API_KEY:
-    description: "The API key for the Notion integration"
-    required: true
-  NOTION_DATABASE_ID:
-    description: "The ID of the Notion database"
-    required: true
+    repo:
+        description: "The GitHub repository (e.g., owner/repo)"
+        required: true
+    NOTION_API_KEY:
+        description: "The API key for the Notion integration"
+        required: true
+    NOTION_DATABASE_ID:
+        description: "The ID of the Notion database"
+        required: true
 runs:
-  using: "node20"
-  steps:
-    - name: Run script
-      uses: actions/setup-node@v3
-      with:
-        node-version: "20"
-    - run: npm install
-    - run: node script.js
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NOTION_API_KEY: ${{ inputs.NOTION_API_KEY }}
-        NOTION_DATABASE_ID: ${{ inputs.NOTION_DATABASE_ID }}
+    using: "node20"
+    steps:
+        - name: Run script
+          uses: actions/setup-node@v3
+          with:
+              node-version: "20"
+        - run: npm install
+        - run: node script.js
+          env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              NOTION_API_KEY: ${{ inputs.NOTION_API_KEY }}
+              NOTION_DATABASE_ID: ${{ inputs.NOTION_DATABASE_ID }}
 ```
 
 ### 步驟 3：編寫 Node.js 腳本
@@ -77,134 +78,138 @@ const axios = require("axios");
 const { markdownToBlocks } = require("@tryfabric/martian");
 
 async function main() {
-  const repo = core.getInput("repo");
-  const notionToken = core.getInput("NOTION_API_KEY");
-  const notionDatabaseId = core.getInput("NOTION_DATABASE_ID");
+    const repo = core.getInput("repo");
+    const notionToken = core.getInput("NOTION_API_KEY");
+    const notionDatabaseId = core.getInput("NOTION_DATABASE_ID");
 
-  // GitHub Issues API URL
-  const issuesUrl = `https://api.github.com/repos/${repo}/issues?state=all`;
+    // GitHub Issues API URL
+    const issuesUrl = `https://api.github.com/repos/${repo}/issues?state=all`;
 
-  // Fetch issues from GitHub
-  const issuesResponse = await axios.get(issuesUrl, {
-    headers: {
-      "User-Agent": "request",
-      Authorization: `token ${process.env.GITHUB_TOKEN}`
-    }
-  });
-
-  for (const issue of issuesResponse.data) {
-    const issueId = issue.id;
-    const notionUrl = `https://api.notion.com/v1/databases/${notionDatabaseId}/query`;
-
-    // Check if the issue already exists in Notion
-    const notionResponse = await axios.post(
-      notionUrl,
-      {
-        filter: {
-          property: "ID",
-          number: {
-            equals: issueId
-          }
-        }
-      },
-      {
+    // Fetch issues from GitHub
+    const issuesResponse = await axios.get(issuesUrl, {
         headers: {
-          Authorization: `Bearer ${notionToken}`,
-          "Notion-Version": "2022-06-28",
-          "Content-Type": "application/json"
+            "User-Agent": "request",
+            Authorization: `token ${process.env.GITHUB_TOKEN}`
         }
-      }
-    );
+    });
 
-    const body = {
-      parent: { database_id: notionDatabaseId },
-      icon: {
-        emoji: "⚡"
-      },
-      properties: {
-        Name: {
-          title: [
+    for (const issue of issuesResponse.data) {
+        const issueId = issue.id;
+        const notionUrl = `https://api.notion.com/v1/databases/${notionDatabaseId}/query`;
+
+        // Check if the issue already exists in Notion
+        const notionResponse = await axios.post(
+            notionUrl,
             {
-              text: {
-                content: issue.title
-              }
+                filter: {
+                    property: "ID",
+                    number: {
+                        equals: issueId
+                    }
+                }
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${notionToken}`,
+                    "Notion-Version": "2022-06-28",
+                    "Content-Type": "application/json"
+                }
             }
-          ]
-        },
-        ID: {
-          number: issueId
-        },
-        State: {
-          select: {
-            name: issue.state.charAt(0).toUpperCase() + issue.state.slice(1)
-          }
-        },
-        Status: {
-          status: {
-            name: "Not started"
-          }
-        },
-        Labels: {
-          multi_select: issue.labels.map((label) => ({
-            name: label.name
-          }))
-        },
-        URL: {
-          url: issue.html_url
-        }
-      },
-      children: issue.body != null ? markdownToBlocks(issue.body) : []
-    };
+        );
 
-    if (notionResponse.data.results.length > 0) {
-      console.log(`Issue ${issueId} already exists in Notion, updating it`);
-      // Update existing issue
-      const notionPageId = notionResponse.data.results[0].id;
-      delete body.properties.Status;
-      await axios.patch(
-        `https://api.notion.com/v1/pages/${notionPageId}`,
-        body,
-        {
-          headers: {
-            Authorization: `Bearer ${notionToken}`,
-            "Content-Type": "application/json",
-            "Notion-Version": "2022-06-28"
-          }
+        const body = {
+            parent: { database_id: notionDatabaseId },
+            icon: {
+                emoji: "⚡"
+            },
+            properties: {
+                Name: {
+                    title: [
+                        {
+                            text: {
+                                content: issue.title
+                            }
+                        }
+                    ]
+                },
+                ID: {
+                    number: issueId
+                },
+                State: {
+                    select: {
+                        name:
+                            issue.state.charAt(0).toUpperCase() +
+                            issue.state.slice(1)
+                    }
+                },
+                Status: {
+                    status: {
+                        name: "Not started"
+                    }
+                },
+                Labels: {
+                    multi_select: issue.labels.map((label) => ({
+                        name: label.name
+                    }))
+                },
+                URL: {
+                    url: issue.html_url
+                }
+            },
+            children: issue.body != null ? markdownToBlocks(issue.body) : []
+        };
+
+        if (notionResponse.data.results.length > 0) {
+            console.log(
+                `Issue ${issueId} already exists in Notion, updating it`
+            );
+            // Update existing issue
+            const notionPageId = notionResponse.data.results[0].id;
+            delete body.properties.Status;
+            await axios.patch(
+                `https://api.notion.com/v1/pages/${notionPageId}`,
+                body,
+                {
+                    headers: {
+                        Authorization: `Bearer ${notionToken}`,
+                        "Content-Type": "application/json",
+                        "Notion-Version": "2022-06-28"
+                    }
+                }
+            );
+        } else {
+            console.log(`Creating new issue ${issueId} in Notion`);
+            // Create new issue
+            await axios.post("https://api.notion.com/v1/pages", body, {
+                headers: {
+                    Authorization: `Bearer ${notionToken}`,
+                    "Content-Type": "application/json",
+                    "Notion-Version": "2022-06-28"
+                }
+            });
+            console.log(`Issue ${issueId} created in Notion`);
         }
-      );
-    } else {
-      console.log(`Creating new issue ${issueId} in Notion`);
-      // Create new issue
-      await axios.post("https://api.notion.com/v1/pages", body, {
-        headers: {
-          Authorization: `Bearer ${notionToken}`,
-          "Content-Type": "application/json",
-          "Notion-Version": "2022-06-28"
-        }
-      });
-      console.log(`Issue ${issueId} created in Notion`);
     }
-  }
 }
 
 main().catch((error) => {
-  console.error(error);
-  process.exit(1);
+    console.error(error);
+    process.exit(1);
 });
 ```
 
 這裡要來介紹一下裡面使用到的一些套件：
 
-- `axios`: 用於發送 HTTP 請求。
-- `@tryfabric/martian`: 用於將 Markdown 轉換為 Notion 的 block。
-- `@actions/core`: 用於訪問 Action 的輸入和輸出。
+-   `axios`: 用於發送 HTTP 請求。
+-   `@tryfabric/martian`: 用於將 Markdown 轉換為 Notion 的 block。
+-   `@actions/core`: 用於訪問 Action 的輸入和輸出。
 
 ### 步驟 4：設置 GitHub Secrets
 
 在 GitHub 存儲庫的設置中，添加以下 Secrets：
 
-- `NOTION_API_KEY`: 你的 Notion API 密鑰。
-- `NOTION_DATABASE_ID`: 你的 Notion 資料庫 ID。
+-   `NOTION_API_KEY`: 你的 Notion API 密鑰。
+-   `NOTION_DATABASE_ID`: 你的 Notion 資料庫 ID。
 
 ### 步驟 5：創建工作流程文件
 
@@ -214,23 +219,23 @@ main().catch((error) => {
 name: Sync GitHub Issues to Notion
 
 on:
-  issues:
-    types: [opened, edited, deleted, closed, reopened]
-  workflow_dispatch:
+    issues:
+        types: [opened, edited, deleted, closed, reopened]
+    workflow_dispatch:
 
 jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    sync:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
 
-      - name: Sync issues to Notion
-        uses: ./path-to-your-action # 使用自定義 Action 的路徑
-        with:
-          repo: ${{ github.repository }}
-          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+            - name: Sync issues to Notion
+              uses: ./path-to-your-action # 使用自定義 Action 的路徑
+              with:
+                  repo: ${{ github.repository }}
+                  NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+                  NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
 ```
 
 這個工作流程將在 GitHub 的 issue 有變化時觸發，並運行我們的自定義 Action 來同步 issue 到 Notion。

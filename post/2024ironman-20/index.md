@@ -86,43 +86,43 @@ emfont 是一個免費的繁體中文 Web Font 服務。在之前字體列表存
 name: Update Font List
 
 on:
-  push:
-    paths:
-      - "Database/fonts.json"
-  workflow_dispatch:
+    push:
+        paths:
+            - "Database/fonts.json"
+    workflow_dispatch:
 
 jobs:
-  update-readme:
-    runs-on: ubuntu-latest
+    update-readme:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20"
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "20"
 
-      - name: Update README.md
-        run: node src/workflows/update-readme.js
+            - name: Update README.md
+              run: node src/workflows/update-readme.js
 
-      - name: Check for changes
-        id: git-diff
-        run: |
-          git diff --quiet || echo "::set-output name=changes::true"
+            - name: Check for changes
+              id: git-diff
+              run: |
+                  git diff --quiet || echo "::set-output name=changes::true"
 
-      - name: Commit and Push Changes
-        run: |
-          if [[ "${{ steps.git-diff.outputs.changes }}" == "true" ]]; then
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Actions"
-            git add .
-            git commit -m "📋 Update font list"
-            git push
-          else
-            echo "No changes to commit. Skipping push."
-          fi
+            - name: Commit and Push Changes
+              run: |
+                  if [[ "${{ steps.git-diff.outputs.changes }}" == "true" ]]; then
+                    git config --local user.email "action@github.com"
+                    git config --local user.name "GitHub Actions"
+                    git add .
+                    git commit -m "📋 Update font list"
+                    git push
+                  else
+                    echo "No changes to commit. Skipping push."
+                  fi
 ```
 
 這個工作流程會在 `Database/fonts.json` 文件發生變更時自動執行，並更新 `README.md` 文件中的字體列表。
@@ -143,11 +143,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const fontsFilePath = path.join(
-  __dirname,
-  "..",
-  "..",
-  "Database",
-  "fonts.json"
+    __dirname,
+    "..",
+    "..",
+    "Database",
+    "fonts.json"
 );
 const readmeFilePath = path.join(__dirname, "..", "..", "README.md");
 
@@ -156,47 +156,47 @@ const fontsData = JSON.parse(fs.readFileSync(fontsFilePath, "utf8"));
 
 // Function to convert JSON data to a markdown table
 function generateMarkdownTable(data) {
-  const headers = [
-    "Font ID",
-    "中文名稱",
-    "英文名稱",
-    "字體風格",
-    "字種",
-    "Class",
-    "版本",
-    "許可證",
-    "來源"
-  ];
-  const rows = Object.entries(data).map(([id, details]) => {
-    const {
-      name,
-      style,
-      weight,
-      class: className,
-      version,
-      license,
-      source
-    } = details;
-    return [
-      id,
-      name.zh || "",
-      name.en || "",
-      style || "",
-      weight.join(", ") || "",
-      className || "",
-      version || "",
-      license || "",
-      source || ""
-    ].join(" | ");
-  });
+    const headers = [
+        "Font ID",
+        "中文名稱",
+        "英文名稱",
+        "字體風格",
+        "字種",
+        "Class",
+        "版本",
+        "許可證",
+        "來源"
+    ];
+    const rows = Object.entries(data).map(([id, details]) => {
+        const {
+            name,
+            style,
+            weight,
+            class: className,
+            version,
+            license,
+            source
+        } = details;
+        return [
+            id,
+            name.zh || "",
+            name.en || "",
+            style || "",
+            weight.join(", ") || "",
+            className || "",
+            version || "",
+            license || "",
+            source || ""
+        ].join(" | ");
+    });
 
-  const table = [
-    headers.join(" | "),
-    headers.map(() => "---").join(" | "),
-    ...rows
-  ].join("\n");
+    const table = [
+        headers.join(" | "),
+        headers.map(() => "---").join(" | "),
+        ...rows
+    ].join("\n");
 
-  return table;
+    return table;
 }
 
 // Generate the markdown table
@@ -207,8 +207,8 @@ const readmeContent = fs.readFileSync(readmeFilePath, "utf8");
 
 // Update the section of the README.md file where the table should be inserted
 const updatedReadmeContent = readmeContent.replace(
-  /<!-- fonts table start -->[\s\S]*<!-- fonts table end -->/,
-  `<!-- fonts table start -->\n${markdownTable}\n<!-- fonts table end -->`
+    /<!-- fonts table start -->[\s\S]*<!-- fonts table end -->/,
+    `<!-- fonts table start -->\n${markdownTable}\n<!-- fonts table end -->`
 );
 
 // Write the updated README.md file
@@ -219,9 +219,9 @@ console.log("README.md has been updated");
 
 ### 腳本解析
 
-- **讀取 JSON 文件**: 腳本從 `Database/fonts.json` 讀取字體數據。
-- **生成 Markdown 表格**: `generateMarkdownTable` 函數將 JSON 數據轉換為 Markdown 格式的表格。
-- **更新 README 文件**: 腳本讀取 `README.md` 文件，並將生成的 Markdown 表格插入到標記為 `<!-- fonts table start -->` 和 `<!-- fonts table end -->` 之間的區域。
+-   **讀取 JSON 文件**: 腳本從 `Database/fonts.json` 讀取字體數據。
+-   **生成 Markdown 表格**: `generateMarkdownTable` 函數將 JSON 數據轉換為 Markdown 格式的表格。
+-   **更新 README 文件**: 腳本讀取 `README.md` 文件，並將生成的 Markdown 表格插入到標記為 `<!-- fonts table start -->` 和 `<!-- fonts table end -->` 之間的區域。
 
 ## 小結
 

@@ -9,8 +9,6 @@ date: 2024-03-10
 
 最近我一直在玩我的樹莓派，想要在上面架設一個檔案下載網站。但是沒有 SSL 憑證每次都會被瀏覽器警告說網站不安全，所以我決定使用 Certbot 申請一個免費的 SSL 憑證。在這篇文章中，我將分享如何使用 Certbot 申請免費的 SSL 憑證，並使用 DNS 驗證。
 
-
-
 ## 什麼是 Certbot？
 
 Certbot 是一個由 Electronic Frontier Foundation (EFF) 開發的免費、開源的工具，它可以幫助你在網站上安裝 SSL 憑證。Certbot 支援的憑證類型有 Let's Encrypt 和 ACME (Automatic Certificate Management Environment)。
@@ -115,10 +113,10 @@ These files will be updated when the certificate renews.
 
 ## 檔案介紹
 
-- `fullchain.pem`：這是你的 SSL 憑證，它包含了你的域名和中間證書。
-  - `chain.pem`：這是中間證書。
-  - `cert.pem`：這是你的域名憑證。
-- `privkey.pem`：這是你的私鑰，它用來加密和解密數據。
+-   `fullchain.pem`：這是你的 SSL 憑證，它包含了你的域名和中間證書。
+    -   `chain.pem`：這是中間證書。
+    -   `cert.pem`：這是你的域名憑證。
+-   `privkey.pem`：這是你的私鑰，它用來加密和解密數據。
 
 通常只會需要用到 `fullchain.pem` 和 `privkey.pem` 這兩個檔案。
 

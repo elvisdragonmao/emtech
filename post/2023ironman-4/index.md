@@ -9,10 +9,10 @@ date: 2023-09-18
 
 今天我們要來玩玩 CSS 動畫。CSS動畫有兩種:
 
-- @keyframes - 動作效果
-- transition - 轉場效果
-  
-  我們今天都拿 PowerPoint 來舉例，雖然感覺現在的學生都快只認識 Canva 了(順帶一提 Canva 就是 CSS 動畫)
+-   @keyframes - 動作效果
+-   transition - 轉場效果
+
+    我們今天都拿 PowerPoint 來舉例，雖然感覺現在的學生都快只認識 Canva 了(順帶一提 Canva 就是 CSS 動畫)
 
 你可以想像 `@Keyframes` 是 PowerPoint的動畫
 
@@ -35,10 +35,10 @@ transition: background 4s ease-in-out 1s;
 
 每一個屬性都可以分開設定，但真的不用跟自己過意不去。有興趣的連結下收
 
-- [transition-delay](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay)
-- [transition-duration](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration)
-- [transition-property](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property)
-- [transition-timing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function)
+-   [transition-delay](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay)
+-   [transition-duration](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration)
+-   [transition-property](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property)
+-   [transition-timing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function)
 
 每一個屬性都可以分開設定，也可以省略一些屬性不寫。比如說
 
@@ -50,8 +50,8 @@ transition: background 1s;
 
 ```css
 transition:
-  background 1s,
-  color 2s;
+    background 1s,
+    color 2s;
 ```
 
 秒數也可以用毫秒 ms，但我習慣使用秒因為比較短。如果是零點幾零可以省略。比如說以下幾個都是一樣效果
@@ -74,31 +74,31 @@ https://codepen.io/edit-mr/pen/mdaPYLv
 
 ```css
 a:hover {
-  background-color: #ffffff4a;
-  transform: scale(1.2);
+    background-color: #ffffff4a;
+    transform: scale(1.2);
 }
 
 a {
-  transition: transform 0.3s ease-out;
-  /* 以下只是裝飾 */
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  font-family: sans-serif;
-  font-size: 5em;
-  border: #fff solid 5px;
-  padding: 1rem;
-  text-align: center;
-  width: 3em;
+    transition: transform 0.3s ease-out;
+    /* 以下只是裝飾 */
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 5em;
+    border: #fff solid 5px;
+    padding: 1rem;
+    text-align: center;
+    width: 3em;
 }
 
 body {
-  background: #000;
-  min-height: 100svh;
-  /*   昨天講的置中 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background: #000;
+    min-height: 100svh;
+    /*   昨天講的置中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 ```
 
@@ -112,34 +112,34 @@ https://codepen.io/edit-mr/pen/RwEamev
 
 ```css
 a::after {
-  transition: width 0.5s ease-out;
-  content: "";
-  height: 2px;
-  display: block;
-  background: red;
-  width: 0em;
+    transition: width 0.5s ease-out;
+    content: "";
+    height: 2px;
+    display: block;
+    background: red;
+    width: 0em;
 }
 a:hover::after,
 a:active::after {
-  width: 100%;
+    width: 100%;
 }
 /* 以下只是裝飾 */
 a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  font-family: sans-serif;
-  font-size: 5em;
-  text-align: center;
-  cursor: pointer;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 5em;
+    text-align: center;
+    cursor: pointer;
 }
 body {
-  background: #000;
-  min-height: 100svh;
-  /*   昨天講的置中 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background: #000;
+    min-height: 100svh;
+    /*   昨天講的置中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 ```
 
@@ -149,16 +149,16 @@ body {
 
 ```css
 @keyframes 動畫名稱 {
-  0% {
-    /* 要套用的CSS */
-  }
-  30% {
-    /* 要套用的CSS */
-  }
-  /* ...(中間可以放更多) */
-  100% {
-    /* 要套用的CSS */
-  }
+    0% {
+        /* 要套用的CSS */
+    }
+    30% {
+        /* 要套用的CSS */
+    }
+    /* ...(中間可以放更多) */
+    100% {
+        /* 要套用的CSS */
+    }
 }
 ```
 
@@ -166,12 +166,12 @@ body {
 
 ```css
 @keyframes drive {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: 50%;
-  }
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 50%;
+    }
 }
 ```
 
@@ -179,12 +179,12 @@ body {
 
 ```css
 @keyframes drive {
-  from {
-    left: 0;
-  }
-  to {
-    left: 50%;
-  }
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
 }
 ```
 
@@ -192,9 +192,9 @@ body {
 
 ```css
 @keyframes drive {
-  to {
-    left: 50%;
-  }
+    to {
+        left: 50%;
+    }
 }
 ```
 
@@ -222,8 +222,8 @@ animation: slidein linear 3s 1s;
 
 /* 多重動畫 */
 animation:
-  3s linear slidein,
-  3s ease-out 5s slideout;
+    3s linear slidein,
+    3s ease-out 5s slideout;
 ```
 
 ## 速度曲線

@@ -4,6 +4,7 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-09-24
 ---
+
 # 告訴你一個大秘密 - 如何在 GitHub Actions 中使用 Secrets
 
 > 水果冰淇淋喜歡你，GitHub Secrets 在這裡。
@@ -28,135 +29,135 @@ date: 2024-09-24
 
 1. **創建 Secret**
 
-   - 進入你的 GitHub 儲存庫。
-   - 點擊頁面上方的 `Settings` 標籤。
-   - 在左側菜單中選擇 `Secrets and variables` -> `Actions`。
-   - 點擊 `New repository secret` 按鈕。
-   - 輸入 Secret 的名稱（例如 `API_KEY`）和對應的值（例如你的 API 金鑰）。
-   - 點擊 `Add secret` 按鈕保存。
+    - 進入你的 GitHub 儲存庫。
+    - 點擊頁面上方的 `Settings` 標籤。
+    - 在左側菜單中選擇 `Secrets and variables` -> `Actions`。
+    - 點擊 `New repository secret` 按鈕。
+    - 輸入 Secret 的名稱（例如 `API_KEY`）和對應的值（例如你的 API 金鑰）。
+    - 點擊 `Add secret` 按鈕保存。
 
 2. **在工作流程中使用 Secret**
 
-   建立 `.github/workflows/main.yml` 文件，將 Secret 用於工作流程。例如，如果你需要在工作流程中使用 API 金鑰，你可以將其設置為環境變數：
+    建立 `.github/workflows/main.yml` 文件，將 Secret 用於工作流程。例如，如果你需要在工作流程中使用 API 金鑰，你可以將其設置為環境變數：
 
-   ```yaml
-   name: Example Workflow
+    ```yaml
+    name: Example Workflow
 
-   on:
-     push:
-       branches:
-         - main
+    on:
+        push:
+            branches:
+                - main
 
-   jobs:
-     build:
-       runs-on: ubuntu-latest
+    jobs:
+        build:
+            runs-on: ubuntu-latest
 
-       steps:
-         - name: Check out code
-           uses: actions/checkout@v3
+            steps:
+                - name: Check out code
+                  uses: actions/checkout@v3
 
-         - name: Use API Key
-           run: echo "The API key is ${{ secrets.API_KEY }}"
-           env:
-             API_KEY: ${{ secrets.API_KEY }}
-   ```
+                - name: Use API Key
+                  run: echo "The API key is ${{ secrets.API_KEY }}"
+                  env:
+                      API_KEY: ${{ secrets.API_KEY }}
+    ```
 
-   在這個例子中，`${{ secrets.API_KEY }}` 用於獲取儲存在 GitHub Secrets 中的 API 金鑰。這樣，API 金鑰就能安全地用於工作流程中，而不會被暴露。
+    在這個例子中，`${{ secrets.API_KEY }}` 用於獲取儲存在 GitHub Secrets 中的 API 金鑰。這樣，API 金鑰就能安全地用於工作流程中，而不會被暴露。
 
 ## Node.js 程式中的 Secrets 使用
 
 1. **在 Node.js 中讀取 Secrets**
 
-   在你的 Node.js 程式中，你可以使用環境變數來讀取 Secret。這些環境變數可以通過 `process.env` 來訪問。為了使這些環境變數能在本地開發環境中使用，你可以使用 `.env` 文件。
+    在你的 Node.js 程式中，你可以使用環境變數來讀取 Secret。這些環境變數可以通過 `process.env` 來訪問。為了使這些環境變數能在本地開發環境中使用，你可以使用 `.env` 文件。
 
-   - **安裝 dotenv 模組**
+    - **安裝 dotenv 模組**
 
-     ```bash
-     npm install dotenv
-     ```
+        ```bash
+        npm install dotenv
+        ```
 
-   - **創建 `.env` 文件**
+    - **創建 `.env` 文件**
 
-     在專案根目錄下創建 `.env` 文件，並在其中添加你的秘密（這只應在本地開發中使用，不應提交到版本控制系統）：
+        在專案根目錄下創建 `.env` 文件，並在其中添加你的秘密（這只應在本地開發中使用，不應提交到版本控制系統）：
 
-     ```
-     API_KEY=your-local-api-key
-     ```
+        ```
+        API_KEY=your-local-api-key
+        ```
 
-     > 記得設置 `.env` 文件在 `.gitignore` 中，以避免將其提交到版本控制系統中。
+        > 記得設置 `.env` 文件在 `.gitignore` 中，以避免將其提交到版本控制系統中。
 
-   - **在程式中加載環境變數**
+    - **在程式中加載環境變數**
 
-     在你的 Node.js 程式中，使用 `dotenv` 模組來加載 `.env` 文件中的變數：
+        在你的 Node.js 程式中，使用 `dotenv` 模組來加載 `.env` 文件中的變數：
 
-     ```javascript
-     require("dotenv").config();
+        ```javascript
+        require("dotenv").config();
 
-     const apiKey = process.env.API_KEY;
-     console.log(`Your API key is ${apiKey}`);
-     ```
+        const apiKey = process.env.API_KEY;
+        console.log(`Your API key is ${apiKey}`);
+        ```
 
 2. **在 CI/CD 中使用 Secrets**
 
-   在 GitHub Actions 工作流程中，你可以直接使用 Secrets，如上所示。以下是一個範例工作流程，它使用 Secrets 來設置環境變數，並運行 Node.js 專案：
+    在 GitHub Actions 工作流程中，你可以直接使用 Secrets，如上所示。以下是一個範例工作流程，它使用 Secrets 來設置環境變數，並運行 Node.js 專案：
 
-   ```yaml
-   name: Node.js CI
+    ```yaml
+    name: Node.js CI
 
-   on:
-     push:
-       branches:
-         - main
+    on:
+        push:
+            branches:
+                - main
 
-   jobs:
-     build:
-       runs-on: ubuntu-latest
+    jobs:
+        build:
+            runs-on: ubuntu-latest
 
-       steps:
-         - name: Check out code
-           uses: actions/checkout@v3
+            steps:
+                - name: Check out code
+                  uses: actions/checkout@v3
 
-         - name: Set up Node.js
-           uses: actions/setup-node@v3
-           with:
-             node-version: "20"
+                - name: Set up Node.js
+                  uses: actions/setup-node@v3
+                  with:
+                      node-version: "20"
 
-         - name: Install dependencies
-           run: npm install
+                - name: Install dependencies
+                  run: npm install
 
-         - name: Run application
-           run: node app.js
-           env:
-             API_KEY: ${{ secrets.API_KEY }}
-   ```
+                - name: Run application
+                  run: node app.js
+                  env:
+                      API_KEY: ${{ secrets.API_KEY }}
+    ```
 
-   在這個例子中，`API_KEY` 環境變數從 GitHub Secrets 中讀取，並用於運行 Node.js 應用。
+    在這個例子中，`API_KEY` 環境變數從 GitHub Secrets 中讀取，並用於運行 Node.js 應用。
 
 ## 常用技巧
 
 1. **使用 `.gitignore` 避免提交 `.env` 文件**
 
-   確保你的 `.env` 文件被列在 `.gitignore` 文件中，以避免將敏感資訊提交到版本控制系統中。
+    確保你的 `.env` 文件被列在 `.gitignore` 文件中，以避免將敏感資訊提交到版本控制系統中。
 
-   ```plaintext
-   .env
-   ```
+    ```plaintext
+    .env
+    ```
 
 2. **使用 GitHub Secrets 管理多個環境變數**
 
-   GitHub Secrets 允許你儲存多個環境變數，並在工作流程中使用。為每個環境變數指定不同的名稱，例如 `DB_PASSWORD`、`API_KEY` 等，並在工作流程中根據需要使用這些 Secrets。
+    GitHub Secrets 允許你儲存多個環境變數，並在工作流程中使用。為每個環境變數指定不同的名稱，例如 `DB_PASSWORD`、`API_KEY` 等，並在工作流程中根據需要使用這些 Secrets。
 
 3. **定期更新和管理 Secrets**
 
-   定期檢查和更新 GitHub Secrets，以確保敏感資料的安全。如果需要更換 API 金鑰或密碼，請記得更新 Secrets 並重新配置工作流程。
+    定期檢查和更新 GitHub Secrets，以確保敏感資料的安全。如果需要更換 API 金鑰或密碼，請記得更新 Secrets 並重新配置工作流程。
 
 4. **避免在工作流程中直接打印 Secrets**
 
-   為了防止敏感資料洩漏，避免在工作流程中直接打印 Secrets。如果需要調試，請確保敏感資料不會顯示在日誌中。
+    為了防止敏感資料洩漏，避免在工作流程中直接打印 Secrets。如果需要調試，請確保敏感資料不會顯示在日誌中。
 
 5. **設置環境變數的最小權限原則**
 
-   設置 Secrets 時，請確保只賦予必要的權限。這樣可以降低敏感資料被濫用的風險。
+    設置 Secrets 時，請確保只賦予必要的權限。這樣可以降低敏感資料被濫用的風險。
 
 ## 結語
 

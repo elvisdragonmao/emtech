@@ -4,6 +4,7 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-09-30
 ---
+
 # 有人在水 - 統計 Notion 待辦事項放到 Discord 頻道
 
 > 孔子能從心所欲不逾矩。正是因為他已經掌握 GitHub Actions，能夠根據自己的需求自動化操作。
@@ -83,28 +84,28 @@ my-custom-action/
 name: "Update Notion to Discord"
 description: "Fetch tasks from Notion and update Discord channel"
 inputs:
-  notion_database_id:
-    description: "Notion database ID"
-    required: true
-  notion_token:
-    description: "Notion API token"
-    required: true
-  discord_channel_id:
-    description: "Discord channel ID"
-    required: true
-  discord_token:
-    description: "Discord bot token"
-    required: true
+    notion_database_id:
+        description: "Notion database ID"
+        required: true
+    notion_token:
+        description: "Notion API token"
+        required: true
+    discord_channel_id:
+        description: "Discord channel ID"
+        required: true
+    discord_token:
+        description: "Discord bot token"
+        required: true
 runs:
-  using: "composite"
-  steps:
-    - name: Run script
-      run: ./script.sh
-      env:
-        NOTION_DATABASE_ID: ${{ inputs.notion_database_id }}
-        NOTION_TOKEN: ${{ inputs.notion_token }}
-        DISCORD_CHANNEL_ID: ${{ inputs.discord_channel_id }}
-        DISCORD_TOKEN: ${{ inputs.discord_token }}
+    using: "composite"
+    steps:
+        - name: Run script
+          run: ./script.sh
+          env:
+              NOTION_DATABASE_ID: ${{ inputs.notion_database_id }}
+              NOTION_TOKEN: ${{ inputs.notion_token }}
+              DISCORD_CHANNEL_ID: ${{ inputs.discord_channel_id }}
+              DISCORD_TOKEN: ${{ inputs.discord_token }}
 ```
 
 欸你發現了嗎？我們這裡使用了一個之前沒使用過的參數 `composite`。這個參數可以讓我們在 Action 中執行多個步驟，這樣我們就可以在 Action 中執行多個 Shell 命令。同時我們還使用了之前沒使用過的 `inputs` 關鍵字，這個關鍵字可以讓我們在 Action 中訪問輸入的參數。
@@ -171,10 +172,10 @@ update_tasks
 
 在 GitHub 存儲庫的設置中，添加所需的 Secrets：
 
-- `NOTION_DATABASE_ID`
-- `NOTION_TOKEN`
-- `DISCORD_CHANNEL_ID`
-- `DISCORD_TOKEN`
+-   `NOTION_DATABASE_ID`
+-   `NOTION_TOKEN`
+-   `DISCORD_CHANNEL_ID`
+-   `DISCORD_TOKEN`
 
 這些 Secrets 將用於在 Action 中安全地傳遞敏感信息。
 
@@ -205,21 +206,21 @@ my-custom-action/
 name: "Update Notion to Discord"
 description: "Fetch tasks from Notion and update Discord channel"
 inputs:
-  notion_database_id:
-    description: "Notion database ID"
-    required: true
-  notion_token:
-    description: "Notion API token"
-    required: true
-  discord_channel_id:
-    description: "Discord channel ID"
-    required: true
-  discord_token:
-    description: "Discord bot token"
-    required: true
+    notion_database_id:
+        description: "Notion database ID"
+        required: true
+    notion_token:
+        description: "Notion API token"
+        required: true
+    discord_channel_id:
+        description: "Discord channel ID"
+        required: true
+    discord_token:
+        description: "Discord bot token"
+        required: true
 runs:
-  using: "node20"
-  main: "app.js"
+    using: "node20"
+    main: "app.js"
 ```
 
 ### 步驟 3：編寫 Action 腳本
@@ -231,70 +232,70 @@ const core = require("@actions/core");
 const axios = require("axios");
 
 async function updateTasks() {
-  try {
-    // 讀取輸入參數
-    const notionDatabaseId = core.getInput("notion_database_id");
-    const notionToken = core.getInput("notion_token");
-    const discordChannelId = core.getInput("discord_channel_id");
-    const discordToken = core.getInput("discord_token");
+    try {
+        // 讀取輸入參數
+        const notionDatabaseId = core.getInput("notion_database_id");
+        const notionToken = core.getInput("notion_token");
+        const discordChannelId = core.getInput("discord_channel_id");
+        const discordToken = core.getInput("discord_token");
 
-    // 從 Notion 獲取待辦事項
-    const notionResponse = await axios.post(
-      `https://api.notion.com/v1/databases/${notionDatabaseId}/query`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${notionToken}`,
-          "Notion-Version": "2022-06-28",
-          "Content-Type": "application/json"
-        }
-      }
-    );
+        // 從 Notion 獲取待辦事項
+        const notionResponse = await axios.post(
+            `https://api.notion.com/v1/databases/${notionDatabaseId}/query`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${notionToken}`,
+                    "Notion-Version": "2022-06-28",
+                    "Content-Type": "application/json"
+                }
+            }
+        );
 
-    let notStartedCount = 0;
-    let inProgressCount = 0;
+        let notStartedCount = 0;
+        let inProgressCount = 0;
 
-    // 解析 Notion API 的響應
-    notionResponse.data.results.forEach((result) => {
-      const status = result.properties.Status.status.name;
-      if (status === "Not started") {
-        notStartedCount++;
-      } else if (status === "In progress") {
-        inProgressCount++;
-      }
-    });
+        // 解析 Notion API 的響應
+        notionResponse.data.results.forEach((result) => {
+            const status = result.properties.Status.status.name;
+            if (status === "Not started") {
+                notStartedCount++;
+            } else if (status === "In progress") {
+                inProgressCount++;
+            }
+        });
 
-    // 更新 Discord 頻道標題
-    await axios.patch(
-      `https://discord.com/api/v10/channels/${discordChannelId}`,
-      {
-        name: `還有 ${notStartedCount} 件事沒人做`
-      },
-      {
-        headers: {
-          Authorization: `Bot ${discordToken}`,
-          "Content-Type": "application/json"
-        }
-      }
-    );
+        // 更新 Discord 頻道標題
+        await axios.patch(
+            `https://discord.com/api/v10/channels/${discordChannelId}`,
+            {
+                name: `還有 ${notStartedCount} 件事沒人做`
+            },
+            {
+                headers: {
+                    Authorization: `Bot ${discordToken}`,
+                    "Content-Type": "application/json"
+                }
+            }
+        );
 
-    await axios.patch(
-      `https://discord.com/api/v10/channels/${discordChannelId}`,
-      {
-        name: `${inProgressCount} 件事處理中`
-      },
-      {
-        headers: {
-          Authorization: `Bot ${discordToken}`,
-          "Content-Type": "application/json"
-        }
-      }
-    );
+        await axios.patch(
+            `https://discord.com/api/v10/channels/${discordChannelId}`,
+            {
+                name: `${inProgressCount} 件事處理中`
+            },
+            {
+                headers: {
+                    Authorization: `Bot ${discordToken}`,
+                    "Content-Type": "application/json"
+                }
+            }
+        );
 
-    console.log("Discord channel title updated successfully");
-  } catch (error) {
-    core.setFailed(`Action failed with error: ${error.message}`);
-  }
+        console.log("Discord channel title updated successfully");
+    } catch (error) {
+        core.setFailed(`Action failed with error: ${error.message}`);
+    }
 }
 
 updateTasks();
@@ -318,35 +319,35 @@ updateTasks();
 name: Update Notion to Discord
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 jobs:
-  update:
-    runs-on: ubuntu-latest
+    update:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
 
-      - name: Use custom action
-        uses: ./ # 使用自定義 Action 的路徑
-        with:
-          notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
-          notion_token: ${{ secrets.NOTION_TOKEN }}
-          discord_channel_id: ${{ secrets.DISCORD_CHANNEL_ID }}
-          discord_token: ${{ secrets.DISCORD_TOKEN }}
+            - name: Use custom action
+              uses: ./ # 使用自定義 Action 的路徑
+              with:
+                  notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
+                  notion_token: ${{ secrets.NOTION_TOKEN }}
+                  discord_channel_id: ${{ secrets.DISCORD_CHANNEL_ID }}
+                  discord_token: ${{ secrets.DISCORD_TOKEN }}
 ```
 
 ## 4. 設置 GitHub Secrets
 
 在 GitHub 存儲庫的設置中，添加所需的 Secrets：
 
-- `NOTION_DATABASE_ID`
-- `NOTION_TOKEN`
-- `DISCORD_CHANNEL_ID`
-- `DISCORD_TOKEN`
+-   `NOTION_DATABASE_ID`
+-   `NOTION_TOKEN`
+-   `DISCORD_CHANNEL_ID`
+-   `DISCORD_TOKEN`
 
 這些 Secrets 將用於在 Action 中安全地傳遞敏感信息。
 

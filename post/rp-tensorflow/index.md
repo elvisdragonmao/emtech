@@ -9,8 +9,6 @@ date: 2024-05-01
 
 本文將教你如何在 Raspberry Pi (樹莓派) 上安裝 Tensorflow 以及 Jupyter Notebook。
 
-
-
 ## 背景
 
 最近在做動作識別的專案，原本都是在 Google Colab 跑，想說可以在最近買的 Raspberry Pi 5 上跑看看。最後成果意外的不錯，識別和訓練速度雖然比不上 Google Colab，但對於小模型來說上傳上去再下載還不如在本地直接跑快。

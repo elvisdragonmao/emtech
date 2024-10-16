@@ -9,8 +9,6 @@ date: 2023-09-21
 
 CSS 的濾鏡屬性是一個非常實用且可以瞬間讓一個網頁看起來很厲害的功能。讓你可以以各種方式修改和調整圖像和元素的呈現方式，也可以讓元素模糊，或者是直接改變圖示顏色等等。今天我們將深入探討CSS filter 屬性，解釋其各種功能以及如何使用它來創建引人注目的效果。
 
-
-
 現在，讓我們來看一些CSS filter 屬性的常見用法：
 
 ### 1. 模糊（Blur）
@@ -127,21 +125,21 @@ https://codepen.io/edit-mr/pen/GRPyNYY
 
 ```css
 :root {
-  --color: blue;
+    --color: blue;
 }
 
 body {
-  background: var(--color);
-  min-height: 100svh;
-  margin: 0;
+    background: var(--color);
+    min-height: 100svh;
+    margin: 0;
 }
 body::after {
-  display: block;
-  width: 100%;
-  height: 100svh;
-  content: "";
-  background: linear-gradient(var(--color), transparent);
-  filter: hue-rotate(-60deg) brightness(3);
+    display: block;
+    width: 100%;
+    height: 100svh;
+    content: "";
+    background: linear-gradient(var(--color), transparent);
+    filter: hue-rotate(-60deg) brightness(3);
 }
 ```
 

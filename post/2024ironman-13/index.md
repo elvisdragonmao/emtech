@@ -4,6 +4,7 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-09-26
 ---
+
 # 在碼頭等你 - 自動化 Docker 構建
 
 > 司馬遷敢說：「人固有一死，或重於泰山，或輕於鴻毛。」正是因為他已經把服務打包成 Docker 映像了，就算服務掛了也不怕。
@@ -14,9 +15,9 @@ Docker 是一種容器化技術，它可以將應用程序及其所有依賴套�
 
 ## Docker 基本概念
 
-- **Docker 映像 (Image)**: Docker 映像是包含應用程序及其所有依賴套件、配置文件的靜態文件。它是一個可執行的檔案，能夠在 Docker 容器中運行。
-- **Docker 容器 (Container)**: Docker 容器是基於映像創建的運行實例，它是應用程序的運行環境。
-- **Dockerfile**: 是一個文本文件，包含了創建 Docker 映像所需的指令和配置。
+-   **Docker 映像 (Image)**: Docker 映像是包含應用程序及其所有依賴套件、配置文件的靜態文件。它是一個可執行的檔案，能夠在 Docker 容器中運行。
+-   **Docker 容器 (Container)**: Docker 容器是基於映像創建的運行實例，它是應用程序的運行環境。
+-   **Dockerfile**: 是一個文本文件，包含了創建 Docker 映像所需的指令和配置。
 
 你可以想像成是在做麵包。Docker 映像就像是材料包，Docker 容器就像是你的廚房，而 Dockerfile 就是食譜，裡面記載了如何做麵包的步驟。設置好之後你只需要等著麵包出爐就好了。
 
@@ -63,33 +64,33 @@ CMD ["npm", "start"]
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches:
-      - main # 當推送到 main 分支時觸發工作流程
+    push:
+        branches:
+            - main # 當推送到 main 分支時觸發工作流程
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+        steps:
+            - name: Check out code
+              uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v2
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+            - name: Log in to Docker Hub
+              uses: docker/login-action@v2
+              with:
+                  username: ${{ secrets.DOCKER_USERNAME }}
+                  password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v2
+              with:
+                  context: .
+                  push: true
+                  tags: ${{ secrets.DOCKER_USERNAME }}/my-app:latest
 ```
 
 ### 步驟 3：設置 Docker Hub 憑證
@@ -108,9 +109,9 @@ docker pull ${{ secrets.DOCKER_USERNAME }}/my-app:latest
 ## 技巧與應用
 
 1. **自定義標籤**: 你可以使用變數來自定義 Docker 映像的標籤。例如，使用 commit SHA 作為標籤：
-   ```yaml
-   tags: ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
-   ```
+    ```yaml
+    tags: ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
+    ```
 2. **多平台支持**: 使用 `docker/setup-buildx-action` 支持多平台構建，這樣可以在不同的平台上運行你的 Docker 容器。
 3. **清理舊映像**: 定期清理不再使用的舊映像，以節省存儲空間。你可以使用 Docker Hub 的自動清理策略來實現這一點。
 

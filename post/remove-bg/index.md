@@ -9,16 +9,14 @@ date: 2022-01-06
 
 在這篇文章我要介紹Remove.bg這個超讚的去被網站，並講解如何使用它提供的Api來製作捷徑，使你能夠一鍵去被
 
-
-
 去背對於影音創作者來說是十分重要的技能。除了可以凸顯主題之外，也可以對背景空間進行利用，不過如果要對沒有使用綠幕的圖片進行去背通常是一件十分痛苦的一件事。好在有一個線上的網站可以透過AI來去背，且效果十分不錯。
 {{notice}}
 Remove.bg
 
-- 開發者:[Kaleido](https://www.kaleido.ai/)
-- 類型:網站/網路應用程式
-- 連結:[Remove.bg](https://Remove.bg)
-  {{noticed}}
+-   開發者:[Kaleido](https://www.kaleido.ai/)
+-   類型:網站/網路應用程式
+-   連結:[Remove.bg](https://Remove.bg)
+    {{noticed}}
 
 進入到網站後可以直接上傳照片。上傳完成後可以直接下載，也可以做一些編輯如手動去背（如果AI沒去好）、添加濾鏡、背景顏色等。
 
@@ -36,10 +34,10 @@ API(Application Programming Interface)，中文叫做應用程式介面。你可
 {{notice}}
 Remove.bg一鍵去背
 
-- 開發者:毛哥EM(我)
-- 軟體類型:ios捷徑
-- 下載位置:[iCloud](https://www.icloud.com/shortcuts/fce4a5a7643e4fc2b8c26fa82f5a2fc3)
-  {{noticed}}
+-   開發者:毛哥EM(我)
+-   軟體類型:ios捷徑
+-   下載位置:[iCloud](https://www.icloud.com/shortcuts/fce4a5a7643e4fc2b8c26fa82f5a2fc3)
+    {{noticed}}
 
 ### 使用方法
 

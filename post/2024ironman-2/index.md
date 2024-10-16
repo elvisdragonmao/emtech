@@ -4,6 +4,7 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-09-15
 ---
+
 # Hello World - 運行 Shell 指令
 
 > 「有朋自遠方來，不亦樂乎」應該算是孔子的 Hello World 吧。
@@ -39,42 +40,42 @@ name: 有朋自遠方來，不亦樂乎？
 on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
 
-      - name: 執行一行 Shell 指令
-        run: echo "有朋自遠方來，不亦樂乎？"
+            - name: 執行一行 Shell 指令
+              run: echo "有朋自遠方來，不亦樂乎？"
 
-      - name: 列出當前目錄
-        run: ls -la
+            - name: 列出當前目錄
+              run: ls -la
 
-      - name: 顯示當前目錄
-        run: pwd
+            - name: 顯示當前目錄
+              run: pwd
 
-      - name: 顯示環境變數
-        run: env
+            - name: 顯示環境變數
+              run: env
 ```
 
 **YAML 文件解析：**
 
-- **`name:`** 為這個工作流程命名，這裡我們命名為 `Hello World Shell Command`。
-- **`on:`** 指定工作流程觸發的事件，這裡我們選擇當 `push` 時觸發。
-- **`jobs:`** 這是一個大範圍的配置，代表整個工作流程的任務。
-- **`runs-on:`** 指定工作流程運行的系統環境，我們選擇 `ubuntu-latest`。
-- **`steps:`** 是工作流程的具體步驟，每一步都有一個 `name:` 和 `run:` 來指定要執行的 Shell 指令。
+-   **`name:`** 為這個工作流程命名，這裡我們命名為 `Hello World Shell Command`。
+-   **`on:`** 指定工作流程觸發的事件，這裡我們選擇當 `push` 時觸發。
+-   **`jobs:`** 這是一個大範圍的配置，代表整個工作流程的任務。
+-   **`runs-on:`** 指定工作流程運行的系統環境，我們選擇 `ubuntu-latest`。
+-   **`steps:`** 是工作流程的具體步驟，每一步都有一個 `name:` 和 `run:` 來指定要執行的 Shell 指令。
 
 **步驟 4：推送代碼到 GitHub**
 
 1. 在本地端將 `.github/workflows/hello-world-shell.yml` 文件加入到版本控制中：
-   ```bash
-   git add .github/workflows/hello-world-shell.yml
-   git commit -m "Add hello world shell command workflow"
-   git push origin main
-   ```
+    ```bash
+    git add .github/workflows/hello-world-shell.yml
+    git commit -m "Add hello world shell command workflow"
+    git push origin main
+    ```
 2. 這時，GitHub Actions 將自動運行這個工作流程，並在 Actions 頁面上顯示結果。
 
 ## 深入應用：Shell 指令在實際場景中的應用
@@ -83,42 +84,42 @@ jobs:
 
 1. **自動化部署：**
 
-   - 使用 `scp` 或 `rsync` 指令自動將構建好的文件部署到遠程伺服器。
-   - ```yaml
-     - name: Deploy to server
-       run: scp -r ./dist user@yourserver.com:/path/to/deploy
-     ```
+    - 使用 `scp` 或 `rsync` 指令自動將構建好的文件部署到遠程伺服器。
+    - ```yaml
+      - name: Deploy to server
+        run: scp -r ./dist user@yourserver.com:/path/to/deploy
+      ```
 
 2. **備份數據：**
 
-   - 使用 `tar` 指令將文件夾壓縮並備份到遠程伺服器或雲端存儲。
-   - ```yaml
-     - name: Backup files
-       run: tar -czf backup.tar.gz /path/to/backup && scp backup.tar.gz user@backupserver:/backup/location
-     ```
+    - 使用 `tar` 指令將文件夾壓縮並備份到遠程伺服器或雲端存儲。
+    - ```yaml
+      - name: Backup files
+        run: tar -czf backup.tar.gz /path/to/backup && scp backup.tar.gz user@backupserver:/backup/location
+      ```
 
 3. **自動化測試：**
 
-   - 使用 `curl` 測試 API 是否正常響應。
-   - ```yaml
-     - name: Test API response
-       run: curl -I https://yourapi.com/health
-     ```
+    - 使用 `curl` 測試 API 是否正常響應。
+    - ```yaml
+      - name: Test API response
+        run: curl -I https://yourapi.com/health
+      ```
 
 4. **環境設置：**
 
-   - 使用 `export` 設置環境變數，或者使用 `source` 加載環境配置文件。
-   - ```yaml
-     - name: Set environment variable
-       run: export NODE_ENV=production
-     ```
+    - 使用 `export` 設置環境變數，或者使用 `source` 加載環境配置文件。
+    - ```yaml
+      - name: Set environment variable
+        run: export NODE_ENV=production
+      ```
 
 5. **日誌分析：**
-   - 使用 `grep` 來分析日誌文件中的錯誤信息。
-   - ```yaml
-     - name: Analyze logs
-       run: grep "ERROR" /var/log/application.log
-     ```
+    - 使用 `grep` 來分析日誌文件中的錯誤信息。
+    - ```yaml
+      - name: Analyze logs
+        run: grep "ERROR" /var/log/application.log
+      ```
 
 ## 結語
 

@@ -11,8 +11,6 @@ date: 2023-09-26
 
 你有逛過 Apple 產品介紹的網頁嗎？這應該是我最早接觸滾動視差的地方。也是到現在我都覺得做的數一數二好的網站。你會發現在滾動的時候並不是單純的往下滑而已，螢幕上的元素常常會以出乎你意料的方式移動、或者是變化。
 
-
-
 有的人會說滾動視差 **Parallax Scroll** 是在滾動的時候元素以不同的速度往上移動，但是我認為這個定義有點狹義。我認為只要滑鼠在滾的時候，只要元素不是隨著滾輪往上，有其他的移動路徑如平移、旋轉、甚至淡化都可以算是滾動視差。
 
 > **Parallax** 大部分的時間是應用在天文，在不同的時間和地點能看到的星空都不太一樣。
@@ -31,9 +29,9 @@ $$
 
 我們在製作滾動視差效果的時候元素會有一個起點與終點。我們只需要知道開始位置對應的屬性，以及結束的地方對應的屬性這兩個點就可以找出直線方程式了。
 
-- 首先要算出斜率，斜率是 Y 變化量除以 X 變化量。
-- 接著求出 Y 截距，就可以得出直線方程式。
-- 因為通常到了終點之後，我們不會希望他還在繼續耗資源計算和定位到螢幕畫面千里之外。所以在起點前和終點後都不要再管它了。
+-   首先要算出斜率，斜率是 Y 變化量除以 X 變化量。
+-   接著求出 Y 截距，就可以得出直線方程式。
+-   因為通常到了終點之後，我們不會希望他還在繼續耗資源計算和定位到螢幕畫面千里之外。所以在起點前和終點後都不要再管它了。
 
 ![Desmos 示意圖](https://emtech.cc/post/2023ironman-12/desmos.png)
 
@@ -59,9 +57,9 @@ JavaScript 只需要監聽滾動事件，並在距離範圍套入公式並修改
 ```js
 const element = document.getElementById("element");
 window.addEventListener("scroll", function () {
-  const scrollY = window.scrollY;
-  if (scrollY < 100)
-    element.style.transform = `translateY(${scrollY * 1.4 + 10}px)`;
+    const scrollY = window.scrollY;
+    if (scrollY < 100)
+        element.style.transform = `translateY(${scrollY * 1.4 + 10}px)`;
 });
 ```
 
@@ -80,37 +78,37 @@ https://codepen.io/edit-mr/pen/vYvZagX
 
 ```css
 body {
-  min-height: 300vh;
-  margin: 2rem;
-  text-align: center;
+    min-height: 300vh;
+    margin: 2rem;
+    text-align: center;
 }
 
 div {
-  height: 300px;
-  background: gray;
-  position: relative;
+    height: 300px;
+    background: gray;
+    position: relative;
 }
 
 #element {
-  background: red;
-  width: 50%;
-  height: 200px;
-  z-index: -1;
-  left: 25%;
-  border-radius: 20px 20px 0 0;
+    background: red;
+    width: 50%;
+    height: 200px;
+    z-index: -1;
+    left: 25%;
+    border-radius: 20px 20px 0 0;
 }
 ```
 
 ```js
 const element = document.getElementById("element");
 window.addEventListener("scroll", function () {
-  const scrollY = window.scrollY;
-  if (scrollY < 100) {
-    element.style.transform = `translateY(${scrollY * 1.4 + 10}px)`;
-    document.body.style.background = "white";
-  } else {
-    document.body.style.background = "pink";
-  }
+    const scrollY = window.scrollY;
+    if (scrollY < 100) {
+        element.style.transform = `translateY(${scrollY * 1.4 + 10}px)`;
+        document.body.style.background = "white";
+    } else {
+        document.body.style.background = "pink";
+    }
 });
 ```
 
@@ -125,51 +123,51 @@ window.addEventListener("scroll", function () {
 ```html
 <div></div>
 <p>
-  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem laborum
-  esse adipisci aperiam obcaecati veniam, facilis iste, cupiditate corrupti, ad
-  alias voluptatibus veritatis quae aliquam. Perspiciatis neque labore dolorem
-  ullam. Laborum, sequi. Tenetur aspernatur amet maiores sit possimus, nihil
-  doloremque consequuntur! Neque, suscipit laborum! Accusamus, sint perspiciatis
-  iure ipsa velit necessitatibus aliquam numquam debitis nisi repudiandae nemo
-  laborum exercitationem distinctio? Voluptatum deleniti quasi corrupti
-  consequuntur, iure unde dicta pariatur blanditiis in officiis ab itaque iusto
-  vero praesentium amet ipsa aperiam quo eligendi corporis nulla minus numquam
-  veritatis rem! Nemo, fuga? Quos nulla quae numquam tempore perferendis
-  tenetur, sequi magni iste odit, eius molestias sit enim, amet reiciendis
-  laborum accusamus facere voluptatem! Delectus sit quia libero amet sint!
-  Temporibus, fugiat distinctio! Ipsam, ullam placeat? Corporis exercitationem
-  eius dolores, nulla enim temporibus amet repellendus accusantium suscipit esse
-  non qui similique. Laboriosam sunt sapiente voluptate nihil voluptates rerum
-  facilis itaque aspernatur, optio sint.
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem laborum
+    esse adipisci aperiam obcaecati veniam, facilis iste, cupiditate corrupti,
+    ad alias voluptatibus veritatis quae aliquam. Perspiciatis neque labore
+    dolorem ullam. Laborum, sequi. Tenetur aspernatur amet maiores sit possimus,
+    nihil doloremque consequuntur! Neque, suscipit laborum! Accusamus, sint
+    perspiciatis iure ipsa velit necessitatibus aliquam numquam debitis nisi
+    repudiandae nemo laborum exercitationem distinctio? Voluptatum deleniti
+    quasi corrupti consequuntur, iure unde dicta pariatur blanditiis in officiis
+    ab itaque iusto vero praesentium amet ipsa aperiam quo eligendi corporis
+    nulla minus numquam veritatis rem! Nemo, fuga? Quos nulla quae numquam
+    tempore perferendis tenetur, sequi magni iste odit, eius molestias sit enim,
+    amet reiciendis laborum accusamus facere voluptatem! Delectus sit quia
+    libero amet sint! Temporibus, fugiat distinctio! Ipsam, ullam placeat?
+    Corporis exercitationem eius dolores, nulla enim temporibus amet repellendus
+    accusantium suscipit esse non qui similique. Laboriosam sunt sapiente
+    voluptate nihil voluptates rerum facilis itaque aspernatur, optio sint.
 </p>
 ```
 
 ```css
 body {
-  background: #001c30;
-  color: #dafffb;
+    background: #001c30;
+    color: #dafffb;
 }
 div,
 div::after {
-  background: #176b87;
-  width: 100px;
-  height: 100px;
-  position: fixed;
-  left: 30%;
-  top: calc(50% - 50px);
-  border-radius: 50%;
+    background: #176b87;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    left: 30%;
+    top: calc(50% - 50px);
+    border-radius: 50%;
 }
 
 div::after {
-  content: "";
-  position: absolute;
-  background: #64ccc5;
-  width: 30px;
-  height: 30px;
-  left: 100%;
+    content: "";
+    position: absolute;
+    background: #64ccc5;
+    width: 30px;
+    height: 30px;
+    left: 100%;
 }
 p {
-  width: 20%;
+    width: 20%;
 }
 ```
 
@@ -184,8 +182,8 @@ transform: translateX(50vw) rotate(90deg);
 ```js
 const planet = document.querySelector("div");
 window.addEventListener("scroll", function () {
-  const scrollY = window.scrollY;
-  planet.style.transform = `translateX(${scrollY * 0.3}vw) rotate(${scrollY * 3}deg)`;
+    const scrollY = window.scrollY;
+    planet.style.transform = `translateX(${scrollY * 0.3}vw) rotate(${scrollY * 3}deg)`;
 });
 ```
 

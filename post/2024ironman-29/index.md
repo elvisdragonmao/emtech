@@ -4,6 +4,7 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-10-12
 ---
+
 # 鐵人賽怕忘記發文？讓 GitHub Actions 每小時提醒你！
 
 倒數第二天了，各位今年有參加鐵人賽嗎？記得去年寫[【不用庫 也能酷 - 玩轉 CSS & Js 特效】](https://ithelp.ithome.com.tw/users/20139821/ironman/6133)的時候緊張到好幾天晚上做惡夢夢到忘記發文，不過今天我心裡特別平安，因為我寫了一個 GitHub Action 來提醒我每小時發文。
@@ -59,50 +60,50 @@ const now = new Date();
 const nowUTC8 = new Date(now.getTime() + 8 * 60 * 60 * 1000);
 // minus 2024/9/15, calculate how many days after.
 const days = Math.floor(
-  (nowUTC8 - new Date("2024-09-14")) / (24 * 60 * 60 * 1000)
+    (nowUTC8 - new Date("2024-09-14")) / (24 * 60 * 60 * 1000)
 );
 const url =
-  "https://ithelp.ithome.com.tw/users/20139821/ironman/7503?page=" +
-  Math.ceil(days / 10);
+    "https://ithelp.ithome.com.tw/users/20139821/ironman/7503?page=" +
+    Math.ceil(days / 10);
 
 fetch(url)
-  .then((res) => res.text())
-  .then((html) => {
-    // remove all tabs and spaces in the html
-    const htmlNoSpace = html.replace(/\s/g, "");
-    // check if html include <spanclass="ir-qa-list__daysir-qa-list__days--profile">DAY5</span>
-    //console.log(htmlNoSpace); // The raw HTML of the page
+    .then((res) => res.text())
+    .then((html) => {
+        // remove all tabs and spaces in the html
+        const htmlNoSpace = html.replace(/\s/g, "");
+        // check if html include <spanclass="ir-qa-list__daysir-qa-list__days--profile">DAY5</span>
+        //console.log(htmlNoSpace); // The raw HTML of the page
 
-    if (
-      !htmlNoSpace.includes(
-        `<spanclass="ir-qa-list__daysir-qa-list__days--profile">DAY${days}</span>`
-      )
-    ) {
-      // call discord webhook, and send message to discord
-      fetch(process.env.DISCORD_WEBHOOK, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          content: `@everyone 第${days}天的文章還沒發布喔！`
-        })
-      })
-        .then(() => {
-          console.log(
-            "Day",
-            days,
-            "not published yet. Message sent to Discord."
-          );
-        })
-        .catch((err) => {
-          console.error("Error sending message to Discord:", err);
-        });
-    }
-  })
-  .catch((err) => {
-    console.error("Error fetching page:", err);
-  });
+        if (
+            !htmlNoSpace.includes(
+                `<spanclass="ir-qa-list__daysir-qa-list__days--profile">DAY${days}</span>`
+            )
+        ) {
+            // call discord webhook, and send message to discord
+            fetch(process.env.DISCORD_WEBHOOK, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    content: `@everyone 第${days}天的文章還沒發布喔！`
+                })
+            })
+                .then(() => {
+                    console.log(
+                        "Day",
+                        days,
+                        "not published yet. Message sent to Discord."
+                    );
+                })
+                .catch((err) => {
+                    console.error("Error sending message to Discord:", err);
+                });
+        }
+    })
+    .catch((err) => {
+        console.error("Error fetching page:", err);
+    });
 ```
 
 來看一下這段程式碼：
@@ -132,35 +133,35 @@ fetch(url)
 name: 鐵人賽發文檢查
 
 on:
-  # every hour from 12:00 to 23:00
-  schedule:
-    - cron: "0 4-16 * * *"
-  workflow_dispatch:
+    # every hour from 12:00 to 23:00
+    schedule:
+        - cron: "0 4-16 * * *"
+    workflow_dispatch:
 
 jobs:
-  run-check:
-    runs-on: ubuntu-latest
+    run-check:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20"
-      - name: Change Directory to 'check'
-        run: cd check
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "20"
+            - name: Change Directory to 'check'
+              run: cd check
 
-      - name: Install Dependencies
-        run: yarn install
-        working-directory: ./check
+            - name: Install Dependencies
+              run: yarn install
+              working-directory: ./check
 
-      - name: Run Node.js Script
-        run: node index.mjs
-        working-directory: ./check
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+            - name: Run Node.js Script
+              run: node index.mjs
+              working-directory: ./check
+              env:
+                  DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 ```
 
 這裡要注意由於 GitHub Action 的時區是 UTC，所以我們需要將時間 +8 小時，這樣才能在正確的時間執行 Action。這裡我們設定每小時執行一次，從凌晨 12 點 (因為這時候我通常還沒睡，或是一早能看到)。接下來是從中午 12 點到晚上 11 點每個小時執行一次。

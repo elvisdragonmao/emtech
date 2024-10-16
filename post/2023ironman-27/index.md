@@ -63,129 +63,129 @@ date: 2023-10-11
 
 ```css
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 body {
-  background: #f2f2f2;
-  font-family: system-ui;
+    background: #f2f2f2;
+    font-family: system-ui;
 }
 header > div,
 nav > div,
 main > div {
-  padding: 15px;
-  max-width: 1170px;
-  margin: 0 auto;
+    padding: 15px;
+    max-width: 1170px;
+    margin: 0 auto;
 }
 header {
-  background: #fff;
+    background: #fff;
 }
 header img {
-  width: 14%;
-  margin-top: 45px;
-  margin-bottom: 16px;
-  padding-right: 10px;
+    width: 14%;
+    margin-top: 45px;
+    margin-bottom: 16px;
+    padding-right: 10px;
 }
 .fixedNav {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 nav {
-  width: 100%;
-  background-color: #00a0e9;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    background-color: #00a0e9;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
 }
 nav > div {
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  color: #fff;
-  font-weight: 700;
-  padding: 0 10px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 700;
+    padding: 0 10px;
 }
 li {
-  display: inline-block;
-  padding: 0 12px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+    display: inline-block;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 i {
-  font-size: 1.2em;
+    font-size: 1.2em;
 }
 .button {
-  color: #0f6b95;
-  font-size: 1em;
+    color: #0f6b95;
+    font-size: 1em;
 }
 .caret {
-  display: inline-block;
-  margin-left: 2px;
-  border-top: 4px solid;
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent;
+    display: inline-block;
+    margin-left: 2px;
+    border-top: 4px solid;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
 }
 ul {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 button {
-  font-family: system-ui;
-  display: block;
-  padding: 2px 8px 5px;
-  box-shadow: 0px 2px 1px 1px #00637d;
-  background-color: #ffffff;
-  color: #1b79a2;
-  border-radius: 6px;
-  font-size: 16px;
-  outline: none;
-  border: none;
+    font-family: system-ui;
+    display: block;
+    padding: 2px 8px 5px;
+    box-shadow: 0px 2px 1px 1px #00637d;
+    background-color: #ffffff;
+    color: #1b79a2;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    border: none;
 }
 .right {
-  justify-content: flex-end;
-  flex-grow: 1;
+    justify-content: flex-end;
+    flex-grow: 1;
 }
 .right li {
-  padding: 0 10px;
+    padding: 0 10px;
 }
 
 li img {
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
 }
 aside {
-  width: 300px;
+    width: 300px;
 }
 aside,
 section {
-  background: #fff;
-  height: 200vh;
+    background: #fff;
+    height: 200vh;
 }
 main > div {
-  display: flex;
-  gap: 30px;
-  padding-top: 30px;
+    display: flex;
+    gap: 30px;
+    padding-top: 30px;
 }
 section {
-  flex-grow: 1;
-  border-top: 3px solid #00a0e9;
+    flex-grow: 1;
+    border-top: 3px solid #00a0e9;
 }
 aside {
-  background: linear-gradient(
-    #f2f2f2 270px,
-    #00a0e9 270px,
-    #00a0e9 320px,
-    #fff 320px
-  );
+    background: linear-gradient(
+        #f2f2f2 270px,
+        #00a0e9 270px,
+        #00a0e9 320px,
+        #fff 320px
+    );
 }
 ```
 
 大概講幾個有趣的點:
 
-- 圖片來源是 [Font Awesome](https://fontawesome.com/)
-- `<aside>` 裡面的背景是用 `linear-gradient` 做的。先是背景灰色，然後是藍色、白色。感覺像是分成不同元素但為了方便就用一個漸層充當。
-- 設定 `max-width: 1170px` 再加上 `margin: 0 auto` 來讓版面置中。
+-   圖片來源是 [Font Awesome](https://fontawesome.com/)
+-   `<aside>` 裡面的背景是用 `linear-gradient` 做的。先是背景灰色，然後是藍色、白色。感覺像是分成不同元素但為了方便就用一個漸層充當。
+-   設定 `max-width: 1170px` 再加上 `margin: 0 auto` 來讓版面置中。
 
 其他的沒什麼特別的。如果看不懂的話可以複習 [Day3 用 Flex 切遍天下](https://emtech.cc/post/2023ironman-3/)
 
@@ -201,7 +201,7 @@ const white = document.querySelector("header");
 
 ```js
 document.addEventListener("scroll", () =>
-  white.classList.toggle("fixedNav", white.getBoundingClientRect().bottom < 0)
+    white.classList.toggle("fixedNav", white.getBoundingClientRect().bottom < 0)
 );
 ```
 
@@ -215,9 +215,9 @@ ok 最後來補上一點 CSS。先是讓導覽列固定在最上方。
 
 ```css
 .fixedNav + nav {
-  position: fixed;
-  top: 0;
-  left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 ```
 
@@ -236,12 +236,15 @@ HTML 加上圖片
 ```html
 <!-- ... -->
 <nav>
-  <div>
-    <img src="https://ithelp.ithome.com.tw/storage/image/nav_logo.svg" alt="" />
-    <ul class="left">
-      <!-- ... -->
-    </ul>
-  </div>
+    <div>
+        <img
+            src="https://ithelp.ithome.com.tw/storage/image/nav_logo.svg"
+            alt=""
+        />
+        <ul class="left">
+            <!-- ... -->
+        </ul>
+    </div>
 </nav>
 ```
 
@@ -253,14 +256,14 @@ iT 邦幫忙的作法是把右邊的選單用 `transform:translate()` 往左平�
 
 ```css
 nav > div > img {
-  width: 0px;
-  transition: width 0.2s linear;
-  object-fit: cover;
-  object-position: left;
-  height: 24px;
+    width: 0px;
+    transition: width 0.2s linear;
+    object-fit: cover;
+    object-position: left;
+    height: 24px;
 }
 .fixedNav + nav > div > img {
-  width: 109px;
+    width: 109px;
 }
 ```
 

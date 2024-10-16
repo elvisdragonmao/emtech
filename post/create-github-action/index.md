@@ -9,8 +9,6 @@ date: 2024-04-01
 
 GitHub Actions 是 GitHub 提供的一個 CI/CD 服務，可以讓你在 GitHub 上自動化你的工作流程，幫你生成文件、測試安全性、部署應用程式等等。而 GitHub Marketplace 則是一個集成了 GitHub Actions 的地方，你可以在這裡找到各種各樣的 Action 來幫助你的專案。在這篇文章中，我將教你如何自製 GitHub Actions 並上架至 Marketplace。
 
-
-
 今天我的範例是要使用 Node.js 製作一個可以將 GitHub Repository 中的 issue 同步到 Notion 的 Action。
 
 > 成果倉庫: [GitHub-issue-2-Notion](https://github.com/Edit-Mr/GitHub-issue-2-Notion)
@@ -39,21 +37,21 @@ name: Sync GitHub Issues to Notion
 author: Elvis Mao
 description: A simple tool to sync GitHub issues to Notion beautifully.
 branding:
-  color: gray-dark
-  icon: activity
+    color: gray-dark
+    icon: activity
 inputs:
-  repo:
-    description: "The GitHub repository name."
-    required: true
-  NOTION_API_KEY:
-    description: "The Notion API key."
-    required: true
-  NOTION_DATABASE_ID:
-    description: "The ID of the Notion database."
-    required: true
+    repo:
+        description: "The GitHub repository name."
+        required: true
+    NOTION_API_KEY:
+        description: "The Notion API key."
+        required: true
+    NOTION_DATABASE_ID:
+        description: "The ID of the Notion database."
+        required: true
 runs:
-  using: "node20"
-  main: "index.js"
+    using: "node20"
+    main: "index.js"
 ```
 
 這個文件中包含了 Action 的名稱、作者、描述、輸入參數、運行環境等等。你可以根據你的需求修改這個文件。branding 中的 color 和 icon 是用來設置 Action 在 Marketplace 上的顏色和圖標的。你可以在 [GitHub Actions Branding Cheat Sheet](https://haya14busa.github.io/github-action-brandings/) 這個實用的工具中找到更多的顏色和圖標。
@@ -68,16 +66,16 @@ const core = require("@actions/core");
 // const { markdownToBlocks } = require("@tryfabric/martian");
 
 async function main() {
-  const repo = core.getInput("repo");
-  const notionToken = core.getInput("NOTION_API_KEY");
-  const notionDatabaseId = core.getInput("NOTION_DATABASE_ID");
+    const repo = core.getInput("repo");
+    const notionToken = core.getInput("NOTION_API_KEY");
+    const notionDatabaseId = core.getInput("NOTION_DATABASE_ID");
 
-  // ...
+    // ...
 }
 
 main().catch((error) => {
-  console.error(error);
-  process.exit(1);
+    console.error(error);
+    process.exit(1);
 });
 ```
 
@@ -100,13 +98,13 @@ A simple tool to sync GitHub issues to Notion beautifully
 
 ## Features
 
-- [x] Sync issue to Notion
-- [x] Sync State to Notion
-- [x] Sync labels to Notion
-- [x] Sync URL to Notion
-- [x] Sync content to Notion with full markdown support
-- [x] Won't repeat recreating the same issue
-- [x] Update status if exists
+-   [x] Sync issue to Notion
+-   [x] Sync State to Notion
+-   [x] Sync labels to Notion
+-   [x] Sync URL to Notion
+-   [x] Sync content to Notion with full markdown support
+-   [x] Won't repeat recreating the same issue
+-   [x] Update status if exists
 ```
 
 這樣我們的 Action 就完成了。請將整個 Repository 推送到 GitHub 上 (當然，你的權杖和測試文件記得 ignore)。
@@ -137,19 +135,19 @@ A simple tool to sync GitHub issues to Notion beautifully
 name: Sync issues to Notion
 
 on:
-  issues:
-    types: [opened, edited, deleted, closed, reopened]
-  workflow_dispatch:
+    issues:
+        types: [opened, edited, deleted, closed, reopened]
+    workflow_dispatch:
 jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Notion GitHub Issues Automation
-        uses: Edit-Mr/GitHub-issue-2-Notion@main
-        with:
-          repo: ${{ github.repository }}
-          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-          NOTION_DATABASE: ${{ secrets.NOTION_DATABASE_ID }}
+    sync:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Notion GitHub Issues Automation
+              uses: Edit-Mr/GitHub-issue-2-Notion@main
+              with:
+                  repo: ${{ github.repository }}
+                  NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+                  NOTION_DATABASE: ${{ secrets.NOTION_DATABASE_ID }}
 ```
 
 這個文件中包含了工作流程的名稱、觸發條件、工作、步驟等等。這裡我們使用了 `Edit-Mr/GitHub-issue-2-Notion@main` 來引入我們的 Action。

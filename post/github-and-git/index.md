@@ -9,8 +9,6 @@ date: 2022-08-22
 
 這一篇文章我會用簡單好理解的方式讓你學會基本的使用Github和Git。且*複製貼上就能成為工程師*系列所搭建的網站都可以免費架設在Github
 
-
-
 這篇文章拖很久，8月就在寫了一直沒空更新
 
 # Github是什麼
@@ -32,10 +30,10 @@ Github的單位是`使用者/倉庫/檔案`。我們會在電腦裡放一個資�
 成功註冊驗證完你可以編輯一下你的個人資訊（自我介紹，頭像之類的）。好了之後點擊New Repo，並命名為`用戶名.github.io`讓裡面的檔案自動變成網站。一定要一字不漏一樣喔，但如果只是要存檔案而已取什麼名字都可以。
 底下有幾個選項
 
-- **Description (optional)**：*這個專案是什麼？在你的repo裡顯示，在列表中回顯示為副標題。*有沒有都可以
-- **Add a README file**：*添加一個`README.md`，在你的repo裡顯示，通常會寫一些介紹或使用說明。要寫多長都可以。*有沒有都可以
-- **Add .gitignore**：*在下載/上傳的時候忽略特定的檔案。比如說你用一個檔案存放你的私人密碼，你不希望這個上傳到網路上讓每個人都能看到對吧。*選擇None即可
-- **Choose a license**：*告訴別人他可以對你的程式做什麼。我是使用Apache License 2.0。你可以閱讀這些條款看哪個符合你的想法，很多人會用MIT的條款。*有沒有都可以
+-   **Description (optional)**：*這個專案是什麼？在你的repo裡顯示，在列表中回顯示為副標題。*有沒有都可以
+-   **Add a README file**：*添加一個`README.md`，在你的repo裡顯示，通常會寫一些介紹或使用說明。要寫多長都可以。*有沒有都可以
+-   **Add .gitignore**：*在下載/上傳的時候忽略特定的檔案。比如說你用一個檔案存放你的私人密碼，你不希望這個上傳到網路上讓每個人都能看到對吧。*選擇None即可
+-   **Choose a license**：*告訴別人他可以對你的程式做什麼。我是使用Apache License 2.0。你可以閱讀這些條款看哪個符合你的想法，很多人會用MIT的條款。*有沒有都可以
 
 成功建立之後你可以看見有一個剛才系統建立的`README.md`。這個是別人進入這個專案網頁會看到的這個說明文件，可以先不用管它。每次我們上傳完檔案後它都會需要部署一下。大概等個三十秒就可以進去你的網站了。網站就是`使用者.github.io`。
 
@@ -45,15 +43,15 @@ Github的單位是`使用者/倉庫/檔案`。我們會在電腦裡放一個資�
 
 # Git邏輯
 
-- 如果要從網上下載下來檔案我們要`clone`（複製）下來
-- 如果`clone`之後有更新的版本想下載直接`pull`就會把新增的東西下載下來。
+-   如果要從網上下載下來檔案我們要`clone`（複製）下來
+-   如果`clone`之後有更新的版本想下載直接`pull`就會把新增的東西下載下來。
 
 而要上傳檔案就像剛才說寄包裹一樣。（比較好理解的方式，不寫那些專業術語）
 
-- 我們要先填寫寄信人（我們）的資訊，還有收件人的地址（網址）。這個只需要寫一次就可以了
-- 接下來我們要`add`（選擇）要傳送的資料。通常會選擇傳送所有你編輯過的地方。
-- 選好之後我們到把包裹`commit`（打包起來），並留下一串訊息（必填，簡單講你做了什麼編輯，之後比較好看）
-- 最後把它`push`（寄）出去就好囉
+-   我們要先填寫寄信人（我們）的資訊，還有收件人的地址（網址）。這個只需要寫一次就可以了
+-   接下來我們要`add`（選擇）要傳送的資料。通常會選擇傳送所有你編輯過的地方。
+-   選好之後我們到把包裹`commit`（打包起來），並留下一串訊息（必填，簡單講你做了什麼編輯，之後比較好看）
+-   最後把它`push`（寄）出去就好囉
 
 底下我們來實際嘗試下載和上傳檔案
 
@@ -64,10 +62,10 @@ Github的單位是`使用者/倉庫/檔案`。我們會在電腦裡放一個資�
 {{notice}}
 Gitub Destop
 
-- 開發者:Github (Microsoft)
-- 軟體類型:免費軟體
-- 網址:[Github](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
-  {{noticed}}
+-   開發者:Github (Microsoft)
+-   軟體類型:免費軟體
+-   網址:[Github](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
+    {{noticed}}
 
 Github Destop可以讓你有按鈕可以按，不用打指令也可以使用git。多少可以節省一點時間，但看起來就沒有那麼酷（
 下載Github Destop並安裝，原則上就是你也懂的一直下一步。安裝成功後他會叫你輸入剛才講的個人資訊，並且請你登入你的Github帳號。
@@ -105,13 +103,13 @@ git clone
 ```html
 <!doctype html>
 <head>
-  <meta charset="utf-8" />
-  <title>歡迎來到我的網站</title>
+    <meta charset="utf-8" />
+    <title>歡迎來到我的網站</title>
 </head>
 <body>
-  <h1>歡迎來到我的網站</h1>
-  <h2>我很開心</h2>
-  <p><a href="https://emtech.cc/">毛哥EM資訊密技</a>的範例程式</p>
+    <h1>歡迎來到我的網站</h1>
+    <h2>我很開心</h2>
+    <p><a href="https://emtech.cc/">毛哥EM資訊密技</a>的範例程式</p>
 </body>
 ```
 
@@ -157,8 +155,8 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 我們必須要先pull最新的版本下來。不過在我們使用`git pull`指令前我們需要告訴git要怎麼處理檔案
 
-- 合併：`git config pull.rebase false`
-- 不管那個版本：`git config pull.rebase true`
-- 放棄剛才編輯的：`git config pull.ff only`
+-   合併：`git config pull.rebase false`
+-   不管那個版本：`git config pull.rebase true`
+-   放棄剛才編輯的：`git config pull.ff only`
 
 我們可以用`git config --global`而不是`git config`來告訴git不管哪個專案都要這樣處理。

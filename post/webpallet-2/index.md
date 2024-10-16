@@ -10,8 +10,6 @@ date: 2023-06-05
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。今天我要讓你5分鐘學會所有常用的HTML語法。
 
-
-
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/3NV8ZQtfQm0?si=hh0oS6Qi06ZpiJDe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 HTML叫做超文本標記語言(Hyper Text Markup Language)。故名思義就是標記一下文字，要記得HTML主要功能不是為了裝飾，目的是讓**瀏覽器知道這個是什麼**。比如說Google想知道網站標題會去找裡面的`<h1>`；而給盲人用的語音閱讀器在看到`<strong>`會加重語氣。裝飾文字是CSS的工作，下禮拜就來講）
@@ -34,12 +32,12 @@ HTML就是這樣建立一個又一個地”元素” (element) 。因為寫HTML�
 
 ```html
 <p>
-  段落
-  <b>粗體</b>
-  <i>斜體</i>
-  <s>刪除線</s>
-  <u>底線</u>
-  H<sup>+</sup> CO<sub>2</sub>
+    段落
+    <b>粗體</b>
+    <i>斜體</i>
+    <s>刪除線</s>
+    <u>底線</u>
+    H<sup>+</sup> CO<sub>2</sub>
 </p>
 ```
 
@@ -82,15 +80,15 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <ul>
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
 </ul>
 ```
 
-- a
-- b
-- c
+-   a
+-   b
+-   c
 
 ## 有序清單
 
@@ -98,9 +96,9 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <ol>
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
 </ol>
 ```
 
@@ -114,16 +112,16 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <ul>
-  <li>玉米濃湯</li>
-  <li>鮪魚吐司</li>
-  <li>
-    薯條
-    <ul>
-      <li>鹽味</li>
-      <li>胡椒鹽</li>
-      <li>番茄醬</li>
-    </ul>
-  </li>
+    <li>玉米濃湯</li>
+    <li>鮪魚吐司</li>
+    <li>
+        薯條
+        <ul>
+            <li>鹽味</li>
+            <li>胡椒鹽</li>
+            <li>番茄醬</li>
+        </ul>
+    </li>
 </ul>
 ```
 
@@ -174,8 +172,8 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <img
-  src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-  alt="Google"
+    src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+    alt="Google"
 />
 ```
 
@@ -185,10 +183,10 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <a href="https://www.google.com/">
-  <img
-    src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-    alt="Google"
-  />
+    <img
+        src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+        alt="Google"
+    />
 </a>
 ```
 
@@ -202,24 +200,24 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <table>
-  <tr>
-    <th>國家</th>
-    <th>首都</th>
-    <th>人口</th>
-    <th>語言</th>
-  </tr>
-  <tr>
-    <td>USA</td>
-    <td>Washington D.C.</td>
-    <td>309 million</td>
-    <td>English</td>
-  </tr>
-  <tr>
-    <td>Sweden</td>
-    <td>Stockholm</td>
-    <td>9 million</td>
-    <td>Swedish</td>
-  </tr>
+    <tr>
+        <th>國家</th>
+        <th>首都</th>
+        <th>人口</th>
+        <th>語言</th>
+    </tr>
+    <tr>
+        <td>USA</td>
+        <td>Washington D.C.</td>
+        <td>309 million</td>
+        <td>English</td>
+    </tr>
+    <tr>
+        <td>Sweden</td>
+        <td>Stockholm</td>
+        <td>9 million</td>
+        <td>Swedish</td>
+    </tr>
 </table>
 ```
 
@@ -248,32 +246,32 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <table>
-  <thead>
-    <tr>
-      <th>項目</th>
-      <th>金額</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>iPhone 11</td>
-      <td>$24,900</td>
-    </tr>
-    <tr>
-      <td>AirPods</td>
-      <td>$6,490</td>
-    </tr>
-    <tr>
-      <td>iPad Pro</td>
-      <td>$25,900</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <th>總金額</th>
-      <td>$57,290</td>
-    </tr>
-  </tfoot>
+    <thead>
+        <tr>
+            <th>項目</th>
+            <th>金額</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>iPhone 11</td>
+            <td>$24,900</td>
+        </tr>
+        <tr>
+            <td>AirPods</td>
+            <td>$6,490</td>
+        </tr>
+        <tr>
+            <td>iPad Pro</td>
+            <td>$25,900</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>總金額</th>
+            <td>$57,290</td>
+        </tr>
+    </tfoot>
 </table>
 ```
 
@@ -400,13 +398,13 @@ iframe是用來嵌入網頁的，比如說我們要嵌入YouTube影片，你可�
 
 ```html
 <iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/lOecpIqOjjY"
-  title="YouTube video player"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/lOecpIqOjjY"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
 ></iframe>
 ```
 
@@ -418,8 +416,8 @@ Audio是用來播放音樂的，我們可以用`<audio>`元素建立，然後用
 
 ```html
 <audio
-  src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-  controls
+    src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+    controls
 ></audio>
 ```
 
@@ -445,8 +443,8 @@ Video是用來播放影片的，我們可以用`<video>`元素建立，然後用
 
 ```html
 <div>
-  <h2>注意</h2>
-  <p>感謝你的注意</p>
+    <h2>注意</h2>
+    <p>感謝你的注意</p>
 </div>
 ```
 

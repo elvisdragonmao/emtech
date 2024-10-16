@@ -9,8 +9,6 @@ date: 2023-09-17
 
 當你拿到一張設計圖要照著做出來你的第一反應是什麼呢？是直接套 bootstrap 再說嗎？但我幾乎所有的切版**只要是整齊能畫出網格的，我都會使用flex。**而這個網格也不一定是正方形，只要是矩形就可以了。
 
-
-
 什麼意思呢？假設 Google 拿了一張首頁的設計圖給我要我照著做出來（假設）
 
 那麼我會先看出來整個頁面被包在一個和螢幕一樣大的 flex 方框，垂直排列。而排完剩餘的空間全部給一個空白的方框。而上面的 nav 目錄方框裡面分左右兩個方框，靠兩側對齊。
@@ -26,24 +24,24 @@ date: 2023-09-17
 ```html
 <!-- section>div*4 -->
 <section>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
 </section>
 ```
 
 ```css
 section {
-  background: #191d88; /* bg #191d88 */
-  padding: 5px; /* p5 */
+    background: #191d88; /* bg #191d88 */
+    padding: 5px; /* p5 */
 }
 
 div {
-  width: 100px; /* w100 */
-  height: 100px; /* h100 */
-  background: #ffc436; /* bg #ffc436 */
-  margin: 20px; /* m20 */
+    width: 100px; /* w100 */
+    height: 100px; /* h100 */
+    background: #ffc436; /* bg #ffc436 */
+    margin: 20px; /* m20 */
 }
 ```
 
@@ -59,10 +57,10 @@ div {
 
 ```css
 section {
-  flex-direction: row; /* 預設左到右 */
-  flex-direction: row-reverse; /* 右到左 */
-  flex-direction: column; /* 上到下 */
-  flex-direction: column-reverse; /* 下到上 */
+    flex-direction: row; /* 預設左到右 */
+    flex-direction: row-reverse; /* 右到左 */
+    flex-direction: column; /* 上到下 */
+    flex-direction: column-reverse; /* 下到上 */
 }
 ```
 
@@ -90,7 +88,7 @@ flex-wrap: wrap-reverse; /* 換行但從下到上排 */
 
 ```css
 .flex-container {
-  flex-flow: < "flex-direction" > || < "flex-wrap" >;
+    flex-flow: < "flex-direction" > || < "flex-wrap" >;
 }
 ```
 
@@ -118,7 +116,7 @@ justify-content: flex-start | flex-end | center | space-between | space-around;
 
 ```css
 align-content: flex-start | flex-end | center | space-between | space-around |
-  stretch;
+    stretch;
 ```
 
 ![Untitled](https://emtech.cc/post/2023ironman-3/align-content.webp)
@@ -127,9 +125,9 @@ align-content: flex-start | flex-end | center | space-between | space-around |
 
 我們會再內元件(黃色方塊)設定的 CSS 不多。我們可以使用 **`align-self: flex-end`** 設定單獨一個元素的特別往另一邊靠，也可以設定假設排完有多的空間要給誰。
 
-- flex-grow: 剩下空間方給他幾份，預設值為 `0`，如果設置為 0 則不會縮放，1以上就大家來分。
-- flex-shrink: 反之，當空間分配還不足時的當前元件的收縮性，預設值為 `1`，如果設置為 0 則不會縮放。
-- flex-basis: 元件的基準值，可使用不同的單位值。
+-   flex-grow: 剩下空間方給他幾份，預設值為 `0`，如果設置為 0 則不會縮放，1以上就大家來分。
+-   flex-shrink: 反之，當空間分配還不足時的當前元件的收縮性，預設值為 `1`，如果設置為 0 則不會縮放。
+-   flex-basis: 元件的基準值，可使用不同的單位值。
 
 比如說以下是一個頁首，使用 `flex-grow` 把剩下的空間都給中間。
 

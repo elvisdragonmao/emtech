@@ -9,8 +9,6 @@ date: 2024-05-16
 
 Line 在 2024/04/17 推出了新的 Messaging API，其中一個功能是可以顯示思考中動畫。讓使用者知道機器人正在思考中，並不是已讀不回。對於現在許多機器人會串接 LLM API 的應用來說，這個功能非常實用。為了讓大家更好理解，今天我們先不要急著串接生成式 AI，我們來使用 Google Apps Script 做一個簡單的 Demo 吧!
 
-
-
 ![成果](result.gif)
 
 > 其實這個功能在發布當天我就收到通知了，今天終於抽出時間來玩玩看這個新功能。
@@ -57,55 +55,55 @@ curl -v -X POST https://api.line.me/v2/bot/chat/loading/start \
 const token = "XXXXXXXXXXXXXXXXXXXXXXXXXXXx=";
 
 function doPost(e) {
-  var contents = JSON.parse(e.postData.contents);
-  var chatId = contents.events[0].source.userId;
-  var replyToken = contents.events[0].replyToken;
+    var contents = JSON.parse(e.postData.contents);
+    var chatId = contents.events[0].source.userId;
+    var replyToken = contents.events[0].replyToken;
 
-  // Start the loading animation
-  sendLoading(chatId, 5);
+    // Start the loading animation
+    sendLoading(chatId, 5);
 
-  // Set a timer to end the loading animation and send a reply after 5 seconds
-  Utilities.sleep(5000);
-  sendReply(replyToken, "好喔");
+    // Set a timer to end the loading animation and send a reply after 5 seconds
+    Utilities.sleep(5000);
+    sendReply(replyToken, "好喔");
 }
 
 function sendLoading(chatId, seconds) {
-  var url = "https://api.line.me/v2/bot/chat/loading/start";
-  var payload = {
-    chatId: chatId,
-    loadingSeconds: seconds
-  };
-  var options = {
-    method: "post",
-    contentType: "application/json",
-    headers: {
-      Authorization: "Bearer " + token
-    },
-    payload: JSON.stringify(payload)
-  };
-  UrlFetchApp.fetch(url, options);
+    var url = "https://api.line.me/v2/bot/chat/loading/start";
+    var payload = {
+        chatId: chatId,
+        loadingSeconds: seconds
+    };
+    var options = {
+        method: "post",
+        contentType: "application/json",
+        headers: {
+            Authorization: "Bearer " + token
+        },
+        payload: JSON.stringify(payload)
+    };
+    UrlFetchApp.fetch(url, options);
 }
 
 function sendReply(replyToken, message) {
-  var url = "https://api.line.me/v2/bot/message/reply";
-  var payload = {
-    replyToken: replyToken,
-    messages: [
-      {
-        type: "text",
-        text: message
-      }
-    ]
-  };
-  var options = {
-    method: "post",
-    contentType: "application/json",
-    headers: {
-      Authorization: "Bearer " + token
-    },
-    payload: JSON.stringify(payload)
-  };
-  UrlFetchApp.fetch(url, options);
+    var url = "https://api.line.me/v2/bot/message/reply";
+    var payload = {
+        replyToken: replyToken,
+        messages: [
+            {
+                type: "text",
+                text: message
+            }
+        ]
+    };
+    var options = {
+        method: "post",
+        contentType: "application/json",
+        headers: {
+            Authorization: "Bearer " + token
+        },
+        payload: JSON.stringify(payload)
+    };
+    UrlFetchApp.fetch(url, options);
 }
 ```
 

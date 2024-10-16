@@ -9,8 +9,6 @@ date: 2023-09-23
 
 > 昨天我們只是一個人的色而已，今天疊在一起更刺激。
 
-
-
 你有使用過 iOS17 的 StandBy 功能嗎？就是那個你一定要買磁吸充電還要喬好角度的功能。這不是重點，你有發現白色的數字時鐘似乎不只是有點半透明而已，還有一點說不出來的…高級感。
 
 之所以會有這種效果是因為他使用了不同的混合模式，如果是有在畫圖或 P 圖的朋友絕對對它不陌生。我這裡使用 iPhone 的 Procreate 來示範，希望你能理解。
@@ -62,31 +60,31 @@ https://codepen.io/edit-mr/pen/jOXayXa
 
 ```html
 <h1>
-  09:41
-  <div class="mix">09:41</div>
+    09:41
+    <div class="mix">09:41</div>
 </h1>
 ```
 
 ```css
 body {
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-  color: rgba(255, 255, 255, 0.6);
-  display: flex;
-  align-item: center;
-  justify-content: center;
-  height: 100svh;
-  font-size: 10vw;
+    background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(9, 9, 121, 1) 35%,
+        rgba(0, 212, 255, 1) 100%
+    );
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-item: center;
+    justify-content: center;
+    height: 100svh;
+    font-size: 10vw;
 }
 .mix {
-  mix-blend-mode: plus-lighter;
+    mix-blend-mode: plus-lighter;
 }
 * {
-  margin: 0;
+    margin: 0;
 }
 ```
 

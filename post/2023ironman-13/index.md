@@ -9,8 +9,6 @@ date: 2023-09-27
 
 昨天的內容是不是有一點燒腦?沒關係，今天來點輕鬆的，只有一行 JavaScript。不管是在線上的文書軟體、製作網站的網站、或甚至是 iOS StandBy 都會有顏色選單。今天我們就來做一個極簡的吧，還要加上自訂顏色的功能。
 
-
-
 ![顏色選單成果](https://emtech.cc/post/2023ironman-13/final.webp)
 
 ## 顏色選單 HTML
@@ -20,67 +18,67 @@ date: 2023-09-27
 ```html
 <h1>顏色選單</h1>
 <div class="color-picker">
-  <div
-    class="color-option"
-    style="background-color: #7aaaf1"
-    onclick="changeColor('#7aaaf1')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #8683ff"
-    onclick="changeColor('#8683ff')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #e683bc"
-    onclick="changeColor('#e683bc')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #ff788c"
-    onclick="changeColor('#ff788c')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #ff8d7b"
-    onclick="changeColor('#ff8d7b')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #f8d175"
-    onclick="changeColor('#f8d175')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #9ac78f"
-    onclick="changeColor('#9ac78f')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #7dc4ca"
-    onclick="changeColor('#7dc4ca')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #FFFFFF"
-    onclick="changeColor('#FFFFFF')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #565c6a"
-    onclick="changeColor('#565c6a')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #6b5762"
-    onclick="changeColor('#6b5762')"
-  ></div>
-  <div class="color-option" id="color">
-    <input
-      type="color"
-      onchange="document.getElementById('color').style.backgroundColor=this.value;changeColor(this.value)"
-    />
-  </div>
+    <div
+        class="color-option"
+        style="background-color: #7aaaf1"
+        onclick="changeColor('#7aaaf1')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #8683ff"
+        onclick="changeColor('#8683ff')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #e683bc"
+        onclick="changeColor('#e683bc')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #ff788c"
+        onclick="changeColor('#ff788c')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #ff8d7b"
+        onclick="changeColor('#ff8d7b')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #f8d175"
+        onclick="changeColor('#f8d175')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #9ac78f"
+        onclick="changeColor('#9ac78f')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #7dc4ca"
+        onclick="changeColor('#7dc4ca')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #FFFFFF"
+        onclick="changeColor('#FFFFFF')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #565c6a"
+        onclick="changeColor('#565c6a')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #6b5762"
+        onclick="changeColor('#6b5762')"
+    ></div>
+    <div class="color-option" id="color">
+        <input
+            type="color"
+            onchange="document.getElementById('color').style.backgroundColor=this.value;changeColor(this.value)"
+        />
+    </div>
 </div>
 ```
 
@@ -92,35 +90,35 @@ date: 2023-09-27
 
 ```css
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100svh;
-  overflow: hidden;
-  font-family: system-ui;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100svh;
+    overflow: hidden;
+    font-family: system-ui;
 }
 
 .color-picker {
-  display: flex;
-  justify-content: center;
-  background: #ffffff55;
-  border-radius: 2.5vmax;
-  gap: 0.5vmax;
-  padding: 0.5vmax 1vmax;
-  box-shadow: 0 0.3vmax 1vmax #00000022;
+    display: flex;
+    justify-content: center;
+    background: #ffffff55;
+    border-radius: 2.5vmax;
+    gap: 0.5vmax;
+    padding: 0.5vmax 1vmax;
+    box-shadow: 0 0.3vmax 1vmax #00000022;
 }
 
 .color-option {
-  width: 2.5vmax;
-  height: 2.5vmax;
-  cursor: pointer;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
+    width: 2.5vmax;
+    height: 2.5vmax;
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
 }
 .color-option:hover {
-  box-shadow: 0 0 1vmax #ffdb4d55;
+    box-shadow: 0 0 1vmax #ffdb4d55;
 }
 ```
 
@@ -128,10 +126,10 @@ body {
 
 ```css
 .color-picker input[type="color"] {
-  width: 5vw;
-  height: 5vw;
-  opacity: 0;
-  cursor: pointer;
+    width: 5vw;
+    height: 5vw;
+    opacity: 0;
+    cursor: pointer;
 }
 ```
 
@@ -139,15 +137,15 @@ body {
 
 ```css
 #color::after {
-  content: "+";
-  font-size: 0.5em;
-  top: 50%;
-  left: 50%;
-  pointer-events: none;
-  position: absolute;
-  color: #fff;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
+    content: "+";
+    font-size: 0.5em;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    position: absolute;
+    color: #fff;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
 }
 ```
 
@@ -163,7 +161,7 @@ const changeFontColor = (c) => (document.body.style.background = c);
 
 ```js
 function changeFontColor(c) {
-  document.body.style.background = c;
+    document.body.style.background = c;
 }
 ```
 
@@ -176,120 +174,120 @@ https://codepen.io/edit-mr/pen/abPVWBJ
 ```html
 <h1>顏色選單</h1>
 <div class="color-picker">
-  <div
-    class="color-option"
-    style="background-color: #7aaaf1"
-    onclick="changeFontColor('#7aaaf1')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #8683ff"
-    onclick="changeFontColor('#8683ff')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #e683bc"
-    onclick="changeFontColor('#e683bc')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #ff788c"
-    onclick="changeFontColor('#ff788c')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #ff8d7b"
-    onclick="changeFontColor('#ff8d7b')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #f8d175"
-    onclick="changeFontColor('#f8d175')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #9ac78f"
-    onclick="changeFontColor('#9ac78f')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #7dc4ca"
-    onclick="changeFontColor('#7dc4ca')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #FFFFFF"
-    onclick="changeFontColor('#FFFFFF')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #565c6a"
-    onclick="changeFontColor('#565c6a')"
-  ></div>
-  <div
-    class="color-option"
-    style="background-color: #6b5762"
-    onclick="changeFontColor('#6b5762')"
-  ></div>
-  <div class="color-option" id="color">
-    <input
-      type="color"
-      onchange="document.getElementById('color').style.backgroundColor=this.value;changeFontColor(this.value)"
-    />
-  </div>
+    <div
+        class="color-option"
+        style="background-color: #7aaaf1"
+        onclick="changeFontColor('#7aaaf1')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #8683ff"
+        onclick="changeFontColor('#8683ff')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #e683bc"
+        onclick="changeFontColor('#e683bc')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #ff788c"
+        onclick="changeFontColor('#ff788c')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #ff8d7b"
+        onclick="changeFontColor('#ff8d7b')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #f8d175"
+        onclick="changeFontColor('#f8d175')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #9ac78f"
+        onclick="changeFontColor('#9ac78f')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #7dc4ca"
+        onclick="changeFontColor('#7dc4ca')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #FFFFFF"
+        onclick="changeFontColor('#FFFFFF')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #565c6a"
+        onclick="changeFontColor('#565c6a')"
+    ></div>
+    <div
+        class="color-option"
+        style="background-color: #6b5762"
+        onclick="changeFontColor('#6b5762')"
+    ></div>
+    <div class="color-option" id="color">
+        <input
+            type="color"
+            onchange="document.getElementById('color').style.backgroundColor=this.value;changeFontColor(this.value)"
+        />
+    </div>
 </div>
 ```
 
 ```css
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100svh;
-  overflow: hidden;
-  font-family: system-ui;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100svh;
+    overflow: hidden;
+    font-family: system-ui;
 }
 
 .color-picker {
-  display: flex;
-  justify-content: center;
-  background: #ffffff55;
-  border-radius: 2.5vmax;
-  gap: 0.5vmax;
-  padding: 0.5vmax 1vmax;
-  box-shadow: 0 0.3vmax 1vmax #00000022;
+    display: flex;
+    justify-content: center;
+    background: #ffffff55;
+    border-radius: 2.5vmax;
+    gap: 0.5vmax;
+    padding: 0.5vmax 1vmax;
+    box-shadow: 0 0.3vmax 1vmax #00000022;
 }
 
 .color-option {
-  width: 2.5vmax;
-  height: 2.5vmax;
-  cursor: pointer;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
+    width: 2.5vmax;
+    height: 2.5vmax;
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
 }
 .color-option:hover {
-  box-shadow: 0 0 1vmax #ffdb4d55;
+    box-shadow: 0 0 1vmax #ffdb4d55;
 }
 
 .color-picker input[type="color"] {
-  width: 5vw;
-  height: 5vw;
-  opacity: 0;
-  cursor: pointer;
+    width: 5vw;
+    height: 5vw;
+    opacity: 0;
+    cursor: pointer;
 }
 
 #color::after {
-  content: "+";
-  font-size: 0.5em;
-  top: 50%;
-  left: 50%;
-  pointer-events: none;
-  position: absolute;
-  color: #fff;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
+    content: "+";
+    font-size: 0.5em;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    position: absolute;
+    color: #fff;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
 }
 ```
 

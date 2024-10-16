@@ -9,8 +9,6 @@ date: 2023-01-17
 
 iOS、iPadOS、還有所有Apple的系統在正式發布之前都會向部分的使用者提供搶先版(Beta Version)讓使用者體驗，來蒐集回饋包括問題回報或是功能建議。這篇文章會教你如何加入Apple的Beta計畫，以及如果不適應要如何離開。
 
-
-
 請注意Beta版可能還會有一些問題（閃退、耗電等），但也可以反過來說原本有的Bug在Beta會先修復。（我有裝置有問題升到Beta就好了過）
 
 首先請到Apple官網登入Apple ID來加入Beta計畫。如果沒有加入過beta請點選Sign Up，反之Sign In

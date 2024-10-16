@@ -9,8 +9,6 @@ date: 2023-09-25
 
 你有看過這種頁面往下滾，但圖片位置沒有往下的效果嗎？
 
-
-
 ![background-attachment:fixed](scrolling.gif)
 
 這是舊版的毛哥EM資訊密技黑歷史。偷偷告訴你，這個效果只需要一行 CSS就可以做到。`background-attachment` 屬性可以用來控制背景圖片的滾動方式。在這篇文章中，我們將詳細介紹這個屬性以及如何使用它來實現不同的效果。
@@ -33,9 +31,9 @@ date: 2023-09-25
 
 ```css
 body {
-  background-image: url("your-image.jpg");
-  background-attachment: fixed;
-  background-size: cover; /* 可選，用於調整圖片大小以填充整個視口 */
+    background-image: url("your-image.jpg");
+    background-attachment: fixed;
+    background-size: cover; /* 可選，用於調整圖片大小以填充整個視口 */
 }
 ```
 
@@ -49,8 +47,8 @@ body {
 
 ```css
 body {
-  background-image: url("your-image.jpg");
-  background-attachment: scroll;
+    background-image: url("your-image.jpg");
+    background-attachment: scroll;
 }
 ```
 
@@ -60,8 +58,8 @@ body {
 
 ```css
 .container {
-  background-image: url("your-image.jpg");
-  background-attachment: local;
+    background-image: url("your-image.jpg");
+    background-attachment: local;
 }
 ```
 

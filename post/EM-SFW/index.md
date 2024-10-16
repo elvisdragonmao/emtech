@@ -9,18 +9,16 @@ date: 2022-10-07
 
 班上因為又有人確診又有人隔離又開始使用視訊會議，常常被反應黑板看不清楚。明明鏡頭很好、網路不錯、且畫質設定已經調到最高還是一樣。因此我做了一個簡單網站來顯示鏡頭畫面，用螢幕分享畫面的方式讓畫質明顯提升！且黑白不會左右顛倒，不用再去裝擴充外掛！
 
-
-
 ![效果比較](https://emtech.cc/images/EM-SFW-compare.png)
 
 {{notice}}
 EM-SFW (Site for Webcam)
 
-- 開發者:毛哥EM(我)
-- 程式類型:免費開源網站
-- 網站位置:[毛哥EM的基地](https://Edit-Mr.github.io/code/EM-SFW)
-- 縮短網址：[is.gd/EMSFW](https://is.gd/EMSFW)
-  {{noticed}}
+-   開發者:毛哥EM(我)
+-   程式類型:免費開源網站
+-   網站位置:[毛哥EM的基地](https://Edit-Mr.github.io/code/EM-SFW)
+-   縮短網址：[is.gd/EMSFW](https://is.gd/EMSFW)
+    {{noticed}}
 
 ## 使用教學
 

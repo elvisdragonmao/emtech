@@ -10,8 +10,6 @@ date: 2022-08-18
 使用多個螢幕可以使工作效率大幅提升。不過如果使用Win+D來隱藏視窗、會一次隱藏所有螢幕的所有的視窗。
 不過透過ShowDesktopPerMonitor可以模擬Win+D的隱藏視窗。除了可以分開螢幕控制以外，它的隱藏視窗是連工作列都看不到...（要怎麼使用就看你了！）
 
-
-
 # 安裝
 
 這個專案是開源在Github上的，基本上可以安心使用。雖然已經很久沒有更新了，但目前沒有任何問題。
@@ -19,11 +17,11 @@ date: 2022-08-18
 {{notice}}
 ShowDesktopPerMonitor
 
-- 開發者:CryptKat
-- 類型:免費開源軟體
-- 網址:[Github](https://github.com/CryptKat/ShowDesktopPerMonitor/)
-- [下載連結](https://github.com/CryptKat/ShowDesktopPerMonitor/releases/tag/1.0)
-  {{noticed}}
+-   開發者:CryptKat
+-   類型:免費開源軟體
+-   網址:[Github](https://github.com/CryptKat/ShowDesktopPerMonitor/)
+-   [下載連結](https://github.com/CryptKat/ShowDesktopPerMonitor/releases/tag/1.0)
+    {{noticed}}
 
 # 設定
 

@@ -19,10 +19,10 @@ date: 2023-09-28
 
 寫 checkbox 的 CSS 時因為
 
-- `input` 是插入一個元素，而不是一個範圍，所以不能使用 `::before` 和 `::after` 來做。
-- checkbox 顯示一定是正方形，如果設置為其他長寬比塊白的地方還是可以點擊。
-  ![Alt text](checkbox-range.webp)
-- checkbox 無法設定背景顏色
+-   `input` 是插入一個元素，而不是一個範圍，所以不能使用 `::before` 和 `::after` 來做。
+-   checkbox 顯示一定是正方形，如果設置為其他長寬比塊白的地方還是可以點擊。
+    ![Alt text](checkbox-range.webp)
+-   checkbox 無法設定背景顏色
 
 問題那麼多，因此我們只需要input幫我們掛名存狀態，然後把它藏在角落裡面就好了。
 
@@ -43,46 +43,46 @@ HTML 如下，我想用這個開關來控制背景顏色。
 ```css
 *,
 label::after {
-  margin: 0;
-  padding: 0;
-  transition: all 0.3s;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s;
 }
 #switch {
-  display: none;
+    display: none;
 }
 label {
-  width: 3.5rem;
-  height: 2rem;
-  background: #e9e9eb;
-  border-radius: 1rem;
-  position: relative;
-  cursor: pointer;
+    width: 3.5rem;
+    height: 2rem;
+    background: #e9e9eb;
+    border-radius: 1rem;
+    position: relative;
+    cursor: pointer;
 }
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100svh;
 }
 .light {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  background: #444444;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background: #444444;
 }
 label::after {
-  position: absolute;
-  left: 0.15rem;
-  top: 0.15rem;
-  content: "";
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 50%;
-  background: #fff;
-  pointer-events: none;
+    position: absolute;
+    left: 0.15rem;
+    top: 0.15rem;
+    content: "";
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    background: #fff;
+    pointer-events: none;
 }
 ```
 
@@ -94,13 +94,13 @@ label::after {
 
 ```css
 input:checked + label {
-  background: #34c85a;
+    background: #34c85a;
 }
 input:checked + label::after {
-  left: 1.65rem;
+    left: 1.65rem;
 }
 input:checked ~ .light {
-  background: #fff;
+    background: #fff;
 }
 ```
 
@@ -119,55 +119,55 @@ https://codepen.io/edit-mr/pen/KKbZjOq
 ```css
 *,
 label::after {
-  margin: 0;
-  padding: 0;
-  transition: all 0.3s;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s;
 }
 #switch {
-  display: none;
+    display: none;
 }
 label {
-  width: 3.5rem;
-  height: 2rem;
-  background: #e9e9eb;
-  border-radius: 1rem;
-  position: relative;
+    width: 3.5rem;
+    height: 2rem;
+    background: #e9e9eb;
+    border-radius: 1rem;
+    position: relative;
 }
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100svh;
 }
 .light {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  background: #444444;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background: #444444;
 }
 label::after {
-  position: absolute;
-  left: 0.15rem;
-  top: 0.15rem;
-  content: "";
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 50%;
-  background: #fff;
-  pointer-events: none;
+    position: absolute;
+    left: 0.15rem;
+    top: 0.15rem;
+    content: "";
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    background: #fff;
+    pointer-events: none;
 }
 
 input:checked + label {
-  background: #34c85a;
+    background: #34c85a;
 }
 input:checked + label::after {
-  left: 1.65rem;
+    left: 1.65rem;
 }
 input:checked ~ .light {
-  background: #fff;
+    background: #fff;
 }
 ```
 

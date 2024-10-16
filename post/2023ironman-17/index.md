@@ -9,8 +9,6 @@ date: 2023-10-01
 
 以往製作波浪效果不是使用 GIF 就是借助貝茲曲線。貝茲曲線就是 Ai 或是 Vectornator (現在叫做Curve) 裡面的鋼筆工具。隨便拉都會有波浪的感覺，且使用 SVG或 JavaScript Canvas 都不難實現。
 
-
-
 ![](https://emtech.cc/post/2023ironman-17/curve.webp)
 
 然而在 CSS 實現貝茲曲線一直都沒有一個優雅的方法。我在這個中秋連假和家人一起到墾丁露營，我一邊看著大海海浪一邊喝著椰子水思考這個問題…
@@ -27,17 +25,17 @@ date: 2023-10-01
 
 ```css
 div {
-  width: 300px;
-  height: 300px;
-  background: green;
-  border-radius: 45%;
+    width: 300px;
+    height: 300px;
+    background: green;
+    border-radius: 45%;
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
 }
 ```
 
@@ -47,17 +45,17 @@ body {
 
 ```css
 div {
-  width: 300px;
-  height: 300px;
-  background: green;
-  border-radius: 45%;
-  animation: spin 5s linear infinite;
+    width: 300px;
+    height: 300px;
+    background: green;
+    border-radius: 45%;
+    animation: spin 5s linear infinite;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 ```
 
@@ -81,60 +79,60 @@ https://codepen.io/edit-mr/pen/JjwBbgg
 
 ```html
 <main>
-  <div></div>
-  <div class="“second”"></div>
-  <h2>40%</h2>
+    <div></div>
+    <div class="“second”"></div>
+    <h2>40%</h2>
 </main>
 ```
 
 ```css
 body {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100svh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100svh;
 }
 main {
-  width: 300px;
-  height: 300px;
-  background: #03bafc;
-  overflow: hidden;
-  border-radius: 50%;
-  border: 5px solid #fff;
-  outline: 5px solid #03bafc;
-  position: relative;
+    width: 300px;
+    height: 300px;
+    background: #03bafc;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    outline: 5px solid #03bafc;
+    position: relative;
 }
 div {
-  width: 450px;
-  height: 450px;
-  background: #52bdff;
-  border-radius: 43%;
-  animation: spin 5s linear infinite;
-  position: absolute;
-  bottom: 100px;
-  left: -75px;
+    width: 450px;
+    height: 450px;
+    background: #52bdff;
+    border-radius: 43%;
+    animation: spin 5s linear infinite;
+    position: absolute;
+    bottom: 100px;
+    left: -75px;
 }
 .second {
-  animation-delay: 0.5s;
-  bottom: 120px;
-  background: #fff;
-  border-radius: 45%;
+    animation-delay: 0.5s;
+    bottom: 120px;
+    background: #fff;
+    border-radius: 45%;
 }
 h2 {
-  position: absolute;
-  font-family: system-ui;
-  font-size: 30px;
-  color: #0369ad;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    font-family: system-ui;
+    font-size: 30px;
+    color: #0369ad;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 ```
 

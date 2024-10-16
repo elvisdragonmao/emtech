@@ -23,34 +23,34 @@ https://codepen.io/edit-mr/pen/poqqoLr
 
 ```html
 <div class="box">
-  <div class="circle-small"></div>
-  <div class="circle-big"></div>
+    <div class="circle-small"></div>
+    <div class="circle-big"></div>
 </div>
 ```
 
 ```css
 .box {
-  position: relative;
-  height: 100vh;
-  background-color: #fff;
+    position: relative;
+    height: 100vh;
+    background-color: #fff;
 }
 .circle-big,
 .circle-small {
-  filter: blur(10px);
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  background-color: red;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+    filter: blur(10px);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    background-color: red;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 .circle-big {
-  width: 100px;
-  height: 100px;
-  background-color: black;
-  transform: translate(0, -50%);
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    transform: translate(0, -50%);
 }
 ```
 
@@ -60,10 +60,10 @@ https://codepen.io/edit-mr/pen/poqqoLr
 
 ```css
 .box {
-  position: relative;
-  height: 100vh;
-  background-color: #fff;
-  filter: contrast(20);
+    position: relative;
+    height: 100vh;
+    background-color: #fff;
+    filter: contrast(20);
 }
 ```
 
@@ -71,39 +71,39 @@ https://codepen.io/edit-mr/pen/poqqoLr
 
 ```css
 .box {
-  position: relative;
-  height: 500px;
-  filter: contrast(20);
-  background-color: #fff;
+    position: relative;
+    height: 500px;
+    filter: contrast(20);
+    background-color: #fff;
 }
 .circle-big,
 .circle-small {
-  border-radius: 50%;
-  filter: blur(10px);
-  animation: 2s infinite move alternate;
-  width: 80px;
-  height: 80px;
-  background-color: red;
-  transform: translatex(20px);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+    border-radius: 50%;
+    filter: blur(10px);
+    animation: 2s infinite move alternate;
+    width: 80px;
+    height: 80px;
+    background-color: red;
+    transform: translatex(20px);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 .circle-big {
-  width: 100px;
-  height: 100px;
-  background-color: black;
-  animation-delay: -2s;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    animation-delay: -2s;
 }
 
 @keyframes move {
-  from {
-    transform: translate(calc(-50% + 100px), -50%);
-  }
-  to {
-    transform: translate(calc(-50% - 100px), -50%);
-  }
+    from {
+        transform: translate(calc(-50% + 100px), -50%);
+    }
+    to {
+        transform: translate(calc(-50% - 100px), -50%);
+    }
 }
 ```
 

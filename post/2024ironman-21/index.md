@@ -4,6 +4,7 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-10-04
 ---
+
 # 我沒錢買 MacBook - 自動化多平台 Python 應用打包
 
 > 不如虎穴，焉得虎子，說明了 pyinstaller 要打包 macOS 的執行檔一定要在 macOS 環境運行。
@@ -71,51 +72,51 @@ Python 計算機
 name: Build Multi-Platform
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.11]
+    build:
+        strategy:
+            matrix:
+                os: [ubuntu-latest, macos-latest, windows-latest]
+                python-version: [3.11]
 
-    runs-on: ${{ matrix.os }}
+        runs-on: ${{ matrix.os }}
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: ${{ matrix.python-version }}
+            - name: Set up Python
+              uses: actions/setup-python@v3
+              with:
+                  python-version: ${{ matrix.python-version }}
 
-      - name: Install dependencies
-        run: |
-          pip install pyinstaller
+            - name: Install dependencies
+              run: |
+                  pip install pyinstaller
 
-      - name: Build application
-        run: |
-          pyinstaller --onefile hello.py
+            - name: Build application
+              run: |
+                  pyinstaller --onefile hello.py
 
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: hello-executable-${{ matrix.os }}
-          path: dist/hello${{ matrix.os == 'windows-latest' && '.exe' || '' }}
+            - name: Archive artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: hello-executable-${{ matrix.os }}
+                  path: dist/hello${{ matrix.os == 'windows-latest' && '.exe' || '' }}
 ```
 
 ### 詳細步驟解析
 
-- **Checkout repository**: 檢出 GitHub repository 的代碼。
-- **Set up Python**: 安裝指定版本的 Python。
-- **Install dependencies**: 安裝 PyInstaller。
-- **Build application**: 使用 PyInstaller 打包 Python 應用，根據運行的操作系統環境變數來確定可執行文件的名稱和擴展名。
-- **Archive artifacts**: 上傳生成的可執行文件作為 GitHub Actions 的構建產物，供後續下載或分發使用。
+-   **Checkout repository**: 檢出 GitHub repository 的代碼。
+-   **Set up Python**: 安裝指定版本的 Python。
+-   **Install dependencies**: 安裝 PyInstaller。
+-   **Build application**: 使用 PyInstaller 打包 Python 應用，根據運行的操作系統環境變數來確定可執行文件的名稱和擴展名。
+-   **Archive artifacts**: 上傳生成的可執行文件作為 GitHub Actions 的構建產物，供後續下載或分發使用。
 
 ## 測試和驗證
 

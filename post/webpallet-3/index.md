@@ -10,8 +10,6 @@ date: 2023-06-12
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。今天我要讓你10分鐘學會所有常用的CSS語法
 
-
-
 CSS的功能是來裝飾HTML的，因此這部影片假設你已經會使用Codepen和HTML了，如果還沒有的話建議你先去看EP.2 十分鐘完結HTML喔。有一些部分可能比較難理解，但我相信你只要多練習幾次就可以了。
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/WrNpToBObo0?si=ObuDcZHDTcmjBs2y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -28,7 +26,7 @@ CSS的功能是來裝飾HTML的，因此這部影片假設你已經會使用Code
 
 ```css
 h1 {
-  color: blue;
+    color: blue;
 }
 ```
 
@@ -38,8 +36,8 @@ h1 {
 
 ```css
 h1 {
-  color: blue;
-  font-size: 50px;
+    color: blue;
+    font-size: 50px;
 }
 ```
 
@@ -47,17 +45,17 @@ h1 {
 
 ## 選擇器
 
-- 元素選擇器: 比如說`h1`就是選擇所有的h1元素
-- 所有後代: 比如說`*`就是選擇所有的元素
-- 後代選擇器: 比如說 `nav a`就是選擇所有nav裡面的a元素
-- 親代選擇器: 比如說 ` ol > li` 就是選擇所有ol裡面的li元素。而如果是ol裡的li裡的li就不會被選到。
-- 群組選擇器: 比如說 `nav, a`就是選擇所有nav元素和a元素
-- 相鄰兄弟: 比如說 ` h1 + p`就是選擇h1正後方的那一個p元素
-- 一般兄弟: 比如說 ` h1 ~ p`就是選擇h1後面的所有p元素
-- 屬性選擇器: 比如說 `a[href="https://twitter.com"]`就是選擇所有連結到twitter首頁的a元素
-  - 屬性網址包含某字是使用星號: `a[href*="tuts"]` (比如說nettuts.com、net.tutsplus.com、tutsplus.com)
-  - 屬性開頭是使用上箭頭caret符號: `a[href^="http"]`
-  - 屬性結尾是使用錢符號: `[href$=".jpg"]`
+-   元素選擇器: 比如說`h1`就是選擇所有的h1元素
+-   所有後代: 比如說`*`就是選擇所有的元素
+-   後代選擇器: 比如說 `nav a`就是選擇所有nav裡面的a元素
+-   親代選擇器: 比如說 ` ol > li` 就是選擇所有ol裡面的li元素。而如果是ol裡的li裡的li就不會被選到。
+-   群組選擇器: 比如說 `nav, a`就是選擇所有nav元素和a元素
+-   相鄰兄弟: 比如說 ` h1 + p`就是選擇h1正後方的那一個p元素
+-   一般兄弟: 比如說 ` h1 ~ p`就是選擇h1後面的所有p元素
+-   屬性選擇器: 比如說 `a[href="https://twitter.com"]`就是選擇所有連結到twitter首頁的a元素
+    -   屬性網址包含某字是使用星號: `a[href*="tuts"]` (比如說nettuts.com、net.tutsplus.com、tutsplus.com)
+    -   屬性開頭是使用上箭頭caret符號: `a[href^="http"]`
+    -   屬性結尾是使用錢符號: `[href$=".jpg"]`
 
 ### 權重
 
@@ -69,10 +67,10 @@ h1 {
 
 權重從高到低分別是
 
-- ID 選擇器
-- 類別選擇器、屬性選擇器、偽類選擇器(如:`root`)
-- 元素選擇器、偽元素選擇器
-- 任何元素選擇符`*`沒有權級
+-   ID 選擇器
+-   類別選擇器、屬性選擇器、偽類選擇器(如:`root`)
+-   元素選擇器、偽元素選擇器
+-   任何元素選擇符`*`沒有權級
 
 記得是可以相加的喔，這裡有一個[計算機](https://specificity.keegan.st/)，如果不確定的話可以試試看。
 
@@ -92,15 +90,15 @@ h1 {
 
 ```css
 h1 {
-  color: red; /* 顏色名稱 */
-  color: #ff0000; /* 16進位HEX碼 */
-  color: rgb(255, 0, 0);
-  color: rgba(255, 0, 0, 1); /* RBG加上A透明度 */
-  color: hsl(0, 100%, 50%); /* HSL分別代表色相、飽和度、亮度 */
-  color: hsla(0, 100%, 50%, 1); /* HSL加上A透明度 */
-  color: color(
-    display-p3 1 0 0 / 1
-  ); /* 使用color可以顯示RGB不能表示的顏色，我們之後再來討論 */
+    color: red; /* 顏色名稱 */
+    color: #ff0000; /* 16進位HEX碼 */
+    color: rgb(255, 0, 0);
+    color: rgba(255, 0, 0, 1); /* RBG加上A透明度 */
+    color: hsl(0, 100%, 50%); /* HSL分別代表色相、飽和度、亮度 */
+    color: hsla(0, 100%, 50%, 1); /* HSL加上A透明度 */
+    color: color(
+        display-p3 1 0 0 / 1
+    ); /* 使用color可以顯示RGB不能表示的顏色，我們之後再來討論 */
 }
 ```
 
@@ -110,19 +108,19 @@ h1 {
 
 ```css
 h1 {
-  font-size: 100px; /* px是像素 */
-  font-size: 10rem; /* rem是相對於系統設定的字體大小 */
-  font-size: 10em; /* em是相對於父元素的字體大小 */
-  font-size: 10vw; /* 10vw是相對於螢幕寬度10% */
-  font-size: 10vh; /* 10vh是相對於螢幕高度的10% */
-  font-size: 10vmin; /* vmin是相對於螢幕寬度和高度的最小值的百分比 */
-  font-size: 10vmax; /* vmax是相對於螢幕寬度和高度的最大值的百分比 */
-  font-size: 10%; /* %在不同時候的意思不太一樣，但原則上就是你想的那樣...嗯對 */
+    font-size: 100px; /* px是像素 */
+    font-size: 10rem; /* rem是相對於系統設定的字體大小 */
+    font-size: 10em; /* em是相對於父元素的字體大小 */
+    font-size: 10vw; /* 10vw是相對於螢幕寬度10% */
+    font-size: 10vh; /* 10vh是相對於螢幕高度的10% */
+    font-size: 10vmin; /* vmin是相對於螢幕寬度和高度的最小值的百分比 */
+    font-size: 10vmax; /* vmax是相對於螢幕寬度和高度的最大值的百分比 */
+    font-size: 10%; /* %在不同時候的意思不太一樣，但原則上就是你想的那樣...嗯對 */
 }
 ```
 
-- width跟height的%基準是父層
-- line-height以本身文字行高為基準
+-   width跟height的%基準是父層
+-   line-height以本身文字行高為基準
 
 接下來我們來有效率的一次認識所有常用的CSS語法吧
 
@@ -132,16 +130,16 @@ h1 {
 
 ```css
 h1 {
-  color: red; /*顏色*/
-  font-size: 1em; /*字體大小*/
-  letter-spacing: 10px; /*字體間距*/
-  line-height: 1.5; /*行高。通常會用數字代表正常高的倍數 */
-  font-weight: 500; /*字體粗細，數字最大900，越大越重，預設*/
-  text-decoration: underline; /*底線，最長是用none來把超連結醜醜的底線移除*/
-  font-style: italic; /*斜體*/
-  opacity: 0.5; /*不透明度*/
-  text-align: center; /*文字對齊方向*/
-  font-family: arial, sans-serif; /*字體，如果第一個沒有就依序往後*/
+    color: red; /*顏色*/
+    font-size: 1em; /*字體大小*/
+    letter-spacing: 10px; /*字體間距*/
+    line-height: 1.5; /*行高。通常會用數字代表正常高的倍數 */
+    font-weight: 500; /*字體粗細，數字最大900，越大越重，預設*/
+    text-decoration: underline; /*底線，最長是用none來把超連結醜醜的底線移除*/
+    font-style: italic; /*斜體*/
+    opacity: 0.5; /*不透明度*/
+    text-align: center; /*文字對齊方向*/
+    font-family: arial, sans-serif; /*字體，如果第一個沒有就依序往後*/
 }
 ```
 
@@ -220,9 +218,9 @@ background: linear-gradient(#333, #333 50%, #eee 75%, #333 75%);
 background: linear-gradient(#e66465, #9198e5);
 background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
 background: linear-gradient(
-  217deg,
-  rgba(255, 0, 0, 0.8),
-  rgba(255, 0, 0, 0) 70.71%
+    217deg,
+    rgba(255, 0, 0, 0.8),
+    rgba(255, 0, 0, 0) 70.71%
 );
 ```
 
@@ -278,24 +276,24 @@ box-sizing:border-box;  // 把寬度範圍指定給整個邊框到邊框之間�
 
 CSS的Display屬性可以改變元素對外所參與的佈局環境（outer display type），白話文就是元素怎麼排。
 
-- `inline`: 像文字一樣左到右上到下，不能決定寬高
-- `block`: 佔滿`<body>`整排，下一個東西會換行
-- `contents`: 只有contents area的box，只顯示內容文字。
-- `inline-block`: 保持像block一樣得特性，可以設長寬等等，但一樣從左到右排
-- `display: none` Bang不見
+-   `inline`: 像文字一樣左到右上到下，不能決定寬高
+-   `block`: 佔滿`<body>`整排，下一個東西會換行
+-   `contents`: 只有contents area的box，只顯示內容文字。
+-   `inline-block`: 保持像block一樣得特性，可以設長寬等等，但一樣從左到右排
+-   `display: none` Bang不見
 
-* block 是有面積的，可以設定寬跟高
-* inline 設定寬高無效，可以設定 padding 的左右值，上下值無效，無法被撐開。
-* inline-block 同時擁有兩種 display 的特性，可以設定寬高，但也可以與其他元素並排。
+*   block 是有面積的，可以設定寬跟高
+*   inline 設定寬高無效，可以設定 padding 的左右值，上下值無效，無法被撐開。
+*   inline-block 同時擁有兩種 display 的特性，可以設定寬高，但也可以與其他元素並排。
 
 > 如果使用 inline-block(像是 a 或 li 設定)，標籤之間會有空白字元約 4~5px
 
 也可以為元素創造內部的佈局環境，提供後代元素佈局的規則（inner display type）。對內創造的佈局例如：
 
-- `flex`  
-  彈性盒佈局，該屬性值的元素本身對外仍參與normal flow，可是內部環境為獨立的flex formatting context。
-- `grid`  
-  格線佈局，該屬性值的元素本身對外仍參與normal flow，可是內部環境為獨立的彈性盒佈局grid formatting context。
+-   `flex`  
+    彈性盒佈局，該屬性值的元素本身對外仍參與normal flow，可是內部環境為獨立的flex formatting context。
+-   `grid`  
+    格線佈局，該屬性值的元素本身對外仍參與normal flow，可是內部環境為獨立的彈性盒佈局grid formatting context。
 
 這些我們之後會再細細討論。
 
@@ -319,11 +317,11 @@ float是我比較少用的CSS，因為會遇到一些問題比如說float collap
 
 當然解決方法很多，列幾個
 
-- 元素的float參數不為none
-- 元素的position參數為absolute或fixed
-- 元素的display為inline-block
-- overflow參數不為visible的block元素
-- display參數為flow-root的元素
+-   元素的float參數不為none
+-   元素的position參數為absolute或fixed
+-   元素的display為inline-block
+-   overflow參數不為visible的block元素
+-   display參數為flow-root的元素
 
 ### Clear
 
@@ -386,8 +384,8 @@ transform: translateY(單位或百分比);
 
 ```css
 .translate {
-  background-color: pink;
-  transform: translate(100px, -50px);
+    background-color: pink;
+    transform: translate(100px, -50px);
 }
 ```
 
@@ -401,13 +399,13 @@ translate的百分比基準是自己的width跟height
 
 ```css
 .outer {
-  position: relative;
+    position: relative;
 }
 
 img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 ```
 
@@ -475,11 +473,11 @@ font-size:2em;
 
 以下是一些常見的CSS偽類：
 
-- `:hover`：當滑鼠懸停在元素上方時應用的樣式。這是一個常見的偽類，常用於添加互動效果，例如當滑鼠懸停在按鈕上時改變其背景顏色。
-- `:active`：當元素被激活時應用的樣式。通常用於按下按鈕或鏈接時，以顯示按下效果。
-- `:visited`：應用於已訪問過的連結的樣式。這使得訪問過的連結可以與未訪問的連結區分開來。
-- `:first-child`：選擇父元素的第一個子元素。這使得我們可以針對列表中的第一個元素或表格中的第一列應用特定的樣式。
-- `:nth-child()`：選擇父元素中特定位置的子元素。這個偽類允許我們按照一定的模式選擇元素，例如 :nth-child(2n) 可以選擇所有偶數位置的元素。
+-   `:hover`：當滑鼠懸停在元素上方時應用的樣式。這是一個常見的偽類，常用於添加互動效果，例如當滑鼠懸停在按鈕上時改變其背景顏色。
+-   `:active`：當元素被激活時應用的樣式。通常用於按下按鈕或鏈接時，以顯示按下效果。
+-   `:visited`：應用於已訪問過的連結的樣式。這使得訪問過的連結可以與未訪問的連結區分開來。
+-   `:first-child`：選擇父元素的第一個子元素。這使得我們可以針對列表中的第一個元素或表格中的第一列應用特定的樣式。
+-   `:nth-child()`：選擇父元素中特定位置的子元素。這個偽類允許我們按照一定的模式選擇元素，例如 :nth-child(2n) 可以選擇所有偶數位置的元素。
 
 比如說你想要元素在滑鼠放在上面時往上移一點，有選牌得感覺，你可以這樣打
 
@@ -504,7 +502,7 @@ font-size:2em;
 
 ```css
 p::before {
-  content: ”哈囉“;
+    content: ”哈囉“;
 }
 ```
 

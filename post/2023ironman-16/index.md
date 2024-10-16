@@ -9,8 +9,6 @@ date: 2023-09-30
 
 今天我們要來製作一個時鐘。不使用圖片，只使用 CSS 來繪製。我的目標是可以做出類似於 Apple iOS17 StandBy 的時鐘效果。
 
-
-
 ![](https://emtech.cc/post/2023ironman-16/StandBy.webp)
 
 ## HTML
@@ -19,23 +17,23 @@ date: 2023-09-30
 
 ```html
 <div class="clock">
-  <div class="hour-hand"></div>
-  <div class="minute-hand"></div>
-  <div class="second-hand"></div>
-  <div class="clockCenter"></div>
-  <div class="clockCenterCenter"></div>
-  <div class="digit" style="--deg: 0;" data-digit="12"></div>
-  <div class="digit" style="--deg: 30;" data-digit="1"></div>
-  <div class="digit" style="--deg: 60;" data-digit="2"></div>
-  <div class="digit" style="--deg: 90;" data-digit="3"></div>
-  <div class="digit" style="--deg: 120;" data-digit="4"></div>
-  <div class="digit" style="--deg: 150;" data-digit="5"></div>
-  <div class="digit" style="--deg: 180;" data-digit="6"></div>
-  <div class="digit" style="--deg: 210;" data-digit="7"></div>
-  <div class="digit" style="--deg: 240;" data-digit="8"></div>
-  <div class="digit" style="--deg: 270;" data-digit="9"></div>
-  <div class="digit" style="--deg: 300;" data-digit="10"></div>
-  <div class="digit" style="--deg: 330;" data-digit="11"></div>
+    <div class="hour-hand"></div>
+    <div class="minute-hand"></div>
+    <div class="second-hand"></div>
+    <div class="clockCenter"></div>
+    <div class="clockCenterCenter"></div>
+    <div class="digit" style="--deg: 0;" data-digit="12"></div>
+    <div class="digit" style="--deg: 30;" data-digit="1"></div>
+    <div class="digit" style="--deg: 60;" data-digit="2"></div>
+    <div class="digit" style="--deg: 90;" data-digit="3"></div>
+    <div class="digit" style="--deg: 120;" data-digit="4"></div>
+    <div class="digit" style="--deg: 150;" data-digit="5"></div>
+    <div class="digit" style="--deg: 180;" data-digit="6"></div>
+    <div class="digit" style="--deg: 210;" data-digit="7"></div>
+    <div class="digit" style="--deg: 240;" data-digit="8"></div>
+    <div class="digit" style="--deg: 270;" data-digit="9"></div>
+    <div class="digit" style="--deg: 300;" data-digit="10"></div>
+    <div class="digit" style="--deg: 330;" data-digit="11"></div>
 </div>
 ```
 
@@ -53,9 +51,9 @@ CSS要怎麼畫出時鐘呢？我們會需要幫這個 `div` 添加幾個漸層�
 
 ```css
 div {
-  width: 150px;
-  height: 150px;
-  background: conic-gradient(blue, red);
+    width: 150px;
+    height: 150px;
+    background: conic-gradient(blue, red);
 }
 ```
 
@@ -63,7 +61,7 @@ div {
 
 ```css
 .one {
-  background: conic-gradient(blue 0 15deg, red 15deg);
+    background: conic-gradient(blue 0 15deg, red 15deg);
 }
 ```
 
@@ -71,7 +69,7 @@ div {
 
 ```css
 .two {
-  background: repeating-conic-gradient(blue 0 15deg, red 15deg 30deg);
+    background: repeating-conic-gradient(blue 0 15deg, red 15deg 30deg);
 }
 ```
 
@@ -79,7 +77,7 @@ div {
 
 ```css
 .three {
-  background: repeating-conic-gradient(blue 0 1deg, red 0 30deg);
+    background: repeating-conic-gradient(blue 0 1deg, red 0 30deg);
 }
 ```
 
@@ -91,12 +89,12 @@ div {
 
 ```css
 div {
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(red, blue);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(red, blue);
 }
 .circle {
-  background: radial-gradient(red 50%, blue 50%);
+    background: radial-gradient(red 50%, blue 50%);
 }
 ```
 
@@ -110,32 +108,32 @@ div {
 
 ```html
 <main>
-  <div class="“no”"></div>
+    <div class="“no”"></div>
 </main>
 ```
 
 ```css
 main {
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: lightblue;
-  position: relative;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: lightblue;
+    position: relative;
 }
 
 .no {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 100px;
-  height: 100px;
-  background: pink;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+    background: pink;
 }
 .no::after {
-  font-size: 3rem;
-  content: “5”;
-  display: block;
-  transform: translateX(200px);
+    font-size: 3rem;
+    content: “5”;
+    display: block;
+    transform: translateX(200px);
 }
 ```
 
@@ -145,13 +143,13 @@ main {
 
 ```css
 .no {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 100px;
-  height: 100px;
-  background: pink;
-  transform: rotate(60deg);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+    background: pink;
+    transform: rotate(60deg);
 }
 ```
 
@@ -161,10 +159,10 @@ main {
 
 ```css
 .no::after {
-  font-size: 3rem;
-  content: “5”;
-  display: block;
-  transform: translateX(200px) rotate(-60deg);
+    font-size: 3rem;
+    content: “5”;
+    display: block;
+    transform: translateX(200px) rotate(-60deg);
 }
 ```
 
@@ -184,96 +182,104 @@ transform-origin: center center;
 
 ```css
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100svh;
-  background: #000;
-  font-family: system-ui;
-  font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
+    background: #000;
+    font-family: system-ui;
+    font-weight: 800;
 }
 .clock {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(#000 65%, transparent 10%),
-    repeating-conic-gradient(from -0.5deg, #fff 0 1deg, transparent 0deg 30deg),
-    repeating-conic-gradient(from -0.5deg, gray 0 1deg, transparent 0deg 6deg);
-  border-radius: 50%;
-  position: relative;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(#000 65%, transparent 10%),
+        repeating-conic-gradient(
+            from -0.5deg,
+            #fff 0 1deg,
+            transparent 0deg 30deg
+        ),
+        repeating-conic-gradient(
+            from -0.5deg,
+            gray 0 1deg,
+            transparent 0deg 6deg
+        );
+    border-radius: 50%;
+    position: relative;
 }
 .digit::before {
-  content: attr(data-digit);
-  display: block;
-  transform: rotate(calc(var(--deg) * -1deg));
-  text-align: center;
+    content: attr(data-digit);
+    display: block;
+    transform: rotate(calc(var(--deg) * -1deg));
+    text-align: center;
 }
 .digit {
-  position: absolute;
-  top: calc(50% - 15px);
-  left: calc(50% - 16px);
-  width: 1em;
-  height: 1em;
-  font-size: 2em;
-  color: #fff;
-  transform: rotate(calc(var(--deg) * 1deg)) translateY(-115px);
-  transform-origin: center center;
+    position: absolute;
+    top: calc(50% - 15px);
+    left: calc(50% - 16px);
+    width: 1em;
+    height: 1em;
+    font-size: 2em;
+    color: #fff;
+    transform: rotate(calc(var(--deg) * 1deg)) translateY(-115px);
+    transform-origin: center center;
 }
 .clockCenter,
 .clockCenterCenter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 12px;
-  height: 12px;
-  background: #ffaf3f;
-  border: 0.1em solid #fff;
-  border-radius: 50%;
-  display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #ffaf3f;
+    border: 0.1em solid #fff;
+    border-radius: 50%;
+    display: block;
 }
 .clockCenterCenter {
-  background: #000;
-  border: none;
-  width: 6px;
-  height: 6px;
-  z-index: 10;
+    background: #000;
+    border: none;
+    width: 6px;
+    height: 6px;
+    z-index: 10;
 }
 .hour-hand,
 .minute-hand,
 .second-hand {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background-color: #fff;
-  transform-origin: top center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #fff;
+    transform-origin: top center;
 }
 .hour-hand,
 .minute-hand {
-  width: 10px;
-  height: 70px;
-  margin-left: -5px;
-  border-radius: 5px;
+    width: 10px;
+    height: 70px;
+    margin-left: -5px;
+    border-radius: 5px;
 }
 .minute-hand {
-  height: 128px;
+    height: 128px;
 }
 .hour-hand::after,
 .minute-hand::after {
-  transform: translateY(-0.7em);
-  display: block;
-  content: "";
-  width: 4px;
-  margin-left: 33.333333%;
-  height: 50px;
-  background-color: #fff;
+    transform: translateY(-0.7em);
+    display: block;
+    content: "";
+    width: 4px;
+    margin-left: 33.333333%;
+    height: 50px;
+    background-color: #fff;
 }
 .second-hand {
-  width: 2px;
-  height: 168px;
-  margin-left: -0.7px;
-  background-color: #ffaf3f;
-  border-radius: 2px 2px 0 0;
-  transition: transform 0.2s;
+    width: 2px;
+    height: 168px;
+    margin-left: -0.7px;
+    background-color: #ffaf3f;
+    border-radius: 2px 2px 0 0;
+    transition: transform 0.2s;
 }
 ```
 

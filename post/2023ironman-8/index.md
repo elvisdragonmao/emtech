@@ -9,8 +9,6 @@ date: 2023-09-22
 
 今天這一篇是一個很色的冷知識分享。可以讓你調出很冷的顏色。
 
-
-
 你平常用 CSS 都在怎麼表示顏色呢？是使用 RGB 還是 HEX 碼呢？不管你是使用哪一種他們都是使用三個數字表達每種顏色通道（紅、綠、藍）要多亮。由於每個通道都可以有256種可能的值（從00到FF），所以一個Hexadecimal顏色碼可以表示的顏色總數為256 x 256 x 256 = 16,777,216 種顏色。
 
 人類的眼睛可以分辨約700萬種顏色，~~很明顯這些顏色很不夠用對吧！~~
@@ -26,9 +24,9 @@ date: 2023-09-22
 
 CSS支援以下幾個色彩空間
 
-- [sRGB](https://en.wikipedia.org/wiki/SRGB)色彩空間：[`hsl()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl)[`hwb()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hwb)[`rgb()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb)
-- [CIELAB](https://en.wikipedia.org/wiki/CIELAB_color_space)色彩空間：[`lab()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab)[`lch()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lch)
-- [Oklab](https://bottosson.github.io/posts/oklab/)色彩空間：[`oklab()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklab)[`oklch()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch)
+-   [sRGB](https://en.wikipedia.org/wiki/SRGB)色彩空間：[`hsl()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl)[`hwb()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hwb)[`rgb()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb)
+-   [CIELAB](https://en.wikipedia.org/wiki/CIELAB_color_space)色彩空間：[`lab()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab)[`lch()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lch)
+-   [Oklab](https://bottosson.github.io/posts/oklab/)色彩空間：[`oklab()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklab)[`oklch()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch)
 
 他們都有自己的規則，而今天我要講的是不管是什麼色彩空間都可以使用的屬性：
 
@@ -49,9 +47,9 @@ color(colorspace c1 c2 c3[ / A])
 
 ```
 
-- `colorspace`你要使用的色彩空間，例如`srgb`，`display-p3`，`rec2020`等等。
-- `c1`，`c2`，`c3`：這些是數字，百分比值或關鍵字`none`，用於指定在所選色彩空間中的組件值。
-- `A`（選擇性）：這是不透明度，用於指定元素的透明度，其中1對應於100％的不透明度。
+-   `colorspace`你要使用的色彩空間，例如`srgb`，`display-p3`，`rec2020`等等。
+-   `c1`，`c2`，`c3`：這些是數字，百分比值或關鍵字`none`，用於指定在所選色彩空間中的組件值。
+-   `A`（選擇性）：這是不透明度，用於指定元素的透明度，其中1對應於100％的不透明度。
 
 ### 選擇適當的色彩空間
 

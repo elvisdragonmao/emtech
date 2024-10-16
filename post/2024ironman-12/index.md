@@ -4,6 +4,7 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-09-25
 ---
+
 # 一切都是有條件的 - 環境變數和條件運行
 
 > 甚麼是條件運行？孟子說：「生，事之以禮；死，葬之以禮；祭，事之以禮。」
@@ -18,11 +19,11 @@ date: 2024-09-25
 
 ## 常見環境變數
 
-- **`GITHUB_REPOSITORY`**: 存儲當前工作流程所在的倉庫名稱。
-- **`GITHUB_REF`**: 存儲當前的分支或標籤名稱。
-- **`GITHUB_SHA`**: 存儲當前 commit 的 SHA 值。
-- **`GITHUB_WORKSPACE`**: 表示當前工作流程的工作空間目錄。
-- **`GITHUB_ACTOR`**: 執行工作流程的用戶名。
+-   **`GITHUB_REPOSITORY`**: 存儲當前工作流程所在的倉庫名稱。
+-   **`GITHUB_REF`**: 存儲當前的分支或標籤名稱。
+-   **`GITHUB_SHA`**: 存儲當前 commit 的 SHA 值。
+-   **`GITHUB_WORKSPACE`**: 表示當前工作流程的工作空間目錄。
+-   **`GITHUB_ACTOR`**: 執行工作流程的用戶名。
 
 這些變數可直接在 YAML 文件中使用，如：
 
@@ -38,42 +39,42 @@ steps:
 
 ```yaml
 env:
-  NODE_ENV: production
-  API_URL: https://api.example.com
+    NODE_ENV: production
+    API_URL: https://api.example.com
 ```
 
 在程式中可以使用這些變數：
 
 ```yaml
 steps:
-  - name: Use Custom Environment Variables
-    run: echo "Running in ${{ env.NODE_ENV }} environment. API URL is ${{ env.API_URL }}."
+    - name: Use Custom Environment Variables
+      run: echo "Running in ${{ env.NODE_ENV }} environment. API URL is ${{ env.API_URL }}."
 ```
 
 ## 在 Node.js 程式中使用環境變數
 
-- **Node.js**: 在 Node.js 中，可以通過 `process.env` 來讀取環境變數。例如：
+-   **Node.js**: 在 Node.js 中，可以通過 `process.env` 來讀取環境變數。例如：
 
-  ```javascript
-  const apiUrl = process.env.API_URL || "https://default.example.com";
-  console.log(`API URL: ${apiUrl}`);
-  ```
+    ```javascript
+    const apiUrl = process.env.API_URL || "https://default.example.com";
+    console.log(`API URL: ${apiUrl}`);
+    ```
 
-- **設置 `.env` 文件**: 你可以使用 `.env` 文件來定義環境變數，並使用 `dotenv` 庫在 Node.js 中讀取這些變數。步驟如下：
-  1. 安裝 `dotenv`：
-     ```bash
-     npm install dotenv
-     ```
-  2. 創建 `.env` 文件，內容如下：
-     ```plaintext
-     API_URL=https://api.example.com
-     ```
-  3. 在程式中使用：
-     ```javascript
-     require("dotenv").config();
-     const apiUrl = process.env.API_URL;
-     console.log(`API URL from .env: ${apiUrl}`);
-     ```
+-   **設置 `.env` 文件**: 你可以使用 `.env` 文件來定義環境變數，並使用 `dotenv` 庫在 Node.js 中讀取這些變數。步驟如下：
+    1. 安裝 `dotenv`：
+        ```bash
+        npm install dotenv
+        ```
+    2. 創建 `.env` 文件，內容如下：
+        ```plaintext
+        API_URL=https://api.example.com
+        ```
+    3. 在程式中使用：
+        ```javascript
+        require("dotenv").config();
+        const apiUrl = process.env.API_URL;
+        console.log(`API URL from .env: ${apiUrl}`);
+        ```
 
 ## 條件運行任務
 
@@ -83,15 +84,15 @@ steps:
 
 ```yaml
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out code
+              uses: actions/checkout@v3
 
-      - name: Run tests on main branch
-        if: github.ref == 'refs/heads/main'
-        run: npm test
+            - name: Run tests on main branch
+              if: github.ref == 'refs/heads/main'
+              run: npm test
 ```
 
 上面的例子展示了如何僅在 `main` 分支上運行測試。
@@ -102,18 +103,18 @@ jobs:
 
 ```yaml
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      NODE_ENV: production
+    build:
+        runs-on: ubuntu-latest
+        env:
+            NODE_ENV: production
 
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+        steps:
+            - name: Check out code
+              uses: actions/checkout@v3
 
-      - name: Deploy to Production
-        if: env.NODE_ENV == 'production'
-        run: echo "Deploying to production..."
+            - name: Deploy to Production
+              if: env.NODE_ENV == 'production'
+              run: echo "Deploying to production..."
 ```
 
 ### 範例：使用 `git diff` 檢查是否有變更
@@ -122,17 +123,17 @@ jobs:
 
 ```yaml
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out code
+              uses: actions/checkout@v3
 
-      - name: Check for changes
-        run: git diff --exit-code
-      - name: Commit changes
-        if: success()
-        run: git commit -am "Auto commit"
+            - name: Check for changes
+              run: git diff --exit-code
+            - name: Commit changes
+              if: success()
+              run: git commit -am "Auto commit"
 ```
 
 ### 範例：Prettier 檢查是否通過
@@ -160,28 +161,28 @@ jobs:
 
 ```yaml
 env:
-  PRODUCTION_URL: https://prod.example.com
-  STAGING_URL: https://staging.example.com
+    PRODUCTION_URL: https://prod.example.com
+    STAGING_URL: https://staging.example.com
 ```
 
 ### 步驟 2：配置條件性部署
 
 ```yaml
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+    deploy:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+        steps:
+            - name: Check out code
+              uses: actions/checkout@v3
 
-      - name: Deploy to Production
-        if: github.ref == 'refs/heads/main'
-        run: curl -X POST ${{ env.PRODUCTION_URL }}/deploy
+            - name: Deploy to Production
+              if: github.ref == 'refs/heads/main'
+              run: curl -X POST ${{ env.PRODUCTION_URL }}/deploy
 
-      - name: Deploy to Staging
-        if: github.ref == 'refs/heads/develop'
-        run: curl -X POST ${{ env.STAGING_URL }}/deploy
+            - name: Deploy to Staging
+              if: github.ref == 'refs/heads/develop'
+              run: curl -X POST ${{ env.STAGING_URL }}/deploy
 ```
 
 這個工作流程根據當前分支名稱，選擇性地部署到不同的環境。

@@ -4,6 +4,7 @@ tags: [GitHub Actions, Node.js, DevOps]
 categories: [看好了 GitHub Actions，我只示範一次]
 date: 2024-09-18
 ---
+
 # 用 Prettier 統一天下 - 讓程式碼格式一致
 
 > 《史記·秦始皇本紀》：「書同文，車同軌。」秦始皇做專案一定會設定會用 Prettier，讓代碼格式一致。

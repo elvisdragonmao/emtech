@@ -9,8 +9,6 @@ date: 2023-09-
 
 > 這是我高一在學校吃肉蛋吐司時想到的做法，因此此篇文章假設你已熟悉國小數學。
 
-
-
 傳統跑馬燈雖然在現代乍看之下是一個又醜又過時的設計，但是如果應用的好的話其實是非常有質感且蠻有趣的。裝飾效果多大於實際用途。
 
 ![Alt text](<2023-09-11 12-46-01.gif>)
@@ -32,30 +30,30 @@ $$
 
 ```html
 <div class="marquee">
-  <div class="element">SALE</div>
+    <div class="element">SALE</div>
 </div>
 ```
 
 ```css
 body {
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  margin: 0;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    margin: 0;
 }
 .marquee {
-  font-size: 3rem;
-  color: #fff;
-  height: 1.5em;
-  background: red;
-  width: 100%;
-  position: relative;
-  font-family: Arial;
+    font-size: 3rem;
+    color: #fff;
+    height: 1.5em;
+    background: red;
+    width: 100%;
+    position: relative;
+    font-family: Arial;
 }
 .element {
-  position: absolute;
-  left: 0;
-  top: 0.25em;
+    position: absolute;
+    left: 0;
+    top: 0.25em;
 }
 ```
 
@@ -65,19 +63,19 @@ body {
 
 ```css
 .element {
-  position: absolute;
-  left: 0;
-  top: 0.25em;
-  animation: marquee 2s forwards linear;
+    position: absolute;
+    left: 0;
+    top: 0.25em;
+    animation: marquee 2s forwards linear;
 }
 
 @keyframes marquee {
-  from {
-    transform: translateX(100vw);
-  }
-  to {
-    transform: translateX(-100%);
-  }
+    from {
+        transform: translateX(100vw);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 ```
 
@@ -124,10 +122,10 @@ var loopTime = element_width / v; //每 delay 秒放入一個新的
 
 ```jsx
 setTimeout(
-  () => {
-    marquee.removeChild(marqueeBox);
-  },
-  time * 1000 + 1000
+    () => {
+        marquee.removeChild(marqueeBox);
+    },
+    time * 1000 + 1000
 );
 ```
 
@@ -137,11 +135,11 @@ setTimeout(
 
 ```jsx
 function newMaquee() {
-  var clonedElement = element.cloneNode(true);
-  marquee.appendChild(clonedElement);
-  setTimeout(() => {
-    marquee.removeChild(clonedElement);
-  }, time + 1000);
+    var clonedElement = element.cloneNode(true);
+    marquee.appendChild(clonedElement);
+    setTimeout(() => {
+        marquee.removeChild(clonedElement);
+    }, time + 1000);
 }
 
 setInterval(newMaquee, loopTime);
@@ -172,42 +170,42 @@ https://codepen.io/edit-mr/pen/YzdZdKv
 
 ```html
 <div class="marquee">
-  <div class="element">SALE</div>
+    <div class="element">SALE</div>
 </div>
 ```
 
 ```css
 body {
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  margin: 0;
-  overflow: hidden;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    overflow: hidden;
 }
 .marquee {
-  font-size: 3rem;
-  color: #fff;
-  height: 1.5em;
-  background: red;
-  width: 100%;
-  position: relative;
-  font-family: Arial;
-  font-weight: 800;
-  font-style: italic;
+    font-size: 3rem;
+    color: #fff;
+    height: 1.5em;
+    background: red;
+    width: 100%;
+    position: relative;
+    font-family: Arial;
+    font-weight: 800;
+    font-style: italic;
 }
 .element {
-  position: absolute;
-  left: 0;
-  top: 0.2em;
+    position: absolute;
+    left: 0;
+    top: 0.2em;
 }
 
 @keyframes marquee {
-  from {
-    transform: translateX(100vw);
-  }
-  to {
-    transform: translateX(-100%);
-  }
+    from {
+        transform: translateX(100vw);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 ```
 
@@ -221,14 +219,14 @@ var loopTime = element_width / v + 100;
 const marquee = document.querySelector(".marquee");
 
 function newMaquee() {
-  time = (window.innerWidth + element_width) / v;
-  element.style.animation = `marquee ${time}ms forwards linear`;
-  loopTime = element_width / v + 100;
-  var clonedElement = element.cloneNode(true);
-  marquee.appendChild(clonedElement);
-  setTimeout(() => {
-    marquee.removeChild(clonedElement);
-  }, time + 1000);
+    time = (window.innerWidth + element_width) / v;
+    element.style.animation = `marquee ${time}ms forwards linear`;
+    loopTime = element_width / v + 100;
+    var clonedElement = element.cloneNode(true);
+    marquee.appendChild(clonedElement);
+    setTimeout(() => {
+        marquee.removeChild(clonedElement);
+    }, time + 1000);
 }
 marquee.removeChild(element); //第一個先移除，避免卡住
 newMaquee(); //手動新增第一個

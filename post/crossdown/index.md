@@ -9,14 +9,12 @@ date: 2023-04-28
 
 平常討論事情有時會需要臨時做筆記或馬上呈現內容給大家，但常又不是使用自己的電腦，且網路及環境很差。因此，我製作了這一個好看輕量的線上markdown編輯器。不只直覺好用，且會額外將成果顯示在獨立視窗，可直接全屏投影到第二螢幕上，呈現更好的效果~~避免被偷看其他分頁~~。最方便是開會還有上課要對答案可以快速清楚地打讓出來呈現。
 
-
-
 {{notice}}
 CrossDown
 
-- 網站: <https://edit-mr.github.io/CrossDown/>
-- Github: <https://github.com/Edit-Mr/CrossDown>
-  {{noticed}}
+-   網站: <https://edit-mr.github.io/CrossDown/>
+-   Github: <https://github.com/Edit-Mr/CrossDown>
+    {{noticed}}
 
 > 好不容易忙完午休沒事，就花了下午下課時間搞出來了它。分享給大家，希望大家喜歡。
 

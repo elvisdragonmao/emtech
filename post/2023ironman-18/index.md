@@ -9,8 +9,6 @@ date: 2023-10-02
 
 今天我們要使用純 CSS 實現 DVD 反彈動畫，讓大家認識 `steps()` 以及 `animation-composition` 屬性的使用方式，並提供這個實用的應用。(應該吧...)
 
-
-
 ![](https://emtech.cc/post/2023ironman-18/final.gif)
 
 ## HTML
@@ -31,14 +29,14 @@ CSS 我們先不放背景圖片，用正方形就好了。用這種深藍色整�
 
 ```css
 body {
-  background: #000;
-  overflow: hidden;
+    background: #000;
+    overflow: hidden;
 }
 
 div {
-  width: 100px;
-  height: 100px;
-  background: blue;
+    width: 100px;
+    height: 100px;
+    background: blue;
 }
 ```
 
@@ -46,10 +44,10 @@ div {
 
 我們分析一下，DVD 反彈動畫需要的動畫
 
-- 水平移動 - `translateX()`
-- 垂直移動 - `translateY()`
-- 水平碰撞時改變顏色
-- 垂直碰撞時改變顏色
+-   水平移動 - `translateX()`
+-   垂直移動 - `translateY()`
+-   水平碰撞時改變顏色
+-   垂直碰撞時改變顏色
 
 #### 移動動畫
 
@@ -59,12 +57,12 @@ div {
 
 ```css
 @keyframes horizontal {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(100vw - 100%));
-  }
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(100vw - 100%));
+    }
 }
 ```
 
@@ -74,29 +72,29 @@ OK沒問題。那垂直的也加上去。兩個時間故意設定稍微不一樣
 
 ```css
 div {
-  width: 100px;
-  height: 100px;
-  background: blue;
-  animation:
-    horizontal 2.6s infinite linear alternate,
-    vertical 2s infinite linear alternate;
+    width: 100px;
+    height: 100px;
+    background: blue;
+    animation:
+        horizontal 2.6s infinite linear alternate,
+        vertical 2s infinite linear alternate;
 }
 
 @keyframes horizontal {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(100vw - 100%));
-  }
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(100vw - 100%));
+    }
 }
 @keyframes vertical {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(calc(100vh - 100%));
-  }
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(calc(100vh - 100%));
+    }
 }
 ```
 
@@ -104,8 +102,8 @@ div {
 
 欸等等，垂直移動效果加上去之後，水平移動的效果就沒了!因為兩個都是使用 `transform` 屬性，所以其中一個被蓋過去了。但我們的動畫是要同時執行，變色動畫都還沒加上去啊!在之前常見的解決方法有
 
-- 使用 `top`、`left` 屬性代替 `transform` 屬性
-- 外面再包一層 `div`，讓 兩個 `div` 同時移動
+-   使用 `top`、`left` 屬性代替 `transform` 屬性
+-   外面再包一層 `div`，讓 兩個 `div` 同時移動
 
 而今天我們有一個更加優雅的解決方法，就是使用 `animation-composition` 屬性，讓兩個動畫同時執行。我們給 `div` 加上 `animation-composition` 屬性，並且設定 `accumulate` 值。
 
@@ -127,24 +125,24 @@ animation-composition: accumulate;
 
 ```css
 div {
-  /* 同上 */
-  animation:
-    horizontal 2.6s infinite linear alternate,
-    vertical 2s infinite linear alternate,
-    colorX 26s infinite,
-    colorY 14s infinite;
-  animation-composition: accumulate;
+    /* 同上 */
+    animation:
+        horizontal 2.6s infinite linear alternate,
+        vertical 2s infinite linear alternate,
+        colorX 26s infinite,
+        colorY 14s infinite;
+    animation-composition: accumulate;
 }
 
 @keyframes colorX {
-  to {
-    filter: hue-rotate(360deg);
-  }
+    to {
+        filter: hue-rotate(360deg);
+    }
 }
 @keyframes colorY {
-  to {
-    filter: hue-rotate(360deg);
-  }
+    to {
+        filter: hue-rotate(360deg);
+    }
 }
 ```
 
@@ -154,10 +152,10 @@ div {
 
 ```css
 animation:
-  horizontal 2.6s infinite linear alternate,
-  vertical 2s infinite linear alternate,
-  colorX 26s infinite steps(10),
-  colorY 14s infinite steps(7);
+    horizontal 2.6s infinite linear alternate,
+    vertical 2s infinite linear alternate,
+    colorX 26s infinite steps(10),
+    colorY 14s infinite steps(7);
 ```
 
 ![](https://emtech.cc/post/2023ironman-18/step.gif)
@@ -172,14 +170,14 @@ animation:
 
 ```css
 @keyframes colorX {
-  from {
-    filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(245deg)
-      brightness(116%) contrast(153%);
-  }
-  to {
-    filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(605deg)
-      brightness(116%) contrast(153%);
-  }
+    from {
+        filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(245deg)
+            brightness(116%) contrast(153%);
+    }
+    to {
+        filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(605deg)
+            brightness(116%) contrast(153%);
+    }
 }
 ```
 
@@ -195,54 +193,54 @@ animation:
 
 ```css
 body {
-  background: #000;
-  overflow: hidden;
+    background: #000;
+    overflow: hidden;
 }
 
 img {
-  width: 100px;
-  animation:
-    horizontal 2.6s infinite linear alternate,
-    vertical 2s infinite linear alternate,
-    colorX 26s infinite steps(10),
-    colorY 14s infinite steps(7);
-  animation-composition: accumulate;
+    width: 100px;
+    animation:
+        horizontal 2.6s infinite linear alternate,
+        vertical 2s infinite linear alternate,
+        colorX 26s infinite steps(10),
+        colorY 14s infinite steps(7);
+    animation-composition: accumulate;
 }
 @keyframes horizontal {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(100vw - 100%));
-  }
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(100vw - 100%));
+    }
 }
 @keyframes vertical {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(calc(100vh - 100%));
-  }
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(calc(100vh - 100%));
+    }
 }
 @keyframes colorX {
-  from {
-    filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(245deg)
-      brightness(116%) contrast(153%);
-  }
-  to {
-    filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(605deg)
-      brightness(116%) contrast(153%);
-  }
+    from {
+        filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(245deg)
+            brightness(116%) contrast(153%);
+    }
+    to {
+        filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(605deg)
+            brightness(116%) contrast(153%);
+    }
 }
 @keyframes colorY {
-  from {
-    filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(245deg)
-      brightness(116%) contrast(153%);
-  }
-  to {
-    filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(605deg)
-      brightness(116%) contrast(153%);
-  }
+    from {
+        filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(245deg)
+            brightness(116%) contrast(153%);
+    }
+    to {
+        filter: invert(9%) sepia(84%) saturate(5931%) hue-rotate(605deg)
+            brightness(116%) contrast(153%);
+    }
 }
 ```
 

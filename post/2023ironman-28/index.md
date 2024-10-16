@@ -47,71 +47,71 @@ scroll-snap-type: both mandatory;
 
 ```html
 <section>
-  <div class="items">
-    <button onclick="backward()">❮</button>
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-  </div>
-  <button onclick="foward()">❯</button>
+    <div class="items">
+        <button onclick="backward()">❮</button>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+    <button onclick="foward()">❯</button>
 </section>
 ```
 
 ```css
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 body {
-  overflow: hidden;
+    overflow: hidden;
 }
 section {
-  position: relative;
+    position: relative;
 }
 .items {
-  display: flex;
-  height: 400px;
-  width: 100%;
-  overflow: scroll;
-  scroll-snap-type: x mandatory;
+    display: flex;
+    height: 400px;
+    width: 100%;
+    overflow: scroll;
+    scroll-snap-type: x mandatory;
 }
 .items div {
-  width: 100%;
-  height: 100%;
-  background: orange;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3em;
-  scroll-snap-align: center;
+    width: 100%;
+    height: 100%;
+    background: orange;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    scroll-snap-align: center;
 }
 .items div:nth-child(odd) {
-  background: lightblue;
+    background: lightblue;
 }
 button {
-  position: absolute;
-  top: 50%;
-  left: 1em;
-  transform: translate(-50%, -50%);
-  outline: transparent;
-  border: none;
-  background: transparent;
-  font-size: 3em;
-  transition: transform 0.3s;
-  cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 1em;
+    transform: translate(-50%, -50%);
+    outline: transparent;
+    border: none;
+    background: transparent;
+    font-size: 3em;
+    transition: transform 0.3s;
+    cursor: pointer;
 }
 section button:last-child {
-  left: unset;
-  right: 1em;
+    left: unset;
+    right: 1em;
 }
 section button:last-child:hover {
-  transform: translate(-20%, -50%);
+    transform: translate(-20%, -50%);
 }
 section button:first-child:hover {
-  transform: translate(-80%, -50%);
+    transform: translate(-80%, -50%);
 }
 ```
 
@@ -129,16 +129,16 @@ let currentIndex = 0;
 
 ```js
 function backward() {
-  if (currentIndex > 0) {
-    currentIndex--;
-    scrollToCurrentIndex();
-  }
+    if (currentIndex > 0) {
+        currentIndex--;
+        scrollToCurrentIndex();
+    }
 }
 function foward() {
-  if (currentIndex < itemDivs.length - 1) {
-    currentIndex++;
-    scrollToCurrentIndex();
-  }
+    if (currentIndex < itemDivs.length - 1) {
+        currentIndex++;
+        scrollToCurrentIndex();
+    }
 }
 ```
 
@@ -146,13 +146,13 @@ function foward() {
 
 ```js
 function scrollToCurrentIndex() {
-  const itemWidth = itemDivs[currentIndex].offsetWidth;
-  const scrollPosition = itemWidth * currentIndex;
-  itemsContainer.scrollTo({
-    left: scrollPosition,
-    behavior: "smooth"
-  });
-  hideButton();
+    const itemWidth = itemDivs[currentIndex].offsetWidth;
+    const scrollPosition = itemWidth * currentIndex;
+    itemsContainer.scrollTo({
+        left: scrollPosition,
+        behavior: "smooth"
+    });
+    hideButton();
 }
 ```
 
@@ -160,8 +160,8 @@ function scrollToCurrentIndex() {
 
 ```js
 const hideButton = () => {
-  backwardButton.style.opacity = 0 + !(currentIndex === 0);
-  forwardButton.style.opacity = 0 + !(currentIndex === itemDivs.length - 1);
+    backwardButton.style.opacity = 0 + !(currentIndex === 0);
+    forwardButton.style.opacity = 0 + !(currentIndex === itemDivs.length - 1);
 };
 ```
 
@@ -169,10 +169,10 @@ const hideButton = () => {
 
 ```js
 itemsContainer.addEventListener("scroll", function () {
-  currentIndex = Math.round(
-    itemsContainer.scrollLeft / itemDivs[0].offsetWidth
-  );
-  hideButton();
+    currentIndex = Math.round(
+        itemsContainer.scrollLeft / itemDivs[0].offsetWidth
+    );
+    hideButton();
 });
 ```
 
@@ -225,13 +225,13 @@ itemsContainer.addEventListener("scroll", function () {
 ```css
 /* Hide scrollbar for Chrome, Safari and Opera */
 .example::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .example {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 ```
 

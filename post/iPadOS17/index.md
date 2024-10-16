@@ -9,8 +9,6 @@ date: 2023-06-09
 
 iOS 17 與 iPadOS 17 在今年 6/6 號發佈，而隔天就開放 developer beta 版給我們使用了，可以說是最快的一次。儘管在發佈會上 iPadOS 的篇幅並不多，但多了很說實用的小更新，以及介面質感的大提升。發布會上沒有提到一次 Ai，但但滿滿的都是人工智慧和深度學習。
 
-
-
 ![iPadOS 17 Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/IPadOS_17_logo.png/170px-IPadOS_17_logo.png)
 
 毛哥我這兩天很忙，使用 iPad Pro M1 的量非常大。從基本的文書處裡到複雜的影片剪輯都有使用到。因此經過了所有功能完整的體驗，我來跟大家分享一下我的心得。讓我們開始吧。

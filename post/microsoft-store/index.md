@@ -9,8 +9,6 @@ date: 2023-12-05
 
 Microsoft Store 是 Windows 內建的應用程式商店。理論上它應該是一個很方便的東西，能夠安全的下載應用程式。但是實際上他的 Bug 很多，很多時候會因為一些奇怪的原因無法使用。最常見的就是 Windows Update 的錯誤會導致 Microsoft Store 無法使用。因此這篇文章將會教你如何不透過 Microsoft Store 安裝 Microsoft Store 的應用程式。
 
-
-
 ![常見的失敗畫面](fail.webp)
 
 ## 步驟 1: 找到你要的應用程式
@@ -52,8 +50,8 @@ Microsoft Store 是 Windows 內建的應用程式商店。理論上它應該是�
 
 有一些軟體會需要安裝依賴套件。例如 Spotify 就需要安裝
 
-- Microsoft.WindowsAppRuntime.1.2_2000.802.31.0_x64\_\_8wekyb3d8bbwe.msix
-- Microsoft.VCLibs.140.00_14.0.32530.0_x64\_\_8wekyb3d8bbwe.appx
+-   Microsoft.WindowsAppRuntime.1.2_2000.802.31.0_x64\_\_8wekyb3d8bbwe.msix
+-   Microsoft.VCLibs.140.00_14.0.32530.0_x64\_\_8wekyb3d8bbwe.appx
 
 ![依賴套件](spotify.webp)
 

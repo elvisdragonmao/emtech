@@ -1,15 +1,13 @@
 ---
 authors: elvismao
 tags: [自製, HTML, CSS, JavaScript, Github, GAS]
-categories: [製作教學,複製貼上就能成為工程師]
+categories: [製作教學, 複製貼上就能成為工程師]
 date: 2022-08-14
 ---
 
 # 【GAS】複製貼上讓試算表變身成網頁表格 秀爆你的客戶朋友！
 
 直接把整個試算表連結發給別人除了要載入很久且會出現一堆不需要的按鍵，整個畫面很醜很沒有質感。而且如果你把其他隱私的資料也放在裡面，都會被一次看光光。那我們就來幫試算表包個糖衣吧
-
-
 
 當你要分享表格給其他人看時，使用Google試算表把連結貼給別人是一個簡單快速的方法。除了可以套各種公式，修改資料會馬上同步，也可以開設權限讓其他人一起編輯。
 
@@ -45,212 +43,214 @@ date: 2022-08-14
 ```html
 <!doctype html>
 <head>
-      
-  <meta charset="utf-8" />
-  <!--下面這行是標題-->
-      
-  <title>薩波進度查詢表</title>
-      
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!--下面這行是縮圖，可以換網址-->
-      
-  <link
-    href="https://Edit-Mr.github.io/code/sabooo/thumbnail.png"
-    rel="icon"
-    type="image/x-icon"
-  />
-      
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="https://Edit-Mr.github.io/css/Animate.css"
-    media="screen"
-  />
-  <!--下面這行是主題顏色，可以自由更換（支援HEX）-->
-      
-  <meta name="theme-color" content="orange" />
-      
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <!--下面這些是樣式，可以自由更換顏色之類的-->
-      
-  <style>
-            @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
-
-            body {
-                font-family: "Arial","cwTeXYen","微軟正黑體";
-                background-color: #fee5bd;
-            }
-
-            .container {
-                max-width: 1000px;
-                margin-left: auto;
-                margin-right: auto;
-                padding-left: 10px;
-                padding-right: 10px;
-                font-size: 25px;
-            }
-
-            h2 {
-                font-size: 23px;
-                margin: 0;
-                text-align: center;
-                font-weight: 150;
-                color: #e69137;
-                animation: fadeIn;
-                animation-duration: 1.5s;
-                animate-delay: 0.9s;
-            }
-
-            h1 {
-                font-size: 35px;
-                margin: 20px 0 0 0;
-                text-align: center;
-                size: 30px;
-                color: #351c75;
-                animation: zoomIn;
-                animation-duration: 1s;
-            }
-
-            li {
-                border-radius: 3px;
-                padding: 25px 30px;
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 25px;
-            }
-
-            .responsive-table .table-header,
-            .table-note {
-                background-color: #f9a756;
-                font-size: 30px;
-                margin-top: 0px;
-                padding: 25px 30px 25px 30px;
-                animation: slideInUp;
-                animation-duration: 1.5s;
-            }
-
-            .table-note {
-                font-size: 20px;
-                display: none;
-            }
-
-            .responsive-table {
-                margin: 0;
-                padding: 0;
-            }
-
-            .responsive-table .table-row {
-                background-color: #fff;
-                box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
-                animation: backInLeft;
-                animation-duration: 1.5s;
-            }
-            .table-row{}
-            .responsive-table .col-1 {
-                flex-basis: 25%;
-            }
-
-            .responsive-table .col-2 {
-                flex-basis: 30%;
-            }
-
-            .responsive-table .col-3 {
-                flex-basis: 30%;
-            }
-
-            .responsive-table .col-4 {
-                flex-basis: 15%;
-            }
-
-            @media all and (max-width: 767px) {
-                .responsive-table .table-header {
-                    display: none;
-                }
-
-                .table-note {
-                    display: block;
-                }
-
-                .responsive-table li {
-                    display: block;
-                }
-
-                .responsive-table .col {
-                    flex-basis: 100%;
-                }
-
-                .responsive-table .col {
-                    display: flex;
-                    padding: 10px 0;
-                }
-
-                .responsive-table .col:before {
-                    color: #6c7a89;
-                    padding-right: 10px;
-                    content: attr(data-label);
-                    flex-basis: 50%;
-                    text-align: right;
-                }
-            }
-
-            .header {
-                width: 150px;
-                display: block;
-                margin: auto;
-                animation: slideInUp;
-                animation-duration: 1.5s;
-            }
-
-            .finished {
-                color: green;
-            }
-
-            p,
-            a {
-                text-align: center;
-                font-size: 15px;
-                color: #6c7a89;
-                text-decoration: none;
-                animation: fadeIn;
-                animation-duration: 1.5s;
-            }
         
-  </style>
+    <meta charset="utf-8" />
+    <!--下面這行是標題-->
+        
+    <title>薩波進度查詢表</title>
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--下面這行是縮圖，可以換網址-->
+        
+    <link
+        href="https://Edit-Mr.github.io/code/sabooo/thumbnail.png"
+        rel="icon"
+        type="image/x-icon"
+    />
+        
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://Edit-Mr.github.io/css/Animate.css"
+        media="screen"
+    />
+    <!--下面這行是主題顏色，可以自由更換（支援HEX）-->
+        
+    <meta name="theme-color" content="orange" />
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!--下面這些是樣式，可以自由更換顏色之類的-->
+        
+    <style>
+                @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+
+                body {
+                    font-family: "Arial","cwTeXYen","微軟正黑體";
+                    background-color: #fee5bd;
+                }
+
+                .container {
+                    max-width: 1000px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    font-size: 25px;
+                }
+
+                h2 {
+                    font-size: 23px;
+                    margin: 0;
+                    text-align: center;
+                    font-weight: 150;
+                    color: #e69137;
+                    animation: fadeIn;
+                    animation-duration: 1.5s;
+                    animate-delay: 0.9s;
+                }
+
+                h1 {
+                    font-size: 35px;
+                    margin: 20px 0 0 0;
+                    text-align: center;
+                    size: 30px;
+                    color: #351c75;
+                    animation: zoomIn;
+                    animation-duration: 1s;
+                }
+
+                li {
+                    border-radius: 3px;
+                    padding: 25px 30px;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 25px;
+                }
+
+                .responsive-table .table-header,
+                .table-note {
+                    background-color: #f9a756;
+                    font-size: 30px;
+                    margin-top: 0px;
+                    padding: 25px 30px 25px 30px;
+                    animation: slideInUp;
+                    animation-duration: 1.5s;
+                }
+
+                .table-note {
+                    font-size: 20px;
+                    display: none;
+                }
+
+                .responsive-table {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .responsive-table .table-row {
+                    background-color: #fff;
+                    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+                    animation: backInLeft;
+                    animation-duration: 1.5s;
+                }
+                .table-row{}
+                .responsive-table .col-1 {
+                    flex-basis: 25%;
+                }
+
+                .responsive-table .col-2 {
+                    flex-basis: 30%;
+                }
+
+                .responsive-table .col-3 {
+                    flex-basis: 30%;
+                }
+
+                .responsive-table .col-4 {
+                    flex-basis: 15%;
+                }
+
+                @media all and (max-width: 767px) {
+                    .responsive-table .table-header {
+                        display: none;
+                    }
+
+                    .table-note {
+                        display: block;
+                    }
+
+                    .responsive-table li {
+                        display: block;
+                    }
+
+                    .responsive-table .col {
+                        flex-basis: 100%;
+                    }
+
+                    .responsive-table .col {
+                        display: flex;
+                        padding: 10px 0;
+                    }
+
+                    .responsive-table .col:before {
+                        color: #6c7a89;
+                        padding-right: 10px;
+                        content: attr(data-label);
+                        flex-basis: 50%;
+                        text-align: right;
+                    }
+                }
+
+                .header {
+                    width: 150px;
+                    display: block;
+                    margin: auto;
+                    animation: slideInUp;
+                    animation-duration: 1.5s;
+                }
+
+                .finished {
+                    color: green;
+                }
+
+                p,
+                a {
+                    text-align: center;
+                    font-size: 15px;
+                    color: #6c7a89;
+                    text-decoration: none;
+                    animation: fadeIn;
+                    animation-duration: 1.5s;
+                }
+            
+    </style>
 </head>
 
 <body>
-      
-  <div class="container">
-            
-    <h1>薩波2022委託與贈圖表</h1>
-            
-    <h2>這些不代表畫的順序 會跳著畫</h2>
-            <img src="header.png" class="header" />         
-    <li class="table-note">
-                  如果要一次看完整表格請切換到電腦版網頁喔         
-    </li>
-            
-    <ul class="responsive-table">
-                  
-      <li class="table-header">
-                        
-        <div class="col col-1">委託人姓名</div>
-                        
-        <div class="col col-2">委託項目</div>
-                        
-        <div class="col col-3">付款狀態</div>
-                        
-        <div class="col col-4">進度狀態</div>
-                    
-      </li>
-                  資料載入中         
-    </ul>
-    <p>
-      <a href=""></a> · Facebook<a href="https://instagram.com/">Instagram</a
-      ><br />Made by <a href="https://github.com/Edit-Mr">Edit Mr.</a> with❤
-    </p>
         
-  </div>
+    <div class="container">
+                
+        <h1>薩波2022委託與贈圖表</h1>
+                
+        <h2>這些不代表畫的順序 會跳著畫</h2>
+                <img src="header.png" class="header" />         
+        <li class="table-note">
+                        如果要一次看完整表格請切換到電腦版網頁喔         
+        </li>
+                
+        <ul class="responsive-table">
+                        
+            <li class="table-header">
+                                
+                <div class="col col-1">委託人姓名</div>
+                                
+                <div class="col col-2">委託項目</div>
+                                
+                <div class="col col-3">付款狀態</div>
+                                
+                <div class="col col-4">進度狀態</div>
+                            
+            </li>
+                        資料載入中         
+        </ul>
+        <p>
+            <a href=""></a> · Facebook<a href="https://instagram.com/"
+                >Instagram</a
+            ><br />Made by <a href="https://github.com/Edit-Mr">Edit Mr.</a
+            > with❤
+        </p>
+            
+    </div>
 </body>
 ```
 
@@ -278,56 +278,56 @@ Google Apps Script
 
 ```js
 function doGet() {
-  var spreadsheet = SpreadsheetApp.openById(
-    "1U-Q2XXXXXXXRsrh-QYCXXXXXXXXXQmGQ"
-  ); // Sheet id
-  var sheet = spreadsheet.getSheets()[0];
-  var rowLength = sheet.getLastRow();
-  var columnLength = sheet.getLastColumn();
-  var data = sheet.getRange(3, 1, rowLength, columnLength).getValues();
-  var dataExport = [
-    '<li class="table-header"><div class="col col-1">委託人姓名</div><div class="col col-2"++>委託項目</div><div class="col col-3">付款狀態</div><div class="col col-4">進度狀態</div></li>'
-  ];
-  var stat,
-    ed = [];
-  // 一個個加入json
-  for (i in data) {
-    if (data[i][0] != "") {
-      if (data[i][3] == "完成") {
-        ed.push(
-          '<li class="table-row"><div class="col col-1" data-label="委託人姓名">' +
-            data[i][0] +
-            '</div><div class="col col-2" data-label="委託項目">' +
-            data[i][1] +
-            '</div><div class="col col-3" data-label="付款狀態">' +
-            data[i][2] +
-            " " +
-            data[i][4] +
-            '</div><div class="col col-4 finished" data-label="進度狀態">' +
-            data[i][3] +
-            "</div></li>"
-        );
-      } else {
-        dataExport.push(
-          '<li class="table-row"><div class="col col-1" data-label="委託人姓名">' +
-            data[i][0] +
-            '</div><div class="col col-2" data-label="委託項目">' +
-            data[i][1] +
-            '</div><div class="col col-3" data-label="付款狀態">' +
-            data[i][2] +
-            " " +
-            data[i][4] +
-            '</div><div class="col col-4" data-label="進度狀態">' +
-            data[i][3] +
-            "</div></li>"
-        );
-      }
+    var spreadsheet = SpreadsheetApp.openById(
+        "1U-Q2XXXXXXXRsrh-QYCXXXXXXXXXQmGQ"
+    ); // Sheet id
+    var sheet = spreadsheet.getSheets()[0];
+    var rowLength = sheet.getLastRow();
+    var columnLength = sheet.getLastColumn();
+    var data = sheet.getRange(3, 1, rowLength, columnLength).getValues();
+    var dataExport = [
+        '<li class="table-header"><div class="col col-1">委託人姓名</div><div class="col col-2"++>委託項目</div><div class="col col-3">付款狀態</div><div class="col col-4">進度狀態</div></li>'
+    ];
+    var stat,
+        ed = [];
+    // 一個個加入json
+    for (i in data) {
+        if (data[i][0] != "") {
+            if (data[i][3] == "完成") {
+                ed.push(
+                    '<li class="table-row"><div class="col col-1" data-label="委託人姓名">' +
+                        data[i][0] +
+                        '</div><div class="col col-2" data-label="委託項目">' +
+                        data[i][1] +
+                        '</div><div class="col col-3" data-label="付款狀態">' +
+                        data[i][2] +
+                        " " +
+                        data[i][4] +
+                        '</div><div class="col col-4 finished" data-label="進度狀態">' +
+                        data[i][3] +
+                        "</div></li>"
+                );
+            } else {
+                dataExport.push(
+                    '<li class="table-row"><div class="col col-1" data-label="委託人姓名">' +
+                        data[i][0] +
+                        '</div><div class="col col-2" data-label="委託項目">' +
+                        data[i][1] +
+                        '</div><div class="col col-3" data-label="付款狀態">' +
+                        data[i][2] +
+                        " " +
+                        data[i][4] +
+                        '</div><div class="col col-4" data-label="進度狀態">' +
+                        data[i][3] +
+                        "</div></li>"
+                );
+            }
+        }
     }
-  }
-  dataExport = dataExport.concat(ed);
-  // 回傳JSON
-  console.log(dataExport.join(""));
-  return ContentService.createTextOutput(dataExport.join(""));
+    dataExport = dataExport.concat(ed);
+    // 回傳JSON
+    console.log(dataExport.join(""));
+    return ContentService.createTextOutput(dataExport.join(""));
 }
 ```
 
@@ -364,18 +364,18 @@ function doGet() {
 
 ```html
 <script>
-  //請把下面按這串改成剛才的網址
-  let requestURL =
-    "https://script.google.com/macros/s/AKfycbxq942U9fZK5tR6Vi1OZkr5Hq0Bv_qPSm1rOOYFFZUS_vyrTu60QuW7xmU-d09UpI1XLQ/exec";
-  let request = new XMLHttpRequest();
-  request.open("GET", requestURL);
-  request.responseType = "text";
-  request.send();
-  request.onload = function () {
-    console.log("載入成功");
-    $("p").addClass("animate_animated", "animate_fadeOut"); //動畫
-    $(".responsive-table").html(request.response); //用表格取代.responsive-table
-  };
+    //請把下面按這串改成剛才的網址
+    let requestURL =
+        "https://script.google.com/macros/s/AKfycbxq942U9fZK5tR6Vi1OZkr5Hq0Bv_qPSm1rOOYFFZUS_vyrTu60QuW7xmU-d09UpI1XLQ/exec";
+    let request = new XMLHttpRequest();
+    request.open("GET", requestURL);
+    request.responseType = "text";
+    request.send();
+    request.onload = function () {
+        console.log("載入成功");
+        $("p").addClass("animate_animated", "animate_fadeOut"); //動畫
+        $(".responsive-table").html(request.response); //用表格取代.responsive-table
+    };
 </script>
 ```
 
@@ -388,230 +388,230 @@ function doGet() {
 ```html
 <!doctype html>
 <head>
-      
-  <meta charset="utf-8" />
-  <!--下面這行是標題-->
-      
-  <title>薩波進度查詢表</title>
-      
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!--下面這行是縮圖，可以換網址-->
-      
-  <link
-    href="https://Edit-Mr.github.io/code/sabooo/thumbnail.png"
-    rel="icon"
-    type="image/x-icon"
-  />
-      
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="https://Edit-Mr.github.io/css/Animate.css"
-    media="screen"
-  />
-  <!--下面這行是主題顏色，可以自由更換（支援HEX）-->
-      
-  <meta name="theme-color" content="orange" />
-      
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <!--下面這些是樣式，可以自由更換顏色之類的-->
-      
-  <style>
-            @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
-
-            body {
-                font-family: "Arial","cwTeXYen","微軟正黑體";
-                background-color: #fee5bd;
-            }
-
-            .container {
-                max-width: 1000px;
-                margin-left: auto;
-                margin-right: auto;
-                padding-left: 10px;
-                padding-right: 10px;
-                font-size: 25px;
-            }
-
-            h2 {
-                font-size: 23px;
-                margin: 0;
-                text-align: center;
-                font-weight: 150;
-                color: #e69137;
-                animation: fadeIn;
-                animation-duration: 1.5s;
-                animate-delay: 0.9s;
-            }
-
-            h1 {
-                font-size: 35px;
-                margin: 20px 0 0 0;
-                text-align: center;
-                size: 30px;
-                color: #351c75;
-                animation: zoomIn;
-                animation-duration: 1s;
-            }
-
-            li {
-                border-radius: 3px;
-                padding: 25px 30px;
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 25px;
-            }
-
-            .responsive-table .table-header,
-            .table-note {
-                background-color: #f9a756;
-                font-size: 30px;
-                margin-top: 0px;
-                padding: 25px 30px 25px 30px;
-                animation: slideInUp;
-                animation-duration: 1.5s;
-            }
-
-            .table-note {
-                font-size: 20px;
-                display: none;
-            }
-
-            .responsive-table {
-                margin: 0;
-                padding: 0;
-            }
-
-            .responsive-table .table-row {
-                background-color: #fff;
-                box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
-                animation: backInLeft;
-                animation-duration: 1.5s;
-            }
-            .table-row{}
-            .responsive-table .col-1 {
-                flex-basis: 25%;
-            }
-
-            .responsive-table .col-2 {
-                flex-basis: 30%;
-            }
-
-            .responsive-table .col-3 {
-                flex-basis: 30%;
-            }
-
-            .responsive-table .col-4 {
-                flex-basis: 15%;
-            }
-
-            @media all and (max-width: 767px) {
-                .responsive-table .table-header {
-                    display: none;
-                }
-
-                .table-note {
-                    display: block;
-                }
-
-                .responsive-table li {
-                    display: block;
-                }
-
-                .responsive-table .col {
-                    flex-basis: 100%;
-                }
-
-                .responsive-table .col {
-                    display: flex;
-                    padding: 10px 0;
-                }
-
-                .responsive-table .col:before {
-                    color: #6c7a89;
-                    padding-right: 10px;
-                    content: attr(data-label);
-                    flex-basis: 50%;
-                    text-align: right;
-                }
-            }
-
-            .header {
-                width: 150px;
-                display: block;
-                margin: auto;
-                animation: slideInUp;
-                animation-duration: 1.5s;
-            }
-
-            .finished {
-                color: green;
-            }
-
-            p,
-            a {
-                text-align: center;
-                font-size: 15px;
-                color: #6c7a89;
-                text-decoration: none;
-                animation: fadeIn;
-                animation-duration: 1.5s;
-            }
         
-  </style>
+    <meta charset="utf-8" />
+    <!--下面這行是標題-->
+        
+    <title>薩波進度查詢表</title>
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--下面這行是縮圖，可以換網址-->
+        
+    <link
+        href="https://Edit-Mr.github.io/code/sabooo/thumbnail.png"
+        rel="icon"
+        type="image/x-icon"
+    />
+        
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://Edit-Mr.github.io/css/Animate.css"
+        media="screen"
+    />
+    <!--下面這行是主題顏色，可以自由更換（支援HEX）-->
+        
+    <meta name="theme-color" content="orange" />
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!--下面這些是樣式，可以自由更換顏色之類的-->
+        
+    <style>
+                @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+
+                body {
+                    font-family: "Arial","cwTeXYen","微軟正黑體";
+                    background-color: #fee5bd;
+                }
+
+                .container {
+                    max-width: 1000px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    font-size: 25px;
+                }
+
+                h2 {
+                    font-size: 23px;
+                    margin: 0;
+                    text-align: center;
+                    font-weight: 150;
+                    color: #e69137;
+                    animation: fadeIn;
+                    animation-duration: 1.5s;
+                    animate-delay: 0.9s;
+                }
+
+                h1 {
+                    font-size: 35px;
+                    margin: 20px 0 0 0;
+                    text-align: center;
+                    size: 30px;
+                    color: #351c75;
+                    animation: zoomIn;
+                    animation-duration: 1s;
+                }
+
+                li {
+                    border-radius: 3px;
+                    padding: 25px 30px;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 25px;
+                }
+
+                .responsive-table .table-header,
+                .table-note {
+                    background-color: #f9a756;
+                    font-size: 30px;
+                    margin-top: 0px;
+                    padding: 25px 30px 25px 30px;
+                    animation: slideInUp;
+                    animation-duration: 1.5s;
+                }
+
+                .table-note {
+                    font-size: 20px;
+                    display: none;
+                }
+
+                .responsive-table {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .responsive-table .table-row {
+                    background-color: #fff;
+                    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+                    animation: backInLeft;
+                    animation-duration: 1.5s;
+                }
+                .table-row{}
+                .responsive-table .col-1 {
+                    flex-basis: 25%;
+                }
+
+                .responsive-table .col-2 {
+                    flex-basis: 30%;
+                }
+
+                .responsive-table .col-3 {
+                    flex-basis: 30%;
+                }
+
+                .responsive-table .col-4 {
+                    flex-basis: 15%;
+                }
+
+                @media all and (max-width: 767px) {
+                    .responsive-table .table-header {
+                        display: none;
+                    }
+
+                    .table-note {
+                        display: block;
+                    }
+
+                    .responsive-table li {
+                        display: block;
+                    }
+
+                    .responsive-table .col {
+                        flex-basis: 100%;
+                    }
+
+                    .responsive-table .col {
+                        display: flex;
+                        padding: 10px 0;
+                    }
+
+                    .responsive-table .col:before {
+                        color: #6c7a89;
+                        padding-right: 10px;
+                        content: attr(data-label);
+                        flex-basis: 50%;
+                        text-align: right;
+                    }
+                }
+
+                .header {
+                    width: 150px;
+                    display: block;
+                    margin: auto;
+                    animation: slideInUp;
+                    animation-duration: 1.5s;
+                }
+
+                .finished {
+                    color: green;
+                }
+
+                p,
+                a {
+                    text-align: center;
+                    font-size: 15px;
+                    color: #6c7a89;
+                    text-decoration: none;
+                    animation: fadeIn;
+                    animation-duration: 1.5s;
+                }
+            
+    </style>
 </head>
 
 <body>
-      
-  <div class="container">
-            
-    <h1>薩波2022委託與贈圖表</h1>
-            
-    <h2>這些不代表畫的順序 會跳著畫</h2>
-            <img src="header.png" class="header" />         
-    <li class="table-note">
-                  如果要一次看完整表格請切換到電腦版網頁喔         
-    </li>
-            
-    <ul class="responsive-table">
-                  
-      <li class="table-header">
-                        
-        <div class="col col-1">委託人姓名</div>
-                        
-        <div class="col col-2">委託項目</div>
-                        
-        <div class="col col-3">付款狀態</div>
-                        
-        <div class="col col-4">進度狀態</div>
-                    
-      </li>
-                  資料載入中         
-    </ul>
-            
-    <p>
-      <a href="https://www.facebook.com/Sabo9335">薩波FB</a> · <a
-        href="https://instagram.com/sabooo_9335?igshid=YmMyMTA2M2Y="
-        >薩波IG</a
-      > · <a href="https://discord.gg/ve9ERWVEPR">橘子牌太空船</a
-      ><br />Made by <a href="https://github.com/Edit-Mr">EDM</a> with❤
-    </p>
         
-  </div>
-      
-  <script>
-    //請把下面按這串改成剛才的網址
-    let requestURL = "https://script.google.com/macros/s/xxxxxxxx/exec";
-    let request = new XMLHttpRequest();
-    request.open("GET", requestURL);
-    request.responseType = "text";
-    request.send();
-    request.onload = function () {
-      console.log("載入成功");
-      $("p").addClass("animate_animated", "animate_fadeOut"); //動畫
-      $(".responsive-table").html(request.response); //用表格取代.responsive-table
-    };
-  </script>
+    <div class="container">
+                
+        <h1>薩波2022委託與贈圖表</h1>
+                
+        <h2>這些不代表畫的順序 會跳著畫</h2>
+                <img src="header.png" class="header" />         
+        <li class="table-note">
+                        如果要一次看完整表格請切換到電腦版網頁喔         
+        </li>
+                
+        <ul class="responsive-table">
+                        
+            <li class="table-header">
+                                
+                <div class="col col-1">委託人姓名</div>
+                                
+                <div class="col col-2">委託項目</div>
+                                
+                <div class="col col-3">付款狀態</div>
+                                
+                <div class="col col-4">進度狀態</div>
+                            
+            </li>
+                        資料載入中         
+        </ul>
+                
+        <p>
+            <a href="https://www.facebook.com/Sabo9335">薩波FB</a> · <a
+                href="https://instagram.com/sabooo_9335?igshid=YmMyMTA2M2Y="
+                >薩波IG</a
+            > · <a href="https://discord.gg/ve9ERWVEPR">橘子牌太空船</a
+            ><br />Made by <a href="https://github.com/Edit-Mr">EDM</a> with❤
+        </p>
+            
+    </div>
+        
+    <script>
+        //請把下面按這串改成剛才的網址
+        let requestURL = "https://script.google.com/macros/s/xxxxxxxx/exec";
+        let request = new XMLHttpRequest();
+        request.open("GET", requestURL);
+        request.responseType = "text";
+        request.send();
+        request.onload = function () {
+            console.log("載入成功");
+            $("p").addClass("animate_animated", "animate_fadeOut"); //動畫
+            $(".responsive-table").html(request.response); //用表格取代.responsive-table
+        };
+    </script>
 </body>
 ```
 
@@ -619,55 +619,55 @@ function doGet() {
 
 ```js
 function doGet() {
-  var spreadsheet = SpreadsheetApp.openById(
-    "1U-Q2t9RI6Uce787RASQIRsrh-QYCvhCgn_UyOnrQmGQ"
-  ); // Sheet id
-  var sheet = spreadsheet.getSheets()[0];
-  var rowLength = sheet.getLastRow();
-  var columnLength = sheet.getLastColumn();
-  var data = sheet.getRange(3, 1, rowLength, columnLength).getValues();
-  var dataExport = [
-    '<li class="table-header"><div class="col col-1">委託人姓名</div><div class="col col-2"++>委託項目</div><div class="col col-3">付款狀態</div><div class="col col-4">進度狀態</div></li>'
-  ];
-  var stat,
-    ed = [];
-  // 一個個加入json
-  for (i in data) {
-    if (data[i][0] != "") {
-      if (data[i][3] == "完成") {
-        ed.push(
-          '<li class="table-row"><div class="col col-1" data-label="委託人姓名">' +
-            data[i][0] +
-            '</div><div class="col col-2" data-label="委託項目">' +
-            data[i][1] +
-            '</div><div class="col col-3" data-label="付款狀態">' +
-            data[i][2] +
-            " " +
-            data[i][4] +
-            '</div><div class="col col-4 finished" data-label="進度狀態">' +
-            data[i][3] +
-            "</div></li>"
-        );
-      } else {
-        dataExport.push(
-          '<li class="table-row"><div class="col col-1" data-label="委託人姓名">' +
-            data[i][0] +
-            '</div><div class="col col-2" data-label="委託項目">' +
-            data[i][1] +
-            '</div><div class="col col-3" data-label="付款狀態">' +
-            data[i][2] +
-            " " +
-            data[i][4] +
-            '</div><div class="col col-4" data-label="進度狀態">' +
-            data[i][3] +
-            "</div></li>"
-        );
-      }
+    var spreadsheet = SpreadsheetApp.openById(
+        "1U-Q2t9RI6Uce787RASQIRsrh-QYCvhCgn_UyOnrQmGQ"
+    ); // Sheet id
+    var sheet = spreadsheet.getSheets()[0];
+    var rowLength = sheet.getLastRow();
+    var columnLength = sheet.getLastColumn();
+    var data = sheet.getRange(3, 1, rowLength, columnLength).getValues();
+    var dataExport = [
+        '<li class="table-header"><div class="col col-1">委託人姓名</div><div class="col col-2"++>委託項目</div><div class="col col-3">付款狀態</div><div class="col col-4">進度狀態</div></li>'
+    ];
+    var stat,
+        ed = [];
+    // 一個個加入json
+    for (i in data) {
+        if (data[i][0] != "") {
+            if (data[i][3] == "完成") {
+                ed.push(
+                    '<li class="table-row"><div class="col col-1" data-label="委託人姓名">' +
+                        data[i][0] +
+                        '</div><div class="col col-2" data-label="委託項目">' +
+                        data[i][1] +
+                        '</div><div class="col col-3" data-label="付款狀態">' +
+                        data[i][2] +
+                        " " +
+                        data[i][4] +
+                        '</div><div class="col col-4 finished" data-label="進度狀態">' +
+                        data[i][3] +
+                        "</div></li>"
+                );
+            } else {
+                dataExport.push(
+                    '<li class="table-row"><div class="col col-1" data-label="委託人姓名">' +
+                        data[i][0] +
+                        '</div><div class="col col-2" data-label="委託項目">' +
+                        data[i][1] +
+                        '</div><div class="col col-3" data-label="付款狀態">' +
+                        data[i][2] +
+                        " " +
+                        data[i][4] +
+                        '</div><div class="col col-4" data-label="進度狀態">' +
+                        data[i][3] +
+                        "</div></li>"
+                );
+            }
+        }
     }
-  }
-  dataExport = dataExport.concat(ed);
-  // 回傳JSON
-  console.log(dataExport.join(""));
-  return ContentService.createTextOutput(dataExport.join(""));
+    dataExport = dataExport.concat(ed);
+    // 回傳JSON
+    console.log(dataExport.join(""));
+    return ContentService.createTextOutput(dataExport.join(""));
 }
 ```
