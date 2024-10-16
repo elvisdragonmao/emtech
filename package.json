@@ -4,8 +4,7 @@
     "version": "1.0.0",
     "scripts": {
         "build": "node emblog/generate.js",
-        "server": "node emblog/server.js",
-        "gradient": "node emblog/gradient.js"
+        "start": "node emblog/server.js"
     },
     "dependencies": {
         "highlight.js": "^11.10.0",

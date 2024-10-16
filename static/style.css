@@ -386,9 +386,9 @@ header {
     font-size: 1.125rem;
     border-radius: calc(var(--border-radius) / 30 * 19);
 }
-/* a.header-categories-item {
-    color: #000;
-}
+ a.header-categories-item {
+    color: #FFF;
+}/*
 a.header-categories-item span {
     filter: invert(1);
 } */
