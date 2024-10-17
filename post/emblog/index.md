@@ -79,7 +79,7 @@ emblog 你只需要簡單逛一下就會發現它其實只有兩個頁面，一�
 
 -   讀取每篇文章的資料夾 `/posts/{postID}`，將 `index.md` 轉換為 HTML。
 -   從 markdown 前言中提取文章的中繼資料：
-    ```yaml
+    `yaml
     ---
     authors: elvismao
     tags: [HTML, CSS, JS]
@@ -87,7 +87,7 @@ emblog 你只需要簡單逛一下就會發現它其實只有兩個頁面，一�
 thumbnail: /static/2023ironman-1/thumbnail.webp
     date: 2023-09-15
     ---
-    ```
+    `
 -   若未指定 `thumbnail`，生成器會自動尋找該資料夾內的 `thumbnail.webp` 作為預設縮圖。
 -   輸出文章的中繼資料至 JSON 格式：
     ```json
