@@ -386,9 +386,9 @@ header {
     font-size: 1.125rem;
     border-radius: calc(var(--border-radius) / 30 * 19);
 }
- a.header-categories-item {
-    color: #FFF;
-}/*
+a.header-categories-item {
+    color: #fff;
+} /*
 a.header-categories-item span {
     filter: invert(1);
 } */
@@ -1379,6 +1379,60 @@ blockquote::before {
     background-color: var(--background-color);
     text-align: center;
     padding: -0 1.5rem 1.5rem 1.5rem;
+}
+.friends {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+a.friend {
+    color: var(--black);
+}
+a.friend:hover {
+    color: var(--blue);
+}
+a.friend::after {
+    display: none;
+}
+.post-container .friends figure {
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.post-container .friend h3,
+.post-container .friend p {
+    margin: 0;
+}
+
+.post-container .friend figcaption {
+    display: none;
+}
+.friend {
+    border: var(--border);
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 16rem;
+    padding: 1rem;
+    text-align: left;
+    font-size: 0.9rem;
+}
+.friend img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: block;
+    object-fit: cover;
+}
+
+.friend div {
 }
 
 .author-avatar {

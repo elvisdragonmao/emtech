@@ -3,6 +3,7 @@ authors: elvismao
 tags: [iOS, 自製, Arduino, ESP32]
 categories: [精選, 製作教學]
 date: 2024-01-09
+thumbnail: /static/Homekit-PC/power.webp
 ---
 
 # 用 iPhone 開機電腦和查看狀態 - 使用 ESP32 加入 Homekit
