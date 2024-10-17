@@ -359,6 +359,7 @@ const switchToHome = () => {
         document.body.classList.remove("displayPost");
         window.scrollTo(0, 0);
         document.body.classList.remove("toHome");
+        document.body.style.paddingBottom = "0";
     }, 500);
 };
 
