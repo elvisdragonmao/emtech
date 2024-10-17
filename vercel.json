@@ -7,7 +7,7 @@
         { "source": "/category/:slug*", "destination": "/index.html" }
     ],
     "redirects": [
-        { "source": "/about", "destination": "/p/emblog", "permanent": false },
+        { "source": "/about/", "destination": "/p/about" },
         {
             "source": "/post/:slug*",
             "destination": "/p/:slug*"
