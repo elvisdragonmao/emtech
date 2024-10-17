@@ -258,16 +258,20 @@ const postScrollAnimations = () => {
     }
 };
 
-const updatePostList = async (category) => {
+const updatePostList = async (category, scroll = true) => {
     let delay = currentPage == "home" ? 0 : 500;
     document.querySelector(".categories-title").textContent =
-    decodeURI(category.split("/")[1]);
+        decodeURI(category.split("/")[1]) + " 載入中...";
     await loadArticleList(document.getElementById("posts"), category);
-    setTimeout(() => {
-        document.getElementById("categories").scrollIntoView({
-            behavior: "smooth"
-        });
-    }, delay);
+    document.querySelector(".categories-title").textContent = decodeURI(
+        category.split("/")[1]
+    );
+    if (scroll)
+        setTimeout(() => {
+            document.getElementById("categories").scrollIntoView({
+                behavior: "smooth"
+            });
+        }, delay);
 };
 
 // use url to get current page include /p/
@@ -341,10 +345,14 @@ if (window.location.pathname.includes("/p/")) {
     currentPage = "home";
     document.body.classList.remove("displayPost");
     startDonut();
-    if(window.location.pathname.includes("/category/") || window.location.pathname.includes("/tag/")) 
-    updatePostList(// all the url after the domain
-        window.location.pathname.slice(1)
-    );
+    if (
+        window.location.pathname.includes("/category/") ||
+        window.location.pathname.includes("/tag/")
+    )
+        updatePostList(
+            // all the url after the domain
+            window.location.pathname.slice(1)
+        );
 }
 
 const switchToHome = () => {
@@ -534,7 +542,7 @@ fetch("/meta/tags.json")
         );
     });
 
-updatePostList("category/精選");
+updatePostList("category/精選", false);
 
 document.body.addEventListener("click", (e) => {
     let a = e.target.closest("a"); // Find the closest <a> element (in case of nested elements)
