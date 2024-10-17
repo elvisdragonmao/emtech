@@ -16,7 +16,7 @@ let postsMeta = [];
 
 const md = markdownIt({
     html: true,
-    linkify: true,
+    linkify: false,
     highlight: (str, lang) => {
         try {
             // if last char is \n, remove it
@@ -118,7 +118,6 @@ md.renderer.rules.image = (tokens, idx, options, env, self) => {
     const title = token.attrs[token.attrIndex("title")]
         ? token.attrs[token.attrIndex("title")][1]
         : "";
-    console.log("img", src, alt, title);
     // Returning a figure with img and figcaption
     return `
         <figure>
@@ -275,7 +274,7 @@ async function processPosts() {
                 // don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
                 markdownContent = markdownContent.replace(
                     /!\[(.*?)\]\((?!\/|http)(.*?)\)/g,
-                    `![](/static/${postID}/$2)`
+                    `![$1](/static/${postID}/$2)`
                 );
                 let htmlContent = md.render(
                     renderPartials(
@@ -311,7 +310,6 @@ async function processPosts() {
                     thumbnail.includes(".") &&
                     !thumbnail.includes("http")
                 ) {
-                    // console.log("finding" + path.join("..", "dist", thumbnail));
                     postMeta.colors = await findRepresentativeColors(
                         path.join("dist", thumbnail) //.replaceAll("\\", "/")
                     );
