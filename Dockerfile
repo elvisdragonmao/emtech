@@ -27,11 +27,7 @@ COPY nginx/default.conf /etc/nginx/conf.d/
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # 暴露埠號
-ENV \
-    PORT=8080 \
-    HOST=0.0.0.0
-
-EXPOSE 8080
+EXPOSE 80
 
 # 啟動 Nginx
 CMD ["nginx", "-g", "daemon off;"]
