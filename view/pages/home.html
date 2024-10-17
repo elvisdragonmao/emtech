@@ -3,20 +3,14 @@
     <head>
         <title>emtech</title>
         {{meta}}
-        <meta
-            name="description"
-            content="發明、技術文章與科技教學。"
-        />
+        <meta name="description" content="發明、技術文章與科技教學。" />
         <link rel="stylesheet" href="/static/style.css" />
         <link rel="stylesheet" href="/static/nord.css" />
 
         <meta name="og:title" content="毛哥EM資訊密技" />
         <meta name="og:url" content="https://emtech.cc" />
         <!-- <meta name="og:image" content="" /> -->
-        <meta
-            name="og:description"
-            content="發明、技術文章與科技教學。"
-        />
+        <meta name="og:description" content="發明、技術文章與科技教學。" />
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org/",
@@ -37,13 +31,19 @@
                     "@type": "QuantitativeValue",
                     "value": 1
                 },
-                "sameAs": ["https://www.instagram.com/emtech.cc/"]
+                "sameAs": ["https://www.instagram.com/emtech.cc/"],
+                "mainEntity": {
+                    "@type": "WebPage",
+                    "@id": "https://emtech.cc/",
+                    "name": "毛哥EM資訊密技首頁",
+                    "description": "發明、技術文章與科技教學的個人部落格。"
+                }
             }
         </script>
     </head>
     <body class="">
         {{nav}}
-        <input type="checkbox" id="hideTags">
+        <input type="checkbox" id="hideTags" />
         <div class="main-container post-page"></div>
         <div class="main-container home-page">{{home}}</div>
         {{footer}}
