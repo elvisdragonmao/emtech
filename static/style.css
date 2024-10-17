@@ -1567,6 +1567,7 @@ blockquote::before {
     border-left: 4.8px solid #009400;
     background: #e6f6e6;
     color: #003100;
+    margin-bottom: 1rem;
 }
 
 .post-container .notice > * {
