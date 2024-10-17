@@ -60,7 +60,7 @@ description: 本文將帶你深入探討獸迷文化，介紹福瑞（獸人）�
 
 一些福瑞愛好者還會製作或委託專人製作獸裝（Fursuit），這些獸裝可以在線下活動中穿戴，或是拍照發社群媒體，進一步表達自己的獸設。
 
-![果糖含糖](GIOVRb5bsAA3qc4.webp)
+![果糖含量](GIOVRb5bsAA3qc4.webp)
 
 圖：[果糖含糖](https://x.com/Fructose_c/status/1766419617575309383/photo/1)
 
