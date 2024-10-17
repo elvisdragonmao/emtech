@@ -3,7 +3,6 @@ authors: elvismao
 tags: [關於]
 categories: [精選]
 date: 2024-10-17
-thumbnail: /static/img/og.webp
 ---
 
 # 友情連結
