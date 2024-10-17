@@ -118,7 +118,7 @@ md.renderer.rules.image = (tokens, idx, options, env, self) => {
     const title = token.attrs[token.attrIndex("title")]
         ? token.attrs[token.attrIndex("title")][1]
         : "";
-
+    console.log("img", src, alt, title);
     // Returning a figure with img and figcaption
     return `
         <figure>
