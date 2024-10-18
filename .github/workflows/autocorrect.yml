@@ -41,7 +41,26 @@ jobs:
             # Commit and push changes
             - name: Commit and push changes
               run: |
-                  git commit -m "AutoCorrect fix applied"
+                  git commit -m "噢多麼單純的一首詩 怎麼會 怎麼會 忘記加空白" -m "-草東沒有派對《爛泥》"
                   git push origin main
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    replace_text:
+        needs: autocorrect # This ensures replace_text runs after autocorrect
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: 毛哥沒有空白
+              run: |
+                  find . -type f -exec sed -i 's/毛哥 EM/毛哥EM/g' {} +
+
+            - name: Commit changes
+              run: |
+                  git config --global user.name "github-actions"
+                  git config --global user.email "actions@github.com"
+                  git add .
+                  git commit -m "空間是一格半 誰也出不去 幾寸也不滿意 思想是循環 溫飽思淫慾" -m "-草東沒有派對《空》"
+                  git push
+
