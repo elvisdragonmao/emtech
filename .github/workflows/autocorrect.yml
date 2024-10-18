@@ -51,7 +51,7 @@ jobs:
             # Commit and push changes
             - name: Commit and push changes
               run: |
-                  if [ -n "$(git status --porcelain)" ]; then
+                  if git diff --cached --quiet; then
                       git commit -m "噢多麼單純的一首詩 怎麼會 怎麼會 忘記加空白" -m "-草東沒有派對《爛泥》"
                       git push origin main
                   else
