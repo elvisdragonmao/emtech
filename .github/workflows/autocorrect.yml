@@ -14,8 +14,6 @@ jobs:
             # Checkout the repository
             - name: Checkout code
               uses: actions/checkout@v4
-              with:
-                token: ${{ secrets.WORKFLOW_TOKEN }}
 
             # Install Node.js and Yarn
             - name: Set up Node.js
@@ -47,7 +45,7 @@ jobs:
                   git config --global user.name "Edit-Mr"
                   git config --global user.email "info@elvismao.com"
                   git add .
-                  git reset package.json
+                  git store package.json
 
             # Commit and push changes
             - name: Commit and push changes
@@ -59,7 +57,7 @@ jobs:
                       echo "No changes to commit"
                   fi
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
     blankSpace:
         needs: autocorrect # This ensures replace_text runs after autocorrect
         runs-on: ubuntu-latest
@@ -84,4 +82,4 @@ jobs:
                     git push
                   fi
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
