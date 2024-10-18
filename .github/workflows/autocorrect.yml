@@ -45,7 +45,7 @@ jobs:
                   git config --global user.name "Edit-Mr"
                   git config --global user.email "info@elvismao.com"
                   git add .
-                  git store package.json
+                  git restore package.json
 
             # Commit and push changes
             - name: Commit and push changes
