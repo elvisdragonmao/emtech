@@ -48,6 +48,31 @@ date: 2024-10-17
 
 </div>
 </a>
+<a class="friend" href="https://blog.scott-studio.cn/">
+
+![scott](https://blog.scott-studio.cn/uploads/2024/08/new_logo.webp)
+
+<div>
+
+### SCOTT Studio
+
+不知名前端攻城狮，分享编程经验和技术干货。
+
+</div>
+</a>
+</a>
+<a class="friend" href="https://www.anzifan.com/">
+
+![异次元de机智君](https://gravatar.loli.net/avatar/83f6ef7256399833395e9c94ad838442)
+
+<div>
+
+### 异次元de机智君
+
+前端开发工程师，优质Notion主题开发者
+
+</div>
+</a>
 </div>
 
 {{notice}}
