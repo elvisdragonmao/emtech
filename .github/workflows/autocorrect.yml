@@ -15,7 +15,7 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
               with:
-                token: ${{ secrets.WORKFLOW_TOKEN }}
+                  token: ${{ secrets.WORKFLOW_TOKEN }}
 
             # Install Node.js and Yarn
             - name: Set up Node.js
