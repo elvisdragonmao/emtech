@@ -13,7 +13,7 @@ date: 2024-10-07
 
 在軟體開發中，性能測試是確保應用程序在高負載下正常運行的關鍵步驟。自動化性能測試可以幫助我們在開發過程中及早發現性能瓶頸並做出改進。本文將介紹如何使用 GitHub Actions 來自動化性能測試，進行負載測試並生成性能報告。
 
-> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/24>
+> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/24>
 
 ## 專案背景
 

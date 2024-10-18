@@ -6,19 +6,19 @@ thumbnail: /static/2023ironman-1/thumbnail.webp
 date: 2023-09-29
 ---
 
-# Day15 今天我想來點...純CSS的並排選單
+# Day15 今天我想來點...純 CSS 的並排選單
 
 昨天我們做了一個開關，那麼我們今天就來做一個選單吧！
 
 ![成果](https://emtech.cc/post/2023ironman-15/final.gif)
 
-這個雖然是一種 `radio` 選單，但對於選擇數字這種有連續性，或著是比較短的文字，使用這種風格都是一種不錯的選擇。可以讓版面更乾淨，也比下拉式選單或著是傳統的radio都更方便操作。重點是不用寫一行 JavaScript，只要純 CSS 就可以完成。
+這個雖然是一種 `radio` 選單，但對於選擇數字這種有連續性，或著是比較短的文字，使用這種風格都是一種不錯的選擇。可以讓版面更乾淨，也比下拉式選單或著是傳統的 radio 都更方便操作。重點是不用寫一行 JavaScript，只要純 CSS 就可以完成。
 
 ## 原理
 
 和昨天的類似，不過今天不需要 `<label>`。點擊透明的 `<input>` 之後後面的一個圓形 `<div>` 就會跑過來。最上面用一層 `<div>` 疊上去數字即可，當然你要使用 `<label>` 也是可以的。
 
-## 開始做吧!
+## 開始做吧！
 
 照剛才原理寫出 HTML，然後加上 CSS 即可。
 
@@ -48,7 +48,7 @@ CSS 的部分我想要製作使用新擬物化設計 Neumorphism，或是說 Sof
 
 ![](https://emtech.cc/post/2023ironman-15/example.webp)
 
-來源: [Payment App (Neumorphism)](https://codepen.io/sdbrannum/pen/PowKRGj)
+來源：[Payment App (Neumorphism)](https://codepen.io/sdbrannum/pen/PowKRGj)
 
 基本外框如下
 
@@ -93,7 +93,7 @@ body {
 
 ### 顯示數字
 
-上面疊數字。為了讓數字對齊每個都寬度設為2rem再置中。
+上面疊數字。為了讓數字對齊每個都寬度設為 2rem 再置中。
 
 ```css
 .hope-label {
@@ -132,7 +132,7 @@ body {
 
 ### 移動小球
 
-根據選擇的值來移動小球。這邊使用 `nth-child` 來選擇第幾個元素。如果被勾選就會觸發CSS移動球到對應的位置。
+根據選擇的值來移動小球。這邊使用 `nth-child` 來選擇第幾個元素。如果被勾選就會觸發 CSS 移動球到對應的位置。
 
 ```css
 .hope-container input:nth-child(2):checked ~ .hope-selected {
@@ -176,12 +176,12 @@ body {
 }
 ```
 
-好啦，這樣就做完了!
+好啦，這樣就做完了！
 
 https://codepen.io/edit-mr/pen/LYMmQOE
 
 ![顏色選擇成果](https://emtech.cc/post/2023ironman-15/final.gif)
 
-以上就是我今天的分享，你可以根據你的喜好增加陰影或其他動畫效果。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，你可以根據你的喜好增加陰影或其他動畫效果。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

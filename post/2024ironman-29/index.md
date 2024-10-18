@@ -14,7 +14,7 @@ date: 2024-10-12
 它的原理很簡單，就是每小時觸發一次 Action，然後使用靜態爬蟲爬取我的鐵人賽頁面，檢查是否有今天的文章，如果沒有就發送一封郵件給我。
 今天就讓我們一步步來實作這個 Action 吧！
 
-> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/29>
+> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/29>
 > 其實如果你有發現的話，這個 repo 底下一直有一個 check 資料夾，這個就是每天提醒我發文的 Action。
 
 ## 實作爬蟲

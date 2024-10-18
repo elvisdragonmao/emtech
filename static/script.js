@@ -189,7 +189,7 @@ const postScrollAnimations = () => {
                     // Check if a post has been found after all fetches
                     if (!randomPost && search.length > 0) {
                         next.previousElementSibling.innerHTML =
-                            "這系列你都看過了，推薦一篇給你!";
+                            "這系列你都看過了，推薦一篇給你！";
                         randomPost =
                             search[Math.floor(Math.random() * search.length)];
                     }
@@ -613,7 +613,7 @@ fetch("/meta/search.json")
                 //     ],
                 //     "date": 1694822400000,
                 //     "title": "Day2 如何打的更快 | Emmet &amp; 預測輸入",
-                //     "description": "記得我在國一寫HTML的時候，傻傻的在那裡打小於、h1、大於、標題、小於、斜線、大於。我的朋友甚至發現了一個偷吃步就是先打好一堆大於小於，然後再填空。",
+                //     "description": "記得我在國一寫 HTML 的時候，傻傻的在那裡打小於、h1、大於、標題、小於、斜線、大於。我的朋友甚至發現了一個偷吃步就是先打好一堆大於小於，然後再填空。",
                 //     "length": 1656,
                 //     "lastUpdated": "2024-10-15T03:20:38.489Z",
                 //     "readingTime": "6 min",
@@ -632,9 +632,9 @@ window.onbeforeunload = function () {
 };
 
 console.log(`
-    　　　　　 ／＞　　 フ
-    　　　　　|  　_　_ l
-    　 　　　／\` ミ_꒳ノ
+          ／＞   フ
+         |   _ _ l
+         ／\` ミ_꒳ノ
     　　 　 /　　　 　 |
     　　　 /　 ヽ　　 ﾉ
     　 　 │　　|　|　|

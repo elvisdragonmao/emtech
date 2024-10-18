@@ -35,10 +35,10 @@ Microsoft Store 是 Windows 內建的應用程式商店。理論上它應該是�
 
 首先是軟體安裝檔。檔案名稱通常會有軟體的名稱，例如 Spotify 叫做 `SpotifyAB.SpotifyMusic_1.225.1011.0_x64__zpdnekdrzrea0.appx`。
 
-你會看到有很多不同的檔案適用於不同架構的電腦(如 x86、x64、ARM)。下載你的電腦架構的版本當中數字最大最新的版本即可。
+你會看到有很多不同的檔案適用於不同架構的電腦 (如 x86、x64、ARM)。下載你的電腦架構的版本當中數字最大最新的版本即可。
 
 {{notice}}
-我的電腦是什麼架構?
+我的電腦是什麼架構？
 
 如果你不知道你的電腦是什麼架構的，請按下`Win+R`並輸入`msinfo32`。在`系統摘要說明`中你可以看到`系統類型`。如果是`x64-based PC`請下載`x64`的版本，如果是`x86-based PC`請下載`x86`的版本。如果你的電腦是 ARM 架構的，請下載 ARM 的版本。
 
@@ -55,7 +55,7 @@ Microsoft Store 是 Windows 內建的應用程式商店。理論上它應該是�
 
 ![依賴套件](spotify.webp)
 
-建議都可以下載，在安裝時比較沒有問題。一樣你會看到有很多不同的檔案適用於不同架構的電腦(如 x86、x64、ARM)。下載你的電腦架構的版本當中數字最大最新的版本即可。
+建議都可以下載，在安裝時比較沒有問題。一樣你會看到有很多不同的檔案適用於不同架構的電腦 (如 x86、x64、ARM)。下載你的電腦架構的版本當中數字最大最新的版本即可。
 
 {{notice}}
 小提示
@@ -80,7 +80,7 @@ Microsoft Store 是 Windows 內建的應用程式商店。理論上它應該是�
 
 ![開啟 PowerShell](open-powershell.webp)
 
-使用 PowerShell 安裝。這樣可以避免安裝失敗。指令是:
+使用 PowerShell 安裝。這樣可以避免安裝失敗。指令是：
 
 ```powershell
 Add-AppxPackage -Path "檔案路徑"
@@ -90,7 +90,7 @@ Add-AppxPackage -Path "檔案路徑"
 
 ![複製路徑](path.webp)
 
-例如:
+例如：
 
 ```powershell
 Add-AppxPackage -Path "C:\Users\EM\Desktop\SpotifyAB.SpotifyMusic_1.225.1011.0_x64__zpdnekdrzrea0.appx"
@@ -109,7 +109,7 @@ Add-AppxPackage -Path "C:\Users\EM\Desktop\SpotifyAB.SpotifyMusic_1.225.1011.0_x
 
 如果你要安裝多個應用程式，你可以把安裝檔放在同一個資料夾中，然後在 PowerShell 中使用 `cd` 指令切換到那個資料夾。然後使用 `Get-ChildItem` 指令列出所有檔案，再使用 `Add-AppxPackage` 指令安裝。
 
-例如我在桌面新增一個資料夾，把所有安裝檔放進去，然後在 PowerShell 中輸入:
+例如我在桌面新增一個資料夾，把所有安裝檔放進去，然後在 PowerShell 中輸入：
 
 ```powershell
 cd "C:\Users\EM\Desktop\新增資料夾"

@@ -22,9 +22,9 @@ https://codepen.io/edit-mr/pen/YzdzvdV
 
 ![cut](https://emtech.cc/post/2023ironman-5/cut.webp)
 
-不知道這樣你知道如何下手了嗎?
+不知道這樣你知道如何下手了嗎？
 
-我們先寫HTML。emmet縮寫如下。
+我們先寫 HTML。emmet 縮寫如下。
 
 ```bash
 main>(.left>(.wheelBox>.wheel*2)+.box>div*25)+.right>.wheel*3
@@ -33,7 +33,7 @@ main>(.left>(.wheelBox>.wheel*2)+.box>div*25)+.right>.wheel*3
 
 CSS 設定一下寬高、形狀、與排列方式
 
-> 提示: `border-radius` 設定大於等於 `50%` 即可生成圓形
+> 提示：`border-radius` 設定大於等於 `50%` 即可生成圓形
 
 ```css
 .box div,
@@ -91,7 +91,7 @@ main {
 animation: 1.5s ease-in-out infinite zoom;
 ```
 
-代表他會無限重複，每次1.5秒。我們來建立 zoom 的動畫吧，我們先縮小、放大、然後維持在原尺寸直到動畫結束。
+代表他會無限重複，每次 1.5 秒。我們來建立 zoom 的動畫吧，我們先縮小、放大、然後維持在原尺寸直到動畫結束。
 
 ```css
 @keyframes zoom {
@@ -107,7 +107,7 @@ animation: 1.5s ease-in-out infinite zoom;
 }
 ```
 
-重複的CSS可以縮寫在一起，像這樣
+重複的 CSS 可以縮寫在一起，像這樣
 
 ```css
 @keyframes zoom {
@@ -152,7 +152,7 @@ animation: 1.5s ease-in-out infinite zoom;
 </div>
 ```
 
-這樣就能夠做出最上面的動畫啦! 如果你跟我一樣使用 Firefox Developer Edition，在偵錯工具可以看到動畫時間軸曲線。
+這樣就能夠做出最上面的動畫啦！如果你跟我一樣使用 Firefox Developer Edition，在偵錯工具可以看到動畫時間軸曲線。
 
 ![動畫時間軸](https://emtech.cc/post/2023ironman-5/f12.webp)
 
@@ -162,7 +162,7 @@ animation: 1.5s ease-in-out infinite zoom;
 
 https://codepen.io/edit-mr/pen/LYMZeZE?editors=1100
 
-![有點像 Windows10更新動畫](https://emtech.cc/post/2023ironman-5/spin.gif)
+![有點像 Windows10 更新動畫](https://emtech.cc/post/2023ironman-5/spin.gif)
 
 有點像 Windows 更新動畫。首先我們先來製作圓圈。我畫了一張圖希望讓你更好理解。
 
@@ -188,12 +188,12 @@ animation: spin 2s infinte;
 
 我有在正方形裡面再包一層正方形，讓我可以讓每個正方形再旋轉一點，使每一個的開始點和結束點不太一樣。所有的參數你都可以調整看看。
 
-HTML Emmet如下：
+HTML Emmet 如下：
 
 ```bash
 .loading>(div[style="animation-delay: calc(.1s * $)"]>div[style="transform:rotate(calc(-15deg * $))"])*8
 ```
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

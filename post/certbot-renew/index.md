@@ -10,9 +10,9 @@ date: 2024-06-30
 當你的 Certbot SSL 過期時，更新過程可能會出現各種問題，尤其是在使用手動插件時。這篇文章將介紹如何解決 Certbot 手動插件更新失敗的問題，並提供一個完整的解決方案，幫助你順利更新 SSL 憑證。
 
 {{notice}}
-還沒有使用過 Certbot 建立 SSL 憑證嗎?
+還沒有使用過 Certbot 建立 SSL 憑證嗎？
 
-如果你還沒有使用過 Certbot 建立 SSL 憑證，可以參考我之前的文章：[如何使用 Certbot 申請免費的 SSL 憑證，並使用 DNS 驗證?](https://emtech.cc/post/setup-ssl-certificate-nginx-certbot/)。
+如果你還沒有使用過 Certbot 建立 SSL 憑證，可以參考我之前的文章：[如何使用 Certbot 申請免費的 SSL 憑證，並使用 DNS 驗證？](https://emtech.cc/post/setup-ssl-certificate-nginx-certbot/)。
 {{noticed}}
 
 ## 問題描述

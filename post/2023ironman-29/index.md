@@ -8,7 +8,7 @@ date: 2023-10-13
 
 # Day 29 鐵人賽太空粒子的例子
 
-相信大家對於這個頁面都不陌生吧。這是我們2023 iThome 鐵人賽的首頁。我覺得他的粒子特效和地球很酷，所以我們今天就來看看怎麼做吧。
+相信大家對於這個頁面都不陌生吧。這是我們 2023 iThome 鐵人賽的首頁。我覺得他的粒子特效和地球很酷，所以我們今天就來看看怎麼做吧。
 
 ![](https://emtech.cc/post/2023ironman-29/original.webp)
 
@@ -115,7 +115,7 @@ filter: blur(30px);
 
 關於置中我們之前有提到，可以把 `left` 設為 `(寬度-100)/2`，這樣就不需要再用 `transform` 或是 `margin-left` 來調整位置了。
 
-> 複習: [Day17 css.wav - 純 CSS 波浪進度條](https://ithelp.ithome.com.tw/articles/10332433)
+> 複習：[Day17 css.wav - 純 CSS 波浪進度條](https://ithelp.ithome.com.tw/articles/10332433)
 
 再多加幾個光點
 
@@ -180,7 +180,7 @@ filter: blur(30px);
 
 ## 星空
 
-星空效果 iThome 沒有使用什麼 [particles.js](https://vincentgarreau.com/particles.js/)。我們打開 FireFox Dev Tools 的動畫分頁可以看出原來這是一個長150秒的往上移動 CSS 動畫。
+星空效果 iThome 沒有使用什麼 [particles.js](https://vincentgarreau.com/particles.js/)。我們打開 FireFox Dev Tools 的動畫分頁可以看出原來這是一個長 150 秒的往上移動 CSS 動畫。
 
 ![](https://emtech.cc/post/2023ironman-29/firefox.webp)
 
@@ -2401,6 +2401,6 @@ section {
 }
 ```
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

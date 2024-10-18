@@ -15,7 +15,7 @@ date: 2024-09-24
 
 今天，我們將探討如何在 GitHub Actions 中使用 Secrets，並展示如何在 Node.js 程式中安全地讀取這些秘密。
 
-> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/11>
+> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/11>
 
 ## 技巧：甚麼是 Secrets？
 

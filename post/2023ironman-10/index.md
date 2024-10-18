@@ -21,7 +21,7 @@ $$
 V=\frac{s}{t}
 $$
 
-那麼我們設定同樣的動畫長度(t)，如果螢幕寬度(s)變大速率就變快了對吧！所以讓我們再加上一些簡單的 Js 來製作能夠適應各種螢幕的跑馬燈吧！
+那麼我們設定同樣的動畫長度 (t)，如果螢幕寬度 (s) 變大速率就變快了對吧！所以讓我們再加上一些簡單的 Js 來製作能夠適應各種螢幕的跑馬燈吧！
 
 ## 切版
 
@@ -99,7 +99,7 @@ element.style.animationDuration = time + "ms";
 var loopTime = element_width / v;
 ```
 
-速率我除以1000是因為後面時間都要緩算成毫秒。因為 `v` 都是在除數所以除以1000就會變成乘1000。應該都懂吧…算了我還是寫一下…
+速率我除以 1000 是因為後面時間都要緩算成毫秒。因為 `v` 都是在除數所以除以 1000 就會變成乘 1000。應該都懂吧…算了我還是寫一下…
 
 $$
 a\div(b\div c)=a\div \frac{b}{c}=a\times \frac{c}{b}=a\div b \times c
@@ -107,7 +107,7 @@ $$
 
 ### 新增頻率
 
-我們有了速率和元素的寬度就可以算出從動畫開始到整根出現(紅色到橘色位置)的時間了。
+我們有了速率和元素的寬度就可以算出從動畫開始到整根出現 (紅色到橘色位置) 的時間了。
 
 ```jsx
 var v = 30;
@@ -146,7 +146,7 @@ function newMaquee() {
 setInterval(newMaquee, loopTime);
 ```
 
-## Debug 時間!
+## Debug 時間！
 
 有一個小問題就是元素之前沒有距離。我們只需要在 `setInterval` 把 loopTime 設定久一點就可以了
 
@@ -234,6 +234,6 @@ newMaquee(); //手動新增第一個
 setInterval(newMaquee, loopTime); //之後自動
 ```
 
-以上就是我今天的分享，歡迎將你得成品放在評論和大家分享，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，或訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎將你得成品放在評論和大家分享，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，或訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

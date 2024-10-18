@@ -11,7 +11,7 @@ GitHub Actions 是 GitHub 提供的一個 CI/CD 服務，可以讓你在 GitHub 
 
 今天我的範例是要使用 Node.js 製作一個可以將 GitHub Repository 中的 issue 同步到 Notion 的 Action。
 
-> 成果倉庫: [GitHub-issue-2-Notion](https://github.com/Edit-Mr/GitHub-issue-2-Notion)
+> 成果倉庫：[GitHub-issue-2-Notion](https://github.com/Edit-Mr/GitHub-issue-2-Notion)
 
 {{notice}}
 溫馨提醒

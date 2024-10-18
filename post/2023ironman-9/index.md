@@ -6,7 +6,7 @@ thumbnail: /static/2023ironman-1/thumbnail.webp
 date: 2023-09-23
 ---
 
-# Day9 給你五彩斑斕的黑: mix-blend-mode
+# Day9 給你五彩斑斕的黑：mix-blend-mode
 
 > 昨天我們只是一個人的色而已，今天疊在一起更刺激。
 
@@ -91,8 +91,8 @@ body {
 
 我有自己復刻一個[網頁版的 StandBy](https://edit-mr.github.io/code/StandBy/)，有興趣的可以去逛逛或加入書籤喔。
 
-你可以看出 mix-blend-mode 讓你的顏色堆疊有著更多的可能，一開始黑色的陰影也變得五彩斑斕。不過如果是圖片的話最好還是希望設計師可以弄到直接可以丟上來的狀態，因為這個屬性在很多情況下會罷工，又很難 debug；而且顯示出來的效果多少和Photoshop裡面也有一點點出入，所以如果是圖片的話最好還是調好比較好，不管是對於瀏覽器還是對於你都會比較輕鬆。這是我在上一個案子用血換的教訓。
+你可以看出 mix-blend-mode 讓你的顏色堆疊有著更多的可能，一開始黑色的陰影也變得五彩斑斕。不過如果是圖片的話最好還是希望設計師可以弄到直接可以丟上來的狀態，因為這個屬性在很多情況下會罷工，又很難 debug；而且顯示出來的效果多少和 Photoshop 裡面也有一點點出入，所以如果是圖片的話最好還是調好比較好，不管是對於瀏覽器還是對於你都會比較輕鬆。這是我在上一個案子用血換的教訓。
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

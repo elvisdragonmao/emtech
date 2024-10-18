@@ -11,7 +11,7 @@ date: 2024-10-10
 
 在持續集成和持續部署 (CI/CD) 流程中，構建和測試的時間常常會成為效率瓶頸。為了加速這些過程，我們可以利用 GitHub Actions 的快取功能來儲存依賴項和中間結果，從而顯著提高工作流程的運行速度。本文將詳細介紹如何使用 `actions/cache` 來優化工作流程運行時間，並提供具體的實作範例。
 
-> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/27>
+> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/27>
 
 ## 為什麼需要快取？
 

@@ -11,7 +11,7 @@ date: 2024-10-05
 
 在這篇教程中，我們將探討如何使用 GitHub Actions 來自動運行 Python 爬蟲腳本，並處理和存儲抓取的數據。這個過程包括設置 GitHub Actions 工作流程、運行爬蟲腳本以及將結果存儲到不同的地方（如文件或數據庫）。
 
-> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/22>  
+> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/22>  
 > 專案 Repo: <https://github.com/Edit-Mr/2024SpecAdmitNotifier>
 
 ## 背景與目標
@@ -164,7 +164,7 @@ async function main() {
                 .replace(/\s+/g, " ")}\n**面試日期:** ${columns
                 .eq(3)
                 .text()
-                .replace(/\s+/g, " ")}\n放榜日期: ${columns
+                .replace(/\s+/g, " ")}\n放榜日期：${columns
                 .eq(4)
                 .text()}\n[簡章下載](${columns.eq(5).find("a").attr("href")})\n`;
             message += "\n";

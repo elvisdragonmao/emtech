@@ -118,7 +118,7 @@ pip install jupyter
 jupyter notebook
 ```
 
-這樣就完成了啦! 你的瀏覽器應該會自動開啟 Jupyter Notebook，以下是我運行我的模型並繪製圖表的結果。可以看到整個過程只花費了 4 毫秒。
+這樣就完成了啦！你的瀏覽器應該會自動開啟 Jupyter Notebook，以下是我運行我的模型並繪製圖表的結果。可以看到整個過程只花費了 4 毫秒。
 
 ![](result.png)
 

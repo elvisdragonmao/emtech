@@ -24,7 +24,7 @@ HTML，簡單
 
 ### 版面
 
-CSS 我們先不放背景圖片，用正方形就好了。用這種深藍色整個味道都出來了XD。`<body>` 設定 `overflow: hidden;` 是因為有時候反彈時會撞出滾動條，看起來不是很舒服。
+CSS 我們先不放背景圖片，用正方形就好了。用這種深藍色整個味道都出來了 XD。`<body>` 設定 `overflow: hidden;` 是因為有時候反彈時會撞出滾動條，看起來不是很舒服。
 
 ![](https://emtech.cc/post/2023ironman-18/square.webp)
 
@@ -69,7 +69,7 @@ div {
 
 ![](https://emtech.cc/post/2023ironman-18/horizontal.gif)
 
-OK沒問題。那垂直的也加上去。兩個時間故意設定稍微不一樣，讓路線隨機一點。
+OK 沒問題。那垂直的也加上去。兩個時間故意設定稍微不一樣，讓路線隨機一點。
 
 ```css
 div {
@@ -101,7 +101,7 @@ div {
 
 ![](https://emtech.cc/post/2023ironman-18/conflict.gif)
 
-欸等等，垂直移動效果加上去之後，水平移動的效果就沒了!因為兩個都是使用 `transform` 屬性，所以其中一個被蓋過去了。但我們的動畫是要同時執行，變色動畫都還沒加上去啊!在之前常見的解決方法有
+欸等等，垂直移動效果加上去之後，水平移動的效果就沒了！因為兩個都是使用 `transform` 屬性，所以其中一個被蓋過去了。但我們的動畫是要同時執行，變色動畫都還沒加上去啊！在之前常見的解決方法有
 
 -   使用 `top`、`left` 屬性代替 `transform` 屬性
 -   外面再包一層 `div`，讓 兩個 `div` 同時移動
@@ -122,7 +122,7 @@ animation-composition: accumulate;
 
 > 顏色改變的動畫長度記得要是平移動畫長度的倍數，才可以在撞牆時剛好變色。
 
-> 複習: [Day7 幫我開濾鏡 filter](https://ithelp.ithome.com.tw/articles/10323423)
+> 複習：[Day7 幫我開濾鏡 filter](https://ithelp.ithome.com.tw/articles/10323423)
 
 ```css
 div {
@@ -167,7 +167,7 @@ animation:
 
 ![](https://emtech.cc/post/2023ironman-18/nothing.webp)
 
-甚麼都看不到。原因是 Logo 的背景是黑色的。你可以使用我製作的這個[圖示上色 CSS濾鏡生成器](https://elvismao.com/code/svg-filter/)，透過 `filter` 屬性來改變 Logo 的顏色。把它貼上到動畫中，並在後面的`hue-rotate()` 屬性中加上360度就可以囉。
+甚麼都看不到。原因是 Logo 的背景是黑色的。你可以使用我製作的這個[圖示上色 CSS 濾鏡生成器](https://elvismao.com/code/svg-filter/)，透過 `filter` 屬性來改變 Logo 的顏色。把它貼上到動畫中，並在後面的`hue-rotate()` 屬性中加上 360 度就可以囉。
 
 ```css
 @keyframes colorX {
@@ -245,8 +245,8 @@ img {
 }
 ```
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。
 
-> 參考資料: [ChokCoco](http://www.cnblogs.com/coco1s/) | [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-composition)
+> 參考資料：[ChokCoco](http://www.cnblogs.com/coco1s/) | [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-composition)

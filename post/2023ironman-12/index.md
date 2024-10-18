@@ -6,7 +6,7 @@ thumbnail: /static/2023ironman-1/thumbnail.webp
 date: 2023-09-26
 ---
 
-# Day12 Js 滾動視差 甚麼都能滾(ft. 國中數學)
+# Day12 Js 滾動視差 甚麼都能滾 (ft. 國中數學)
 
 > 以下內容是我高一在上公民課時體悟的數學大道理，和網路上大多的做法都不太一樣。這篇文章假設你已學會國中直線方程式。如果不會的話…我也沒辦法。
 
@@ -22,7 +22,7 @@ date: 2023-09-26
 
 ![假裝電腦在聊天](https://emtech.cc/post/2023ironman-12/chat.webp)
 
-這種東西取得兩個數值之間的關係叫做甚麼呢?沒錯我們要來建立一個函式。而最簡單且最常用的函式應該就是直線方程了。
+這種東西取得兩個數值之間的關係叫做甚麼呢？沒錯我們要來建立一個函式。而最簡單且最常用的函式應該就是直線方程了。
 
 $$
 y=mx+b
@@ -74,7 +74,7 @@ https://codepen.io/edit-mr/pen/vYvZagX
 <h1>引爆炸彈</h1>
 <div id="element"></div>
 <div></div>
-<h1>滾動視差爆炸酷!</h1>
+<h1>滾動視差爆炸酷！</h1>
 ```
 
 ```css
@@ -172,7 +172,7 @@ p {
 }
 ```
 
-我們想要滑鼠往下滾的同時往右移動，與旋轉。由於衛星是 div 內的偽元素所以外面轉裡面就會跟著轉。大概像這樣:
+我們想要滑鼠往下滾的同時往右移動，與旋轉。由於衛星是 div 內的偽元素所以外面轉裡面就會跟著轉。大概像這樣：
 
 ```css
 transform: translateX(50vw) rotate(90deg);
@@ -188,7 +188,7 @@ window.addEventListener("scroll", function () {
 });
 ```
 
-這樣就完成了。來看看成果，十分有趣對吧!
+這樣就完成了。來看看成果，十分有趣對吧！
 
 https://codepen.io/edit-mr/pen/gOZRQex
 
@@ -196,6 +196,6 @@ https://codepen.io/edit-mr/pen/gOZRQex
 
 能夠變的與玩的實在太多了，使用這個方法在每一個屬性都可以套用。歡迎在評論區留下你看到的好網站與你自己的創作。
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

@@ -6,28 +6,28 @@ thumbnail: /static/2023ironman-1/thumbnail.webp
 date: 2023-09-18
 ---
 
-# Day4 自己動! @keyframes 與 Transition
+# Day4 自己動！@keyframes 與 Transition
 
-今天我們要來玩玩 CSS 動畫。CSS動畫有兩種:
+今天我們要來玩玩 CSS 動畫。CSS 動畫有兩種：
 
 -   @keyframes - 動作效果
 -   transition - 轉場效果
 
-    我們今天都拿 PowerPoint 來舉例，雖然感覺現在的學生都快只認識 Canva 了(順帶一提 Canva 就是 CSS 動畫)
+    我們今天都拿 PowerPoint 來舉例，雖然感覺現在的學生都快只認識 Canva 了 (順帶一提 Canva 就是 CSS 動畫)
 
-你可以想像 `@Keyframes` 是 PowerPoint的動畫
+你可以想像 `@Keyframes` 是 PowerPoint 的動畫
 
-![Powerpoint動畫](https://emtech.cc/post/2023ironman-4/ppt.webp)
+![Powerpoint 動畫](https://emtech.cc/post/2023ironman-4/ppt.webp)
 
-而且是一載入網頁就執行。當然我們可以透過 JavaScript 來指定執行的時間(比如說滾動到元素的時候)
+而且是一載入網頁就執行。當然我們可以透過 JavaScript 來指定執行的時間 (比如說滾動到元素的時候)
 
 ![](https://emtech.cc/post/2023ironman-4/start.webp)
 
-而Transition是轉場裡面的轉化效果
+而 Transition 是轉場裡面的轉化效果
 
 ![Transition](https://emtech.cc/post/2023ironman-4/transition.webp)
 
-當元素的外觀因為各種原因 CSS 被改變(比如說滑鼠滑過，JavaScript 設定，打開 F12 亂搞)，會平滑的轉換過去。我們先來講 Transition 因為他比較簡單。語法如下
+當元素的外觀因為各種原因 CSS 被改變 (比如說滑鼠滑過，JavaScript 設定，打開 F12 亂搞)，會平滑的轉換過去。我們先來講 Transition 因為他比較簡單。語法如下
 
 ```css
 transition: 要改的屬性 持續時間 速度曲線 延遲;
@@ -60,7 +60,7 @@ transition:
 ```css
 transition: background 500ms;
 transition: background 0.5s;
-transition: background 0.5s; /* 是不是看起來超舒服! */
+transition: background 0.5s; /* 是不是看起來超舒服！*/
 ```
 
 以下是一個按鈕範例。你可以看到放大屬性 `scale` 有設定 `transition` 所以會漸變，而背景顏色則沒有。
@@ -151,19 +151,19 @@ body {
 ```css
 @keyframes 動畫名稱 {
     0% {
-        /* 要套用的CSS */
+        /* 要套用的 CSS */
     }
     30% {
-        /* 要套用的CSS */
+        /* 要套用的 CSS */
     }
     /* ...(中間可以放更多) */
     100% {
-        /* 要套用的CSS */
+        /* 要套用的 CSS */
     }
 }
 ```
 
-以第一天我們做的汽車動畫為例。想要從最左邊移動到中間，也就是 `left` 從0變到50%。動畫可以這樣寫:
+以第一天我們做的汽車動畫為例。想要從最左邊移動到中間，也就是 `left` 從 0 變到 50%。動畫可以這樣寫：
 
 ```css
 @keyframes drive {
@@ -176,7 +176,7 @@ body {
 }
 ```
 
-如果是從0%~100%可以寫 from 和 to
+如果是從 0%~100% 可以寫 from 和 to
 
 ```css
 @keyframes drive {
@@ -189,7 +189,7 @@ body {
 }
 ```
 
-因為我們本來 `left` 就在0了所以可以省略。只有一行CSS也分號也可以省略
+因為我們本來 `left` 就在 0 了所以可以省略。只有一行 CSS 也分號也可以省略
 
 ```css
 @keyframes drive {
@@ -233,12 +233,12 @@ animation:
 
 ![Ease](https://emtech.cc/post/2023ironman-4/ease.webp)
 
-[圖片來源: Max](https://www.programonaut.com/css-animations-learn-how-to-create-cool-animations-quickly/)
+[圖片來源：Max](https://www.programonaut.com/css-animations-learn-how-to-create-cool-animations-quickly/)
 
-![線上Cubic工具](https://emtech.cc/post/2023ironman-4/cubic.webp)
+![線上 Cubic 工具](https://emtech.cc/post/2023ironman-4/cubic.webp)
 
 設定速度曲線可以讓你的動畫更流暢，不會有突然爆走的感覺，也可以讓動畫更有質感。對於超連結 `hover` 做特效建議可以設定成 `ease-out` ，因為滑鼠動畫通常大家會希望有即時反應，但又不希望突然結束。
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

@@ -6,7 +6,7 @@ thumbnail: /static/2023ironman-1/thumbnail.webp
 date: 2023-09-30
 ---
 
-# Day16 今天我想來...欸現在幾點? - CSS畫出 iOS 時鐘
+# Day16 今天我想來...欸現在幾點？- CSS 畫出 iOS 時鐘
 
 今天我們要來製作一個時鐘。不使用圖片，只使用 CSS 來繪製。我的目標是可以做出類似於 Apple iOS17 StandBy 的時鐘效果。
 
@@ -14,7 +14,7 @@ date: 2023-09-30
 
 ## HTML
 
-首先是 HTML，非常老實。一個時鐘，裡面3個指針，兩個中間的裝飾軸圓圈，以及12個數字。度數和數字分別用 CSS 變數和 HTML 屬性存放。當然你要都用 CSS 也可以，我只是想示範怎麼使用。
+首先是 HTML，非常老實。一個時鐘，裡面 3 個指針，兩個中間的裝飾軸圓圈，以及 12 個數字。度數和數字分別用 CSS 變數和 HTML 屬性存放。當然你要都用 CSS 也可以，我只是想示範怎麼使用。
 
 ```html
 <div class="clock">
@@ -40,7 +40,7 @@ date: 2023-09-30
 
 ## CSS
 
-CSS要怎麼畫出時鐘呢？我們會需要幫這個 `div` 添加幾個漸層。
+CSS 要怎麼畫出時鐘呢？我們會需要幫這個 `div` 添加幾個漸層。
 
 ### 時間刻度 - conic-gradient
 
@@ -286,9 +286,9 @@ body {
 
 ## JavaScript
 
-JavaScript 沒有什麼難的。就是小學數學題算時鐘走幾度。比如說秒針一分鐘走一圈，所以一秒走360除以60等於6度。
+JavaScript 沒有什麼難的。就是小學數學題算時鐘走幾度。比如說秒針一分鐘走一圈，所以一秒走 360 除以 60 等於 6 度。
 
-需要注意一下的是因為指針的定位點在中間上面，所以一開始是在6點鐘方向。你可以把指針改成從中間下面對齊，或著是度數直接加半圈。
+需要注意一下的是因為指針的定位點在中間上面，所以一開始是在 6 點鐘方向。你可以把指針改成從中間下面對齊，或著是度數直接加半圈。
 
 ```js
 const hourHand = document.querySelector(”.hour-hand“);
@@ -315,7 +315,7 @@ updateClock();
 
 ![](https://emtech.cc/post/2023ironman-16/spin.gif)
 
-結果對了，方法錯了。因為角度降回180，結果他還真的轉回去。
+結果對了，方法錯了。因為角度降回 180，結果他還真的轉回去。
 
 ![](https://media.tenor.com/R5IECfIf34YAAAAd/fish-spinning.gif)
 
@@ -348,12 +348,12 @@ setInterval(updateClock, 1000);
 updateClock();
 ```
 
-終於成功啦！有個87%像吧w
+終於成功啦！有個 87% 像吧 w
 
 https://codepen.io/edit-mr/pen/wvRXMLG
 
 ![Final](https://emtech.cc/post/2023ironman-16/final.gif)
 
-以上就是我今天的分享。我有看到有人是算了第一個角度之後就每秒固定加上去度數。不過萬一你有延遲或者是卡頓他的時間就會跑掉了，所以我還是建議每次都重新抓時間做計算。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享。我有看到有人是算了第一個角度之後就每秒固定加上去度數。不過萬一你有延遲或者是卡頓他的時間就會跑掉了，所以我還是建議每次都重新抓時間做計算。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

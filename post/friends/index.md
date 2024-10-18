@@ -7,7 +7,7 @@ date: 2024-10-17
 
 # 友情連結
 
-## 有朋自遠方來，不亦悅乎?
+## 有朋自遠方來，不亦悅乎？
 
 與大佬們一起前進。
 
@@ -63,20 +63,20 @@ date: 2024-10-17
 </a>
 <a class="friend" href="https://www.anzifan.com/">
 
-![异次元de机智君](https://gravatar.loli.net/avatar/83f6ef7256399833395e9c94ad838442)
+![异次元 de 机智君](https://gravatar.loli.net/avatar/83f6ef7256399833395e9c94ad838442)
 
 <div>
 
-### 异次元de机智君
+### 异次元 de 机智君
 
-前端开发工程师，优质Notion主题开发者
+前端开发工程师，优质 Notion 主题开发者
 
 </div>
 </a>
 </div>
 
 {{notice}}
-一起呼!
+一起呼！
 
 如果你也想要在這裡出現，歡迎透過右側任意一個方式聯繫我。提供給我照片、網址、簡介等資訊。
 

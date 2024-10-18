@@ -5,15 +5,15 @@ categories: [軟體分享]
 date: 2022-09-06
 ---
 
-# 【pdftk】萬能PDF工具！一行指令合併 旋轉 提取
+# 【pdftk】萬能 PDF 工具！一行指令合併 旋轉 提取
 
-用PDF Toolkit (pdftk)一行指令完成各種PDF處裡！
+用 PDF Toolkit (pdftk) 一行指令完成各種 PDF 處裡！
 
-因為這是一個終端機用指令執行的套件，所以請開啟你的終端機(Terminal/Termux/Command)並用任意一個套件軟體安裝它。
+因為這是一個終端機用指令執行的套件，所以請開啟你的終端機 (Terminal/Termux/Command) 並用任意一個套件軟體安裝它。
 
 ## Mac 安裝
 
-比如說mac可以用brew
+比如說 mac 可以用 brew
 
 ```
 brew install pdftk
@@ -23,24 +23,24 @@ brew install pdftk
 PDF Toolkit (pdftk)
 
 -   開發者:pdflabs
--   軟體類型:終端機套件
--   網址:[www.pdflabs.com](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
+-   軟體類型：終端機套件
+-   網址：[www.pdflabs.com](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
     {{noticed}}
 
 ## 安卓安裝
 
-這裡提供安卓系統的安裝方法。請先到F-Droid下載Termux來模擬終端機。你可以直接下載apk或先下載F-Droid再下載。記得不要去Google Play下載，會有問題。
+這裡提供安卓系統的安裝方法。請先到 F-Droid 下載 Termux 來模擬終端機。你可以直接下載 apk 或先下載 F-Droid 再下載。記得不要去 Google Play 下載，會有問題。
 
 {{notice}}
 Termux
 
 -   開發者:Termux
--   軟體類型:安卓應用程式
--   官網:[termux.com](https://termux.com/)
--   安裝網址:[F-Droid](https://f-droid.org/packages/com.termux/)
+-   軟體類型：安卓應用程式
+-   官網：[termux.com](https://termux.com/)
+-   安裝網址：[F-Droid](https://f-droid.org/packages/com.termux/)
     {{noticed}}
 
-進去後貼上這一串。問你什麼就好好好或 enter就好了。看我多用心給你複製鍵就算了還全部合成一行指令。
+進去後貼上這一串。問你什麼就好好好或 enter 就好了。看我多用心給你複製鍵就算了還全部合成一行指令。
 
 ```
 pkg update && pkg upgrade && pkg install pdftk && termux-setup-storage
@@ -48,29 +48,29 @@ pkg update && pkg upgrade && pkg install pdftk && termux-setup-storage
 
 ## Windows 安裝
 
-windows使用者可以先安裝Chocolatey。方法是用管理員身分開啟PowerShell，接著輸入這兩串指令。
+windows 使用者可以先安裝 Chocolatey。方法是用管理員身分開啟 PowerShell，接著輸入這兩串指令。
 
 ```bat
 Set-ExecutionPolicy AllSigned
 ```
 
-輸入完按enter
+輸入完按 enter
 
 ```bat
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-輸入完按enter，如果問你要不要繼續就按`A`然後enter。安裝pdftl請輸入
+輸入完按 enter，如果問你要不要繼續就按`A`然後 enter。安裝 pdftl 請輸入
 
 ```bat
 choco install pdftk
 ```
 
-輸入完按enter，如果問你要不要繼續就按`A`然後enter即可。
+輸入完按 enter，如果問你要不要繼續就按`A`然後 enter 即可。
 
 # 使用教學
 
-請先移動到存放檔案的資料夾。比如說你是使用Termux想到你的下載資料夾
+請先移動到存放檔案的資料夾。比如說你是使用 Termux 想到你的下載資料夾
 
 ```
 cd storage/downloads
@@ -92,7 +92,7 @@ pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
 pdftk A=1.pdf B=2.pdf cat A B output 12.pdf
 ```
 
-下面的例子使用了檔案萬用字元了。`*`代表所有的意思，比如說`*.pdf`就是所有.pdf結尾的檔案。
+下面的例子使用了檔案萬用字元了。`*`代表所有的意思，比如說`*.pdf`就是所有.pdf 結尾的檔案。
 
 ```
 pdftk *.pdf cat output combined.pdf
@@ -106,12 +106,12 @@ pdftk A=one.pdf B=two.pdf cat A1-7 B1-5 A8 output combined.pdf
 
 {{notice}}
 小提醒
-注:檔名一定要正確,有時看著一樣確還差個/，最好使用Tab鍵來自動補全。
+注：檔名一定要正確，有時看著一樣確還差個/，最好使用 Tab 鍵來自動補全。
 {{noticed}}
 
 ## 將 PDF 檔案中的一部分取出生成一個新檔案
 
-pdftk 可以隨意刪除或旋轉頁面。下面是一個把指定頁碼的頁面移出pdf文件的範例。
+pdftk 可以隨意刪除或旋轉頁面。下面是一個把指定頁碼的頁面移出 pdf 文件的範例。
 
 ```
 pdftk new.pdf cat 1-96 98-end output new1.pdf
@@ -225,7 +225,7 @@ Errors encountered.  No output created.
 Done.  Input errors, so no output created.
 ```
 
-下面通過控制代碼選項指定密碼則可以正常合併:
+下面通過控制代碼選項指定密碼則可以正常合併：
 
 ```
 pdftk A=a.pdf B=b.pdf input_pw A=foopass cat output combined.pdf

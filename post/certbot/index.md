@@ -5,7 +5,7 @@ categories: [製作教學]
 date: 2024-03-10
 ---
 
-# 如何使用 Certbot 申請免費的 SSL 憑證，並使用 DNS 驗證?
+# 如何使用 Certbot 申請免費的 SSL 憑證，並使用 DNS 驗證？
 
 最近我一直在玩我的樹莓派，想要在上面架設一個檔案下載網站。但是沒有 SSL 憑證每次都會被瀏覽器警告說網站不安全，所以我決定使用 Certbot 申請一個免費的 SSL 憑證。在這篇文章中，我將分享如何使用 Certbot 申請免費的 SSL 憑證，並使用 DNS 驗證。
 
@@ -15,7 +15,7 @@ Certbot 是一個由 Electronic Frontier Foundation (EFF) 開發的免費、開�
 
 ## 為什麼要使用 SSL 憑證？
 
-**簡單來說就是讓你的網址從 `http://` 變成 `https://`。**使用SSL 憑證可以幫助你的網站加密數據，保護用戶的隱私。此外，Google 也將使用 SSL 憑證作為搜索排名的一個指標，所以使用 SSL 憑證也有助於提高你的網站在搜索引擎上的排名。
+**簡單來說就是讓你的網址從 `http://` 變成 `https://`。**使用 SSL 憑證可以幫助你的網站加密數據，保護用戶的隱私。此外，Google 也將使用 SSL 憑證作為搜索排名的一個指標，所以使用 SSL 憑證也有助於提高你的網站在搜索引擎上的排名。
 
 ## 如何使用 Certbot 申請免費的 SSL 憑證？
 
@@ -36,7 +36,7 @@ Certbot 支援多種驗證方式，包括 HTTP 驗證、DNS 驗證、TLS-ALPN-01
 sudo certbot certonly --manual --preferred-challenges dns -d example.com -d *.example.com
 ```
 
-這時的輸出如下:
+這時的輸出如下：
 
 ```bash
 em@raspberrypi:/ssl $ sudo certbot certonly --manual --preferred-challenges dns -d '*.elvismao.com'

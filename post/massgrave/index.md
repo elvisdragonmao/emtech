@@ -39,7 +39,7 @@ Office 雖然目前有提供免費線上版，且學校都有提供 Office365，
 
 ## 步驟 3: 輸入指令
 
-接著輸入這一串指令並按 enter 來打開這個軟體:
+接著輸入這一串指令並按 enter 來打開這個軟體：
 
 ```bash
 irm https://get.activated.win | iex

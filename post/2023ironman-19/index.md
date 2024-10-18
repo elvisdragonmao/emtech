@@ -16,7 +16,7 @@ date: 2023-10-03
 
 ## 認識 :taget
 
-:target 是一個虛擬類別（pseudo-class） 選擇器。他選擇的是超連結連結到的錨點（anchor）。直接上範例你就懂了。
+:target 是一個虛擬類別（pseudo-class）選擇器。他選擇的是超連結連結到的錨點（anchor）。直接上範例你就懂了。
 
 ```html
 <a href="#one">One</a>
@@ -36,7 +36,7 @@ div:target {
 
 ## 實作
 
-那我們就裝飾一下這個版面和 Lightbox 就好啦!先從維基共享資源抓幾張圖片。
+那我們就裝飾一下這個版面和 Lightbox 就好啦！先從維基共享資源抓幾張圖片。
 
 ```html
 <div id="one">
@@ -172,7 +172,7 @@ div:target ~ section {
 
 ## 成果
 
-最終成果如下:
+最終成果如下：
 https://codepen.io/edit-mr/pen/jOXpJXX
 
 ![純 CSS 做出圖片 Lightbox](https://emtech.cc/post/2023ironman-19/final.gif)
@@ -276,6 +276,6 @@ div:target ~ section {
 }
 ```
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

@@ -13,7 +13,7 @@ date: 2024-10-03
 
 我們要使用 Actions 自動從 `fonts.json` 文件中生成一個格式化的字體列表並更新 `README.md` 文件。這包括讀取 JSON 文件內容、生成 Markdown 表格，以及在 README 文件中更新這些內容。
 
-> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/20>
+> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/20>
 
 ## 1. 背景與目標
 
@@ -38,7 +38,7 @@ emfont 是一個免費的繁體中文 Web Font 服務。在之前字體列表存
         "source": "https://github.com/lxgw/975HazyGo"
     },
     "CEFFontsCJK":{
-        "name": { "zh": "快去写作业CJK", "en": "CEF Fonts CJK" },
+        "name": { "zh": "快去写作业 CJK", "en": "CEF Fonts CJK" },
         "style": ["normal","mono"],
         "weight": [400],
         "class": "emfont-CEFFontsCJK",

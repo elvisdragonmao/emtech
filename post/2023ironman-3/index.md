@@ -8,7 +8,7 @@ date: 2023-09-17
 
 # Day3 用 Flex 切遍天下
 
-當你拿到一張設計圖要照著做出來你的第一反應是什麼呢？是直接套 bootstrap 再說嗎？但我幾乎所有的切版**只要是整齊能畫出網格的，我都會使用flex。**而這個網格也不一定是正方形，只要是矩形就可以了。
+當你拿到一張設計圖要照著做出來你的第一反應是什麼呢？是直接套 bootstrap 再說嗎？但我幾乎所有的切版**只要是整齊能畫出網格的，我都會使用 flex。**而這個網格也不一定是正方形，只要是矩形就可以了。
 
 什麼意思呢？假設 Google 拿了一張首頁的設計圖給我要我照著做出來（假設）
 
@@ -52,7 +52,7 @@ div {
 
 ![Untitled](https://emtech.cc/post/2023ironman-3/flex.webp)
 
-我們把外面包著大家的藍色元素叫做外容器，裡面叫做內容器。我們可以在外容器的CSS設定裡面的東西怎麼排。
+我們把外面包著大家的藍色元素叫做外容器，裡面叫做內容器。我們可以在外容器的 CSS 設定裡面的東西怎麼排。
 
 ## 方向 **flex-direction**
 
@@ -124,9 +124,9 @@ align-content: flex-start | flex-end | center | space-between | space-around |
 
 ## 內元件設定
 
-我們會再內元件(黃色方塊)設定的 CSS 不多。我們可以使用 **`align-self: flex-end`** 設定單獨一個元素的特別往另一邊靠，也可以設定假設排完有多的空間要給誰。
+我們會再內元件 (黃色方塊) 設定的 CSS 不多。我們可以使用 **`align-self: flex-end`** 設定單獨一個元素的特別往另一邊靠，也可以設定假設排完有多的空間要給誰。
 
--   flex-grow: 剩下空間方給他幾份，預設值為 `0`，如果設置為 0 則不會縮放，1以上就大家來分。
+-   flex-grow: 剩下空間方給他幾份，預設值為 `0`，如果設置為 0 則不會縮放，1 以上就大家來分。
 -   flex-shrink: 反之，當空間分配還不足時的當前元件的收縮性，預設值為 `1`，如果設置為 0 則不會縮放。
 -   flex-basis: 元件的基準值，可使用不同的單位值。
 
@@ -144,8 +144,8 @@ https://codepen.io/edit-mr/pen/ZEVWaqq
 
 你也可以使用今天所學到的語法複製一個 Google 的網頁。重點在排版所以按鍵的陰影和顏色可以直接打開開發者工具查看喔。我先做了一個範例提供大家參考，也能實現搜尋功能。如果有任何問題也歡迎留言。
 
-> [範例網站](https://sysh-tech-volunteer.github.io/Web-Design-Camp/practice/google.html) | [原檔HTML](https://github.com/SYSH-Tech-Volunteer/Web-Design-Camp/blob/main/practice/google.html) | [原檔CSS](https://github.com/SYSH-Tech-Volunteer/Web-Design-Camp/blob/main/practice/google.css)
+> [範例網站](https://sysh-tech-volunteer.github.io/Web-Design-Camp/practice/google.html) | [原檔 HTML](https://github.com/SYSH-Tech-Volunteer/Web-Design-Camp/blob/main/practice/google.html) | [原檔 CSS](https://github.com/SYSH-Tech-Volunteer/Web-Design-Camp/blob/main/practice/google.css)
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

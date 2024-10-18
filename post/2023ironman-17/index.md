@@ -6,9 +6,9 @@ thumbnail: /static/2023ironman-1/thumbnail.webp
 date: 2023-10-01
 ---
 
-# Day17 css.wav 純CSS波浪進度條
+# Day17 css.wav 純 CSS 波浪進度條
 
-以往製作波浪效果不是使用 GIF 就是借助貝茲曲線。貝茲曲線就是 Ai 或是 Vectornator (現在叫做Curve) 裡面的鋼筆工具。隨便拉都會有波浪的感覺，且使用 SVG或 JavaScript Canvas 都不難實現。
+以往製作波浪效果不是使用 GIF 就是借助貝茲曲線。貝茲曲線就是 Ai 或是 Vectornator (現在叫做 Curve) 裡面的鋼筆工具。隨便拉都會有波浪的感覺，且使用 SVG 或 JavaScript Canvas 都不難實現。
 
 ![](https://emtech.cc/post/2023ironman-17/curve.webp)
 
@@ -16,7 +16,7 @@ date: 2023-10-01
 
 ![](https://emtech.cc/post/2023ironman-17/beach.webp)
 
-突然我注意到，你看椰子是不是看起來很圓，但又不是很圓。像極了圓角 `border-radius` 接近50%但又還沒達到。
+突然我注意到，你看椰子是不是看起來很圓，但又不是很圓。像極了圓角 `border-radius` 接近 50% 但又還沒達到。
 
 ![](https://emtech.cc/post/2023ironman-17/coconut.webp)
 
@@ -66,7 +66,7 @@ https://codepen.io/edit-mr/pen/dywjOyw
 
 ![](https://emtech.cc/post/2023ironman-17/wave.gif)
 
-這裡關於置中我想補充一個點，就是因為我們已經在使用 `transform: rotate()` 屬性旋轉，所以我沒有用 `translate()`來置中。因為我們知道寬度是150vw，所以只需要把多出來的50vw切一半丟到左邊就可以了。
+這裡關於置中我想補充一個點，就是因為我們已經在使用 `transform: rotate()` 屬性旋轉，所以我沒有用 `translate()`來置中。因為我們知道寬度是 150vw，所以只需要把多出來的 50vw 切一半丟到左邊就可以了。
 
 ![](https://emtech.cc/post/2023ironman-17/why25.svg)
 
@@ -137,6 +137,6 @@ h2 {
 }
 ```
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。
