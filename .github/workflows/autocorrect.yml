@@ -11,6 +11,9 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
+              # fetch depth with one commit
+              with:
+                  fetch-depth: 1
 
             - name: Modify Last Commit with Date and Time
               run: |
