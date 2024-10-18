@@ -30,9 +30,19 @@ html {
     scroll-padding-top: 6rem;
 }
 body {
-    font-family: "GenYoGothic TW", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-        "Helvetica Neue", sans-serif;
+    font-family:
+        "GenYoGothic TW",
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        "Open Sans",
+        "Helvetica Neue",
+        sans-serif;
     background-color: var(--background-color);
     color: var(--black);
 }
@@ -241,7 +251,9 @@ nav li a::after {
     transform: translate(-50%, -50%);
     z-index: -1;
     transform-origin: center;
-    transition: transform 0.3s, opacity 0.3s;
+    transition:
+        transform 0.3s,
+        opacity 0.3s;
 }
 nav li a:hover {
     color: #fff;
@@ -574,7 +586,9 @@ section {
 }
 .toc ul a {
     color: rgba(139, 155, 204, 0.6);
-    transition: color 0.3s, font-size 0.3s;
+    transition:
+        color 0.3s,
+        font-size 0.3s;
 }
 .toc ul li a.current {
     color: rgba(139, 155, 204);
@@ -937,7 +951,9 @@ body:has(#hideTags:checked) .hideTagsLabel::after {
     background-color: var(--light-purple);
     padding: 0.3rem 0.5rem;
     border-radius: 0.3rem;
-    transition: background-color 0.3s, color 0.3s;
+    transition:
+        background-color 0.3s,
+        color 0.3s;
 }
 
 .aside-tags > a:hover {
@@ -953,7 +969,9 @@ body:has(#hideTags:checked) .hideTagsLabel::after {
     font-weight: 400;
     padding: 0.1rem 0.3rem;
     margin-left: 0.3rem;
-    transition: background-color 0.3s, color 0.3s;
+    transition:
+        background-color 0.3s,
+        color 0.3s;
 }
 
 .aside-tags > a:hover > div {
@@ -1317,12 +1335,16 @@ blockquote::before {
 }
 
 .code-block button:hover {
-    background: url(/static/img/copy.svg) no-repeat center center, #ffffff10;
+    background:
+        url(/static/img/copy.svg) no-repeat center center,
+        #ffffff10;
     background-size: 1.5rem 1.5rem;
 }
 
 .code-block button:active {
-    background: url(/static/img/copy.svg) no-repeat center center, #ffffff30;
+    background:
+        url(/static/img/copy.svg) no-repeat center center,
+        #ffffff30;
     background-size: 1.5rem 1.5rem;
 }
 
