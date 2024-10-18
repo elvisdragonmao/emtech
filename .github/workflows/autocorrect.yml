@@ -20,10 +20,6 @@ jobs:
               with:
                   node-version: "20"
 
-            # Install dependencies (including autocorrect-node)
-            - name: Install dependencies
-              run: yarn add autocorrect-node
-
             # Run autocorrect fix
             - name: Run autocorrect
               run: autocorrect --fix
