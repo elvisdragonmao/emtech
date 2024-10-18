@@ -1647,6 +1647,10 @@ a.friend::after {
     .related-posts-container::before {
         display: none;
     }
+
+    .related-posts {
+        border-top-right-radius: 0;
+    }
     nav ul,
     .right > * {
         display: none;
