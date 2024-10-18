@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [自製, 視訊會議]
+tags: [自製，視訊會議]
 categories: [網站分享]
 date: 2022-10-07
 ---
@@ -15,8 +15,8 @@ date: 2022-10-07
 EM-SFW (Site for Webcam)
 
 -   開發者:毛哥EM(我)
--   程式類型:免費開源網站
--   網站位置:[毛哥EM的基地](https://Edit-Mr.github.io/code/EM-SFW)
+-   程式類型：免費開源網站
+-   網站位置：[毛哥EM的基地](https://Edit-Mr.github.io/code/EM-SFW)
 -   縮短網址：[is.gd/EMSFW](https://is.gd/EMSFW)
     {{noticed}}
 
@@ -26,7 +26,7 @@ EM-SFW (Site for Webcam)
 
 你會看到一個簡單的設定畫面。你可以點擊`z`來開啟/關閉這個畫面。
 
-![EM-SFW介面](EM-SFW.png)
+![EM-SFW 介面](EM-SFW.png)
 
 接著到視訊會議軟體分享螢幕畫面。選擇分享分頁且不用分享音訊（因為也沒有）即可。
 
@@ -46,7 +46,7 @@ EM-SFW (Site for Webcam)
 
 ### 子母畫面
 
-可以讓你的鏡頭畫面顯示在你的螢幕頂層，讓你可以知道你在鏡頭中長什麼樣。確保大家不會看到NSFW的畫面（所以叫EM-SFW）
+可以讓你的鏡頭畫面顯示在你的螢幕頂層，讓你可以知道你在鏡頭中長什麼樣。確保大家不會看到 NSFW 的畫面（所以叫 EM-SFW）
 
 在圖片模式關閉時可以使用子母畫面功能。將鼠標移到畫面上並按下字母畫面按鈕（有時需要先按三個點）
 

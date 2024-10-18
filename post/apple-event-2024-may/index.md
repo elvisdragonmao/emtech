@@ -5,7 +5,7 @@ categories: [科技新聞]
 date: 2024-05-07
 ---
 
-# 蘋果 2024 5月發布會懶人包 - Apple Pencil Pro 有陀螺儀還會震動，iPad Pro 減掉瀏海
+# 蘋果 2024 5 月發布會懶人包 - Apple Pencil Pro 有陀螺儀還會震動，iPad Pro 減掉瀏海
 
 在今天 2024 年 5 月 7 日的蘋果發布會 Apple Events 上，他們帶來全新的 iPad Pro、更大的 iPad Air，以及全新的 Apple Pencil Pro。讓我們來看看這次的發布會有哪些亮點，以及沒有在影片中提到的重點。
 
@@ -13,10 +13,10 @@ date: 2024-05-07
 
 ![](look-pro.webp)
 
-今年的 iPad Pro 不僅在外觀上出奇地輕薄易攜，搭載了全新的 Apple M4 晶片(直接跳過 M3)，使其性能達到了新的高度。讓我們來看看這款iPad Pro的亮點：
+今年的 iPad Pro 不僅在外觀上出奇地輕薄易攜，搭載了全新的 Apple M4 晶片 (直接跳過 M3)，使其性能達到了新的高度。讓我們來看看這款 iPad Pro 的亮點：
 
 -   **外觀設計：** 13 吋 iPad Pro 的厚度為 5.1 公釐，目前蘋果歷史以來最薄的產品，比 iPod 還薄。不過 11 吋 iPad Pro 的厚度為 5.3 公釐，稍微厚一點。
--   **Ultra Retina XDR 顯示器：** OLED 一層不夠亮，所以蘋果疊了兩層 OLED。最高 1600 尼特亮度。1TB和2TB版可升至奈米玻璃，減少眩光。
+-   **Ultra Retina XDR 顯示器：** OLED 一層不夠亮，所以蘋果疊了兩層 OLED。最高 1600 尼特亮度。1TB 和 2TB 版可升至奈米玻璃，減少眩光。
 -   支援 eSIM、Wi-Fi 6E、5G、藍牙 5.3。
 -   **USB：** Thunderbolt 4 接口可以傳輸解析度最高可達 6K，還能連結各種儲存裝置。理論最高可達 40Gb/s。
     **\* Apple M4 晶片：** 3 奈米公藝，CPU 提升 50%，GPU 提升四倍，AI 加速器提升 70%。蘋果還有特別強調它專門處理 AI 的 NPU，強調他們在 A11 就已經有了，性能也是所有 AI 筆電中最強的。
@@ -53,7 +53,7 @@ date: 2024-05-07
 -   **懸浮功能：** 以前覺得這個功能很雞肋，但是如果搭配陀螺儀會非常方便。想像你使用螢光筆或是水彩這種比較粗的筆刷，旋轉不同角度粗細和方向都不同，這時候懸浮功能就非常好用了。
 -   **尋找我的 Pencil：** 這麼貴又這麼容易掉，必須的。
 
-Apple Pencil Pro定價為4390元，Apple Pencil 2價格相同，不過Apple Pencil Pro只限定M4版本iPad Pro和M2版本iPad Air使用。
+Apple Pencil Pro 定價為 4390 元，Apple Pencil 2 價格相同，不過 Apple Pencil Pro 只限定 M4 版本 iPad Pro 和 M2 版本 iPad Air 使用。
 
 ![Apple Aencil Pro 亮點整理](pencil.webp)
 

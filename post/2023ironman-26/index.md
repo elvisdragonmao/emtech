@@ -6,7 +6,7 @@ thumbnail: /static/2023ironman-1/thumbnail.webp
 date: 2023-10-10
 ---
 
-# Day26 不要躲在下面動! Animate On Scroll 自己做
+# Day26 不要躲在下面動！Animate On Scroll 自己做
 
 我們都知道 CSS 動畫可以用 `@keyframes` 來做，但是他們都是馬上就觸發的。就算元素還沒有出現在畫面上，動畫也已經開始了。
 
@@ -24,7 +24,7 @@ https://codepen.io/edit-mr/pen/ExGrxjX
 
 ![getBoundingClientRect()](https://emtech.cc/post/2023ironman-26/getBoundingClientRect.webp)
 
-> **為甚麼不要等整個元素顯示出來在觸發動畫?**  
+> **為甚麼不要等整個元素顯示出來在觸發動畫？**  
 > 因為如果元素很長，可能到半個畫面都空白之後他才出現會很奇怪。所以我們只要有任何一部分有顯示在畫面上就可以觸發動畫了，這樣滾動起來會比較順暢。  
 > 如果你想要的話可以自己改成等整個元素顯示出來再觸發動畫，或是設置一些延遲時間以及增加動畫長度。後者我比較推薦。
 
@@ -80,7 +80,7 @@ div {
 }
 ```
 
-加上 JavaScript ，在頁面滾動時偵測每個有 `.aos` 的元素是否出現在畫面上。如果有的話就加上 `ed` 這個 class，沒有的話就回收。
+加上 JavaScript，在頁面滾動時偵測每個有 `.aos` 的元素是否出現在畫面上。如果有的話就加上 `ed` 這個 class，沒有的話就回收。
 
 ```js
 function isElementInViewport(el) {
@@ -259,6 +259,6 @@ document.addEventListener("scroll", addClassToVisibleElements);
 addClassToVisibleElements();
 ```
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

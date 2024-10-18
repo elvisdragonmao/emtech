@@ -11,7 +11,7 @@ date: 2024-10-02
 
 在這篇教程中，我們將探討如何集成外部 API 和服務，自動化 GitHub issue 管理，並使用 CodeRabbit 自動進行代碼審查，Vercel 與 Zeabur 來實現自動化部屬。
 
-> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/19>
+> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/19>
 
 ## 自動化 GitHub Issue 管理
 

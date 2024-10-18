@@ -126,7 +126,7 @@ randomText(10);
 
 螢幕有大有小，字體大小又都不一樣。沒關係，量一下就好了。
 
-`<span>` 裡面有一個字母a。量螢幕大小除以字母大小就是大約需要多少個字母
+`<span>` 裡面有一個字母 a。量螢幕大小除以字母大小就是大約需要多少個字母
 
 ```js
 const singleText = document.querySelector("span");
@@ -154,7 +154,7 @@ window.setTimeout(function () {
 //never gonna let you down
 ```
 
-一個雙層迴圈，每6次洗牌多顯示一個字。直到最後6個字都顯示完畢。
+一個雙層迴圈，每 6 次洗牌多顯示一個字。直到最後 6 個字都顯示完畢。
 
 ```js
 for (let j = 0; j <= titleText.length; j++) {
@@ -327,6 +327,6 @@ document.onmousemove = (e) => bluh(e);
 bluh();
 ```
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

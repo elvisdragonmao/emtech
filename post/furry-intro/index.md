@@ -14,9 +14,9 @@ description: 本文將帶你深入探討獸迷文化，介紹福瑞（獸人）�
 
 ## 什麼是福瑞 (Furry)？
 
-福瑞（Furry）這個詞，源自英文的 “furry”，意指毛茸茸的動物。福瑞，或者說獸人，指的是擁有人類特徵的動物角色，例如能站立行走、會說話、擁有豐富表情的動物形象。
+福瑞（Furry）這個詞，源自英文的“furry”，意指毛茸茸的動物。福瑞，或者說獸人，指的是擁有人類特徵的動物角色，例如能站立行走、會說話、擁有豐富表情的動物形象。
 
-![By 云猫CloudCat](CloudCat.webp)
+![By 云猫 CloudCat](CloudCat.webp)
 
 我們日常生活中其實經常與福瑞形象相遇。比如說你走進全聯看到奇多老虎、光泉的乳牛、Panasonic 的獅子，打開手機的 Line 熊大，迪士尼幾乎所有的動物，這些都可以算作是福瑞的例子。為了能讓你之後還能正常的走進便利商店我就不舉更多例子了。
 
@@ -42,7 +42,7 @@ description: 本文將帶你深入探討獸迷文化，介紹福瑞（獸人）�
 
 有的人說寫程式寫到最後都會變獸控，這完全沒有科學根據，~~但我完全同意~~。看看這些在中研院[演講的人](https://www.youtube.com/watch?v=yZYOL8Ybdm4)和[工程師們](https://www.facebook.com/share/p/DoATaGrjWavMGwot/)。
 
-![左圖: SITCON 2024, 右圖: g0v Summit 2024](g0v.webp)
+![左圖：SITCON 2024, 右圖：g0v Summit 2024](g0v.webp)
 
 > 有的人說伊隆·馬斯克是獸控，不過他是沒有公開承認的。
 
@@ -68,7 +68,7 @@ description: 本文將帶你深入探討獸迷文化，介紹福瑞（獸人）�
 
 有人問說大夏天在戶外出毛（穿獸裝出門）不熱嗎？怎麼說呢，當核彈炸到廣島時那是 6000 多度的高溫啊。通常出毛都會配戴風扇，通常是長條狀的可以從嘴巴吹入，但一定還是很熱，而且視野也很差。和騎重機一樣，都是為了自己熱愛的事物燃燒自己。不過當然有一些機械的大佬會搞眼部追蹤、內顯示屏（像 Vision Pro）、水冷系統之類的，不過還是偏少數，一般頂多只會有頭內風扇。
 
-![凌汐Jeffrey](Jeffrey.webp)
+![凌汐 Jeffrey](Jeffrey.webp)
 
 圖：[凌汐 Jeffrey](https://x.com/Jeffrey86334455/status/1820775013324390436/photo/1)
 
@@ -100,11 +100,11 @@ description: 本文將帶你深入探討獸迷文化，介紹福瑞（獸人）�
 
 在福瑞藝術中，寫實派的福瑞通常在外觀上更接近真實的動物，不論是五官還是毛髮的色澤。而可愛派的福瑞則會放大某些可愛特徵，例如更大的眼睛或更圓潤的面部比例。
 
-如以下是來自日本比較偏寫實派的毛毛：[れいじー うるふ （Galfar）](https://www.facebook.com/permalink.php?story_fbid=pfbid0E4u6ndPD3RHnf557wVP7f8CNNCL8um1foW4JXXzRg7ucASGu2aUMvpCgfXKU88dJl&id=100082328874967)
+如以下是來自日本比較偏寫實派的毛毛：[れいじー うるふ（Galfar）](https://www.facebook.com/permalink.php?story_fbid=pfbid0E4u6ndPD3RHnf557wVP7f8CNNCL8um1foW4JXXzRg7ucASGu2aUMvpCgfXKU88dJl&id=100082328874967)
 
 ![れいじー うるふ](Galfar.webp)
 
-喔對了，這種穿搭方式叫做「半裝」，是一種比較輕便的獸裝，通常只有頭套和手套或會加上尾巴。相對來說比較便宜、容易穿脫、也更方便活動(跳一些 breaking 之類的)。
+喔對了，這種穿搭方式叫做「半裝」，是一種比較輕便的獸裝，通常只有頭套和手套或會加上尾巴。相對來說比較便宜、容易穿脫、也更方便活動 (跳一些 breaking 之類的)。
 
 ### 美系 / 日系 / K 系
 

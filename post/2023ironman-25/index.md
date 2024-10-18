@@ -63,10 +63,10 @@ label div {
 
 可以看到我們已經有了漢堡選單的樣子。`<label>` 使用 flex 來垂直排列並且置中，`gap` 來設定間距，並設定 `position: relative` 來讓 `position: absolute` 的 `.cover` 可以定位到相同位置。
 
-> 如果已經看不懂的話可以複習:
+> 如果已經看不懂的話可以複習：
 >
 > -   [Day3 用 Flex 切遍天下](https://ithelp.ithome.com.tw/articles/10320146)
-> -   [Day6 你怎在這? 攻克 Position](https://ithelp.ithome.com.tw/articles/10322719)
+> -   [Day6 你怎在這？攻克 Position](https://ithelp.ithome.com.tw/articles/10322719)
 
 藍色圓形我們希望能夠填滿整個畫面，所以我們使用 `100vmax` 來選擇 `vw` 和 `vh` 之間比較大的值，這樣可以確保能夠蓋滿畫面但是長寬還是依樣來保持圓形。你會發現只有蓋住螢幕一半是因為我們把她往左上角移動了一半，所以只有一半的圓形在畫面上。沒關係我們為了安全起見設定大一點。最後使用 `z-index` 來讓他在最底層。
 
@@ -153,7 +153,7 @@ ul {
 }
 ```
 
-最後是漢堡動畫，這裡就要發揮你自己的創意了。原理不難，這裡提供一個我現在想到的做法。我想要最上面的和最下面的旋轉 45 度，中間的變短到消失。所以我們先把中間的設定 `width: 0; height: 0;` ，然後我們把最上面的和最下面的設定 `transform: rotate(45deg);`，這樣就會旋轉 45 度了。這樣能夠做出一個箭頭:
+最後是漢堡動畫，這裡就要發揮你自己的創意了。原理不難，這裡提供一個我現在想到的做法。我想要最上面的和最下面的旋轉 45 度，中間的變短到消失。所以我們先把中間的設定 `width: 0; height: 0;` ，然後我們把最上面的和最下面的設定 `transform: rotate(45deg);`，這樣就會旋轉 45 度了。這樣能夠做出一個箭頭：
 
 ![箭頭](arrow.gif)
 
@@ -169,7 +169,7 @@ input:checked ~ label > div:nth-child(3) {
 }
 ```
 
-再來做一個也很常見的打叉，為了方便我們乾脆全部使用 absolute 定位。成果如下:
+再來做一個也很常見的打叉，為了方便我們乾脆全部使用 absolute 定位。成果如下：
 
 https://codepen.io/edit-mr/pen/zYyyEgz
 
@@ -255,7 +255,7 @@ label > div:nth-child(3) {
 }
 ```
 
-你以為這樣就結束了? 還記得我們昨天講的 [Day24 CSS 相融黏滯效果](https://ithelp.ithome.com.tw/articles/10336425) 嗎? 我們可以把他加上去讓他更有質感。
+你以為這樣就結束了？還記得我們昨天講的 [Day24 CSS 相融黏滯效果](https://ithelp.ithome.com.tw/articles/10336425) 嗎？我們可以把他加上去讓他更有質感。
 
 這是一個會四處噴射漢堡選單
 
@@ -420,6 +420,6 @@ input:checked ~ .food div {
 
 背景顏色一定要記得設定，不然只會糊再一起沒有相黏效果。這是我 debug 半小時之後才想到的...
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

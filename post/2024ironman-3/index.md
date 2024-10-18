@@ -11,7 +11,7 @@ date: 2024-09-16
 
 今天我們要來討論如何使用 GitHub Actions 來自動化 Git 操作，例如自動編輯文件、提交（commit）變更以及推送（push）代碼到儲存庫中。這些操作可以讓你的開發流程更為順暢，尤其在一些重複性任務上，例如定期更新版本號、自動生成文件或部署後自動提交紀錄等。今天將介紹兩種方法：一種是手動使用 Shell 指令，另一種是使用現成的 GitHub Actions 函式庫。
 
-> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/3>
+> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/3>
 
 ## 國小複習：什麼是 Git？
 
@@ -41,7 +41,7 @@ name: 自動提交和推送
 
 on:
     schedule:
-        - cron: "0 0 * * *" # 每天凌晨12點執行一次
+        - cron: "0 0 * * *" # 每天凌晨 12 點執行一次
     workflow_dispatch: # 手動觸發
 
 jobs:
@@ -72,7 +72,7 @@ jobs:
 
 **YAML 文件解析：**
 
--   **`schedule:`** 使用 cron 表達式來設定工作流程的自動觸發時間。這裡設定為每天凌晨12點自動執行。
+-   **`schedule:`** 使用 cron 表達式來設定工作流程的自動觸發時間。這裡設定為每天凌晨 12 點自動執行。
 -   **`workflow_dispatch:`** 允許手動觸發工作流程。
 -   **`steps:`** 分別執行檢出代碼、進行修改、提交變更以及推送代碼。
 -   **`git config:`** 設置提交時使用的用戶信息，使用過 git 的話你會知道這是必要的，否則提交會失敗。

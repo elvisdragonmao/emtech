@@ -11,7 +11,7 @@ date: 2024-09-15
 
 今天我們要來探討如何在 GitHub Actions 中運行基本的 Shell 指令。你可以把 GitHub Actions 想像成你的虛擬機接著 Bad USB，只需要先設定好，基本上你平常在虛擬機或電腦上的操作都可以直接運行。
 
-> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/2>
+> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/2>
 
 ## 國小複習：甚麼是 Shell 指令？
 

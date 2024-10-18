@@ -1,21 +1,21 @@
 ---
 authors: elvismao
-tags: [iOS, 自製, Arduino, ESP32]
-categories: [精選, 製作教學]
+tags: [iOS, 自製，Arduino, ESP32]
+categories: [精選，製作教學]
 date: 2024-01-09
 thumbnail: /static/Homekit-PC/power.webp
 ---
 
 # 用 iPhone 開機電腦和查看狀態 - 使用 ESP32 加入 Homekit
 
-你有沒有在遠端想要控制電腦，但是電腦沒有開機? 或著是享受一回到家電腦已經開好了的爽快。於是你研究如何使用 Wake On Lan，但是發現一定要用有線網路不能用 Wi-Fi? 看不到狀態就算了有時候還會失效?
+你有沒有在遠端想要控制電腦，但是電腦沒有開機？或著是享受一回到家電腦已經開好了的爽快。於是你研究如何使用 Wake On Lan，但是發現一定要用有線網路不能用 Wi-Fi? 看不到狀態就算了有時候還會失效？
 
 今天，我就要來和你分享如何使用 ESP32 加入 Homekit，讓你可以透過 iPhone 開機電腦和查看狀態。
 
 <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F676807707915952&width=300&show_text=false&height=676&appId" width="300" height="676" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 
 {{notice}}
-Android 能使用嗎?
+Android 能使用嗎？
 
 我們要使用的函式庫是 Homespan，它支援的是 Homekit 而不是 Matter 協議，因此可能無法在安卓裝置使用。你可以尋找其他函式庫或著替代解決方案。
 
@@ -88,7 +88,7 @@ Android 能使用嗎?
 1. 請先從官網下載並安裝 Arduino IDE，點開一直下一步即可。
 2. 在開始燒錄之前我們要先來安裝 ESP32 驅動函式庫和 Homekit 函式庫。請你開啟軟體點擊左上角的「檔案」，並選擇「偏好設置」。
    ![::img-medium](openper.webp)
-3. 在下面有一排可以讓你自行輸入函式庫網址的輸入框，請你貼上以下網址:
+3. 在下面有一排可以讓你自行輸入函式庫網址的輸入框，請你貼上以下網址：
 
 ```
 https://dl.espressif.com/dl/package_esp32_index.json
@@ -96,7 +96,7 @@ https://dl.espressif.com/dl/package_esp32_index.json
 
 ![::img-medium](url.webp) 4. 請你進入 BOARDS MANAGER 並搜尋 esp32。安裝 Espressif 開發的的 ESP-32 套件。
 ![::img-medium](driver.jpg) 5. 請點擊左邊第三個的圖書標誌並搜尋 HomeSpan 並安裝。
-![::img-medium](homespan.webp) 6. 貼上以下程式碼:
+![::img-medium](homespan.webp) 6. 貼上以下程式碼：
 
 ```ino
 #include "HomeSpan.h"
@@ -190,7 +190,7 @@ void loop() {
 466-37-726
 ```
 
-這樣就完成囉!你可以編輯程式來添加更多功能或修改 pin 碼。
+這樣就完成囉！你可以編輯程式來添加更多功能或修改 pin 碼。
 
 ![新增至 HomeKit](homekit.webp)
 
@@ -201,7 +201,7 @@ void loop() {
 將電源開關開啟就會開機或關機了。記得開啟開關就是相當於按下按鈕。所以如果你一直開著就相當於長按開關，如果按太久就會強制關機。
 
 {{notice}}
-按電源鍵關機會傷電腦嗎?
+按電源鍵關機會傷電腦嗎？
 
 不會。即使是按下電腦電源關機還是走正常關機流程，所以並不會傷害電腦，不過你要確定的是關機前你的文件有先存檔喔。
 

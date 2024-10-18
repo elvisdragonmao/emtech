@@ -8,7 +8,7 @@ date: 2023-09-27
 
 # Day13 今天我想來點… 顏色選單
 
-昨天的內容是不是有一點燒腦?沒關係，今天來點輕鬆的，只有一行 JavaScript。不管是在線上的文書軟體、製作網站的網站、或甚至是 iOS StandBy 都會有顏色選單。今天我們就來做一個極簡的吧，還要加上自訂顏色的功能。
+昨天的內容是不是有一點燒腦？沒關係，今天來點輕鬆的，只有一行 JavaScript。不管是在線上的文書軟體、製作網站的網站、或甚至是 iOS StandBy 都會有顏色選單。今天我們就來做一個極簡的吧，還要加上自訂顏色的功能。
 
 ![顏色選單成果](https://emtech.cc/post/2023ironman-13/final.webp)
 
@@ -123,7 +123,7 @@ body {
 }
 ```
 
-可以看到顏色選單預設有一些 CSS 並不是特別好看。我們把他的不透明度設成0，這樣就能看不到他，但是點擊的時候還是可以選顏色。
+可以看到顏色選單預設有一些 CSS 並不是特別好看。我們把他的不透明度設成 0，這樣就能看不到他，但是點擊的時候還是可以選顏色。
 
 ```css
 .color-picker input[type="color"] {
@@ -158,7 +158,7 @@ body {
 const changeFontColor = (c) => (document.body.style.background = c);
 ```
 
-這是ES6的寫法，如果你不習慣可以改成
+這是 ES6 的寫法，如果你不習慣可以改成
 
 ```js
 function changeFontColor(c) {
@@ -296,6 +296,6 @@ body {
 const changeFontColor = (a) => (document.body.style.background = a);
 ```
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

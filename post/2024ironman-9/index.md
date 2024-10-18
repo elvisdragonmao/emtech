@@ -11,7 +11,7 @@ date: 2024-09-22
 
 今天，我們將深入了解如何使用 Jest 進行單元測試，並探討一些 Jest 的進階功能和應用。單元測試對於確保程式碼品質至關重要，它幫助我們發現代碼中的問題並確保功能按照預期運行。Jest 是一個功能強大的 JavaScript 測試框架，除了基本的單元測試外，它還支持快照測試、模組模擬等高級功能。讓我們一起探索這些功能及其應用。
 
-> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/9>
+> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/9>
 
 ## 什麼是 Jest？
 

@@ -6,7 +6,7 @@ thumbnail: /static/2023ironman-1/thumbnail.webp
 date: 2023-10-11
 ---
 
-# Day 27 iT 邦幫忙::一起幫忙製作導覽列，拯救第27天
+# Day 27 iT 邦幫忙::一起幫忙製作導覽列，拯救第 27 天
 
 今天我們要來製作 iT 邦幫忙首頁的導覽列。我們先來看看原本的網站。
 
@@ -18,9 +18,9 @@ date: 2023-10-11
 
 ![成果](original.gif)
 
-你有注意到嗎?第二排的導覽列在往下滾之後會固定在上方，並顯示出縮小版的 Logo。我覺得蠻可愛的，一個好的 UI 就事要有這種平常不會注意但讓體驗很順暢舒服的小巧思。我們來搭配昨天的 Animate On Scroll 原理來製作吧。
+你有注意到嗎？第二排的導覽列在往下滾之後會固定在上方，並顯示出縮小版的 Logo。我覺得蠻可愛的，一個好的 UI 就事要有這種平常不會注意但讓體驗很順暢舒服的小巧思。我們來搭配昨天的 Animate On Scroll 原理來製作吧。
 
-> 複習: [Day26 不要躲在下面動! Animate On Scroll 自己做](https://ithelp.ithome.com.tw/articles/10337575)
+> 複習：[Day26 不要躲在下面動！Animate On Scroll 自己做](https://ithelp.ithome.com.tw/articles/10337575)
 
 ## 基本版面
 
@@ -182,7 +182,7 @@ aside {
 }
 ```
 
-大概講幾個有趣的點:
+大概講幾個有趣的點：
 
 -   圖片來源是 [Font Awesome](https://fontawesome.com/)
 -   `<aside>` 裡面的背景是用 `linear-gradient` 做的。先是背景灰色，然後是藍色、白色。感覺像是分成不同元素但為了方便就用一個漸層充當。
@@ -278,6 +278,6 @@ https://codepen.io/edit-mr/pen/WNLPYON
 
 ![成果](final.gif)
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

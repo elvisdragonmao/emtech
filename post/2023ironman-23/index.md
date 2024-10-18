@@ -10,7 +10,7 @@ date: 2023-10-07
 
 今天我們會提到幾個不同的原理。你可以像生菜沙拉一樣自己條配。
 
-漸層動畫有甚麼難的? 我阿嬤...不會 CSS
+漸層動畫有甚麼難的？我阿嬤...不會 CSS
 
 ```css
 body {
@@ -27,7 +27,7 @@ body {
 
 ![bruh](bruh.gif)
 
-額，只有層，沒有漸。這是因為漸層是屬於 `background-image`，你要他怎麼漸圖片?
+額，只有層，沒有漸。這是因為漸層是屬於 `background-image`，你要他怎麼漸圖片？
 
 ## 自己動
 
@@ -87,7 +87,7 @@ background-position: 100% 0;
 
 ### `transform`
 
-和 `background-position` 一樣，`transform` 也可以做出類似的效果。不過記得我們在 [Day20 GPU! 啟動! - 淺談 CSS3 硬體加速](https://ithelp.ithome.com.tw/articles/10333947) 有提到 `transform` 會啟動硬體加速，可以讓動畫更流暢，你的 CPU 也會感謝你。
+和 `background-position` 一樣，`transform` 也可以做出類似的效果。不過記得我們在 [Day20 GPU! 啟動！- 淺談 CSS3 硬體加速](https://ithelp.ithome.com.tw/articles/10333947) 有提到 `transform` 會啟動硬體加速，可以讓動畫更流暢，你的 CPU 也會感謝你。
 
 ![background-position](transform.gif)
 
@@ -134,7 +134,7 @@ div {
 
 `filter` 濾鏡隨便給你開。
 
-> 複習: [Day7 幫我開濾鏡 filter ](https://ithelp.ithome.com.tw/articles/10323423)
+> 複習：[Day7 幫我開濾鏡 filter ](https://ithelp.ithome.com.tw/articles/10323423)
 
 ![filter](hue.gif)
 
@@ -186,6 +186,6 @@ div {
 }
 ```
 
-好的有點噁心，今天的漸層夠了，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+好的有點噁心，今天的漸層夠了，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

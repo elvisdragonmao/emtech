@@ -8,7 +8,7 @@ date: 2023-09-28
 
 # Day14 今天我想來點… 純 CSS 的開關
 
-在手機開關的設定裡面通常不是 checkbox ，而是這種 toggle 開關。因為比較好看，且更有開關的感覺。
+在手機開關的設定裡面通常不是 checkbox，而是這種 toggle 開關。因為比較好看，且更有開關的感覺。
 
 ![iPhone Wi-Fi 設定開關](https://emtech.cc/post/2023ironman-14/switch.webp)
 
@@ -25,7 +25,7 @@ date: 2023-09-28
     ![Alt text](checkbox-range.webp)
 -   checkbox 無法設定背景顏色
 
-問題那麼多，因此我們只需要input幫我們掛名存狀態，然後把它藏在角落裡面就好了。
+問題那麼多，因此我們只需要 input 幫我們掛名存狀態，然後把它藏在角落裡面就好了。
 
 我們需要用其他元素來做開關的外觀。可以讓 checkbox 隱藏在 HTML 較前面的部分，然後用其他元素來控制 checkbox 的狀態。而能夠遠端遙控 checkbox 的元素叫做 `label` 。我們可以用 `label` 來控制 checkbox 的狀態。只需要點擊 `label` checkbox 也會感覺到。
 
@@ -172,6 +172,6 @@ input:checked ~ .light {
 }
 ```
 
-以上就是我今天的分享，你可以根據你的喜好增加陰影或其他動畫效果。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，你可以根據你的喜好增加陰影或其他動畫效果。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥EM，讓我們明天再見。

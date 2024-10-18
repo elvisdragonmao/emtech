@@ -1,7 +1,7 @@
 ---
 authors: elvismao
-tags: [emblog, 關於, 自製]
-categories: [軟體分享, 精選]
+tags: [emblog, 關於，自製]
+categories: [軟體分享，精選]
 date: 2024-10-16
 description: emblog 是一個十分特別且強大的部落格框架，專為毛哥EM資訊密技設計。可以在幾秒內生成出漂亮的靜態單頁式部落格。
 ---
@@ -76,7 +76,7 @@ emblog 你只需要簡單逛一下就會發現它其實只有兩個頁面，一�
 
 ## 自己玩玩
 
-如果你想要在本地自己玩玩研究的話你可以直接從 [GitHub](https://github.com/Edit-Mr/emtech) 下載。記得留下顆星星喔!
+如果你想要在本地自己玩玩研究的話你可以直接從 [GitHub](https://github.com/Edit-Mr/emtech) 下載。記得留下顆星星喔！
 
 1. 確保你已安裝 Node.js。
 2. 執行 `yarn` 來安裝所需的依賴包。

@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [CSS]
-categories: [網栈,教學]
+categories: [網栈，教學]
 thumbnail: /static/webpallet-0/thumbnail.webp
 date: 2023-06-12
 ---
@@ -10,19 +10,19 @@ date: 2023-06-12
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。今天我要讓你10分鐘學會所有常用的CSS語法
 
-CSS的功能是來裝飾HTML的，因此這部影片假設你已經會使用Codepen和HTML了，如果還沒有的話建議你先去看EP.2 十分鐘完結HTML喔。有一些部分可能比較難理解，但我相信你只要多練習幾次就可以了。
+CSS 的功能是來裝飾 HTML 的，因此這部影片假設你已經會使用 Codepen 和 HTML 了，如果還沒有的話建議你先去看 EP.2 十分鐘完結 HTML 喔。有一些部分可能比較難理解，但我相信你只要多練習幾次就可以了。
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/WrNpToBObo0?si=ObuDcZHDTcmjBs2y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## 簡單的CSS
+## 簡單的 CSS
 
-首先請你先建立一個h1標題。
+首先請你先建立一個 h1 標題。
 
 ```html
 <h1>我是標題</h1>
 ```
 
-如果你想讓它變成藍色的話你可以這樣打CSS
+如果你想讓它變成藍色的話你可以這樣打 CSS
 
 ```css
 h1 {
@@ -41,25 +41,25 @@ h1 {
 }
 ```
 
-我們來看一下CSS的結構。h1是選擇器，代表我們要選擇的元素，而color和font-size是屬性，代表我們要改變的屬性，blue和50px是屬性質，代表我們要改成的值。選擇器有很多種，我們來看一下最常用的幾種。
+我們來看一下 CSS 的結構。h1 是選擇器，代表我們要選擇的元素，而 color 和 font-size 是屬性，代表我們要改變的屬性，blue 和 50px 是屬性質，代表我們要改成的值。選擇器有很多種，我們來看一下最常用的幾種。
 
 ## 選擇器
 
--   元素選擇器: 比如說`h1`就是選擇所有的h1元素
--   所有後代: 比如說`*`就是選擇所有的元素
--   後代選擇器: 比如說 `nav a`就是選擇所有nav裡面的a元素
--   親代選擇器: 比如說 ` ol > li` 就是選擇所有ol裡面的li元素。而如果是ol裡的li裡的li就不會被選到。
--   群組選擇器: 比如說 `nav, a`就是選擇所有nav元素和a元素
--   相鄰兄弟: 比如說 ` h1 + p`就是選擇h1正後方的那一個p元素
--   一般兄弟: 比如說 ` h1 ~ p`就是選擇h1後面的所有p元素
--   屬性選擇器: 比如說 `a[href="https://twitter.com"]`就是選擇所有連結到twitter首頁的a元素
-    -   屬性網址包含某字是使用星號: `a[href*="tuts"]` (比如說nettuts.com、net.tutsplus.com、tutsplus.com)
-    -   屬性開頭是使用上箭頭caret符號: `a[href^="http"]`
-    -   屬性結尾是使用錢符號: `[href$=".jpg"]`
+-   元素選擇器：比如說`h1`就是選擇所有的 h1 元素
+-   所有後代：比如說`*`就是選擇所有的元素
+-   後代選擇器：比如說 `nav a`就是選擇所有 nav 裡面的 a 元素
+-   親代選擇器：比如說 ` ol > li` 就是選擇所有 ol 裡面的 li 元素。而如果是 ol 裡的 li 裡的 li 就不會被選到。
+-   群組選擇器：比如說 `nav, a`就是選擇所有 nav 元素和 a 元素
+-   相鄰兄弟：比如說 ` h1 + p`就是選擇 h1 正後方的那一個 p 元素
+-   一般兄弟：比如說 ` h1 ~ p`就是選擇 h1 後面的所有 p 元素
+-   屬性選擇器：比如說 `a[href="https://twitter.com"]`就是選擇所有連結到 twitter 首頁的 a 元素
+    -   屬性網址包含某字是使用星號：`a[href*="tuts"]` (比如說 nettuts.com、net.tutsplus.com、tutsplus.com)
+    -   屬性開頭是使用上箭頭 caret 符號：`a[href^="http"]`
+    -   屬性結尾是使用錢符號：`[href$=".jpg"]`
 
 ### 權重
 
-當有兩個CSS是在描述同一個元素，那們瀏覽器要聽誰的呢?這個時候我們就會看權重。有兩個規則
+當有兩個 CSS 是在描述同一個元素，那們瀏覽器要聽誰的呢？這個時候我們就會看權重。有兩個規則
 
 #### 權重越高，就越有權力
 
@@ -68,7 +68,7 @@ h1 {
 權重從高到低分別是
 
 -   ID 選擇器
--   類別選擇器、屬性選擇器、偽類選擇器(如:`root`)
+-   類別選擇器、屬性選擇器、偽類選擇器 (如：`root`)
 -   元素選擇器、偽元素選擇器
 -   任何元素選擇符`*`沒有權級
 
@@ -82,7 +82,7 @@ h1 {
 
 ## 各種單位
 
-接下來我們來看一下各種單位。CSS有很多種單位，我們來看一下最常用的幾種。
+接下來我們來看一下各種單位。CSS 有很多種單位，我們來看一下最常用的幾種。
 
 ### 顏色
 
@@ -91,14 +91,14 @@ h1 {
 ```css
 h1 {
     color: red; /* 顏色名稱 */
-    color: #ff0000; /* 16進位HEX碼 */
+    color: #ff0000; /* 16 進位 HEX 碼 */
     color: rgb(255, 0, 0);
-    color: rgba(255, 0, 0, 1); /* RBG加上A透明度 */
-    color: hsl(0, 100%, 50%); /* HSL分別代表色相、飽和度、亮度 */
-    color: hsla(0, 100%, 50%, 1); /* HSL加上A透明度 */
+    color: rgba(255, 0, 0, 1); /* RBG 加上 A 透明度 */
+    color: hsl(0, 100%, 50%); /* HSL 分別代表色相、飽和度、亮度 */
+    color: hsla(0, 100%, 50%, 1); /* HSL 加上 A 透明度 */
     color: color(
         display-p3 1 0 0 / 1
-    ); /* 使用color可以顯示RGB不能表示的顏色，我們之後再來討論 */
+    ); /* 使用 color 可以顯示 RGB 不能表示的顏色，我們之後再來討論 */
 }
 ```
 
@@ -108,25 +108,25 @@ h1 {
 
 ```css
 h1 {
-    font-size: 100px; /* px是像素 */
-    font-size: 10rem; /* rem是相對於系統設定的字體大小 */
-    font-size: 10em; /* em是相對於父元素的字體大小 */
-    font-size: 10vw; /* 10vw是相對於螢幕寬度10% */
-    font-size: 10vh; /* 10vh是相對於螢幕高度的10% */
-    font-size: 10vmin; /* vmin是相對於螢幕寬度和高度的最小值的百分比 */
-    font-size: 10vmax; /* vmax是相對於螢幕寬度和高度的最大值的百分比 */
+    font-size: 100px; /* px 是像素 */
+    font-size: 10rem; /* rem 是相對於系統設定的字體大小 */
+    font-size: 10em; /* em 是相對於父元素的字體大小 */
+    font-size: 10vw; /* 10vw 是相對於螢幕寬度 10% */
+    font-size: 10vh; /* 10vh 是相對於螢幕高度的 10% */
+    font-size: 10vmin; /* vmin 是相對於螢幕寬度和高度的最小值的百分比 */
+    font-size: 10vmax; /* vmax 是相對於螢幕寬度和高度的最大值的百分比 */
     font-size: 10%; /* %在不同時候的意思不太一樣，但原則上就是你想的那樣...嗯對 */
 }
 ```
 
--   width跟height的%基準是父層
--   line-height以本身文字行高為基準
+-   width 跟 height 的%基準是父層
+-   line-height 以本身文字行高為基準
 
-接下來我們來有效率的一次認識所有常用的CSS語法吧
+接下來我們來有效率的一次認識所有常用的 CSS 語法吧
 
 ## 裝飾文字
 
-語法直接全上!
+語法直接全上！
 
 ```css
 h1 {
@@ -134,8 +134,8 @@ h1 {
     font-size: 1em; /*字體大小*/
     letter-spacing: 10px; /*字體間距*/
     line-height: 1.5; /*行高。通常會用數字代表正常高的倍數 */
-    font-weight: 500; /*字體粗細，數字最大900，越大越重，預設*/
-    text-decoration: underline; /*底線，最長是用none來把超連結醜醜的底線移除*/
+    font-weight: 500; /*字體粗細，數字最大 900，越大越重，預設*/
+    text-decoration: underline; /*底線，最長是用 none 來把超連結醜醜的底線移除*/
     font-style: italic; /*斜體*/
     opacity: 0.5; /*不透明度*/
     text-align: center; /*文字對齊方向*/
@@ -145,7 +145,7 @@ h1 {
 
 ### font-weight
 
-font-weight是字體粗細，有以下幾種寫法
+font-weight 是字體粗細，有以下幾種寫法
 
 ```css
 /* 關鍵字 */
@@ -165,7 +165,7 @@ font-weight: 900;
 
 ### text-decoration
 
-text-decoration是裝飾文字，有以下幾種寫法:
+text-decoration 是裝飾文字，有以下幾種寫法：
 
 ```css
 text-decoration: underline; /*底線*/
@@ -178,7 +178,7 @@ text-decoration-color: #ff00ff; /*裝飾的顏色*/
 
 ### background-color
 
-background-color是背景顏色
+background-color 是背景顏色
 
 ```css
 background-color: #ff0000;
@@ -186,7 +186,7 @@ background-color: #ff0000;
 
 ### background-image
 
-background-image是背景圖片，可以用url()來指定圖片位置
+background-image 是背景圖片，可以用 url() 來指定圖片位置
 
 ```css
 background-image: url(cloud.png);
@@ -212,7 +212,7 @@ background-attachment: local; /* 一起動 */
 background: linear-gradient(#333, #333 50%, #eee 75%, #333 75%);
 ```
 
-這個比例可能跟你想像的不太一漾，漸層開始的位置是0%，漸層結束的地方是100%。你寫的百分比代表你寫的位置的顏色，顏色間會自動平分，如果沒有寫就會自動平分。前面可以加入關鍵字表示漸層方向。12點是0度，依序循轉漸進。
+這個比例可能跟你想像的不太一漾，漸層開始的位置是 0%，漸層結束的地方是 100%。你寫的百分比代表你寫的位置的顏色，顏色間會自動平分，如果沒有寫就會自動平分。前面可以加入關鍵字表示漸層方向。12 點是 0 度，依序循轉漸進。
 
 ```css
 background: linear-gradient(#e66465, #9198e5);
@@ -229,10 +229,10 @@ background: linear-gradient(
 
 ## border
 
-邊框。分成border-top,border-bottom, border-left, border-right，或是使用border一次指定所有的
+邊框。分成 border-top,border-bottom, border-left, border-right，或是使用 border 一次指定所有的
 
 ```css
-border-style: solid; /* 花邊，Solid是預設的直線 */
+border-style: solid; /* 花邊，Solid 是預設的直線 */
 border-width: 10px; /* 寬度 */
 border-color: #00ff00; /*邊框顏色 */
 border: solid 10px hsl(0, 100%, 100%); /* 縮寫 */
@@ -240,7 +240,7 @@ border: solid 10px hsl(0, 100%, 100%); /* 縮寫 */
 
 ### border-radius
 
-圓角。單位可以是半徑或著是百分比。所以如果你設成50%就會變成圓形。如果有兩格值就是上下和左右，四個就是上右下左。
+圓角。單位可以是半徑或著是百分比。所以如果你設成 50% 就會變成圓形。如果有兩格值就是上下和左右，四個就是上右下左。
 
 ```css
 border-radius: 四個角;
@@ -251,9 +251,9 @@ border-top-left-radius: 10%;
 
 ### outline
 
-outline位置在border的外緣，但不佔用元素的任何空間。原則上我通常不會想用到它，因為border比較好用。
-outline不能夠聲明單邊樣式，它一定是圍繞呈現的。  
-outline的形狀可以不規則，它會順著border邊緣顯示，不一定得是矩形。可是目前大多數的瀏覽器不支援該特性。實際上驗證之下會發現outline並不會去適應border-radius的圓弧。
+outline 位置在 border 的外緣，但不佔用元素的任何空間。原則上我通常不會想用到它，因為 border 比較好用。
+outline 不能夠聲明單邊樣式，它一定是圍繞呈現的。  
+outline 的形狀可以不規則，它會順著 border 邊緣顯示，不一定得是矩形。可是目前大多數的瀏覽器不支援該特性。實際上驗證之下會發現 outline 並不會去適應 border-radius 的圓弧。
 
 ```css
 outline-style | outline-width | outline-color | outline-offset
@@ -268,19 +268,19 @@ box-sizing:content-box;  // 把寬度範圍指定給內容物的空間
 box-sizing:border-box;  // 把寬度範圍指定給整個邊框到邊框之間的空間。
 ```
 
-所以在 block 元素中只要設定 box-sizing:border-box; 就不用另外再計算padding、border 的寬度造成 width 賦予的值不直覺。
+所以在 block 元素中只要設定 box-sizing:border-box; 就不用另外再計算 padding、border 的寬度造成 width 賦予的值不直覺。
 
-假設 width:300px, padding 就算加了 20px, border 加了4px，寬度依舊是300px。
+假設 width:300px, padding 就算加了 20px, border 加了 4px，寬度依舊是 300px。
 
 ## display
 
-CSS的Display屬性可以改變元素對外所參與的佈局環境（outer display type），白話文就是元素怎麼排。
+CSS 的 Display 屬性可以改變元素對外所參與的佈局環境（outer display type），白話文就是元素怎麼排。
 
 -   `inline`: 像文字一樣左到右上到下，不能決定寬高
 -   `block`: 佔滿`<body>`整排，下一個東西會換行
--   `contents`: 只有contents area的box，只顯示內容文字。
--   `inline-block`: 保持像block一樣得特性，可以設長寬等等，但一樣從左到右排
--   `display: none` Bang不見
+-   `contents`: 只有 contents area 的 box，只顯示內容文字。
+-   `inline-block`: 保持像 block 一樣得特性，可以設長寬等等，但一樣從左到右排
+-   `display: none` Bang 不見
 
 *   block 是有面積的，可以設定寬跟高
 *   inline 設定寬高無效，可以設定 padding 的左右值，上下值無效，無法被撐開。
@@ -291,9 +291,9 @@ CSS的Display屬性可以改變元素對外所參與的佈局環境（outer disp
 也可以為元素創造內部的佈局環境，提供後代元素佈局的規則（inner display type）。對內創造的佈局例如：
 
 -   `flex`  
-    彈性盒佈局，該屬性值的元素本身對外仍參與normal flow，可是內部環境為獨立的flex formatting context。
+    彈性盒佈局，該屬性值的元素本身對外仍參與 normal flow，可是內部環境為獨立的 flex formatting context。
 -   `grid`  
-    格線佈局，該屬性值的元素本身對外仍參與normal flow，可是內部環境為獨立的彈性盒佈局grid formatting context。
+    格線佈局，該屬性值的元素本身對外仍參與 normal flow，可是內部環境為獨立的彈性盒佈局 grid formatting context。
 
 這些我們之後會再細細討論。
 
@@ -301,7 +301,7 @@ CSS的Display屬性可以改變元素對外所參與的佈局環境（outer disp
 
 ### 用法
 
-常見用法像是文字繞圖片的特效。none是正常排，left就是去左邊，right是去右邊。
+常見用法像是文字繞圖片的特效。none 是正常排，left 就是去左邊，right 是去右邊。
 
 #### none
 
@@ -311,17 +311,17 @@ CSS的Display屬性可以改變元素對外所參與的佈局環境（outer disp
 
 ![](https://i.imgur.com/Yz6bJ16.png)
 
-float是我比較少用的CSS，因為會遇到一些問題比如說float collapse
+float 是我比較少用的 CSS，因為會遇到一些問題比如說 float collapse
 
 ![](https://i.imgur.com/Zdntd5z.png)
 
 當然解決方法很多，列幾個
 
--   元素的float參數不為none
--   元素的position參數為absolute或fixed
--   元素的display為inline-block
--   overflow參數不為visible的block元素
--   display參數為flow-root的元素
+-   元素的 float 參數不為 none
+-   元素的 position 參數為 absolute 或 fixed
+-   元素的 display 為 inline-block
+-   overflow 參數不為 visible 的 block 元素
+-   display 參數為 flow-root 的元素
 
 ### Clear
 
@@ -344,7 +344,7 @@ position: static | relative | absolute | fixed | sticky;
 
 ### static 原始定位
 
-inline往右，block往下
+inline 往右，block 往下
 
 ### reletive 相對定位
 
@@ -354,7 +354,7 @@ inline往右，block往下
 
 ### absolute 絕對定位
 
-會以reletive的位置來定位，接著再用top left bottom right排。有一個口決:父相子絕，就是外面用relative,裡面用absolute。
+會以 reletive 的位置來定位，接著再用 top left bottom right 排。有一個口決：父相子絕，就是外面用 relative，裡面用 absolute。
 
 ### fixed
 
@@ -362,13 +362,13 @@ inline往右，block往下
 
 # sticky
 
-以自己為基準，卡在那裡，但sticky元素仍然in flow，元素佔位會保留。
+以自己為基準，卡在那裡，但 sticky 元素仍然 in flow，元素佔位會保留。
 
 ![](https://media.giphy.com/media/LRs2BIsDx1WjzSdIAJ/giphy.gif)
 
 ## Transform
 
-原本位置佔著，但是可以做出各種效果如rotate 旋轉
+原本位置佔著，但是可以做出各種效果如 rotate 旋轉
 
 ### Transform: translate
 
@@ -380,7 +380,7 @@ transform: translateX(單位或百分比);
 transform: translateY(單位或百分比);
 ```
 
-單位值為多少就平移多少，然後transform支援負值
+單位值為多少就平移多少，然後 transform 支援負值
 
 ```css
 .translate {
@@ -391,7 +391,7 @@ transform: translateY(單位或百分比);
 
 ![](https://i.imgur.com/IFdDGiC.png)
 
-translate的百分比基準是自己的width跟height
+translate 的百分比基準是自己的 width 跟 height
 
 ![](https://i.imgur.com/jM1Hazt.png)
 
@@ -411,7 +411,7 @@ img {
 
 ![](https://i.imgur.com/Gswm945.png)
 
-再來往左上推: `transform: translate(-50%, -50%);`
+再來往左上推：`transform: translate(-50%, -50%);`
 
 ![](https://i.imgur.com/YeDUST3.png)
 
@@ -419,20 +419,20 @@ img {
 
 ## transition 轉場
 
-當元素因為各種原因改變屬性質，比如說javascript改的或著是因為元素被點擊等等。會在指定時間平滑的切換過去，做出簡單的動畫。
+當元素因為各種原因改變屬性質，比如說 javascript 改的或著是因為元素被點擊等等。會在指定時間平滑的切換過去，做出簡單的動畫。
 
 ```css
 transition: 屬性 轉換時間 延遲執行動畫的時間 速度;
 
-transition:all .3s 0s ease;// 設定全部 0.3秒轉換 沒有延遲 ease為預設值
+transition:all .3s 0s ease;// 設定全部 0.3 秒轉換 沒有延遲 ease 為預設值
 transition: padding .3s 0s, background-color 1s 1s; // 可以各別設定，用逗號分開，並用延遲時間設定出現的先後順序
 ```
 
-任何屬性都可以設定transition，比如說文字段落滑過要變色也可以。
+任何屬性都可以設定 transition，比如說文字段落滑過要變色也可以。
 
 ## overflow
 
-假設元素超過了框框的大小。可能是父原素的大小有可能是超過了螢幕的大小。這時候我們可以使用overflow屬性來決定要怎麼處理。最常用的是hidden隱藏、auto自動還有scroll，也就是顯示滾動軸。
+假設元素超過了框框的大小。可能是父原素的大小有可能是超過了螢幕的大小。這時候我們可以使用 overflow 屬性來決定要怎麼處理。最常用的是 hidden 隱藏、auto 自動還有 scroll，也就是顯示滾動軸。
 
 ```css
 /* Keyword values */
@@ -441,16 +441,16 @@ overflow: hidden;
 overflow: clip; /* 禁止所有滾動 */
 overflow: scroll;
 overflow: auto;
-overflow: overlay; /* 不佔空間的auto */
+overflow: overlay; /* 不佔空間的 auto */
 overflow: hidden visible;
 ```
 
 ## Media
 
-Media可以告訴瀏覽器在不同的螢幕大小該如何呈現。這個是基本的語法。
+Media 可以告訴瀏覽器在不同的螢幕大小該如何呈現。這個是基本的語法。
 
 ```css
-@media screen and (條件) and (條件)...{ // 判斷式，用在screen螢幕的媒體
+@media screen and (條件) and (條件)...{ // 判斷式，用在 screen 螢幕的媒體
 }
 ```
 
@@ -463,15 +463,15 @@ font-size:2em;
 }
 ```
 
-他的意思是說假設螢幕寬度大於600像素，那麼大標題就要以正常字體的兩倍大顯示。
+他的意思是說假設螢幕寬度大於 600 像素，那麼大標題就要以正常字體的兩倍大顯示。
 
 ## 偽類
 
 偽類可以讓我們針對特定的元素狀態或條件應用樣式，這使得我們可以更好地控制和美化網頁的外觀。
 
-在CSS中，偽類以冒號（:）開頭，並在選擇器後面添加。它們可以根據元素的特定狀態或其他條件應用樣式，例如當滑鼠懸停在元素上方時，或當元素是其父元素的第一個子元素時。
+在 CSS 中，偽類以冒號（:）開頭，並在選擇器後面添加。它們可以根據元素的特定狀態或其他條件應用樣式，例如當滑鼠懸停在元素上方時，或當元素是其父元素的第一個子元素時。
 
-以下是一些常見的CSS偽類：
+以下是一些常見的 CSS 偽類：
 
 -   `:hover`：當滑鼠懸停在元素上方時應用的樣式。這是一個常見的偽類，常用於添加互動效果，例如當滑鼠懸停在按鈕上時改變其背景顏色。
 -   `:active`：當元素被激活時應用的樣式。通常用於按下按鈕或鏈接時，以顯示按下效果。
@@ -512,7 +512,7 @@ p::before {
 
 ## 總結
 
-好啦，今天我們介紹了許多不同的CSS屬性。這些已經是最常用的屬性了，但礙於篇幅我們有一些沒有講的很詳細。如果你想知道更多的屬性，可以到[MDN](https://developer.mozilla.org/zh-TW/docs/Web/CSS)查詢。下一週我們要來介紹如何使用VSCode這個酷酷的「整合式開發環境」。
+好啦，今天我們介紹了許多不同的 CSS 屬性。這些已經是最常用的屬性了，但礙於篇幅我們有一些沒有講的很詳細。如果你想知道更多的屬性，可以到[MDN](https://developer.mozilla.org/zh-TW/docs/Web/CSS)查詢。下一週我們要來介紹如何使用 VSCode 這個酷酷的「整合式開發環境」。
 
 每週一早上六點，我們會在YouTube和各大Podcast平台不定時更新。如果你喜歡文字版，也歡迎在Instagram和Google新聞追蹤毛哥EM資訊密技。
 我是毛哥EM，讓我們下週再見！

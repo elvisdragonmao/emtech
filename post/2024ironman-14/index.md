@@ -13,7 +13,7 @@ date: 2024-09-27
 
 > 當然，如果你使用的是 Zeabur 或是 Vercel 這樣的部屬平台，在 push 之後他們就會自動部屬，這樣也不錯。
 
-> 今日範例程式: <https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/14>
+> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/14>
 
 ## 1. 使用 GitHub Actions 部署到 AWS S3
 

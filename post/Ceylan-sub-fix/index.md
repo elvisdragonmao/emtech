@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [自製, Youtube, Tampermonkey]
+tags: [自製，Youtube, Tampermonkey]
 categories: [教學]
 date: 2023-03-14
 ---
@@ -36,7 +36,7 @@ date: 2023-03-14
             }
         } else if (subCount && channelName) {
             observer.disconnect();
-            if (channelName.innerText == "錫蘭Ceylan") {
+            if (channelName.innerText == "錫蘭 Ceylan") {
                 var subscriberCountText = subCount.innerText;
                 var replacedText = subscriberCountText
                     .replace("萬", "兆")
@@ -56,6 +56,6 @@ date: 2023-03-14
 })();
 ```
 
-不過你可能會說"喔我沒有讀過大學，我看不懂"，沒關係我也沒有，但你可以請ChatGPT解釋給你聽。
+不過你可能會說"喔我沒有讀過大學，我看不懂"，沒關係我也沒有，但你可以請 ChatGPT 解釋給你聽。
 
 現在，你可以輕鬆地修正錫蘭 YouTube 的訂閱數，成為網路上的大王。
