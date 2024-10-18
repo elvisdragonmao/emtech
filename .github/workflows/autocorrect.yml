@@ -6,7 +6,38 @@ on:
             - main
 
 jobs:
+    dating:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Modify Last Commit with Date and Time
+              run: |
+                  # Undo the last commit but keep the changes staged
+                  git reset --soft HEAD^
+
+                  # Get the current date and time in the format YYYY-MM-DD HH:MM:SS
+                  DATE=$(date +"%Y-%m-%d %H:%M:%S")
+
+                  # Replace the last line of static/script.js with the new log line
+                  sed -i '$d' static/script.js
+                  echo 'console.log("last updated: '$DATE'");' >> static/script.js
+
+            - name: Amend and Push Changes
+              run: |
+                  git config --global user.name "Edit-Mr"
+                  git config --global user.email "info@elvismao.com"
+
+                  # Stage the modified files
+                  git add static/script.js
+
+                  # Amend the last commit to include the date change and push
+                  git commit --amend --no-edit
+                  git push --force
+
     autocorrect:
+        needs: dating
         runs-on: ubuntu-latest
 
         steps:
@@ -23,6 +54,7 @@ jobs:
             # Install dependencies (including autocorrect-node)
             - name: Install dependencies
               run: |
+                  git pull
                   corepack enable
                   yarn add autocorrect-node
 
@@ -54,6 +86,7 @@ jobs:
 
             - name: 毛哥沒有空白
               run: |
+                  git pull
                   find . -type f -exec sed -i 's/毛哥 EM/毛哥EM/g' {} +
 
             - name: Commit changes
@@ -63,4 +96,3 @@ jobs:
                   git add .
                   git commit -m "空間是一格半 誰也出不去 幾寸也不滿意 思想是循環 溫飽思淫慾" -m "-草東沒有派對《空》"
                   git push
-

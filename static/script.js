@@ -644,3 +644,5 @@ console.log(`
     emtech.cc is generated with emblog by Elvis Mao
     https://github.com/Edit-Mr/emblog
     `);
+
+// date
