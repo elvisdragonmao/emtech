@@ -57,6 +57,7 @@ jobs:
             # Install dependencies (including autocorrect-node)
             - name: Install dependencies
               run: |
+                  git config pull.rebase true
                   git pull
                   corepack enable
                   yarn add autocorrect-node
