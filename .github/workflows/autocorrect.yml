@@ -44,9 +44,9 @@ jobs:
               run: |
                   git config --global user.name "Edit-Mr"
                   git config --global user.email "info@elvismao.com"
-                  git add .
                   git reset package.json
                   git reset .github
+                  git add .
 
             # Commit and push changes
             - name: Commit and push changes
