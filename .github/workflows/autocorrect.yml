@@ -22,7 +22,9 @@ jobs:
 
             # Run autocorrect fix
             - name: Run autocorrect
-              run: npx autocorrect --fix
+              run: |
+                  rm -rf .git/hooks
+                  npx autocorrect --fix
 
             # Add changes excluding package.json
             - name: Add changes except package.json
