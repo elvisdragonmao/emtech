@@ -7,12 +7,15 @@ on:
 
 jobs:
     autocorrect:
+        continue-on-error: true
         runs-on: ubuntu-latest
 
         steps:
             # Checkout the repository
             - name: Checkout code
               uses: actions/checkout@v4
+              with:
+                token: ${{ secrets.WORKFLOW_TOKEN }}
 
             # Install Node.js and Yarn
             - name: Set up Node.js
