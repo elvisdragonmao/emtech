@@ -69,6 +69,6 @@ Apple Pencil Pro 定價為 4390 元，Apple Pencil 2 價格相同，不過 Apple
 
 新的 iOS 並沒有被發布，但是蘋果在發布會上展示了一些新的軟體功能。包括 Apple Pencil Pro 與 Procreate 的結合，Final Cut Pro 可以即時查看四台 iPhone 鏡頭畫面並進行焦距及光線調整等。且這次發布會蘋果開始會使用 AI 這個詞了。雖然蘋果在人工智慧或深度學習我認為一直都是不差的，但是大多是整合到功能和你的生活裡面讓你無法察覺，因此沒有那麼高調，不管是客製化聲音模型 (設定內建)、影片去背 (Final Cut Pro)、音樂分出不同樂器 (Logic Pro) 等等，搭配強大的 Apple silicon 晶片，其實都是 AI 的應用。
 
-這次的發布會只有 41 分鐘，手語老師一樣很熱情。以上就是我整理出來的重點，iPad Pro 技術上雖然的確是很有創意且突破，但我的 iPad Pro 第三代目前還堪用。而一直使用副廠筆的我確實有被 Apple Pencil Pro 驚艷到，可以轉還會震動，期待看到第三方 App 的使用，以及這些產品在市場上的表現。最後歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)。
+這次的發布會只有 41 分鐘，手語老師一樣很熱情。以上就是我整理出來的重點，iPad Pro 技術上雖然的確是很有創意且突破，但我的 iPad Pro 第三代目前還堪用。而一直使用副廠筆的我確實有被 Apple Pencil Pro 驚艷到，可以轉還會震動，期待看到第三方 App 的使用，以及這些產品在市場上的表現。最後歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://emtech.cc/)。
 
 > 資料及圖片來源：[蘋果官網](https://www.apple.com/tw/)

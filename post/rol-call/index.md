@@ -558,4 +558,4 @@ color: var(--nord7);
 <p style="background-color: #A3BE8C;">--nord14: #A3BE8C;</p>
 <p style="background-color: #B48EAD;">--nord15: #B48EAD;</p>
 
-希望你喜歡這個網頁！如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥 EM 資訊密技。如果你有任何問題，歡迎直接到毛哥 EM 資訊密技的 Instagram 私訊我，我很樂意協助解決你的問題。
+希望你喜歡這個網頁！如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM 資訊密技。如果你有任何問題，歡迎直接到毛哥EM 資訊密技的 Instagram 私訊我，我很樂意協助解決你的問題。
