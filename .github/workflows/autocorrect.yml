@@ -1,28 +1,45 @@
-name: AutoCorrect Check
+name: AutoCorrect Fix and Push
 
 on:
-  pull_request:
-    branches:
-      - main
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 jobs:
-  autocorrect:
-    runs-on: ubuntu-latest
+    autocorrect:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        
-      - name: Run AutoCorrect
-        uses: huacnlee/autocorrect-action@v2
-        
-      - name: Report with ReviewDog
-        if: failure()
-        uses: huacnlee/autocorrect-action@v2
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          reviewdog: true
+        steps:
+            # Checkout the repository
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            # Install Node.js and Yarn
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "20"
+
+            # Install dependencies (including autocorrect-node)
+            - name: Install dependencies
+              run: yarn add autocorrect-node
+
+            # Run autocorrect fix
+            - name: Run autocorrect
+              run: autocorrect --fix
+
+            # Add changes excluding package.json
+            - name: Add changes except package.json
+              run: |
+                  git config --global user.name "Edit-Mr"
+                  git config --global user.email "info@elvismao.com"
+                  git add .
+                  git reset package.json
+
+            # Commit and push changes
+            - name: Commit and push changes
+              run: |
+                  git commit -m "AutoCorrect fix applied"
+                  git push origin main
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
