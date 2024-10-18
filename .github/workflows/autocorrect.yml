@@ -24,7 +24,7 @@ jobs:
             - name: Install dependencies
               run: |
                   corepack enable
-                  yarn add autocorrect
+                  yarn add autocorrect-node
 
             # Run autocorrect fix
             - name: Run autocorrect
