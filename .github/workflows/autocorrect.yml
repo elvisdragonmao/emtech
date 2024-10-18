@@ -51,13 +51,12 @@ jobs:
             - name: Commit and push changes
               run: |
                   if [ -n "$(git status --porcelain)" ]; then
+                      git remote set-url origin https://x-access-token:${{ secrets.WORKFLOW_TOKEN }}@github.com/${{ github.repository }}
                       git commit -m "噢多麼單純的一首詩 怎麼會 怎麼會 忘記加空白" -m "-草東沒有派對《爛泥》"
                       git push origin main
                   else
                       echo "No changes to commit"
                   fi
-              env:
-                  GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
     blankSpace:
         needs: autocorrect # This ensures replace_text runs after autocorrect
         runs-on: ubuntu-latest
@@ -78,8 +77,7 @@ jobs:
                   if git diff --staged --quiet; then
                     echo "No changes"
                   else
+                    git remote set-url origin https://x-access-token:${{ secrets.WORKFLOW_TOKEN }}@github.com/${{ github.repository }}
                     git commit -m "空間是一格半 誰也出不去 幾寸也不滿意 思想是循環 溫飽思淫慾" -m "-草東沒有派對《空》"
                     git push
                   fi
-              env:
-                GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
