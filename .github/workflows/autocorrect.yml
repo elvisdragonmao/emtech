@@ -15,7 +15,7 @@ jobs:
             - name: Modify Last Commit with Date and Time
               run: |
                   # Undo the last commit but keep the changes staged
-                  git reset --soft HEAD^
+                  git reset --soft HEAD~1
 
                   # Get the current date and time in the format YYYY-MM-DD HH:MM:SS
                   DATE=$(date +"%Y-%m-%d %H:%M:%S")
