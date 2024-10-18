@@ -79,3 +79,6 @@ jobs:
                   else
                     git commit -m "空間是一格半 誰也出不去 幾寸也不滿意 思想是循環 溫飽思淫慾" -m "-草東沒有派對《空》"
                     git push
+                  fi
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
