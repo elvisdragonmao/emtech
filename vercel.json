@@ -2,6 +2,7 @@
     "installCommand": "yarn",
     "buildCommand": "yarn build",
     "outputDirectory": "dist",
+    "trailingSlash": false,
     "rewrites": [
         { "source": "/tag/:slug*", "destination": "/index.html" },
         { "source": "/category/:slug*", "destination": "/index.html" }
@@ -9,6 +10,9 @@
     "redirects": [
         { "source": "/about/", "destination": "/p/about" },
         {
+            "source": "/post/:slug*",
+            "destination": "/p/:slug*"
+        },   {
             "source": "/post/:slug*",
             "destination": "/p/:slug*"
         },
