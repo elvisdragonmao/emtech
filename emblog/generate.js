@@ -388,7 +388,8 @@ async function processPosts() {
                     postTags,
                     headerCategories,
                     headerTags,
-                    postID
+                    postID,
+                    description: postMeta.description
                 };
                 const fullPostHtml = replacePlaceholders(
                     postTemplate,
