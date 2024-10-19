@@ -212,6 +212,8 @@ const postScrollAnimations = () => {
                         .then((data) => {
                             next.innerHTML = data;
                             initPost(next);
+                            // set the title of tab to the post title
+                            document.title = randomPost.title;
                             window.history.pushState(
                                 null,
                                 null,
@@ -557,11 +559,14 @@ document.body.addEventListener("click", (e) => {
         } else if (a.getAttribute("href").includes("/p/")) {
             switchToPost(a); // Handle post switch
             // check if there's a .hero image in the same article
+            document.title = a.querySelector("h3").textContent + " | 毛哥EM資訊密技";
         } else if (a.getAttribute("href").includes("/category/")) {
             updatePostList("category/" + a.textContent);
+            document.querySelector(".categories-title").textContent = a.textContent + " | 毛哥EM資訊密技";
             if (currentPage !== "home") switchToHome();
         } else if (a.getAttribute("href").includes("/tag/")) {
             updatePostList("tag/" + a.getAttribute("href").split("/tag/")[1]);
+            document.querySelector(".categories-title").textContent = a.textContent + " | 毛哥EM資訊密技";
             if (currentPage !== "home") switchToHome();
         } else if (a.getAttribute("href") === "/random") {
             // get random post id from search.json
