@@ -1407,7 +1407,6 @@ blockquote::before {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    gap: 1rem;
     flex-wrap: wrap;
     margin-bottom: 2rem;
 }
@@ -1452,6 +1451,7 @@ a.friend::after {
     border-radius: 50%;
     display: block;
     object-fit: cover;
+    margin-right: 1rem;
 }
 
 .friend div {
