@@ -1409,6 +1409,7 @@ blockquote::before {
     align-items: stretch;
     flex-wrap: wrap;
     margin-bottom: 2rem;
+    gap: 1rem;
 }
 a.friend {
     color: var(--black);
@@ -1439,7 +1440,6 @@ a.friend::after {
     text-align: center;
     display: flex;
     align-items: center;
-    gap: 1rem;
     max-width: 20rem;
     padding: 1rem;
     text-align: left;
