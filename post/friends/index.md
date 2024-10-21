@@ -20,7 +20,7 @@ date: 2024-10-17
 
 ### 毛哥EM
 
-數位創作者，全端工程師。
+數位創作者 | 全端工程師
 
 </div>
 </a>
@@ -30,15 +30,15 @@ date: 2024-10-17
 
 <div>
 
-### 张洪 Heo
+### Yuanlin Lin
 
-产品设计师，独立开发者，设计与科技分享。
+Zeabur 創辦人
 
 </div>
 </a>
-<a class="friend" href="https://chaontc.tw/">
+<a class="friend" href="https://yual.in/">
 
-![Chao28661](https://chaontc.tw/images/me.jpg)
+![Yuanlin Lin](https://avatars.githubusercontent.com/u/21105863)
 
 <div>
 
@@ -130,6 +130,18 @@ OsGay
 ### 小蔡
 
 家裡有隻兔子，非常喜歡兔子wwwww
+
+</div>
+</a>
+<a class="friend" href="https://blog.chaontc.tw/">
+
+![Chao28661](https://chaontc.tw/images/me.jpg)
+
+<div>
+
+### Chao28661
+
+第三屆中電會會長
 
 </div>
 </a>
