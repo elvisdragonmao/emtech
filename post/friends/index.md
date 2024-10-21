@@ -109,6 +109,30 @@ BambooFox 社長
 
 </div>
 </a>
+<a class="friend" href="https://blog.osga.lol/">
+
+![OsGa](https://blog.osga.lol/_astro/header.DOQpAJaQ_1r0r98.webp)
+
+<div>
+
+### OsGa
+
+OsGay
+
+</div>
+</a>
+<a class="friend" href="https://小蔡.site/">
+
+![小蔡](https://i0.wp.com/xn--yets96g.site/wp-content/uploads/ultimatemember/1/profile_photo-190x190.jpg?resize=190%2C190&ssl=1)
+
+<div>
+
+### 小蔡
+
+家裡有隻兔子，非常喜歡兔子wwwww
+
+</div>
+</a>
 </div>
 
 {{notice}}
