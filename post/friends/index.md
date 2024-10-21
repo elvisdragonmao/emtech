@@ -73,6 +73,42 @@ date: 2024-10-17
 
 </div>
 </a>
+<a class="friend" href="https://cbjsprogramdiary.com">
+
+![Chung](https://i0.wp.com/cbjsprogramdiary.com/wp-content/uploads/2022/10/digital.jpg?fit=1200%2C900&ssl=1)
+
+<div>
+
+### CBJ's 程式日記
+
+Chung
+
+</div>
+</a>
+<a class="friend" href="https://curious-lucifer.netlify.app/">
+
+![Curious](https://curious-lucifer.netlify.app/static/img/logo.png)
+
+<div>
+
+### Curious
+
+BambooFox 社長
+
+</div>
+</a>
+<a class="friend" href="https://blog.ching367436.me/">
+
+![Ching367436](https://blog.ching367436.me/images/Ching367436.jpg)
+
+<div>
+
+### Ching367436
+
+竹狐隊長
+
+</div>
+</a>
 </div>
 
 {{notice}}
