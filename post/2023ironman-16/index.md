@@ -10,7 +10,7 @@ date: 2023-09-30
 
 今天我們要來製作一個時鐘。不使用圖片，只使用 CSS 來繪製。我的目標是可以做出類似於 Apple iOS17 StandBy 的時鐘效果。
 
-![](https://emtech.cc/post/2023ironman-16/StandBy.webp)
+![](StandBy.webp)
 
 ## HTML
 
@@ -46,7 +46,7 @@ CSS 要怎麼畫出時鐘呢？我們會需要幫這個 `div` 添加幾個漸層
 
 為了方便大家比較我把圖放在一起。
 
-![](https://emtech.cc/post/2023ironman-16/conic.webp)
+![](conic.webp)
 
 `conic-gradient` 的語法和其他漸層語法很相似。繞一圈跑，可以設定開始和結束的角度，沒寫角度就自動平分。比如說第一個：
 
@@ -86,7 +86,7 @@ div {
 
 `radial-gradient` 會從裡到外。一樣原理，不給他地方漸層就會出現圓形。~~讓他原形畢露~~
 
-![](https://emtech.cc/post/2023ironman-16/radial.webp)
+![](radial.webp)
 
 ```css
 div {
@@ -105,7 +105,7 @@ div {
 
 這個也蠻有趣的。首先在時鐘的中間放一個 `div`，用為元素在右邊放數字。
 
-![](https://emtech.cc/post/2023ironman-16/prompt.webp)
+![](prompt.webp)
 
 ```html
 <main>
@@ -140,7 +140,7 @@ main {
 
 旋轉方塊裡面裡面數字也會跟著轉。
 
-![](https://emtech.cc/post/2023ironman-16/spin.webp)
+![](spin.webp)
 
 ```css
 .no {
@@ -156,7 +156,7 @@ main {
 
 不過這樣數字就歪了！沒事，偽元素轉回來就好了。
 
-![](https://emtech.cc/post/2023ironman-16/spinback.webp)
+![](spinback.webp)
 
 ```css
 .no::after {
@@ -313,7 +313,7 @@ updateClock();
 
 正當你以為終於結束的時候，你無意間看到了這個畫面…
 
-![](https://emtech.cc/post/2023ironman-16/spin.gif)
+![](spin.gif)
 
 結果對了，方法錯了。因為角度降回 180，結果他還真的轉回去。
 
@@ -352,7 +352,7 @@ updateClock();
 
 https://codepen.io/edit-mr/pen/wvRXMLG
 
-![Final](https://emtech.cc/post/2023ironman-16/final.gif)
+![Final](final.gif)
 
 以上就是我今天的分享。我有看到有人是算了第一個角度之後就每秒固定加上去度數。不過萬一你有延遲或者是卡頓他的時間就會跑掉了，所以我還是建議每次都重新抓時間做計算。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 

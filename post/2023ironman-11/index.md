@@ -69,7 +69,7 @@ body {
 來個大範例
 <https://codepen.io/edit-mr/pen/rNodVbV>
 
-![飯粒範例](https://emtech.cc/post/2023ironman-11/scroll.gif)
+![飯粒範例](scroll.gif)
 
 總之，`background-attachment` 屬性是一個強大的工具，可以用來控制背景圖片的滾動方式，從而實現不同的視覺效果。雖然實際功能不大但可以給人一種出乎意料且不會那麼死板的感覺。
 

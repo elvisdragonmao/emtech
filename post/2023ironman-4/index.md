@@ -17,15 +17,15 @@ date: 2023-09-18
 
 你可以想像 `@Keyframes` 是 PowerPoint 的動畫
 
-![Powerpoint 動畫](https://emtech.cc/post/2023ironman-4/ppt.webp)
+![Powerpoint 動畫](ppt.webp)
 
 而且是一載入網頁就執行。當然我們可以透過 JavaScript 來指定執行的時間 (比如說滾動到元素的時候)
 
-![](https://emtech.cc/post/2023ironman-4/start.webp)
+![](start.webp)
 
 而 Transition 是轉場裡面的轉化效果
 
-![Transition](https://emtech.cc/post/2023ironman-4/transition.webp)
+![Transition](transition.webp)
 
 當元素的外觀因為各種原因 CSS 被改變 (比如說滑鼠滑過，JavaScript 設定，打開 F12 亂搞)，會平滑的轉換過去。我們先來講 Transition 因為他比較簡單。語法如下
 
@@ -67,7 +67,7 @@ transition: background 0.5s; /* 是不是看起來超舒服！*/
 
 https://codepen.io/edit-mr/pen/mdaPYLv
 
-![按鈕範例](https://emtech.cc/post/2023ironman-4/button.webp)
+![按鈕範例](button.webp)
 
 ```html
 <a href="">按鈕</a>
@@ -109,7 +109,7 @@ body {
 
 https://codepen.io/edit-mr/pen/RwEamev
 
-![Width Transition](https://emtech.cc/post/2023ironman-4/width.gif)
+![Width Transition](width.gif)
 
 ```css
 a::after {
@@ -206,7 +206,7 @@ animation: drive 3s forwards;
 ```
 
 https://codepen.io/edit-mr/pen/NWeKpjj
-![drive 3s forwards](https://emtech.cc/post/2023ironman-4/car.gif)
+![drive 3s forwards](car.gif)
 
 CSS Animation 的語法如下
 
@@ -231,11 +231,11 @@ animation:
 
 我們在前面不管是設定 transition 還是 animation 都有時間曲線可以設定。可以根據你的需求做調整，也可以使用 `cubic-bezier()` 來自訂曲線。你可以使用[這個網站](https://cubic-bezier.com/)生成看看，不過我覺得內建的已經很夠用了。
 
-![Ease](https://emtech.cc/post/2023ironman-4/ease.webp)
+![Ease](ease.webp)
 
 [圖片來源：Max](https://www.programonaut.com/css-animations-learn-how-to-create-cool-animations-quickly/)
 
-![線上 Cubic 工具](https://emtech.cc/post/2023ironman-4/cubic.webp)
+![線上 Cubic 工具](cubic.webp)
 
 設定速度曲線可以讓你的動畫更流暢，不會有突然爆走的感覺，也可以讓動畫更有質感。對於超連結 `hover` 做特效建議可以設定成 `ease-out` ，因為滑鼠動畫通常大家會希望有即時反應，但又不希望突然結束。
 

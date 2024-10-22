@@ -1,16 +1,23 @@
-# Get the current folder path
-$folderPath = Get-Location
-# Get all .md files in the current folder and subfolders
-$mdFiles = Get-ChildItem -Path $folderPath -Recurse -Filter *.md
+# Directory path where the markdown files are located
+$directory = Get-Location
 
-foreach ($file in $mdFiles) {
-    $content = Get-Content -Path $file.FullName -Raw
-$updatedContent = $content -replace 'categories: \["不用庫 也能酷 - 玩轉 CSS & Js 特效"\]', "categories: [不用庫 也能酷 - 玩轉 CSS & Js 特效]`nthumbnail: /static/2023ironman-1/thumbnail.webp"
+# Loop through each file (from 2023ironman-1/index.md to 2023ironman-30/index.md)
+for ($i = 1; $i -le 30; $i++) {
+    $filePath = Join-Path $directory "2023ironman-$i\index.md"
+    
+    if (Test-Path $filePath) {
+        # Read the content of the markdown file
+        $content = Get-Content -Path $filePath
 
+        # Use regex to replace image URLs with just the filename
+        # Find patterns like: ![alt text](https://emtech.cc/post/2023ironman-X/image.webp)
+        # Replace with: ![alt text](image.webp)
+        $content = $content -replace "!\[(.*?)\]\(https:\/\/emtech.cc\/post\/2023ironman-\d+\/(.*?)\)", "![`$1`](`$2`)"
 
-
-
-    # Write the updated content back to the file without adding a new line at the end
-    [System.IO.File]::WriteAllText($file.FullName, $updatedContent)
+        # Write the updated content back to the file
+        Set-Content -Path $filePath -Value $content
+        Write-Host "Processed: $filePath"
+    } else {
+        Write-Host "File not found: $filePath"
+    }
 }
-Write-Output "Replacement complete."

@@ -16,15 +16,15 @@ date: 2023-09-23
 
 首先這是一顆球
 
-![球](https://emtech.cc/post/2023ironman-9/ball.webp)
+![球](ball.webp)
 
 好啦我知道我很不會畫畫，有些事情模糊一點比較好。前天學的 filter: blur() 拿來用一下，順便打上一道陽光。
 
-![高斯模糊](https://emtech.cc/post/2023ironman-9/light.webp)
+![高斯模糊](light.webp)
 
 好吧看來我把他救回來，然後又毀了。這個黃色和我這個直男一樣太直了。當顏色疊在一起的時候不一定要直接顯示上面的顏色，可以把兩個疊再一起的顏色做一些運算得出不同的數值。比如說我們可以用乘法把兩個顏色乘在一起得到一個很暗的結果（下面最右邊的圖）中文叫做色彩增值，而英文叫做 multiply 乘法就白話很多。以下是幾個不同混合模式的效果：
 
-![不同混合模式](https://emtech.cc/post/2023ironman-9/mix.webp)
+![不同混合模式](mix.webp)
 
 可以看出明明是同樣的顏色相疊但整個出來的感覺差很多對吧！
 
@@ -51,13 +51,13 @@ mix-blend-mode: luminosity;
 
 要死記這些語法代表的顏色很難，建議大家都可以測試玩看看。這裡給大家一個線上的[測試工具](https://www.casper.tw/WorkShop-gh-pages/cssBlendMode/)
 
-![線上工具](https://emtech.cc/post/2023ironman-9/online.webp)
+![線上工具](online.webp)
 
 我們來實際應用看看吧，這是一個簡單的數字範例。可以看出 mix-blend-mode 讓你的顏色堆疊有著更多的可能，不只是半透明而已，還有顏色互相堆疊渲染的效果。
 
 https://codepen.io/edit-mr/pen/jOXayXa
 
-![時間數字範例](https://emtech.cc/post/2023ironman-9/mix-time.webp)
+![時間數字範例](mix-time.webp)
 
 ```html
 <h1>

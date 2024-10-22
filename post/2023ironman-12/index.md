@@ -20,7 +20,7 @@ date: 2023-09-26
 
 我們在製作滾動視差效果是會希望**一個元素的某一個屬性會隨著時間變化**。我們希望當我們輸入一個數字（也就是滾動的量）的時候得出一個計算結果。
 
-![假裝電腦在聊天](https://emtech.cc/post/2023ironman-12/chat.webp)
+![假裝電腦在聊天](chat.webp)
 
 這種東西取得兩個數值之間的關係叫做甚麼呢？沒錯我們要來建立一個函式。而最簡單且最常用的函式應該就是直線方程了。
 
@@ -34,7 +34,7 @@ $$
 -   接著求出 Y 截距，就可以得出直線方程式。
 -   因為通常到了終點之後，我們不會希望他還在繼續耗資源計算和定位到螢幕畫面千里之外。所以在起點前和終點後都不要再管它了。
 
-![Desmos 示意圖](https://emtech.cc/post/2023ironman-12/desmos.png)
+![Desmos 示意圖](desmos.png)
 
 希望這張圖能夠幫助你理解，如果不行的話國中數學課本翻一下。
 
@@ -68,7 +68,7 @@ window.addEventListener("scroll", function () {
 
 https://codepen.io/edit-mr/pen/vYvZagX
 
-![Alt text](https://emtech.cc/post/2023ironman-12/boom.gif)
+![Alt text](boom.gif)
 
 ```html
 <h1>引爆炸彈</h1>
@@ -119,7 +119,7 @@ window.addEventListener("scroll", function () {
 
 首先先簡單的切版。左邊的假文是為了讓你可以比較能感覺到往下滾動。
 
-![簡單的切版](https://emtech.cc/post/2023ironman-12/layout.webp)
+![簡單的切版](layout.webp)
 
 ```html
 <div></div>
@@ -192,7 +192,7 @@ window.addEventListener("scroll", function () {
 
 https://codepen.io/edit-mr/pen/gOZRQex
 
-![Final](https://emtech.cc/post/2023ironman-12/spin.gif)
+![Final](spin.gif)
 
 能夠變的與玩的實在太多了，使用這個方法在每一個屬性都可以套用。歡迎在評論區留下你看到的好網站與你自己的創作。
 

@@ -10,7 +10,7 @@ date: 2023-10-03
 
 最討厭的廣告就是彈出式 Lightbox 廣告了，他會突然跳出來，然後你要去找那個超小的叉叉關掉他。今天我們不是要重現煩人的廣告，而是要來認識 CSS 選擇器 `:target` 並做出以下效果。
 
-![純 CSS 做出圖片 Lightbox](https://emtech.cc/post/2023ironman-19/final.gif)
+![純 CSS 做出圖片 Lightbox](final.gif)
 
 我們來用 Lightbox 看貓貓
 
@@ -32,7 +32,7 @@ div:target {
 }
 ```
 
-![:target 範例](https://emtech.cc/post/2023ironman-19/target.gif)
+![:target 範例](target.gif)
 
 ## 實作
 
@@ -175,7 +175,7 @@ div:target ~ section {
 最終成果如下：
 https://codepen.io/edit-mr/pen/jOXpJXX
 
-![純 CSS 做出圖片 Lightbox](https://emtech.cc/post/2023ironman-19/final.gif)
+![純 CSS 做出圖片 Lightbox](final.gif)
 
 ```html
 <div id="one">

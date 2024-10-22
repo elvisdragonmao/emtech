@@ -20,7 +20,7 @@ Emmet 可以做什麼呢？比如說我們想要建立一個一級標題，我�
 
 只要按下驚嘆號並按下 tab 就會自動生成一個基本的 HTML5 架構，非常方便。
 
-![!](https://emtech.cc/post/2023ironman-2/!.gif)
+![!](!.gif)
 
 ### 添加 class - `.`
 
@@ -134,7 +134,7 @@ align-item: center;
 
 你也許有看過有人打 `w100` 來生成 `width: 100px` ，不過預設的 px 單位可以說是越來越少用。它的原理和上面一樣就是你先打值也是可以的，比如說你想要 H1 標題變成預設字體三倍大，你可以打 `fz3re`。
 
-![打 fz2re 就可以了](https://emtech.cc/post/2023ironman-2/fz.gif)
+![打 fz2re 就可以了](fz.gif)
 
 打 fz 是因為不管是 fo 變 font: optional, fn 變 font: none, ft 變 font-stretch: normal, fs 變 font-style: italic, fi 變 font: inherit, fe 變 font-emphasize
 

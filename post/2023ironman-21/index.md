@@ -180,7 +180,7 @@ function animate(time) {
 
 > 複習：[Day20 GPU! 啟動！- 淺談 CSS3 硬體加速](https://ithelp.ithome.com.tw/articles/10333947)
 
-![瀏覽器渲染流程](https://emtech.cc/post/2023ironman-20/css3_gpu_speedup.svg)
+![瀏覽器渲染流程](css3_gpu_speedup.svg)
 
 JavaScript 的 `requestAnimationFrame()` 會引起 reflow（重新布局），整個流程需要再跑一次。而 CSS 的 `transition` 和 `@keyframes` 只需要單獨稍微調整一下動畫的圖層就好了。
 

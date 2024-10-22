@@ -23,7 +23,7 @@ filter: blur(5px);
 
 > 冷知識：正方形 blur 可以變圓形
 
-![Blur](https://emtech.cc/post/2023ironman-7/blur.webp)
+![Blur](blur.webp)
 
 ### 2. 亮度（Brightness）
 
@@ -122,7 +122,7 @@ finter 在製作漸層很實用，可以讓你只需要選擇一個顏色就能�
 
 https://codepen.io/edit-mr/pen/GRPyNYY
 
-![相疊](https://emtech.cc/post/2023ironman-7/gradient.webp)
+![相疊](gradient.webp)
 
 ```css
 :root {

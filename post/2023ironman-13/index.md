@@ -10,7 +10,7 @@ date: 2023-09-27
 
 昨天的內容是不是有一點燒腦？沒關係，今天來點輕鬆的，只有一行 JavaScript。不管是在線上的文書軟體、製作網站的網站、或甚至是 iOS StandBy 都會有顏色選單。今天我們就來做一個極簡的吧，還要加上自訂顏色的功能。
 
-![顏色選單成果](https://emtech.cc/post/2023ironman-13/final.webp)
+![顏色選單成果](final.webp)
 
 ## 顏色選單 HTML
 
@@ -87,7 +87,7 @@ date: 2023-09-27
 
 ## CSS
 
-![簡單的 CSS](https://emtech.cc/post/2023ironman-13/button.webp)
+![簡單的 CSS](button.webp)
 
 ```css
 body {
@@ -170,7 +170,7 @@ function changeFontColor(c) {
 
 https://codepen.io/edit-mr/pen/abPVWBJ
 
-![顏色選單成果](https://emtech.cc/post/2023ironman-13/final.gif)
+![顏色選單成果](final.gif)
 
 ```html
 <h1>顏色選單</h1>

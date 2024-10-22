@@ -20,11 +20,11 @@ date: 2023-09-15
 
 第一天來講一下為什麼我要來寫這個系列。我從小學三年級開始玩 Wix（類似 WordPress 或 Google Site 的視覺化網頁編輯器），做網頁就像做簡報一樣拉一拉就好了。不過做出來的網頁預設載入了一大堆厚重的函式庫，明明只是淡入淡出還需要 GSAP。，載入 6、7 秒都算正常發揮。當時雖然不會 HTML 但按 F12 也能看出機器生成的程式碼又臭又長。加上 Wix 網站會有很醜的廣告橫幅，裡面充滿了各種付費解鎖功能，還有 RWD 非常難弄，讓我決定從此走向手刻這條不歸路…
 
-![小學製作和朋友分享檔案的網站](https://emtech.cc/post/2023ironman-1/bank.webp)
+![小學製作和朋友分享檔案的網站](bank.webp)
 
 然而並不只是機器生成的程式碼才有載入問題，在現代網頁函式庫的使用也是非常氾濫的。像是明明只是顯示號碼牌的網頁還要套 Bootstrap，因為懶得打 `document.querySelector()`而安裝 jQuery，甚至打開 [Awwwards](https://www.awwwards.com/) 隨便找一個得獎的網站都要放一個載入動畫，似乎在洗腦你好的網站就是要等待的。
 
-![Loading](https://emtech.cc/post/2023ironman-1/loading.webp)
+![Loading](loading.webp)
 
 也許是我這個剛要升上高二的菜鳥不太會用函式庫，但自己做除了載入更快以外和可自訂性也比較高。只要熟悉效果後面的原理自己做是不會比較慢的。
 
@@ -41,7 +41,7 @@ date: 2023-09-15
 }
 ```
 
-![車車](https://emtech.cc/post/2023ironman-1/car.webp)
+![車車](car.webp)
 
 我使用 Animate.CSS 想要製作一個車開進來的效果，只需要加入一個 class 就可以了…
 
@@ -49,7 +49,7 @@ https://codepen.io/edit-mr/pen/bGObqWq
 
 等等我們的定位怎麼跑掉啦？仔細一看原來 Animate.css 也是使用 `transform` 屬性來製作動畫，所以我們互相衝突了。
 
-![屬性衝突](https://emtech.cc/post/2023ironman-1/animation-transform.webp)
+![屬性衝突](animation-transform.webp)
 
 當然你可以為了使用 Animate.css 所有的 CSS 都不使用 `transform` 屬性，但其實自己寫也沒有多麻煩喔，你只需要先把我們原本的 `left: 50` 改成出發點 `0` ，製作動畫 `@keyframes drive { to { left: 50% }` ，然後套用到車子上就可以了。同時你對於車要動多快，加速度，時間點都可以自由地掌握。
 
