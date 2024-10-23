@@ -3,3 +3,5 @@ Disallow: /posts/clean/
 Disallow: /posts/meta/
 
 Allow: /
+
+Sitemap: https://emtech.cc/sitemap.xml
