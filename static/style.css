@@ -340,6 +340,7 @@ header {
     position: relative;
     overflow: hidden;
     background-color: #1d1e22;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -347,7 +348,37 @@ header {
     font-size: 1.3rem;
     border-radius: var(--border-radius);
 }
+.helloween{
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    background: url(/static/img/helloween.webp) no-repeat center center / cover;
+    aspect-ratio: 1206 / 2622;height: min(calc(100vh - 7.5rem), 35rem);
+}
 
+.helloween::after {
+    opacity: 0;
+    transition: opacity 0.3s;
+    content: "Happy Halloween! \A(圖: 黑曜石 by 瑞樹)";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    font-size: 1.25rem;
+    font-weight: 700;color: #FFF;
+    line-height: 1.5;white-space: pre-wrap;
+}
+
+.helloween:hover::after {
+    opacity: 1;
+}
 #header-playground,
 .header-right {
     height: min(calc(100vh - 7.5rem), 35rem);
@@ -1714,5 +1745,12 @@ a.friend::after {
     .header-info,
     .header-newPost {
         min-width: 20rem;
+    }
+    .helloween{
+        display: none;
+    }
+    #header-playground{
+        color: transparent;
+        background: url(/static/img/helloween.webp) no-repeat center center / cover;
     }
 }
