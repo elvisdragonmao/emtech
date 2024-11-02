@@ -332,7 +332,7 @@ const initPost = (page) => {
     updateDate(page.querySelector("#time p"));
     const id = page.querySelector(".post").getAttribute("data-id");
     const title = page.querySelector(".post-header h1").textContent;
-    document.title =  title + " | 毛哥EM資訊密技";
+    document.title = title + " | 毛哥EM資訊密技";
     if (title && id) updateReadHistory({ id, title });
     const cat = page.querySelector(".header-categorie").textContent;
     const related = page.querySelector(".related-posts");
@@ -560,11 +560,11 @@ document.body.addEventListener("click", (e) => {
             switchToPost(a); // Handle post switch
         } else if (a.getAttribute("href").includes("/category/")) {
             updatePostList("category/" + a.textContent);
-            document.title= a.textContent + " | 毛哥EM資訊密技";
+            document.title = a.textContent + " | 毛哥EM資訊密技";
             if (currentPage !== "home") switchToHome();
         } else if (a.getAttribute("href").includes("/tag/")) {
             updatePostList("tag/" + a.getAttribute("href").split("/tag/")[1]);
-            document.title= a.textContent + " | 毛哥EM資訊密技";
+            document.title = a.textContent + " | 毛哥EM資訊密技";
             if (currentPage !== "home") switchToHome();
         } else if (a.getAttribute("href") === "/random") {
             // get random post id from search.json

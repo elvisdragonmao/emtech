@@ -12,7 +12,8 @@
         {
             "source": "/post/:slug*",
             "destination": "/p/:slug*"
-        },   {
+        },
+        {
             "source": "/post/:slug*",
             "destination": "/p/:slug*"
         },

@@ -446,10 +446,13 @@ function extractFrontMatter(content) {
             // 檢查是否為陣列格式
             if (trimmedValue.startsWith("[") && trimmedValue.endsWith("]")) {
                 // 用正則表達式將每個元素加上雙引號，處理字串內容、特殊字符和空格
-                const fixedValue = trimmedValue.replaceAll("，",",").replace(
-                    /("[^"]+"|[^,\[\]\s]+(?:\s+[^,\[\]\s]+)*)/g,
-                    '"$1"'
-                );
+                const fixedValue = trimmedValue
+                    .replace(
+                        /("[^"]+"|[^,\[\]\s]+(?:\s+[^,\[\]\s]+)*)/g,
+                        '"$1"'
+                    )
+                    // 把，換成 ,，但如果是引號裡面的就不換
+                    .replace(/，(?=(?:(?:[^"]*"){2})*[^"]*$)/g, ",");
                 // 移除多餘的雙引號（避免連續引號問題）
                 const sanitizedValue = fixedValue.replace(/"{2,}/g, '"');
                 meta[trimmedKey] = JSON.parse(sanitizedValue);
