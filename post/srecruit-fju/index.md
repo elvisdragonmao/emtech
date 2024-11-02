@@ -125,7 +125,7 @@ By the Way,
 
 {{notice}}
 
-備注：
+備註
 
 如果你不知道的話，Gemini 簡單來說就是 Google 的 ChatGPT
 
