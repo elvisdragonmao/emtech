@@ -70,11 +70,11 @@ date: 2024-09-23
 
     將修改推送到 GitHub 儲存庫：
 
-    ```bash
-    git add .github/workflows/test.yml
-    git commit -m "Add matrix build strategy for multiple Node.js versions"
-    git push origin main
-    ```
+```bash
+git add .github/workflows/test.yml
+git commit -m "Add matrix build strategy for multiple Node.js versions"
+git push origin main
+```
 
 2. **查看 Actions 結果**
 
