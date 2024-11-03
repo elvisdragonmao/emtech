@@ -398,7 +398,7 @@ async function processPosts() {
                                   }`
                         )
                         .join("");
-                
+
                 const tagsBreadcrumbList = // combine postMeta.categories and postMeta.tags
                     (postMeta.tags || [])
                         .map(
@@ -420,7 +420,8 @@ async function processPosts() {
                         )
                         .join("");
 
-             const BreadcrumbList = tagsBreadcrumbList + categoriesreadcrumbList;
+                const BreadcrumbList =
+                    tagsBreadcrumbList + categoriesreadcrumbList;
                 const replacements = {
                     title: postMeta.title,
                     content: htmlContent,
@@ -573,8 +574,7 @@ function generateTagsAndCategories() {
         .reduce((acc, [key, value]) => {
             acc[key] = value;
             return acc;
-        }
-        , {});
+        }, {});
 
     fs.writeFileSync(
         "dist/meta/tags.json",
