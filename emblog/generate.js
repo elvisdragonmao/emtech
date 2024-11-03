@@ -378,10 +378,54 @@ async function processPosts() {
                           )
                           .join("")
                     : "";
+                const categoriesreadcrumbList = // combine postMeta.categories and postMeta.tags
+                    (postMeta.categories || [])
+                        .map(
+                            (tag) =>
+                                `,{
+                                    "@context": "https://schema.org",
+                                    "@type": "BreadcrumbList",
+                                    "itemListElement": [{
+                                      "@type": "ListItem",
+                                      "position": 1,
+                                      "name": "${tag}",
+                                      "item": "https://emtech.cc/category/${tag}"
+                                    },{
+                                      "@type": "ListItem",
+                                      "position": 2,
+                                      "name": "${postMeta.title}"
+                                    }]
+                                  }`
+                        )
+                        .join("");
+                
+                const tagsBreadcrumbList = // combine postMeta.categories and postMeta.tags
+                    (postMeta.tags || [])
+                        .map(
+                            (tag) =>
+                                `,{
+                                    "@context": "https://schema.org",
+                                    "@type": "BreadcrumbList",
+                                    "itemListElement": [{
+                                      "@type": "ListItem",
+                                      "position": 1,
+                                      "name": "${tag}",
+                                      "item": "https://emtech.cc/tag/${tag}"
+                                    },{
+                                      "@type": "ListItem",
+                                      "position": 2,
+                                      "name": "${postMeta.title}"
+                                    }]
+                                  }`
+                        )
+                        .join("");
+
+             const BreadcrumbList = tagsBreadcrumbList + categoriesreadcrumbList;
                 const replacements = {
                     title: postMeta.title,
                     content: htmlContent,
                     tldr,
+                    BreadcrumbList,
                     thumbnail: thumbnail,
                     length: postMeta.length,
                     colors: postMeta.colors,

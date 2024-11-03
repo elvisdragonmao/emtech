@@ -605,24 +605,6 @@ fetch("/meta/search.json")
         fetch(`/p/meta/${search[0].id}.json`)
             .then((response) => response.json())
             .then((data) => {
-                // {
-                //     "authors": "elvismao",
-                //     "tags": [
-                //       "HTML",
-                //       "CSS"
-                //     ],
-                //     "series": [
-                //       "不用庫 也能酷 - 玩轉 CSS & Js 特效"
-                //     ],
-                //     "date": 1694822400000,
-                //     "title": "Day2 如何打的更快 | Emmet &amp; 預測輸入",
-                //     "description": "記得我在國一寫 HTML 的時候，傻傻的在那裡打小於、h1、大於、標題、小於、斜線、大於。我的朋友甚至發現了一個偷吃步就是先打好一堆大於小於，然後再填空。",
-                //     "length": 1656,
-                //     "lastUpdated": "2024-10-15T03:20:38.489Z",
-                //     "readingTime": "6 min",
-                //     "id": "2023ironman-2",
-                //     "thumbnail": ""
-                //   }
                 latest.href = `/p/${data.id}`;
                 latest.querySelector("h3").textContent = data.title;
                 latest.querySelector("img").src = data.thumbnail;
