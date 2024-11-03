@@ -386,9 +386,7 @@ async function processPosts() {
                     length: postMeta.length,
                     colors: postMeta.colors,
                     readingTime: postMeta.readingTime,
-                    date: new Date(postMeta.date) // format of 2024-05-12
-                        .toISOString()
-                        .split("T")[0],
+                    date: new Date(postMeta.date).toISOString(),
                     lastUpdated: postMeta.lastUpdated,
                     postTags,
                     headerCategories,
@@ -580,12 +578,12 @@ function getCurrentPubDate() {
 
 // Sitemap 和 RSS 生成
 function generateSitemapAndRSS() {
-    const today = new Date().toISOString().split("T")[0];
+    const today = new Date().toISOString();
     const sitemapContent = postsMeta
         .map(
             (post) => ` <url>
     <loc>https://emtech.cc/p/${post.id}</loc>
-    <lastmod>${new Date(post.lastUpdated).toISOString().split("T")[0]}</lastmod>
+    <lastmod>${new Date(post.lastUpdated).toISOString()}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`
