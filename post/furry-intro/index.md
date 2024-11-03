@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-categories: [精選]
+categories: [溫馨提醒]
 tags: [Furry]
 date: 2024-08-30
 description: 本文將帶你深入探討獸迷文化，介紹福瑞（獸人）的定義、獸圈的生活、以及文化的多樣性。
