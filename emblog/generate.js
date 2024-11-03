@@ -473,7 +473,7 @@ function extractFrontMatter(content) {
 function generateTagsAndCategories() {
     const tagsMap = {};
     const categoriesMap = {};
-    const tags = {};
+    let tags = {};
     const categories = {};
     const search = []; // only title,discription, and id. for search
 
@@ -519,6 +519,15 @@ function generateTagsAndCategories() {
             JSON.stringify(posts, null, 2)
         );
     }
+
+    // order tags and categories by count
+    tags = Object.entries(tags)
+        .sort((a, b) => b[1] - a[1])
+        .reduce((acc, [key, value]) => {
+            acc[key] = value;
+            return acc;
+        }
+        , {});
 
     fs.writeFileSync(
         "dist/meta/tags.json",
