@@ -549,7 +549,7 @@ document.body.addEventListener("click", (e) => {
     let a = e.target.closest("a"); // Find the closest <a> element (in case of nested elements)
     if (!a) return; // If no <a> was clicked, do nothing
 
-    if (a.getAttribute("target") !== "_blank") {
+    if (a.getAttribute("target") !== "_blank" && !e.ctrlKey && !e.metaKey) {
         if (a.getAttribute("href").startsWith("#")) return; // Allow internal anchor links
         e.preventDefault();
         if (a.getAttribute("href") === "") return;
