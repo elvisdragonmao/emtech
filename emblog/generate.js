@@ -494,8 +494,7 @@ function extractFrontMatter(content) {
             // 檢查是否為陣列格式
             if (trimmedValue.startsWith("[") && trimmedValue.endsWith("]")) {
                 // 用正則表達式將每個元素加上雙引號，處理字串內容、特殊字符和空格
-                const fixedValue = trimmedValue.replaceAll("，", ",");
-                    .replace(
+                const fixedValue = trimmedValue.replaceAll("，", ",").replace(
                         /("[^"]+"|[^,\[\]\s]+(?:\s+[^,\[\]\s]+)*)/g,
                         '"$1"'
                     )
