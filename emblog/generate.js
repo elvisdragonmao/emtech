@@ -300,6 +300,11 @@ async function processPosts() {
                     postMeta.description =
                         htmlContent.match(/<p>(.*?)<\/p>/)[1];
                 }
+                // remove html tags from the description
+                postMeta.description = postMeta.description.replace(
+                    /<[^>]+>/g,
+                    ""
+                );
                 const thumbnail =
                     postMeta.thumbnail ||
                     (fs.existsSync(path.join(postPath, "thumbnail.webp"))
