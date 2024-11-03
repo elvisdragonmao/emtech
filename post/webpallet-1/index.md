@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [HTTP]
-categories: [網栈，教學]
+categories: ["網棧","教學"]
 thumbnail: /static/webpallet-0/thumbnail.webp
 date: 2023-05-29
 ---
