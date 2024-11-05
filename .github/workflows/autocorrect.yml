@@ -48,15 +48,16 @@ jobs:
                   git reset .github
                   git add .
 
-            # Commit and push changes
-            - name: Commit and push changes
+            - name: Check if there are any changes
+              id: verify_diff
               run: |
-                  if git diff; then
-                      git commit -m "噢多麼單純的一首詩 怎麼會 怎麼會 忘記加空白" -m "-草東沒有派對《爛泥》"
-                      git push origin main
-                  else
-                      echo "No changes to commit"
-                  fi
+                  git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
+
+            - name: Commit
+              if: steps.verify_diff.outputs.changed == 'true'
+              run: |
+                  git commit -m "噢多麼單純的一首詩 怎麼會 怎麼會 忘記加空白" -m "-草東沒有派對《爛泥》"
+                  git push origin main
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     blankSpace:
