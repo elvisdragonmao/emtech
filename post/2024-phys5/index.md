@@ -1,15 +1,16 @@
 ---
 authors: elvismao
-tags: []
-categories: [活動心得]
+tags: [比賽心得]
+categories: [心得]
 date: 2024-05-05
 description: 仰望盃全國科學HomeRun實作大賽是科學實驗競賽，不是黑克松那種專題開發競賽。
-thumbnail: https://www.kaofamilyfoundation.org.tw/wp-content/uploads/2024/05/1180X437.jpg
 ---
 
 # 2024 仰望盃心得
 
 在 2024 年 5 月 4 日我們生活駭客團隊參與了【2024 仰望盃全國科學 HomeRun 實作大賽】決賽，並獲得了銅牌獎。雖然多少有些遺憾，但真的是十分難得的經驗。仰望盃是一個十分新的科學競賽，過程中有許多早知道就好的事情，因此這次就來分享一下我的心得以及一些注意事項。
+
+![2024 仰望盃全國科學 HomeRun 實作大賽](https://www.kaofamilyfoundation.org.tw/wp-content/uploads/2024/05/1180X437.jpg)
 
 {{notice}}
 溫馨提醒
@@ -25,8 +26,6 @@ thumbnail: https://www.kaofamilyfoundation.org.tw/wp-content/uploads/2024/05/118
 > 推行 STEM 教育學習模式，鼓勵學生思考設計專題實作。利用 Arduino、ESP、Micro-bit 系列開發板，探索自然科學問題，整合不同學科知識，進行探究與實作設計，推動科學專題研究。
 >
 > 科學實作競賽活動，目的在研究自然科學。以團隊合作的方式，結合電子科技與工程結構，透過程式運算思維，妥善運用科技工具，培養學生動手實作，以所學科學概念解決科學問題。
-
-
 
 當時我們的理解是要使用科學概念來解決問題，並且使用開發板來製作一個專題。不過從結果上可以看出這個比賽不是黑客松那種專題開發競賽，而是科學實驗競賽。你使用開發版製作的是一個實驗裝置，而不是一個應用程式。
 
@@ -49,7 +48,7 @@ thumbnail: https://www.kaofamilyfoundation.org.tw/wp-content/uploads/2024/05/118
 
 ### 3. 每件作品材料及開發板成本限額 4000 元 (大會不補助)。
 
-要列出到多具體沒有寫得很清楚，像是行動電源，3D 列印機等等，到底算不算在內。但你就大概列一下材料的費用即可。會有人來稍微簡單確認一下，
+要列出到多具體沒有寫得很清楚，像是行動電源，3D 列印機等等，到底算不算在內。但你就大概列一下材料的費用即可。會有人來稍微簡單確認一下。
 
 > 若作品有使用到網際網路，提供網路的設備不計入作品設計費，該設備只作為提供網路給作品使用。決賽時並請提供「作品設計支出明細表」(如附件四)。
 
@@ -70,10 +69,16 @@ thumbnail: https://www.kaofamilyfoundation.org.tw/wp-content/uploads/2024/05/118
 
 在這次實驗中，我們採用了敏捷式開發，不斷疊代手錶設計，從元件架構、列印材質到模型訓練方式，前後經歷了十幾個版本，甚至燒壞了 4 塊 ESP-32 cam。在此過程中，我不僅提升了焊接技能，對深度學習的應用也有了更深入的理解，包括如何將資料轉為 DataFrame、應用 LSTM 和注意力機制來幫助模型更好地理解數據的關鍵部分，並選擇合適的優化器、損失函數與評估指標。
 
+![最後趕工](school.webp)
+
 ## 心得
 
 诶們整個作品的技術含量絕對是高的，但可以明顯得看得出來它探究的成分偏少，因此在比賽中沒有得到最高的分數。當時會這樣做除了比賽較新所以網路上的資料也比較少，每年比賽規則的變動蠻大的，看以往的作品也大多是開發。但希望這篇文章能夠幫助到你，讓你在比賽中少走一些彎路。
 
 最後要來感謝我 [SYTV](https://sytv.scaict.org/) 的隊友 [OWEN](https://github.com/OWEN2222)、[魏均翰](https://github.com/789sw)、[趙昱凱](https://github.com/yukaichao1029)。也要感謝我們的指導老師張雨勝老師、賴怡旬老師、師丈、還有拿鐵。以及在背後支持我們的班導洪苑玲老師、符德馨老師、以及林彥呈主任。
 
+![非常感謝師丈半夜 12 點開車載我們安全回家](night.webp)
+
 如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://em-tec.github.io/)。
+
+> 封面圖我很努力找了但每一張圖片都有人渣眼。
