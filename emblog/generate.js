@@ -315,9 +315,11 @@ async function processPosts() {
                     thumbnail.includes(".") &&
                     !thumbnail.includes("http")
                 ) {
-                    postMeta.colors = await findRepresentativeColors(
-                        path.join("dist", thumbnail) //.replaceAll("\\", "/")
+                    let color = await findRepresentativeColors(
+                        path.join("dist", thumbnail)
                     );
+                    postMeta.colors ="linear-gradient(135deg, "+ color.join(", ")+")";
+                    postMeta.color = color[1];
                 }
 
                 const chineseCharCount = (
@@ -433,6 +435,7 @@ async function processPosts() {
                     readingTime: postMeta.readingTime,
                     date: new Date(postMeta.date).toISOString(),
                     lastUpdated: postMeta.lastUpdated,
+                    theme: postMeta.color,
                     postTags,
                     headerCategories,
                     headerTags,
@@ -751,7 +754,7 @@ async function findRepresentativeColors(imagePath) {
         imagePath,
         "bottomRight"
     );
-    return `linear-gradient(135deg, ${topLeftColor}, ${centerColor}, ${bottomRightColor})`;
+   // return `linear-gradient(135deg, ${topLeftColor}, ${centerColor}, ${bottomRightColor})`;
     return [topLeftColor, centerColor, bottomRightColor];
     console.log(
         `<div style="width: 100px; height: 100px; background: linear-gradient(135deg, ${topLeftColor}, ${centerColor}, ${bottomRightColor});"></div>`
