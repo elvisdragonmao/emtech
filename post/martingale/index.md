@@ -1,8 +1,9 @@
 ---
 authors: elvismao
-tags: [證明, JavaScript]
-categories: [數學]
+tags: [數學證明, JavaScript]
+categories: [程式跑給你看]
 date: 2024-11-05
+description: 馬丁格爾策略的規則是：在每一輪遊戲中，你下注的金額是上一輪遊戲中輸掉的金額的兩倍。用程式模擬和數學證明這個策略一定會虧錢，因為玩多局贏的機率不會提升，提升的只有你投入的資金。
 ---
 
 # 必輸策略：馬丁格爾投注法，用程式證明給你看！
