@@ -272,6 +272,10 @@ async function processPosts() {
                 let postMeta = extractFrontMatter(markdownContent);
                 // turn image url if not set path like ![](image.webp) to ![](/static/postID/image.webp)
                 // don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
+               if(postMeta.draft == "true") {
+                     console.log(`➤ Skip post: ${postID}`);
+                     continue;
+                }
                 markdownContent = markdownContent.replace(
                     /!\[(.*?)\]\((?!\/|http)(.*?)\)/g,
                     `![$1](/static/${postID}/$2)`
