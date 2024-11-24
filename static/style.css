@@ -1814,7 +1814,14 @@ a.friend::after {
     transform: translateY(0);
 }
 
-strong{
+strong {
     font-weight: 700;
     color: var(--dark-purple);
+}
+
+.match {
+    color: var(--dark-purple);
+    margin-top: 0.5rem;
+    font-size: 0.8em;
+    margin-bottom: -0.2rem;
 }

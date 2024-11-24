@@ -581,6 +581,7 @@ document.body.addEventListener("click", (e) => {
             document.title = "毛哥EM資訊密技";
         } else if (a.getAttribute("href").includes("/p/")) {
             switchToPost(a); // Handle post switch
+            document.getElementById("search-toggle").checked = false;
         } else if (a.getAttribute("href").includes("/category/")) {
             updatePostList("category/" + a.textContent);
             document.title = a.textContent + " | 毛哥EM資訊密技";
@@ -636,37 +637,98 @@ fetch("/meta/search.json")
         document
             .getElementById("search")
             .addEventListener("input", function () {
-                const searchTerms = this.value.toLowerCase().split(" ");
-                const filteredArticles = search.filter((article) => {
-                    let match = false;
-                    searchTerms.forEach((term) => {
-                        if (
-                            article.title.toLowerCase().includes(term) ||
-                            article.description.toLowerCase().includes(term) ||
-                            article.id.toLowerCase().includes(term)
-                        ) {
-                            match = true;
-                        }
-                    });
-                    return match;
-                });
+                const searchInput = this.value.trim().toLowerCase();
+                const searchTerms = searchInput
+                    .split(/\s+/)
+                    .filter((term) => term.length > 0);
                 const searchList = document.querySelector(".search-results");
-                searchList.innerHTML = "";
-                filteredArticles.forEach((article) => {
-                    let title = article.title;
-                    let description = article.description;
-                    searchTerms.forEach((term) => {
-                        title = title.replace(
-                            new RegExp(term, "gi"),
-                            `<strong>${term}</strong>`
-                        );
-                        description = description.replace(
-                            new RegExp(term, "gi"),
-                            `<strong>${term}</strong>`
-                        );
-                    });
-                    searchList.innerHTML += `<a href="/p/${article.id}"><h3>${title}</h3><p>${description}</p></a>`;
+
+                if (searchTerms.length === 0) {
+                    searchList.innerHTML = "";
+                    return;
+                }
+
+                // Calculate relevance score for each article
+                const scoredArticles = search
+                    .map((article) => {
+                        const title = article.title.toLowerCase();
+                        const description = article.description.toLowerCase();
+                        const id = article.id.toLowerCase();
+
+                        let score = 0;
+                        const matchedTerms = new Set();
+
+                        searchTerms.forEach((term) => {
+                            if (title.includes(term)) {
+                                score += 3;
+                                matchedTerms.add(term);
+                            }
+                            if (description.includes(term)) {
+                                score += 2;
+                                matchedTerms.add(term);
+                            }
+                            if (id.includes(term)) {
+                                score += 1;
+                                matchedTerms.add(term);
+                            }
+                        });
+
+                        return {
+                            article,
+                            score,
+                            matchCount: matchedTerms.size
+                        };
+                    })
+                    .filter((item) => item.score > 0);
+
+                // Sort by number of matched terms first, then by score
+                scoredArticles.sort((a, b) => {
+                    if (b.matchCount !== a.matchCount) {
+                        return b.matchCount - a.matchCount;
+                    }
+                    return b.score - a.score;
                 });
+
+                // Highlight matching terms function
+                function highlightTerms(text, terms) {
+                    // Escape special regex characters in the terms
+                    const escapedTerms = terms.map(term => 
+                        term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+                    );
+                    
+                    // Create a single regex with all terms using alternation (|)
+                    const regex = new RegExp(`(${escapedTerms.join('|')})`, 'gi');
+                    
+                    // Replace all matches at once
+                    return text.replace(regex, '<strong>$1</strong>');
+                }
+                document.querySelector(".google").innerHTML = `找不到你要的文章？試試 <a href="https://google.com/search?q=${searchInput} site:emtech.cc" target="_blank">Google</a> 吧！`;
+                // Render results
+                searchList.innerHTML = scoredArticles
+                    .map(({ article, matchCount }) => {
+                        const highlightedTitle = highlightTerms(
+                            article.title,
+                            searchTerms
+                        );
+                        const highlightedDescription = highlightTerms(
+                            article.description,
+                            searchTerms
+                        );
+
+                        return `
+                            <a href="/p/${article.id}" 
+                               class="search-result ${matchCount === searchTerms.length ? "full-match" : "partial-match"}">
+                                <h3>${highlightedTitle}</h3>
+                                <p>${highlightedDescription}</p>
+                                ${
+                                    matchCount < searchTerms.length
+                                        ? `<div class=match>符合 ${matchCount}/${searchTerms.length} 個搜尋結果</div>`
+                                        : ""
+                                }
+                            </a>
+                        `;
+                    })
+                    .join("");
             });
     });
 
