@@ -170,7 +170,7 @@ a:hover::after {
 nav {
     position: fixed;
     width: 100%;
-    padding: 1rem min(1.3rem, 10vw);
+    padding: 1rem min(3rem, 10vw);
     border-bottom: 1px solid var(--light-purple);
     background-color: #f2f4f88c;
     backdrop-filter: blur(10px);
