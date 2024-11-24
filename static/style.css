@@ -170,7 +170,7 @@ a:hover::after {
 nav {
     position: fixed;
     width: 100%;
-    padding: 1rem 3rem;
+    padding: 1rem min(1.3rem, 10vw);
     border-bottom: 1px solid var(--light-purple);
     background-color: #f2f4f88c;
     backdrop-filter: blur(10px);
@@ -312,7 +312,7 @@ nav input[type="checkbox"],
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
-    padding: 2rem;
+    padding: min(2rem, 5vw);
 }
 
 .search-container {
@@ -323,7 +323,7 @@ nav input[type="checkbox"],
     margin-bottom: 1rem;
     border-radius: var(--border-radius);
     border: var(--border);
-    padding: 2rem 1.6rem 1.3rem;
+    padding: 2rem min(1.6rem, 5vw) 1.3rem;
     max-height: calc(100vh - 10rem);
     position: relative;
     display: flex;
@@ -1764,7 +1764,7 @@ a.friend::after {
     .right {
         flex: 0;
     }
-    .right .random {
+    .right label {
         display: block;
     }
 
