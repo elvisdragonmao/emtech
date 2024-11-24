@@ -30,17 +30,6 @@
     </div>
 </nav>
 
-<script>
-    // if submit search form
-    document
-        .getElementById("searchForm")
-        .addEventListener("submit", function (e) {
-            e.preventDefault();
-            let search = document.getElementById("search").value;
-            window.location.href = `https://google.com/search?q=site:emtech.cc ${search}`;
-        });
-</script>
-
 <input type="checkbox" id="search-toggle" checked />
 <div class="search-page">
     <div class="search-container">

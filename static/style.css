@@ -1813,3 +1813,8 @@ a.friend::after {
     opacity: 1;
     transform: translateY(0);
 }
+
+strong{
+    font-weight: 700;
+    color: var(--dark-purple);
+}

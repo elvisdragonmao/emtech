@@ -636,20 +636,36 @@ fetch("/meta/search.json")
         document
             .getElementById("search")
             .addEventListener("input", function () {
-                const searchTerm = this.value.toLowerCase();
-                const filteredArticles = search.filter(
-                    (article) =>
-                        article.title.toLowerCase().includes(searchTerm) ||
-                        article.description
-                            .toLowerCase()
-                            .includes(searchTerm) ||
-                        article.id.toLowerCase().includes(searchTerm)
-                );
+                const searchTerms = this.value.toLowerCase().split(" ");
+                const filteredArticles = search.filter((article) => {
+                    let match = false;
+                    searchTerms.forEach((term) => {
+                        if (
+                            article.title.toLowerCase().includes(term) ||
+                            article.description.toLowerCase().includes(term) ||
+                            article.id.toLowerCase().includes(term)
+                        ) {
+                            match = true;
+                        }
+                    });
+                    return match;
+                });
                 const searchList = document.querySelector(".search-results");
                 searchList.innerHTML = "";
                 filteredArticles.forEach((article) => {
-                    searchList.innerHTML += `<a href="/p/${article.id}"><h3>${article.title}
-        </h3><p>${article.description}</p></a>`;
+                    let title = article.title;
+                    let description = article.description;
+                    searchTerms.forEach((term) => {
+                        title = title.replace(
+                            new RegExp(term, "gi"),
+                            `<strong>${term}</strong>`
+                        );
+                        description = description.replace(
+                            new RegExp(term, "gi"),
+                            `<strong>${term}</strong>`
+                        );
+                    });
+                    searchList.innerHTML += `<a href="/p/${article.id}"><h3>${title}</h3><p>${description}</p></a>`;
                 });
             });
     });
