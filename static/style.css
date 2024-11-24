@@ -1746,6 +1746,20 @@ a.friend::after {
     margin-right: 0.1em;
     background: url(/static/img/bolt.svg) no-repeat center center / contain;
 }
+
+@media (max-width: 35rem) {
+    nav ul,
+    .right > * {
+        display: none;
+    }
+    .right {
+        flex: 0;
+    }
+    .right label {
+        display: block;
+    }
+
+}
 @media (max-aspect-ratio: 5/4) {
     aside,
     .related-posts::before,
@@ -1756,16 +1770,6 @@ a.friend::after {
 
     .related-posts {
         border-top-right-radius: 0;
-    }
-    nav ul,
-    .right > * {
-        display: none;
-    }
-    .right {
-        flex: 0;
-    }
-    .right label {
-        display: block;
     }
 
     .post-header h1 {
