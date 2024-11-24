@@ -91,8 +91,26 @@ const startDonut = () => {
   @housamz */
 };
 
+// aos
+const isElementInViewport = (el) => {
+    const rect = el.getBoundingClientRect();
+    return rect.bottom < 0 || rect.top > window.innerHeight;
+}
+
+const addClassToVisibleElements = () => {
+    const aosElements = document.querySelectorAll(".aos");
+    aosElements.forEach(function (aosElement) {
+        if (!isElementInViewport(aosElement)) aosElement.classList.add("ed");
+        else aosElement.classList.remove("ed");
+    });
+}
+
+document.addEventListener("scroll", addClassToVisibleElements);
+addClassToVisibleElements();
+
 const loadArticleList = async (postList, category) => {
     return new Promise((resolve, reject) => {
+      // setTimeout(() => {
         fetch(`/meta/${category}.json`)
             .then((response) => response.json())
             .then((data) => {
@@ -100,6 +118,8 @@ const loadArticleList = async (postList, category) => {
                 postList.innerHTML = "";
                 for (const post of posts) {
                     const article = document.createElement("article");
+                    article.classList.add("aos");
+                    article.setAttribute("data-aos", "fade-up");
                     const tags = post.tags
                         ? post.tags.map(
                               (tag) =>
@@ -130,9 +150,13 @@ const loadArticleList = async (postList, category) => {
     </div>
     `;
                     postList.appendChild(article);
-                    resolve();
                 }
+                addClassToVisibleElements();
+                resolve();
             });
+        
+     // }  , 1000);
+
     });
 };
 
@@ -261,11 +285,10 @@ const postScrollAnimations = () => {
 const updatePostList = async (category, scroll = true) => {
     let delay = currentPage == "home" ? 0 : 500;
     document.querySelector(".categories-title").textContent =
-        decodeURI(category.split("/")[1]) + " 載入中...";
+        decodeURI(category.split("/")[1]);
+        document.querySelector(".categories-title").classList.add("loading");
     await loadArticleList(document.getElementById("posts"), category);
-    document.querySelector(".categories-title").textContent = decodeURI(
-        category.split("/")[1]
-    );
+    document.querySelector(".categories-title").classList.remove("loading");
     if (scroll)
         setTimeout(() => {
             document.getElementById("categories").scrollIntoView({
@@ -608,6 +631,7 @@ fetch("/meta/search.json")
                 latest.href = `/p/${data.id}`;
                 latest.querySelector("h3").textContent = data.title;
                 latest.querySelector("img").src = data.thumbnail;
+                latest.querySelector("img").style.backgroundImage = data.colors;
             });
     });
 
