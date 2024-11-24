@@ -433,7 +433,7 @@ header {
 
 #header-playground,
 .header-right {
-    height: min(calc(100vh - 7.5rem), 35rem);
+    min-height: min(calc(100vh - 7.5rem), 35rem);
 }
 
 .header-categories,
