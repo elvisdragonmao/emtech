@@ -1,8 +1,12 @@
 # 使用官方 Node.js 映像來建置應用
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 # 設定工作目錄
 WORKDIR /app
+
+# 啟用 Corepack 並安裝正確版本的 Yarn
+RUN corepack enable \
+    && corepack prepare yarn@4.2.2 --activate
 
 # 複製 package.json 和 yarn.lock
 COPY package.json yarn.lock ./
