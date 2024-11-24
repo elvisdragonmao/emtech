@@ -326,6 +326,8 @@ nav input[type="checkbox"],
     padding: 2rem 1.6rem 1.3rem;
     max-height: calc(100vh - 10rem);
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .search-container input {
@@ -335,9 +337,20 @@ nav input[type="checkbox"],
     border-bottom: 2px solid var(--dark-purple);
     font-size: 1.2rem;
     outline: none;
-    margin-top: 1rem;color: var(--dark-purple);
+    margin-top: 1rem;
+    color: var(--dark-purple);
     font-weight: 500;
     font-family: inherit;
+}
+
+.search-results {
+    overflow: hidden;
+    overflow-y: auto;
+    margin-top: 1rem;
+}
+
+.search-results a:first-child {
+    margin-top: 0;
 }
 
 .search-results a {
@@ -758,33 +771,6 @@ section {
 .categories-title {
     margin-bottom: 1rem;
     text-align: center;
-    transition: color 1s;
-}
-
-.categories-title.loading {
-    color: transparent;
-    background: linear-gradient(
-        to left,
-        #1e5799,
-        #2ce0bf,
-        #76dd2c,
-        #dba62b,
-        #e02cbf,
-        #1e5799
-    );
-    background-size: 1000px 100%;
-    animation: bg 15s linear infinite;
-    background-clip: text;
-    -webkit-background-clip: text;
-}
-
-@keyframes bg {
-    0% {
-        background-position-x: 0;
-    }
-    100% {
-        background-position-x: 10000px;
-    }
 }
 
 .categories-right,

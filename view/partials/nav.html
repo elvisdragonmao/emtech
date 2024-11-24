@@ -8,7 +8,7 @@
         <li><a href="/series">專欄</a></li>
         <li><a href="/about">關於</a></li>
     </ul> -->
-    <form id="searchForm" class="right">
+    <div class="right">
         <a href="/random" class="random" aria-label="隨機文章"
             ><img src="/static/img/dice.svg" alt="隨機文章"
         /></a>
@@ -24,12 +24,10 @@
             aria-label="Instagram"
             ><img src="/static/img/instagram.svg" alt="Instagram"
         /></a>
-        <input type="checkbox" id="search-toggle" />
-        <input type="search" placeholder="搜尋" id="search" />
         <label for="search-toggle"
             ><img src="/static/img/search.svg" alt="Search"
         /></label>
-    </form>
+    </div>
 </nav>
 
 <script>
@@ -42,3 +40,25 @@
             window.location.href = `https://google.com/search?q=site:emtech.cc ${search}`;
         });
 </script>
+
+<input type="checkbox" id="search-toggle" checked />
+<div class="search-page">
+    <div class="search-container">
+        <h2>搜尋</h2>
+        <input type="search" id="search" />
+        <div class="search-results">
+            <a href="">
+                <h3>輔仁資安特選面試心得</h3>
+                <p>
+                    輔仁大學面試教授手上不會拿你的備審，問題圍繞在當下你的自介和分享的專案。
+                </p>
+            </a>
+        </div>
+        <div class="google">
+            找不到你要的文章？試試 <a href="https://google.com">Google</a> 吧！
+        </div>
+        <label for="search-toggle"
+        ><img src="/static/img/circle-x.svg" alt="back" class="back"
+    /></label>
+    </div>
+</div>

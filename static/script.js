@@ -95,7 +95,7 @@ const startDonut = () => {
 const isElementInViewport = (el) => {
     const rect = el.getBoundingClientRect();
     return rect.bottom < 0 || rect.top > window.innerHeight;
-}
+};
 
 const addClassToVisibleElements = () => {
     const aosElements = document.querySelectorAll(".aos");
@@ -103,14 +103,14 @@ const addClassToVisibleElements = () => {
         if (!isElementInViewport(aosElement)) aosElement.classList.add("ed");
         else aosElement.classList.remove("ed");
     });
-}
+};
 
 document.addEventListener("scroll", addClassToVisibleElements);
 addClassToVisibleElements();
 
 const loadArticleList = async (postList, category) => {
     return new Promise((resolve, reject) => {
-      // setTimeout(() => {
+        // setTimeout(() => {
         fetch(`/meta/${category}.json`)
             .then((response) => response.json())
             .then((data) => {
@@ -154,9 +154,8 @@ const loadArticleList = async (postList, category) => {
                 addClassToVisibleElements();
                 resolve();
             });
-        
-     // }  , 1000);
 
+        // }  , 1000);
     });
 };
 
@@ -284,9 +283,10 @@ const postScrollAnimations = () => {
 
 const updatePostList = async (category, scroll = true) => {
     let delay = currentPage == "home" ? 0 : 500;
-    document.querySelector(".categories-title").textContent =
-        decodeURI(category.split("/")[1]);
-        document.querySelector(".categories-title").classList.add("loading");
+    document.querySelector(".categories-title").textContent = decodeURI(
+        category.split("/")[1]
+    );
+    document.querySelector(".categories-title").classList.add("loading");
     await loadArticleList(document.getElementById("posts"), category);
     document.querySelector(".categories-title").classList.remove("loading");
     if (scroll)
@@ -632,6 +632,25 @@ fetch("/meta/search.json")
                 latest.querySelector("h3").textContent = data.title;
                 latest.querySelector("img").src = data.thumbnail;
                 latest.querySelector("img").style.backgroundImage = data.colors;
+            });
+        document
+            .getElementById("search")
+            .addEventListener("input", function () {
+                const searchTerm = this.value.toLowerCase();
+                const filteredArticles = search.filter(
+                    (article) =>
+                        article.title.toLowerCase().includes(searchTerm) ||
+                        article.description
+                            .toLowerCase()
+                            .includes(searchTerm) ||
+                        article.id.toLowerCase().includes(searchTerm)
+                );
+                const searchList = document.querySelector(".search-results");
+                searchList.innerHTML = "";
+                filteredArticles.forEach((article) => {
+                    searchList.innerHTML += `<a href="/p/${article.id}"><h3>${article.title}
+        </h3><p>${article.description}</p></a>`;
+                });
             });
     });
 
