@@ -166,6 +166,7 @@ const postScrollAnimations = () => {
         document.body.classList.remove("nav-sticky");
     }
     for (const next of nextPosts) {
+        if (next.classList.contains("main-container")) continue;
         const nextTop = next.getBoundingClientRect().top;
         if (nextTop > window.innerHeight) {
             next.style = "";
@@ -692,17 +693,21 @@ fetch("/meta/search.json")
                 // Highlight matching terms function
                 function highlightTerms(text, terms) {
                     // Escape special regex characters in the terms
-                    const escapedTerms = terms.map(term => 
-                        term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+                    const escapedTerms = terms.map((term) =>
+                        term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
                     );
-                    
+
                     // Create a single regex with all terms using alternation (|)
-                    const regex = new RegExp(`(${escapedTerms.join('|')})`, 'gi');
-                    
+                    const regex = new RegExp(
+                        `(${escapedTerms.join("|")})`,
+                        "gi"
+                    );
+
                     // Replace all matches at once
-                    return text.replace(regex, '<strong>$1</strong>');
+                    return text.replace(regex, "<strong>$1</strong>");
                 }
-                document.querySelector(".google").innerHTML = `找不到你要的文章？試試 <a href="https://google.com/search?q=${searchInput} site:emtech.cc" target="_blank">Google</a> 吧！`;
+                document.querySelector(".google").innerHTML =
+                    `找不到你要的文章？試試 <a href="https://google.com/search?q=${searchInput} site:emtech.cc" target="_blank">Google</a> 吧！`;
                 // Render results
                 searchList.innerHTML = scoredArticles
                     .map(({ article, matchCount }) => {

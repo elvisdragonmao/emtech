@@ -431,11 +431,6 @@ header {
     border-radius: var(--border-radius);
 }
 
-#header-playground,
-.header-right {
-    min-height: min(calc(100vh - 7.5rem), 35rem);
-}
-
 .header-categories,
 .header-info,
 .header-newPost {
