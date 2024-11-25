@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 程式由 Claude 撰寫
+# 底下的鬼話是 ChatGPT 說的，看了很難受，讓大家一起難受。
+
 # Initialize arrays to store files
 declare -a warning_files=()
 declare -a error_files=()
@@ -114,7 +117,7 @@ if [ ${#error_files[@]} -gt 0 ]; then
         git add -A
         
         # Prepare the commit message
-        commit_message="optimize: convert large files to WebP format and update references
+        commit_message="把太大的圖片調教成 WebP，並更新了所有連結。
 
 The following files were optimized:
 $(printf '%s\n' "${processed_files[@]}")
@@ -132,31 +135,32 @@ $(printf '%s\n' "${updated_md_files[@]}")
         git push origin "$branch_name"
         
         # Create pull request using GitHub CLI
-        gh pr create --title "Optimize large files to WebP format and update references" \
-                    --body "🎨 Automatically converted large files to WebP format and updated all references.
+        gh pr create --title "啊～太大了，我快撐不住了啦！" \
+                    --body "🎨 把太大的圖片調教成可愛的 WebP，並更新所有連結。
 
-### Converted files:
+### 調教過的圖片：
 $(printf '%s\n' "${processed_files[@]}")
 
-### Updated markdown files:
+### 調教過的 MD 檔案：
 $(printf '%s\n' "${updated_md_files[@]}")
 
-### Optimization details:
-- All images have been resized to a maximum width of 1000px
-- Converted to WebP format with 85% quality
-- Original files have been removed
-- Updated all markdown references to the new WebP files
+### 🔗調教細節：
+- 鎖起來，長度只能到 1000px📏
+- 改造成小小的 WebP，品質保持在 85%😏
+- 把沒用的大東西直接丟掉🗑️
+- 連結重新綁起來🪢
 
-### Please verify:
-- [ ] Images display correctly in all markdown files
-- [ ] Image quality is acceptable
-- [ ] No broken image links in content
-- [ ] All references to old images have been updated correctly
+###  📦驗貨：
+- [ ] Markdown 中的圖片都乖乖地出現了嗎📋？
+- [ ] 調教的品質好嗎🌸？
+- [ ] 連結沒有被玩到壞掉吧👉👈？
 
-### Technical details:
-- Original images exceeding 500KB have been converted
-- File paths in markdown files have been automatically updated
-- All changes have been committed to this PR" \
+###  ✨技術細節：
+- 超過 500KB 的原始圖片通通被乖乖壓縮轉檔了呢～再也不重壓你了！
+- Markdown 的路徑都更新好了，一切都安排得好好的～
+- 全部已經 commit 到這個 PR 了，盡情享受吧～
+
+快來驗收一下吧～人家可是很努力呢❤～" \
                     --base main \
                     --head "$branch_name"
         

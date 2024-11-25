@@ -5,6 +5,7 @@ on:
     paths:
       - 'static/**'
       - 'post/**'
+      - '.github/workflows/file-size-check.sh'
   pull_request:
     paths:
       - 'static/**'
