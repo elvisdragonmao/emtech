@@ -9,7 +9,6 @@ on:
     paths:
       - 'static/**'
       - 'post/**'
-  # Allow manual trigger
   workflow_dispatch:
 
 jobs:
@@ -22,7 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          # Full git history is needed to create commits
           fetch-depth: 0
 
       - name: Set up Git config
@@ -32,17 +30,16 @@ jobs:
 
       - name: Install GitHub CLI
         run: |
-          type -p curl >/dev/null || (apt update && apt install curl -y)
-          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-          && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-          && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-          && apt update \
-          && apt install gh -y
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+          sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+          sudo apt update
+          sudo apt install gh -y
 
       - name: Install ImageMagick
         run: |
-          apt-get update
-          apt-get install -y imagemagick
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
 
       - name: Make script executable
         run: chmod +x .github/workflows/file-size-check.sh
