@@ -14,16 +14,18 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Validate Markdown Files
+              shell: /usr/bin/bash -e {0}
               run: |
-                  #!/bin/bash
+                  #!/usr/bin/bash
                   set -e
+                  set -x  # Enable debug output
 
                   # Function to validate a single markdown file
                   validate_markdown() {
                       local file="$1"
                       local errors=0
 
-                      echo "Validating $file"
+                      echo "Processing file: $file"
 
                       # Check if file exists
                       if [ ! -f "$file" ]; then
@@ -31,8 +33,18 @@ jobs:
                           return 1
                       fi
 
+                      # Debug: Print entire file content
+                      echo "File contents:"
+                      cat "$file"
+                      echo "--- End of file contents ---"
+
                       # Extract front matter
-                      front_matter=$(sed -n '/^---$/,/^---$/p' "$file")
+                      front_matter=$(awk '/^---$/,/^---$/{if (!/^---$/) print}' "$file")
+
+                      # Debug: Print front matter
+                      echo "Front Matter:"
+                      echo "$front_matter"
+                      echo "--- End of Front Matter ---"
 
                       # Check for front matter
                       if [ -z "$front_matter" ]; then
@@ -64,6 +76,8 @@ jobs:
 
                       if [ "$notice_count" -gt 0 ] && [ "$notice_count" != "$noticed_count" ]; then
                           echo "Error in $file: Mismatched {{notice}} and {{noticed}} counts"
+                          echo "Notice count: $notice_count"
+                          echo "Noticed count: $noticed_count"
                           ((errors++))
                       fi
 
@@ -78,6 +92,9 @@ jobs:
                       echo "No markdown files found in ./post directory"
                       exit 1
                   fi
+
+                  echo "Found markdown files:"
+                  echo "$markdown_files"
 
                   for file in $markdown_files; do
                       validate_markdown "$file"
