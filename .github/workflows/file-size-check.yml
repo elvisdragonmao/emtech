@@ -14,6 +14,7 @@ on:
 
 jobs:
   check-file-sizes:
+    name: 調整圖片
     runs-on: ubuntu-latest
     permissions:
       contents: write

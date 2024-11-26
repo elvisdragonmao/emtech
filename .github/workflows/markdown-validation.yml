@@ -1,4 +1,4 @@
-name: 文章資訊檢查
+name: 文章格式檢查
 
 on:
     push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
     validate-markdown:
+        name: 檢查 Markdown 檔案
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
