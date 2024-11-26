@@ -1320,10 +1320,12 @@ figure img {
 }
 .post-container ul {
     padding-inline-start: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .post-container ol {
     padding-inline-start: 1.5rem;
+    margin-bottom: 1rem;
 }
 .post-container li {
     margin-bottom: 0.5rem;

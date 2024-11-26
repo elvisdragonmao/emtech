@@ -40,7 +40,7 @@ description: 簡單來說好好去讀書吧。無論你全部猜 C、平均猜 A
 
 <https://elvismao.com/code/c-strategy/>
 
-{{/notice}}
+{{/noticed}}
 
 為了進一步驗證數學結果，我們可以使用 JavaScript 模擬上述三種策略。以下是模擬器的功能：
 1. 輸入模擬次數，重複進行測試。
