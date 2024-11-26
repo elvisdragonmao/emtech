@@ -2,7 +2,9 @@
 
 https://emtech.cc
 
-![](static/img/og.webp)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/markdown-validation.yml?label=%F0%9F%93%B0%E6%AA%A2%E6%9F%A5%20Markdown%20%E6%AA%94%E6%A1%88) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/autocorrect.yml?label=%F0%9F%97%BF%E7%9B%A4%E5%8F%A4%E4%B9%8B%E7%99%BD) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/file-size-check.yml?label=%F0%9F%8E%87%E5%9C%96%E7%89%87%E5%A4%A7%E5%B0%8F%E6%AA%A2%E6%9F%A5)
+
+![毛哥EM資訊密技 og image](static/img/og.webp)
 
 毛哥EM 資訊密技是我毛哥EM 在國二疫情期間開始的部落格。從小對 3C 產品的熱愛，讓我在自學中累積了豐富的技能與創作經驗。由於發現許多優秀軟體和工具缺乏中文資源，官方文件多為英文且不易理解，我決定創辦個人部落格，以淺顯易懂的語言向大眾分享如何使用這些工具，即使是對程式設計不熟悉的人也能輕鬆上手。
 
