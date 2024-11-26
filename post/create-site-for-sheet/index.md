@@ -260,7 +260,7 @@ date: 2022-08-14
 
 我們先看一下試算表。在這裡我們可以看到每一行資料有 5 項，其中我希望第 5 項的資料可以放在付款狀態後面。現在請你先請你複製這個試算表的 ID，也就是網址`https://docs.google.com/spreadsheets/d/`和`/`之間那一串 (如`1fjX-prGu0hfb65LCQkrktWa-JavvjSz7tWMmYWAb7RA`)。等一下會用到。
 
-![再看一次試算表](gas.jpg)
+![再看一次試算表](gas.webp)
 
 我們會使用 GAS(Google Apps Script) 來建立網頁應用程式來讀取表格資料。
 
@@ -339,7 +339,7 @@ function doGet() {
 你可以根據自己的需求決定排法
 {{noticed}}
 
-![GAS 快速教學](gas.jpg)
+![GAS 快速教學](gas.webp)
 
 做好了之後點擊執行▶️，你會需要授予你的程式讀取資料的權限。因為你寫的程式沒有被 Google 驗證過所以會顯示不安全，但我相信你不會把你的帳號搞爆，對吧
 

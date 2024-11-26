@@ -17,7 +17,7 @@ date: 2024-03-15
 
 1. **註冊 Gravatar 帳號**：首先，你需要在 Gravatar 官方網站（https://en.gravatar.com/）上註冊一個帳號。這個過程非常簡單，只需要提供你的電子郵件地址。
 
-![使用 email 註冊](sign.png)
+![使用 email 註冊](sign.webp)
 
 3. **驗證電子郵件地址**：Gravatar 不需要設定密碼，只會向你的電子郵件地址發送一封驗證郵件來登入。
 
@@ -25,7 +25,7 @@ date: 2024-03-15
 
 5. **關聯電子郵件地址**：其實這樣就完成了。但接下來，你可以將你在不同網站上使用的電子郵件地址與 Gravatar 帳號關聯起來並添加更多自我介紹來製作電子名片，也可以拿來證明你的真實社群媒體帳號。
 
-![自訂名片](custome.png)
+![自訂名片](custome.webp)
 
 ### 如何在 Jitsi 設定 Gravatar？
 
@@ -33,10 +33,10 @@ date: 2024-03-15
 
 在 Jitsi 中你只需點擊設定並進入簡介分頁就可以輸入 Gravatar 電子郵件。
 
-![Jitsi 設定 Gravatar](pc.png)
+![Jitsi 設定 Gravatar](pc.webp)
 
 手機版也一樣。
 
-![手機版 Jitsi 設定 Gravatar](ios.png)
+![手機版 Jitsi 設定 Gravatar](ios.webp)
 
 希望這篇文章能夠幫助到你。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://em-tec.github.io/)。

@@ -44,7 +44,7 @@ date: 2022-08-17
 
 依序點擊 Action，New，set up a workflow yourself，並貼上以下程式。名稱可以自己取，貼上完之後點擊 Start Commit。
 
-![設定 Workflow](hugo-githubAction-access-workflow.jpg)
+![設定 Workflow](hugo-githubAction-access-workflow.webp)
 
 程式意思是當 main 分支有 push 操作時（就是你上傳或更變檔案），會生成靜態網頁。剛才不是說會生成在`public`這個資料夾，我們把它推送到 gh-pages 這個分支（當然你也可以自己取名）
 

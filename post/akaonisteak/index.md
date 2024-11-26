@@ -26,7 +26,7 @@ date: 2023-02-13
 
 從畫面最上面往下滑兩次開啟通知，並顯示所有按鈕，接著點選搜尋。這時請長按 App Lock 軟體並點選應用程式資訊（如果沒有出現請先搜尋 App Lock）
 
-![開啟搜尋](akaonisteak-search.jpg)
+![開啟搜尋](akaonisteak-search.webp)
 
 這時我們會跳到設定 APP，當然，又會出現輸入密碼的畫面。我們就要用這個跳轉的空檔按到強制停止鍵
 
@@ -36,6 +36,6 @@ date: 2023-02-13
 
 強制停止之後你的世界就會變得清淨許多，你可以開啟 App 了。回主畫面會自動開啟點餐畫面，因此如果要選 APP 可以使用搜尋功能。
 
-![開啟 YouTube](akaonisteak-success.jpeg)
+![開啟 YouTube](akaonisteak-success.webp)
 
 希望這篇文章對你有所幫助，也希望可以讓赤鬼的客量上升（真的很好吃）。如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM資訊密技
