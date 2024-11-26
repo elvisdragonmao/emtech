@@ -8,7 +8,7 @@ on:
 
 jobs:
     validate-markdown:
-        name: 檢查 Markdown 檔案
+        name: 📰檢查 Markdown 檔案
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository

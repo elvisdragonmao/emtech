@@ -7,7 +7,7 @@ on:
 
 jobs:
     autocorrect:
-        name: 盤古之白
+        name: 🗿盤古之白
         continue-on-error: true
         runs-on: ubuntu-latest
         steps:
@@ -57,7 +57,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     em-spelling:
-        name: 毛哥EM沒有空白
+        name: ☁️毛哥EM沒有空白
         needs: autocorrect
         runs-on: ubuntu-latest
         steps:
