@@ -1320,12 +1320,10 @@ figure img {
 }
 .post-container ul {
     padding-inline-start: 1.5rem;
-    margin-bottom: 1rem;
 }
 
 .post-container ol {
     padding-inline-start: 1.5rem;
-    margin-bottom: 1rem;
 }
 .post-container li {
     margin-bottom: 0.5rem;
@@ -1360,7 +1358,6 @@ blockquote {
     position: relative;
     padding-left: 4rem;
     margin-bottom: 2rem;
-    margin-top: -1rem;
     padding-top: 1rem;
 }
 
@@ -1755,7 +1752,6 @@ a.friend::after {
     .right label {
         display: block;
     }
-
 }
 @media (max-aspect-ratio: 5/4) {
     aside,
