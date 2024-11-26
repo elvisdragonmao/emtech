@@ -1,4 +1,4 @@
-name: AutoCorrect Fix and Push
+name: AutoCorrect
 
 on:
     push:
@@ -9,19 +9,15 @@ jobs:
     autocorrect:
         continue-on-error: true
         runs-on: ubuntu-latest
-
         steps:
-            # Checkout the repository
             - name: Checkout code
               uses: actions/checkout@v4
 
-            # Install Node.js and Yarn
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
                   node-version: "20"
 
-            # Install dependencies (including autocorrect-node)
             - name: Install dependencies
               run: |
                   git config pull.rebase true
@@ -30,7 +26,6 @@ jobs:
                   yarn add autocorrect-node
                   yarn add prettier
 
-            # Run autocorrect fix
             - name: Run autocorrect
               run: yarn autocorrect --fix
               continue-on-error: true
@@ -39,11 +34,10 @@ jobs:
               run: yarn prettier --write .
               continue-on-error: true
 
-            # Add changes excluding package.json
             - name: Add changes except package.json
               run: |
-                  git config --global user.name "Edit-Mr"
-                  git config --global user.email "info@elvismao.com"
+                  git config --global user.name "github-actions"
+                  git config --global user.email "actions@github.com"
                   git reset package.json
                   git reset .github
                   git add .
@@ -56,12 +50,13 @@ jobs:
             - name: Commit
               if: steps.verify_diff.outputs.changed == 'true'
               run: |
-                  git commit -m "噢多麼單純的一首詩 怎麼會 怎麼會 忘記加空白" -m "-草東沒有派對《爛泥》"
+                  git commit -m "[skip ci] Auto fixes" -m "-草東沒有派對"
                   git push origin main
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     blankSpace:
-        needs: autocorrect # This ensures replace_text runs after autocorrect
+        needs: autocorrect
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
@@ -77,7 +72,6 @@ jobs:
                   git config --global user.name "github-actions"
                   git config --global user.email "actions@github.com"
                   git add .
-                  # not .github folder
                   git reset .github
                   if git diff --staged --quiet; then
                     echo "No changes"
