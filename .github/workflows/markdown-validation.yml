@@ -1,4 +1,4 @@
-name: Markdown File Validation
+name: 文章資訊檢查
 
 on:
     push:
@@ -18,7 +18,6 @@ jobs:
               run: |
                   #!/usr/bin/bash
                   set -e
-                  set -x  # Enable debug output
 
                   # Function to validate a single markdown file
                   validate_markdown() {
@@ -33,13 +32,8 @@ jobs:
                           return 1
                       fi
 
-                      # Debug: Print entire file content
-                      echo "File contents:"
-                      cat "$file"
-                      echo "--- End of file contents ---"
-
-                      # Extract front matter
-                      front_matter=$(awk '/^---$/,/^---$/{if (!/^---$/) print}' "$file")
+                      # Extract front matter using sed
+                      front_matter=$(sed -n '/^---$/,/^---$/p' "$file" | sed '1d;$d')
 
                       # Debug: Print front matter
                       echo "Front Matter:"
@@ -64,8 +58,8 @@ jobs:
                           ((errors++))
                       fi
 
-                      # Check for H1 title
-                      if ! grep -qE '^# ' "$file"; then
+                      # Check for H1 title (using regex to allow for optional space)
+                      if ! grep -qE '^#\s' "$file"; then
                           echo "Error in $file: No H1 title found"
                           ((errors++))
                       fi

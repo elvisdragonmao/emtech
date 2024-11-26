@@ -1,4 +1,4 @@
-name: AutoCorrect
+name: 自動修正
 
 on:
     push:
@@ -55,7 +55,7 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    blankSpace:
+    em-spelling:
         needs: autocorrect
         runs-on: ubuntu-latest
         steps:
