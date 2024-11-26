@@ -2,7 +2,7 @@
 authors: elvismao
 tags: []
 categories: []
-date: 2024-11-2
+date: 2024-11-02
 description: 輔仁大學面試教授手上不會拿你的備審，問題圍繞在當下你的自介和分享的專案。
 ---
 
