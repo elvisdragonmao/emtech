@@ -6,7 +6,7 @@ thumbnail: /static/2023ironman-1/thumbnail.webp
 date: 2023-09-15
 ---
 
-## Day1 相見歡 - 庫就不酷嗎？
+# Day1 相見歡 - 庫就不酷嗎？
 
 哈囉大家好我是毛哥EM，歡迎來到 **【不用庫 也能酷 - 玩'轉 CSS & Js 特效】**
 

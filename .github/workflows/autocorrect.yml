@@ -6,7 +6,7 @@ on:
             - main
 
 jobs:
-    autocorrect:
+    盤古之白:
         continue-on-error: true
         runs-on: ubuntu-latest
         steps:
@@ -55,7 +55,7 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    em-spelling:
+    毛哥EM沒有空白:
         needs: autocorrect
         runs-on: ubuntu-latest
         steps:

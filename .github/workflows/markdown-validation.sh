@@ -7,7 +7,7 @@ BASE_DIR="./post"
 ALL_PASS=true
 
 # Loop through all markdown files in subdirectories
-find "$BASE_DIR" -type f -name "index.md" | while read -r FILE; do
+while read -r FILE; do
   echo -n "."
   
   # Check for H1 title (# )
@@ -35,7 +35,7 @@ find "$BASE_DIR" -type f -name "index.md" | while read -r FILE; do
     printf "\n❌ Mismatch between {{notice}} ($NOTICE_COUNT) and {{noticed}} ($NOTICED_COUNT) in $FILE\n"
     ALL_PASS=false
   fi
-done
+done < <(find "$BASE_DIR" -type f -name "index.md")
 
 # Final summary
 if $ALL_PASS; then
