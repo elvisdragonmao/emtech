@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: []
+tags: [HTML,CSS,JavaScript]
 categories: [程式跑給你看]
 date: 2024-11-26
 description: 簡單來說好好去讀書吧。無論你全部猜 C、平均猜 ABCD 還是完全亂猜，你的平均分數都一樣爛。
