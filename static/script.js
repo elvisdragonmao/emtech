@@ -351,9 +351,9 @@ const initPost = (page) => {
     page.querySelectorAll("h2").forEach((h2) => {
         observer.observe(h2);
         adsCount++;
-        if (adsCount % 2 === 1)
+        if (adsCount > 2 && adsCount % 2 === 1)
             h2.insertAdjacentHTML(
-                "afterend",
+                "beforebegin",
                 `<ins
                     class="adsbygoogle"
                     style="display: block; text-align: center"
@@ -365,6 +365,7 @@ const initPost = (page) => {
             );
         // for the odd h2, add a adsense ad
     });
+    (adsbygoogle = window.adsbygoogle || []).push({});
     nextPosts.push(page.querySelector(".next-post"));
     if (asideTags) page.querySelector(".aside-tags").innerHTML = asideTags;
     updateDate(page.querySelector("#time p"));
@@ -377,7 +378,6 @@ const initPost = (page) => {
     // update .related-posts
     loadArticleList(related.querySelector("div"), "category/" + cat);
     related.querySelector("h2").textContent = cat + " 的其他文章";
-    (adsbygoogle = window.adsbygoogle || []).push({});
 };
 if (window.location.pathname.includes("/p/")) {
     initPost(document.querySelector(".post-page"));
@@ -409,7 +409,6 @@ const switchToHome = () => {
         document.body.classList.remove("toHome");
         document.body.style.paddingBottom = "0";
     }, 500);
-    (adsbygoogle = window.adsbygoogle || []).push({});
 };
 
 const switchToPost = (a) => {
@@ -757,8 +756,6 @@ fetch("/meta/search.json")
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
 };
-
-(adsbygoogle = window.adsbygoogle || []).push({});
 
 console.log(`
           ／＞   フ
