@@ -4,7 +4,7 @@
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/markdown-validation.yml?label=Markdown) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/autocorrect.yml?label=Format) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/file-size-check.yml?label=Image%20Size)
 
-![emtech og image](static/img/og.webp)
+![emtech og image](https://raw.githubusercontent.com/Edit-Mr/emtech/main/static/img/og.webp)
 
 
 
