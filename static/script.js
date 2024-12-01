@@ -310,22 +310,32 @@ const initPost = (page) => {
     const ul = document.createElement("ul");
     // Find all h2 elements in .post-content
     const headers = Array.from(postContent.querySelectorAll("h2"));
-
+    let adsCount = 0;
     // Create a list item for each h2 and add it to the table of contents
     headers.forEach((header, index) => {
         const listItem = document.createElement("li");
         const link = document.createElement("a");
-
         // Set the href to the id of the h2, and the text to the h2's text
         link.href = `#${header.id}`;
         link.textContent = header.textContent;
-
         listItem.appendChild(link);
         ul.appendChild(listItem);
+        adsCount++;
+        if (adsCount > 2 && adsCount % 2 === 1)
+            header.insertAdjacentHTML(
+                "beforebegin",
+                `<ins
+                    class="adsbygoogle post-adsbygoogle"
+                    data-ad-layout="in-article"
+                    data-ad-format="fluid"
+                    data-ad-client="ca-pub-9975357988525791"
+                    data-ad-slot="1149587298"
+                ></ins>`
+            );
     });
 
     toc.appendChild(ul);
-
+    (adsbygoogle = window.adsbygoogle || []).push({});
     // Create an intersection observer to highlight the current section in the table of contents
     const observer = new IntersectionObserver(
         (entries) => {
@@ -347,25 +357,10 @@ const initPost = (page) => {
 
     // Observe each h2 element
     headers.forEach((header) => observer.observe(header));
-    let adsCount = 0;
+
     page.querySelectorAll("h2").forEach((h2) => {
         observer.observe(h2);
-        adsCount++;
-        if (adsCount > 2 && adsCount % 2 === 1)
-            h2.insertAdjacentHTML(
-                "beforebegin",
-                `<ins
-                    class="adsbygoogle"
-                    style="display: block; text-align: center"
-                    data-ad-layout="in-article"
-                    data-ad-format="fluid"
-                    data-ad-client="ca-pub-9975357988525791"
-                    data-ad-slot="1149587298"
-                ></ins>`
-            );
-        // for the odd h2, add a adsense ad
     });
-    (adsbygoogle = window.adsbygoogle || []).push({});
     nextPosts.push(page.querySelector(".next-post"));
     if (asideTags) page.querySelector(".aside-tags").innerHTML = asideTags;
     updateDate(page.querySelector("#time p"));
@@ -378,6 +373,7 @@ const initPost = (page) => {
     // update .related-posts
     loadArticleList(related.querySelector("div"), "category/" + cat);
     related.querySelector("h2").textContent = cat + " 的其他文章";
+    (adsbygoogle = window.adsbygoogle || []).push({});
 };
 if (window.location.pathname.includes("/p/")) {
     initPost(document.querySelector(".post-page"));

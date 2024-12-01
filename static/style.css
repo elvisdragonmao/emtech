@@ -575,6 +575,11 @@ section {
     border: var(--border);
     padding: 1.6rem;
 }
+
+.post-adsbygoogle{
+    display: block; text-align: center
+}
+
 .about {
     padding: 1.75rem 1.6rem 0;
     background-color: #c5e0d5;
