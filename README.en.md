@@ -1,6 +1,6 @@
 # emblog - A Blog Generator for emtech
 
-https://emtech.cc
+<https://emtech.cc>
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/markdown-validation.yml?label=Markdown) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/autocorrect.yml?label=Format) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/file-size-check.yml?label=Image%20Size)
 
