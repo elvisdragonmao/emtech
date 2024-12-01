@@ -579,6 +579,10 @@ section {
 .post-adsbygoogle{
     display: block; text-align: center
 }
+aside 
+.adsbygoogle{
+    margin-bottom: 1rem;
+}
 
 .about {
     padding: 1.75rem 1.6rem 0;
