@@ -1,1 +1,2 @@
-view/partials/*
+view/partials/notice.html
+view/partials/noticed.html
