@@ -120,10 +120,10 @@ if [ ${#error_files[@]} -gt 0 ]; then
         commit_message="把太大的圖片調教成 WebP，並更新了所有連結。
 
 The following files were optimized:
-$(printf '%s\n' "${processed_files[@]}")
+$(printf '* %s\n' "${processed_files[@]}")
 
 Updated markdown files:
-$(printf '%s\n' "${updated_md_files[@]}")
+$(printf '* %s\n' "${updated_md_files[@]}")
 
 - Converted images to WebP with max width 1000px
 - Quality set to 85%
