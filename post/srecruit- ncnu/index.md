@@ -4,6 +4,7 @@ tags: [特殊選材]
 categories: [心得]
 date: 2024-12-06
 description: 兩段面試，一段簡報自我介紹，一段問答。教授很和善，且會認真問專案細節。
+draft: true
 ---
 
 # 暨南資工特選面試心得
