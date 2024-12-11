@@ -46,12 +46,12 @@ jobs:
             - name: Check if there are any changes
               id: verify_diff
               run: |
-                  git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
+                  git diff --exit-code || exit 1
 
             - name: Commit
-              if: steps.verify_diff.outputs.changed == 'true'
+              if: steps.verify_diff.outcome == 'success'
               run: |
-                  git commit -m "[skip ci] Auto fixes" -m "-草東沒有派對"
+                  git commit -m "噢多麼單純的一首詩 怎麼會 怎麼會 忘記加空白" -m "-草東沒有派對《爛泥》"
                   git push origin main
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
