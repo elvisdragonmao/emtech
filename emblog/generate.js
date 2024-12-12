@@ -278,7 +278,7 @@ async function processPosts() {
                 }
                 markdownContent = markdownContent.replace(
                     /!\[(.*?)\]\((?!\/|http)(.*?)\)/g,
-                    `![$1](/static/${postID}/$2)`
+                    `![$1](/static/${encodeURIComponent(postID)}/$2)`
                 );
                 let htmlContent = md.render(
                     renderPartials(
