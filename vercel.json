@@ -1,5 +1,5 @@
 {
-    "installCommand": "yarn workspaces focus --production",
+    "installCommand": "yarn install --production",
     "buildCommand": "yarn build",
     "outputDirectory": "dist",
     "trailingSlash": false,
