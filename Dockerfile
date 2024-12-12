@@ -12,7 +12,7 @@ RUN corepack enable \
 COPY package.json yarn.lock ./
 
 # 安裝相依套件
-RUN yarn install --production
+RUN yarn workspaces focus --production
 
 # 複製所有檔案並建置
 COPY . .
