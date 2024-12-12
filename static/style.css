@@ -377,7 +377,9 @@ nav input[type="checkbox"],
     margin-top: 1rem;
     color: #444;
 }
-
+#search-toggle{
+    display: none;
+}
 #search-toggle:checked ~ .search-page {
     pointer-events: all;
     opacity: 1;
@@ -529,6 +531,7 @@ a.header-categories-item span {
     height: 8rem;
     border-radius: calc(var(--border-radius) / 30 * 17.2);
     object-fit: contain;
+    background: url(/static/img/blank.webp) center/cover;
 }
 
 .header-newPost-hover {
@@ -576,11 +579,11 @@ section {
     padding: 1.6rem;
 }
 
-.post-adsbygoogle{
-    display: block; text-align: center
+.post-adsbygoogle {
+    display: block;
+    text-align: center;
 }
-aside 
-.adsbygoogle{
+aside .adsbygoogle {
     margin-bottom: 1rem;
 }
 
@@ -822,6 +825,7 @@ article .hero {
     background-repeat: no-repeat;
     width: 100%;
     background-color: #e8e8e8;
+    background-image: url(/static/img/blank.webp);
     background-size: auto 100%;
     background-position: center;
     transition: background-size 0.2s ease-in-out;
@@ -1320,19 +1324,17 @@ figure img {
 }
 
 .post-container p {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .post-container h2 {
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
-.post-container ul {
-    padding-inline-start: 1.5rem;
-}
-
+.post-container ul,
 .post-container ol {
     padding-inline-start: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 .post-container li {
     margin-bottom: 0.5rem;
@@ -1344,7 +1346,7 @@ figure img {
 
 .post-container h3 {
     margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .post-container h4 {
