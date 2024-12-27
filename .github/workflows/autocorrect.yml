@@ -42,17 +42,14 @@ jobs:
                   git add .
                   git reset package.json
                   git reset .github
-
-            - name: Check if there are any changes
-              id: verify_diff
-              run: |
-                  git diff --exit-code || exit 1
-
             - name: Commit
-              if: steps.verify_diff.outcome == 'success'
               run: |
+                  if git diff --staged --quiet; then
+                    echo "No changes to commit"
+                  else
                   git commit -m "噢多麼單純的一首詩 怎麼會 怎麼會 忘記加空白" -m "-草東沒有派對《爛泥》"
-                  git push origin main
+                  git push
+                  fi
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -76,7 +73,7 @@ jobs:
                   git add .
                   git reset .github
                   if git diff --staged --quiet; then
-                    echo "No changes"
+                    echo "No changes to commit"
                   else
                     git commit -m "空間是一格半 誰也出不去 幾寸也不滿意 思想是循環 溫飽思淫慾" -m "-草東沒有派對《空》"
                     git push

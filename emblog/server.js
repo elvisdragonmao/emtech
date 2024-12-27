@@ -16,14 +16,17 @@ const server = http.createServer((req, res) => {
         if (filePath.endsWith("/") || !filePath.includes(".")) {
             filePath = path.join(filePath, "index.html");
         }
-
+       // if url is /category or /tag, render home page index.html
+        if (decodedUrl.startsWith("/category") || decodedUrl.startsWith("/tag")) {
+            filePath = path.join(baseDirectory, "index.html");
+        }
         // Ensure the file is inside the base directory (prevents path traversal attacks)
         if (!filePath.startsWith(baseDirectory)) {
             res.writeHead(400, { "Content-Type": "text/plain" });
             res.end("400 Bad Request");
             return;
         }
-        console.log(filePath);
+        console.log(decodedUrl);
         // Read and serve the requested file
         fs.readFile(filePath, (err, data) => {
             if (err) {

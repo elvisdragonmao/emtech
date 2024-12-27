@@ -389,6 +389,7 @@ if (window.location.pathname.includes("/p/")) {
             // all the url after the domain
             window.location.pathname.slice(1)
         );
+    else updatePostList("category/精選", false);
 }
 
 const switchToHome = () => {
@@ -578,8 +579,6 @@ fetch("/meta/tags.json")
         );
     });
 
-updatePostList("category/精選", false);
-
 document.body.addEventListener("click", (e) => {
     let a = e.target.closest("a"); // Find the closest <a> element (in case of nested elements)
     if (!a) return; // If no <a> was clicked, do nothing
@@ -754,9 +753,9 @@ window.onbeforeunload = function () {
 };
 
 console.log(`
-          ／＞   フ
-         |   _ _ l
-         ／\` ミ_꒳ノ
+            ／＞   フ
+            |   _ _ l
+            ／\` ミ_꒳ノ
     　　 　 /　　　 　 |
     　　　 /　 ヽ　　 ﾉ
     　 　 │　　|　|　|
