@@ -16,8 +16,11 @@ const server = http.createServer((req, res) => {
         if (filePath.endsWith("/") || !filePath.includes(".")) {
             filePath = path.join(filePath, "index.html");
         }
-       // if url is /category or /tag, render home page index.html
-        if (decodedUrl.startsWith("/category") || decodedUrl.startsWith("/tag")) {
+        // if url is /category or /tag, render home page index.html
+        if (
+            decodedUrl.startsWith("/category") ||
+            decodedUrl.startsWith("/tag")
+        ) {
             filePath = path.join(baseDirectory, "index.html");
         }
         // Ensure the file is inside the base directory (prevents path traversal attacks)

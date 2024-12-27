@@ -17,10 +17,10 @@ date: 2023-03-13
 {{notice}}
 CSS 濾鏡生成器
 
--   開發者:毛哥EM(我)
--   程式類型：免費開源網站
--   網站位置：[毛哥EM的基地](https://Edit-Mr.github.io/code/svg-filter)
-    {{noticed}}
+- 開發者:毛哥EM(我)
+- 程式類型：免費開源網站
+- 網站位置：[毛哥EM的基地](https://Edit-Mr.github.io/code/svg-filter)
+  {{noticed}}
 
 這個濾鏡生成器網頁讓你輸入顏色或使用顏色選擇器，然後生成 CSS filter 原始碼，讓你輕鬆地創造出完美的圖示上色效果。只需將原始碼複製並粘貼到你的 CSS 樣式表中，就可以在你的網站上應用這些美麗的效果。
 

@@ -59,10 +59,10 @@ jobs:
 
 **YAML 文件解析：**
 
--   **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
--   **`actions/checkout@v3:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
--   **`tar -czf:`** 使用 `tar` 命令來壓縮目錄或檔案。`-c` 創建壓縮檔案，`-z` 使用 gzip 壓縮，`-f` 指定檔案名。
--   **`actions/upload-artifact@v3:`** 上傳壓縮檔案作為工件，工件名為 `compressed-files`。
+- **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
+- **`actions/checkout@v3:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
+- **`tar -czf:`** 使用 `tar` 命令來壓縮目錄或檔案。`-c` 創建壓縮檔案，`-z` 使用 gzip 壓縮，`-f` 指定檔案名。
+- **`actions/upload-artifact@v3:`** 上傳壓縮檔案作為工件，工件名為 `compressed-files`。
 
 **步驟 3：推送工作流程文件**
 
@@ -74,8 +74,8 @@ git push origin main
 
 **應用範例：**
 
--   **自動備份：** 定期將工作目錄中的重要文件壓縮並上傳，以便進行備份和恢復。
--   **構建工件：** 在 CI/CD 流程中，將構建產生的檔案壓縮並上傳，以便進行部署或分發。
+- **自動備份：** 定期將工作目錄中的重要文件壓縮並上傳，以便進行備份和恢復。
+- **構建工件：** 在 CI/CD 流程中，將構建產生的檔案壓縮並上傳，以便進行部署或分發。
 
 ## 實作：下載和解壓縮工件
 
@@ -115,10 +115,10 @@ jobs:
 
 **YAML 文件解析：**
 
--   **`workflow_run:`** 設定當 `Compress and Upload Artifacts` 工作流程完成後觸發這個工作流程。
--   **`actions/download-artifact@v3:`** 下載之前上傳的工件。
--   **`tar -xzf:`** 使用 `tar` 命令解壓縮檔案。`-x` 解壓縮，`-z` 使用 gzip 解壓，`-f` 指定檔案名。
--   **`ls -R extracted:`** 列出解壓縮後的檔案和目錄，確認解壓縮是否成功。
+- **`workflow_run:`** 設定當 `Compress and Upload Artifacts` 工作流程完成後觸發這個工作流程。
+- **`actions/download-artifact@v3:`** 下載之前上傳的工件。
+- **`tar -xzf:`** 使用 `tar` 命令解壓縮檔案。`-x` 解壓縮，`-z` 使用 gzip 解壓，`-f` 指定檔案名。
+- **`ls -R extracted:`** 列出解壓縮後的檔案和目錄，確認解壓縮是否成功。
 
 **步驟 3：推送工作流程文件**
 
@@ -132,8 +132,8 @@ git push origin main
 
 **應用範例：**
 
--   **資料處理：** 在工作流程中自動下載、解壓縮並處理外部數據檔案。
--   **測試階段：** 在 CI/CD 流程中，自動下載並解壓縮測試數據檔案，進行測試操作。
+- **資料處理：** 在工作流程中自動下載、解壓縮並處理外部數據檔案。
+- **測試階段：** 在 CI/CD 流程中，自動下載並解壓縮測試數據檔案，進行測試操作。
 
 ## 實作：部屬 Vite 網頁
 
@@ -210,16 +210,16 @@ jobs:
 
 **YAML 文件解析：**
 
--   **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
--   **`permissions:`** 設定 GITHUB_TOKEN 的權限，允許部屬到 GitHub Pages。
--   **`concurrency:`** 設定允許同時運行一個部屬工作流程。
--   **`actions/checkout@v4:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
--   **`actions/setup-node@v4:`** 設定 Node.js 環境。
--   **`npm ci:`** 安裝依賴。
--   **`npm run build:`** 構建 Vite 網頁。
--   **`actions/upload-pages-artifact@v3:`** 上傳構建產生的檔案作為工件。
--   **`actions/deploy-pages@v4:`** 部屬到 GitHub Pages。
--   **`${{ steps.deployment.outputs.page_url }}:`** 部屬完成後的網址。
+- **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
+- **`permissions:`** 設定 GITHUB_TOKEN 的權限，允許部屬到 GitHub Pages。
+- **`concurrency:`** 設定允許同時運行一個部屬工作流程。
+- **`actions/checkout@v4:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
+- **`actions/setup-node@v4:`** 設定 Node.js 環境。
+- **`npm ci:`** 安裝依賴。
+- **`npm run build:`** 構建 Vite 網頁。
+- **`actions/upload-pages-artifact@v3:`** 上傳構建產生的檔案作為工件。
+- **`actions/deploy-pages@v4:`** 部屬到 GitHub Pages。
+- **`${{ steps.deployment.outputs.page_url }}:`** 部屬完成後的網址。
 
 **步驟 3：推送工作流程文件**
 

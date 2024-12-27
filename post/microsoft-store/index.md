@@ -50,8 +50,8 @@ Microsoft Store 是 Windows 內建的應用程式商店。理論上它應該是�
 
 有一些軟體會需要安裝依賴套件。例如 Spotify 就需要安裝
 
--   Microsoft.WindowsAppRuntime.1.2_2000.802.31.0_x64\_\_8wekyb3d8bbwe.msix
--   Microsoft.VCLibs.140.00_14.0.32530.0_x64\_\_8wekyb3d8bbwe.appx
+- Microsoft.WindowsAppRuntime.1.2_2000.802.31.0_x64\_\_8wekyb3d8bbwe.msix
+- Microsoft.VCLibs.140.00_14.0.32530.0_x64\_\_8wekyb3d8bbwe.appx
 
 ![依賴套件](spotify.webp)
 

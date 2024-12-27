@@ -14,11 +14,11 @@ date: 2022-10-07
 {{notice}}
 EM-SFW (Site for Webcam)
 
--   開發者:毛哥EM(我)
--   程式類型：免費開源網站
--   網站位置：[毛哥EM的基地](https://Edit-Mr.github.io/code/EM-SFW)
--   縮短網址：[is.gd/EMSFW](https://is.gd/EMSFW)
-    {{noticed}}
+- 開發者:毛哥EM(我)
+- 程式類型：免費開源網站
+- 網站位置：[毛哥EM的基地](https://Edit-Mr.github.io/code/EM-SFW)
+- 縮短網址：[is.gd/EMSFW](https://is.gd/EMSFW)
+  {{noticed}}
 
 ## 使用教學
 

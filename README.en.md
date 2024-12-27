@@ -6,8 +6,6 @@
 
 ![emtech og image](https://raw.githubusercontent.com/Edit-Mr/emtech/main/static/img/og.webp)
 
-
-
 **emblog** is a distinctive and powerful blog framework specifically designed for **emtech**. It enables you to create stunning single-page static blogs in seconds.
 
 ## Background

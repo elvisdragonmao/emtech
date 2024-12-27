@@ -112,11 +112,11 @@ jobs:
 
 ### 詳細步驟解析
 
--   **Checkout repository**: 檢出 GitHub repository 的代碼。
--   **Set up Python**: 安裝指定版本的 Python。
--   **Install dependencies**: 安裝 PyInstaller。
--   **Build application**: 使用 PyInstaller 打包 Python 應用，根據運行的操作系統環境變數來確定可執行文件的名稱和擴展名。
--   **Archive artifacts**: 上傳生成的可執行文件作為 GitHub Actions 的構建產物，供後續下載或分發使用。
+- **Checkout repository**: 檢出 GitHub repository 的代碼。
+- **Set up Python**: 安裝指定版本的 Python。
+- **Install dependencies**: 安裝 PyInstaller。
+- **Build application**: 使用 PyInstaller 打包 Python 應用，根據運行的操作系統環境變數來確定可執行文件的名稱和擴展名。
+- **Archive artifacts**: 上傳生成的可執行文件作為 GitHub Actions 的構建產物，供後續下載或分發使用。
 
 ## 測試和驗證
 

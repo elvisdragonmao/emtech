@@ -17,11 +17,11 @@ date: 2022-08-18
 {{notice}}
 ShowDesktopPerMonitor
 
--   開發者:CryptKat
--   類型：免費開源軟體
--   網址：[Github](https://github.com/CryptKat/ShowDesktopPerMonitor/)
--   [下載連結](https://github.com/CryptKat/ShowDesktopPerMonitor/releases/tag/1.0)
-    {{noticed}}
+- 開發者:CryptKat
+- 類型：免費開源軟體
+- 網址：[Github](https://github.com/CryptKat/ShowDesktopPerMonitor/)
+- [下載連結](https://github.com/CryptKat/ShowDesktopPerMonitor/releases/tag/1.0)
+  {{noticed}}
 
 # 設定
 

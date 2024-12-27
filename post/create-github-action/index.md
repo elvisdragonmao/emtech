@@ -98,13 +98,13 @@ A simple tool to sync GitHub issues to Notion beautifully
 
 ## Features
 
--   [x] Sync issue to Notion
--   [x] Sync State to Notion
--   [x] Sync labels to Notion
--   [x] Sync URL to Notion
--   [x] Sync content to Notion with full markdown support
--   [x] Won't repeat recreating the same issue
--   [x] Update status if exists
+- [x] Sync issue to Notion
+- [x] Sync State to Notion
+- [x] Sync labels to Notion
+- [x] Sync URL to Notion
+- [x] Sync content to Notion with full markdown support
+- [x] Won't repeat recreating the same issue
+- [x] Update status if exists
 ```
 
 這樣我們的 Action 就完成了。請將整個 Repository 推送到 GitHub 上 (當然，你的權杖和測試文件記得 ignore)。

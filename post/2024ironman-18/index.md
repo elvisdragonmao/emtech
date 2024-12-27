@@ -200,16 +200,16 @@ main().catch((error) => {
 
 這裡要來介紹一下裡面使用到的一些套件：
 
--   `axios`: 用於發送 HTTP 請求。
--   `@tryfabric/martian`: 用於將 Markdown 轉換為 Notion 的 block。
--   `@actions/core`: 用於訪問 Action 的輸入和輸出。
+- `axios`: 用於發送 HTTP 請求。
+- `@tryfabric/martian`: 用於將 Markdown 轉換為 Notion 的 block。
+- `@actions/core`: 用於訪問 Action 的輸入和輸出。
 
 ### 步驟 4：設置 GitHub Secrets
 
 在 GitHub 存儲庫的設置中，添加以下 Secrets：
 
--   `NOTION_API_KEY`: 你的 Notion API 密鑰。
--   `NOTION_DATABASE_ID`: 你的 Notion 資料庫 ID。
+- `NOTION_API_KEY`: 你的 Notion API 密鑰。
+- `NOTION_DATABASE_ID`: 你的 Notion 資料庫 ID。
 
 ### 步驟 5：創建工作流程文件
 

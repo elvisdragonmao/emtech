@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [數學證明, JavaScript]
+tags: [數學證明，JavaScript]
 categories: [程式跑給你看]
 date: 2024-12-14
 description: 馬丁格爾策略的規則是：在每一輪遊戲中，你下注的金額是上一輪遊戲中輸掉的金額的兩倍。用程式模擬和數學證明這個策略一定會虧錢，因為玩多局贏的機率不會提升，提升的只有你投入的資金。
@@ -14,13 +14,12 @@ description: 馬丁格爾策略的規則是：在每一輪遊戲中，你下注�
 
 馬丁格爾策略其實非常好了解，連當時國一的我都懂了。今天有一個遊戲你贏了的話可以得到兩倍的獎金，輸了的話就會失去你的賭注。在這個遊戲中，你可以自由選擇下注的金額。馬丁格爾策略的規則是：在每一輪遊戲中，你下注的金額是上一輪遊戲中輸掉的金額的兩倍。這樣一來，只要你贏了一輪遊戲，你就能把之前所有的虧損都補回來。
 
-比如說:
+比如說：
 
-
-我先投注 2 元，結果贏了。我得到 2 * 2 = 4 元。扣掉之前的 2 元，我現在賺了 2 元。
+我先投注 2 元，結果贏了。我得到 2 _ 2 = 4 元。扣掉之前的 2 元，我現在賺了 2 元。
 然後我再投注 2 元，結果輸了。
-接著我投入 2 * 2 = 4 元，結果還是輸了。
-再來我投入 4 * 2 = 8 元，贏了。我得到 8 * 2 = 16 元。扣掉之前的 2 + 4 + 8 = 14 元，我現在賺了 2 元。
+接著我投入 2 _ 2 = 4 元，結果還是輸了。
+再來我投入 4 _ 2 = 8 元，贏了。我得到 8 _ 2 = 16 元。扣掉之前的 2 + 4 + 8 = 14 元，我現在賺了 2 元。
 
 你可以看到，只要你贏了一次，你就能把之前的虧損都補回來。
 
@@ -28,7 +27,7 @@ description: 馬丁格爾策略的規則是：在每一輪遊戲中，你下注�
 
 ![Dice](dice.webp)
 
-當時的我就想說，贏的機率有 50%，理論上來說平均兩次我就會贏一次。怎麼可能連續玩個十次都還輸?(1/2)*10次方等於1/512 也太小了吧！那我就來寫一個程式來自動玩遊戲，就可以賺翻了！
+當時的我就想說，贏的機率有 50%，理論上來說平均兩次我就會贏一次。怎麼可能連續玩個十次都還輸？(1/2)\*10 次方等於 1/512 也太小了吧！那我就來寫一個程式來自動玩遊戲，就可以賺翻了！
 
 問了一下 ChatGPT，他說我會輸得很慘。我不信，你這個文組的懂甚麼數學，我就來寫個程式證明給你看！
 
@@ -36,8 +35,7 @@ description: 馬丁格爾策略的規則是：在每一輪遊戲中，你下注�
 
 我寫了一個簡單的 HTML 網頁來模擬馬丁格爾策略。
 
-網址: <https://elvismao.com/code/martingale/>
-
+網址：<https://elvismao.com/code/martingale/>
 
 ![模擬](模擬.webp)
 
@@ -47,12 +45,8 @@ description: 馬丁格爾策略的規則是：在每一輪遊戲中，你下注�
 let totalRounds = 0;
 let finalBalance = 0;
 function simulateMartingale() {
-    const initialBet = parseFloat(
-        document.getElementById("initialBet").value
-    );
-    let balance = parseFloat(
-        document.getElementById("startingBalance").value
-    );
+    const initialBet = parseFloat(document.getElementById("initialBet").value);
+    let balance = parseFloat(document.getElementById("startingBalance").value);
     let bet = initialBet;
     let round = 0;
     let output = "模擬結果：\n";
@@ -80,8 +74,7 @@ function simulateMartingale() {
             loseCount++;
 
             if (balance < bet) {
-                output +=
-                    "<div>資金不足，無法再加倍！模擬結束。</div>";
+                output += "<div>資金不足，無法再加倍！模擬結束。</div>";
                 break;
             }
         }
@@ -95,9 +88,9 @@ function simulateMartingale() {
     output += `<div>共進行 ${round} 局，贏了 ${winCount} 局，輸了 ${loseCount} 局。</div>`;
     totalRounds++;
     finalBalance += balance;
-    output += `<div>平均最後收入: ${(
-        finalBalance / totalRounds
-    ).toFixed(2)} 元</div>`;
+    output += `<div>平均最後收入: ${(finalBalance / totalRounds).toFixed(
+        2
+    )} 元</div>`;
 
     document.getElementById("output").innerHTML = output;
     // scroll to bottom
@@ -106,11 +99,7 @@ function simulateMartingale() {
 }
 
 const start = () => {
-    for (
-        let i = 0;
-        i < document.getElementById("times").value;
-        i++
-    ) {
+    for (let i = 0; i < document.getElementById("times").value; i++) {
         simulateMartingale();
     }
 };
@@ -132,9 +121,9 @@ const start = () => {
 
 {{notice}}
 
-甚麼是爆倉?
+甚麼是爆倉？
 
-當倉位的損失達到一定程度(風險控制線) ，你的帳戶餘額不足以維持目前的倉位時，交易所或券商會強制結束倉位，以防止更大損失。
+當倉位的損失達到一定程度 (風險控制線) ，你的帳戶餘額不足以維持目前的倉位時，交易所或券商會強制結束倉位，以防止更大損失。
 
 簡單來說就是你沒錢繼續 X2 玩了。
 
@@ -144,7 +133,7 @@ const start = () => {
 
 ![好棒 Bump 實測交易機器人](bump.webp)
 
-在各種交易上面都有人會使用馬丁格爾投注法，在股票市場，就是俗稱的「攤平」。但之所以能夠賺錢簡單來說是因為裡面包含了其他的技術分析，不是盲目的定時自動加倉。根據情況靈活調整起始的手數、下單的倍數、下單的距離等。推薦各位可以看看 [好棒 Bump: 自動交易機器人真能賺錢嗎？我投20萬美金的下場….](https://www.youtube.com/watch?v=1IUgdjfdCtQ&t=914s)，影片中玩的是外匯，但核心的概念一樣。但如果是像我們這種單純玩機率的賭博遊戲，長久來看一定是虧的。
+在各種交易上面都有人會使用馬丁格爾投注法，在股票市場，就是俗稱的「攤平」。但之所以能夠賺錢簡單來說是因為裡面包含了其他的技術分析，不是盲目的定時自動加倉。根據情況靈活調整起始的手數、下單的倍數、下單的距離等。推薦各位可以看看 [好棒 Bump: 自動交易機器人真能賺錢嗎？我投 20 萬美金的下場….](https://www.youtube.com/watch?v=1IUgdjfdCtQ&t=914s)，影片中玩的是外匯，但核心的概念一樣。但如果是像我們這種單純玩機率的賭博遊戲，長久來看一定是虧的。
 
 ## 總結
 

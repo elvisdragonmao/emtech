@@ -22,10 +22,10 @@ brew install pdftk
 {{notice}}
 PDF Toolkit (pdftk)
 
--   開發者:pdflabs
--   軟體類型：終端機套件
--   網址：[www.pdflabs.com](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
-    {{noticed}}
+- 開發者:pdflabs
+- 軟體類型：終端機套件
+- 網址：[www.pdflabs.com](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
+  {{noticed}}
 
 ## 安卓安裝
 
@@ -34,11 +34,11 @@ PDF Toolkit (pdftk)
 {{notice}}
 Termux
 
--   開發者:Termux
--   軟體類型：安卓應用程式
--   官網：[termux.com](https://termux.com/)
--   安裝網址：[F-Droid](https://f-droid.org/packages/com.termux/)
-    {{noticed}}
+- 開發者:Termux
+- 軟體類型：安卓應用程式
+- 官網：[termux.com](https://termux.com/)
+- 安裝網址：[F-Droid](https://f-droid.org/packages/com.termux/)
+  {{noticed}}
 
 進去後貼上這一串。問你什麼就好好好或 enter 就好了。看我多用心給你複製鍵就算了還全部合成一行指令。
 
@@ -121,9 +121,9 @@ pdftk new.pdf cat 1-96 98-end output new1.pdf
 
 除了範例中的具體數值，還可使用一些限定字元。odd 和 even 表示奇偶頁碼。N、S、E、W、L、R、D 表示文件版面的旋轉角度（N: 0，E: 90，S: 180，W: 270，L: -90，R: +90，D: +180）。比如說
 
--   1-6odd 表示 1，3，5
--   1-6even 表示 2，4，6
--   1-endE 表示整篇文件所有頁面都旋轉 90 度
+- 1-6odd 表示 1，3，5
+- 1-6even 表示 2，4，6
+- 1-endE 表示整篇文件所有頁面都旋轉 90 度
 
 ## 90 度旋轉 PDF 檔案的第一頁
 
@@ -165,13 +165,13 @@ PDF 檔案可以採用 40 位加密或 128 位加密，通過使用命令選項 
 
 使用者的許可權可以使用 allow 命令選項設定，可以設定的許可權如下：
 
--   `Printing`：允許高品質列印
--   `DegradedPrinting`：允許高品質列印
--   `ModifyContents`：允許修改檔案內容
--   `CopyContents`：允許複製
--   `ModifyAnnotations`：允許添加註釋
--   `FillIn`：允許填入資料
--   `AllFeatures`：允許所有特性
+- `Printing`：允許高品質列印
+- `DegradedPrinting`：允許高品質列印
+- `ModifyContents`：允許修改檔案內容
+- `CopyContents`：允許複製
+- `ModifyAnnotations`：允許添加註釋
+- `FillIn`：允許填入資料
+- `AllFeatures`：允許所有特性
 
 ### 加解密
 

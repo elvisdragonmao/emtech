@@ -131,11 +131,11 @@ jobs:
 
 ### 工作流程解釋
 
--   **`Checkout code`**：檢出代碼，以便 `k6` 能夠運行測試腳本。
--   **`Set up k6`**：安裝 `k6` 工具。
--   **`Run performance tests`**：執行性能測試腳本 `test.js`。
--   **`Upload test results`**：上傳測試結果到 GitHub Actions artifacts，以便後續查看。
--   **`Deploy performance report to GitHub Pages`**：將測試結果部署到 GitHub Pages（如果你在 `public/` 目錄中生成了性能報告）。
+- **`Checkout code`**：檢出代碼，以便 `k6` 能夠運行測試腳本。
+- **`Set up k6`**：安裝 `k6` 工具。
+- **`Run performance tests`**：執行性能測試腳本 `test.js`。
+- **`Upload test results`**：上傳測試結果到 GitHub Actions artifacts，以便後續查看。
+- **`Deploy performance report to GitHub Pages`**：將測試結果部署到 GitHub Pages（如果你在 `public/` 目錄中生成了性能報告）。
 
 ## 配置 GitHub Pages
 

@@ -25,10 +25,10 @@ date: 2024-10-10
 
 ### 使用場景
 
--   **Node.js**: 儲存 `node_modules` 目錄。
--   **Python**: 儲存 `venv` 虛擬環境。
--   **Java**: 儲存 Maven 或 Gradle 緩存。
--   **其他**: 儲存任何生成的中間文件或下載的依賴。
+- **Node.js**: 儲存 `node_modules` 目錄。
+- **Python**: 儲存 `venv` 虛擬環境。
+- **Java**: 儲存 Maven 或 Gradle 緩存。
+- **其他**: 儲存任何生成的中間文件或下載的依賴。
 
 ## 實作範例
 

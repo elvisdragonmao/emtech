@@ -12,7 +12,6 @@ Respect everyone. Peace and love.
 
 EM saith unto him, I am the way, the truth, and the life: no man cometh unto the main branch, but by me.
 
-
 ## Scope
 
 This Code of Conduct applies to this repo.

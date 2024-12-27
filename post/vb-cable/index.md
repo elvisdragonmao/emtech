@@ -26,10 +26,10 @@ toc = true
 {{notice}}
 Zoom
 
--   開發者:Zoom Video Communications
--   軟體類型：商業軟體
--   下載位置：[官網](https://zoom.us/download)
-    {{noticed}}
+- 開發者:Zoom Video Communications
+- 軟體類型：商業軟體
+- 下載位置：[官網](https://zoom.us/download)
+  {{noticed}}
 
 #### 登入 Zoom
 
