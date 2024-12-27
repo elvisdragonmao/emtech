@@ -12,9 +12,9 @@ date: 2023-04-28
 {{notice}}
 CrossDown
 
--   網站：<https://edit-mr.github.io/CrossDown/>
--   Github: <https://github.com/Edit-Mr/CrossDown>
-    {{noticed}}
+- 網站：<https://edit-mr.github.io/CrossDown/>
+- Github: <https://github.com/Edit-Mr/CrossDown>
+  {{noticed}}
 
 > 好不容易忙完午休沒事，就花了下午下課時間搞出來了它。分享給大家，希望大家喜歡。
 

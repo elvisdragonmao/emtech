@@ -38,8 +38,8 @@ date: 2023-10-05
 
 請你搜尋 gfx.webrender.debug.profiler-ui
 
--   `gfx.webrender.debug.profiler-ui` 設為 `FPS`，
--   `gfx.webrender.debug.profiler-ui` 設為 `true` (點擊加號)。
+- `gfx.webrender.debug.profiler-ui` 設為 `FPS`，
+- `gfx.webrender.debug.profiler-ui` 設為 `true` (點擊加號)。
 
 > 記得先設成 `FPS` 再設成 `true`，不然整個畫面會被資訊轟炸，比 Minecraft 的 F3 還要誇張好幾倍。
 

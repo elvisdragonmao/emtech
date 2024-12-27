@@ -219,9 +219,9 @@ console.log("README.md has been updated");
 
 ### 腳本解析
 
--   **讀取 JSON 文件**: 腳本從 `Database/fonts.json` 讀取字體數據。
--   **生成 Markdown 表格**: `generateMarkdownTable` 函數將 JSON 數據轉換為 Markdown 格式的表格。
--   **更新 README 文件**: 腳本讀取 `README.md` 文件，並將生成的 Markdown 表格插入到標記為 `<!-- fonts table start -->` 和 `<!-- fonts table end -->` 之間的區域。
+- **讀取 JSON 文件**: 腳本從 `Database/fonts.json` 讀取字體數據。
+- **生成 Markdown 表格**: `generateMarkdownTable` 函數將 JSON 數據轉換為 Markdown 格式的表格。
+- **更新 README 文件**: 腳本讀取 `README.md` 文件，並將生成的 Markdown 表格插入到標記為 `<!-- fonts table start -->` 和 `<!-- fonts table end -->` 之間的區域。
 
 ## 小結
 

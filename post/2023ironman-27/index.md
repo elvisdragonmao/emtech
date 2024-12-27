@@ -184,9 +184,9 @@ aside {
 
 大概講幾個有趣的點：
 
--   圖片來源是 [Font Awesome](https://fontawesome.com/)
--   `<aside>` 裡面的背景是用 `linear-gradient` 做的。先是背景灰色，然後是藍色、白色。感覺像是分成不同元素但為了方便就用一個漸層充當。
--   設定 `max-width: 1170px` 再加上 `margin: 0 auto` 來讓版面置中。
+- 圖片來源是 [Font Awesome](https://fontawesome.com/)
+- `<aside>` 裡面的背景是用 `linear-gradient` 做的。先是背景灰色，然後是藍色、白色。感覺像是分成不同元素但為了方便就用一個漸層充當。
+- 設定 `max-width: 1170px` 再加上 `margin: 0 auto` 來讓版面置中。
 
 其他的沒什麼特別的。如果看不懂的話可以複習 [Day3 用 Flex 切遍天下](https://emtech.cc/post/2023ironman-3/)
 

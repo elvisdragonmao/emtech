@@ -172,10 +172,10 @@ update_tasks
 
 在 GitHub 存儲庫的設置中，添加所需的 Secrets：
 
--   `NOTION_DATABASE_ID`
--   `NOTION_TOKEN`
--   `DISCORD_CHANNEL_ID`
--   `DISCORD_TOKEN`
+- `NOTION_DATABASE_ID`
+- `NOTION_TOKEN`
+- `DISCORD_CHANNEL_ID`
+- `DISCORD_TOKEN`
 
 這些 Secrets 將用於在 Action 中安全地傳遞敏感信息。
 
@@ -344,10 +344,10 @@ jobs:
 
 在 GitHub 存儲庫的設置中，添加所需的 Secrets：
 
--   `NOTION_DATABASE_ID`
--   `NOTION_TOKEN`
--   `DISCORD_CHANNEL_ID`
--   `DISCORD_TOKEN`
+- `NOTION_DATABASE_ID`
+- `NOTION_TOKEN`
+- `DISCORD_CHANNEL_ID`
+- `DISCORD_TOKEN`
 
 這些 Secrets 將用於在 Action 中安全地傳遞敏感信息。
 

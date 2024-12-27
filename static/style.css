@@ -377,7 +377,7 @@ nav input[type="checkbox"],
     margin-top: 1rem;
     color: #444;
 }
-#search-toggle{
+#search-toggle {
     display: none;
 }
 #search-toggle:checked ~ .search-page {

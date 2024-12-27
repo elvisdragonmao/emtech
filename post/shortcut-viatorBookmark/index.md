@@ -13,10 +13,10 @@ date: 2021-06-04
 {{notice}}
 衛道網頁書籤
 
--   開發者:毛哥EM(我)
--   軟體類型:ios 捷徑
--   下載位置：[iCloud](https://www.icloud.com/shortcuts/19ea26ff47244258a6d9ff21a553659b)
-    {{noticed}}
+- 開發者:毛哥EM(我)
+- 軟體類型:ios 捷徑
+- 下載位置：[iCloud](https://www.icloud.com/shortcuts/19ea26ff47244258a6d9ff21a553659b)
+  {{noticed}}
 
 ## 原理
 
@@ -24,6 +24,6 @@ date: 2021-06-04
 {{notice}}
 小提醒
 
--   如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。
--   你也可以用 Siri 執行這個捷徑。
-    {{noticed}}
+- 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。
+- 你也可以用 Siri 執行這個捷徑。
+  {{noticed}}

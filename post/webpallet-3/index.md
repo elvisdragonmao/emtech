@@ -45,17 +45,17 @@ h1 {
 
 ## 選擇器
 
--   元素選擇器：比如說`h1`就是選擇所有的 h1 元素
--   所有後代：比如說`*`就是選擇所有的元素
--   後代選擇器：比如說 `nav a`就是選擇所有 nav 裡面的 a 元素
--   親代選擇器：比如說 ` ol > li` 就是選擇所有 ol 裡面的 li 元素。而如果是 ol 裡的 li 裡的 li 就不會被選到。
--   群組選擇器：比如說 `nav, a`就是選擇所有 nav 元素和 a 元素
--   相鄰兄弟：比如說 ` h1 + p`就是選擇 h1 正後方的那一個 p 元素
--   一般兄弟：比如說 ` h1 ~ p`就是選擇 h1 後面的所有 p 元素
--   屬性選擇器：比如說 `a[href="https://twitter.com"]`就是選擇所有連結到 twitter 首頁的 a 元素
-    -   屬性網址包含某字是使用星號：`a[href*="tuts"]` (比如說 nettuts.com、net.tutsplus.com、tutsplus.com)
-    -   屬性開頭是使用上箭頭 caret 符號：`a[href^="http"]`
-    -   屬性結尾是使用錢符號：`[href$=".jpg"]`
+- 元素選擇器：比如說`h1`就是選擇所有的 h1 元素
+- 所有後代：比如說`*`就是選擇所有的元素
+- 後代選擇器：比如說 `nav a`就是選擇所有 nav 裡面的 a 元素
+- 親代選擇器：比如說 ` ol > li` 就是選擇所有 ol 裡面的 li 元素。而如果是 ol 裡的 li 裡的 li 就不會被選到。
+- 群組選擇器：比如說 `nav, a`就是選擇所有 nav 元素和 a 元素
+- 相鄰兄弟：比如說 ` h1 + p`就是選擇 h1 正後方的那一個 p 元素
+- 一般兄弟：比如說 ` h1 ~ p`就是選擇 h1 後面的所有 p 元素
+- 屬性選擇器：比如說 `a[href="https://twitter.com"]`就是選擇所有連結到 twitter 首頁的 a 元素
+    - 屬性網址包含某字是使用星號：`a[href*="tuts"]` (比如說 nettuts.com、net.tutsplus.com、tutsplus.com)
+    - 屬性開頭是使用上箭頭 caret 符號：`a[href^="http"]`
+    - 屬性結尾是使用錢符號：`[href$=".jpg"]`
 
 ### 權重
 
@@ -67,10 +67,10 @@ h1 {
 
 權重從高到低分別是
 
--   ID 選擇器
--   類別選擇器、屬性選擇器、偽類選擇器 (如：`root`)
--   元素選擇器、偽元素選擇器
--   任何元素選擇符`*`沒有權級
+- ID 選擇器
+- 類別選擇器、屬性選擇器、偽類選擇器 (如：`root`)
+- 元素選擇器、偽元素選擇器
+- 任何元素選擇符`*`沒有權級
 
 記得是可以相加的喔，這裡有一個[計算機](https://specificity.keegan.st/)，如果不確定的話可以試試看。
 
@@ -119,8 +119,8 @@ h1 {
 }
 ```
 
--   width 跟 height 的%基準是父層
--   line-height 以本身文字行高為基準
+- width 跟 height 的%基準是父層
+- line-height 以本身文字行高為基準
 
 接下來我們來有效率的一次認識所有常用的 CSS 語法吧
 
@@ -276,24 +276,24 @@ box-sizing:border-box;  // 把寬度範圍指定給整個邊框到邊框之間�
 
 CSS 的 Display 屬性可以改變元素對外所參與的佈局環境（outer display type），白話文就是元素怎麼排。
 
--   `inline`: 像文字一樣左到右上到下，不能決定寬高
--   `block`: 佔滿`<body>`整排，下一個東西會換行
--   `contents`: 只有 contents area 的 box，只顯示內容文字。
--   `inline-block`: 保持像 block 一樣得特性，可以設長寬等等，但一樣從左到右排
--   `display: none` Bang 不見
+- `inline`: 像文字一樣左到右上到下，不能決定寬高
+- `block`: 佔滿`<body>`整排，下一個東西會換行
+- `contents`: 只有 contents area 的 box，只顯示內容文字。
+- `inline-block`: 保持像 block 一樣得特性，可以設長寬等等，但一樣從左到右排
+- `display: none` Bang 不見
 
-*   block 是有面積的，可以設定寬跟高
-*   inline 設定寬高無效，可以設定 padding 的左右值，上下值無效，無法被撐開。
-*   inline-block 同時擁有兩種 display 的特性，可以設定寬高，但也可以與其他元素並排。
+* block 是有面積的，可以設定寬跟高
+* inline 設定寬高無效，可以設定 padding 的左右值，上下值無效，無法被撐開。
+* inline-block 同時擁有兩種 display 的特性，可以設定寬高，但也可以與其他元素並排。
 
 > 如果使用 inline-block(像是 a 或 li 設定)，標籤之間會有空白字元約 4~5px
 
 也可以為元素創造內部的佈局環境，提供後代元素佈局的規則（inner display type）。對內創造的佈局例如：
 
--   `flex`  
-    彈性盒佈局，該屬性值的元素本身對外仍參與 normal flow，可是內部環境為獨立的 flex formatting context。
--   `grid`  
-    格線佈局，該屬性值的元素本身對外仍參與 normal flow，可是內部環境為獨立的彈性盒佈局 grid formatting context。
+- `flex`  
+  彈性盒佈局，該屬性值的元素本身對外仍參與 normal flow，可是內部環境為獨立的 flex formatting context。
+- `grid`  
+  格線佈局，該屬性值的元素本身對外仍參與 normal flow，可是內部環境為獨立的彈性盒佈局 grid formatting context。
 
 這些我們之後會再細細討論。
 
@@ -317,11 +317,11 @@ float 是我比較少用的 CSS，因為會遇到一些問題比如說 float col
 
 當然解決方法很多，列幾個
 
--   元素的 float 參數不為 none
--   元素的 position 參數為 absolute 或 fixed
--   元素的 display 為 inline-block
--   overflow 參數不為 visible 的 block 元素
--   display 參數為 flow-root 的元素
+- 元素的 float 參數不為 none
+- 元素的 position 參數為 absolute 或 fixed
+- 元素的 display 為 inline-block
+- overflow 參數不為 visible 的 block 元素
+- display 參數為 flow-root 的元素
 
 ### Clear
 
@@ -473,11 +473,11 @@ font-size:2em;
 
 以下是一些常見的 CSS 偽類：
 
--   `:hover`：當滑鼠懸停在元素上方時應用的樣式。這是一個常見的偽類，常用於添加互動效果，例如當滑鼠懸停在按鈕上時改變其背景顏色。
--   `:active`：當元素被激活時應用的樣式。通常用於按下按鈕或鏈接時，以顯示按下效果。
--   `:visited`：應用於已訪問過的連結的樣式。這使得訪問過的連結可以與未訪問的連結區分開來。
--   `:first-child`：選擇父元素的第一個子元素。這使得我們可以針對列表中的第一個元素或表格中的第一列應用特定的樣式。
--   `:nth-child()`：選擇父元素中特定位置的子元素。這個偽類允許我們按照一定的模式選擇元素，例如 :nth-child(2n) 可以選擇所有偶數位置的元素。
+- `:hover`：當滑鼠懸停在元素上方時應用的樣式。這是一個常見的偽類，常用於添加互動效果，例如當滑鼠懸停在按鈕上時改變其背景顏色。
+- `:active`：當元素被激活時應用的樣式。通常用於按下按鈕或鏈接時，以顯示按下效果。
+- `:visited`：應用於已訪問過的連結的樣式。這使得訪問過的連結可以與未訪問的連結區分開來。
+- `:first-child`：選擇父元素的第一個子元素。這使得我們可以針對列表中的第一個元素或表格中的第一列應用特定的樣式。
+- `:nth-child()`：選擇父元素中特定位置的子元素。這個偽類允許我們按照一定的模式選擇元素，例如 :nth-child(2n) 可以選擇所有偶數位置的元素。
 
 比如說你想要元素在滑鼠放在上面時往上移一點，有選牌得感覺，你可以這樣打
 

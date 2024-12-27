@@ -15,10 +15,10 @@ date: 2021-09-08
 {{notice}}
 MultiWall
 
--   開發者:is.gd
--   軟體類型：免費軟體
--   網址：[官網](http://windowbox.me/multiwall/downloads.php)
-    {{noticed}}
+- 開發者:is.gd
+- 軟體類型：免費軟體
+- 網址：[官網](http://windowbox.me/multiwall/downloads.php)
+  {{noticed}}
 
 ## 使用教學
 

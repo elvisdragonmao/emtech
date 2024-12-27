@@ -86,9 +86,9 @@ H<sup>+</sup> CO<sub>2</sub>
 </ul>
 ```
 
--   a
--   b
--   c
+- a
+- b
+- c
 
 ## 有序清單
 

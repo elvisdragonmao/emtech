@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [HTML,CSS,JavaScript]
+tags: [HTML, CSS, JavaScript]
 categories: [程式跑給你看]
 date: 2024-11-26
 description: 簡單來說好好去讀書吧。無論你全部猜 C、平均猜 ABCD 還是完全亂猜，你的平均分數都一樣爛。
@@ -28,7 +28,7 @@ description: 簡單來說好好去讀書吧。無論你全部猜 C、平均猜 A
 
 1/4 的機率猜對，得 1 分；3/4 的機率猜錯，得 0 分。所以每題的期望分數是：
 
-1/4 * 1 + 3/4 * 0 = 1/4 = 0.25
+1/4 _ 1 + 3/4 _ 0 = 1/4 = 0.25
 
 不論使用哪種猜題策略，考生在多題測試中的平均分數是相同的。以 100 道題目為例，平均分數為 25 分。
 
@@ -43,6 +43,7 @@ description: 簡單來說好好去讀書吧。無論你全部猜 C、平均猜 A
 {{noticed}}
 
 為了進一步驗證數學結果，我們可以使用 JavaScript 模擬上述三種策略。以下是模擬器的功能：
+
 1. 輸入模擬次數，重複進行測試。
 2. 根據不同的猜題策略計算分數。
 3. 顯示每種策略的平均分數，讓使用者觀察結果。
@@ -54,23 +55,25 @@ description: 簡單來說好好去讀書吧。無論你全部猜 C、平均猜 A
 ```javascript
 // 策略 1: 全部猜 C
 function strategyAllC(correctAnswers) {
-  const guess = 2; // 選項 C 對應索引 2
-  return correctAnswers.filter(answer => answer === guess).length;
+    const guess = 2; // 選項 C 對應索引 2
+    return correctAnswers.filter((answer) => answer === guess).length;
 }
 
 // 策略 2: 隨機猜 ABCD
 function strategyRandom(correctAnswers) {
-  return correctAnswers.filter(answer => answer === Math.floor(Math.random() * 4)).length;
+    return correctAnswers.filter(
+        (answer) => answer === Math.floor(Math.random() * 4)
+    ).length;
 }
 
 // 模擬函數
 function simulate(numQuestions, simulations, strategy) {
-  let totalScore = 0;
-  for (let i = 0; i < simulations; i++) {
-    const correctAnswers = generateCorrectAnswers(numQuestions, 4);
-    totalScore += strategy(correctAnswers);
-  }
-  return totalScore / simulations;
+    let totalScore = 0;
+    for (let i = 0; i < simulations; i++) {
+        const correctAnswers = generateCorrectAnswers(numQuestions, 4);
+        totalScore += strategy(correctAnswers);
+    }
+    return totalScore / simulations;
 }
 ```
 
@@ -78,25 +81,22 @@ function simulate(numQuestions, simulations, strategy) {
 
 ![猜題策略模擬器](run.webp)
 
-
 我們直接寫一百萬張考卷，然後用三種策略來看看平均分數。你可以看到，不管是全部猜 C、平均猜 ABCD 還是完全亂猜，平均分數都是 25 分。
-
 
 ## 其他策略
 
 據說著名心理學家、《快思慢想》的作者康納曼（Daniel Kahneman）用了這個策略考過了駕照筆試。
 
-> * 秘訣1：按照「對—錯—對—錯」的順序選擇答案。
-> * 秘訣2：實在不知道就選「對」。
-> * 秘訣3：有四個選項選B；有五個選項選E。
-> * 秘訣4：答案選項中有「以上都對」或「以上都錯」，就選這兩個。
-> * 秘訣5：選擇題裡最長的選項更有可能是正確答案。
-> * 秘訣6：不合群的答案通常不正確。
-> * 秘訣7：你覺得正確的答案更有可能是正確的。
-
+> - 秘訣 1：按照「對—錯—對—錯」的順序選擇答案。
+> - 秘訣 2：實在不知道就選「對」。
+> - 秘訣 3：有四個選項選 B；有五個選項選 E。
+> - 秘訣 4：答案選項中有「以上都對」或「以上都錯」，就選這兩個。
+> - 秘訣 5：選擇題裡最長的選項更有可能是正確答案。
+> - 秘訣 6：不合群的答案通常不正確。
+> - 秘訣 7：你覺得正確的答案更有可能是正確的。
 
 因為這些策略都牽扯到人性和心理學，所以我們就不用程式來驗證了。
 
 ## 結論
 
-結論就是，好好去讀書吧。無論你全部猜 C、平均猜 ABCD 還是完全亂猜，你的平均分數都一樣爛。但如果你有在 [Instagram](https://www.instagram.com/em.tec.blog) 或 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3) 追蹤[毛哥EM資訊密技](https://em-tec.github.io/) 分數搞不好會變高喔w
+結論就是，好好去讀書吧。無論你全部猜 C、平均猜 ABCD 還是完全亂猜，你的平均分數都一樣爛。但如果你有在 [Instagram](https://www.instagram.com/em.tec.blog) 或 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3) 追蹤[毛哥EM資訊密技](https://em-tec.github.io/) 分數搞不好會變高喔 w

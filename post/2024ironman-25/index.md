@@ -120,9 +120,9 @@ Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴�
 
 ### 確保 secrets 的安全
 
--   **不將敏感信息硬編碼到代碼中**：使用 GitHub 的 secrets 功能來存儲敏感信息，例如 API 密鑰和憑證。
+- **不將敏感信息硬編碼到代碼中**：使用 GitHub 的 secrets 功能來存儲敏感信息，例如 API 密鑰和憑證。
 
--   **使用環境變數**：在 GitHub Actions 的配置文件中，使用環境變數來引用 secrets，避免將其直接寫入代碼。
+- **使用環境變數**：在 GitHub Actions 的配置文件中，使用環境變數來引用 secrets，避免將其直接寫入代碼。
 
 ## 小結
 

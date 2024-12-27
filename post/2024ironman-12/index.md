@@ -19,11 +19,11 @@ date: 2024-09-25
 
 ## 常見環境變數
 
--   **`GITHUB_REPOSITORY`**: 存儲當前工作流程所在的倉庫名稱。
--   **`GITHUB_REF`**: 存儲當前的分支或標籤名稱。
--   **`GITHUB_SHA`**: 存儲當前 commit 的 SHA 值。
--   **`GITHUB_WORKSPACE`**: 表示當前工作流程的工作空間目錄。
--   **`GITHUB_ACTOR`**: 執行工作流程的用戶名。
+- **`GITHUB_REPOSITORY`**: 存儲當前工作流程所在的倉庫名稱。
+- **`GITHUB_REF`**: 存儲當前的分支或標籤名稱。
+- **`GITHUB_SHA`**: 存儲當前 commit 的 SHA 值。
+- **`GITHUB_WORKSPACE`**: 表示當前工作流程的工作空間目錄。
+- **`GITHUB_ACTOR`**: 執行工作流程的用戶名。
 
 這些變數可直接在 YAML 文件中使用，如：
 
@@ -53,14 +53,14 @@ steps:
 
 ## 在 Node.js 程式中使用環境變數
 
--   **Node.js**: 在 Node.js 中，可以通過 `process.env` 來讀取環境變數。例如：
+- **Node.js**: 在 Node.js 中，可以通過 `process.env` 來讀取環境變數。例如：
 
     ```javascript
     const apiUrl = process.env.API_URL || "https://default.example.com";
     console.log(`API URL: ${apiUrl}`);
     ```
 
--   **設置 `.env` 文件**: 你可以使用 `.env` 文件來定義環境變數，並使用 `dotenv` 庫在 Node.js 中讀取這些變數。步驟如下：
+- **設置 `.env` 文件**: 你可以使用 `.env` 文件來定義環境變數，並使用 `dotenv` 庫在 Node.js 中讀取這些變數。步驟如下：
     1. 安裝 `dotenv`：
         ```bash
         npm install dotenv

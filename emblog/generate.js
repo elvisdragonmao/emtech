@@ -272,9 +272,9 @@ async function processPosts() {
                 let postMeta = extractFrontMatter(markdownContent);
                 // turn image url if not set path like ![](image.webp) to ![](/static/postID/image.webp)
                 // don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
-               if(postMeta.draft == "true") {
-                     console.log(`➤ Skip post: ${postID}`);
-                     continue;
+                if (postMeta.draft == "true") {
+                    console.log(`➤ Skip post: ${postID}`);
+                    continue;
                 }
                 markdownContent = markdownContent.replace(
                     /!\[(.*?)\]\((?!\/|http)(.*?)\)/g,
@@ -322,7 +322,8 @@ async function processPosts() {
                     let color = await findRepresentativeColors(
                         path.join("dist", thumbnail)
                     );
-                    postMeta.colors ="linear-gradient(135deg, "+ color.join(", ")+")";
+                    postMeta.colors =
+                        "linear-gradient(135deg, " + color.join(", ") + ")";
                     postMeta.color = color[1];
                 }
 
@@ -758,7 +759,7 @@ async function findRepresentativeColors(imagePath) {
         imagePath,
         "bottomRight"
     );
-   // return `linear-gradient(135deg, ${topLeftColor}, ${centerColor}, ${bottomRightColor})`;
+    // return `linear-gradient(135deg, ${topLeftColor}, ${centerColor}, ${bottomRightColor})`;
     return [topLeftColor, centerColor, bottomRightColor];
     console.log(
         `<div style="width: 100px; height: 100px; background: linear-gradient(135deg, ${topLeftColor}, ${centerColor}, ${bottomRightColor});"></div>`

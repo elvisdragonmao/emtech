@@ -75,9 +75,9 @@ jobs:
 
 在 GitHub 倉庫的 "Secrets and variables" 部分，設置以下 secrets：
 
--   `AWS_S3_BUCKET`: 你的 S3 存儲桶名稱
--   `AWS_ACCESS_KEY_ID`: 你的 AWS 訪問密鑰 ID
--   `AWS_SECRET_ACCESS_KEY`: 你的 AWS 密鑰
+- `AWS_S3_BUCKET`: 你的 S3 存儲桶名稱
+- `AWS_ACCESS_KEY_ID`: 你的 AWS 訪問密鑰 ID
+- `AWS_SECRET_ACCESS_KEY`: 你的 AWS 密鑰
 
 ## 2. 使用 GitHub Actions 部署到 Heroku
 
@@ -130,8 +130,8 @@ jobs:
 
 在 GitHub 倉庫的 "Secrets and variables" 部分，設置以下 secrets：
 
--   `HEROKU_API_KEY`: 你的 Heroku API 密鑰
--   `HEROKU_APP_NAME`: 你的 Heroku 應用名稱
+- `HEROKU_API_KEY`: 你的 Heroku API 密鑰
+- `HEROKU_APP_NAME`: 你的 Heroku 應用名稱
 
 ## 3. 使用 Vercel 自動預覽部署
 

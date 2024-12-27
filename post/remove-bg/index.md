@@ -13,10 +13,10 @@ date: 2022-01-06
 {{notice}}
 Remove.bg
 
--   開發者：[Kaleido](https://www.kaleido.ai/)
--   類型：網站/網路應用程式
--   連結：[Remove.bg](https://Remove.bg)
-    {{noticed}}
+- 開發者：[Kaleido](https://www.kaleido.ai/)
+- 類型：網站/網路應用程式
+- 連結：[Remove.bg](https://Remove.bg)
+  {{noticed}}
 
 進入到網站後可以直接上傳照片。上傳完成後可以直接下載，也可以做一些編輯如手動去背（如果 AI 沒去好）、添加濾鏡、背景顏色等。
 
@@ -34,10 +34,10 @@ API(Application Programming Interface)，中文叫做應用程式介面。你可
 {{notice}}
 Remove.bg 一鍵去背
 
--   開發者:毛哥EM(我)
--   軟體類型:ios 捷徑
--   下載位置：[iCloud](https://www.icloud.com/shortcuts/fce4a5a7643e4fc2b8c26fa82f5a2fc3)
-    {{noticed}}
+- 開發者:毛哥EM(我)
+- 軟體類型:ios 捷徑
+- 下載位置：[iCloud](https://www.icloud.com/shortcuts/fce4a5a7643e4fc2b8c26fa82f5a2fc3)
+  {{noticed}}
 
 ### 使用方法
 

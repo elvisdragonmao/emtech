@@ -10,8 +10,8 @@ date: 2023-09-18
 
 今天我們要來玩玩 CSS 動畫。CSS 動畫有兩種：
 
--   @keyframes - 動作效果
--   transition - 轉場效果
+- @keyframes - 動作效果
+- transition - 轉場效果
 
     我們今天都拿 PowerPoint 來舉例，雖然感覺現在的學生都快只認識 Canva 了 (順帶一提 Canva 就是 CSS 動畫)
 
@@ -36,10 +36,10 @@ transition: background 4s ease-in-out 1s;
 
 每一個屬性都可以分開設定，但真的不用跟自己過意不去。有興趣的連結下收
 
--   [transition-delay](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay)
--   [transition-duration](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration)
--   [transition-property](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property)
--   [transition-timing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function)
+- [transition-delay](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay)
+- [transition-duration](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration)
+- [transition-property](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property)
+- [transition-timing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function)
 
 每一個屬性都可以分開設定，也可以省略一些屬性不寫。比如說
 

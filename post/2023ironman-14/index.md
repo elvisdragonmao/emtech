@@ -20,10 +20,10 @@ date: 2023-09-28
 
 寫 checkbox 的 CSS 時因為
 
--   `input` 是插入一個元素，而不是一個範圍，所以不能使用 `::before` 和 `::after` 來做。
--   checkbox 顯示一定是正方形，如果設置為其他長寬比塊白的地方還是可以點擊。
-    ![Alt text](checkbox-range.webp)
--   checkbox 無法設定背景顏色
+- `input` 是插入一個元素，而不是一個範圍，所以不能使用 `::before` 和 `::after` 來做。
+- checkbox 顯示一定是正方形，如果設置為其他長寬比塊白的地方還是可以點擊。
+  ![Alt text](checkbox-range.webp)
+- checkbox 無法設定背景顏色
 
 問題那麼多，因此我們只需要 input 幫我們掛名存狀態，然後把它藏在角落裡面就好了。
 

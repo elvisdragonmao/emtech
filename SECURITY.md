@@ -4,10 +4,10 @@
 
 We actively support the latest major version of our software. Please ensure you are using the most up-to-date version before reporting a vulnerability.
 
-| Version | Supported         |
-|---------|-------------------|
-| Latest  | ✅                |
-| Older   | ❌ (No support)   |
+| Version | Supported       |
+| ------- | --------------- |
+| Latest  | ✅              |
+| Older   | ❌ (No support) |
 
 ---
 
