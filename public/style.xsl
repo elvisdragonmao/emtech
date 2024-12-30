@@ -12,8 +12,6 @@
                     margin: 20px;
                     background-color: #f2f4f8;
                     color: #363636;
-                    }
-                    h2{
                     text-align:center;
                     }
                     table {
