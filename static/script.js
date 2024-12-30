@@ -389,7 +389,18 @@ if (window.location.pathname.includes("/p/")) {
             // all the url after the domain
             window.location.pathname.slice(1)
         );
-    else updatePostList("category/精選", false);
+    else {
+        updatePostList("category/精選", false);
+        if (window.location.pathname.includes("/search")) {
+            // get keyword from ?q
+            const searchKeyword = window.location.search.split("?q=")[1];
+            document.getElementById("search").value =
+                decodeURIComponent(searchKeyword);
+            document.getElementById("search-toggle").checked = true;
+            // Trigger the input event to perform the search
+            document.getElementById("search").dispatchEvent(new Event("input"));
+        }
+    }
 }
 
 const switchToHome = () => {
@@ -745,6 +756,7 @@ fetch("/meta/search.json")
                     })
                     .join("");
             });
+        document.getElementById("search").dispatchEvent(new Event("input"));
     });
 
 // if user refresh page, scroll to top

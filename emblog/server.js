@@ -19,7 +19,8 @@ const server = http.createServer((req, res) => {
         // if url is /category or /tag, render home page index.html
         if (
             decodedUrl.startsWith("/category") ||
-            decodedUrl.startsWith("/tag")
+            decodedUrl.startsWith("/tag") ||
+            decodedUrl.startsWith("/search")
         ) {
             filePath = path.join(baseDirectory, "index.html");
         }
