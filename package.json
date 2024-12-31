@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "scripts": {
         "build": "node emblog/generate.js",
-        "start": "node emblog/server.js"
+        "dev": "node emblog/server.js"
     },
     "dependencies": {
         "highlight.js": "^11.10.0",

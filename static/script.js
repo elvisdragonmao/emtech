@@ -392,10 +392,11 @@ if (window.location.pathname.includes("/p/")) {
     else {
         updatePostList("category/精選", false);
         if (window.location.pathname.includes("/search")) {
-            // get keyword from ?q
+            document.title = "搜尋 | 毛哥EM資訊密技";
             const searchKeyword = window.location.search.split("?q=")[1];
-            document.getElementById("search").value =
-                decodeURIComponent(searchKeyword);
+            if (searchKeyword)
+                document.getElementById("search").value =
+                    decodeURIComponent(searchKeyword);
             document.getElementById("search-toggle").checked = true;
             // Trigger the input event to perform the search
             document.getElementById("search").dispatchEvent(new Event("input"));
@@ -609,8 +610,9 @@ document.body.addEventListener("click", (e) => {
             document.title = a.textContent + " | 毛哥EM資訊密技";
             if (currentPage !== "home") switchToHome();
         } else if (a.getAttribute("href").includes("/tag/")) {
-            updatePostList("tag/" + a.getAttribute("href").split("/tag/")[1]);
-            document.title = a.textContent + " | 毛哥EM資訊密技";
+            const tagTitle = a.getAttribute("href").split("/tag/")[1];
+            updatePostList("tag/" + tagTitle);
+            document.title = tagTitle + " | 毛哥EM資訊密技";
             if (currentPage !== "home") switchToHome();
         } else if (a.getAttribute("href") === "/random") {
             // get random post id from search.json
