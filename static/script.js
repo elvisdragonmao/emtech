@@ -610,8 +610,9 @@ document.body.addEventListener("click", (e) => {
             document.title = a.textContent + " | 毛哥EM資訊密技";
             if (currentPage !== "home") switchToHome();
         } else if (a.getAttribute("href").includes("/tag/")) {
-            updatePostList("tag/" + a.getAttribute("href").split("/tag/")[1]);
-            document.title = a.textContent + " | 毛哥EM資訊密技";
+            const tagTitle = a.getAttribute("href").split("/tag/")[1];
+            updatePostList("tag/" + tagTitle);
+            document.title = tagTitle + " | 毛哥EM資訊密技";
             if (currentPage !== "home") switchToHome();
         } else if (a.getAttribute("href") === "/random") {
             // get random post id from search.json
