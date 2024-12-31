@@ -392,7 +392,7 @@ if (window.location.pathname.includes("/p/")) {
     else {
         updatePostList("category/精選", false);
         if (window.location.pathname.includes("/search")) {
-            // get keyword from ?q
+            document.title = "搜尋 | 毛哥EM資訊密技";
             const searchKeyword = window.location.search.split("?q=")[1];
             if (searchKeyword)
                 document.getElementById("search").value =
