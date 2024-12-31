@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [GitHub, git, bash]
-categories: [教學, 別說我教的]
+categories: [教學，別說我教的]
 date: 2024-12-31
 description: "用 bash 腳本自動化提交有 co-author 的 commit、創建 Pull Request、並自動合併。"
 ---
@@ -20,13 +20,13 @@ description: "用 bash 腳本自動化提交有 co-author 的 commit、創建 Pu
 
 接著在 commit 的時候加上 `Co-authored-by` 註解，這樣就能夠記錄到協作者。記得要 push 到一個新的 branch，然後建立一個拉取請求（Pull Request）。
 
-比如說:
+比如說：
 
 ```
 Co-authored-by: Elvis Mao <info@elvismao.com>
 ```
 
-如果你是用 git commit 的話，步驟如下:
+如果你是用 git commit 的話，步驟如下：
 
 ```bash
 git checlout -b new-feature
@@ -57,7 +57,6 @@ git push --set-upstream origin new-feature
 
 首先請你先確保你有安裝 [GitHub CLI](https://cli.github.com/)。如果你還沒有安裝，可以參考 [這裡](https://github.com/cli/cli#installation) 來安裝。
 
-
 #### 2. 使用 Bash 腳本
 
 接著請你下載我的 [Bash 腳本](https://github.com/Edit-Mr/SSS/blob/main/github/PairExtraordinaire.sh)。你可以手動下載或是直接 curl 這個檔案。
@@ -84,6 +83,7 @@ do
     gh pr merge --squash --auto
 done
 ```
+
 接著只需要執行這個腳本，就能夠快速的刷 Pull Request 了。
 
 ```bash
