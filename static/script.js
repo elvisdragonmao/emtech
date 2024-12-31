@@ -394,8 +394,9 @@ if (window.location.pathname.includes("/p/")) {
         if (window.location.pathname.includes("/search")) {
             // get keyword from ?q
             const searchKeyword = window.location.search.split("?q=")[1];
-            document.getElementById("search").value =
-                decodeURIComponent(searchKeyword);
+            if (searchKeyword)
+                document.getElementById("search").value =
+                    decodeURIComponent(searchKeyword);
             document.getElementById("search-toggle").checked = true;
             // Trigger the input event to perform the search
             document.getElementById("search").dispatchEvent(new Event("input"));
