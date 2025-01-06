@@ -597,6 +597,7 @@ function generateTagsAndCategories() {
 }
 
 function getCurrentPubDate() {
+    return new Date().toISOString().split('T')[0];
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const months = [
         "Jan",
@@ -631,12 +632,12 @@ function getCurrentPubDate() {
 
 // Sitemap 和 RSS 生成
 function generateSitemapAndRSS() {
-    const today = new Date().toISOString();
+    const today = new Date().toISOString().split('T')[0];
     const sitemapContent = postsMeta
         .map(
             (post) => ` <url>
     <loc>https://emtech.cc/p/${post.id}</loc>
-    <lastmod>${new Date(post.lastUpdated).toISOString()}</lastmod>
+    <lastmod>${new Date(post.lastUpdated).toISOString().split("T")[0]}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`
@@ -645,7 +646,7 @@ function generateSitemapAndRSS() {
     fs.writeFileSync(
         "dist/sitemap.xml",
         `<?xml version="1.0" encoding="UTF-8"?>
-        <?xml-stylesheet type="text/xsl" href="/style.xsl"?>
+        <?xml-stylesheet type="text/xsl" href="/static/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://emtech.cc</loc>
@@ -664,7 +665,7 @@ function generateSitemapAndRSS() {
       <title>${post.title}</title>
       <link>https://emtech.cc/p/${post.id}</link>
       <description>${post.description}</description>
-      <pubDate>${new Date(post.lastUpdated).toUTCString()}</pubDate>
+      <pubDate>${new Date(post.lastUpdated).toISOString().split("T")[0]}</pubDate>
       <guid>https://emtech.cc/p/${post.id}</guid>
     </item>`
         )
@@ -672,7 +673,7 @@ function generateSitemapAndRSS() {
     fs.writeFileSync(
         "dist/rss.xml",
         `<?xml version="1.0" encoding="UTF-8"?>
-        <?xml-stylesheet type="text/xsl" href="/style.xsl"?>
+        <?xml-stylesheet type="text/xsl" href="/static/rss.xsl"?>
         <rss version="2.0">
         <channel>
         <title>毛哥EM資訊密技</title>

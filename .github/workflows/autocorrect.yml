@@ -47,7 +47,7 @@ jobs:
                   if git diff --staged --quiet; then
                     echo "No changes to commit"
                   else
-                  git commit -m "噢多麼單純的一首詩 怎麼會 怎麼會 忘記加空白" -m "-草東沒有派對《爛泥》"
+                  git commit -m "你們為甚麼就不能加個空白呢?"
                   git push
                   fi
               env:
@@ -75,7 +75,7 @@ jobs:
                   if git diff --staged --quiet; then
                     echo "No changes to commit"
                   else
-                    git commit -m "空間是一格半 誰也出不去 幾寸也不滿意 思想是循環 溫飽思淫慾" -m "-草東沒有派對《空》"
+                    git commit -m "毛哥沒有空白"
                     git push
                   fi
               env:
