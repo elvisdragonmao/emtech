@@ -3,8 +3,8 @@ const path = require("path");
 const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
 const sharp = require("sharp");
-const skipPost = 0;
-const cache = false;
+const skipPost = process.env.SKIPPOST || 0;
+const cache = process.env.CACHE || false;
 let analyze = {
     pages: 0,
     posts: 0,

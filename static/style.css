@@ -503,8 +503,8 @@ a.header-categories-item span {
 .header-info {
     height: 100%;
     min-height: 8rem;
-    background: url("https://raw.githubusercontent.com/emfont/emfont/main/og.png")
-        no-repeat center center / cover;
+    background: url("https://cdn.emtech.cc/ad.webp") no-repeat center center /
+        cover;
     background-size: 100% auto;
     transition: background-size 0.3s;
     cursor: pointer;
@@ -531,7 +531,7 @@ a.header-categories-item span {
     height: 8rem;
     border-radius: calc(var(--border-radius) / 30 * 17.2);
     object-fit: contain;
-    background: url(/static/img/blank.webp) center/cover;
+    background: #fff;
 }
 
 .header-newPost-hover {
