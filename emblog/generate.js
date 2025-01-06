@@ -498,6 +498,7 @@ function extractFrontMatter(content) {
         const lines = frontMatter.split("\n").slice(1, -1); // 去掉 '---'
         meta = {};
         lines.forEach((line) => {
+            if (!line.includes(": ") || line.startsWith("#")) return;
             const [key, value] = line.split(": ");
             const trimmedKey = key.trim();
             const trimmedValue = value.trim();
