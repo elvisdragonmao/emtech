@@ -338,7 +338,7 @@ async function processPosts() {
                 postMeta.length =
                     length > 1000 ? (length / 1000).toFixed(1) + "k" : length;
                 // Use lastUpdated from frontmatter if available, otherwise use the file mtime
-                postMeta.lastUpdated = postMeta.lastUpdated 
+                postMeta.lastUpdated = postMeta.lastUpdated
                     ? new Date(postMeta.lastUpdated).getTime()
                     : fs.statSync(markdownFile).mtime;
                 if (!postMeta.readingTime) {
