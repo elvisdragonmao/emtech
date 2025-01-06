@@ -641,8 +641,6 @@ function generateSitemapAndRSS() {
             (post) => ` <url>
     <loc>https://emtech.cc/p/${post.id}</loc>
     <lastmod>${new Date(post.lastUpdated).toISOString().split("T")[0]}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>`
         )
         .join("\n");
@@ -653,8 +651,6 @@ function generateSitemapAndRSS() {
   <url>
     <loc>https://emtech.cc</loc>
     <lastmod>${today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
   </url>
   ${sitemapContent}</urlset>`
     );
