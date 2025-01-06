@@ -337,10 +337,7 @@ async function processPosts() {
                 // turn to k, if length > 1000. Fixed to 1 decimal place
                 postMeta.length =
                     length > 1000 ? (length / 1000).toFixed(1) + "k" : length;
-                // Use lastUpdated from frontmatter if available, otherwise use the file mtime
-                postMeta.lastUpdated = postMeta.lastUpdated
-                    ? new Date(postMeta.lastUpdated).getTime()
-                    : fs.statSync(markdownFile).mtime;
+                postMeta.lastUpdated = fs.statSync(markdownFile).mtime;
                 if (!postMeta.readingTime) {
                     const chineseReadingSpeed = 300; // 每分鐘 300 字
                     const englishReadingSpeed = 200; // 每分鐘 200 單詞
@@ -530,12 +527,12 @@ function extractFrontMatter(content) {
     return meta;
 }
 
+let tags = {}; // 需要按順序排
+const categories = {};
 // 生成 tags 和 categories 的 json 檔
 function generateTagsAndCategories() {
     const tagsMap = {};
     const categoriesMap = {};
-    let tags = {};
-    const categories = {};
     const search = []; // only title,discription, and id. for search
 
     // order by date
@@ -601,7 +598,6 @@ function generateTagsAndCategories() {
 }
 
 function getCurrentPubDate() {
-    return new Date().toISOString().split("T")[0];
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const months = [
         "Jan",
@@ -636,22 +632,48 @@ function getCurrentPubDate() {
 
 // Sitemap 和 RSS 生成
 function generateSitemapAndRSS() {
-    const today = new Date().toISOString().split("T")[0];
+    // 所有葉面列出，包括首頁，文章頁，標籤頁，分類頁
+    const allPage = [
+        "https://emtech.cc",
+        "https://emtech.cc/random",
+        "https://emtech.cc/rss.xml",
+        "https://emtech.cc/sitemap.xml"
+    ]
+        .concat(postsMeta.map((post) => `https://emtech.cc/p/${post.id}`))
+        .concat(Object.keys(tags).map((tag) => `https://emtech.cc/tag/${tag}`))
+        .concat(
+            Object.keys(categories).map(
+                (category) => `https://emtech.cc/category/${category}`
+            )
+        );
+
+    fs.writeFileSync(
+        "dist/pages.txt",
+        allPage.map((url) => encodeURI(url)).join("\n")
+    );
+
+    const today = new Date().toISOString();
+    // Sitemap 生成
     const sitemapContent = postsMeta
         .map(
             (post) => ` <url>
     <loc>https://emtech.cc/p/${post.id}</loc>
-    <lastmod>${new Date(post.lastUpdated).toISOString().split("T")[0]}</lastmod>
+    <lastmod>${new Date(post.lastUpdated).toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>`
         )
         .join("\n");
     fs.writeFileSync(
         "dist/sitemap.xml",
         `<?xml version="1.0" encoding="UTF-8"?>
+        <?xml-stylesheet type="text/xsl" href="/static/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://emtech.cc</loc>
     <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   ${sitemapContent}</urlset>`
     );
@@ -664,7 +686,7 @@ function generateSitemapAndRSS() {
       <title>${post.title}</title>
       <link>https://emtech.cc/p/${post.id}</link>
       <description>${post.description}</description>
-      <pubDate>${new Date(post.lastUpdated).toISOString().split("T")[0]}</pubDate>
+      <pubDate>${new Date(post.lastUpdated).toUTCString()}</pubDate>
       <guid>https://emtech.cc/p/${post.id}</guid>
     </item>`
         )
