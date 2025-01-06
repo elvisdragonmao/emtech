@@ -597,7 +597,7 @@ function generateTagsAndCategories() {
 }
 
 function getCurrentPubDate() {
-    return new Date().toISOString().split('T')[0];
+    return new Date().toISOString().split("T")[0];
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const months = [
         "Jan",
@@ -632,7 +632,7 @@ function getCurrentPubDate() {
 
 // Sitemap 和 RSS 生成
 function generateSitemapAndRSS() {
-    const today = new Date().toISOString().split('T')[0];
+    const today = new Date().toISOString().split("T")[0];
     const sitemapContent = postsMeta
         .map(
             (post) => ` <url>
