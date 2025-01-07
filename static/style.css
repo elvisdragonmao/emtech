@@ -1274,7 +1274,7 @@ figure img {
     min-height: 3rem;
     transform: scale(1.2);
     filter: blur(10px);
-    transition:all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .post-thumbnail.loaded {

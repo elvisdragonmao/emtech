@@ -433,7 +433,9 @@ const switchToPost = (a) => {
             ready = true;
             return;
         }
-        const postThumbnail = document.querySelector(".post-thumbnail-container");
+        const postThumbnail = document.querySelector(
+            ".post-thumbnail-container"
+        );
         postThumbnail.style.visibility = "hidden";
         document.body.classList.add("displayPost");
         document.body.classList.remove("toPost");
