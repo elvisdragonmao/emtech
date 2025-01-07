@@ -709,83 +709,38 @@ function generateSitemapAndRSS() {
     );
 }
 
-async function calculateAverageColor(imagePath, region) {
-    const { width, height } = await sharp(imagePath).metadata();
-
-    // 定義各區域
-    const regions = {
-        topLeft: {
-            left: 0,
-            top: 0,
-            width: Math.floor(width / 3),
-            height: Math.floor(height / 3)
-        },
-        center: {
-            left: Math.floor(width / 3),
-            top: Math.floor(height / 3),
-            width: Math.floor(width / 3),
-            height: Math.floor(height / 3)
-        },
-        bottomRight: {
-            left: Math.floor((2 * width) / 3),
-            top: Math.floor((2 * height) / 3),
-            width: Math.floor(width / 3),
-            height: Math.floor(height / 3)
-        }
-    };
-
-    const regionInfo = regions[region];
-
-    // 確認區域大小是否足夠
-    const extracted = await sharp(imagePath)
-        .extract(regionInfo)
-        .raw()
-        .ensureAlpha()
-        .toBuffer({ resolveWithObject: true });
-
-    const data = extracted.data;
-    const pixelCount = data.length / 4; // 總像素數 (每個像素佔 4 個字節: RGBA)
-
-    // 設定 sampleSize 為不超過總像素數
-    const sampleSize = Math.min(10, pixelCount);
-
-    const colors = {};
-
-    // 取樣像素顏色
-    for (let i = 0; i < sampleSize; i++) {
-        const pixelIndex = i * 4; // RGBA 每個像素佔 4 個字節
-        const colorKey = [0, 1, 2]
-            .map((offset) =>
-                data[pixelIndex + offset].toString(16).padStart(2, "0")
-            )
-            .join("");
-
-        if (colors[colorKey]) {
-            colors[colorKey]++;
-        } else {
-            colors[colorKey] = 1;
-        }
-    }
-
-    // 找到最常出現的顏色
-    const mostFrequentColor = Object.keys(colors).reduce((a, b) =>
-        colors[a] > colors[b] ? a : b
-    );
-    return "#" + mostFrequentColor;
-}
-
 async function findRepresentativeColors(imagePath) {
-    const topLeftColor = await calculateAverageColor(imagePath, "topLeft");
-    const centerColor = await calculateAverageColor(imagePath, "center");
-    const bottomRightColor = await calculateAverageColor(
-        imagePath,
-        "bottomRight"
-    );
-    // return `linear-gradient(135deg, ${topLeftColor}, ${centerColor}, ${bottomRightColor})`;
-    return [topLeftColor, centerColor, bottomRightColor];
-    console.log(
-        `<div style="width: 100px; height: 100px; background: linear-gradient(135deg, ${topLeftColor}, ${centerColor}, ${bottomRightColor});"></div>`
-    );
+    const { width, height } = await sharp(imagePath).metadata();
+    const regions = [
+        { left: 0, top: 0, width: width / 3, height: height / 3 },
+        { left: width / 3, top: height / 3, width: width / 3, height: height / 3 },
+        { left: (2 * width) / 3, top: (2 * height) / 3, width: width / 3, height: height / 3 }
+    ];
+
+    const colors = await Promise.all(regions.map(async region => {
+        const { data } = await sharp(imagePath)
+            .extract(region)
+            .raw()
+            .ensureAlpha()
+            .toBuffer({ resolveWithObject: true });
+
+        const pixelCount = data.length / 4;
+        const sampleSize = Math.min(10, pixelCount);
+        const colorFreq = {};
+
+        for (let i = 0; i < sampleSize; i++) {
+            const idx = i * 4;
+            const color = '#' + [0, 1, 2]
+                .map(j => data[idx + j].toString(16).padStart(2, '0'))
+                .join('');
+            colorFreq[color] = (colorFreq[color] || 0) + 1;
+        }
+
+        return Object.entries(colorFreq)
+            .sort((a, b) => b[1] - a[1])[0][0];
+    }));
+
+    return colors;
 }
 
 // 主程式流程
