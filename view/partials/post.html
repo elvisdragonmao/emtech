@@ -22,12 +22,17 @@
                     >
                 </div>
             </div>
-            <img
-                src="{{thumbnail}}"
-                class="post-thumbnail"
-                alt=""
-                style="background: {{colors}};"
-            />
+            <div
+                class="post-thumbnail-container"
+                style="aspect-ratio:{{thumbnailWidth}}/{{thumbnailHeight}};background: {{colors}};"
+            >
+                <img
+                    src="{{thumbnail}}"
+                    class="post-thumbnail"
+                    alt="{{title}}"
+                    onload="this.classList.add('loaded')"
+                />
+            </div>
         </div>
     </header>
     <main>

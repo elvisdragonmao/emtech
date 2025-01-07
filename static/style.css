@@ -221,9 +221,10 @@ nav > * {
 }
 .title img {
     height: 2rem;
+    width: 2rem;
     transition: transform 0.3s;
     display: block;
-    margin-right: 0.6rem;
+    margin-right: 0.3rem;
 }
 
 nav li {
@@ -1231,6 +1232,7 @@ figure img {
 }
 .meta img {
     height: 1rem;
+    width: 1rem;
     display: inline-block;
     margin-right: 0.25rem;
 }
@@ -1251,21 +1253,37 @@ figure img {
     display: none;
 }
 
-.post-thumbnail {
+.post-thumbnail-container {
+    position: relative;
+    overflow: hidden; /* 確保效果不超出圖片邊界 */
+    border-radius: var(--border-radius);
     max-height: 550px;
-    display: block;
+    height: auto;
     margin: 2rem auto;
     width: auto;
     max-width: min(980px, 100%);
-    object-fit: contain;
     position: relative;
-    min-height: 3rem;
     z-index: 2;
-    border-radius: var(--border-radius);
+}
+
+.post-thumbnail {
+    display: block;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    min-height: 3rem;
+    transform: scale(1.2);
+    filter: blur(10px);
+    transition:all .5s ease-in-out;
+}
+
+.post-thumbnail.loaded {
+    transform: scale(1);
+    filter: blur(0);
+    opacity: 1;
 }
 
 .title-box {
-    /* background-color: navajowhite; */
     overflow: hidden;
 }
 

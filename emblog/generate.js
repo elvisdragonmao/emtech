@@ -270,6 +270,7 @@ async function processPosts() {
                     .replace(/<!--[\s\S]+?-->/g, "");
 
                 let postMeta = extractFrontMatter(markdownContent);
+                let colors;
                 // turn image url if not set path like ![](image.webp) to ![](/static/postID/image.webp)
                 // don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
                 if (postMeta.draft == "true") {
@@ -319,12 +320,13 @@ async function processPosts() {
                     thumbnail.includes(".") &&
                     !thumbnail.includes("http")
                 ) {
-                    let color = await findRepresentativeColors(
+                    colors = await findRepresentativeColors(
                         path.join("dist", thumbnail)
                     );
                     postMeta.colors =
-                        "linear-gradient(135deg, " + color.join(", ") + ")";
-                    postMeta.color = color[1];
+                        "linear-gradient(135deg, " + colors[0].join(", ") + ")";
+                    postMeta.color = colors[0][1];
+                    postMeta.thumbnailSize = colors[1];
                 }
 
                 const chineseCharCount = (
@@ -435,10 +437,12 @@ async function processPosts() {
                     tldr,
                     BreadcrumbList,
                     thumbnail: thumbnail,
+                    thumbnailWidth: postMeta.thumbnailSize[0] || "",
+                    thumbnailHeight: postMeta.thumbnailSize[1] || "",
                     length: postMeta.length,
                     colors: postMeta.colors,
                     readingTime: postMeta.readingTime,
-                    date: new Date(postMeta.date).toISOString(),
+                    date: new Date(postMeta.date).toISOString().split("T")[0],
                     lastUpdated: postMeta.lastUpdated,
                     theme: postMeta.color,
                     postTags,
@@ -713,34 +717,47 @@ async function findRepresentativeColors(imagePath) {
     const { width, height } = await sharp(imagePath).metadata();
     const regions = [
         { left: 0, top: 0, width: width / 3, height: height / 3 },
-        { left: width / 3, top: height / 3, width: width / 3, height: height / 3 },
-        { left: (2 * width) / 3, top: (2 * height) / 3, width: width / 3, height: height / 3 }
+        {
+            left: width / 3,
+            top: height / 3,
+            width: width / 3,
+            height: height / 3
+        },
+        {
+            left: (2 * width) / 3,
+            top: (2 * height) / 3,
+            width: width / 3,
+            height: height / 3
+        }
     ];
 
-    const colors = await Promise.all(regions.map(async region => {
-        const { data } = await sharp(imagePath)
-            .extract(region)
-            .raw()
-            .ensureAlpha()
-            .toBuffer({ resolveWithObject: true });
+    const colors = await Promise.all(
+        regions.map(async (region) => {
+            const { data } = await sharp(imagePath)
+                .extract(region)
+                .raw()
+                .ensureAlpha()
+                .toBuffer({ resolveWithObject: true });
 
-        const pixelCount = data.length / 4;
-        const sampleSize = Math.min(10, pixelCount);
-        const colorFreq = {};
+            const pixelCount = data.length / 4;
+            const sampleSize = Math.min(10, pixelCount);
+            const colorFreq = {};
 
-        for (let i = 0; i < sampleSize; i++) {
-            const idx = i * 4;
-            const color = '#' + [0, 1, 2]
-                .map(j => data[idx + j].toString(16).padStart(2, '0'))
-                .join('');
-            colorFreq[color] = (colorFreq[color] || 0) + 1;
-        }
+            for (let i = 0; i < sampleSize; i++) {
+                const idx = i * 4;
+                const color =
+                    "#" +
+                    [0, 1, 2]
+                        .map((j) => data[idx + j].toString(16).padStart(2, "0"))
+                        .join("");
+                colorFreq[color] = (colorFreq[color] || 0) + 1;
+            }
 
-        return Object.entries(colorFreq)
-            .sort((a, b) => b[1] - a[1])[0][0];
-    }));
+            return Object.entries(colorFreq).sort((a, b) => b[1] - a[1])[0][0];
+        })
+    );
 
-    return colors;
+    return [colors, [width, height]];
 }
 
 // 主程式流程
