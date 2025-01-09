@@ -28,7 +28,14 @@
 }
 html {
     scroll-padding-top: 6rem;
+}
+
+html:has(.displayPost) {
     scroll-behavior: smooth;
+}
+
+.displayPost{
+    margin-bottom: 100vh;
 }
 body {
     font-family:

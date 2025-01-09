@@ -276,7 +276,7 @@ const postScrollAnimations = () => {
                 next.style.overflow = "hidden";
                 //  next.style.border = "var(--border)";
                 next.style.height = `${Math.max(originalHeight, height)}px`;
-                document.body.style.paddingBottom = "400vh";
+                // document.body.style.paddingBottom = "400vh";
             }
         }
     }
@@ -407,16 +407,20 @@ if (window.location.pathname.includes("/p/")) {
 const switchToHome = () => {
     if (currentPage === "home") document.body.classList = "toHome";
     else document.body.classList.add("toHome");
+    updatePostList("category/精選", false);
     currentPage = "home";
     nextPosts = [];
     startDonut();
     window.removeEventListener("scroll", postScrollAnimations);
     // document.body.style.paddingBottom = "1rem";
     setTimeout(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
         document.body.classList.remove("displayPost");
-        window.scrollTo(0, 0);
         document.body.classList.remove("toHome");
-        document.body.style.paddingBottom = "0";
+        // document.body.style.paddingBottom = "0";
     }, 500);
 };
 
@@ -433,40 +437,43 @@ const switchToPost = (a) => {
             ready = true;
             return;
         }
-        const postThumbnail = document.querySelector(
+        const postThumbnail = document.querySelector(".post-thumbnail");
+        const postThumbnailContainer = document.querySelector(
             ".post-thumbnail-container"
         );
-        postThumbnail.style.visibility = "hidden";
-        document.body.classList.add("displayPost");
-        document.body.classList.remove("toPost");
-        if (postThumbnail.getAttribute("src") !== "") {
-            const postThumbnailRect = postThumbnail.getBoundingClientRect();
-            fixedBox.classList.remove("centered");
-            fixedBox.style.width = `${postThumbnailRect.width}px`;
-            fixedBox.style.height = `${postThumbnailRect.height}px`;
-            fixedBox.style.left = `${
-                postThumbnailRect.left + postThumbnailRect.width / 2
-            }px`;
-            fixedBox.style.top = `${
-                postThumbnailRect.top +
-                postThumbnailRect.height / 2 +
-                window.scrollY
-            }px`;
-        } else {
-            fixedBox.style.width = "0";
-            fixedBox.style.height = "0";
-        }
-        fixedBox.style.borderRadius = "var(--border-radius)";
-
-        // scroll to the element position
-        // calc the top offset if box compare to the top of the body
+        console.log(postThumbnailContainer);
+        postThumbnailContainer.style.opacity = "0"; // 實在不知道為甚麼 visibility: hidden 會卡住不會消失
         setTimeout(() => {
-            if (hero) hero.style.visibility = "visible";
-            fixedBox.style.display = "none";
+            document.body.classList.add("displayPost");
+            document.body.classList.remove("toPost");
+            if (postThumbnail.getAttribute("src") !== "") {
+                const postThumbnailRect = postThumbnail.getBoundingClientRect();
+                fixedBox.classList.remove("centered");
+                fixedBox.style.width = `${postThumbnailRect.width}px`;
+                fixedBox.style.height = `${postThumbnailRect.height}px`;
+                fixedBox.style.left = `${
+                    postThumbnailRect.left + postThumbnailRect.width / 2
+                }px`;
+                fixedBox.style.top = `${
+                    postThumbnailRect.top +
+                    postThumbnailRect.height / 2 +
+                    window.scrollY
+                }px`;
+            } else {
+                fixedBox.style.width = "0";
+                fixedBox.style.height = "0";
+            }
+            fixedBox.style.borderRadius = "var(--border-radius)";
 
-            postThumbnail.style.visibility = "visible";
-            initPost(document.querySelector(".post-page"));
-        }, 500); // Match the duration of the animation (0.3s)
+            // scroll to the element position
+            // calc the top offset if box compare to the top of the body
+            setTimeout(() => {
+                if (hero) hero.style.visibility = "visible";
+                postThumbnailContainer.style.opacity = "1";
+                fixedBox.style.display = "none";
+                initPost(document.querySelector(".post-page"));
+            }, 500); // Match the duration of the animation (0.3s)
+        }, 200);
     };
     // fetch post content
     const fetchPostContent = (url, retries = 3000) => {
@@ -513,12 +520,12 @@ const switchToPost = (a) => {
         fixedBox.style.top = `${rect.top + rect.height / 2}px`;
         fixedBox.style.left = `${rect.left + rect.width / 2}px`;
         fixedBox.style.borderRadius = "1.875rem 1.875rem 0 0";
-        document.body.style.paddingBottom = "100vh";
+        // document.body.style.paddingBottom = "100vh";
         setTimeout(() => {
             fixedBox.classList.add("smooth");
             fixedBox.style.borderRadius = "1.875rem";
             fixedBox.classList.add("centered");
-        }, 10);
+        }, 0);
         setTimeout(() => {
             showPostContent();
         }, 1000);
