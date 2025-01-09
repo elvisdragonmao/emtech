@@ -1250,6 +1250,7 @@ figure img {
     white-space: nowrap;
     display: flex;
     margin-right: 1.3rem;
+    align-items: center;
 }
 .meta img {
     height: 1rem;
