@@ -8,9 +8,8 @@
 
 /* For Firefox */
 * {
-    scrollbar-width: thin; /* Makes the scrollbar thin */
-    scrollbar-color: var(--dark-purple) transparent; /* Custom color */
-    /* animation-duration: 4s!important; */
+    scrollbar-width: thin;
+    scrollbar-color: var(--dark-purple) transparent;
 }
 
 :root {
@@ -34,7 +33,7 @@ html:has(.displayPost) {
     scroll-behavior: smooth;
 }
 
-.displayPost{
+.displayPost {
     margin-bottom: 100vh;
 }
 body {
@@ -78,18 +77,32 @@ code:not(.hljs) {
     background-position: center;
     background-repeat: no-repeat;
 }
-.transition::after {
-    transition: opacity 0.3s;
-}
-.transition.belive::after {
-    content: "Patience is key in life...";
+
+.believe {
     position: absolute;
     bottom: -2rem;
     left: 0;
     width: 100%;
     text-align: center;
-    opacity: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+    filter: opacity(0);
 }
+
+.centered .believe {
+    opacity: 1;
+    animation: filterShow 2s cubic-bezier(0, -1, 0.8, 1) forwards;
+}
+
+@keyframes filterShow {
+    from {
+        filter: opacity(0);
+    }
+    to {
+        filter: opacity(1);
+    }
+}
+
 .smooth {
     transition: all 0.5s ease;
 }
@@ -293,6 +306,7 @@ nav label {
 .right img,
 footer img {
     transition: all 0.3s;
+    width: 22px;
 }
 
 .right img:hover,
@@ -1584,6 +1598,7 @@ a.friend::after {
     filter: brightness(0) invert(66%) sepia(33%) saturate(384%)
         hue-rotate(188deg) brightness(88%) contrast(86%);
     height: 1rem;
+    width: 1rem;
     margin-inline: 0.2rem;
 }
 

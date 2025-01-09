@@ -476,12 +476,11 @@ const switchToPost = (a) => {
         }, 200);
     };
     // fetch post content
-    const fetchPostContent = (url, retries = 3000) => {
+    const fetchPostContent = (url) => {
+        const believe = document.querySelector(".believe");
         fetch(url)
             .then((response) => {
-                document
-                    .querySelector(".transition")
-                    .classList.remove("belive");
+                believe.innerHTML = "Patience is key in life...";
                 if (!response.ok)
                     throw new Error("Network response was not ok");
                 return response.text();
@@ -492,13 +491,18 @@ const switchToPost = (a) => {
                 nextPosts = [document.querySelector(".post-page")];
             })
             .catch((error) => {
-                document.querySelector(".transition").classList.add("belive");
-                const retryDelay = retries * 1.5;
-                console.error(
-                    `Fetch failed, retrying in ${retryDelay / 1000} seconds...`,
-                    error
-                );
-                setTimeout(() => fetchPostContent(url, retries), retryDelay);
+                let retryDelay = 3;
+                believe.innerHTML = `等等不太對，我 3 秒之後再試一次...`;
+                const retryInterval = setInterval(() => {
+                    retryDelay--;
+                    believe.innerHTML = `等等不太對，我 ${retryDelay} 秒之後再試一次...`;
+                    if (retryDelay === 0) {
+                        believe.innerHTML = `嗯，你的網路有點爛...`;
+                        clearInterval(retryInterval);
+                        fetchPostContent(url);
+                    }
+                }, 1000);
+                console.error("Fetch failed", error);
             });
     };
 
