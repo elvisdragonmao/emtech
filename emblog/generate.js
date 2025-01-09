@@ -437,8 +437,12 @@ async function processPosts() {
                     tldr,
                     BreadcrumbList,
                     thumbnail: thumbnail,
-                    thumbnailWidth: postMeta.thumbnailSize[0] || "",
-                    thumbnailHeight: postMeta.thumbnailSize[1] || "",
+                    thumbnailWidth: postMeta.thumbnailSize
+                        ? postMeta.thumbnailSize[0]
+                        : "",
+                    thumbnailHeight: postMeta.thumbnailSize
+                        ? postMeta.thumbnailSize[1]
+                        : "",
                     length: postMeta.length,
                     colors: postMeta.colors,
                     readingTime: postMeta.readingTime,
@@ -716,18 +720,23 @@ function generateSitemapAndRSS() {
 async function findRepresentativeColors(imagePath) {
     const { width, height } = await sharp(imagePath).metadata();
     const regions = [
-        { left: 0, top: 0, width: width / 3, height: height / 3 },
         {
-            left: width / 3,
-            top: height / 3,
-            width: width / 3,
-            height: height / 3
+            left: 0,
+            top: 0,
+            width: Math.floor(width / 3),
+            height: Math.floor(height / 3)
         },
         {
-            left: (2 * width) / 3,
-            top: (2 * height) / 3,
-            width: width / 3,
-            height: height / 3
+            left: Math.floor(width / 3),
+            top: Math.floor(height / 3),
+            width: Math.floor(width / 3),
+            height: Math.floor(height / 3)
+        },
+        {
+            left: Math.floor((2 * width) / 3),
+            top: Math.floor((2 * height) / 3),
+            width: Math.floor(width / 3),
+            height: Math.floor(height / 3)
         }
     ];
 
