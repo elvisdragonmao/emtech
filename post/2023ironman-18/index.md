@@ -159,8 +159,6 @@ animation:
     colorY 14s infinite steps(7);
 ```
 
-![](step.gif)
-
 #### DVD 圖片
 
 最後換成 DVD 的圖片。從[維基百科抓 svg 向量圖](https://upload.wikimedia.org/wikipedia/commons/9/9b/DVD_logo.svg)...結果...

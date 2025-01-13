@@ -8,6 +8,14 @@ let search = [];
 
 // get read history page id and title from localStorage
 let readHistory = JSON.parse(localStorage.getItem("readHistory")) || [];
+// get Url check is it localhost
+const isLocalhost =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1";
+const startAds = isLocalhost
+    ? () => {}
+    : () => (adsbygoogle = window.adsbygoogle || []).push({});
+
 // update read history list
 const updateReadHistory = (id) => {
     if (id !== null && id !== undefined) readHistory.unshift(id);
@@ -321,7 +329,7 @@ const initPost = (page) => {
         listItem.appendChild(link);
         ul.appendChild(listItem);
         adsCount++;
-        if (adsCount > 2 && adsCount % 2 === 1)
+        if (!isLocalhost && adsCount > 2 && adsCount % 2 === 1)
             header.insertAdjacentHTML(
                 "beforebegin",
                 `<ins
@@ -335,7 +343,7 @@ const initPost = (page) => {
     });
 
     toc.appendChild(ul);
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    startAds();
     // Create an intersection observer to highlight the current section in the table of contents
     const observer = new IntersectionObserver(
         (entries) => {
@@ -373,7 +381,7 @@ const initPost = (page) => {
     // update .related-posts
     loadArticleList(related.querySelector("div"), "category/" + cat);
     related.querySelector("h2").textContent = cat + " 的其他文章";
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    startAds();
 };
 if (window.location.pathname.includes("/p/")) {
     initPost(document.querySelector(".post-page"));

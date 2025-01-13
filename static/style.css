@@ -1202,6 +1202,7 @@ figure img {
     object-fit: contain;
     border-radius: 1rem;
     height: auto;
+    color: transparent;
 }
 
 .header-tags {

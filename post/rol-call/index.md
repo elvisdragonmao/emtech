@@ -27,7 +27,7 @@ date: 2023-05-01
 
 請打開我建立的這個[範例文件](https://docs.google.com/spreadsheets/d/1m0F6pOejN-ldKFIrFwssmoEPB3EPDmSQJKEPr9T88-E/edit?usp=sharing)並建立副本
 
-![建立副本](post/rol-call-new.webp)
+![建立副本](roll-call-new.webp)
 
 這樣 Google Sheet 就做好了。請複製這個文件的 ID，我們稍後會用到。ID 就是網址中的一長串字母和數字，比如說這個試算表：
 
@@ -97,7 +97,7 @@ function doGet(e) {
 https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9MHDxWaOYXFwZgE3rRHDzCakzTxs/exec
 ```
 
-![部屬網頁應用程式](gas.webp)
+![部屬網頁應用程式](/static/img/gas.webp)
 
 ## 步驟三：建立網頁
 

@@ -78,7 +78,7 @@ Microsoft Store 是 Windows 內建的應用程式商店。理論上它應該是�
 
 因此建議使用 PowerShell 安裝。首先請以**使用者管理員身分**打開 PowerShell。你可以在開始選單中找到它，或是在任何地方按下`Win+X`並選擇`Windows 終端機 (管理員)`。
 
-![開啟 PowerShell](open-powershell.webp)
+![開啟 PowerShell](../massgrave/open-powershell.webp)
 
 使用 PowerShell 安裝。這樣可以避免安裝失敗。指令是：
 
