@@ -225,7 +225,7 @@ const copyStatic = async () => {
             const sourcePath = path.join(file.parentPath, file.name);
             const targetPath = path.join(
                 targetDir,
-                file.parentPath.split("\\").split("/").pop(),
+                file.parentPath.split("\\").pop().split("/").pop(),
                 file.name
             );
             await fs.cp(sourcePath, targetPath, { recursive: true });
@@ -237,7 +237,7 @@ const copyStatic = async () => {
                 const { width, height } = await sharp(sourcePath).metadata();
                 imageMeta[
                     "/static/" +
-                        file.parentPath.split("\\").split("/").pop() +
+                        file.parentPath.split("\\").pop().split("/").pop() +
                         "/" +
                         file.name
                 ] = `width="${width}" height="${height}"`;
