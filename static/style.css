@@ -307,6 +307,7 @@ nav label {
 footer img {
     transition: all 0.3s;
     width: 22px;
+    height: 22px;
 }
 
 .right img:hover,
@@ -1152,6 +1153,7 @@ footer .logo {
 }
 .footer-social img {
     width: 1.375rem;
+    height: 1.375rem;
 }
 
 .copyright {
