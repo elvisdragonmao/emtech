@@ -1,7 +1,7 @@
 ---
 authors: elvismao
-# tags: [特殊選材]
-# categories: [心得]
+tags: [特殊選材]
+categories: [心得]
 date: 2024-12-06
 description: 教授很專業，雖然都很淡定但明顯有很認真看備審資料，問的問題都很完整且都是根據你的經歷來問。
 ---

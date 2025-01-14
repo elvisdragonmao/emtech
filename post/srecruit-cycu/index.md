@@ -1,7 +1,7 @@
 ---
 authors: elvismao
-# tags: [特殊選材]
-# categories: [心得]
+tags: [特殊選材]
+categories: [心得]
 date: 2024-12-06
 description: 教授都蠻和善的，滑鼠滾很快。結果為正取 1。
 ---

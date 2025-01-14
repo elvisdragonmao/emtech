@@ -1,7 +1,7 @@
 ---
 authors: elvismao
-# tags: [特殊選材]
-# categories: [心得]
+tags: [特殊選材]
+categories: [心得]
 date: 2024-12-06
 description: 教授很嗨，面對好學生都很歡迎，但問的問題是精準有深度的。
 ---
