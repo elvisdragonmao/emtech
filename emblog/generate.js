@@ -124,6 +124,16 @@ md.renderer.rules.image = (tokens, idx, options, env, self) => {
     `;
 };
 
+// add a div outside table
+
+md.renderer.rules.table_open = (tokens, idx, options, env, self) => {
+    return "<div class='table-wrapper'><table>";
+}
+
+md.renderer.rules.table_close = (tokens, idx, options, env, self) => {
+    return "</table></div>";
+}
+
 const initDist = async () => {
     try {
         await fs.access("dist"); // Check if "dist" exists
@@ -807,7 +817,7 @@ async function findRepresentativeColors(imagePath) {
     console.log("\x1b[34m%s\x1b[0m", "➤ Generating site...");
     console.time("Execution Time");
     console.log("\x1b[34m%s\x1b[0m", "➤ Initializing dist folder...");
-    await initDist();
+    if (!skipPost) await initDist();
     console.log("\x1b[34m%s\x1b[0m", "➤ Preparing site...");
     await Promise.all([generatePartials(), copyStatic()]);
     console.log("\x1b[34m%s\x1b[0m", "➤ Processing posts...");

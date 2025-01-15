@@ -1498,6 +1498,33 @@ blockquote::before {
     background-color: #d8dee933;
 }
 
+.table-wrapper {
+    overflow: scroll;
+    margin-bottom: 1rem;
+}
+
+table {
+    margin: auto;
+    table-layout: auto;
+    border-spacing: 0px;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+th {
+    background-color: var(--light-purple);
+    text-align: center;
+    font-weight: 500;
+}
+
+td,
+th {
+    border-bottom: var(--border);
+    padding: 0.75rem 1rem;
+}
+
 .author-avatar {
     width: 3rem;
 }
