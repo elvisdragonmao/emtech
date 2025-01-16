@@ -18,13 +18,13 @@ description: 成功大學特殊選材乙組上機考考題分享。
 
 ## 前情提要
 
-這次的考試是 2024 年 11 月 16 日舉行的。8:20開始入座，入座之後可以先登入你習慣的帳號 (如你買了 ChatGPT Plus)。到九點公布題目，會要求把手機關機，考試過程中禁止安裝軟體 (包括 VS Code 套件) 及對外通訊，但全程有對外網路可以搜尋資料。禁止安裝軟體我猜是因為有一些套件有現成的演算法可以直接解決問題。
+這次的考試是 2024 年 11 月 16 日舉行的。8:20 開始入座，入座之後可以先登入你習慣的帳號 (如你買了 ChatGPT Plus)。到九點公布題目，會要求把手機關機，考試過程中禁止安裝軟體 (包括 VS Code 套件) 及對外通訊，但全程有對外網路可以搜尋資料。禁止安裝軟體我猜是因為有一些套件有現成的演算法可以直接解決問題。
 
 助教在公布題目後會稍微講解一下題目，你可以廳或是直接開始操作。中間看大家解不出來助教有再給幾次提示。從九點開始寫提一路到下午四點，中間 12 點把所有人帶去房間吃便當，過程禁止交談。吃到 12:30 就可以回去繼續寫。
 
 ### ⽰範程式測試
 
-考試前一個禮拜 (11⽉08⽇) 時有寄給我們一份⽰範程式測試。裡面有考試相關資訊還有一個⽰範的題目。考前一天他們晚上有把系統 (他們自架的 GitLab) 開一下。登入信箱收到的帳號與密碼就可以練習上傳看看。
+考試前一個禮拜 (11 ⽉ 08 ⽇) 時有寄給我們一份⽰範程式測試。裡面有考試相關資訊還有一個⽰範的題目。考前一天他們晚上有把系統 (他們自架的 GitLab) 開一下。登入信箱收到的帳號與密碼就可以練習上傳看看。
 
 ## 考試環境
 
@@ -50,7 +50,7 @@ description: 成功大學特殊選材乙組上機考考題分享。
 
 ### 測驗系統
 
-我們要寫程式控制機器人在 3D 物理模擬環境 (Gazebo) 中完成指定動作。整理架構如下:
+我們要寫程式控制機器人在 3D 物理模擬環境 (Gazebo) 中完成指定動作。整理架構如下：
 
 - Server
     - Master
@@ -123,19 +123,19 @@ description: 成功大學特殊選材乙組上機考考題分享。
 
 原本是規定要解完第一大題前兩題才能解第二大題，但看我們分數太低了就取消了這個規定。
 
-### 第一大題: 自動駕駛
+### 第一大題：自動駕駛
 
 這一大題你需要逐步建立一個自動駕駛系統。你會拿到一個寫到一半有 bug 的程式，你要當作 Copilot
 
 每次考試寫完程式之後需要跑一次 demo，過程需要用 rosbag 錄下來 (類似螢幕錄影的概念)。完成後把錄好的檔案 push 到你的專屬 Repo。
 
-修改完成程式首先你需要啟動錄影:
+修改完成程式首先你需要啟動錄影：
 
 ```
 ros bag record -o baseline_1 /map /odom
 ```
 
-然後再開一個 terminal 使用以下指令來啟動模擬器:
+然後再開一個 terminal 使用以下指令來啟動模擬器：
 
 ```
 ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=/maps/map.yaml
@@ -143,33 +143,33 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=/maps/map.yaml
 
 (後面根據情況需要加一些參數，像是指定地圖等等。)
 
-等全部錄製完之後回到回到原本的 terminal `ctrl + c` 停止錄影:
+等全部錄製完之後回到回到原本的 terminal `ctrl + c` 停止錄影：
 
-#### 第一小題: 啟動 Nav2 (15分)
+#### 第一小題：啟動 Nav2 (15 分)
 
 有一個 `SERVER` 負責傳送資料 (它其實是一個執行檔，會定時丟資料出來)， `storage.py` 則負責接受資料並產生地圖。你要修復程式讓 `storage.py` 能夠正確接收資料並產生地圖。問題是 `storage.py` 並不知道 `SERVER` 會資料到哪個頻道，所以你需要修改程式全部接收。拿到地圖後啟動即可。
 
 ![地圖示意圖，成功開啟 RViz 畫面](map_demo.webp)
 
-#### 第二小題: 設定目標點 (10分)
+#### 第二小題：設定目標點 (10 分)
 
 將 [Planner Server](https://docs.nav2.org/configuration/packages/configuring-planner-server.html) 掛接至 Nav2 系統中，並往前移動到指定範圍內。Planner Server 裡面有幾個語法錯誤需要修正。你需要使用 2D Pose Estimate 按鈕控制讓他往前一個單位。也可以使用 [Simple Commander API](https://docs.nav2.org/commander_api/index.html) 來控制它移動。
 
 ![移動控制示意圖](move.webp)
 
-#### 第三小題: 尋找最短路徑 (10分)
+#### 第三小題：尋找最短路徑 (10 分)
 
 更改機器人的啟動位置，讓起點和終點之間的路徑最短。
 
-#### 第四小題: 自動駕駛 (15分)
+#### 第四小題：自動駕駛 (15 分)
 
 讓機器人在給定起點和終點的情況下自動駕駛。修改 Nav2 裡面的 Planner Server 路徑規劃演算法，讓機器人能夠自動駕駛到終點。
 
-### 第二大題: 一堆機器人
+### 第二大題：一堆機器人
 
 我們要一次控制一堆機器人，每個機器人建立專屬的 Topic 來接收訊號。
 
-> 可以參考這篇文章: [An Adaptable Approach to Multi-Robot Navigation in ROS2: Utilizing Turtlebot3 and Nav2](https://medium.com/@arshad.mehmood/a-guide-to-multi-robot-navigation-utilizing-turtlebot3-and-nav2-cd24f96d19c6)
+> 可以參考這篇文章：[An Adaptable Approach to Multi-Robot Navigation in ROS2: Utilizing Turtlebot3 and Nav2](https://medium.com/@arshad.mehmood/a-guide-to-multi-robot-navigation-utilizing-turtlebot3-and-nav2-cd24f96d19c6)
 
 你需要實現一個排程演算法，有點像做一套 Uber Eats。系統會告訴你有哪些點需要經過，然後你要分配不同機器人去不同點，在最短時間內完成任務。
 
@@ -177,7 +177,7 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=/maps/map.yaml
 
 ![路徑規劃示意圖](path.webp)
 
-#### 第一大題: 實現排程演算法 (22分)
+#### 第一大題：實現排程演算法 (22 分)
 
 你要當 Google Maps 幫機器人們規畫路徑。
 
@@ -189,7 +189,7 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=/maps/map.yaml
 一些語法錯誤直接 GPT 解就可以了。
 {{noticed}}
 
-#### 第二大題: 讓機器人跑起來 (28分)
+#### 第二大題：讓機器人跑起來 (28 分)
 
 範例程式裡面只有負責規劃路徑跟控制機器人。除了有一些邏輯跟語法錯誤需要修正，把 Master 規劃好的路徑告訴 Client 這部分還需要自己實作。你可以觀察模擬器畫面來判斷是否正確。(11 分)
 
