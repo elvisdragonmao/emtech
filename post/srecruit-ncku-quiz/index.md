@@ -14,7 +14,7 @@ description: 成功大學特殊選材乙組上機考考題分享。
 
 以下題目根據我和好幾位朋友的記憶[蒸餾](https://en.wikipedia.org/wiki/Knowledge_distillation)而成，內容可能有些許出入 (聽起來比較簡潔且像人話)，僅供參考。
 
-{{/notice}}
+{{noticed}}
 
 ## 前情提要
 
