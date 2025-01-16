@@ -128,11 +128,11 @@ md.renderer.rules.image = (tokens, idx, options, env, self) => {
 
 md.renderer.rules.table_open = (tokens, idx, options, env, self) => {
     return "<div class='table-wrapper'><table>";
-}
+};
 
 md.renderer.rules.table_close = (tokens, idx, options, env, self) => {
     return "</table></div>";
-}
+};
 
 const initDist = async () => {
     try {
