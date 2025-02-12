@@ -111,13 +111,13 @@ BambooFox 社長
 </a>
 <a class="friend" href="https://blog.osga.lol/">
 
-![OsGa](https://blog.osga.lol/_astro/header.DOQpAJaQ_1r0r98.webp)
+![OsGa](https://www.osga.dev/_next/image?url=%2Fheader.png&w=384&q=75)
 
 <div>
 
 ### OsGa
 
-OsGay
+CTF Player | Developer
 
 </div>
 </a>
@@ -129,7 +129,7 @@ OsGay
 
 ### 小蔡
 
-家裡有隻兔子，非常喜歡兔子 wwwww
+他很會連上家裡 Wi-Fi
 
 </div>
 </a>
