@@ -194,7 +194,8 @@ body {
 .clock {
     width: 300px;
     height: 300px;
-    background: radial-gradient(#000 65%, transparent 10%),
+    background:
+        radial-gradient(#000 65%, transparent 10%),
         repeating-conic-gradient(
             from -0.5deg,
             #fff 0 1deg,
