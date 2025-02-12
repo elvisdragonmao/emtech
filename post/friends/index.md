@@ -109,7 +109,7 @@ BambooFox 社長
 
 </div>
 </a>
-<a class="friend" href="https://blog.osga.lol/">
+<a class="friend" href="https://www.osga.dev/">
 
 ![OsGa](https://www.osga.dev/_next/image?url=%2Fheader.png&w=384&q=75)
 
