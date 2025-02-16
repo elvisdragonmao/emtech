@@ -462,6 +462,7 @@ header {
     border: var(--border);
     border-radius: var(--border-radius);
 }
+
 .header-title {
     position: absolute;
     right: 0;
@@ -470,8 +471,8 @@ header {
     color: #1d1e22;
     padding: 2rem 2rem 2rem 3rem;
     font-weight: 600;
-    background: url("/static/img/headerTitleBg.svg") no-repeat top right / auto
-        100%;
+    background: url("/static/img/headerTitleBg.svg") no-repeat top right /
+        contain;
 }
 .header-title h1 {
     font-size: 3rem;
@@ -1564,7 +1565,7 @@ th {
 .friends {
     width: 100%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; 好像靠左比較好看（？ */
     align-items: stretch;
     flex-wrap: wrap;
     margin-bottom: 2rem;
@@ -1572,6 +1573,7 @@ th {
 }
 a.friend {
     color: var(--black);
+    transition: color 0.3s;
 }
 a.friend:hover {
     color: var(--blue);
@@ -1611,9 +1613,6 @@ a.friend::after {
     display: block;
     object-fit: cover;
     margin-right: 1rem;
-}
-
-.friend div {
 }
 
 .author-avatar {

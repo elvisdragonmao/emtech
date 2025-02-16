@@ -11,6 +11,8 @@ date: 2024-10-17
 
 與大佬們一起前進。
 
+## 好捧油
+
 <div class="friends">
 <a class="friend"  href="/">
 
@@ -20,92 +22,67 @@ date: 2024-10-17
 
 ### 毛哥EM
 
-數位創作者，全端工程師。
+數位創作者，全端工程師
 
 </div>
 </a>
-<a class="friend"  href="https://blog.zhheo.com/">
+<a class="friend" href="https://blog.pan93.com/">
 
-![zhheo](zhheo.png)
+![Pan](https://avatars.githubusercontent.com/u/28441561?v=4)
 
 <div>
 
-### 张洪 Heo
+### Pan in the Nutshell
 
-产品设计师，独立开发者，设计与科技分享。
+後端大大
 
 </div>
 </a>
-<a class="friend" href="https://yual.in/">
+<a class="friend" href="https://linktr.ee/ivantw829">
 
-![Yuanlin Lin](https://avatars.githubusercontent.com/u/21105863)
+![賴奕帆](https://i.imgur.com/x1GEzJa.jpeg)
 
 <div>
 
-### Yuanlin Lin
+### 賴奕帆
 
-Zeabur 創辦人
+約翰·孟塔古唯一授權三明治經銷商
 
 </div>
 </a>
-<a class="friend" href="https://blog.scott-studio.cn/">
+<a class="friend" href="https://shellwen.com/">
 
-![scott](https://blog.scott-studio.cn/uploads/2024/08/new_logo.webp)
+![颉文](https://avatars.githubusercontent.com/u/38996248?v=4)
 
 <div>
 
-### SCOTT Studio
+### 颉文
 
-不知名前端攻城狮，分享编程经验和技术干货。
+一只会写代码的小棕熊
 
 </div>
 </a>
-</a>
-<a class="friend" href="https://www.anzifan.com/">
+<a class="friend" href="https://linktr.ee/san.ge.ge">
 
-![异次元 de 机智君](https://gravatar.loli.net/avatar/83f6ef7256399833395e9c94ad838442)
+![sangege](https://www.gravatar.com/avatar/f6d0a62624d1d82d90ea3232e3663561)
 
 <div>
 
-### 异次元 de 机智君
+### sangege
 
-前端开发工程师，优质 Notion 主题开发者
+超大咖託管 Coffee Host 創始者
 
 </div>
 </a>
-<a class="friend" href="https://cbjsprogramdiary.com">
+<a class="friend" href="">
 
-![Chung](https://i0.wp.com/cbjsprogramdiary.com/wp-content/uploads/2022/10/digital.jpg?fit=1200%2C900&ssl=1)
-
-<div>
-
-### CBJ's 程式日記
-
-Chung
-
-</div>
-</a>
-<a class="friend" href="https://curious-lucifer.netlify.app/">
-
-![Curious](https://curious-lucifer.netlify.app/static/img/logo.png)
+![柴犬 Lily](https://pic.superlily.dev/shiba.jpg)
 
 <div>
 
-### Curious
+### 柴犬 Lily
 
-BambooFox 社長
-
-</div>
-</a>
-<a class="friend" href="https://blog.ching367436.me/">
-
-![Ching367436](https://blog.ching367436.me/images/Ching367436.jpg)
-
-<div>
-
-### Ching367436
-
-竹狐隊長
+據說這隻柴犬叼著毛哥的 SSD 從臺北跑到臺中
 
 </div>
 </a>
@@ -145,11 +122,122 @@ CTF Player | Developer
 
 </div>
 </a>
+<a class="friend" href="https://yual.in/">
+
+![Yuanlin Lin](https://avatars.githubusercontent.com/u/21105863)
+
+<div>
+
+### Yuanlin Lin
+
+Zeabur 創辦人
+
+</div>
+</a>
+
+</div>
+
+## 好學長
+
+<div class="friends">
+<a class="friend" href="https://curious-lucifer.netlify.app/">
+
+![Curious](https://curious-lucifer.netlify.app/static/img/logo.png)
+
+<div>
+
+### Curious
+
+BambooFox 社長
+
+</div>
+</a>
+<a class="friend" href="https://blog.ching367436.me/">
+
+![Ching367436](https://blog.ching367436.me/images/Ching367436.jpg)
+
+<div>
+
+### Ching367436
+
+竹狐隊長
+
+</div>
+</a>
+<a class="friend" href="https://www.sean.taipei/">
+
+![Sean Wei](https://img.sean.taipei/sean/avatar.jpg)
+
+<div>
+
+### Sean Wei
+
+為國家守護聖文森
+
+</div>
+</a>
+<a class="friend" href="https://cbjsprogramdiary.com">
+
+![Chung](https://i0.wp.com/cbjsprogramdiary.com/wp-content/uploads/2022/10/digital.jpg?fit=1200%2C900&ssl=1)
+
+<div>
+
+### CBJ's 程式日記
+
+Chung
+
+</div>
+</a>
+</div>
+
+## 賽博遊俠
+
+<div class="friends">
+<a class="friend"  href="https://blog.zhheo.com/">
+
+![zhheo](zhheo.png)
+
+<div>
+
+### 张洪 Heo
+
+产品设计师，独立开发者，设计与科技分享。
+
+</div>
+</a>
+<a class="friend" href="https://blog.scott-studio.cn/">
+
+![scott](https://blog.scott-studio.cn/uploads/2024/08/new_logo.webp)
+
+<div>
+
+### SCOTT Studio
+
+不知名前端攻城狮，分享编程经验和技术干货。
+
+</div>
+</a>
+</a>
+<a class="friend" href="https://www.anzifan.com/">
+
+![异次元 de 机智君](https://gravatar.loli.net/avatar/83f6ef7256399833395e9c94ad838442)
+
+<div>
+
+### 异次元 de 机智君
+
+前端开发工程师，优质 Notion 主题开发者
+
+</div>
+</a>
+
 </div>
 
 {{notice}}
 一起呼！
 
 如果你也想要在這裡出現，歡迎透過右側任意一個方式聯繫我。提供給我照片、網址、簡介等資訊。
+
+如果你有友列想要加我也歡迎告訴我喔！
 
 {{noticed}}

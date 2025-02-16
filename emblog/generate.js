@@ -254,7 +254,6 @@ const copyStatic = async () => {
         });
 
         await Promise.all(copyPromises);
-        console.log(imageMeta);
     };
 
     await Promise.all([
