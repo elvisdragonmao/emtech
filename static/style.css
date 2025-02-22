@@ -899,6 +899,10 @@ h3 {
     font-size: 1.2rem;
 }
 
+h4 {
+    font-size: 1.1rem;
+}
+
 aside {
     width: min(50vw, 20rem);
 }
