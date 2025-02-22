@@ -14,13 +14,13 @@ rl.question("Enter post ID: ", (id) => {
         return;
     }
 
-    const postDir = path.join( "post", id);
+    const postDir = path.join("post", id);
     const postFile = path.join(postDir, "index.md");
     const content = `---
 authors: elvismao
 tags: []
 categories: []
-date: ${new Date(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().split("T")[0]}
+date: ${new Date(new Date(Date.now() - new Date().getTimezoneOffset() * 60000)).toISOString().split("T")[0]}
 description: 
 ---
 

@@ -307,7 +307,7 @@ __metadata:
     autocorrect-node: "npm:^2.13.0"
     highlight.js: "npm:^11.10.0"
     markdown-it: "npm:^14.1.0"
-    prettier: "npm:^3.5.1"
+    prettier: "npm:^3.5.2"
     sharp: "npm:^0.33.5"
   languageName: unknown
   linkType: soft
@@ -365,7 +365,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.5.1":
+"prettier@npm:^3.5.2":
   version: 3.5.2
   resolution: "prettier@npm:3.5.2"
   bin:
