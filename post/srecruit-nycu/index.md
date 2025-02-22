@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [特殊選材]
+tags: [特殊選才]
 categories: [心得]
 date: 2025-01-15
 description: "中間很多空白讓你表達，問題有深度，最喜歡的面試。"
