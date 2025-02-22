@@ -2,16 +2,30 @@ const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+async function getPostId() {
+    return new Promise((resolve) => {
+        const rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
 
-rl.question("Enter post ID: ", (id) => {
+        rl.question("Enter post ID: ", (entered) => {
+            rl.close();
+            resolve(entered.trim());
+        });
+    });
+}
+
+async function main() {
+    let id = process.argv[2];
+
+    if (!id) {
+        id = await getPostId();
+    }
+
     if (!id) {
         console.log("Post ID is required.");
-        rl.close();
-        return;
+        process.exit(1);
     }
 
     const postDir = path.join("post", id);
@@ -20,7 +34,7 @@ rl.question("Enter post ID: ", (id) => {
 authors: elvismao
 tags: []
 categories: []
-date: ${new Date(new Date(Date.now() - new Date().getTimezoneOffset() * 60000)).toISOString().split("T")[0]}
+date: ${new Date().toISOString().split("T")[0]}
 description: 
 ---
 
@@ -33,5 +47,6 @@ description:
 
     fs.writeFileSync(postFile, content, "utf8");
     console.log(`Post created: ${postFile}`);
-    rl.close();
-});
+}
+
+main();
