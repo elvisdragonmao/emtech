@@ -5,7 +5,8 @@
     "scripts": {
         "build": "node emblog/generate.js",
         "start": "node emblog/server.js",
-        "dev": "CACHE=true SKIPPOST=true node emblog/server.js"
+        "dev": "CACHE=true SKIPPOST=true node emblog/server.js",
+        "new": "node emblog/new.js"
     },
     "dependencies": {
         "highlight.js": "^11.10.0",

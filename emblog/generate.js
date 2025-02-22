@@ -138,7 +138,7 @@ const initDist = async () => {
         await fs.access("dist"); // Check if "dist" exists
         await fs.rm("dist", { recursive: true });
     } catch (err) {
-        // Ignore error if "dist" does not exist
+        // Ignore error if "dist" does not exists
     }
     await Promise.all(
         [
