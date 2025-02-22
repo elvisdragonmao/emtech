@@ -75,7 +75,7 @@ description: 有朋自遠方來，不亦悅乎？
 
 </div>
 </a>
-<a class="friend" href="">
+<a class="friend" href="https://superlily.dev/">
 
 ![柴犬 Lily](https://pic.superlily.dev/shiba.jpg)
 
