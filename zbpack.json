@@ -1,0 +1,4 @@
+{
+    "build_command": "yarn build",
+    "output_dir": "/dist"
+}
