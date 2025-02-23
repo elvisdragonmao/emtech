@@ -17,7 +17,7 @@ draft: true
 
 i5 第八代，256GB SSD，還算夠用。雖然只有內顯但還是常常被我跑 [Blender](https://www.blender.org/), [Whisper](https://github.com/openai/whisper), [Adobe Illustrator](https://www.adobe.com/tw/products/illustrator.html) 之類的東西。唯一的缺點是記憶體只有 8GB，很容易多開點東西就爆，開個 Photoshop 就會變烤吐司機。後來我後來有自己加了一條 16GB 的記憶體進去舒服多了（很不錯竟然有兩個記憶體插槽）。不過馬上也要畢業了，也要上大學了，確實也需要台筆電。高二的時候我媽有主動提議如果上頂大就幫我買一台 MacBook，我也就答應了，然後沒想到也上了交大，所以就買了這台 MacBook Pro。
 
-> 「開新，超開心」——iPhone 15宣傳語
+> 「開新，超開心」——iPhone 15 宣傳語
 
 ## 德誼數位
 
@@ -35,7 +35,7 @@ i5 第八代，256GB SSD，還算夠用。雖然只有內顯但還是常常被�
 
 先來講一下硬體方面。MacBook 包裝好看，外觀好看（跟上一代完全相同）這不用說。我選的是黑色的我覺得非常好看，很有科技感。白色不知道為什麼我會有那種從小看到螢幕背後 Logo 還會發光的星巴克氣氛組的陰影的感覺。
 
-> 攝像頭、顯示屏、性能，樣樣Pro如其名。 ——Apple 宣傳語
+> 攝像頭、顯示屏、性能，樣樣 Pro 如其名。 ——Apple 宣傳語
 
 ### 鍵盤
 
@@ -75,9 +75,9 @@ MacBook 的音質真的很不錯，我有被驚艷到。高音很細膩，低音
 
 用了 MacBook 之後幾個軟體我嘗試比較後用回了內建的方案：
 
-* 行事曆：網頁版 Google Calendar ⇀ 行事曆
-* 郵件：Thunderbird ⇀ 郵件
-* 查看 PDF：Firefox ⇀ 內建預覽
+- 行事曆：網頁版 Google Calendar ⇀ 行事曆
+- 郵件：Thunderbird ⇀ 郵件
+- 查看 PDF：Firefox ⇀ 內建預覽
 
 對了因為 7-Zip 沒有 Mac 版，所以我換成了 [Keka](https://www.keka.io/zh-tw/)，支援更多格式且免費開源好用。
 
@@ -87,12 +87,12 @@ MacBook 的音質真的很不錯，我有被驚艷到。高音很細膩，低音
 
 Mac 的鍵盤相信如果你是第一次看到你都會傻住。從左到右分別是 fn、control、option、command、空白。Windows 則是 control、fn、windows、alt、空白。很多人會覺得很疑惑，Windows 一個 control 就打片天下了 Mac 為什麼那麼複雜，但其實你仔細數就會發現其實快捷鍵的數量是一樣的。你可以簡單這樣理解：
 
-* Windows 的 `control` 大多情況就是 Mac 的 `command`，像是 `command + c` 是複製，`command + v` 是貼上。
-* 但是 Mac 有一些內建的快捷鍵，像是 `command + H` 來最小化視窗，`command + M` 來隱藏視窗丟一旁，會把一些軟體原本的快捷鍵搶走。
-* 有些軟體選擇擺爛，就直接不給那些快捷鍵了，有些就找找替代方案。
-  * 瀏覽器歷史紀錄不能用 `command + H` 了，要用 `command + Y`。
-  * 切換分頁不能用 `command + tab`，因為 `command + tab` 是切換應用程式，這時又換回 `control + tab` 了。
-  * 切換語言不能用 `command + space` 了，因為 `command + space` 是啟動 Spotlight，這時又換回 `control + space` 了。
+- Windows 的 `control` 大多情況就是 Mac 的 `command`，像是 `command + c` 是複製，`command + v` 是貼上。
+- 但是 Mac 有一些內建的快捷鍵，像是 `command + H` 來最小化視窗，`command + M` 來隱藏視窗丟一旁，會把一些軟體原本的快捷鍵搶走。
+- 有些軟體選擇擺爛，就直接不給那些快捷鍵了，有些就找找替代方案。
+    - 瀏覽器歷史紀錄不能用 `command + H` 了，要用 `command + Y`。
+    - 切換分頁不能用 `command + tab`，因為 `command + tab` 是切換應用程式，這時又換回 `control + tab` 了。
+    - 切換語言不能用 `command + space` 了，因為 `command + space` 是啟動 Spotlight，這時又換回 `control + space` 了。
 
 所以實際在使用的時候還是需要查一下然後習慣一下，或著是你可以用內建設定或軟體來改成你習慣的快捷鍵。
 
@@ -111,7 +111,6 @@ Mac 的鍵盤相信如果你是第一次看到你都會傻住。從左到右分�
 #### 桌面管理
 
 ## 總結
-
 
 > 封面圖來自 Apple 官網
 > 「真的，就很你。」來自 iOS 18 宣傳語、「單手炫大招」來自 iPad Mini 宣傳語。
