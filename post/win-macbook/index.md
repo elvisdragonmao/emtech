@@ -85,7 +85,7 @@ MacBook 的音質真的很不錯，我有被驚艷到。高音很細膩，低音
 - [終端機](https://github.com/microsoft/terminal) / [MobaXterm](https://mobaxterm.mobatek.net/) ⇀ [iTerm](https://iterm2.com/)：強大好看的終端機
 - [Chocolatey](https://chocolatey.org/) ⇀ [Homebrew](https://brew.sh/)：Mac 的套件管理工具
 
-![iTerm2 被我玩成的樣子](iterm.webp)
+![iTerm2 被我玩成的樣子](iTerm.webp)
 
 哦對了，現在備忘錄變成像是 Windows 記事本一樣我隨手拿來當文字編輯器的工具。其他平常工作的軟體都沒有變化，在 MacOS 上面都通用。
 
@@ -206,6 +206,12 @@ Mac 的桌面管理...很藝術，很有他的想法。我們來一個個討論�
 
 MacBook Pro 整理來說真的是一台非常好用的筆電，我非常滿意。硬體設計非常好，軟體也很穩定，使用起來很順手。當然，我才使用三個月不到，所以期許還有更多功能等著我去發掘。也期待從今年開始可以帶著他經歷大大小小的活動。
 
-> - 封面圖素材來自 Apple 官網
-> - 「真的，就很你。」來自 iOS 18 宣傳語、「單手炫大招」來自 iPad Mini 宣傳語。
-> - 「坐和放寬」來自 Windows 10 預覽版更新 Build 10041：「你的電腦將重新啟動多次。坐和放寬」
+{{notice}}
+
+備註
+
+- 封面圖素材來自 Apple 官網
+- 「真的，就很你。」來自 iOS 18 宣傳語、「單手炫大招」來自 iPad Mini 宣傳語。
+- 「坐和放寬」來自 Windows 10 預覽版更新 Build 10041：「你的電腦將重新啟動多次。坐和放寬」
+
+{{noticed}}
