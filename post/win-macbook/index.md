@@ -2,14 +2,13 @@
 authors: elvismao
 tags: [Windows]
 categories: [心得]
-date: 2025-02-22
-description: 非常貴，非常好。蘋果不給的軟體給。
-draft: true
+date: 2025-02-25
+description: 非常貴，非常好，只有蘋果做得到。蘋果做不到的軟體給。
 ---
 
 # 從 Windows 轉到 MacBook 的心得
 
-今年入手了人生第一台筆電，是剛出的 M4 MacBook Pro。從小沒摸過幾次 MacOS，一直以來都是 Windows 的使用者。但從自動更新、內建病毒 Windows Defender 到躲不掉的各種廣告，讓我對 Windows ™有一些不滿。加上考慮到未來可能會開發 iOS App，所以就決定入手 MacBook。今天我想來*坐和放寬*的分享一下這個轉換過程，以及我的一些做法來提升我的效率，讓失去的那些 Windows 習慣找回來。
+今年入手了人生第一台筆電，是最新的 M4 MacBook Pro。從小沒摸過幾次 MacOS，一直以來都是 Windows 的使用者。但從開發問題、自動更新、內建病毒 Windows Defender 到躲不掉的各種廣告，讓我對 Windows ™有很多不滿。加上考慮到未來可能會開發 iOS App，所以就決定入手 MacBook。今天我想來*坐和放寬*的分享一下這個轉換過程，以及我的一些做法來提升我的效率，讓失去的那些 Windows 習慣找回來。
 
 ## 背景
 
@@ -75,26 +74,51 @@ MacBook 的音質真的很不錯，我有被驚艷到。高音很細膩，低音
 
 用了 MacBook 之後幾個軟體我嘗試比較後用回了內建的方案：
 
-- 行事曆：網頁版 Google Calendar ⇀ 行事曆
-- 郵件：Thunderbird ⇀ 郵件
-- 查看 PDF：Firefox ⇀ 內建預覽
+- **行事曆：** 網頁版 Google Calendar ⇀ 行事曆
+- **郵件：** Thunderbird ⇀ 郵件
+- **查看 PDF：** Firefox ⇀ 內建預覽
+- **搜尋：** Everything ⇀ 內建搜尋
 
-對了因為 7-Zip 沒有 Mac 版，所以我換成了 [Keka](https://www.keka.io/zh-tw/)，支援更多格式且免費開源好用。
+還有幾個軟體因為沒有 Mac 版，所以找到一些替代軟體：
 
-哦然後現在備忘錄變成像是 Windows 記事本一樣我隨手拿來當文字編輯器的工具。其他平常工作的軟體都沒有變化，在 MacOS 上面都通用。
+* [7-Zip](https://www.7-zip.org/) ⇀ [Keka](https://www.keka.io/zh-tw/)：開源免費好用的解壓縮工具
+* [終端機](https://github.com/microsoft/terminal) / [MobaXterm](https://mobaxterm.mobatek.net/) ⇀ [iTerm](https://iterm2.com/)：強大好看的終端機
+* [Chocolatey](https://chocolatey.org/) ⇀ [Homebrew](https://brew.sh/)：Mac 的套件管理工具
+
+![iTerm2 被我玩成的樣子](iterm.webp)
+
+哦對了，現在備忘錄變成像是 Windows 記事本一樣我隨手拿來當文字編輯器的工具。其他平常工作的軟體都沒有變化，在 MacOS 上面都通用。
+
+然後我也安裝了 VMware Fusion 來跑 Windows 虛擬機，不過目前還沒有用到過。
 
 ### 快捷鍵：單手炫大招
 
-Mac 的鍵盤相信如果你是第一次看到你都會傻住。從左到右分別是 fn、control、option、command、空白。Windows 則是 control、fn、windows、alt、空白。很多人會覺得很疑惑，Windows 一個 control 就打片天下了 Mac 為什麼那麼複雜，但其實你仔細數就會發現其實快捷鍵的數量是一樣的。你可以簡單這樣理解：
+Mac 的鍵盤相信如果你是第一次看到你都會傻住。從左到右分別是 fn、control、option、command、空白。Windows 則是 control、fn、windows、alt、空白。很多人會覺得很疑惑，Windows 一個 control 就打片天下了 Mac 為什麼那麼複雜，但其實你仔細數就會發現其實快捷鍵的數量是一樣的，只是需要記一下。
+
+你可以簡單這樣理解：
 
 - Windows 的 `control` 大多情況就是 Mac 的 `command`，像是 `command + c` 是複製，`command + v` 是貼上。
-- 但是 Mac 有一些內建的快捷鍵，像是 `command + H` 來最小化視窗，`command + M` 來隱藏視窗丟一旁，會把一些軟體原本的快捷鍵搶走。
+- 但是 Mac 有一些內建作業系統的快捷鍵會佔用 `command`，像是 `command + H` 來最小化視窗，`command + M` 來隱藏視窗丟一旁，會把一些軟體原本的快捷鍵搶走。不像 Windows 跟作業系統有關的快捷鍵通常是 `windows` 加上數字或字母，或著是其他複雜的組合。
 - 有些軟體選擇擺爛，就直接不給那些快捷鍵了，有些就找找替代方案。
     - 瀏覽器歷史紀錄不能用 `command + H` 了，要用 `command + Y`。
     - 切換分頁不能用 `command + tab`，因為 `command + tab` 是切換應用程式，這時又換回 `control + tab` 了。
     - 切換語言不能用 `command + space` 了，因為 `command + space` 是啟動 Spotlight，這時又換回 `control + space` 了。
+- Mac 沒有很多 Windows 有的按鈕，像是 `home`、`end`、`insert`、`delete`，所以你要用 `command + 左右方向鍵`、`command + 上下方向鍵`、`fn + delete` 這些組合來代替。不過不常用且還算直覺，手也不用離開鍵盤。
+- Mac 有很多很奇耙會讓你手打結還按不出來的快捷鍵，像是 VS Code 新增檔案室 `command + option + control + N`，不過目前覺得這種都不常用，不用浪費腦細胞記。
 
-所以實際在使用的時候還是需要查一下然後習慣一下，或著是你可以用內建設定或軟體來改成你習慣的快捷鍵。
+Mac 在檔案管理方面的快捷鍵我覺得蠻有趣的。當我想重新命名檔案時按下 `F2` 時沒反應。當我想打開來看時按下 `return`(aka `enter`)，結果沒打開，反而是重新命名。當按下 `command + O` 時才會打開。當我想要預覽時不像 Windows 是 `control + space`，`option + space` 是全螢幕預覽，結果才發現原來是最簡單的直接按空白。
+
+總結一下：重新命名 `return`、預覽 `space`，習慣一下反而更直覺簡單了。這個規則也同樣適用於 VS Code。
+
+{{notice}}
+
+小提示
+
+如果你 Windows 快捷鍵只會用 `control + c`、`control + v`，那麼...你已經勝過很多學校老師了。
+
+也許你知道 `windows` 加上數字和字母有多少快捷鍵、`alt` 有多好用之後你會更...喜歡工作（？）我在國二的時候寫過一篇[快捷鍵分享你可讀讀](https://emtech.cc/p/windows-hotkey)，不過裡面講的不多。
+
+{{noticed}}
 
 #### 輸入法
 
@@ -104,14 +128,85 @@ Mac 的鍵盤相信如果你是第一次看到你都會傻住。從左到右分�
 
 > 「重新編排，事事好安排。」——Apple MacOS Catalina 介紹
 
-查看例子，明確樣子：
+MacOS 雖然給的快捷鍵很多，但很多我平常非常常用的反而沒有。像是 `Windows + 數字` 來開啟工作列的應用程式，`Windows + E` 來開啟檔案總管，`Windows + D` 來最小化所有視窗等等。有一些有更好的替代方案，有一些可以放棄，但有一些我真的需要。上網搜尋找到了一個叫做 [Karabiner-Elements](https://karabiner-elements.pqrs.org/) 的軟體來幫我重新編排快捷鍵。
+
+查看例子，明確樣子。我自己目前設定了以下幾個：
+
+* F3 打開 Finder
+* `option + ~` 打開記事本
+* `option + 1` 打開 FireFox（開發時水狐狸還是比 Safari 好用）
+* `option + 2` 打開 VS Code
+* `option + 3` 打開 Discord
+* `option + 4` 打開 iTerm (Terminal)
+* `option + 5` 打開 AFFiNE（Markdown 筆記軟體）
+
+![Karabiner-Elements 設定](karabiner.webp)
+
+`option` 鍵加上數字或字母預設是打出一些符號，但這實在太少用而且還要自己記，所以正好全部可以拿來給我當快捷鍵。哪天如果真的要打那些符號也有右邊的 `option` 不影響。不過有一些軟體像是 Figma 就會拿 `option` 來當 `alt` 來做一些快捷鍵，如 `alt + h` 是水平置中，所以會需要注意一下。
 
 #### Spotlight - Raycast
 
+從在使用 Windows 的時候我就很習慣 Spotlight 的這種操作方式了。我開軟體都是直接用搜尋來開軟體，像是如果要打開 VS Code 我就依序按下 `windows`、`v`、`enter` 這三顆就打開了。這樣比在桌面或是應用程式列表中慢慢找快多了。
+
+{{notice}}
+
+小提示
+
+Windows 中要開啟搜尋不需要點那個又長又醜的 Search Bar。只需要按下 `windows` 鍵然後直接打字就可以開啟搜尋了。
+
+這麼說那個搜尋框是不是很沒用？沒錯，你可以在個人化設定中把它隱藏。
+
+{{noticed}}
+
+但 Spotlight 的功能有限，你不能把它當作像 GPT 個人助理一樣進行各種進階的操作，因此我被好幾個朋友推薦 [Raycast](https://www.raycast.com/)。Raycast 簡單來說就是 Spotlight Pro Max，有更多的功能，更多的自訂性。先不講擴充功能，光是計算機就讓我愛不釋手了。
+
+![Raycast 計算機](raycast-cash.webp)
+
+![Raycast 日期計算](raycast-days.webp)
+
+![Raycast 顏色搜尋和螢幕滴管](raycast-color.webp)
+
+Raycast 內建就有很多很方便的軟體以及快捷鍵，像是可以搜尋各種圖標的 emoji 鍵盤 `control` + `command` + `space`。你可以安裝甚至自己開發各種擴充功能來符合你的工作流程。
+
+![Raycast 計算機](raycast-emoji.webp)
+
+![Raycast 擴充功能](raycast-install.webp)
+
+我目前已經把內建的 Spotlight 停用，完全用 Raycast 來取代。
+
 #### 桌面管理
+
+Mac 的桌面管理...很藝術，很有他的想法。我們來一個個討論。
+
+##### 視窗按鈕
+
+視窗那三顆按鈕很小很難按但對我來說超級少用到，我都是直接用快捷鍵 `cmd` + `w`、`cmd` + `q`、`cmd` + `h` 來關閉視窗，還有前面講到的那些快捷鍵來控制，所以他在那裡好看真的比較重要。
+
+`cmd` + `q` 真的蠻不錯的，可以完全關掉不會像 Windows 一樣在背景跑。
+
+##### 全螢幕
+
+我自己一直是一個多桌面、多螢幕使用者，但 Mac 的全螢幕真的是一個很玄的設計。任何全螢幕的視窗都會變成一個獨立的桌面，好這已經夠神奇了，重點是這時候不能有任何其他視窗疊在上面。比如說我在 VS Code 全螢幕寫文章想從 Finder 丟一個檔案進來，抱歉不行。這時候你只能把 VS Code 縮小，然後把 Finder 縮小，然後把檔案拖進 VS Code，然後再把 VS Code 放大。
+
+好那我就不要放全螢幕不就好了？反正我在 Windows 也不會按 F11 來用軟體。現在 Mac 終於可以自己管理視窗大小，不用 [Magnet](https://magnet.crowdcafe.com/) 這種軟體來做到左右分屏、四分屏、上下分屏等等。但用像 Windows 一樣把視窗拖到最上面（或著是用反人類的快捷鍵 `fn` + `control` + `f`）的效果如下：
+
+![Mac 視窗管理](mac-full.webp)
+
+我們放大點看：
+
+![Mac 視窗管理](mac-full-2.webp)
+
+你跟我說這叫全螢幕？這看起來超難受。這時我發現 Raycast 內建就有視窗管理工具。我把全螢幕跟縮小放中間分別設定成 `option` + `z` 跟 `option` + `shift` + `z`，這樣就可以優雅的全螢幕了。對了而且喔這個全螢幕的大小跟使用預設的 `control` + `command` + `f` 大小其實是一樣的。差別只是全螢幕最上面的狀態欄變成黑色的。就這樣。因為 MacBook 有瀏海所以那一排都不能給軟體顯示。
+
+![大小比較](compare.webp)
+
+> "Only Apple cam do" ——Tim Cook
+
 
 ## 總結
 
-> 封面圖來自 Apple 官網
-> 「真的，就很你。」來自 iOS 18 宣傳語、「單手炫大招」來自 iPad Mini 宣傳語。
-> 「坐和放寬」來自 Windows 10 預覽版更新 Build 10041：「你的電腦將重新啟動多次。坐和放寬」
+MacBook Pro 整理來說真的是一台非常好用的筆電，我非常滿意。硬體設計非常好，軟體也很穩定，使用起來很順手。當然，我才使用三個月不到，所以期許還有更多功能等著我去發掘。也期待從今年開始可以帶著他經歷大大小小的活動。
+
+> * 封面圖素材來自 Apple 官網
+> * 「真的，就很你。」來自 iOS 18 宣傳語、「單手炫大招」來自 iPad Mini 宣傳語。
+> * 「坐和放寬」來自 Windows 10 預覽版更新 Build 10041：「你的電腦將重新啟動多次。坐和放寬」
