@@ -81,9 +81,9 @@ MacBook 的音質真的很不錯，我有被驚艷到。高音很細膩，低音
 
 還有幾個軟體因為沒有 Mac 版，所以找到一些替代軟體：
 
-* [7-Zip](https://www.7-zip.org/) ⇀ [Keka](https://www.keka.io/zh-tw/)：開源免費好用的解壓縮工具
-* [終端機](https://github.com/microsoft/terminal) / [MobaXterm](https://mobaxterm.mobatek.net/) ⇀ [iTerm](https://iterm2.com/)：強大好看的終端機
-* [Chocolatey](https://chocolatey.org/) ⇀ [Homebrew](https://brew.sh/)：Mac 的套件管理工具
+- [7-Zip](https://www.7-zip.org/) ⇀ [Keka](https://www.keka.io/zh-tw/)：開源免費好用的解壓縮工具
+- [終端機](https://github.com/microsoft/terminal) / [MobaXterm](https://mobaxterm.mobatek.net/) ⇀ [iTerm](https://iterm2.com/)：強大好看的終端機
+- [Chocolatey](https://chocolatey.org/) ⇀ [Homebrew](https://brew.sh/)：Mac 的套件管理工具
 
 ![iTerm2 被我玩成的樣子](iterm.webp)
 
@@ -132,13 +132,13 @@ MacOS 雖然給的快捷鍵很多，但很多我平常非常常用的反而沒�
 
 查看例子，明確樣子。我自己目前設定了以下幾個：
 
-* F3 打開 Finder
-* `option + ~` 打開記事本
-* `option + 1` 打開 FireFox（開發時水狐狸還是比 Safari 好用）
-* `option + 2` 打開 VS Code
-* `option + 3` 打開 Discord
-* `option + 4` 打開 iTerm (Terminal)
-* `option + 5` 打開 AFFiNE（Markdown 筆記軟體）
+- F3 打開 Finder
+- `option + ~` 打開記事本
+- `option + 1` 打開 FireFox（開發時水狐狸還是比 Safari 好用）
+- `option + 2` 打開 VS Code
+- `option + 3` 打開 Discord
+- `option + 4` 打開 iTerm (Terminal)
+- `option + 5` 打開 AFFiNE（Markdown 筆記軟體）
 
 ![Karabiner-Elements 設定](karabiner.webp)
 
@@ -202,11 +202,10 @@ Mac 的桌面管理...很藝術，很有他的想法。我們來一個個討論�
 
 > "Only Apple cam do" ——Tim Cook
 
-
 ## 總結
 
 MacBook Pro 整理來說真的是一台非常好用的筆電，我非常滿意。硬體設計非常好，軟體也很穩定，使用起來很順手。當然，我才使用三個月不到，所以期許還有更多功能等著我去發掘。也期待從今年開始可以帶著他經歷大大小小的活動。
 
-> * 封面圖素材來自 Apple 官網
-> * 「真的，就很你。」來自 iOS 18 宣傳語、「單手炫大招」來自 iPad Mini 宣傳語。
-> * 「坐和放寬」來自 Windows 10 預覽版更新 Build 10041：「你的電腦將重新啟動多次。坐和放寬」
+> - 封面圖素材來自 Apple 官網
+> - 「真的，就很你。」來自 iOS 18 宣傳語、「單手炫大招」來自 iPad Mini 宣傳語。
+> - 「坐和放寬」來自 Windows 10 預覽版更新 Build 10041：「你的電腦將重新啟動多次。坐和放寬」
