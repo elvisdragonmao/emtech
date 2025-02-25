@@ -4,11 +4,12 @@ tags: [Windows]
 categories: [心得]
 date: 2025-02-25
 description: 非常貴，非常好，只有蘋果做得到。蘋果做不到的軟體給。
+lastUpdated: 2025-02-25
 ---
 
 # 從 Windows 轉到 MacBook 的心得
 
-今年入手了人生第一台筆電，是最新的 M4 MacBook Pro。從小沒摸過幾次 MacOS，一直以來都是 Windows 的使用者。但從開發問題、自動更新、內建病毒 Windows Defender 到躲不掉的各種廣告，讓我對 Windows ™有很多不滿。加上考慮到未來可能會開發 iOS App，所以就決定入手 MacBook。今天我想來*坐和放寬*的分享一下這個轉換過程，以及我的一些做法來提升我的效率，讓失去的那些 Windows 習慣找回來。
+今年入手了人生第一台筆電，是最新的 M4 MacBook Pro。從小沒摸過幾次 MacOS，一直以來都是 Windows 的使用者。但從開發問題、自動更新、內建病毒 Windows Defender 到躲不掉的各種廣告，讓我對 Windows ™有很多不滿。加上考慮到未來可能會開發 iOS App，所以就決定強力出圈入手 MacBook。今天我想來*坐和放寬*的分享一下這個轉換過程，以及我的一些做法來提升我的效率，讓失去的那些 Windows 習慣找回來。
 
 ## 背景
 
@@ -122,7 +123,7 @@ Mac 在檔案管理方面的快捷鍵我覺得蠻有趣的。當我想重新命�
 
 #### 輸入法
 
-講到輸入法，我目前只有使用注音輸入法，又有一顆中英切換鍵，所以沒有切換輸入法的困擾，也沒有誤按 `shift` 的問題。反正我用 Windows 的時候應該從來沒開過 Caps Lock，拿來當中英切換鍵也是很好的。畢盡在中文書入法如果直接按著 `shift` 會變成全形的大寫英文，所以還是得切回英文輸入法在打。有點困擾但還行。
+講到輸入法，我目前只有使用注音輸入法，又有一顆中英切換鍵，所以沒有切換輸入法的困擾，也沒有誤按 `shift` 的問題。反正我用 Windows 的時候應該從來沒開過 Caps Lock，拿來當中英切換鍵也是很好的。畢竟在中文書入法如果直接按著 `shift` 會變成全形的大寫英文，所以還是得切回英文輸入法在打。有點困擾但還行。
 
 #### Karabiner-Elements
 
@@ -134,7 +135,7 @@ MacOS 雖然給的快捷鍵很多，但很多我平常非常常用的反而沒�
 
 - F3 打開 Finder
 - `option + ~` 打開記事本
-- `option + 1` 打開 FireFox（開發時水狐狸還是比 Safari 好用）
+- `option + 1` 打開 Firefox（開發時水狐狸還是比 Safari 好用）
 - `option + 2` 打開 VS Code
 - `option + 3` 打開 Discord
 - `option + 4` 打開 iTerm (Terminal)
@@ -200,7 +201,7 @@ Mac 的桌面管理...很藝術，很有他的想法。我們來一個個討論�
 
 ![大小比較](compare.webp)
 
-> "Only Apple cam do" ——Tim Cook
+> "Only Apple can do" ——Tim Cook
 
 ## 總結
 
@@ -211,7 +212,7 @@ MacBook Pro 整理來說真的是一台非常好用的筆電，我非常滿意�
 備註
 
 - 封面圖素材來自 Apple 官網
-- 「真的，就很你。」來自 iOS 18 宣傳語、「單手炫大招」來自 iPad Mini 宣傳語。
+- 「真的，就很你。」來自 iOS 18 宣傳語、「單手炫大招」來自 iPad Mini 宣傳語、「強力出圈」來自 iPhone 14 Pro宣傳語
 - 「坐和放寬」來自 Windows 10 預覽版更新 Build 10041：「你的電腦將重新啟動多次。坐和放寬」
 
 {{noticed}}
