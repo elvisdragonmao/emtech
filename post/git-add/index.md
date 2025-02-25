@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [git]
+tags: [Git]
 date: 2024-08-27
 ---
 

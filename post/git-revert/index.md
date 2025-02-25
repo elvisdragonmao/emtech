@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [git, GitHub]
+tags: [Git, GitHub]
 categories: [debug]
 date: 2024-06-17
 ---
