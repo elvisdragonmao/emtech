@@ -16,6 +16,14 @@ const categories = {};
 const partialsContent = {};
 let imageMeta = {};
 
+const log = (type, message) => {
+    const types = { log: "➤", info: "➤", warn: "⚠️", success: "✅", error: "❌" };
+    const color = { log: 37,info: 34, warn: 33, success: 35, message: 32, error: 31 };
+    const icon = types[type] || types.log;
+    const consoleColor = color[type] || color.log;
+    console.log(`\x1b[${consoleColor}m%s\x1b[0m`, icon+" "+message);
+};
+
 const md = markdownIt({
     html: true,
     linkify: false,
@@ -174,7 +182,7 @@ const generatePartials = async () => {
     await Promise.all(
         partialFiles.map(async (file) => {
             const partialName = file.replace(".html", "");
-            console.log(`➤ Reading partial: ${partialName}`);
+            console.log(`Reading partial: ${partialName}`);
             const content = await fs.readFile(`view/partials/${file}`, "utf8");
             partialsContent[partialName] = content;
         })
@@ -288,7 +296,7 @@ async function processPosts() {
                 const markdownFile = path.join(postPath, "index.md");
                 try {
                     await fs.access(markdownFile); // Checks if file exists
-                    console.log(`➤ Processing post: ${postID}`);
+                   console.log(`Processing post: ${postID}`);
                 } catch (error) {
                     console.warn(
                         `➤ No markdown file found for post: ${postID}`
@@ -304,7 +312,7 @@ async function processPosts() {
                 // turn image url if not set path like ![](image.webp) to ![](/static/postID/image.webp)
                 // don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
                 if (postMeta.draft == "true") {
-                    console.log(`➤ Skip post: ${postID}`);
+                    console.log(`Skip post: ${postID}`);
                     return;
                 }
                 markdownContent = markdownContent.replace(
@@ -811,20 +819,20 @@ async function findRepresentativeColors(imagePath) {
          ##                                                                
 `
     );
-    console.log("\x1b[32m%s\x1b[0m", "emtech Site Generator");
-    console.log("\x1b[34m%s\x1b[0m", "➤ Generating site...");
+    log("message", "emtech Site Generator");
+    log("info", "Generating site...");
     console.time("Execution Time");
-    console.log("\x1b[34m%s\x1b[0m", "➤ Initializing dist folder...");
+    log("info", "Initializing dist folder...");
     if (!skipPost) await initDist();
-    console.log("\x1b[34m%s\x1b[0m", "➤ Preparing site...");
+    log("info", "Preparing site...");
     await Promise.all([generatePartials(), copyStatic()]);
-    console.log("\x1b[34m%s\x1b[0m", "➤ Processing posts...");
+    log("info", "Processing posts...");
     if (!skipPost) {
         await processPosts();
-        console.log("\x1b[34m%s\x1b[0m", "➤ Generating sitemap and RSS...");
+        log("info", "Generating sitemap and RSS...");
         await generateSitemapAndRSS();
         console.table(analyze);
     }
-    console.log("\x1b[35m%s\x1b[0m", "➤ Site generated successfully!");
+    log("success", "Site generated successfully!");
     console.timeEnd("Execution Time");
 })();
