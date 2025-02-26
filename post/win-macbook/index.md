@@ -4,7 +4,7 @@ tags: [Windows, macOS]
 categories: [心得]
 date: 2025-02-25
 description: 非常貴，非常好，只有蘋果做得到。蘋果做不到的軟體給。
-lastUpdated: 2025-02-25
+lastUpdated: 2025-02-26
 ---
 
 # 從 Windows 轉到 MacBook 的心得
@@ -66,6 +66,16 @@ MacBook 的音質真的很不錯，我有被驚艷到。高音很細膩，低音
 哦對了唯一想抱怨的只有邊框切得蠻鋒利的，掀起螢幕跟把手放在邊緣會有點割手，但我覺得這樣的設計很好看，也還算能接受的範圍。
 
 > 「快得太嚇人。」——Apple MacBook 宣傳語
+
+{{notice}}
+
+2025/2/26 補充
+
+我補充一下，最近我回學校又開始使用學校的電腦。馬上開始想念我的 MacBook 了。好卡，不能單手開，打字好痠好黏，`Ctrl` 鍵按幾分鐘手就酸了。然後快捷鍵一直按錯，拿 `caps lock` 在切語言，`，` 打成 `<`，拿 `ctrl + backspace` 當 `delete`。
+
+Mac 版 Office 全家桶真的 UI 很好，UX 比 Windows 還糟糕好多。
+
+{{noticed}}
 
 ## 轉換過程
 
