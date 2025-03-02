@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: []
-categories: [心得]
+categories: [生活雜談]
 date: 2025-02-18
 description: 不要自殺，自殺會讓你死掉
 ---

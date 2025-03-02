@@ -1,6 +1,6 @@
 ---
 tags: [特殊選才]
-categories: [心得]
+categories: [生活雜談]
 date: 2024-12-06
 description: 兩段面試，一段簡報自我介紹，一段問答。教授很和善，且會認真問專案細節。
 ---

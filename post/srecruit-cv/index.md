@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [特殊選才]
-categories: [心得]
+categories: [生活雜談]
 date: 2025-02-23
 description: 好的備審能讓你的努力和特質被看見，甚至錄取超出你預期的學校。
 ---
