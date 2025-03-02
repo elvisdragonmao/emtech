@@ -174,7 +174,6 @@ const postScrollAnimations = () => {
         document.body.classList.remove("nav-sticky");
     }
     for (const next of nextPosts) {
-        if (next.classList.contains("main-container")) continue;
         const nextTop = next.getBoundingClientRect().top;
         if (nextTop > window.innerHeight) {
             next.style = "";
@@ -184,7 +183,6 @@ const postScrollAnimations = () => {
             ) {
                 next.classList.add("loaded");
                 // find random post with same tag but not read yet
-
                 // Traverse backwards to find the closest <header> sibling
                 let headerSibling = next.previousElementSibling;
                 while (headerSibling && headerSibling.tagName !== "HEADER") {
@@ -231,11 +229,7 @@ const postScrollAnimations = () => {
                             "沒有更多文章了";
                         next.classList.remove("loaded");
                     }
-
-                    fetch(
-                        //  next.getAttribute("href").replace("/p/", "/p/clean/") +
-                        "/p/clean/" + randomPost.id + ".html"
-                    )
+                    fetch("/p/clean/" + randomPost.id + ".html")
                         .then((response) => {
                             if (!response.ok)
                                 throw new Error("Network response was not ok");
@@ -244,11 +238,6 @@ const postScrollAnimations = () => {
                         .then((data) => {
                             next.innerHTML = data;
                             initPost(next);
-                            window.history.pushState(
-                                null,
-                                null,
-                                `/p/${randomPost.id}`
-                            );
                         })
                         .catch((error) => {
                             console.error("Fetch failed", error);
@@ -257,26 +246,60 @@ const postScrollAnimations = () => {
                 })();
             }
         } else {
-            let maxWidth = Math.min(1200, window.innerWidth - 64) - 32;
-            let footerHeight = parseFloat(getComputedStyle(footer).height) + 32;
-            let originalHeight = Math.min(
-                400,
-                window.innerHeight - footerHeight
-            );
-            let toMove = window.innerHeight - originalHeight;
-            let canMove = window.innerHeight - originalHeight - footerHeight;
-            let height =
-                originalHeight + (toMove / canMove) * (canMove - nextTop);
-            let width = Math.max(
-                maxWidth,
-                maxWidth +
-                    ((window.innerWidth - maxWidth) / canMove) *
-                        (canMove - nextTop)
-            );
-            let scale = width / window.innerWidth;
+            let originalHeight, scale, height, width;
+            if (!next.classList.contains("main-container")) {
+                let maxWidth = Math.min(1200, window.innerWidth - 64) - 32;
+                let footerHeight =
+                    parseFloat(getComputedStyle(footer).height) + 32;
+                originalHeight = Math.min(
+                    400,
+                    window.innerHeight - footerHeight
+                );
+                let toMove = window.innerHeight - originalHeight;
+                let canMove =
+                    window.innerHeight - originalHeight - footerHeight;
+                height =
+                    originalHeight + (toMove / canMove) * (canMove - nextTop);
+                width = Math.max(
+                    maxWidth,
+                    maxWidth +
+                        ((window.innerWidth - maxWidth) / canMove) *
+                            (canMove - nextTop)
+                );
+                scale = width / window.innerWidth;
+            } else height = window.innerHeight + 1; // 直接上第一篇過
             if (height > window.innerHeight) {
                 next.style = "";
-                //   document.body.style.paddingBottom = "1rem";
+
+                // 已經滾動到下一篇
+                // contiune.bottom > 0
+                // top < 0
+                if (
+                    // 第一篇文章 || 後面的文章已經超過
+                    (next.classList.contains("main-container") ||
+                        nextTop < 0) &&
+                    // 還沒滾動到最底
+                    next.querySelector(".continue")?.getBoundingClientRect()
+                        .bottom > 0
+                ) {
+                    next.style = "";
+                    if (!next.getAttribute("data-id"))
+                        next.setAttribute(
+                            "data-id",
+                            next.querySelector(".post").getAttribute("data-id")
+                        );
+                    const nextID = next.getAttribute("data-id");
+                    if (nextID !== null && nextID !== readHistory[0].id) {
+                        window.history.pushState(null, null, `/p/${nextID}`);
+                        const title =
+                            next.querySelector(".post-header h1").textContent;
+                        updateReadHistory({
+                            id: nextID,
+                            title
+                        });
+                        document.title = title + " | 毛哥EM資訊密技";
+                    }
+                }
             } else {
                 next.style.setProperty("--scale", scale);
                 next.style.setProperty("--scaleWidth", "100vw");
@@ -308,10 +331,11 @@ const updatePostList = async (category, scroll = true) => {
 
 // use url to get current page include /p/
 window.addEventListener("scroll", postScrollAnimations);
-const initPost = (page) => {
+const initPost = (page, direct = false) => {
     currentPage = "post";
     document.body.classList.add("displayPost");
 
+    // Table of contents
     // highlight current h2 in .post-content and put in .toc
     const postContent = page.querySelector(".post-content");
     const toc = page.querySelector(".toc");
@@ -362,20 +386,21 @@ const initPost = (page) => {
         },
         { rootMargin: "0% 0% -80% 0%" }
     );
-
-    // Observe each h2 element
     headers.forEach((header) => observer.observe(header));
-
     page.querySelectorAll("h2").forEach((h2) => {
         observer.observe(h2);
     });
+
+    // update post title
     nextPosts.push(page.querySelector(".next-post"));
     if (asideTags) page.querySelector(".aside-tags").innerHTML = asideTags;
     updateDate(page.querySelector("#time p"));
-    const id = page.querySelector(".post").getAttribute("data-id");
-    const title = page.querySelector(".post-header h1").textContent;
-    document.title = title + " | 毛哥EM資訊密技";
-    if (title && id) updateReadHistory({ id, title });
+    if (direct) {
+        const id = page.querySelector(".post").getAttribute("data-id");
+        const title = page.querySelector(".post-header h1").textContent;
+        document.title = title + " | 毛哥EM資訊密技";
+        updateReadHistory({ id, title });
+    }
     const cat = page.querySelector(".header-categorie").textContent;
     const related = page.querySelector(".related-posts");
     // update .related-posts
@@ -383,8 +408,10 @@ const initPost = (page) => {
     related.querySelector("h2").textContent = cat + " 的其他文章";
     startAds();
 };
+
 if (window.location.pathname.includes("/p/")) {
-    initPost(document.querySelector(".post-page"));
+    initPost(document.querySelector(".post-page"), true);
+    nextPosts.push(document.querySelector(".post-page"));
 } else {
     currentPage = "home";
     document.body.classList.remove("displayPost");
@@ -496,7 +523,7 @@ const switchToPost = (a) => {
             .then((data) => {
                 document.querySelector(".post-page").innerHTML = data;
                 showPostContent();
-                nextPosts = [document.querySelector(".post-page")];
+                nextPosts.push(page.querySelector(".next-post"));
             })
             .catch((error) => {
                 let retryDelay = 3;
@@ -800,5 +827,3 @@ console.log(`
     emtech.cc is generated with emblog by Elvis Mao
     https://github.com/Edit-Mr/emblog
     `);
-
-console.log("last updated: 2024-10-18 01:52:48");
