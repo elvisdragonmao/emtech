@@ -126,3 +126,5 @@ Haskell、Elixir 等語言強調使用純函數和不可變數據，使得程式
 適合宣告式程式設計的場景包括 SQL 資料庫查詢、React 前端開發、CSS 樣式設計，以及函數式語言應用。
 
 雖然宣告式程式設計不是萬能的，但在現代開發中，它已經成為不可或缺的工具。掌握這種思維方式，能讓你的程式碼更簡潔、可讀、易維護。
+
+> 縮圖背景來自 [Annie Spratt on Unsplash](https://unsplash.com/photos/white-and-brown-composite-bow-jY9mXvA15W0)。
