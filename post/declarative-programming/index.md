@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [演算法, JavaScript, CSS, React, SQL]
+tags: [演算法，JavaScript, CSS, React, SQL]
 categories: [教學]
 date: 2025-03-02
 description: 宣告式程式設計（Declarative Programming）是一種描述「要做什麼」而不是「怎麼做」的程式設計方式。
@@ -11,6 +11,7 @@ description: 宣告式程式設計（Declarative Programming）是一種描述�
 宣告式程式設計（Declarative Programming）是一種**描述「要做什麼」而不是「怎麼做」的程式設計方式**。與傳統的命令式（Imperative Programming）相比，宣告式程式設計更專注於描述結果，而非具體的執行步驟。
 
 這種方式的主要特點是：
+
 - **關注目標結果**，而不是執行的細節。
 - **讓系統決定最佳的執行方式**，減少開發者手動處理細節的負擔。
 - **通常使用純函數（pure functions）和不可變數據（immutable data）**，降低副作用。
@@ -42,7 +43,7 @@ console.log(evens); // [2, 4]
 
 ```javascript
 let numbers = [1, 2, 3, 4, 5];
-let evens = numbers.filter(n => n % 2 === 0);
+let evens = numbers.filter((n) => n % 2 === 0);
 
 console.log(evens); // [2, 4]
 ```
@@ -89,7 +90,7 @@ SQL 語言是宣告式的，我們只描述「要哪些資料」，資料庫引�
 
 ```jsx
 function App() {
-  return <h1>Hello, World!</h1>;
+    return <h1>Hello, World!</h1>;
 }
 ```
 
@@ -109,7 +110,6 @@ CSS 只描述「按鈕應該是藍色的」，而不需要告訴瀏覽器「如�
 ### 4. **函數式程式語言（Haskell、Elixir）**
 
 Haskell、Elixir 等語言強調使用純函數和不可變數據，使得程式更加宣告式。
-
 
 ## 宣告式程式設計的挑戰
 
