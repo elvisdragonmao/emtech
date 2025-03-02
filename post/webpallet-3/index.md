@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [CSS,"網棧"]
+tags: [CSS, "網棧"]
 categories: ["程式語言", "教學"]
 thumbnail: /static/webpallet-0/thumbnail.webp
 date: 2023-06-12
