@@ -17,11 +17,24 @@ const partialsContent = {};
 let imageMeta = {};
 
 const log = (type, message) => {
-    const types = { log: "➤", info: "➤", warn: "⚠️", success: "✅", error: "❌" };
-    const color = { log: 37,info: 34, warn: 33, success: 35, message: 32, error: 31 };
+    const types = {
+        log: "➤",
+        info: "➤",
+        warn: "⚠️",
+        success: "✅",
+        error: "❌"
+    };
+    const color = {
+        log: 37,
+        info: 34,
+        warn: 33,
+        success: 35,
+        message: 32,
+        error: 31
+    };
     const icon = types[type] || types.log;
     const consoleColor = color[type] || color.log;
-    console.log(`\x1b[${consoleColor}m%s\x1b[0m`, icon+" "+message);
+    console.log(`\x1b[${consoleColor}m%s\x1b[0m`, icon + " " + message);
 };
 
 const md = markdownIt({
@@ -296,7 +309,7 @@ async function processPosts() {
                 const markdownFile = path.join(postPath, "index.md");
                 try {
                     await fs.access(markdownFile); // Checks if file exists
-                   console.log(`Processing post: ${postID}`);
+                    console.log(`Processing post: ${postID}`);
                 } catch (error) {
                     console.warn(
                         `➤ No markdown file found for post: ${postID}`
