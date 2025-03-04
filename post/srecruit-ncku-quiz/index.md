@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [特殊選才]
-categories: [心得]
+categories: [生活雜談]
 date: 2025-01-16
 description: 很難，很累。從早上九點寫到下午四點，中間排隊被帶去進食半小時再關回去寫。但挺有趣的。
 ---

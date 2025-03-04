@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [比賽心得]
-categories: [心得]
+categories: [生活雜談]
 date: 2024-05-05
 description: 仰望盃全國科學 HomeRun 實作大賽是科學實驗競賽，不是黑克松那種專題開發競賽。
 ---

@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [iOS 捷徑]
-categories: [網站分享，API 分享，捷徑分享]
+categories: [網站分享，捷徑分享]
 date: 2022-01-06
 ---
 
