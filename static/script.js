@@ -476,7 +476,6 @@ const switchToPost = (a) => {
         const postThumbnailContainer = document.querySelector(
             ".post-thumbnail-container"
         );
-        console.log(postThumbnailContainer);
         postThumbnailContainer.style.opacity = "0"; // 實在不知道為甚麼 visibility: hidden 會卡住不會消失
         setTimeout(() => {
             document.body.classList.add("displayPost");
@@ -523,7 +522,7 @@ const switchToPost = (a) => {
             .then((data) => {
                 document.querySelector(".post-page").innerHTML = data;
                 showPostContent();
-                nextPosts.push(page.querySelector(".next-post"));
+                nextPosts.push(document.querySelector(".post-page"));
             })
             .catch((error) => {
                 let retryDelay = 3;
