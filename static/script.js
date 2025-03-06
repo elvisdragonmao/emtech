@@ -442,8 +442,7 @@ if (window.location.pathname.includes("/p/")) {
 const switchToHome = () => {
     if (currentPage === "home") document.body.classList = "toHome";
     else document.body.classList.add("toHome");
-    if(window.location.pathname == "/")
-    updatePostList("category/精選", false);
+    if (window.location.pathname == "/") updatePostList("category/精選", false);
     currentPage = "home";
     nextPosts = [];
     startDonut();
