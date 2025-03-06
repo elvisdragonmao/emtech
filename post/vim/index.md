@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Terminal, Vim]
-categories: [軟體分享]
+categories: [程式教學]
 date: 2023-02-13
 ---
 

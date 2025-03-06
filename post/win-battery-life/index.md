@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Windows]
-categories: [教學]
+categories: [生活駭客]
 date: 2022-12-03
 ---
 

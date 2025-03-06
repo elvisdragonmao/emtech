@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [自製，Twitter]
-categories: [軟體分享]
+categories: [生活駭客]
 date: 2023-08-05
 ---
 

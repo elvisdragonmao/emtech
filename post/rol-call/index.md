@@ -1,7 +1,7 @@
 ---
 authors: elvismao
-tags: [HTML, CSS, JavaScript, GitHub, GAS]
-categories: [複製貼上就能成為工程師，製作教學]
+tags: [HTML, CSS, JavaScript, GitHub, GAS, 複製貼上就能成為工程師]
+categories: [生活駭客，程式開發]
 date: 2023-05-01
 ---
 

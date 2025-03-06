@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [iOS, iPadOS]
-categories: [科技新聞]
+categories: [科技趨勢]
 date: 2023-06-09
 ---
 

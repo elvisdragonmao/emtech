@@ -1,7 +1,7 @@
 ---
 authors: elvismao
-tags: [GitHub Actions, Node.js, DevOps]
-categories: ["看好了 GitHub Actions，我只示範一次"]
+tags: ["看好了 GitHub Actions，我只示範一次", GitHub Actions, Node.js, DevOps]
+categories: [自動化]
 date: 2024-10-11
 ---
 

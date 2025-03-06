@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [iOS, 自製，Arduino, ESP32]
-categories: [精選，製作教學]
+categories: [生活駭客]
 date: 2024-01-09
 thumbnail: /static/Homekit-PC/power.webp
 ---

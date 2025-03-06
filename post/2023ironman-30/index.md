@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 categories: [生活雜談]
-categories: [不用庫 也能酷 - 玩轉 CSS & Js 特效]
+tags: [不用庫 也能酷 - 玩轉 CSS & Js 特效]
 thumbnail: /static/2023ironman-1/thumbnail.webp
 date: 2023-10-14
 ---

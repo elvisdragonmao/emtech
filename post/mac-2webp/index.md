@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: []
-categories: []
+categories: [程式開發，生活駭客]
 date: 2025-03-02
 description: 
 draft: true

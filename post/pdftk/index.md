@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Terminal, Windows, Android]
-categories: [軟體分享]
+categories: [生活駭客]
 date: 2022-09-06
 ---
 

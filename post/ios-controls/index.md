@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [iOS, iOS 捷徑]
-categories: [debug]
+categories: [生活駭客]
 date: 2022-11-19
 ---
 

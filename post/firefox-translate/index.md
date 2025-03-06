@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Firefox]
-categories: [網站分享，製作教學]
+categories: [生活駭客]
 date: 2023-12-31
 ---
 

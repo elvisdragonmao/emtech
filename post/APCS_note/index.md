@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [C]
-categories: [程式語言]
+categories: [程式教學]
 date: 2022-07-17
 ---
 

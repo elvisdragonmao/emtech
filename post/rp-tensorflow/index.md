@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Raspberry Pi, Tensorflow, Python, Jupyter Notebook, 機器學習]
-categories: [製作教學]
+categories: [程式開發]
 date: 2024-05-01
 ---
 
