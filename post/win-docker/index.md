@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Docker]
-categories: [軟體分享, debug]
+categories: [軟體分享，debug]
 date: 2025-03-06
 description: 直接去官方 GitHub Release 安裝下載 WSL，然後安裝 Docker Desktop 即可。
 ---
@@ -22,7 +22,7 @@ description: 直接去官方 GitHub Release 安裝下載 WSL，然後安裝 Dock
 
 {{notice}}
 
-### 我的電腦可以安裝嗎?
+### 我的電腦可以安裝嗎？
 
 現在不管你是家庭版、專業版、企業版都可以安裝，只要你的電腦支援虛擬化技術和系統版本夠新。完整系統要求可以參考 [官方文檔](https://docs.docker.com/desktop/windows/install/#system-requirements)。
 
@@ -30,7 +30,7 @@ description: 直接去官方 GitHub Release 安裝下載 WSL，然後安裝 Dock
 
 ### 開啟虛擬化
 
-首先你要確認你的電腦支援虛擬化技術，這個在 BIOS 裡面可以設定，不同的電腦廠牌設定方式不同，你可以參考你的電腦廠牌的說明文件。你可以在工作管理員(
+首先你要確認你的電腦支援虛擬化技術，這個在 BIOS 裡面可以設定，不同的電腦廠牌設定方式不同，你可以參考你的電腦廠牌的說明文件。你可以在工作管理員 (
 `Ctrl` + `Shift` + `Esc`) 的效能頁面看到虛擬化是否開啟。
 
 ![虛擬化](virtualization.webp)
