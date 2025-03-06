@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Linux, 7z]
-categories: [生活駭客, 程式開發]
+categories: [生活駭客，程式開發]
 date: 2024-05-31
 ---
 
