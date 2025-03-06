@@ -692,7 +692,7 @@ fetch("/meta/search.json")
         if (window.location.pathname === "/random") {
             const randomId =
                 search[Math.floor(Math.random() * search.length)].id;
-            a = document.createElement("a");
+            let a = document.createElement("a");
             a.setAttribute("href", `/p/${randomId}`);
             switchToPost(a);
             window.history.pushState(null, null, `/p/${randomId}`);
