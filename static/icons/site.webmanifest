@@ -1,6 +1,5 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "毛哥EM資訊密技",
     "icons": [
         {
             "src": "/static/icons/android-chrome-192x192.png",
@@ -15,5 +14,6 @@
     ],
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
-    "display": "standalone"
+    "display": "minimal-ui",
+    "start_url": "/"
 }
