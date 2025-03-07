@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Notion, Python, PDF, Google Colab, 自製]
-categories: [製作教學]
+categories: [生活駭客，程式開發]
 date: 2024-02-22
 ---
 

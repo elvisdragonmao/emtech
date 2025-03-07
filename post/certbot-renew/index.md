@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [DNS, SSL]
-categories: [debug]
+categories: [程式開發]
 date: 2024-06-30
 ---
 

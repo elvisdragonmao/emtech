@@ -1,7 +1,7 @@
 ---
 authors: elvismao
-tags: [CSS, JavaScript, GPU]
-categories: [不用庫 也能酷 - 玩轉 CSS & Js 特效]
+tags: [不用庫 也能酷 - 玩轉 CSS & Js 特效，CSS, JavaScript, GPU]
+categories: [網頁開發]
 thumbnail: /static/2023ironman-1/thumbnail.webp
 date: 2023-10-04
 ---

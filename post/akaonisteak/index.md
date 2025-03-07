@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Android]
-categories: [別說我教的]
+categories: [生活駭客]
 date: 2023-02-13
 ---
 

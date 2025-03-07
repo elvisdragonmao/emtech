@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [JavaScript, GAS, API, line]
-categories: [軟體分享]
+categories: [程式開發，科技趨勢]
 date: 2024-05-16
 ---
 

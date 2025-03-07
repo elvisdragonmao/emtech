@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [iPadOS]
-categories: [debug]
+categories: [生活駭客，科技趨勢]
 date: 2023-06-08
 ---
 

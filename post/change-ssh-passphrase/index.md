@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Terminal]
-categories: [debug]
+categories: [程式開發]
 date: 2022-08-19
 ---
 

@@ -815,7 +815,6 @@ async function findRepresentativeColors(imagePath) {
     return [colors, [width, height]];
 }
 
-// 主程式流程
 (async () => {
     console.log(
         "\x1b[33m%s\x1b[0m",

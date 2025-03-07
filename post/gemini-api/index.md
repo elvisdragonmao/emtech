@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [JavaScript, API, Gemini]
-categories: [製作教學]
+categories: [程式開發]
 date: 2024-05-15
 ---
 

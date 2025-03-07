@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Apple, iPad]
-categories: [科技新聞]
+categories: [科技趨勢]
 date: 2024-05-07
 ---
 

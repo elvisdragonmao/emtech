@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Windows]
-categories: []
+categories: [生活駭客]
 date: 2025-02-26
 description:
 draft: true

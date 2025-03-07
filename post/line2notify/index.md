@@ -1,13 +1,19 @@
 ---
 authors: elvismao
 tags: [自製，JavaScript, GAS]
-categories: [製作教學]
+categories: [生活駭客]
 date: 2023-02-22
 ---
 
 # 【GAS】用 Line Bot&Line Notify 轉發群組訊息給自己
 
 你是否有群組充滿著垃圾訊息？用 Line Bot&Line Notify 轉發重要訊息給自己！不用程式經驗，複製貼上就好了！
+
+{{notice}}
+Line Notify 停用
+
+Line Notify 已經停用，請自行修改程式成直接使用 Line Bot 發送訊息。ㄋ
+{{noticed}}
 
 ![某群組充斥著垃圾訊息](line2notify-why.webp)
 

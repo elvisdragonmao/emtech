@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [iOS]
-categories: [教學]
+categories: [生活駭客]
 date: 2023-01-17
 ---
 

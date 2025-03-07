@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-categories: ["程式語言", "教學"]
+categories: [網頁開發，程式教學]
 tags: ["網棧"]
 date: 2023-05-01
 ---

@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Gravatar, Jitsi]
-categories: [製作教學]
+categories: [生活駭客]
 date: 2024-03-15
 ---
 

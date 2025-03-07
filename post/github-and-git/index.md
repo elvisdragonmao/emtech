@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [終端機，Git, Github]
-categories: [網站分享，軟體分享]
+categories: [程式教學]
 date: 2022-08-22
 ---
 
