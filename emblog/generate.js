@@ -499,7 +499,13 @@ async function processPosts() {
                     colors: postMeta.colors,
                     readingTime: postMeta.readingTime,
                     date: new Date(postMeta.date).toISOString().split("T")[0],
-                    lastmod: postMeta.lastmod ? " (" + new Date(postMeta.lastmod).toISOString().split("T")[0] +" 更新)": "",
+                    lastmod: postMeta.lastmod
+                        ? " (" +
+                          new Date(postMeta.lastmod)
+                              .toISOString()
+                              .split("T")[0] +
+                          " 更新)"
+                        : "",
                     theme: postMeta.color,
                     postTags,
                     headerCategories,
