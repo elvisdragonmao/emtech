@@ -113,3 +113,5 @@ docker-compose up -d
 需要等待一段時間讓它完成下載跟安裝。如果執行完成沒有出現錯誤，你可以打開瀏覽器並開啟 `http://localhost:4533`。如果可以正常使用的話就代表你安裝成功了。你可以在 Docker Desktop 中看到你的容器正在運行。
 
 ![Navidrome 安裝成功](navidrome.webp)
+
+> 縮圖由 Figma AI 生成。
