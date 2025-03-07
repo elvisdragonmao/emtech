@@ -390,7 +390,7 @@ async function processPosts() {
                 // turn to k, if length > 1000. Fixed to 1 decimal place
                 postMeta.length =
                     length > 1000 ? (length / 1000).toFixed(1) + "k" : length;
-                // postMeta.lastUpdated =
+                // postMeta.lastmod =
                 //     (await fs.stat(markdownFile).mtime) || "";
                 if (!postMeta.readingTime) {
                     const chineseReadingSpeed = 300; // 每分鐘 300 字
@@ -499,7 +499,7 @@ async function processPosts() {
                     colors: postMeta.colors,
                     readingTime: postMeta.readingTime,
                     date: new Date(postMeta.date).toISOString().split("T")[0],
-                    lastUpdated: postMeta.lastUpdated,
+                    lastmod: postMeta.lastmod ? " (" + new Date(postMeta.lastmod).toISOString().split("T")[0] +" 更新)": "",
                     theme: postMeta.color,
                     postTags,
                     headerCategories,
@@ -712,7 +712,7 @@ const generateSitemapAndRSS = async () => {
         .map(
             (post) => ` <url>
     <loc>https://emtech.cc/p/${post.id}</loc>
-  ${post.lastUpdated ? "<lastmod>" + new Date(post.lastUpdated).toISOString() + "</lastmod>" : ""}
+  ${post.lastmod ? "<lastmod>" + new Date(post.lastmod).toISOString() + "</lastmod>" : ""}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`

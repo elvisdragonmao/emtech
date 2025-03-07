@@ -81,9 +81,23 @@ server.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
 
-var generating = false;
+let generating = false;
 
-// Watch the 'dist' directory for changes and run 'generate.js' when a change is detected
+const build = (filename = "") => {
+    generating = true;
+    console.log(`File changed: ${filename}. Running generate.js...`);
+    exec("yarn build", (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error running generate.js: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`Error output: ${stderr}`);
+        }
+        console.log(`generate.js output: ${stdout}`);
+        generating = false;
+    });
+};
 fs.watch(
     path.join(__dirname, ".."),
     { recursive: true },
@@ -93,22 +107,9 @@ fs.watch(
             filename &&
             !filename.includes("dist") &&
             !filename.includes(".git")
-        ) {
-            generating = true;
-            console.log(`File changed: ${filename}. Running generate.js...`);
-            exec("yarn build", (error, stdout, stderr) => {
-                if (error) {
-                    console.error(
-                        `Error running generate.js: ${error.message}`
-                    );
-                    return;
-                }
-                if (stderr) {
-                    console.error(`Error output: ${stderr}`);
-                }
-                console.log(`generate.js output: ${stdout}`);
-                generating = false;
-            });
-        }
+        )
+            build(filename);
     }
 );
+
+build();
