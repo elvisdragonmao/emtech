@@ -4,7 +4,7 @@ tags: [Windows, macOS]
 categories: [生活雜談]
 date: 2025-02-25
 description: 非常貴，非常好，只有蘋果做得到。蘋果做不到的軟體給。
-lastUpdated: 2025-02-26
+lastmod: 2025-02-26
 ---
 
 # 從 Windows 轉到 MacBook 的心得
