@@ -472,7 +472,7 @@ header {
     padding: 2rem 2rem 2rem 3rem;
     font-weight: 600;
     background: url("/static/img/headerTitleBg.svg") no-repeat;
-    background-size:auto 100%;
+    background-size: auto 100%;
     width: auto;
 }
 .header-title h1 {
