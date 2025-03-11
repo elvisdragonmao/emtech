@@ -1,6 +1,6 @@
 {
     "name": "emtech",
-    "packageManager": "yarn@4.6.0",
+    "packageManager": "yarn@4.7.0",
     "version": "1.0.0",
     "scripts": {
         "build": "node emblog/generate.js",
