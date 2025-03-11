@@ -72,7 +72,7 @@ done
 ```bash
 for file
 do
-  /opt/homebrew/bin/cwebp -q 80 -quiet "$file" -o "${file%.*}.webp" 
+  /opt/homebrew/bin/cwebp -q 80 -quiet "$file" -o "${file%.*}.webp"
 done
 ```
 
