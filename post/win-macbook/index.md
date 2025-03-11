@@ -9,11 +9,11 @@ lastmod: 2025-02-26
 
 # 從 Windows 轉到 MacBook 的心得
 
-今年入手了人生第一台筆電，是最新的 M4 MacBook Pro。從小沒摸過幾次 MacOS，一直以來都是 Windows 的使用者。但從開發問題、自動更新、內建病毒 Windows Defender 到躲不掉的各種廣告，讓我對 Windows ™有很多不滿。加上考慮到未來可能會開發 iOS App，所以就決定強力出圈入手 MacBook。今天我想來*坐和放寬*的分享一下這個轉換過程，以及我的一些做法來提升我的效率，讓失去的那些 Windows 習慣找回來。
+今年入手了人生第一台筆電，是最新的 M4 MacBook Pro。從小沒摸過幾次 MacOS，一直以來都是 Windows 的使用者。但從開發問題、自動更新、內建病毒 Windows Defender 到躲不掉的各種廣告，讓我對 *Windows ™*有很多不滿。加上考慮到未來可能會開發 iOS App，所以就決定*強力出圈*入手 MacBook。今天我想來*坐和放寬*的分享一下這個轉換過程，以及我的一些做法來提升我的效率，讓失去的那些 Windows 習慣找回來。
 
 ## 背景
 
-這三年我最常使用的是學校借我的一台 Dell 筆電。我覺得用起來很順手，窗我也摸得很熟。這台筆電的設計我覺得很不錯，雖然是塑膠外殼是那種有點毛茸茸的感覺，很舒服。他的觸控板也真的很好用，長得有點像 ThinkPad 觸控板 180 度反過來，摸起來有一點阻尼感很穩但又很輕鬆舒服。是我人生中用過最好用的觸控板，我平常也都不外接滑鼠的。3 個 USB-A，一個 USB-C 可以 65w 充電，還有 SD 卡槽，總之這應該是我人生中用過最舒服的筆電了。
+這三年我最常使用的是學校的 [Dell Latitude 7400](https://www.dell.com/support/manuals/zh-tw/latitude-14-7400-laptop/lat7400_setup_specifications/%E5%A4%84%E7%90%86%E5%99%A8) 筆電。我覺得用起來很順手，*窗*我也摸得很熟。這台筆電的設計我覺得很不錯，雖然是塑膠外殼是那種有點毛茸茸的感覺，很舒服。他的觸控板也真的很好用，長得有點像 ThinkPad 觸控板 180 度反過來，摸起來有一點阻尼感很穩但又很輕鬆舒服。是我人生中用過最好用的觸控板，我平常也都不外接滑鼠的。3 個 USB-A，一個 USB-C 可以 65w 充電，還有 SD 卡槽，總之這應該是我人生中用過最舒服的筆電了。
 
 i5 第八代，256GB SSD，還算夠用。雖然只有內顯但還是常常被我跑 [Blender](https://www.blender.org/), [Whisper](https://github.com/openai/whisper), [Adobe Illustrator](https://www.adobe.com/tw/products/illustrator.html) 之類的東西。唯一的缺點是記憶體只有 8GB，很容易多開點東西就爆，開個 Photoshop 就會變烤吐司機。後來我後來有自己加了一條 16GB 的記憶體進去舒服多了（很不錯竟然有兩個記憶體插槽）。不過馬上也要畢業了，也要上大學了，確實也需要台筆電。高二的時候我媽有主動提議如果上頂大就幫我買一台 MacBook，我也就答應了，然後沒想到也上了交大，所以就買了這台 MacBook Pro。
 
