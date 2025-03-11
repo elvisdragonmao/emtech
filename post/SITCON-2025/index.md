@@ -82,11 +82,11 @@ margin: auto;
 
 ```css
 body {
-  font-family: system-ui;
+    font-family: system-ui;
 }
 
 img {
-  max-width: min(100%, 500px);
+    max-width: min(100%, 500px);
 }
 ```
 
@@ -96,9 +96,9 @@ CSS 高斯模糊（`backdrop-filter: blur()` 或 `filter: blur()`）在某些情
 
 這裡簡單講幾個你可以做的事：
 
-* [買一台比較好的電腦](https://emtech.cc/p/win-macbook)
-* 不要用這麼多 (減少半徑、用 `overflow:hidden`、`clip-path` 等等屬性控制範圍)
-* [騙瀏覽器啟動 GPU 硬體加速](https://emtech.cc/p/2023ironman-20) (`will-change`、`transform3D`)
+- [買一台比較好的電腦](https://emtech.cc/p/win-macbook)
+- 不要用這麼多 (減少半徑、用 `overflow:hidden`、`clip-path` 等等屬性控制範圍)
+- [騙瀏覽器啟動 GPU 硬體加速](https://emtech.cc/p/2023ironman-20) (`will-change`、`transform3D`)
 
 ### 請問要如何配合 Figma 設計出好看的網頁，包跨轉場動畫那些等，可以直接轉成 HTML 嗎
 
@@ -148,7 +148,7 @@ CSS 高斯模糊（`backdrop-filter: blur()` 或 `filter: blur()`）在某些情
 
 ### Waterfox 好用嗎？🥺
 
-我是用 Firefox Developer Edition，因為我覺得他的開發者工具很好用，*然後我喜歡狐狸 (所以我才會去交大嘛)*。我把新分頁顯示的文字改成 Waterfox  只是因為 Firefox Developer Edition 的 Logo 藍藍的所以取了這個綽號，沒想到後來發現[還真的有這個東西](https://www.waterfox.net/)。
+我是用 Firefox Developer Edition，因為我覺得他的開發者工具很好用，_然後我喜歡狐狸 (所以我才會去交大嘛)_。我把新分頁顯示的文字改成 Waterfox 只是因為 Firefox Developer Edition 的 Logo 藍藍的所以取了這個綽號，沒想到後來發現[還真的有這個東西](https://www.waterfox.net/)。
 
 ### 你都直接手搓 css 動畫還是會使用套件之類的？還是視專案情況而定？
 
