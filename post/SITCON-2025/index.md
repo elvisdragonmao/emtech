@@ -12,6 +12,14 @@ description: 今年 SITCON 一樣很讚。
 
 回到我的議程「前端特效：不都國中數學」，這次有機會在中研院人文科學館主堂 R0 與大家分享我的開發經驗真的十分驚喜，很高興能和各位渡過這段美好時光。
 
+{{notice}}
+
+相關資源
+
+這次議程的簡報、Credit、和相關資源都整理在 [GitHub Repo](https://github.com/Edit-Mr/SITCON2025) 裡面。
+
+{{noticed}}
+
 ![感謝 Hans 提供回饋表單統計結果](vote-1.webp)
 
 這次的議程我們討論了很多關於前端特效的思維、技巧、與實例。因為時間有限很多內容沒辦法講的太詳細以及回答所有的問題，因此這裡整理出來當天 Slido 大家的提問，並作比較完整的回答。
@@ -181,6 +189,8 @@ GitHub 的版本是 Markdown + Marp。演講時以及 PDF Release 的版本是 P
 > ~~[因為我用的是 Macbook Pro。](https://emtech.cc/p/win-macbook)~~
 
 為了在連續講的內容中畫面不要讓畫面突然變很多來干擾思考，我用了很多 Transition。設計視覺動線，物件移動的方式，讓內容有連貫性。
+
+然後就是花幾十個小時來做。MacOS 上面的 PowerPoint 真的很難用。
 
 ## 講師有獸裝嗎，有的話明年能穿來講課嗎!!!
 
