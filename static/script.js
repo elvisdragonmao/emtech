@@ -813,6 +813,39 @@ window.onbeforeunload = function () {
     window.scrollTo(0, 0);
 };
 
+const spinFavicon = () => {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const favicon =
+        document.querySelector("link[rel='icon']") ||
+        document.createElement("link");
+    canvas.width = 64;
+    canvas.height = 64;
+    favicon.rel = "icon";
+    document.head.appendChild(favicon);
+    const img = new Image();
+    img.src = favicon.href || "/static/icons/favicon-32x32.png"; // Replace with your favicon path
+    let angle = 0;
+    const draw = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(angle);
+        ctx.drawImage(
+            img,
+            -canvas.width / 2,
+            -canvas.height / 2,
+            canvas.width,
+            canvas.height
+        );
+        ctx.restore();
+        favicon.href = canvas.toDataURL("image/png");
+        angle += 0.05;
+        requestAnimationFrame(draw);
+    };
+    img.onload = draw;
+};
+spinFavicon();
 console.log(`
             ／＞   フ
             |   _ _ l
