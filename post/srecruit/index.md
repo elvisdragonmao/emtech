@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [特殊選才]
-categories: [生活雜談]
+categories: [生活雜談，精選]
 date: 2025-01-13
 lastmod: 2025-03-09
 description: 特選可以讓你提早上大學。很累，但很好玩。無論你的專業是甚麼，不管是比賽、專案、檢定，只要你能證明你的能力和熱誠，你就有機會被錄取。
