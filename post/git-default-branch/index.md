@@ -19,9 +19,11 @@ git checkout --orphan fuma
 ```
 
 > 以前的做法會是先生一個兒子再把父母斷頭讓他變成孤兒。
+>
 > ```bash
 > echo ref: refs/heads/newbranch > .git/HEAD
 > ```
+>
 > 但這實在有點暴力，現在 Git 1.7.2 之後可以用 `git checkout --orphan` 來做。
 
 創了新分支之後就可以砍掉重來了。
