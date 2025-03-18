@@ -13,7 +13,7 @@ const isLocalhost =
     window.location.hostname === "localhost" ||
     window.location.hostname === "127.0.0.1";
 const startAds = isLocalhost
-    ? () => { }
+    ? () => {}
     : () => (adsbygoogle = window.adsbygoogle || []).push({});
 
 // update read history list
@@ -136,10 +136,12 @@ const loadArticleList = async (postList, category) => {
                             }, 100);
                         }
                     });
-                    
+
                     posts = [...search.slice(0, 4), ...data];
                     // remove duplicate
-                    posts = posts.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i);
+                    posts = posts.filter(
+                        (v, i, a) => a.findIndex((t) => t.id === v.id) === i
+                    );
                     let i = 5;
                     while (posts.length < 12) {
                         posts.push(search[i]);
@@ -153,22 +155,23 @@ const loadArticleList = async (postList, category) => {
                     article.setAttribute("data-aos", "fade-up");
                     const tags = post.tags
                         ? post.tags.map(
-                            (tag) =>
-                                `<a href="/tag/${tag}" class="tag">${tag}</a>`
-                        )
+                              (tag) =>
+                                  `<a href="/tag/${tag}" class="tag">${tag}</a>`
+                          )
                         : [];
                     const categories = post.categories
                         ? post.categories.map(
-                            (category) =>
-                                `<a href="/category/${category}" class="category">${category}</a>`
-                        )
+                              (category) =>
+                                  `<a href="/category/${category}" class="category">${category}</a>`
+                          )
                         : [];
                     article.innerHTML = `
                     <a href="/p/${post.id}" aria-label="${post.title}"
         ><div
             class="hero"
-            style="background-image: ${post.thumbnail ? `url(${post.thumbnail})` : "none"
-                        },${post.colors ? post.colors : "none"};
+            style="background-image: ${
+                post.thumbnail ? `url(${post.thumbnail})` : "none"
+            },${post.colors ? post.colors : "none"};
             "
         ></div
     ></a>
@@ -284,8 +287,8 @@ const postScrollAnimations = () => {
                 width = Math.max(
                     maxWidth,
                     maxWidth +
-                    ((window.innerWidth - maxWidth) / canMove) *
-                    (canMove - nextTop)
+                        ((window.innerWidth - maxWidth) / canMove) *
+                            (canMove - nextTop)
                 );
                 scale = width / window.innerWidth;
             } else height = window.innerHeight + 1; // 直接上第一篇過
@@ -506,12 +509,14 @@ const switchToPost = (a) => {
                 fixedBox.classList.remove("centered");
                 fixedBox.style.width = `${postThumbnailRect.width}px`;
                 fixedBox.style.height = `${postThumbnailRect.height}px`;
-                fixedBox.style.left = `${postThumbnailRect.left + postThumbnailRect.width / 2
-                    }px`;
-                fixedBox.style.top = `${postThumbnailRect.top +
+                fixedBox.style.left = `${
+                    postThumbnailRect.left + postThumbnailRect.width / 2
+                }px`;
+                fixedBox.style.top = `${
+                    postThumbnailRect.top +
                     postThumbnailRect.height / 2 +
                     window.scrollY
-                    }px`;
+                }px`;
             } else {
                 fixedBox.style.width = "0";
                 fixedBox.style.height = "0";
@@ -814,10 +819,11 @@ fetch("/meta/search.json")
                                class="search-result ${matchCount === searchTerms.length ? "full-match" : "partial-match"}">
                                 <h3>${highlightedTitle}</h3>
                                 <p>${highlightedDescription}</p>
-                                ${matchCount < searchTerms.length
-                                ? `<div class=match>符合 ${matchCount}/${searchTerms.length} 個搜尋結果</div>`
-                                : ""
-                            }
+                                ${
+                                    matchCount < searchTerms.length
+                                        ? `<div class=match>符合 ${matchCount}/${searchTerms.length} 個搜尋結果</div>`
+                                        : ""
+                                }
                             </a>
                         `;
                     })
