@@ -538,7 +538,7 @@ async function processPosts() {
     // 輸出 posts.json 和每篇文章的 json
     await fs.writeFile(
         "dist/p/meta/posts.json",
-        JSON.stringify(postsMeta, null, 2)
+        JSON.stringify(postsMeta)
     );
 
     // Write individual post JSON files concurrently
@@ -546,7 +546,7 @@ async function processPosts() {
         postsMeta.map((post) =>
             fs.writeFile(
                 `dist/p/meta/${post.id}.json`,
-                JSON.stringify(post, null, 2)
+                JSON.stringify(post)
             )
         )
     );
@@ -576,27 +576,28 @@ async function processPosts() {
         search.push({
             title: post.title,
             description: post.description,
-            id: post.id
+            id: post.id,
+            thumbnail: post.thumbnail
         });
     });
 
     // 輸出 tags 和 categories
     await fs.writeFile(
         "dist/meta/search.json",
-        JSON.stringify(search, null, 2)
+        JSON.stringify(search)
     );
 
     for (const [tag, posts] of Object.entries(tagsMap)) {
         await fs.writeFile(
             `dist/meta/tag/${tag}.json`,
-            JSON.stringify(posts, null, 2)
+            JSON.stringify(posts)
         );
     }
 
     for (const [category, posts] of Object.entries(categoriesMap)) {
         await fs.writeFile(
             `dist/meta/category/${category}.json`,
-            JSON.stringify(posts, null, 2)
+            JSON.stringify(posts)
         );
     }
 
@@ -610,7 +611,7 @@ async function processPosts() {
 
     await fs.writeFile(
         "dist/meta/tags.json",
-        JSON.stringify({ tags, categories }, null, 2)
+        JSON.stringify({ tags, categories })
     );
     // calcalate the number of posts in each tag and category
 

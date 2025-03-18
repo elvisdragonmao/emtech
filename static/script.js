@@ -13,7 +13,7 @@ const isLocalhost =
     window.location.hostname === "localhost" ||
     window.location.hostname === "127.0.0.1";
 const startAds = isLocalhost
-    ? () => {}
+    ? () => { }
     : () => (adsbygoogle = window.adsbygoogle || []).push({});
 
 // update read history list
@@ -118,11 +118,34 @@ addClassToVisibleElements();
 
 const loadArticleList = async (postList, category) => {
     return new Promise((resolve, reject) => {
-        // setTimeout(() => {
         fetch(`/meta/${category}.json`)
             .then((response) => response.json())
-            .then((data) => {
-                const posts = data;
+            .then(async (data) => {
+                let posts = data;
+                if (decodeURIComponent(category) == "category/精選") {
+                    // Wait for search data to be loaded using a Promise
+                    await new Promise((resolve) => {
+                        if (search.length > 0) {
+                            resolve();
+                        } else {
+                            const checkSearch = setInterval(() => {
+                                if (search.length > 0) {
+                                    clearInterval(checkSearch);
+                                    resolve();
+                                }
+                            }, 100);
+                        }
+                    });
+                    
+                    posts = [...search.slice(0, 4), ...data];
+                    // remove duplicate
+                    posts = posts.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i);
+                    let i = 5;
+                    while (posts.length < 12) {
+                        posts.push(search[i]);
+                        i++;
+                    }
+                }
                 postList.innerHTML = "";
                 for (const post of posts) {
                     const article = document.createElement("article");
@@ -130,23 +153,22 @@ const loadArticleList = async (postList, category) => {
                     article.setAttribute("data-aos", "fade-up");
                     const tags = post.tags
                         ? post.tags.map(
-                              (tag) =>
-                                  `<a href="/tag/${tag}" class="tag">${tag}</a>`
-                          )
+                            (tag) =>
+                                `<a href="/tag/${tag}" class="tag">${tag}</a>`
+                        )
                         : [];
                     const categories = post.categories
                         ? post.categories.map(
-                              (category) =>
-                                  `<a href="/category/${category}" class="category">${category}</a>`
-                          )
+                            (category) =>
+                                `<a href="/category/${category}" class="category">${category}</a>`
+                        )
                         : [];
                     article.innerHTML = `
                     <a href="/p/${post.id}" aria-label="${post.title}"
         ><div
             class="hero"
-            style="background-image: ${
-                post.thumbnail ? `url(${post.thumbnail})` : "none"
-            },${post.colors};
+            style="background-image: ${post.thumbnail ? `url(${post.thumbnail})` : "none"
+                        },${post.colors ? post.colors : "none"};
             "
         ></div
     ></a>
@@ -161,9 +183,8 @@ const loadArticleList = async (postList, category) => {
                 }
                 addClassToVisibleElements();
                 resolve();
-            });
-
-        // }  , 1000);
+            })
+            .catch(reject);
     });
 };
 
@@ -263,8 +284,8 @@ const postScrollAnimations = () => {
                 width = Math.max(
                     maxWidth,
                     maxWidth +
-                        ((window.innerWidth - maxWidth) / canMove) *
-                            (canMove - nextTop)
+                    ((window.innerWidth - maxWidth) / canMove) *
+                    (canMove - nextTop)
                 );
                 scale = width / window.innerWidth;
             } else height = window.innerHeight + 1; // 直接上第一篇過
@@ -485,14 +506,12 @@ const switchToPost = (a) => {
                 fixedBox.classList.remove("centered");
                 fixedBox.style.width = `${postThumbnailRect.width}px`;
                 fixedBox.style.height = `${postThumbnailRect.height}px`;
-                fixedBox.style.left = `${
-                    postThumbnailRect.left + postThumbnailRect.width / 2
-                }px`;
-                fixedBox.style.top = `${
-                    postThumbnailRect.top +
+                fixedBox.style.left = `${postThumbnailRect.left + postThumbnailRect.width / 2
+                    }px`;
+                fixedBox.style.top = `${postThumbnailRect.top +
                     postThumbnailRect.height / 2 +
                     window.scrollY
-                }px`;
+                    }px`;
             } else {
                 fixedBox.style.width = "0";
                 fixedBox.style.height = "0";
@@ -625,7 +644,7 @@ fetch("/meta/tags.json")
             tagsElement.appendChild(a);
         }
         asideTags = tagsElement.innerHTML;
-        for (const [category, count] of Object.entries(categories)) {
+        for (const [category] of Object.entries(categories)) {
             const a = document.createElement("a");
             a.href = `/category/${category}`;
             a.textContent = `${category}`;
@@ -795,11 +814,10 @@ fetch("/meta/search.json")
                                class="search-result ${matchCount === searchTerms.length ? "full-match" : "partial-match"}">
                                 <h3>${highlightedTitle}</h3>
                                 <p>${highlightedDescription}</p>
-                                ${
-                                    matchCount < searchTerms.length
-                                        ? `<div class=match>符合 ${matchCount}/${searchTerms.length} 個搜尋結果</div>`
-                                        : ""
-                                }
+                                ${matchCount < searchTerms.length
+                                ? `<div class=match>符合 ${matchCount}/${searchTerms.length} 個搜尋結果</div>`
+                                : ""
+                            }
                             </a>
                         `;
                     })

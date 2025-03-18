@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [關於]
-categories: [精選]
+categories: []
 date: 2024-10-17
 description: 毛哥EM資訊密技是毛哥EM的資訊密技
 thumbnail: /static/img/og.webp

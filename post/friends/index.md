@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [關於]
-categories: [精選]
+categories: []
 date: 2024-10-17
 description: 有朋自遠方來，不亦悅乎？
 ---
