@@ -22,7 +22,8 @@
     --border: solid 1px var(--light-purple);
     --border-radius: 1.875rem;
     --max-width: 1200px;
-    --dark-filter: brightness(0) invert(91%) sepia(5%) saturate(1421%) hue-rotate(194deg) brightness(99%) contrast(96%);
+    --dark-filter: brightness(0) invert(91%) sepia(5%) saturate(1421%)
+        hue-rotate(194deg) brightness(99%) contrast(96%);
     --box-shadow: 0 8px 16px -4px #2c2d300c;
 }
 
@@ -471,7 +472,10 @@ header {
     gap: 1.5rem;
 }
 
-#header-playground,.header-categories, .header-info, .header-newPost{
+#header-playground,
+.header-categories,
+.header-info,
+.header-newPost {
     box-shadow: var(--box-shadow);
 }
 
@@ -488,7 +492,7 @@ header {
     border-radius: var(--border-radius);
 }
 
-#header-playground pre{
+#header-playground pre {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -594,7 +598,7 @@ a.header-categories-item span {
 
 .header-newPost img {
     display: block;
-     width: 100%;
+    width: 100%;
     /*aspect-ratio: 40 / 21; */
     height: 10rem;
     max-height: 12.5rem;

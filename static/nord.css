@@ -1,1 +1,112 @@
-.hljs,.hljs-attribute,.hljs-params,.hljs-subst,.hljs-template-variable,.hljs-variable{color:#d8dee9}.apache .hljs-section,.hljs-builtin-name,.hljs-bullet,.hljs-keyword,.hljs-literal,.hljs-name,.hljs-selector-tag,.hljs-symbol,.hljs-tag,.scss .hljs-keyword,.stylus .hljs-keyword{color:#81a1c1}.hljs-selector-id{color:#8fbcbb;font-weight:700}.bnf .hljs-attribute,.cpp .hljs-meta-string,.diff .hljs-meta,.ebnf .hljs-attribute,.hljs-attr,.hljs-built_in,.hljs-class,.hljs-code,.hljs-doctag,.hljs-formula,.hljs-selector-attr,.hljs-selector-class,.hljs-title,.hljs-type,.ldif .hljs-attribute{color:#8fbcbb}.abnf .hljs-attribute,.apache .hljs-attribute,.arduino .hljs-built_in,.aspectj>.hljs-title,.clojure .hljs-name,.coq .hljs-built_in,.css .hljs-built_in,.glsl .hljs-built_in,.hljs-function,.hljs-function>.hljs-title,.hljs-section,.hljs-selector-pseudo,.lisp .hljs-name,.lua .hljs-built_in,.moonscript .hljs-built_in,.nginx .hljs-attribute,.pf .hljs-built_in,.processing .hljs-built_in{color:#88c0d0}.hljs-addition{background-color:rgba(163,190,140,.5)}.hljs-deletion{background-color:rgba(191,97,106,.5)}.hljs-number{color:#b48ead}.abnf .hljs-symbol,.clojure .hljs-symbol,.hljs-regexp{color:#ebcb8b}.hljs-meta-string,.hljs-string{color:#a3be8c}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link:hover{text-decoration:underline}.hljs-comment,.hljs-quote{color:#4c566a}.hljs-meta,.hljs-meta-keyword,.hljs-template-tag,.nginx .hljs-section{color:#5e81ac}.aspectj .hljs-meta,.css .hljs-keyword,.groovy .hljs-meta:not(:first-child),.haxe .hljs-meta,.java .hljs-meta,.swift .hljs-meta,.yaml .hljs-meta{color:#d08770}.vim .hljs-built_in{color:#88c0d0;font-style:italic}
+.hljs,
+.hljs-attribute,
+.hljs-params,
+.hljs-subst,
+.hljs-template-variable,
+.hljs-variable {
+    color: #d8dee9;
+}
+.apache .hljs-section,
+.hljs-builtin-name,
+.hljs-bullet,
+.hljs-keyword,
+.hljs-literal,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-symbol,
+.hljs-tag,
+.scss .hljs-keyword,
+.stylus .hljs-keyword {
+    color: #81a1c1;
+}
+.hljs-selector-id {
+    color: #8fbcbb;
+    font-weight: 700;
+}
+.bnf .hljs-attribute,
+.cpp .hljs-meta-string,
+.diff .hljs-meta,
+.ebnf .hljs-attribute,
+.hljs-attr,
+.hljs-built_in,
+.hljs-class,
+.hljs-code,
+.hljs-doctag,
+.hljs-formula,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-title,
+.hljs-type,
+.ldif .hljs-attribute {
+    color: #8fbcbb;
+}
+.abnf .hljs-attribute,
+.apache .hljs-attribute,
+.arduino .hljs-built_in,
+.aspectj > .hljs-title,
+.clojure .hljs-name,
+.coq .hljs-built_in,
+.css .hljs-built_in,
+.glsl .hljs-built_in,
+.hljs-function,
+.hljs-function > .hljs-title,
+.hljs-section,
+.hljs-selector-pseudo,
+.lisp .hljs-name,
+.lua .hljs-built_in,
+.moonscript .hljs-built_in,
+.nginx .hljs-attribute,
+.pf .hljs-built_in,
+.processing .hljs-built_in {
+    color: #88c0d0;
+}
+.hljs-addition {
+    background-color: rgba(163, 190, 140, 0.5);
+}
+.hljs-deletion {
+    background-color: rgba(191, 97, 106, 0.5);
+}
+.hljs-number {
+    color: #b48ead;
+}
+.abnf .hljs-symbol,
+.clojure .hljs-symbol,
+.hljs-regexp {
+    color: #ebcb8b;
+}
+.hljs-meta-string,
+.hljs-string {
+    color: #a3be8c;
+}
+.hljs-emphasis {
+    font-style: italic;
+}
+.hljs-strong {
+    font-weight: 700;
+}
+.hljs-link:hover {
+    text-decoration: underline;
+}
+.hljs-comment,
+.hljs-quote {
+    color: #4c566a;
+}
+.hljs-meta,
+.hljs-meta-keyword,
+.hljs-template-tag,
+.nginx .hljs-section {
+    color: #5e81ac;
+}
+.aspectj .hljs-meta,
+.css .hljs-keyword,
+.groovy .hljs-meta:not(:first-child),
+.haxe .hljs-meta,
+.java .hljs-meta,
+.swift .hljs-meta,
+.yaml .hljs-meta {
+    color: #d08770;
+}
+.vim .hljs-built_in {
+    color: #88c0d0;
+    font-style: italic;
+}
