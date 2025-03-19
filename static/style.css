@@ -24,7 +24,7 @@
     --max-width: 1200px;
     --dark-filter: brightness(0) invert(91%) sepia(5%) saturate(1421%)
         hue-rotate(194deg) brightness(99%) contrast(96%);
-    --box-shadow: 0 8px 16px -4px #2c2d3010;
+    --box-shadow: 0 8px 16px -4px #2c2d3005;
 }
 
 html {
@@ -457,13 +457,13 @@ nav input[type="checkbox"],
 header {
     padding: 1.5rem;
     padding-top: 6rem;
-    max-width: 1700px;
-    margin: 0 auto;
 }
 
 .home-page header {
     display: flex;
     gap: 1rem;
+    max-width: 1700px;
+    margin: 0 auto;
 }
 
 .header-right {
