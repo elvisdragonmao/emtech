@@ -536,18 +536,12 @@ async function processPosts() {
     );
 
     // 輸出 posts.json 和每篇文章的 json
-    await fs.writeFile(
-        "dist/p/meta/posts.json",
-        JSON.stringify(postsMeta)
-    );
+    await fs.writeFile("dist/p/meta/posts.json", JSON.stringify(postsMeta));
 
     // Write individual post JSON files concurrently
     await Promise.all(
         postsMeta.map((post) =>
-            fs.writeFile(
-                `dist/p/meta/${post.id}.json`,
-                JSON.stringify(post)
-            )
+            fs.writeFile(`dist/p/meta/${post.id}.json`, JSON.stringify(post))
         )
     );
 
@@ -581,26 +575,20 @@ async function processPosts() {
         });
     });
     tags = Object.entries(tags)
-    .sort((a, b) => b[1] - a[1])
-    .reduce((acc, [key, value]) => {
-        acc[key] = value;
-        return acc;
-    }, {});
+        .sort((a, b) => b[1] - a[1])
+        .reduce((acc, [key, value]) => {
+            acc[key] = value;
+            return acc;
+        }, {});
     // save the latest 10 posts to the latest.json
     const writePromises = [
         fs.writeFile(
             "dist/meta/latest.json",
             JSON.stringify(postsMeta.slice(0, 10))
         ),
-        fs.writeFile(
-            "dist/meta/search.json",
-            JSON.stringify(search)
-        ),
+        fs.writeFile("dist/meta/search.json", JSON.stringify(search)),
         ...Object.entries(tagsMap).map(([tag, posts]) =>
-            fs.writeFile(
-                `dist/meta/tag/${tag}.json`,
-                JSON.stringify(posts)
-            )
+            fs.writeFile(`dist/meta/tag/${tag}.json`, JSON.stringify(posts))
         ),
         ...Object.entries(categoriesMap).map(([category, posts]) =>
             fs.writeFile(
