@@ -47,7 +47,7 @@ jobs:
                   if git diff --staged --quiet; then
                     echo "No changes to commit"
                   else
-                  git commit -m "你們為甚麼就不能加個空白呢?"
+                  git commit -m "你們為甚麼就不能加個空白呢？"
                   git push
                   fi
               env:
