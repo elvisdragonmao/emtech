@@ -14,7 +14,6 @@ description: 孔子叫你不要當 i 人。
 
 ![Discord 伺服器歡迎頁](discord.webp)
 
-
 以及我上一個版本的[個人網頁](https://elvismao.com/)（來自 [Archive.org](https://web.archive.org/web/20240415000000*/elvismao.com)）：
 
 ![個人網頁](site.webp)
@@ -57,7 +56,7 @@ description: 孔子叫你不要當 i 人。
 
 > 《易經·蒙卦》：「匪我求童蒙，童蒙求我」
 
-> 《孟子．盡心下》：「夫子之設科也，往者不追， 來者不拒 。
+> 《孟子．盡心下》：「夫子之設科也，往者不追，來者不拒。
 
 而最後的「人不知而不慍，不亦君子乎」是有難度的修養，是我們要努力學習的方向。
 
@@ -67,8 +66,8 @@ description: 孔子叫你不要當 i 人。
 
 ## 參考資料
 
-* 工商時報 - [樊登解讀《論語》：學而時習之 應對人生中的痛苦](https://www.ctee.com.tw/news/20211115700494-431001)
-* 江上小堂 - [論語漫讀（2）：有朋自遠方來，不亦樂乎？—「王道政治」的自大與保守](https://vocus.cc/article/6540bf2cfd89780001f7453a)
-* 一號課堂 - [學而時習之](https://classone.cwgv.com.tw/course/detail/M2018011504161782521)
-* 共产党员网 - [有朋自远方来，不亦乐乎（详解版）](https://www.12371.cn/2021/04/07/VIDE1617801302708897.shtml)
-* 台北市氣功文化學會 - [為什麼孔子說「學而時習之，不亦說乎？」](http://www.chikung.org.tw/txt/life/za130228-1.htm)
+- 工商時報 - [樊登解讀《論語》：學而時習之 應對人生中的痛苦](https://www.ctee.com.tw/news/20211115700494-431001)
+- 江上小堂 - [論語漫讀（2）：有朋自遠方來，不亦樂乎？—「王道政治」的自大與保守](https://vocus.cc/article/6540bf2cfd89780001f7453a)
+- 一號課堂 - [學而時習之](https://classone.cwgv.com.tw/course/detail/M2018011504161782521)
+- 共产党员网 - [有朋自远方来，不亦乐乎（详解版）](https://www.12371.cn/2021/04/07/VIDE1617801302708897.shtml)
+- 台北市氣功文化學會 - [為什麼孔子說「學而時習之，不亦說乎？」](http://www.chikung.org.tw/txt/life/za130228-1.htm)

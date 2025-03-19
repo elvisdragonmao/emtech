@@ -3,7 +3,7 @@ authors: elvismao
 tags: [Git, VSCode]
 categories: [程式開發]
 date: 2025-03-20
-description: 
+description:
 ---
 
 # 如何設定 VSCode Git pull 使用 rebase 而不是 merge
@@ -33,11 +33,10 @@ git config --global pull.rebase true
 
 ### VSCode 設定
 
-不過 VSCode (Cursor) 中的 GUI Git 並不會管你的　Git config。我們可以進到設定把 `git.rebase` 為 `true`，這樣每次 `pull` 就會使用 `rebase` 而不是 `merge`。
+不過 VSCode (Cursor) 中的 GUI Git 並不會管你的 Git config。我們可以進到設定把 `git.rebase` 為 `true`，這樣每次 `pull` 就會使用 `rebase` 而不是 `merge`。
 
 ![VSCode Git Pull Rebase](vscode.webp)
 
 ## 結論
 
 這樣設定之後，我們每次 `pull` 就會使用 `rebase` 而不是 `merge`，這樣歷史就會變成漂亮的直線，而不是一堆小分支彎來彎去。
-
