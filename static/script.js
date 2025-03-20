@@ -222,7 +222,10 @@ const postScrollAnimations = () => {
                             ) {
                                 randomPost = post;
                                 next.previousElementSibling.innerHTML =
-                                    "有關" + category + " 的其他文章";
+                                    "有關" +
+                                    (/^[a-zA-Z]/.test(category) ? " " : "") +
+                                    category +
+                                    " 的其他文章";
                                 break;
                             }
                         }
