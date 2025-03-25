@@ -1,49 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown Image Link Replacer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-        }
-        
-    </style>
-</head>
-<body>
-    <h2>Paste Markdown Below</h2>
-    <textarea id="input" rows="10" cols="80"></textarea>
-    <button onclick="replaceLinks()">Convert</button>
-    <h2>Converted Markdown</h2>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Markdown Image Link Replacer</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+            textarea {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            button {
+                padding: 10px 20px;
+                border: none;
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Paste Markdown Below</h2>
+        <textarea id="input" rows="10" cols="80"></textarea>
+        <button onclick="replaceLinks()">Convert</button>
+        <h2>Converted Markdown</h2>
 
-    <script>
-        function replaceLinks() {
-            let inputText = document.getElementById("input").value;
-            let outputText = inputText.replace(/!\[(.*?)\]\((https?:\/\/em-tec\.github\.io\/post\/([^\)]+))\)/g, 
-                (match, altText, fullUrl, path) => `![${altText}](https://emtech.cc/static/${path})`);
-            outputText = outputText.replace(/https?:\/\/em-tec\.github\.io/g, "https://emtech.cc");
-            document.getElementById("input").value = outputText;
-            // copy to clipboard
-            navigator.clipboard.writeText(outputText);
-        }
-    </script>
-</body>
+        <script>
+            function replaceLinks() {
+                let inputText = document.getElementById("input").value;
+                let outputText = inputText.replace(
+                    /!\[(.*?)\]\((https?:\/\/em-tec\.github\.io\/post\/([^\)]+))\)/g,
+                    (match, altText, fullUrl, path) =>
+                        `![${altText}](https://emtech.cc/static/${path})`
+                );
+                outputText = outputText.replace(
+                    /https?:\/\/em-tec\.github\.io/g,
+                    "https://emtech.cc"
+                );
+                document.getElementById("input").value = outputText;
+                // copy to clipboard
+                navigator.clipboard.writeText(outputText);
+            }
+        </script>
+    </body>
 </html>
