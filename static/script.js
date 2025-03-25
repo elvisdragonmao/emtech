@@ -426,6 +426,23 @@ const initPost = (page, direct = false) => {
     startAds();
 };
 
+const moveCategories = (category) => {
+    const a = document.querySelector("." + category);
+    const categories = document.getElementById("categories");
+    categories.style.setProperty("--offset", `${a.offsetLeft - 8}px`);
+    categories.style.setProperty("--width", `${a.offsetWidth + 16}px`);
+    // check the scroll amount of #categories, if the selected category is out of screen scroll to the right
+    if (
+        categories.scrollLeft + categories.offsetWidth < a.offsetLeft ||
+        categories.scrollLeft > a.offsetLeft
+    ) {
+        categories.scrollTo({
+            left: a.offsetLeft - 32,
+            behavior: "smooth"
+        });
+    }
+};
+
 if (window.location.pathname.includes("/p/")) {
     initPost(document.querySelector(".post-page"), true);
     nextPosts.push(document.querySelector(".post-page"));
@@ -443,6 +460,7 @@ if (window.location.pathname.includes("/p/")) {
         );
     else {
         updatePostList("category/精選", false);
+        moveCategories("精選");
         if (window.location.pathname.includes("/search")) {
             document.title = "搜尋 | 毛哥EM資訊密技";
             const searchKeyword = window.location.search.split("?q=")[1];
@@ -459,7 +477,10 @@ if (window.location.pathname.includes("/p/")) {
 const switchToHome = () => {
     if (currentPage === "home") document.body.classList = "toHome";
     else document.body.classList.add("toHome");
-    if (window.location.pathname == "/") updatePostList("category/精選", false);
+    if (window.location.pathname == "/") {
+        updatePostList("category/精選", false);
+        moveCategories("精選");
+    }
     currentPage = "home";
     nextPosts = [];
     startDonut();
@@ -646,6 +667,7 @@ fetch("/meta/tags.json")
             const a = document.createElement("a");
             a.href = `/category/${category}`;
             a.textContent = `${category}`;
+            a.classList.add(category);
             categoriesElement.appendChild(a);
         }
         const first = categoriesElement.querySelector("a");
@@ -653,6 +675,7 @@ fetch("/meta/tags.json")
             categoriesElement.querySelector("a[href='/category/精選']"),
             first
         );
+        moveCategories("精選");
     });
 
 document.body.addEventListener("click", (e) => {
@@ -674,6 +697,8 @@ document.body.addEventListener("click", (e) => {
             updatePostList("category/" + a.textContent);
             document.title = a.textContent + " | 毛哥EM資訊密技";
             if (currentPage !== "home") switchToHome();
+            // check if the <a> pressed is the child of #categories
+            moveCategories(a.textContent);
         } else if (a.getAttribute("href").includes("/tag/")) {
             const tagTitle = a.getAttribute("href").split("/tag/")[1];
             updatePostList("tag/" + tagTitle);
@@ -862,6 +887,16 @@ const spinFavicon = () => {
     img.onload = draw;
 };
 spinFavicon();
+
+// when press ctrl + k, toggle #search-toggle
+document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === "k") {
+        document.getElementById("search-toggle").checked =
+            !document.getElementById("search-toggle").checked;
+        document.getElementById("search").focus();
+    }
+});
+
 console.log(`
               ／＞   フ
               |   _ _ l

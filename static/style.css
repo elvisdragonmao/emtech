@@ -864,6 +864,24 @@ aside .adsbygoogle {
     flex: 1;
     height: 100%;
     overflow-x: auto;
+    position: relative;
+    --offset: 24px;
+    --width: 45px;
+}
+
+#categories::before {
+    content: "";
+    display: block;
+    width: var(--width);
+    height: 1.75rem;
+    background: #c3d1fc;
+    position: absolute;
+    top: 0.625rem;
+    left: var(--offset);
+    border-radius: 0.5rem;
+    transition:
+        left 0.3s,
+        width 0.3s;
 }
 
 .categories-title {
@@ -2072,4 +2090,11 @@ strong {
     margin-top: 0.5rem;
     font-size: 0.8em;
     margin-bottom: -0.2rem;
+}
+
+kbd {
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-size: 0.8em;
 }
