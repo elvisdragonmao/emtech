@@ -54,6 +54,9 @@ const updateDate = (element) => {
 
 updateDate(document.querySelector(".home-page #time p"));
 
+const pre = document.createElement("pre");
+document.getElementById("header-playground").appendChild(pre);
+
 let x = 1760,
     z = 0,
     y = 0,
@@ -460,7 +463,6 @@ if (window.location.pathname.includes("/p/")) {
         );
     else {
         updatePostList("category/精選", false);
-        moveCategories("精選");
         if (window.location.pathname.includes("/search")) {
             document.title = "搜尋 | 毛哥EM資訊密技";
             const searchKeyword = window.location.search.split("?q=")[1];
@@ -614,10 +616,6 @@ const switchToPost = (a) => {
         window.scrollTo(0, 0);
     }, 500);
 };
-
-const pre = document.createElement("pre");
-const playground = document.getElementById("header-playground");
-playground.appendChild(pre);
 
 // copy button
 function copyCode(button) {
