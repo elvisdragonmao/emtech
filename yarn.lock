@@ -231,7 +231,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autocorrect-node@npm:^2.13.0":
+"autocorrect-node@npm:^2.13.3":
   version: 2.13.3
   resolution: "autocorrect-node@npm:2.13.3"
   dependencies:
@@ -304,7 +304,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "emtech@workspace:."
   dependencies:
-    autocorrect-node: "npm:^2.13.0"
+    autocorrect-node: "npm:^2.13.3"
     highlight.js: "npm:^11.10.0"
     markdown-it: "npm:^14.1.0"
     prettier: "npm:^3.5.3"
