@@ -42,4 +42,5 @@ if $ALL_PASS; then
   printf "\n✅ All files passed the checks."
 else
   printf "\n❌ Some files failed the checks. Please review the errors above."
+  exit 1
 fi
