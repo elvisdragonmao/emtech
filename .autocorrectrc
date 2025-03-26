@@ -39,20 +39,3 @@ fileTypes:
     # ".mdx": markdown
 spellcheck:
     # Correct Words (Case insensitive) for by Spellcheck
-    words:
-        - GitHub
-        - Github = GitHub
-        - App Store
-        # This means "appstore" into "App Store"
-        - AppStore = App Store
-        - Git
-        - Node.js
-        - nodejs = Node.js
-        - VIM
-        - DNS
-        - HTTP
-        - SSL
-        - Google App Script = Google Apps Script
-        - Google Sheet = Google Sheets
-        - Google Doc = Google Docs
-        - Google

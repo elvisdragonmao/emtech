@@ -1,4 +1,4 @@
 {
-    "build_command": "yarn build",
+    "build_command": "pnpm build --prod",
     "output_dir": "/dist"
 }
