@@ -14,7 +14,6 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
             - name: Validate Markdown Files
-              shell: /usr/bin/bash -e {0}
               run: |
                   chmod +x .github/workflows/winston-validation.sh
                   chmod +x .github/workflows/markdown-validation.sh
