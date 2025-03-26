@@ -13,10 +13,21 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
-            - name: Validate Markdown Files
+            - name: Validate Formats
+              run: |
+                  chmod +x .github/workflows/markdown-validation.sh
+                  .github/workflows/markdown-validation.sh
+                  if [ -f ".github/workflows/markdown-validation.sh.output" ]; then
+                      echo "❌ Found issues in Markdown validation:"
+                      cat .github/workflows/markdown-validation.sh.output
+                      exit 1
+                  fi
+            - name: Validate Winson
               run: |
                   chmod +x .github/workflows/winston-validation.sh
-                  chmod +x .github/workflows/markdown-validation.sh
                   .github/workflows/winston-validation.sh
-                  .github/workflows/markdown-validation.sh
-
+                  if [ -f ".github/workflows/winston-validation.sh.output" ]; then
+                      echo "❌ Found issues in Winston validation:"
+                      cat .github/workflows/winston-validation.sh.output
+                      exit 1
+                  fi
