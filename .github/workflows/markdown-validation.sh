@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Base directory
-BASE_DIR="./post"
+BASE_DIR="../../post"
 
 # Initialize a flag to check if all files pass
 ALL_PASS=true

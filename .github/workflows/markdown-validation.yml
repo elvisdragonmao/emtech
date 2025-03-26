@@ -17,4 +17,6 @@ jobs:
             - name: Validate Markdown Files
               shell: /usr/bin/bash -e {0}
               run: |
-                  
+                  ./winston-validation.sh
+                  ./markdown-validation.sh
+
