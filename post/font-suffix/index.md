@@ -75,9 +75,11 @@ Normal 和 Regular 通常都是指一般的字重 400。不過有時候有些字
 
 ## 調合字 P 與等寬字 Mono
 
-通常中文都是正方型的等寬字體 (Monospace)，但有時候也會有專門為印刷設計的調合字版本 (Proportional) 的字體，主要針對 英文、符號、數字 進行寬度微調，使閱讀體驗更佳。
+通常中文都是正方型的等寬字體 (Monospace)，但有時候也會有專門為印刷設計的調合字版本 (Proportional) 的字體，主要針對 英文、符號、數字的寬度進行微調，使閱讀體驗更佳。例如「i」就會比較窄，「W」就會比較寬。
 
 比如說劉韋辰和林立宇的自主學習計畫製作的手寫字型[【辰宇落雁體】](https://github.com/Chenyu-otf/chenyuluoyan_thin/tree/main)在版本 2.0 就是不等寬的，這樣可以更有手寫的味道。
+
+再比如說 Windows 內建的新細明體 (PMingLiU) 就是調合字體，而細明體 (MingLiU) 就是等寬字體。
 
 有時候會和前面的字型標示結合，比如說「GenYouMin2PJP」就是指第二代日文版「GenYouMin」的 Proportional 版本。
 
