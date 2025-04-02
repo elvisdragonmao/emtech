@@ -12,7 +12,7 @@ date: 2023-07-31
 
 在我們開始之前讓我先簡單介紹什麼是 VSCode。VSCode 是一個整合式開發環境 Integrated Development Environment（簡稱 IDE）。因為寫程式需要同時用到很多工具，包括寫程式的文字編輯器，終端機，瀏覽器等。這時如果你有一個軟體可以做到所有的功能，還可以在需要其他功能時直接下載擴充，是不是十分的方便！
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bWQtC3WyuBQ?si=ps1Tfy-tfc41rfY-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" src="https://www.youtube-nocookie.com/embed/bWQtC3WyuBQ?si=ps1Tfy-tfc41rfY-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## 安裝軟體
 

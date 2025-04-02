@@ -12,7 +12,7 @@ date: 2023-06-12
 
 CSS 的功能是來裝飾 HTML 的，因此這部影片假設你已經會使用 Codepen 和 HTML 了，如果還沒有的話建議你先去看 EP.2 十分鐘完結 HTML 喔。有一些部分可能比較難理解，但我相信你只要多練習幾次就可以了。
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/WrNpToBObo0?si=ObuDcZHDTcmjBs2y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" src="https://www.youtube-nocookie.com/embed/WrNpToBObo0?si=ObuDcZHDTcmjBs2y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## 簡單的 CSS
 

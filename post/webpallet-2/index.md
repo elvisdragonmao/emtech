@@ -10,7 +10,7 @@ date: 2023-06-05
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。今天我要讓你5分鐘學會所有常用的HTML語法。
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/3NV8ZQtfQm0?si=hh0oS6Qi06ZpiJDe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" src="https://www.youtube-nocookie.com/embed/3NV8ZQtfQm0?si=hh0oS6Qi06ZpiJDe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 HTML 叫做超文本標記語言 (Hyper Text Markup Language)。故名思義就是標記一下文字，要記得 HTML 主要功能不是為了裝飾，目的是讓**瀏覽器知道這個是什麼**。比如說 Google 想知道網站標題會去找裡面的`<h1>`；而給盲人用的語音閱讀器在看到`<strong>`會加重語氣。裝飾文字是 CSS 的工作，下禮拜就來講）
 
@@ -408,7 +408,7 @@ iframe 是用來嵌入網頁的，比如說我們要嵌入 YouTube 影片，你�
 ></iframe>
 ```
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/lOecpIqOjjY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" src="https://www.youtube.com/embed/lOecpIqOjjY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ### Audio
 

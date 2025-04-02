@@ -2098,3 +2098,7 @@ kbd {
     padding: 2px 4px;
     font-size: 0.8em;
 }
+
+iframe {
+    max-width: 100%;
+}
