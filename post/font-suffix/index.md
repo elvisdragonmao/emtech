@@ -20,24 +20,24 @@ description: 看看哪個好看選哪個。不知道怎麼選就選 TW，沒有�
 
 首先我們先來談一下簡單的字重。字重是指字體的粗細程度，通常分為以下幾種：
 
-| Value | Common weight name        |
-| ----- | ------------------------- |
-| 100   | Thin (Hairline)           |
-| 200   | Extra Light (Ultra Light) |
-| 300   | Light                     |
-| 400   | Normal (Regular)          |
-| 500   | Medium                    |
-| 600   | Semi Bold (Demi Bold)     |
-| 700   | Bold                      |
-| 800   | Extra Bold (Ultra Bold)   |
-| 900   | Black (Heavy)             |
-| 950   | Extra Black (Ultra Black) |
+| 數值 | 常見名稱                  |
+| ---- | ------------------------- |
+| 100  | Thin (Hairline)           |
+| 200  | Extra Light (Ultra Light) |
+| 300  | Light                     |
+| 400  | Normal (Regular)          |
+| 500  | Medium                    |
+| 600  | Semi Bold (Demi Bold)     |
+| 700  | Bold                      |
+| 800  | Extra Bold (Ultra Bold)   |
+| 900  | Black (Heavy)             |
+| 950  | Extra Black (Ultra Black) |
 
 數據實際上可以從 1 到 1000，但是實際上大多情況只會使用 [OpenType 規定](https://learn.microsoft.com/en-us/typography/opentype/spec/os2#usweightclass) 的 100 到 900 這幾種。且字體由時候會縮寫成一兩個字母，比如說 Blod 會縮寫成 B，Semi Bold 會縮寫成 SB。
 
 ### Normal 與 Regular
 
-Normal 和 Regular 通常都是只一般的字重 400。不過有時候有些字體會同時有這兩個。據官方說明之所以有兩個如此接近的字重，是因為 Regular 用來跟 Google 其他語系的開源字體產品線 (Noto Sans / Roboto) 搭配較佳，而 Normal 相信跟 Adobe 的開源英文字體搭配視覺上較佳。不過簡單來說 Normal 會比 Regular 稍微細一點點，在 emfont Normal 會以 `font-weight: 350` 來表示。
+Normal 和 Regular 通常都是指一般的字重 400。不過有時候有些字體會同時有這兩個。據官方說明之所以有兩個如此接近的字重，是因為 Regular 用來跟 Google 其他語系的開源字體產品線 (Noto Sans / Roboto) 搭配較佳，而 Normal 相信跟 Adobe 的開源英文字體搭配視覺上較佳。不過簡單來說 Normal 會比 Regular 稍微細一點點，在 emfont Normal 會以 `font-weight: 350` 來表示。
 
 > 思源黑體共包含7種字重：ExtraLight 250、Light 300、Normal 350（Noto Sans CJK 中稱為Demilight）、Regular 400、Medium 500、Bold 700、Heavy 900。
 
