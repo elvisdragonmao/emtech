@@ -15,15 +15,20 @@ process_file() {
   local FILE=$1
   local TEMP_FILE=$2
   
-  # Store the response in a variable
-  RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d '{"text": "'"$FILE"'"}' https://winston.emtech.cc/api/check)
-  
+  # Read file content and store in variable
+  FILE_CONTENT=$(cat "$FILE")
+  RESPONSE=$(curl -s -X POST \
+    -H "Content-Type: application/json" \
+    --data-binary "$(jq -Rs --arg text "$FILE_CONTENT" '{text: $text}' <<<"")" \
+    https://winston.emtech.cc/api/check)
+
   # Check if response contains any mistakes
   if [[ $RESPONSE == '{"mistakes":[]}' ]]; then
     echo -n "."
   else
     {
       echo -e "\n❌ Found issues in $FILE:"
+      echo "$RESPONSE"
       # Parse and display mistakes
       echo "$RESPONSE" | jq -r '.mistakes[] | if .type == "term_ambiguity_check" then "⚠️ \(.wrong) -> \(.correct[0]) (\(.type))" else "❌ \(.wrong) -> \(.correct[0]) (\(.type))" end' | while read -r line; do
         if [[ $line == "⚠️"* ]]; then
@@ -31,6 +36,7 @@ process_file() {
         else
           echo "$line"
           echo "FAIL" >> "$TEMP_FILE"
+          echo "$FILE"
         fi
       done
     } | tee -a "$TEMP_FILE.output"
@@ -40,7 +46,7 @@ process_file() {
 export -f process_file
 
 # Find all files and process them in parallel
-find "$BASE_DIR" -type f -name "index.md" | xargs -I {} -P 24 bash -c 'process_file "$@"' _ {} "$TEMP_FILE"
+find "$BASE_DIR" -type f -name "index.md" | xargs -I {} -P 1 bash -c 'process_file "$@"' _ {} "$TEMP_FILE"
 
 # Check if any failures were recorded
 if [ -f "$TEMP_FILE" ]; then
