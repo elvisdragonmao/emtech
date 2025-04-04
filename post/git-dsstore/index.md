@@ -43,6 +43,7 @@ echo .DS_Store >> ~/.gitignore_global
 ```bash
 git config --global core.excludesfile ~/.gitignore_global
 ```
+
 這樣就完成了！現在 Git 就會永遠忽略 `.DS_Store` 檔案了。
 
 {{notice}}
