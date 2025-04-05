@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [DataGrip]
-categories: []
+categories: [程式開發]
 date: 2025-04-05
 description: 右鍵點擊選擇 Import/Export、Import Data from File。選擇要匯入的 CSV 檔案，然後點擊 OK 即可。
 ---
