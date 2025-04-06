@@ -77,8 +77,8 @@ The writing workflow is designed for maximum comfort. The first paragraph automa
 If you'd like to experiment locally, you can download it from [GitHub](https://github.com/Edit-Mr/emtech). Don't forget to leave a star!
 
 1. Ensure Node.js is installed.
-2. Run `yarn` to install dependencies.
-3. Run `yarn build` to generate the static site.
+2. Run `pnpm` to install dependencies.
+3. Run `pnpm build` to generate the static site.
 4. The static site will be output to the `dist/` folder.
 
 ## License

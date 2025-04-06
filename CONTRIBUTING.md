@@ -9,7 +9,7 @@ We welcome contributions of all kinds, including bug reports, suggestions, and c
 
 ### Prerequisites
 
-- Ensure you have [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) installed on your system.
+- Ensure you have [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io/zh-TW/) installed on your system.
 
 ### Local Development
 
@@ -20,12 +20,12 @@ We welcome contributions of all kinds, including bug reports, suggestions, and c
     ```
 2. **Install dependencies**:
     ```bash
-    yarn install
+    pnpm install
     ```
 3. **Run the development server**:
 
     ```bash
-    yarn start
+    pnpm start
     ```
 
     - This will start a local live server and rebuild the site automatically whenever you save changes.

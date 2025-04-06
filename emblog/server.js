@@ -86,7 +86,7 @@ let generating = false;
 const build = (filename = "") => {
     generating = true;
     console.log(`File changed: ${filename}. Running generate.js...`);
-    exec("yarn build", (error, stdout, stderr) => {
+    exec("pnpm build", (error, stdout, stderr) => {
         if (error) {
             console.error(`Error running generate.js: ${error.message}`);
             return;

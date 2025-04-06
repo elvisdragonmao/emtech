@@ -884,7 +884,7 @@ const spinFavicon = () => {
     };
     img.onload = draw;
 };
-spinFavicon();
+//spinFavicon();
 
 // when press ctrl + k, toggle #search-toggle
 document.addEventListener("keydown", (e) => {
