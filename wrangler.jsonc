@@ -1,6 +1,6 @@
 {
-  "name": "emblog",
-  "assets": {
-  "directory": "./dist"
-  }
+    "name": "emblog",
+    "assets": {
+        "directory": "./dist"
+    }
 }
