@@ -1,15 +1,33 @@
 {
+    "git": {
+        "deploymentEnabled": {
+            "my-branch-name": false
+        }
+    },
     "installCommand": "pnpm install --prod",
     "buildCommand": "pnpm build",
     "outputDirectory": "dist",
     "trailingSlash": false,
     "rewrites": [
-        { "source": "/tag/:slug*", "destination": "/index.html" },
-        { "source": "/search", "destination": "/index.html" },
-        { "source": "/category/:slug*", "destination": "/index.html" }
+        {
+            "source": "/tag/:slug*",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/search",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/category/:slug*",
+            "destination": "/index.html"
+        }
     ],
     "redirects": [
-        { "source": "/about", "destination": "/p/about", "permanent": true },
+        {
+            "source": "/about",
+            "destination": "/p/about",
+            "permanent": true
+        },
         {
             "source": "/post/:slug*",
             "destination": "/p/:slug*",
@@ -25,8 +43,20 @@
             "destination": "/category/:slug*",
             "permanent": true
         },
-        { "source": "/tag", "destination": "/", "permanent": true },
-        { "source": "/category", "destination": "/", "permanent": true },
-        { "source": "/p", "destination": "/", "permanent": true }
+        {
+            "source": "/tag",
+            "destination": "/",
+            "permanent": true
+        },
+        {
+            "source": "/category",
+            "destination": "/",
+            "permanent": true
+        },
+        {
+            "source": "/p",
+            "destination": "/",
+            "permanent": true
+        }
     ]
 }
