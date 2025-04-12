@@ -108,7 +108,7 @@ fs.watch(
             !filename.includes("dist") &&
             !filename.includes(".git") &&
             !filename.includes("node_modules") &&
-            !filename.includes(".DS_Store") 
+            !filename.includes(".DS_Store")
         )
             build(filename);
     }
