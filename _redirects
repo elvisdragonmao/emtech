@@ -1,0 +1,7 @@
+/about /p/about 301
+/post/:slug /p/:slug 301
+/posts/:slug /p/:slug 301
+/series/:slug /category/:slug 301
+/tag / 301
+/category / 301
+/p / 301
