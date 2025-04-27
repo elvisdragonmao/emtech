@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [git, macOS]
+tags: [Git, macOS]
 categories: [程式開發]
 date: 2025-04-04
 description: 用 `git rm --cached .DS_Store` 刪除紀錄，然後設定全域的 `.gitignore` 檔案。
