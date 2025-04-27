@@ -723,7 +723,6 @@ const generateSitemapAndRSS = async () => {
     await fs.writeFile(
         "dist/sitemap.xml",
         `<?xml version="1.0" encoding="UTF-8"?>
-        <?xml-stylesheet type="text/xsl" href="/static/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://emtech.cc</loc>
