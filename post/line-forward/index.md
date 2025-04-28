@@ -34,7 +34,6 @@ Line Notify 停用
 
 接下來我們要新增一個官方頻道，這裡選擇 Create a new channel，然後選擇 Messaging API。
 
-
 ![Create a new channel](newChannel.webp)
 
 ![選擇 Messaging API](messageAPI.webp)
@@ -104,47 +103,56 @@ const ACCESS_TOKEN = "剛才複製的那一串";
 
 // 這裡定義：哪些人/群組可以轉發，以及要轉到哪裡
 const FORWARD_RULES = {
-  全部: "廣播"
+    全部: "廣播"
 };
 
 // 底下不用更改
 function doPost(e) {
-  const json = JSON.parse(e.postData.contents);
-  // 簡單判斷是不是訊息事件
-  if (json.events && json.events.length > 0) {
-    const event = json.events[0];
+    const json = JSON.parse(e.postData.contents);
+    // 簡單判斷是不是訊息事件
+    if (json.events && json.events.length > 0) {
+        const event = json.events[0];
 
-    if (event.type === "message" && event.message.type === "text") {
-      const forwardTarget = FORWARD_RULES["全部"] || FORWARD_RULES[event.source.groupId] || FORWARD_RULES[event.source.userId];
-      if (forwardTarget) {
-        let messageText = event.message.text;
-        if (forwardTarget == "廣播") messageText += "\nUser ID: `" + event.source.userId + "`\nGroup ID: `" + event.source.groupId + "`";
-        forwardMessage(forwardTarget, messageText);
-      }
+        if (event.type === "message" && event.message.type === "text") {
+            const forwardTarget =
+                FORWARD_RULES["全部"] ||
+                FORWARD_RULES[event.source.groupId] ||
+                FORWARD_RULES[event.source.userId];
+            if (forwardTarget) {
+                let messageText = event.message.text;
+                if (forwardTarget == "廣播")
+                    messageText +=
+                        "\nUser ID: `" +
+                        event.source.userId +
+                        "`\nGroup ID: `" +
+                        event.source.groupId +
+                        "`";
+                forwardMessage(forwardTarget, messageText);
+            }
+        }
     }
-  }
-  return ContentService.createTextOutput("OK");
+    return ContentService.createTextOutput("OK");
 }
 // 發送訊息給指定ID
 function forwardMessage(targetId, text) {
-  const url = targetId == "廣播" ? "broadcast" : "push";
-  const options = {
-    method: "post",
-    contentType: "application/json",
-    headers: {
-      Authorization: "Bearer " + ACCESS_TOKEN
-    },
-    payload: JSON.stringify({
-      to: targetId,
-      messages: [
-        {
-          type: "text",
-          text: text
-        }
-      ]
-    })
-  };
-  UrlFetchApp.fetch("https://api.line.me/v2/bot/message/" + url, options);
+    const url = targetId == "廣播" ? "broadcast" : "push";
+    const options = {
+        method: "post",
+        contentType: "application/json",
+        headers: {
+            Authorization: "Bearer " + ACCESS_TOKEN
+        },
+        payload: JSON.stringify({
+            to: targetId,
+            messages: [
+                {
+                    type: "text",
+                    text: text
+                }
+            ]
+        })
+    };
+    UrlFetchApp.fetch("https://api.line.me/v2/bot/message/" + url, options);
 }
 ```
 
@@ -198,9 +206,9 @@ TypeError: Cannot read properties of undefined (reading 'postData')
 
 比如說
 
-* 轉傳群組所有訊息給你: 複製群組 ID、你的使用者 ID
-* 轉傳某個人在群組的訊息給你: 複製你跟他的 ID，然後記得邀請機器人。
-* 同步某個群組的訊息到另一個群組: 複製你跟他的 ID，然後記得邀請機器人。
+- 轉傳群組所有訊息給你: 複製群組 ID、你的使用者 ID
+- 轉傳某個人在群組的訊息給你: 複製你跟他的 ID，然後記得邀請機器人。
+- 同步某個群組的訊息到另一個群組: 複製你跟他的 ID，然後記得邀請機器人。
 
 ![取得 ID](GetID.webp)
 
@@ -212,9 +220,9 @@ TypeError: Cannot read properties of undefined (reading 'postData')
 
 ```js
 const FORWARD_RULES = {
-  "群組 ID": "你的使用者 ID",
-  "使用者 ID": "群組 ID",
-  //... 看你要加幾條規則都可以
+    "群組 ID": "你的使用者 ID",
+    "使用者 ID": "群組 ID"
+    //... 看你要加幾條規則都可以
 };
 ```
 
