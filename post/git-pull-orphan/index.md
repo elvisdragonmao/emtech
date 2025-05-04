@@ -63,8 +63,8 @@ git reset --hard origin/main
 
 ### 提醒
 
-* 這個指令會**砍掉本地所有未提交的修改**，所以如果有重要的東西，請先 `git stash` 或是手動備份一下。
-* 如果 force push 的分支不是 `main`，請把 `main` 換成你要的分支名稱。
+- 這個指令會**砍掉本地所有未提交的修改**，所以如果有重要的東西，請先 `git stash` 或是手動備份一下。
+- 如果 force push 的分支不是 `main`，請把 `main` 換成你要的分支名稱。
 
 {{noticed}}
 
