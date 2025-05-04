@@ -12,7 +12,9 @@ date: 2023-02-22
 {{notice}}
 Line Notify 停用
 
-Line Notify 已經停用，請自行修改程式成直接使用 Line Bot 發送訊息。
+Line Notify 已經停用，請參考我寫的這篇新文章：
+
+[自製 Line Bot 轉發群組訊息給自己](https://emtech.cc/p/line-forward/)
 {{noticed}}
 
 ![某群組充斥著垃圾訊息](line2notify-why.webp)
