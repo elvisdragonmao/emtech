@@ -744,6 +744,7 @@ const generateSitemapAndRSS = async () => {
       <description>${post.description}</description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <guid>https://emtech.cc/p/${post.id}</guid>
+      <media:thumbnail url="https://emtech.cc${post.thumbnail}" />
       ${post.htmlContent ? " <content:encoded><![CDATA[" + post.htmlContent + "]]></content:encoded>" : ""}
       <category>${post.categories}</category>
     </item>`
@@ -753,7 +754,9 @@ const generateSitemapAndRSS = async () => {
         "dist/rss.xml",
         `<?xml version="1.0" encoding="UTF-8"?>
         <?xml-stylesheet type="text/xsl" href="/static/rss.xsl"?>
-        <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+        <rss version="2.0" 
+        xmlns:content="http://purl.org/rss/1.0/modules/content/"
+        xmlns:media="http://search.yahoo.com/mrss/">
         <channel>
         <title>毛哥EM資訊密技</title>
         <link>https://emtech.cc</link>
