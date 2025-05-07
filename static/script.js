@@ -886,25 +886,37 @@ const spinFavicon = () => {
 };
 //spinFavicon();
 
-// when press ctrl + k, toggle #search-toggle
+// when press ctrl + k oe cmd + k, toggle #search-toggle
 document.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.key === "k") {
+    if ((e.ctrlKey && e.key === "k") || (e.metaKey && e.key === "k")) {
+        e.preventDefault();
         document.getElementById("search-toggle").checked =
             !document.getElementById("search-toggle").checked;
         document.getElementById("search").focus();
     }
-});
 
-console.log(`
-              ／＞   フ
-              |   _ _ l
-            ／\` ミ_꒳ノ
-    　　 　 /　　　 　 |
-    　　　 /　 ヽ　　 ﾉ
-    　 　 │　　|　|　|
-    　／￣|　　 |　|　|
-    　| (￣ヽ＿_ヽ_)__)
-    　＼二つ
-    emtech.cc is generated with emblog by Elvis Mao
-    https://github.com/Edit-Mr/emblog
-    `);
+    // if escape key is pressed, close #search-toggle
+    if (e.key === "Escape") {
+        document.getElementById("search-toggle").checked = false;
+    }
+});
+console.warn(
+    "%c注意！",
+    `font-size: 40px; background-color: #ebc405; color: #000;font-family:system-ui; 
+    background-image: linear-gradient(60deg, #ebc405 25%, #000 25%, #000 50%, #ebc405 50%, #ebc405 75%, #000 75%);
+    text-shadow: 1px -1px #FFF, 1px 1px #FFF, -1px -1px #FFF, -1px 1px #FFF;padding: 1rem;
+    background-size: 30px 100%;font-weight: bold;`
+);
+console.log(`謝謝你的注意。
+
+          ／＞   フ
+         |   _ _ l
+        ／\` ミ_꒳ノ
+      /          |
+      /   ヽ     ﾉ
+      │   |  |  |
+  ／￣|    |  |  |
+  | (￣ヽ＿_ヽ_)__)
+  ＼二つ
+emtech.cc is generated with emblog by Elvis Mao`);
+console.log("https://github.com/Edit-Mr/emtech");
