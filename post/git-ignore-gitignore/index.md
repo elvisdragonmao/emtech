@@ -12,17 +12,17 @@ description: `.gitignore` 能不能 ignore 自己？可以。
 
 ## 先快速複習一下 `.gitignore` 的工作方式
 
-* **尚未被追蹤（untracked）** 的檔案，如果符合 `.gitignore` 裡的規則，就不會被 `git add` 加進來。
-* **已經被追蹤（tracked）** 的檔案，不管 `.gitignore` 怎麼寫，**都還是會繼續被追蹤**，除非你手動把它從 Git 中移除（`git rm --cached 檔名`）。
+- **尚未被追蹤（untracked）** 的檔案，如果符合 `.gitignore` 裡的規則，就不會被 `git add` 加進來。
+- **已經被追蹤（tracked）** 的檔案，不管 `.gitignore` 怎麼寫，**都還是會繼續被追蹤**，除非你手動把它從 Git 中移除（`git rm --cached 檔名`）。
 
 ## 那如果我在 `.gitignore` 裡寫上 `.gitignore` 呢？
 
 你可以想想看，其實答案很簡單：
 
-* 如果 `.gitignore` 還沒被 Git 追蹤過，這樣寫會讓 Git 忽略它。
+- 如果 `.gitignore` 還沒被 Git 追蹤過，這樣寫會讓 Git 忽略它。
 
-*  如果 `.gitignore` 已經被 Git 追蹤了（大部分專案一開始就會這樣），那即使你在裡面寫了 `.gitignore`，Git 還是會繼續追蹤它。
-*  
+- 如果 `.gitignore` 已經被 Git 追蹤了（大部分專案一開始就會這樣），那即使你在裡面寫了 `.gitignore`，Git 還是會繼續追蹤它。
+-
 
 > 人生有很多事情是看過就忘不了的。
 
