@@ -69,3 +69,5 @@ git reset --hard origin/main
 {{noticed}}
 
 執行完，你的電腦上 `main` 就跟 GitHub 上的一模一樣了。
+
+> 漂亮的封面圖來自 [Unsplash](https://unsplash.com/photos/a-little-boy-playing-with-a-dog-in-a-yard-oANiLNLdIkw?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash)，作者 [Peyman Shojaei](https://unsplash.com/@julius_drost)。
