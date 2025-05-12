@@ -1,11 +1,11 @@
 ---
 authors: elvismao
-tags: [自製，HTML, CSS, JavaScript, Github, GAS, 複製貼上就能成為工程師]
+tags: [自製，HTML, CSS, JavaScript, Github, Google Apps Script, 複製貼上就能成為工程師]
 categories: [程式開發，生活駭客]
 date: 2022-08-14
 ---
 
-# 【GAS】複製貼上讓試算表變身成網頁表格 秀爆你的客戶朋友！
+# 【Google Apps Script】複製貼上讓試算表變身成網頁表格 秀爆你的客戶朋友！
 
 直接把整個試算表連結發給別人除了要載入很久且會出現一堆不需要的按鍵，整個畫面很醜很沒有質感。而且如果你把其他隱私的資料也放在裡面，都會被一次看光光。那我們就來幫試算表包個糖衣吧
 
@@ -262,7 +262,7 @@ date: 2022-08-14
 
 ![再看一次試算表](/static/img/gas.webp)
 
-我們會使用 GAS(Google Apps Script) 來建立網頁應用程式來讀取表格資料。
+我們會使用 Google Apps Script 來建立網頁應用程式來讀取表格資料。
 
 {{notice}}
 Google Apps Script
@@ -339,7 +339,7 @@ function doGet() {
 你可以根據自己的需求決定排法
 {{noticed}}
 
-![GAS 快速教學](/static/img/gas.webp)
+![Google Apps Script 快速教學](/static/img/gas.webp)
 
 做好了之後點擊執行▶️，你會需要授予你的程式讀取資料的權限。因為你寫的程式沒有被 Google 驗證過所以會顯示不安全，但我相信你不會把你的帳號搞爆，對吧
 

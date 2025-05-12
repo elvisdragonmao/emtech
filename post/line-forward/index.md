@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [自製，JavaScript, GAS]
+tags: [自製，JavaScript, Google Apps Script]
 categories: [生活駭客]
 date: 2025-04-28
 ---
@@ -92,7 +92,7 @@ Line Notify 停用
 
 ## 3. 建立 Google Apps Script
 
-Google App Script 是 Google 提供的雲端工具，讓我們可以在 Google 的服務上寫程式。這裡我們會使用它來接收 Line Bot 的訊息並轉發。
+Google Apps Script 是 Google 提供的雲端工具，讓我們可以在 Google 的服務上寫程式。這裡我們會使用它來接收 Line Bot 的訊息並轉發。
 
 首先請你進入網站 [script.new](https://script.new) 來建立一個專案 (或是你也可以進入 [script.google.com](https://script.google.com) 或是從 Google Drive 新增專案。)
 

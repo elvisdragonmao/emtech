@@ -1,11 +1,11 @@
 ---
 authors: elvismao
-tags: [自製，JavaScript, GAS]
+tags: [自製，JavaScript, Google Apps Script]
 categories: [生活駭客]
 date: 2023-02-22
 ---
 
-# 【GAS】用 Line Bot & Line Notify 轉發群組訊息給自己
+# 【Google Apps Script】用 Line Bot & Line Notify 轉發群組訊息給自己
 
 你是否有群組充滿著垃圾訊息？用 Line Bot & Line Notify 轉發重要訊息給自己！不用程式經驗，複製貼上就好了！
 
@@ -94,7 +94,7 @@ function doPost(e) {
 {{notice}}
 小叮嚀 為避免程式碼站太多空間，可能會部分隱藏。請記得展開或直接複製。 {{noticed}}
 
-![GAS 快速教學](/static/img/gas.webp)
+![Google Apps Script 快速教學](/static/img/gas.webp)
 
 做好了之後點擊執行▶️，你會需要授予你的程式讀取資料的權限。因為你寫的程式沒有被 Google 驗證過所以會顯示不安全，但我相信你不會把你的帳號搞爆，對吧。執行後會看到錯誤，這是正常的，因為我們直接執行沒有給他訊息。
 

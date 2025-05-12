@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [HTML, CSS, JavaScript, GitHub, GAS, 複製貼上就能成為工程師]
+tags: [HTML, CSS, JavaScript, GitHub, Google Apps Script, 複製貼上就能成為工程師]
 categories: [生活駭客，程式開發]
 date: 2023-05-01
 ---
@@ -9,7 +9,7 @@ date: 2023-05-01
 
 本文將教授如何使用程式製作一個簡單的點名網頁。透過這個點名系統，你可以方便地管理你的學生出席狀況，並且隨時查詢歷史出席紀錄。我們將使用 Google Apps Script, GitHub 和 Google Sheets 來建立這個點名系統。**我敢保證即使你完全不會程式也可以在 5 分鐘內完成**。本文會詳細說明從建立 Google Sheets 到部屬網頁的步驟，並提供完整的程式碼和演示網頁。
 
-> 我在兩年前曾經寫過一篇[【GAS】自製點名系統](https://emtech.cc/post/frog_check_in/)，出乎意料地幫助到許多人，所以我決定重新寫一次，比上次更容易製作和操作，也更好看一些 (我覺得啦)。
+> 我在兩年前曾經寫過一篇[【Google Apps Script】自製點名系統](https://emtech.cc/post/frog_check_in/)，出乎意料地幫助到許多人，所以我決定重新寫一次，比上次更容易製作和操作，也更好看一些 (我覺得啦)。
 
 ## 範例網頁
 

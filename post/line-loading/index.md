@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [JavaScript, GAS, API, line]
+tags: [JavaScript, Google Apps Script, API, line]
 categories: [程式開發，科技趨勢]
 date: 2024-05-16
 ---
@@ -109,7 +109,7 @@ function sendReply(replyToken, message) {
 
 好了之後點擊執行▶️，你會需要授予你的程式 call API 的權限。因為你寫的程式沒有被 Google 驗證過所以會顯示不安全，但我相信你不會把你的帳號搞爆，對吧。執行後會看到錯誤，這是正常的，因為我們直接執行沒有給他訊息。
 
-![GAS 快速教學](/static/img/gas.webp)
+![Google Apps Script 快速教學](/static/img/gas.webp)
 
 ### 3. 設定 Webhook
 

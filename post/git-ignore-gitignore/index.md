@@ -1,7 +1,7 @@
 ---
 authors: elvismao
-tags: [git]
-categories: [軟體開發]
+tags: [Git]
+categories: [程式開發]
 date: 2025-05-11
 description: `.gitignore` 能不能 ignore 自己？可以。
 ---

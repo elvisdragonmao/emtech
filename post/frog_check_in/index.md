@@ -1,11 +1,11 @@
 ---
 authors: elvismao
-tags: [自製，HTML, CSS, JavaScript, Github, GAS, 複製貼上就能成為工程師]
+tags: [自製，HTML, CSS, JavaScript, Github, Google Apps Script, 複製貼上就能成為工程師]
 categories: [程式開發，生活駭客]
 date: 2021-10-07
 ---
 
-# 【GAS】自製點名系統
+# 【Google Apps Script】自製點名系統
 
 大眼蛙教練的課程是以堂數做計算，也就是來一次算一次，而不是一段時間。因此每次學生上課都需要簽到，最後還需要人工來統計。因此我做了一個簡單的點名系統，讓電腦來做統計和計算的工作。
 
@@ -102,7 +102,7 @@ Line Notify 是個比較冷門但是非常好用的工具。我們可以透過�
 
 ### 建立 API(Google Apps Script)
 
-想要讓網站編輯試算表需要透過 Google Apps Script(GAS) 來完成。我們要建立四個 API，分別用來：
+想要讓網站編輯試算表需要透過 Google Apps Script 來完成。我們要建立四個 API，分別用來：
 
 1. 紀錄出缺席
 2. 獲取學生列表 (以進行報到)
@@ -181,7 +181,7 @@ function debug() {
 | ---- | -------- | ------------------- | ---------- |
 | 1    | 測試先生 | 2021/10/10 22:46:00 | 10         |
 
-![GAS 快速教學](/static/img/gas.webp)
+![Google Apps Script 快速教學](/static/img/gas.webp)
 
 做好了之後點擊執行▶️，你會需要授予你的程式讀取資料的權限。因為你寫的程式沒有被 Google 驗證過所以會顯示不安全，但我相信你不會把你的帳號搞爆，對吧
 
