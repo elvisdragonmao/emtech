@@ -903,7 +903,14 @@ document.addEventListener("keydown", (e) => {
 console.warn(
     "%c注意！",
     `font-size: 40px; background-color: #ebc405; color: #000;font-family:system-ui; 
-    background-image: linear-gradient(60deg, #ebc405 25%, #000 25%, #000 50%, #ebc405 50%, #ebc405 75%, #000 75%);
+  background-image: repeating-linear-gradient(
+    45deg,
+    #ebc405,
+    #ebc405 10.7px,
+    #000 10.7px,
+    #000 21.4px,
+    #000 21.4px
+  );
     text-shadow: 1px -1px #FFF, 1px 1px #FFF, -1px -1px #FFF, -1px 1px #FFF;padding: 1rem;
     background-size: 30px 100%;font-weight: bold;`
 );
