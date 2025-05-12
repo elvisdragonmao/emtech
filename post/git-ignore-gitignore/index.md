@@ -6,7 +6,7 @@ date: 2025-05-11
 description: `.gitignore` 能不能 ignore 自己？可以。
 ---
 
-# 如果在 .gitignore ignore .gitignore 那 .gitignore 會被 git 因為 .gitignore igonore 了 .gitignore 而被 ignore 嗎？
+# 如果在 .gitignore ignore .gitignore 那 .gitignore 會被 git 因為 .gitignore ignore 了 .gitignore 而被 ignore 嗎？
 
 `.gitignore` 是我們非常熟悉的檔案。它負責告訴 Git 哪些檔案「不要納入版本控制」。但有沒有想過**如果我在 `.gitignore` 裡面加上 `.gitignore` 本身，會發生什麼事？它真的會被 ignore 嗎？**
 
