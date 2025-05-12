@@ -44,7 +44,9 @@ background-size: 40px 100%;
 
 然後你就會得到：
 
-我用 Figma 簡單畫一個示意圖。如果我們希望 `background-repeat` 可以連接好，前後一定要相連。而你至少會需要三層顏色，甚至是四層五層。你還需要算點三角函數確保這個角度跟長度是完全可以拚上的。
+![linear-gradient](ahh.webp)
+
+我用 Figma 簡單畫一個示意圖。如果我們希望 `background-repeat` 可以連接好，前後一定要相連。你至少會需要三層顏色，甚至是四層、五層。你還需要算點三角函數確保這個角度跟長度是完全可以拚上的。
 
 ![角度與長度計算](figma.webp)
 
@@ -63,9 +65,11 @@ div {
 }
 ```
 
+算了一整個小時的三角函數之後我突然想到...
+
 ## 使用 repeating-linear-gradient
 
-這個屬性可以讓你更方便地做出這個效果。你可以注意我們的漸層屬性單位是使用絕對單位 px 而不是百分比。這樣結束之後它為自己幫你重複。
+這個屬性可以讓你更方便地做出這個效果。
 
 ```css
 div {
@@ -78,7 +82,9 @@ div {
 }
 ```
 
-就這樣這麼簡單。你也可以把寬度設定成變數來更簡單的調整。
+就這樣這麼簡單。你可以注意我們的漸層屬性單位是使用絕對單位 px 而不是百分比。這樣結束之後它為自己幫你重複。
+
+你也可以把寬度設定成變數來更簡單的調整。
 
 ```css
 div {
@@ -95,3 +101,84 @@ div {
 ![上: repeating-linear-gradient 下: linear-gradient](result.webp)
 
 [Codepen 範例](https://codepen.io/edit-mr/pen/XJJYEZa)
+
+## 動畫
+
+接下來你甚至可以玩一些動畫:
+
+我們讓它動起來：
+
+```css
+div {
+    animation: move 1s linear infinite;
+    width: calc(100% + var(--width) * 4);
+}
+
+@keyframes move {
+    from {
+        background-position: 0px;
+    }
+    to {
+        background-position: calc(var(--width) * sqrt(2) * -2);
+    }
+}
+```
+
+注意這裡我們把背景再拉大一點，不然後面會是空白的。然後我們使用 `background-position` 來移動背景。
+
+移動背景的距離是 `var(--width) * sqrt(2) * -2`，這是因為我們的漸層是 45 度，所以斜斜的看是 `var(--width)`，那麼平著看就是 `var(--width)` 乘以根號二。要乘以 2 是因為如果只有 1 的畫只會移動到黃黑交換。而要乘以 -1 是因為我們希望它能夠往左移動。
+
+我們甚至可以讓它旋轉起來：
+
+```css
+div {
+    margin-top: 40vh;
+    height: 100px;
+    font-size: 40px;
+    --width: 20px;
+    --deg: 45;
+    background-image: repeating-linear-gradient(
+        calc(var(--deg) * 1deg),
+        #ebc405,
+        #ebc405 var(--width),
+        #000 var(--width),
+        #000 calc(var(--width) * 2),
+        #000 calc(var(--width) * 2)
+    );
+    animation:
+        move linear 1s infinite,
+        spin linear 8s infinite;
+    animation-composition: accumulate;
+    width: calc(100% + var(--width) * 4);
+}
+
+@property --deg {
+    syntax: "<number>";
+    initial-value: 45;
+    inherits: false;
+}
+
+@keyframes move {
+    from {
+        background-position: 0px;
+    }
+    to {
+        background-position: calc(var(--width) * sqrt(2) * -2);
+    }
+}
+
+@keyframes spin {
+    from {
+        --deg: 0;
+    }
+    to {
+        --deg: 360;
+    }
+}
+```
+
+(GIF 晚點更新)
+
+[Codepen 範例](https://codepen.io/edit-mr/pen/qEEQMMp)
+
+好了頭已經有點暈了。
