@@ -4,7 +4,7 @@ tags: []
 categories: [關於]
 date: 2025-05-19
 lastmod: 2025-05-19
-description: 金絲雀聲明
+description: 當你看到這裡有東西不見，你就知道發生甚麼事了。
 ---
 
 # 金絲雀聲明
