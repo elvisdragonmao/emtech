@@ -61,7 +61,7 @@ date: 2022-08-14
     <!--下面這行是縮圖，可以換網址-->
         
     <link
-        href="https://Edit-Mr.github.io/code/sabooo/thumbnail.png"
+        href="https://Edit-Mr.github.io/code/sabooo/thumbnail.webp"
         rel="icon"
         type="image/x-icon"
     />
@@ -406,7 +406,7 @@ function doGet() {
     <!--下面這行是縮圖，可以換網址-->
         
     <link
-        href="https://Edit-Mr.github.io/code/sabooo/thumbnail.png"
+        href="https://Edit-Mr.github.io/code/sabooo/thumbnail.webp"
         rel="icon"
         type="image/x-icon"
     />
