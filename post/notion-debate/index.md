@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Notion]
-categories: [生活駭客,英文辯論]
+categories: [生活駭客, 英文辯論]
 date: 2025-04-24
 description: 帶你快速入門 Notion
 ---
