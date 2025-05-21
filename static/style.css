@@ -1527,6 +1527,11 @@ figure img {
     margin-bottom: 1.5rem;
 }
 
+.post-container li ul,
+.post-container li ol {
+    margin-top: .5rem;
+}
+
 .post-container li {
     margin-bottom: 0.5rem;
 }
