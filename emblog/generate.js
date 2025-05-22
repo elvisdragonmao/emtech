@@ -570,8 +570,8 @@ async function processPosts() {
             post.categories.forEach((category) => {
                 if (!categoriesMap[category]) categoriesMap[category] = [];
                 categories[category] = categories[category]
-                    ? categories[category] + 1
-                    : 1;
+                    ? { count: categories[category].count + 1 }
+                    : { count: 1 };
                 categoriesMap[category].push(post);
             });
         search.push({
@@ -587,7 +587,15 @@ async function processPosts() {
             acc[key] = value;
             return acc;
         }, {});
-    // save the latest 10 posts to the latest.json
+
+    const config = JSON.parse(await fs.readFile("config.json", "utf8"));
+    for (const category in categories) {
+        if (config.category[category]) {
+            categories[category].description =
+                config.category[category].description;
+        }
+    }
+    
     const writePromises = [
         fs.writeFile(
             "dist/meta/latest.json",

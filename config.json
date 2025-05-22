@@ -1,0 +1,40 @@
+{
+    "name": "毛哥EM資訊密技",
+    "description": "毛哥EM資訊密技",
+    "author": "毛哥EM",
+    "category": {
+        "精選": {
+            "description": ""
+        },
+        "生活雜談": {
+            "description": "出門摸點草，或是在 Minecraft 摸點草"
+        },
+        "英文辯論": {
+            "description": "嗆人也要嗆的專業"
+        },
+        "關於": {
+            "description": ""
+        },
+        "網頁開發": {
+            "description": "不止於 CSS"
+        },
+        "程式開發": {
+            "description": "解決 Coding 中的爛問題"
+        },
+        "生活駭客": {
+            "description": "複製貼上成為工程師"
+        },
+        "程式跑給你看": {
+            "description": "不相信數學，至少相信實驗"
+        },
+        "自動化": {
+            "description": "啊我就懶"
+        },
+        "科技趨勢": {
+            "description": "蹭流量"
+        },
+        "程式教學": {
+            "description": "基礎語法教學"
+        }
+    }
+}

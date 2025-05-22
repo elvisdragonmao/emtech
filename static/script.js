@@ -2,8 +2,8 @@ const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 let currentPage = "post",
     nextPosts = [],
-    asideTags;
-
+    asideTags,
+    categories = {};
 let search = [];
 
 // get read history page id and title from localStorage
@@ -153,7 +153,7 @@ const loadArticleList = async (postList, category) => {
                                   `<a href="/tag/${tag}" class="tag">${tag}</a>`
                           )
                         : [];
-                    const categories = post.categories
+                    const postCategories = post.categories
                         ? post.categories.map(
                               (category) =>
                                   `<a href="/category/${category}" class="category">${category}</a>`
@@ -170,7 +170,7 @@ const loadArticleList = async (postList, category) => {
         ></div
     ></a>
     <div class="info">
-        <div class="post-categories">${categories.join(" ")}</div>
+        <div class="post-categories">${postCategories.join(" ")}</div>
             <a href="/p/${post.id}"
         ><h3>${post.title}</h3></a>
         <div class="tags">${tags.join(" ")}</div>
@@ -207,32 +207,38 @@ const postScrollAnimations = () => {
                     headerSibling = headerSibling.previousElementSibling;
                 }
                 const category = headerSibling.querySelectorAll(".header-tag");
-                const categories = Array.from(category).map(
+                const postCategories = Array.from(category).map(
                     (a) => a.textContent
                 );
                 let randomPost = null;
                 // go through from first category to last, find the first post not read in localStorage
                 (async () => {
                     // Use Promise.all to wait for all fetch requests
-                    const fetchPromises = categories.map(async (category) => {
-                        const response = await fetch(
-                            `/meta/tag/${category}.json`
-                        );
-                        const posts = await response.json();
-                        for (const post of posts) {
-                            if (
-                                !readHistory.find((item) => item.id === post.id)
-                            ) {
-                                randomPost = post;
-                                next.previousElementSibling.innerHTML =
-                                    "有關" +
-                                    (/^[a-zA-Z]/.test(category) ? " " : "") +
-                                    category +
-                                    " 的其他文章";
-                                break;
+                    const fetchPromises = postCategories.map(
+                        async (category) => {
+                            const response = await fetch(
+                                `/meta/tag/${category}.json`
+                            );
+                            const posts = await response.json();
+                            for (const post of posts) {
+                                if (
+                                    !readHistory.find(
+                                        (item) => item.id === post.id
+                                    )
+                                ) {
+                                    randomPost = post;
+                                    next.previousElementSibling.innerHTML =
+                                        "有關" +
+                                        (/^[a-zA-Z]/.test(category)
+                                            ? " "
+                                            : "") +
+                                        category +
+                                        " 的其他文章";
+                                    break;
+                                }
                             }
                         }
-                    });
+                    );
 
                     // Wait for all fetches to complete
                     await Promise.all(fetchPromises);
@@ -338,6 +344,17 @@ const updatePostList = async (category, scroll = true) => {
     document.querySelector(".categories-title").textContent = decodeURI(
         category.split("/")[1]
     );
+    const des = categories[decodeURI(category.split("/")[1])]
+        ? categories[decodeURI(category.split("/")[1])].description
+        : "";
+    if (des) {
+        document.querySelector(".categories-description").textContent = des;
+        document.querySelector(".categories-description").style.display =
+            "block";
+    } else {
+        document.querySelector(".categories-description").style.display =
+            "none";
+    }
     document.querySelector(".categories-title").classList.add("loading");
     await loadArticleList(document.getElementById("posts"), category);
     document.querySelector(".categories-title").classList.remove("loading");
@@ -431,15 +448,15 @@ const initPost = (page, direct = false) => {
 
 const moveCategories = (category) => {
     const a = document.querySelector("." + category);
-    const categories = document.getElementById("categories");
-    categories.style.setProperty("--offset", `${a.offsetLeft - 8}px`);
-    categories.style.setProperty("--width", `${a.offsetWidth + 16}px`);
+    const postCategories = document.getElementById("categories");
+    postCategories.style.setProperty("--offset", `${a.offsetLeft - 8}px`);
+    postCategories.style.setProperty("--width", `${a.offsetWidth + 16}px`);
     // check the scroll amount of #categories, if the selected category is out of screen scroll to the right
     if (
-        categories.scrollLeft + categories.offsetWidth < a.offsetLeft ||
-        categories.scrollLeft > a.offsetLeft
+        postCategories.scrollLeft + postCategories.offsetWidth < a.offsetLeft ||
+        postCategories.scrollLeft > a.offsetLeft
     ) {
-        categories.scrollTo({
+        postCategories.scrollTo({
             left: a.offsetLeft - 32,
             behavior: "smooth"
         });
@@ -638,9 +655,9 @@ function copyCode(button) {
 // when link is pressed and is not target_blank, prevent default and switch to home
 
 const categoriesMove = (direction) => {
-    const categories = document.getElementById("categories");
-    categories.scrollTo({
-        left: categories.scrollLeft + 200 * direction,
+    const postCategories = document.getElementById("categories");
+    postCategories.scrollTo({
+        left: postCategories.scrollLeft + 200 * direction,
         behavior: "smooth"
     });
 };
@@ -650,7 +667,7 @@ fetch("/meta/tags.json")
     .then((response) => response.json())
     .then((data) => {
         const tags = data.tags;
-        const categories = data.categories;
+        categories = data.categories;
         const tagsElement = document.querySelector(".aside-tags");
         tagsElement.classList.add("aside-tags-loaded");
         const categoriesElement = document.getElementById("categories");
