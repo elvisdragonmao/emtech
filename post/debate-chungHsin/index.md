@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [競賽心得]
-categories: [英文辯論,生活雜談]
+categories: [英文辯論, 生活雜談]
 date: 2025-05-21
 description: 很好玩的比賽，很好吃的午餐。
 ---

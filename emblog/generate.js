@@ -595,7 +595,7 @@ async function processPosts() {
                 config.category[category].description;
         }
     }
-    
+
     const writePromises = [
         fs.writeFile(
             "dist/meta/latest.json",
