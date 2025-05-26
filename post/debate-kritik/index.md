@@ -147,4 +147,3 @@ Kritik，特別是身份 Kritik，是在辯論中提醒我們「話語就是政�
 但比賽說不能用就別用。給你用你也不一定會贏。
 
 > 封面圖來自 [Eduardo Mallmann](https://unsplash.com/@epmallmann?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) 於 [Unsplash](https://unsplash.com/photos/closeup-photo-of-black-cat-3LPGWASiSbM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
-      
