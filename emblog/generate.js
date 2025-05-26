@@ -366,6 +366,7 @@ async function processPosts() {
                     (imageMeta[`/static/${postID}/thumbnail.webp`]
                         ? `/static/${postID}/thumbnail.webp`
                         : "");
+                let thumbnail2 = "";
                 if (
                     !postMeta.colors &&
                     thumbnail.includes(".") &&
@@ -376,9 +377,14 @@ async function processPosts() {
                     );
                     postMeta.colors =
                         "linear-gradient(135deg, " + colors[0].join(", ") + ")";
+                    if (thumbnail.includes(postID))
+                        await sharp(path.join("dist", thumbnail)).toFile(
+                            path.join("dist", "static", postID, "thumbnail.jpg")
+                        );
+                    thumbnail = "https://emtech.cc" + thumbnail;
+                    thumbnail2 = thumbnail.replace(".webp", ".jpg");
                     postMeta.color = colors[0][1];
                     postMeta.thumbnailSize = colors[1];
-                    thumbnail = "https://emtech.cc" + thumbnail;
                 }
 
                 const chineseCharCount = (
@@ -495,6 +501,7 @@ async function processPosts() {
                     title: postMeta.title,
                     content: htmlContent,
                     tldr,
+                    thumbnail2,
                     BreadcrumbList,
                     thumbnail: thumbnail,
                     thumbnailWidth: postMeta.thumbnailSize
