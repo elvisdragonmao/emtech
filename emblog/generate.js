@@ -361,7 +361,7 @@ async function processPosts() {
                     /<[^>]+>/g,
                     ""
                 );
-                const thumbnail =
+                let thumbnail =
                     postMeta.thumbnail ||
                     (imageMeta[`/static/${postID}/thumbnail.webp`]
                         ? `/static/${postID}/thumbnail.webp`
@@ -378,6 +378,7 @@ async function processPosts() {
                         "linear-gradient(135deg, " + colors[0].join(", ") + ")";
                     postMeta.color = colors[0][1];
                     postMeta.thumbnailSize = colors[1];
+                    thumbnail = "https://emtech.cc" + thumbnail;
                 }
 
                 const chineseCharCount = (

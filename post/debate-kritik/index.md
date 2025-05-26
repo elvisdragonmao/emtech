@@ -145,3 +145,6 @@ Kritik 不只是學術思辨工具，也具有強烈的策略效果：
 Kritik，特別是身份 Kritik，是在辯論中提醒我們「話語就是政治」的重要思辨。它教會我們去挖掘政策論述背後隱藏的價值觀與權力結構。在面對日常議題時，Kritik 的思維也能幫助我們更敏銳地觀察壓迫、反思語言、並為邊緣群體發聲。
 
 但比賽說不能用就別用。給你用你也不一定會贏。
+
+> 封面圖來自 [Eduardo Mallmann](https://unsplash.com/@epmallmann?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) 於 [Unsplash](https://unsplash.com/photos/closeup-photo-of-black-cat-3LPGWASiSbM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+      
