@@ -137,6 +137,14 @@ Pro 是拉丁文「pro」的直接借用，意思就是「for / in favor of（�
 
 你可以問問題，或是單純講一下話澄清或補充。
 
+#### Extemporaneous
+
+一邊一人單打。
+
+準備半小時，可以上網。流程是 Constructive Speech, Grand Crossfire, Summary, Final Focus。只有一次 Grand Crossfire，其他都是正反輪流講。
+
+我很喜歡，打得很開心的賽制。有點像單人的即席 PF。
+
 #### 各種演講比賽
 
 這些其實我覺得就完全不算辯論比賽了，但有一些雙語實驗班社恐不敢辯論的人會參加。
