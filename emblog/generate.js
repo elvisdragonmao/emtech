@@ -382,7 +382,7 @@ async function processPosts() {
                     //         path.join("dist", "static", postID, "thumbnail.jpg")
                     //     );
                     thumbnail = "https://emtech.cc" + thumbnail;
-                   // thumbnail2 = thumbnail.replace(".webp", ".jpg");
+                    // thumbnail2 = thumbnail.replace(".webp", ".jpg");
                     postMeta.color = colors[0][1];
                     postMeta.thumbnailSize = colors[1];
                 }
