@@ -377,12 +377,12 @@ async function processPosts() {
                     );
                     postMeta.colors =
                         "linear-gradient(135deg, " + colors[0].join(", ") + ")";
-                    if (thumbnail.includes(postID))
-                        await sharp(path.join("dist", thumbnail)).toFile(
-                            path.join("dist", "static", postID, "thumbnail.jpg")
-                        );
+                    // if (thumbnail.includes(postID))
+                    //     await sharp(path.join("dist", thumbnail)).toFile(
+                    //         path.join("dist", "static", postID, "thumbnail.jpg")
+                    //     );
                     thumbnail = "https://emtech.cc" + thumbnail;
-                    thumbnail2 = thumbnail.replace(".webp", ".jpg");
+                   // thumbnail2 = thumbnail.replace(".webp", ".jpg");
                     postMeta.color = colors[0][1];
                     postMeta.thumbnailSize = colors[1];
                 }
