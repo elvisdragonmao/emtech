@@ -12,7 +12,7 @@ description: 這是一個充滿師大魔法的比賽。你不能保證你有好�
 
 先說一下結果好了。拿了兩次 Honorable Mentioned Debater、一次 Winning Team、一次 Judge's Choice Awards。
 
-喔等等我還想要我的 [交大資工](https://emtech.cc/p/srecruit)，註明一下我是拿區域賽的優秀辨識和優勝隊伍。
+喔等等我還想要我的 [交大資工](https://emtech.cc/p/srecruit)，註明一下我是拿區域賽的優秀辯士和優勝隊伍。
 
 ## 歷程
 
