@@ -761,8 +761,8 @@ const generateSitemapAndRSS = async () => {
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <guid>https://emtech.cc/p/${post.id}</guid>
       <media:thumbnail url="https://emtech.cc${post.thumbnail}" />
-      ${post.htmlContent ? " <content:encoded><![CDATA[" + post.htmlContent + "]]></content:encoded>" : ""}
       <category>${post.categories}</category>
+      ${post.htmlContent ? " <content:encoded><![CDATA[" + post.htmlContent + "]]></content:encoded>" : ""}
     </item>`
         )
         .join("\n");
