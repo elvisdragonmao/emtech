@@ -2,7 +2,7 @@
 authors: elvismao
 tags: [競賽心得]
 categories: [英文辯論]
-date: 2025-06-03
+date: 2025-06-06
 description: 沒贏，但好玩。
 ---
 
