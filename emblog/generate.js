@@ -762,7 +762,7 @@ const generateSitemapAndRSS = async () => {
       <guid>https://emtech.cc/p/${post.id}</guid>
       <media:thumbnail url="https://emtech.cc${post.thumbnail}" />
       <category>${post.categories}</category>
-      ${post.htmlContent ? ` <content:encoded><![CDATA[<img src="https://emtech.cc${post.thumbnail}" />${post.htmlContent}]]></content:encoded>` : ""}
+     <content:encoded><![CDATA[<img src="${post.thumbnail}" />${post.htmlContent || ""}]]></content:encoded>
     </item>`
         )
         .join("\n");
