@@ -22,14 +22,14 @@ description: 使用 RSS 讓你奪回資訊的掌控權，讓你決定你要看�
 
 我會使用 RSS 主要有以下幾個原因：
 
-* **不被演算法控制**：避免被社群平台控制資訊來源。我只看我在乎的新聞，我只看我信任的來源。
-* **不錯過重要資訊**：我可以訂閱我的校園公告，這樣就不用每天上校網查，還不小心錯過補考和重補修時間。
-* **訂閱制自由**：自己決定看什麼、看多少、什麼時候看。
-* **All in One**：我所有想看的內容都在同一個畫面，在有限的時間我可以快速決定我要看哪些內容，也知道哪些我看過。
-* **心情不會受網路風氣影響**：Threads 在吵什麼都不關我的事，反正我的備審都是寫真的。
-* **內容品質篩選**：身邊很多朋友都有自己個人 blog，而一篇文章的品質和完整性大多都比你隨手發的推文和串文高。
-* 如果你是自己架設的話，資訊更私密、更可控。
-* 沒有廣告，永遠免費。
+- **不被演算法控制**：避免被社群平台控制資訊來源。我只看我在乎的新聞，我只看我信任的來源。
+- **不錯過重要資訊**：我可以訂閱我的校園公告，這樣就不用每天上校網查，還不小心錯過補考和重補修時間。
+- **訂閱制自由**：自己決定看什麼、看多少、什麼時候看。
+- **All in One**：我所有想看的內容都在同一個畫面，在有限的時間我可以快速決定我要看哪些內容，也知道哪些我看過。
+- **心情不會受網路風氣影響**：Threads 在吵什麼都不關我的事，反正我的備審都是寫真的。
+- **內容品質篩選**：身邊很多朋友都有自己個人 blog，而一篇文章的品質和完整性大多都比你隨手發的推文和串文高。
+- 如果你是自己架設的話，資訊更私密、更可控。
+- 沒有廣告，永遠免費。
 
 簡單來說，我可以決定我要看什麼。
 
@@ -37,9 +37,9 @@ description: 使用 RSS 讓你奪回資訊的掌控權，讓你決定你要看�
 
 這裡列出幾個有名的跨平台 RSS 閱讀器：
 
-* [Feedly](https://feedly.com/)
-* [Inoreader](https://www.inoreader.com/)
-* [The Old Reader](https://theoldreader.com/)
+- [Feedly](https://feedly.com/)
+- [Inoreader](https://www.inoreader.com/)
+- [The Old Reader](https://theoldreader.com/)
 
 他們都不錯用。不過畢竟人家也有成本，這種線上服務大多需要付費，免費版都有許多限制。我使用的是 FreshRSS 部署在 Zeabur 上面來訂閱，而在手機上使用 Fluent Reader 來看。如果你沒有同步需求的話也可以直接使用 Fluent Reader 電腦版或其他的平台來看。
 
@@ -53,9 +53,9 @@ description: 使用 RSS 讓你奪回資訊的掌控權，讓你決定你要看�
 
 你可以直接從 [GitHub](https://github.com/yang991178/fluent-reader) 或是其他平台下載。
 
-* 電腦: 可以從 [App Store](https://apps.apple.com/app/id1520907427), [Microsoft Store](https://www.microsoft.com/store/apps/9P71FC94LRH8?cid=github), 或是 [GitHub](https://github.com/yang991178/fluent-reader) 下載。
-* iPhone: 可以直接從 [App Store](https://apps.apple.com/app/id1549611796) 下載。
-* Android: 可以從 [GitHub](https://github.com/yang991178/fluent-reader-lite/releases) 免費下載，或是從 [Google Play](https://play.google.com/store/apps/details?id=me.hyliu.fluent_reader_lite) 商店用 $1.99 美金支持作者。
+- 電腦: 可以從 [App Store](https://apps.apple.com/app/id1520907427), [Microsoft Store](https://www.microsoft.com/store/apps/9P71FC94LRH8?cid=github), 或是 [GitHub](https://github.com/yang991178/fluent-reader) 下載。
+- iPhone: 可以直接從 [App Store](https://apps.apple.com/app/id1549611796) 下載。
+- Android: 可以從 [GitHub](https://github.com/yang991178/fluent-reader-lite/releases) 免費下載，或是從 [Google Play](https://play.google.com/store/apps/details?id=me.hyliu.fluent_reader_lite) 商店用 $1.99 美金支持作者。
 
 這裡我用 Mac 來示範，打開來是空的，點擊右上角的齒輪設定。
 
@@ -82,7 +82,6 @@ description: 使用 RSS 讓你奪回資訊的掌控權，讓你決定你要看�
 [FreshRSS](https://freshrss.org/index.html) 是一個免費開源 RSS 閱讀器，支援多帳戶、OPML 匯入、外掛與主題等許多功能。很輕量，使用起來非常好用，部署起來也很簡單。
 
 ![這是我的 FreshRSS，套用了 Nord 主題](fresh-home.webp)
- 
 
 ### 使用 Zeabur 架設 FreshRSS
 
@@ -100,14 +99,13 @@ Zeabur 是一個非常好用的部署平台，可以不用寫程式用手指按�
 
 進入之後你需要進行一些初始設定。
 
-
 ![FreshRSS 初始設定](fresh-settings.webp)
 
-* 選擇語言並點提交
-* 給他檢查確認安裝成功點下一步
-* 資料庫類型可維持 SQLite 並提交
-* 設定你的帳號密碼
-* 完成安裝
+- 選擇語言並點提交
+- 給他檢查確認安裝成功點下一步
+- 資料庫類型可維持 SQLite 並提交
+- 設定你的帳號密碼
+- 完成安裝
 
 完成設定之後他會請你重新登入。
 
@@ -122,7 +120,6 @@ Zeabur 是一個非常好用的部署平台，可以不用寫程式用手指按�
 輸入網址並點擊新增：
 
 ![FreshRSS 新增訂閱項目](fresh-add.webp)
-
 
 接下來他會讓你輸入一些自訂選項，像是標題等等。通常直接點擊下方的提交即可不用做任何設定。
 
@@ -148,11 +145,11 @@ FreshRSS 支援 Google Reader API，讓你可以使用第三方的閱讀器來�
 
 這裡我使用 iPhone 為例，其他的平台方式也類似。
 
- 選擇 Google Reader API，並依序填入 Endpoint 以及你的帳號密碼。
+選擇 Google Reader API，並依序填入 Endpoint 以及你的帳號密碼。
 
- * Endpoint: `https://你的網域/api/greader.php`
- * Username: `你的帳戶`
- * Password: `剛才設定的 API 密碼`
+- Endpoint: `https://你的網域/api/greader.php`
+- Username: `你的帳戶`
+- Password: `剛才設定的 API 密碼`
 
 ![iPhone 使用 Fluent Reader Lite](iPhone.webp)
 
@@ -160,7 +157,7 @@ FreshRSS 支援 Google Reader API，讓你可以使用第三方的閱讀器來�
 
 ## 怎麼找 RSS？
 
-###  /rss
+### /rss
 
 部落格或一般網站通常會把 RSS 放在 `/rss`，如 <https://www.iach.cc/rss.xml>。
 
@@ -199,8 +196,14 @@ YouTube 的 RSS 網址是：
 那你可以從 HTML 中直接尋找 RSS，就可以得到 RSS 網址了。
 
 ```html
-<link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.youtube.com/feeds/videos.xml?channel_id=UCksDP7GImFEZyAIwJk_QxLw">
+<link
+    rel="alternate"
+    type="application/rss+xml"
+    title="RSS"
+    href="https://www.youtube.com/feeds/videos.xml?channel_id=UCksDP7GImFEZyAIwJk_QxLw"
+/>
 ```
+
 ### Podcast
 
 Podcast 本身其實就是 RSS 網址，只不過你平常習慣使用 Spotify、Apple Podcast 這些幫你整理好的「RSS 閱讀器」。如果你想要自己訂閱的話你可以 Google 那個 Podcast 的名稱，找到他部署的平台的頁面，就可以找到 RSS 網址了。

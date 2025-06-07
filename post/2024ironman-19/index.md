@@ -1,6 +1,13 @@
 ---
 authors: elvismao
-tags: ["看好了 GitHub Actions，我只示範一次", GitHub Actions, Node.js, DevOps, Zeabur]
+tags:
+    [
+        "看好了 GitHub Actions，我只示範一次",
+        GitHub Actions,
+        Node.js,
+        DevOps,
+        Zeabur
+    ]
 categories: [自動化]
 date: 2024-10-02
 ---
