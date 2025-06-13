@@ -366,7 +366,6 @@ async function processPosts() {
                     (imageMeta[`/static/${postID}/thumbnail.webp`]
                         ? `/static/${postID}/thumbnail.webp`
                         : "");
-                let thumbnail2 = "";
                 if (
                     !postMeta.colors &&
                     thumbnail.includes(".") &&
@@ -377,12 +376,6 @@ async function processPosts() {
                     );
                     postMeta.colors =
                         "linear-gradient(135deg, " + colors[0].join(", ") + ")";
-                    // if (thumbnail.includes(postID))
-                    //     await sharp(path.join("dist", thumbnail)).toFile(
-                    //         path.join("dist", "static", postID, "thumbnail.jpg")
-                    //     );
-                    thumbnail = "https://emtech.cc" + thumbnail;
-                    // thumbnail2 = thumbnail.replace(".webp", ".jpg");
                     postMeta.color = colors[0][1];
                     postMeta.thumbnailSize = colors[1];
                 }
@@ -501,9 +494,8 @@ async function processPosts() {
                     title: postMeta.title,
                     content: htmlContent,
                     tldr,
-                    thumbnail2,
                     BreadcrumbList,
-                    thumbnail: thumbnail,
+                    thumbnail,
                     thumbnailWidth: postMeta.thumbnailSize
                         ? postMeta.thumbnailSize[0]
                         : "",
@@ -637,16 +629,26 @@ function extractFrontMatter(content) {
     let meta = {};
     if (frontMatterMatch) {
         const frontMatter = frontMatterMatch[0];
-        const lines = frontMatter.split("\n").slice(1, -1); // 去掉 '---'
+        const lines = frontMatter
+            .replaceAll("  ", " ")
+            .split("\n")
+            .slice(1, -1); // 去掉 '---'
         meta = {};
-        lines.forEach((line) => {
-            if (!line.includes(": ") || line.startsWith("#")) return;
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i];
+            if (!line.includes(":") || line.startsWith("#")) return;
+            if (line.endsWith(":")) {
+                line += lines[++i];
+                console.log("multi!!!");
+                console.log(lines);
+            }
+            console.log("line:" + line);
             const [key, value] = line.split(": ");
             const trimmedKey = key.trim();
-            const trimmedValue = value.trim();
+            let trimmedValue = value ? value.trim() : "";
 
-            // 檢查是否為陣列格式
-            if (trimmedValue.startsWith("[") && trimmedValue.endsWith("]")) {
+            if (trimmedValue.startsWith("[")) {
+                while (!trimmedValue.endsWith("]")) trimmedValue += lines[++i];
                 // 用正則表達式將每個元素加上雙引號，處理字串內容、特殊字符和空格
                 const fixedValue = trimmedValue
                     .replaceAll("，", ",")
@@ -666,7 +668,7 @@ function extractFrontMatter(content) {
                 // 處理為字串，並去除包裹的引號
                 meta[trimmedKey] = trimmedValue.replace(/^['"]|['"]$/g, "");
             }
-        });
+        }
     }
 
     return meta;
