@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: []
-categories: [生活雜談]
+categories: [生活雜談, 關於]
 date: 2025-06-18
 description: 毛哥EM的近況。
 ---
