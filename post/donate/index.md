@@ -14,14 +14,13 @@ description: 付款方式。
 
 無論是一次性贊助、委託、還是幫你訂飲料、買晚餐都可以使用以下幾種付款方式。
 
-
-* [Buy Me a Coffee](https://buymeacoffee.com/elvismao)（約 10% 手續費）
-* [Ko-fi](https://ko-fi.com/elvismao)（不支援台灣信用卡）
-* [PayPal](https://www.paypal.me/elvisdragonmao)（基本上無手續費）
-* [Wise](https://wise.com/pay/me/b8fzwel)（跨國轉帳）
-* Line Pay
-* 街口支付
-* 銀行轉帳（台新、中信、LINE Bank）
+- [Buy Me a Coffee](https://buymeacoffee.com/elvismao)（約 10% 手續費）
+- [Ko-fi](https://ko-fi.com/elvismao)（不支援台灣信用卡）
+- [PayPal](https://www.paypal.me/elvisdragonmao)（基本上無手續費）
+- [Wise](https://wise.com/pay/me/b8fzwel)（跨國轉帳）
+- Line Pay
+- 街口支付
+- 銀行轉帳（台新、中信、LINE Bank）
 
 如果沒有提供連結，請私信我索取。
 
@@ -29,10 +28,10 @@ description: 付款方式。
 
 我樂意承接以下類型的委託與合作項目：
 
-* 網站前後端開發
-* Telegram Bot 或 Discord Bot 開發
-* UI/UX 設計與切版
-* 技術講座、教學合作
+- 網站前後端開發
+- Telegram Bot 或 Discord Bot 開發
+- UI/UX 設計與切版
+- 技術講座、教學合作
 
 或是有任何其他有趣的想法也歡迎與我討論。
 
