@@ -8,17 +8,18 @@ description: 毛哥EM的近況。
 
 # NowNowNow
 
+以下是我的近況。此頁被收錄在 [nownownow.com](https://nownownow.com/p/F3to)。
+
 ## 最近在忙什麼
 
 如果一直沒有回你訊息，我也許我在忙以下這些事：
 
 - **當一個乖學生** - 就讀陽明交通大學資訊工程學系。
-- **吵架** - 在美國愛荷華州比 [NSDA](https://www.speechanddebate.org/national-tournament-2025/) 英文辯論。
 - **做簡報** - 準備 [SITCON Camp 2025](https://sitcon.camp/2025) 廣度課程與中電會暑訓 [《資難而上》](https://www.instagram.com/p/DKBoUOQzzC6/)。
 
 ## 近期專案
 
-- [**emfont**](https://font.emtech.cc/) - 開源免費的網頁字體服務。
+- [**emfont**](https://font.emtech.cc/) - 開源免費的中文網頁字體服務。
 - [**毛哥EM 資訊密技**](https://emtech.cc/) - 就這裡。
 
 ## 實務裝備
