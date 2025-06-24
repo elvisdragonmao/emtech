@@ -30,8 +30,8 @@ description: 毛哥EM的近況。
 
 - [**MacBook Pro (M4 Pro)**](/p/win-macbook) - 今年媽媽送給我的人生第一台筆電。非常好用，大推。身邊英文辯論的基本上全部 MacBook，資工的朋友只有灌 Arch 的筆電還有長得像 Arch 的 MacBook。
 - [**iPhone 11 Pro Max**](https://support.apple.com/en-us/111878) - 螢幕漏液但堪用的手機。
-- **AK 4K 螢幕** - 超便宜但顏色很好看的螢幕。當作第二螢幕，主要用來視訊會議、網頁 RWD、和讀論文。
-- **ASUS 1080P 螢幕** - 型號忘了，反正就是用了快十年的螢幕。好像有一兩個黑點。堪用，第三螢幕，主要用來開通訊軟體和 Figma。
+- **AK S27J1** - 4K 27 寸螢幕，只要 3300 左右但顏色很好看 (10Bit-HDR)。當作第二螢幕，主要用來視訊會議、網頁 RWD、和讀論文。
+- **ASUS G237HL** - 1080P 螢幕，從 2014 用到現在。好像有一兩個黑點。堪用，第三螢幕，主要用來開通訊軟體和 Figma。
 - **ADAM 轉接頭** - 普通的 USB-C 轉接頭。買筆電時送的。接口數量剛好，非常穩定，很不錯。
 - **Raspberry Pi 5 8G** - 放在家裡的伺服器。主要是當 Nas 同步檔案（Syncthing / SMB）、照片（ente）、音樂（Navidrome）等資料。
 
@@ -51,7 +51,7 @@ description: 毛哥EM的近況。
 
 - **Flipper** - 冷氣遙控器常常會被家人拿不見。
 - **綠聯行動電源** - 145W 25000mAh。超級好用，不管在外辦公或遠行都能讓你撐一整天。不過換了 MacBook 之後它有輕鬆許多。
-- **Pinecil** - 有藍牙功能的 USB-C 電烙鐵（但也連不上，作者應該也不知道要他幹嘛）。不錯用。
+- [**Pinecil**](https://pine64.com/product/pinecil-smart-mini-portable-soldering-iron/) - 有藍牙功能的 USB-C 電烙鐵（但也連不上，作者應該也不知道要他幹嘛）。不錯用。
 
 ## 最近聽的音樂
 
