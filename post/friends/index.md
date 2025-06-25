@@ -135,10 +135,22 @@ Zeabur 創辦人
 
 </div>
 </a>
+<a class="friend" href="https://yuan-tw.net/">
+
+![Yuan](https://yuan-tw.net/images/2.jfif)
+
+<div>
+
+### Yuan
+
+網路技術愛好者與工程師
+
+</div>
+</a>
 
 </div>
 
-## 好學長
+## 交大好學長
 
 <div class="friends">
 <a class="friend" href="https://curious-lucifer.netlify.app/">
