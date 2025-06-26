@@ -325,7 +325,7 @@ async function processPosts() {
                 // turn image url if not set path like ![](image.webp) to ![](/static/postID/image.webp)
                 // don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
                 if (postMeta.draft == "true") {
-                    console.log(`Skip post: ${postID}`);
+                    console.log(`Skip draft: ${postID}`);
                     return;
                 }
                 markdownContent = markdownContent.replace(
@@ -637,12 +637,13 @@ function extractFrontMatter(content) {
         for (let i = 0; i < lines.length; i++) {
             let line = lines[i];
             if (!line.includes(":") || line.startsWith("#")) return;
-            if (line.endsWith(":")) {
+            if (
+                line.endsWith(":") && // 如果行以冒號結尾，則可能是多行值
+                i < lines.length - 1 && // 確保不是最後一行
+                !lines[i + 1].includes(":") // 確保下一行不是下一個資訊
+            ) {
                 line += lines[++i];
-                console.log("multi!!!");
-                console.log(lines);
             }
-            console.log("line:" + line);
             const [key, value] = line.split(": ");
             const trimmedKey = key.trim();
             let trimmedValue = value ? value.trim() : "";
