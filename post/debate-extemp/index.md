@@ -3,8 +3,6 @@ authors: elvismao
 tags: []
 categories: [英文辯論]
 date: 2025-06-27
-description:
-draft: true
 ---
 
 # Extemporaneous Debate - 台上兩分鐘，台下半小時
