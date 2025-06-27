@@ -99,4 +99,3 @@ Elon Musk 等科技領袖從 2016 就認為，當 AI 讓生產力極大提升、
 Extemporaneous Debate 結合了 PF 和 Policy 縝密的邏輯與演講的表達渲染能力。要在短時間內完成研究、構思、組織與說服，既考驗知識廣度，也鍛鍊思維深度。透過好的時間分配策略與練習，以及針對性強的質詢與反駁策略，即可在每場僅 20 分鐘的快節奏對決中脫穎而出。
 
 > 縮圖背景來自 [Trà My on Unsplash](https://unsplash.com/photos/white-cat-lying-on-macbook-pro-BjL7XCugMNY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)。
-      
