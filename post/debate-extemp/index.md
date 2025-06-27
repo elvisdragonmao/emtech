@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: []
-categories: []
+categories: [英文辯論]
 date: 2025-06-27
 description: 
 draft: true
