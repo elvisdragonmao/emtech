@@ -1517,6 +1517,14 @@ figure img {
     font-size: 2rem;
 }
 
+hr {
+    margin-block: 2rem;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1.5px solid var(--light-purple);
+}
+
 .post-container p {
     margin-bottom: 1.5rem;
 }
