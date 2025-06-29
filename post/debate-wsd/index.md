@@ -55,11 +55,11 @@ Reply speech 必須由第一或第二主辯擔任，且由反方先講，正方�
 
 舉幾個例子：
 
-* 你實際上要怎麼執行這個計劃 "How exactly would your side enforce that?"
-* 語言澄清 "We are saying that..."
-* 嘴砲 Zinger "Are you saing that..."
-* 舉證責任 "This is a 'would' motion, so we don’t need to prove it exists now."
-* 自我矛盾 "But your first speaker said that..."
+- 你實際上要怎麼執行這個計劃 "How exactly would your side enforce that?"
+- 語言澄清 "We are saying that..."
+- 嘴砲 Zinger "Are you saing that..."
+- 舉證責任 "This is a 'would' motion, so we don’t need to prove it exists now."
+- 自我矛盾 "But your first speaker said that..."
 
 ### 評分方式
 
@@ -72,9 +72,9 @@ Reply speech 必須由第一或第二主辯擔任，且由反方先講，正方�
 
 WSDC 題目可依內容分為三大類：
 
-* Fact（事實型）：「有沒有發生」，例如：「全球暖化是否造成海平面上升」
-* Value（價值型）：「該不該」，例如：「民主是否優於威權」
-* Policy（政策型）：「要不要做」，例如：「是否該對富人加稅」
+- Fact（事實型）：「有沒有發生」，例如：「全球暖化是否造成海平面上升」
+- Value（價值型）：「該不該」，例如：「民主是否優於威權」
+- Policy（政策型）：「要不要做」，例如：「是否該對富人加稅」
 
 辯題多為國際性議題，涵蓋政策、價值、倫理、經濟、環境等。但有時候也會指定國家，如「美國應該禁止...」題目都會以 "This house" 開頭。我來隨便舉幾個例子：
 
@@ -83,40 +83,40 @@ WSDC 題目可依內容分為三大類：
 討論某一主張是否正確或成立。例如：
 
 > This House believes that satire, as a form of political commentary, does more harm than good.  
-本院認為，諷刺喜劇（薩泰爾）作為一種政治評論形式，弊大於利。
+> 本院認為，諷刺喜劇（薩泰爾）作為一種政治評論形式，弊大於利。
 
 ### This House Would（THW）
+
 「政策型」辯題，要求正方提出具體行動方案，反方則反對該行動（想要替代方案或維持現況）。有時候是 "This House Believes That...should..."。例如：
 
 > This House Would grant legal rights to anime waifus and husbandos.  
-本院將授予動漫老婆與老公法律權利。
+> 本院將授予動漫老婆與老公法律權利。
 
 ### This House Regrets（THR）
 
 「後悔型」辯題，討論是否應該對某現象、政策、趨勢等感到遺憾或否定。簡單來說就是如果世界上沒有發生這件事會更美好。例如：
 
 > This House regrets the viral popularity of the song 八方來財 on social media.  
-本院後悔八方來財這首歌在社群媒體爆紅。
+> 本院後悔八方來財這首歌在社群媒體爆紅。
 
 ### This House Supports（THS）
 
 表示支持某一政策、行動或理念，通常和「believes」類似，但更強調立場表態。例如：
 
 > This House Supports affirmative action policies that multiply Indigenous students’ entrance exam scores by 1.35.  
-本院支持將原住民學生入學考試成績提高 1.35 倍的平權行動政策。
+> 本院支持將原住民學生入學考試成績提高 1.35 倍的平權行動政策。
 
 ### This House Prefers（THP）
 
 比較兩種選擇，討論哪一種更可取。例如：
 
 > This House prefers a post-COVID society.  
-本院偏好後疫情所形成的世界。
+> 本院偏好後疫情所形成的世界。
 
 > This House Prefers being fluffy to being smart.  
-本院偏好毛茸茸勝過聰明。
+> 本院偏好毛茸茸勝過聰明。
 
-有時候會用上面寫的大寫縮寫，如：*"THW replace Taiwan national anthems with Nightcore remixes."*
-
+有時候會用上面寫的大寫縮寫，如：_"THW replace Taiwan national anthems with Nightcore remixes."_
 
 ## 現場即席
 
@@ -153,10 +153,10 @@ WSDC 題目可依內容分為三大類：
 
 架構其實和 PF 很像，四位講者的分工相同如下：
 
-* 第一位講者通常會講兩個論點（Substantive）
-* 第二位講者會做反駁（Rebuttal）然後講第三個 Substantive。很像 Rebuttal Speech。
-* 第三位講者會做一些反駁、總結、爭點交鋒（clash）、以及比較（weighing）。很像 Summary Speech。
-* Reply Speech 就是 Final Focus。帶評審審視整場比賽，總結為什麼你贏。
+- 第一位講者通常會講兩個論點（Substantive）
+- 第二位講者會做反駁（Rebuttal）然後講第三個 Substantive。很像 Rebuttal Speech。
+- 第三位講者會做一些反駁、總結、爭點交鋒（clash）、以及比較（weighing）。很像 Summary Speech。
+- Reply Speech 就是 Final Focus。帶評審審視整場比賽，總結為什麼你贏。
 
 第一主辯（1st Speaker）的一辯稿架構通常包含以下主要部分：
 
