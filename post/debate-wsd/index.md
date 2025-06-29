@@ -3,7 +3,7 @@ authors: elvismao
 tags: []
 categories: [英文辯論]
 date: 2025-06-28
-description: World Schools Debate（WSDC）是一種結合亞洲議會制與澳洲制的國際高中英文辯論賽制，廣泛用於世界各國的國際與國內比賽。這是我今年參加 NSDA（美國全國中學生演講與辯論聯賽）比的項目，今天來和大家簡單介紹一下。
+description: World Schools Debate 是一種結合國際議題與即席思辨的高中英文辯論賽制，強調邏輯、互動與價值衝突，而不只是堆砌證據。
 ---
 
 # World Schools Debate: 不只要證據，我要你解釋為什麼
