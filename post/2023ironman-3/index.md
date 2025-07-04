@@ -15,7 +15,7 @@ date: 2023-09-17
 
 那麼我會先看出來整個頁面被包在一個和螢幕一樣大的 flex 方框，垂直排列。而排完剩餘的空間全部給一個空白的方框。而上面的 nav 目錄方框裡面分左右兩個方框，靠兩側對齊。
 
-![Google](/www.google.com_.png)
+![Google](www.google.com_.png)
 
 當然這沒有正確答案，但你可以發現其實只用 flex 就可以完成所有的切版作業了。因此讓我們先來認識他的基本語法吧。
 
@@ -47,11 +47,11 @@ div {
 }
 ```
 
-![Untitled](/Untitled.webp)
+![Untitled](Untitled.webp)
 
 因為 `div` 是區塊元素 (display: block) 所以元素都會換行，而這很重要因為這樣我們才能設定他的寬高。但如果我們加上 `display: flex` 就可以讓他們並排。
 
-![Untitled](/flex.webp)
+![Untitled](flex.webp)
 
 我們把外面包著大家的藍色元素叫做外容器，裡面叫做內容器。我們可以在外容器的 CSS 設定裡面的東西怎麼排。
 
@@ -68,13 +68,13 @@ section {
 
 比如說我設成 `row-reverse` 就會從右到左排。
 
-![Untitled](/reverse.webp)
+![Untitled](reverse.webp)
 
 ## 超過換行 **flex-wrap**
 
 如果不設定的話瀏覽器會硬擠成一排。
 
-![Untitled](/wrap.webp)
+![Untitled](wrap.webp)
 
 你可以加上 `flex-wrap: wrap` 來解放他。所有值如下
 
@@ -102,13 +102,13 @@ flex-wrap: wrap-reverse; /* 換行但從下到上排 */
 justify-content: flex-start | flex-end | center | space-between | space-around;
 ```
 
-![Untitled](/justify.webp)
+![Untitled](justify.webp)
 
 ## 垂直對齊 **align-items**
 
 你懂得，和上面相反。如果你設定 `flex-direction: column;` 就是水平對齊方向。
 
-![Untitled](/align-items.webp)
+![Untitled](align-items.webp)
 
 `flex-start` 靠開始位置、 `flex-end` 靠結束位置、 `center` 致中、 `strech` 拉到一樣高、 `base-line` 會找文字的位置對齊。
 
@@ -121,7 +121,7 @@ align-content: flex-start | flex-end | center | space-between | space-around |
     stretch;
 ```
 
-![Untitled](/align-content.webp)
+![Untitled](align-content.webp)
 
 ## 內元件設定
 
@@ -135,7 +135,7 @@ align-content: flex-start | flex-end | center | space-between | space-around |
 
 https://codepen.io/edit-mr/pen/ZEVWaqq
 
-![flex-grow](/flex-grow.webp)
+![flex-grow](flex-grow.webp)
 
 你可以使用 **`order`** 屬性來設定順序，前到後放入整數，支援負值。但我從來沒有用到過，都是直接在 HTML 改，不過還是提供給大家。
 
