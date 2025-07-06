@@ -115,7 +115,7 @@ Mac 的鍵盤相信如果你是第一次看到你都會傻住。從左到右分�
     - 切換分頁不能用 `command + tab`，因為 `command + tab` 是切換應用程式，這時又換回 `control + tab` 了。
     - 切換語言不能用 `command + space` 了，因為 `command + space` 是啟動 Spotlight，這時又換回 `control + space` 了。
 - Mac 沒有很多 Windows 有的按鈕，像是 `home`、`end`、`insert`、`delete`，所以你要用 `command + 左右方向鍵`、`command + 上下方向鍵`、`fn + delete` 這些組合來代替。不過不常用且還算直覺，手也不用離開鍵盤。
-- Mac 有很多很奇耙會讓你手打結還按不出來的快捷鍵，像是 VS Code 新增檔案室 `command + option + control + N`，不過目前覺得這種都不常用，不用浪費腦細胞記。
+- Mac 有很多很奇耙會讓你手打結還按不出來的快捷鍵，像是 VS Code 新增檔案是 `command + option + control + N`，不過目前覺得這種都不常用，不用浪費腦細胞記。
 
 Mac 在檔案管理方面的快捷鍵我覺得蠻有趣的。當我想重新命名檔案時按下 `F2` 時沒反應。當我想打開來看時按下 `return`(aka `enter`)，結果沒打開，反而是重新命名。當按下 `command + O` 時才會打開。當我想要預覽時不像 Windows 是 `control + space`，`option + space` 是全螢幕預覽，結果才發現原來是最簡單的直接按空白。
 
