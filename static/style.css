@@ -57,6 +57,12 @@ body {
     color: var(--black);
 }
 
+code{
+    font-family: "SF Mono", Courier,"Courier New", monospace;
+    font-size: 0.95em;
+    color: var(--dark-purple);
+}
+
 code:not(.hljs) {
     font-weight: bold;
     /* border: 1px solid #0000001a; */
@@ -1603,7 +1609,6 @@ blockquote::before {
     border-radius: 1.5rem;
     margin-bottom: 2rem;
     padding: 1.5rem 1.5rem 1.5rem 1rem;
-    font-family: monospace;
 }
 
 .code-block:has(.code-toggle-label) {
