@@ -1603,6 +1603,7 @@ blockquote::before {
     border-radius: 1.5rem;
     margin-bottom: 2rem;
     padding: 1.5rem 1.5rem 1.5rem 1rem;
+    font-family: monospace;
 }
 
 .code-block:has(.code-toggle-label) {
@@ -1665,6 +1666,11 @@ blockquote::before {
     height: calc(100% - 3rem);
     width: 1.5px;
     background-color: #d8dee933;
+}
+
+.ln {
+    pointer-events: none;
+    user-select: none;
 }
 
 .table-wrapper {
