@@ -1,10 +1,9 @@
 ---
 authors: elvismao
-tags: []
-categories: []
-date: 2025-07-21
-description:
-draft: true
+tags: [SITCON]
+categories: [生活雜談，網頁開發]
+date: 2025-07-24
+description: 在 SITCON Camp 2025 中，我們資訊組做了很酷的網站和點數系統，並和學員一起度過了五天的黑客松。
 ---
 
 # 連續五天的黑客松，我們搞出了一套股票博弈系統：SITCON Camp 2025
