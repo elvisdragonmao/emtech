@@ -55,9 +55,7 @@ const md = markdownIt({
                 .split("\n")
                 .map(
                     (line, idx) =>
-                        `<span class="line"><span class="ln">${
-                            idx + 1
-                        }</span><span class="cl">${line}</span></span>`
+                        `<span class="cl">${line}</span>`
                 )
                 .join("\n");
 
@@ -116,15 +114,26 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     }
 
     // Wrap the code block in a div with a copy button
-    return `
-        <div class="code-block">
-            <div class="highlight">
-                <pre tabindex="0" class="chroma"><code class="${langClass} hljs" data-lang="${langName}">${highlightedCode}</code></pre>
-            </div>
-            <button class="code-copy" onclick="copyCode(this)">Copy</button>
-            ${toggle}
-        </div>
-    `;
+  return `
+<div class="code-block">
+  <div class="highlight">
+    <div class="code-wrapper">
+      <div class="line-numbers">
+        ${token.content
+            .split("\n")
+            .map((_, i) => `<div class="ln">${i + 1}</div>`)
+            .join("")}
+      </div>
+      <div class="code-content" tabindex="0">
+        <pre class="chroma"><code class="${langClass} hljs" data-lang="${langName}">${highlightedCode}</code></pre>
+      </div>
+    </div>
+  </div>
+  <button class="code-copy" onclick="copyCode(this)">Copy</button>
+  ${toggle}
+</div>
+`;
+
 };
 
 // Custom renderer for images to include figcaption

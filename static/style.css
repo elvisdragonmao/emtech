@@ -57,7 +57,8 @@ body {
     color: var(--black);
 }
 
-code {
+code,
+.highlight {
     font-family: "SF Mono", Courier, "Courier New", monospace;
     font-size: 0.95em;
     color: var(--dark-purple);
@@ -1159,19 +1160,6 @@ body:has(#hideTags:checked) .aside-tags {
     max-height: 100%;
 }
 
-.code-block:has(.code-toggle-label) .highlight {
-    max-height: 7.8rem;
-    transition: max-height 0.3s;
-}
-
-.code-block:has(.code-toggle:checked) .highlight {
-    max-height: 100%;
-}
-
-.code-toggle:checked + .code-toggle-label::after {
-    transform: rotate(90deg);
-}
-
 body:has(#hideTags:checked) .aside-tags {
     max-height: 100%;
 }
@@ -1611,12 +1599,44 @@ blockquote::before {
     padding: 1.5rem 1.5rem 1.5rem 1rem;
 }
 
+.code-block:has(.code-toggle-label) .highlight {
+    max-height: 7.8rem;
+    transition: max-height 0.3s;
+}
+
+.code-block:has(.code-toggle:checked) .highlight {
+    max-height: 100%;
+}
+
+.code-toggle:checked + .code-toggle-label::after {
+    transform: rotate(90deg);
+}
+
 .code-block:has(.code-toggle-label) {
     padding-bottom: 0;
 }
 
 .highlight {
-    overflow: scroll;
+    scrollbar-color: #d8dee94d transparent;
+    overflow: hidden scroll;
+}
+
+.code-wrapper {
+    display: flex;
+    width: 100%;
+}
+.line-numbers {
+    border-right: 1px solid #d8dee933;
+    text-align: right;
+    pointer-events: none;
+    user-select: none;
+    color: #d8dee98d;
+    padding-right: 0.8rem;
+}
+
+.code-content {
+    padding-left: .8rem;
+    overflow-x: auto;
     scrollbar-color: #d8dee94d transparent;
 }
 
@@ -1653,29 +1673,6 @@ blockquote::before {
         url(/static/img/copy.svg) no-repeat center center,
         #ffffff30;
     background-size: 1.5rem 1.5rem;
-}
-
-.ln {
-    margin-right: 2rem;
-    width: 1.5rem;
-    display: inline-block;
-    text-align: right;
-}
-
-.code-block::before {
-    content: "";
-    display: block;
-    top: 1.5rem;
-    position: absolute;
-    left: 3.5rem;
-    height: calc(100% - 3rem);
-    width: 1.5px;
-    background-color: #d8dee933;
-}
-
-.ln {
-    pointer-events: none;
-    user-select: none;
 }
 
 .table-wrapper {
