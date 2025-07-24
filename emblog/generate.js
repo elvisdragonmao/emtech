@@ -53,10 +53,7 @@ const md = markdownIt({
             // Adding line numbers
             const lines = highlightedCode
                 .split("\n")
-                .map(
-                    (line, idx) =>
-                        `<span class="cl">${line}</span>`
-                )
+                .map((line, idx) => `<span class="cl">${line}</span>`)
                 .join("\n");
 
             return lines;
@@ -114,7 +111,7 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     }
 
     // Wrap the code block in a div with a copy button
-  return `
+    return `
 <div class="code-block">
   <div class="highlight">
     <div class="code-wrapper">
@@ -133,7 +130,6 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
   ${toggle}
 </div>
 `;
-
 };
 
 // Custom renderer for images to include figcaption

@@ -1635,7 +1635,7 @@ blockquote::before {
 }
 
 .code-content {
-    padding-left: .8rem;
+    padding-left: 0.8rem;
     overflow-x: auto;
     scrollbar-color: #d8dee94d transparent;
 }
