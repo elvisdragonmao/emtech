@@ -101,7 +101,7 @@ description: 在 SITCON Camp 2025 中，我們資訊組做了很酷的網站和�
 - **MongoDB：** 資料庫。
 - **MongoDB 自動備份腳本：** 一個會一直自己跑的 bash 腳本。
 
-一開始是部署在 [Zeabur](https://zeabur.com/?referralCode=Edit-Mr) 上面，把 OSS Planet 的機器綁定上去，但後來因為這台機器週末突然要系統維護所以我們臨時趕快搬去 GCP 使用 Pterodactyl。很明顯感受到 Zeabur 很用很多，比如說 Rollback 以及不中斷更新，但因為翼龍純粹是同樣的 Docker 所以 git pull 重開很快。
+一開始是部署在 [Zeabur](https://zeabur.com/?referralCode=Edit-Mr) 上面，把 OSS Planet 的機器綁定上去，但後來因為這台機器週末突然要系統維護所以我們臨時趕快搬去 GCP 使用 Pterodactyl。很明顯感受到 Zeabur 好用很多，比如說 Rollback 以及不中斷更新，但因為翼龍純粹是同樣的 Docker 所以 git pull 重開很快。
 
 ### 加入系統
 
