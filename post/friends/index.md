@@ -99,9 +99,9 @@ CTF Player | Developer
 
 </div>
 </a>
-<a class="friend" href="https://小蔡.site/">
+<a class="friend" href="https://小蔡.tw/">
 
-![小蔡](https://i0.wp.com/xn--yets96g.site/wp-content/uploads/ultimatemember/1/profile_photo-190x190.jpg?resize=190%2C190&ssl=1)
+![小蔡](https://小蔡.tw/wp-content/uploads/2024/08/cropped-OHO.png)
 
 <div>
 
@@ -147,10 +147,21 @@ Zeabur 創辦人
 
 </div>
 </a>
+<a class="friend" href="https://www.iach.cc/">
+
+![Each Chan](https://gravatar.com/avatar/17e00664ef815abebb952dc4f449e1f1582d0fe0b94c6701e368d68349e151e6?&size=256)
+
+<div>
+
+### Each Chen
+
+網路技術愛好者與工程師
 
 </div>
+</a>
+</div>
 
-## 交大好學長
+## 交大好同學
 
 <div class="friends">
 <a class="friend" href="https://curious-lucifer.netlify.app/">
@@ -201,15 +212,16 @@ Chung
 
 </div>
 </a>
-<a class="friend" href="https://yuan-tw.net/">
 
-![Yuan](https://yuan-tw.net/images/2.jfif)
+<a class="friend" href="https://naup.mygo.tw/">
+
+![堇姬Naup](https://naup.mygo.tw/avatar/avatar.webp)
 
 <div>
 
-### Yuan
+### 堇姬Naup
 
-網路技術愛好者與工程師
+A 4002-year-old demigod crane
 
 </div>
 </a>
