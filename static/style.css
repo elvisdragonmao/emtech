@@ -1796,7 +1796,7 @@ a.friend::after {
     display: block;
     object-fit: cover;
     margin-right: 1rem;
-    background-color: #FFF;
+    background-color: #fff;
 }
 
 .author-avatar {
