@@ -559,12 +559,9 @@ header {
 
 a.header-categories-item {
     color: #fff;
+    line-height: 1.5;
 }
 
-/*
-a.header-categories-item span {
-    filter: invert(1);
-} */
 .header-categories .header-categories-item:first-child {
     background: #8fbcbb;
 }
