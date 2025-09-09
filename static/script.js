@@ -1,3 +1,4 @@
+emfont.init();
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 let currentPage = "post",
@@ -42,9 +43,9 @@ const updateReadHistory = (id) => {
                     .join("");
         else list.innerHTML = "";
     });
+    emfont.init();
 };
 
-updateReadHistory();
 const updateDate = (element) => {
     const diffDays = Math.ceil(
         (new Date() - new Date("2021-06-04")) / (1000 * 60 * 60 * 24)
@@ -53,6 +54,7 @@ const updateDate = (element) => {
 };
 
 updateDate(document.querySelector(".home-page #time p"));
+updateReadHistory();
 
 const pre = document.createElement("pre");
 document.getElementById("header-playground").appendChild(pre);
@@ -180,6 +182,7 @@ const loadArticleList = async (postList, category) => {
                 }
                 addClassToVisibleElements();
                 resolve();
+                emfont.init();
             })
             .catch(reject);
     });
@@ -256,6 +259,9 @@ const postScrollAnimations = () => {
                             "沒有更多文章了";
                         next.classList.remove("loaded");
                     }
+
+                    emfont.init();
+
                     fetch("/p/clean/" + randomPost.id + ".html")
                         .then((response) => {
                             if (!response.ok)
@@ -443,6 +449,7 @@ const initPost = (page, direct = false) => {
     // update .related-posts
     loadArticleList(related.querySelector("div"), "category/" + cat);
     related.querySelector("h2").textContent = cat + " 的其他文章";
+    emfont.init();
     startAds();
 };
 
@@ -584,11 +591,13 @@ const switchToPost = (a) => {
             .catch((error) => {
                 let retryDelay = 3;
                 believe.innerHTML = `等等不太對，我 3 秒之後再試一次...`;
+                emfont.init();
                 const retryInterval = setInterval(() => {
                     retryDelay--;
                     believe.innerHTML = `等等不太對，我 ${retryDelay} 秒之後再試一次...`;
                     if (retryDelay === 0) {
                         believe.innerHTML = `嗯，你的網路有點爛...`;
+                        emfont.init();
                         clearInterval(retryInterval);
                         fetchPostContent(url);
                     }
@@ -691,6 +700,7 @@ fetch("/meta/tags.json")
             first
         );
         moveCategories("精選");
+        emfont.init();
     });
 
 document.body.addEventListener("click", (e) => {
@@ -760,10 +770,12 @@ fetch("/meta/search.json")
                 latest.querySelector("h3").textContent = data.title;
                 latest.querySelector("img").src = data.thumbnail;
                 latest.querySelector("img").style.backgroundImage = data.colors;
+                emfont.init();
             });
         document
             .getElementById("search")
             .addEventListener("input", function () {
+                emfont.init();
                 const searchInput = this.value.trim().toLowerCase();
                 const searchTerms = searchInput
                     .split(/\s+/)
@@ -860,6 +872,7 @@ fetch("/meta/search.json")
                         `;
                     })
                     .join("");
+                emfont.init();
             });
         document.getElementById("search").dispatchEvent(new Event("input"));
     });
@@ -868,40 +881,6 @@ fetch("/meta/search.json")
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
 };
-
-const spinFavicon = () => {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    const favicon =
-        document.querySelector("link[rel='icon']") ||
-        document.createElement("link");
-    canvas.width = 64;
-    canvas.height = 64;
-    favicon.rel = "icon";
-    document.head.appendChild(favicon);
-    const img = new Image();
-    img.src = favicon.href || "/static/icons/favicon-32x32.png"; // Replace with your favicon path
-    let angle = 0;
-    const draw = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.save();
-        ctx.translate(canvas.width / 2, canvas.height / 2);
-        ctx.rotate(angle);
-        ctx.drawImage(
-            img,
-            -canvas.width / 2,
-            -canvas.height / 2,
-            canvas.width,
-            canvas.height
-        );
-        ctx.restore();
-        favicon.href = canvas.toDataURL("image/png");
-        angle += 0.05;
-        requestAnimationFrame(draw);
-    };
-    img.onload = draw;
-};
-//spinFavicon();
 
 // when press ctrl + k oe cmd + k, toggle #search-toggle
 document.addEventListener("keydown", (e) => {
