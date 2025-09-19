@@ -6,7 +6,7 @@ date: 2025-09-19
 description: 等客運時突然想到的，想說來實作看看。果然跟我想的一樣不知道幹嘛。
 ---
 
-# 來用網址來放跑馬燈吧！
+# 來用網址放跑馬燈吧！
 
 最近常常在寫 SPA 網頁（Single Page Application），意思是說整個網頁從頭到尾沒有重新載入過，所有的內容都是用 JavaScript 動態載入的。更新網頁的內容很好理解，只需要改變 `innerHTML` 或是 `textContent` 就可以了，但是如果要改變網址列的網址呢？這時候就要用到 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 了。
 
