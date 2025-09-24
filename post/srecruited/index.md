@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: []
+tags: [特殊選才]
 categories: [生活雜談]
 date: 2025-09-24
 description: 2026 上半年 Rewind。
