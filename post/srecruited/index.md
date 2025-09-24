@@ -49,10 +49,11 @@ description: 2026 上半年 Rewind。
 我花了很多的時間在打英文辯論。分別是師大的英辯、還有去美國比的 NSDA。花了蠻多時間在準備的，中間還打了不少小比賽來當練習和休閒娛樂。
 
 > 延伸閱讀，這裡是幾篇我有寫成文章的：
-> * [去美國辯論差點發生槍擊案？NSDA 2025 心得](https://emtech.cc/p/nsda2025/)
-> * [打了三年師大英辯的心得](https://emtech.cc/p/debate-ntnu/)
-> * [用 Discord 的線上國際辯論比賽？Taiwan WSDC 心得](https://emtech.cc/p/debate-twwsdc/)
-> * [2025 忠信英文辯論邀請賽心得](https://emtech.cc/p/debate-chungHsin/)
+>
+> - [去美國辯論差點發生槍擊案？NSDA 2025 心得](https://emtech.cc/p/nsda2025/)
+> - [打了三年師大英辯的心得](https://emtech.cc/p/debate-ntnu/)
+> - [用 Discord 的線上國際辯論比賽？Taiwan WSDC 心得](https://emtech.cc/p/debate-twwsdc/)
+> - [2025 忠信英文辯論邀請賽心得](https://emtech.cc/p/debate-chungHsin/)
 
 ## SITCON
 
