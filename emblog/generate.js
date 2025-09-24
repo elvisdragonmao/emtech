@@ -111,8 +111,7 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     }
 
     // Wrap the code block in a div with a copy button
-    return `
-<div class="code-block">
+    return `<div class="code-block emfont-FiraMono">
   <div class="highlight">
     <div class="code-wrapper">
       <div class="line-numbers">

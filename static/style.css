@@ -56,10 +56,9 @@ body {
     background-color: var(--background-color);
     color: var(--black);
 }
-
 code,
 .highlight {
-    font-family: "SF Mono", Courier, "Courier New", monospace;
+    font-family: "FiraMono", monospace;
     font-size: 0.95em;
     color: var(--dark-purple);
 }
