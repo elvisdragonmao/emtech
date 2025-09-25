@@ -3,7 +3,7 @@ authors: elvismao
 tags: [特殊選才]
 categories: [生活雜談]
 date: 2025-09-24
-description: 2026 上半年 Rewind。
+description: 2025 上半年 Rewind。
 ---
 
 # 特選完半年的暑假在幹嘛？
