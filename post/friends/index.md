@@ -27,63 +27,40 @@ description: 有朋自遠方來，不亦悅乎？
 
 </div>
 </a>
-<a class="friend" href="https://blog.pan93.com/">
+<a class="friend" href="https://yuan-tw.net/">
 
-![Pan](https://avatars.githubusercontent.com/u/28441561?v=4)
+![Wolf](wolf-yuan.webp)
 
 <div>
 
-### Pan in the Nutshell
+### Wolf Yuan
 
-後端大大
+一個你覺得可以描述我的
 
 </div>
 </a>
-<a class="friend" href="https://linktr.ee/ivantw829">
 
-![賴奕帆](https://i.imgur.com/x1GEzJa.jpeg)
+<a class="friend" href="https://www.iach.cc/">
+
+![Each Chan](https://gravatar.com/avatar/17e00664ef815abebb952dc4f449e1f1582d0fe0b94c6701e368d68349e151e6?&size=256)
 
 <div>
 
-### 賴奕帆
+### Each Chen
 
-約翰·孟塔古唯一授權三明治經銷商
+網路技術愛好者與工程師
 
 </div>
 </a>
 <a class="friend" href="https://shellwen.com/">
 
-![颉文](https://avatars.githubusercontent.com/u/38996248?v=4)
+![颉文](shellwen.webp)
 
 <div>
 
 ### 颉文
 
 一只会写代码的小棕熊
-
-</div>
-</a>
-<a class="friend" href="https://linktr.ee/san.ge.ge">
-
-![sangege](https://www.gravatar.com/avatar/f6d0a62624d1d82d90ea3232e3663561)
-
-<div>
-
-### sangege
-
-超大咖託管 Coffee Host 創始者
-
-</div>
-</a>
-<a class="friend" href="https://superlily.dev/">
-
-![柴犬 Lily](https://pic.superlily.dev/shiba.jpg)
-
-<div>
-
-### 柴犬 Lily
-
-據說這隻柴犬叼著毛哥的 SSD 從臺北跑到臺中
 
 </div>
 </a>
@@ -101,7 +78,7 @@ CTF Player | Developer
 </a>
 <a class="friend" href="https://小蔡.tw/">
 
-![小蔡](https://小蔡.tw/wp-content/uploads/2024/08/cropped-OHO.png)
+![小蔡](SHI0103.webp)
 
 <div>
 
@@ -120,6 +97,18 @@ CTF Player | Developer
 ### Chao28661
 
 第三屆中電會會長
+
+</div>
+</a>
+<a class="friend" href="https://linktr.ee/ivantw829">
+
+![賴奕帆](ivan.webp)
+
+<div>
+
+### 賴奕帆
+
+約翰·孟塔古唯一授權三明治經銷商
 
 </div>
 </a>
@@ -147,15 +136,40 @@ Zeabur 創辦人
 
 </div>
 </a>
-<a class="friend" href="https://www.iach.cc/">
 
-![Each Chan](https://gravatar.com/avatar/17e00664ef815abebb952dc4f449e1f1582d0fe0b94c6701e368d68349e151e6?&size=256)
+<a class="friend" href="https://blog.pan93.com/">
+
+![Pan](https://avatars.githubusercontent.com/u/28441561?v=4)
 
 <div>
 
-### Each Chen
+### Pan in the Nutshell
 
-網路技術愛好者與工程師
+後端大大
+
+</div>
+</a>
+<a class="friend" href="https://linktr.ee/san.ge.ge">
+
+![sangege](https://www.gravatar.com/avatar/f6d0a62624d1d82d90ea3232e3663561)
+
+<div>
+
+### sangege
+
+超大咖託管 Coffee Host 創始者
+
+</div>
+</a>
+<a class="friend" href="https://superlily.dev/">
+
+![柴犬 Lily](https://pic.superlily.dev/shiba.jpg)
+
+<div>
+
+### 柴犬 Lily
+
+據說這隻柴犬叼著毛哥的 SSD 從臺北跑到臺中
 
 </div>
 </a>
@@ -166,7 +180,7 @@ Zeabur 創辦人
 <div class="friends">
 <a class="friend" href="https://curious-lucifer.netlify.app/">
 
-![Curious](https://curious-lucifer.netlify.app/static/img/logo.png)
+![Curious](curious.webp)
 
 <div>
 
@@ -178,7 +192,7 @@ BambooFox 社長
 </a>
 <a class="friend" href="https://blog.ching367436.me/">
 
-![Ching367436](https://blog.ching367436.me/images/Ching367436.jpg)
+![Ching367436](Ching367436.webp)
 
 <div>
 
@@ -190,7 +204,7 @@ BambooFox 社長
 </a>
 <a class="friend" href="https://www.sean.taipei/">
 
-![Sean Wei](https://img.sean.taipei/sean/avatar.jpg)
+![Sean Wei](sean.webp)
 
 <div>
 
@@ -202,7 +216,7 @@ BambooFox 社長
 </a>
 <a class="friend" href="https://cbjsprogramdiary.com">
 
-![Chung](https://i0.wp.com/cbjsprogramdiary.com/wp-content/uploads/2022/10/digital.jpg?fit=1200%2C900&ssl=1)
+![Chung](chung.webp)
 
 <div>
 
@@ -225,7 +239,6 @@ A 4002-year-old demigod crane
 
 </div>
 </a>
-
 </div>
 
 ## 賽博遊俠
@@ -233,7 +246,7 @@ A 4002-year-old demigod crane
 <div class="friends">
 <a class="friend"  href="https://blog.zhheo.com/">
 
-![zhheo](zhheo.png)
+![zhheo](zhheo.webp)
 
 <div>
 
@@ -245,7 +258,7 @@ A 4002-year-old demigod crane
 </a>
 <a class="friend" href="https://blog.scott-studio.cn/">
 
-![scott](https://blog.scott-studio.cn/uploads/2024/08/new_logo.webp)
+![scott](SCOTT.webp)
 
 <div>
 
@@ -254,7 +267,6 @@ A 4002-year-old demigod crane
 不知名前端攻城狮，分享编程经验和技术干货。
 
 </div>
-</a>
 </a>
 <a class="friend" href="https://www.anzifan.com/">
 
@@ -265,6 +277,18 @@ A 4002-year-old demigod crane
 ### 异次元 de 机智君
 
 前端开发工程师，优质 Notion 主题开发者
+
+</div>
+</a>
+<a class="friend" href="https://codlin.me/">
+
+![鱈魚](codlin.webp)
+
+<div>
+
+### 鱈魚
+
+結合各類領域技術、開發酷酷的東西
 
 </div>
 </a>
