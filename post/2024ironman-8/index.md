@@ -46,7 +46,6 @@ date: 2024-09-21
     ```
 
     選擇適合你的設置，這裡是一些常見的選擇：
-
     - **How would you like to use ESLint?** To check syntax, find problems, and enforce code style.
     - **What type of modules does your project use?** JavaScript modules (import/export).
     - **Which framework does your project use?** None of these.
@@ -197,7 +196,6 @@ date: 2024-09-21
     ```
 
     **YAML 文件解析：**
-
     - **`on:`** 定義觸發事件（推送和拉取請求）。
     - **`jobs:`** 定義工作流程中的工作（`ESLint` 和 `pylint`）。
     - **`steps:`** 定義每個工作的具體步驟，包括檢出代碼、設置環境、安裝依賴、運行檢查。
@@ -227,19 +225,15 @@ date: 2024-09-21
 ## 常用技巧
 
 1. **配置自訂規則：**
-
     - 根據團隊的代碼風格要求，修改 ESLint 和 pylint 配置文件，添加或禁用特定的規則。
 
 2. **設置 GitHub Secrets：**
-
     - 如果需要在 CI/CD 中使用私密信息（如 API 密鑰），可以將其設置為 GitHub Secrets，並在工作流程中安全地使用它們。
 
 3. **優化工作流程：**
-
     - 將常見步驟提取到自訂 Action 中，或者使用 GitHub Marketplace 中的現成 Action 來簡化工作流程配置。
 
 4. **調試工作流程：**
-
     - 使用 `debug` 模式來調試工作流程，檢查問題並優化配置。
 
 5. **結合其他工具：**

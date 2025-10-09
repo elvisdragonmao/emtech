@@ -247,7 +247,6 @@ Ran all test suites.
     ```
 
     這個工作流會在每次有程式推送（push）到 GitHub 的時候自動運行，它將執行以下步驟：
-
     - 檢出程式
     - 設置 Node.js 環境
     - 安裝依賴套件

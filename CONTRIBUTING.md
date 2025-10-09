@@ -34,6 +34,7 @@ We welcome contributions of all kinds, including bug reports, suggestions, and c
     ```bash
     yarn build
     ```
+
     - The output static files will be generated in the `dist` directory.
 
 ---
@@ -74,7 +75,6 @@ If you encounter a bug or have a suggestion:
 ## Code Review Process
 
 1. **CI/CD pipeline checks**:
-
     - All PRs will go through automated checks to ensure code quality.
     - A preview of your changes will be auto-generated via [Vercel](https://vercel.com/).
 

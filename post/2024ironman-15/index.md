@@ -63,7 +63,6 @@ date: 2024-09-28
 
 1. **將私鑰添加為 GitHub Secret**：
    在你的 GitHub 倉庫中，導航到 "Settings" -> "Secrets and variables" -> "Actions"，點擊 "New repository secret"。
-
     - **名稱**：`SSH_PRIVATE_KEY`
     - **值**：你的 SSH 私鑰內容（`~/.ssh/id_rsa` 的內容）
 

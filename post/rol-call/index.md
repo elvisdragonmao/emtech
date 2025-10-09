@@ -393,37 +393,37 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
                     document.getElementById(t)
                 ),
                 searchA = () => {
-                    (history.style.opacity = 1),
+                    ((history.style.opacity = 1),
                         (history.style.zIndex = 2),
                         (call.style.opacity = add.style.opacity = 0),
-                        (call.style.zIndex = add.style.zIndex = 1);
+                        (call.style.zIndex = add.style.zIndex = 1));
                 },
                 callA = () => {
-                    (history.style.opacity = add.style.opacity = 0),
+                    ((history.style.opacity = add.style.opacity = 0),
                         (history.style.zIndex = add.style.zIndex = 1),
                         (call.style.opacity = 1),
-                        (call.style.zIndex = 2);
+                        (call.style.zIndex = 2));
                 },
                 addA = () => {
-                    (history.style.opacity = call.style.opacity = 0),
+                    ((history.style.opacity = call.style.opacity = 0),
                         (history.style.zIndex = call.style.zIndex = 1),
                         (add.style.opacity = 1),
-                        (add.style.zIndex = 2);
+                        (add.style.zIndex = 2));
                 };
             fetch(url + "?type=list")
                 .then((t) => t.json())
                 .then((t) => {
                     let e = document.getElementById("call");
-                    (e.innerHTML = ""),
+                    ((e.innerHTML = ""),
                         t.forEach((t, n) => {
                             let a = document.createElement("button");
-                            (a.textContent = t.name),
+                            ((a.textContent = t.name),
                                 (a.id = `student-${n + 1}`),
                                 a.addEventListener("click", () => {
                                     rollCall(t.name, t.left, n + 1);
                                 }),
-                                e.appendChild(a);
-                        });
+                                e.appendChild(a));
+                        }));
                 })
                 .catch((t) => console.error(t));
             const status = document.getElementById("status");
@@ -469,13 +469,13 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
                     .then((t) => t.json())
                     .then((t) => {
                         let e = document.querySelector("#history table tbody");
-                        (e.innerHTML = ""),
+                        ((e.innerHTML = ""),
                             t.forEach((t) => {
                                 let n = document.createElement("tr"),
                                     a = document.createElement("td"),
                                     l = document.createElement("td");
                                 var r = new Date(t.time);
-                                (a.textContent = r
+                                ((a.textContent = r
                                     .toLocaleString("zh-TW", {
                                         year: "numeric",
                                         month: "2-digit",
@@ -491,8 +491,8 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
                                     n.appendChild(a),
                                     n.appendChild(l),
                                     e.appendChild(n),
-                                    (status.innerHTML = "搜尋完成");
-                            });
+                                    (status.innerHTML = "搜尋完成"));
+                            }));
                     })
                     .catch((t) => (status.innerHTML = t));
             });

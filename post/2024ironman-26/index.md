@@ -20,14 +20,12 @@ date: 2024-10-09
 ### 創建 Slack 應用並獲取 Webhook URL
 
 1. **創建 Slack 應用**
-
     1. 進入 [Slack API](https://api.slack.com/apps) 頁面。
     2. 點擊 `Create New App`。
     3. 選擇 `From scratch`，並輸入應用的名稱和所屬工作區。
     4. 點擊 `Create App`。
 
 2. **設置 Incoming Webhook**
-
     1. 在應用設置頁面，點擊 `Incoming Webhooks`。
     2. 點擊 `Activate Incoming Webhooks`。
     3. 點擊 `Add New Webhook to Workspace`。
@@ -66,7 +64,6 @@ date: 2024-10-09
     ```
 
     **解釋**:
-
     - `slack-token`: 使用 GitHub Secrets 存儲你的 Slack Token。
     - `channel-id`: 你的 Slack 頻道 ID。
     - `text`: 訊息文本，包括工作流程鏈接。
@@ -74,7 +71,6 @@ date: 2024-10-09
 2. **配置 GitHub Secrets**
 
     將你的 Slack Token 添加到 GitHub Secrets：
-
     1. 進入你的 GitHub repository 頁面。
     2. 點擊 `Settings` > `Secrets and variables` > `Actions`。
     3. 點擊 `New repository secret`。
@@ -159,7 +155,6 @@ date: 2024-10-09
     ```
 
     **解釋**:
-
     - `Generate report`: 運行生成報告的腳本。
     - `Commit and push report`: 將生成的報告文件提交到 repository。
 

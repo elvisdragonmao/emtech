@@ -157,7 +157,6 @@ build
     ```
 
     **YAML 文件解析：**
-
     - **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
     - **`actions/checkout@v3:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
     - **`npm install:`** 安裝依賴套件。
@@ -175,21 +174,17 @@ git push origin main
 ## 常用技巧與注意事項
 
 1. **Prettier 配置文件：**
-
     - `.prettierrc` 配置文件可以使用 JSON、YAML 或 JavaScript 格式。
     - `.prettierignore` 文件的規則類似於 `.gitignore` 文件。
 
 2. **Prettier 和 ESLint 的整合：**
-
     - 如果你同時使用 ESLint 和 Prettier，建議安裝 `eslint-config-prettier` 來禁用 ESLint 的格式化規則，避免與 Prettier 衝突。
     - 使用 `eslint-plugin-prettier` 將 Prettier 的格式檢查集成到 ESLint 中。
 
 3. **保持規則的一致性：**
-
     - 團隊中應統一使用相同的 Prettier 配置，以確保代碼風格一致。可以將 `.prettierrc` 文件放在版本控制中，以共享配置。
 
 4. **自動格式化和提交：**
-
     - 自動格式化可以幫助維持代碼一致性，但請注意在提交格式化後的代碼之前，先進行充分的測試，以確保不會引入錯誤。
 
 5. **手動格式化和 IDE 支持：**

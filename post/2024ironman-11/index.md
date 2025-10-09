@@ -28,7 +28,6 @@ date: 2024-09-24
 **步驟 1：設置 GitHub Secrets**
 
 1. **創建 Secret**
-
     - 進入你的 GitHub 儲存庫。
     - 點擊頁面上方的 `Settings` 標籤。
     - 在左側菜單中選擇 `Secrets and variables` -> `Actions`。
@@ -69,7 +68,6 @@ date: 2024-09-24
 1. **在 Node.js 中讀取 Secrets**
 
     在你的 Node.js 程式中，你可以使用環境變數來讀取 Secret。這些環境變數可以通過 `process.env` 來訪問。為了使這些環境變數能在本地開發環境中使用，你可以使用 `.env` 文件。
-
     - **安裝 dotenv 模組**
 
         ```bash

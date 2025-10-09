@@ -20,14 +20,13 @@ description: 打開開發者工具複製參數，前端直接 fetch 即可。
 
 1. [新增一個空白 Google 表單](https://form.new)
 2. 建立幾個問題，例如：
+    - 單位名稱
+    - 部門
+    - 稱呼
+    - 聯絡方式
+    - 留言
 
-   * 單位名稱
-   * 部門
-   * 稱呼
-   * 聯絡方式
-   * 留言
 3. 不用設計太花俏，填好即可。
-
 
 ---
 
@@ -43,9 +42,10 @@ Google Form 的每個問題都有一個隱藏的編號（`entry.XXXXXXXX`），
 3. 點選表單中的輸入框
    會看到像這樣的 HTML：
 
-   ```html
-   <input type="text" name="entry.1867519928">
-   ```
+    ```html
+    <input type="text" name="entry.1867519928" />
+    ```
+
 4. 把這些欄位的 `entry.xxxxx` 編號抄下來
 
 例如：
@@ -67,33 +67,51 @@ Google Form 的每個問題都有一個隱藏的編號（`entry.XXXXXXXX`），
 ```html
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <title>靜態表單示範</title>
-  <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 3rem auto; }
-    label { display: block; margin-top: 1rem; }
-    input, textarea { width: 100%; padding: 0.5rem; }
-    button { margin-top: 1rem; padding: 0.5rem 1rem; }
-    span#form-message { display: block; margin-top: 0.5rem; color: red; }
-  </style>
-</head>
-<body>
-  <h1>聯絡我們</h1>
+    <head>
+        <meta charset="UTF-8" />
+        <title>靜態表單示範</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                max-width: 600px;
+                margin: 3rem auto;
+            }
+            label {
+                display: block;
+                margin-top: 1rem;
+            }
+            input,
+            textarea {
+                width: 100%;
+                padding: 0.5rem;
+            }
+            button {
+                margin-top: 1rem;
+                padding: 0.5rem 1rem;
+            }
+            span#form-message {
+                display: block;
+                margin-top: 0.5rem;
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>聯絡我們</h1>
 
-  <form id="contact-form">
-    <label>單位名稱<input name="organization" required /></label>
-    <label>部門<input name="department" /></label>
-    <label>稱呼<input name="name" required /></label>
-    <label>聯絡方式<input name="contact" required /></label>
-    <label>留言<textarea name="message"></textarea></label>
+        <form id="contact-form">
+            <label>單位名稱<input name="organization" required /></label>
+            <label>部門<input name="department" /></label>
+            <label>稱呼<input name="name" required /></label>
+            <label>聯絡方式<input name="contact" required /></label>
+            <label>留言<textarea name="message"></textarea></label>
 
-    <button type="submit" id="submit">送出</button>
-    <span id="form-message"></span>
-  </form>
+            <button type="submit" id="submit">送出</button>
+            <span id="form-message"></span>
+        </form>
 
-  <script src="form.js"></script>
-</body>
+        <script src="form.js"></script>
+    </body>
 </html>
 ```
 
@@ -105,7 +123,7 @@ Google Form 的每個問題都有一個隱藏的編號（`entry.XXXXXXXX`），
 
 ```js
 const apiUrl =
-  "https://docs.google.com/forms/d/e/1FAIpQLSftAam5nJJQU925yOzuMoome-XY3MEs7idtbd56eqMDRrPKGw/formResponse";
+    "https://docs.google.com/forms/d/e/1FAIpQLSftAam5nJJQU925yOzuMoome-XY3MEs7idtbd56eqMDRrPKGw/formResponse";
 
 const form = document.getElementById("contact-form");
 const submitButton = document.getElementById("submit");
@@ -113,44 +131,44 @@ const messageElement = document.getElementById("form-message");
 
 // 對應 Google Form 欄位
 const entryMap = {
-  organization: "entry.1867519928",
-  department: "entry.363990418",
-  name: "entry.1660888396",
-  contact: "entry.1209239304",
-  message: "entry.65159086",
+    organization: "entry.1867519928",
+    department: "entry.363990418",
+    name: "entry.1660888396",
+    contact: "entry.1209239304",
+    message: "entry.65159086"
 };
 
 form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  messageElement.textContent = "";
+    event.preventDefault();
+    messageElement.textContent = "";
 
-  // 組成 Google Form 的資料格式
-  const formData = new FormData();
-  Object.entries(entryMap).forEach(([key, entryKey]) => {
-    const value = form.querySelector(`[name="${key}"]`).value;
-    formData.append(entryKey, value);
-  });
-
-  submitButton.disabled = true;
-  submitButton.textContent = "送出中…";
-
-  fetch(apiUrl, {
-    method: "POST",
-    mode: "no-cors", // 避免 CORS 錯誤
-    body: formData,
-  })
-    .then(() => {
-      form.reset();
-      messageElement.textContent = "✅ 已成功送出，感謝您的填寫！";
-    })
-    .catch((err) => {
-      console.error("Submit error:", err);
-      messageElement.textContent = "⚠️ 發生錯誤，請稍後再試。";
-    })
-    .finally(() => {
-      submitButton.disabled = false;
-      submitButton.textContent = "送出";
+    // 組成 Google Form 的資料格式
+    const formData = new FormData();
+    Object.entries(entryMap).forEach(([key, entryKey]) => {
+        const value = form.querySelector(`[name="${key}"]`).value;
+        formData.append(entryKey, value);
     });
+
+    submitButton.disabled = true;
+    submitButton.textContent = "送出中…";
+
+    fetch(apiUrl, {
+        method: "POST",
+        mode: "no-cors", // 避免 CORS 錯誤
+        body: formData
+    })
+        .then(() => {
+            form.reset();
+            messageElement.textContent = "✅ 已成功送出，感謝您的填寫！";
+        })
+        .catch((err) => {
+            console.error("Submit error:", err);
+            messageElement.textContent = "⚠️ 發生錯誤，請稍後再試。";
+        })
+        .finally(() => {
+            submitButton.disabled = false;
+            submitButton.textContent = "送出";
+        });
 });
 ```
 
@@ -160,8 +178,8 @@ form.addEventListener("submit", (event) => {
 
 你可以把這個網頁：
 
-* 放在 **GitHub Pages**
-* 或直接丟到 **Netlify / Zeabur / Vercel**
+- 放在 **GitHub Pages**
+- 或直接丟到 **Netlify / Zeabur / Vercel**
 
 開啟網址後測試：
 
@@ -173,13 +191,13 @@ form.addEventListener("submit", (event) => {
 
 ## 🧠 延伸技巧
 
-| 功能           | 方法                                |
-| ------------ | --------------------------------- |
+| 功能              | 方法                                  |
+| ----------------- | ------------------------------------- |
 | ✅ 必填驗證       | HTML 加上 `required` 屬性             |
-| 🚫 防止開頭為 "=" | JS 中檢查 `value.startsWith("=")`    |
-| 🎨 美化樣式      | 使用 Tailwind 或 Bootstrap           |
-| 🔒 安全性       | 不放機密欄位、不要公開 API Key               |
-| 📩 自動回覆      | 用 Google Sheets + Apps Script 發郵件 |
+| 🚫 防止開頭為 "=" | JS 中檢查 `value.startsWith("=")`     |
+| 🎨 美化樣式       | 使用 Tailwind 或 Bootstrap            |
+| 🔒 安全性         | 不放機密欄位、不要公開 API Key        |
+| 📩 自動回覆       | 用 Google Sheets + Apps Script 發郵件 |
 
 ---
 
@@ -187,13 +205,12 @@ form.addEventListener("submit", (event) => {
 
 這種方式雖然簡單，但非常實用：
 
-* 不用架伺服器
-* 不用額外帳號
-* 送出的資料都進 Google Sheets，自動統計
-* 適合個人網站、社團報名頁、贊助表單、意見回饋
+- 不用架伺服器
+- 不用額外帳號
+- 送出的資料都進 Google Sheets，自動統計
+- 適合個人網站、社團報名頁、贊助表單、意見回饋
 
 ---
 
 要我幫你附上這篇的 **Markdown 版本（可直接貼進你的 GitHub README）** 嗎？
 那樣整篇會自動有標題層級、語法高亮和段落格式。
-

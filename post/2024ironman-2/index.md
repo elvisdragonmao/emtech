@@ -83,7 +83,6 @@ jobs:
 這裡列出幾個實際場景中常見的 Shell 指令應用，你可以根據自己的需求進行擴展和應用。
 
 1. **自動化部署：**
-
     - 使用 `scp` 或 `rsync` 指令自動將構建好的文件部署到遠程伺服器。
     - ```yaml
       - name: Deploy to server
@@ -91,7 +90,6 @@ jobs:
       ```
 
 2. **備份數據：**
-
     - 使用 `tar` 指令將文件夾壓縮並備份到遠程伺服器或雲端存儲。
     - ```yaml
       - name: Backup files
@@ -99,7 +97,6 @@ jobs:
       ```
 
 3. **自動化測試：**
-
     - 使用 `curl` 測試 API 是否正常響應。
     - ```yaml
       - name: Test API response
@@ -107,7 +104,6 @@ jobs:
       ```
 
 4. **環境設置：**
-
     - 使用 `export` 設置環境變數，或者使用 `source` 加載環境配置文件。
     - ```yaml
       - name: Set environment variable

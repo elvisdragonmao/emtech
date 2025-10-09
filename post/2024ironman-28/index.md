@@ -75,7 +75,6 @@ date: 2024-10-11
     ```
 
     **解釋**:
-
     - `actions/checkout@v3`: 下載源倉庫的代碼。
     - `git config`: 設置 Git 用戶名和郵箱。
     - `git commit`: 提交代碼變更。
@@ -117,7 +116,6 @@ date: 2024-10-11
     ```
 
     **解釋**:
-
     - 使用 GitHub API `dispatches` 端點來觸發目標倉庫的構建。
     - `event_type` 可以自定義為任何你需要的事件類型。
 
@@ -147,7 +145,6 @@ date: 2024-10-11
     ```
 
     **解釋**:
-
     - 使用 `repository_dispatch` 來接收來自另一個倉庫的觸發事件。
     - 在接收到 `build` 事件時，執行構建任務。
 

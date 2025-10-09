@@ -18,7 +18,6 @@ date: 2024-09-16
 我們小學四年級電腦課都學過 Git 是一個分散式版本控制系統，用於追蹤文件的變更、協作開發和版本管理。而要在 GitHub Actions 中自動化 Git 操作有以下兩種方法：
 
 1. **手動編寫 Shell 指令：**
-
     - 使用基本的 Git 指令來完成自動提交和推送。
     - 這種方法適合有自定義需求的情境，例如在提交前進行特定檢查或修改。
 
@@ -158,11 +157,9 @@ git push origin main
 > 你 push 之後，Acction 看到有人 push 所以也 push，Acction 看到有人 push 所以也 push，Acction 看到有人 push 所以也 push...
 
 2. **使用 GitHub Secrets：**
-
     - 將敏感信息（如 GitHub Token、用戶憑證）儲存在 GitHub Secrets 中，並在工作流程中引用，以保證安全性。
 
 3. **檢查提交日誌：**
-
     - 使用 `git log` 檢查自動提交的日誌，確保提交的內容正確且符合預期。
 
 4. **靈活使用 cron 表達式：**

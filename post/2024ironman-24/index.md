@@ -140,7 +140,6 @@ jobs:
 ## 配置 GitHub Pages
 
 1. **設置 GitHub Pages**
-
     - 進入 GitHub repository 的 `Settings` 頁面。
     - 選擇 `Pages`，然後在 `Source` 下拉菜單中選擇 `main` 分支。
     - 點擊 `Save` 以保存更改。
@@ -158,12 +157,10 @@ jobs:
     ```
 
 2. **檢查 Actions**
-
     - 進入 GitHub repository 的 `Actions` 頁面。
     - 查看 `Performance Testing` 工作流程的執行情況，確保所有步驟都成功完成。
 
 3. **查看性能報告**
-
     - 在 GitHub Pages 上查看性能報告，確保測試結果能夠正確顯示。
 
 ## 小結

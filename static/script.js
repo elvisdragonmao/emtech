@@ -65,7 +65,7 @@ let x = 1760,
     donut;
 const startDonut = () => {
     donut = setInterval(() => {
-        (z += 0.07), (y += 0.03);
+        ((z += 0.07), (y += 0.03));
         const a = [...new Array(x)].map((a, r) => (r % 80 === 79 ? "\n" : " ")),
             r = new Array(x).fill(0),
             t = Math.cos(z),
