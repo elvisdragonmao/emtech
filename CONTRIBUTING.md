@@ -31,6 +31,7 @@ We welcome contributions of all kinds, including bug reports, suggestions, and c
     - This will start a local live server and rebuild the site automatically whenever you save changes.
 
 4. **Build the static site** (if needed):
+
     ```bash
     yarn build
     ```
