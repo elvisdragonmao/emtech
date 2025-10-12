@@ -27,7 +27,7 @@ description: 有朋自遠方來，不亦悅乎？
 
 </div>
 </a>
-<a class="friend" href="https://yuan-tw.net/">
+<a class="friend" href="https://wolf-yuan.dev/">
 
 ![Wolf](wolf-yuan.webp)
 
@@ -35,7 +35,7 @@ description: 有朋自遠方來，不亦悅乎？
 
 ### Wolf Yuan
 
-一個你覺得可以描述我的
+Furry Developer
 
 </div>
 </a>
