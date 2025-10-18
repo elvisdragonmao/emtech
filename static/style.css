@@ -1,3 +1,6 @@
+@import "https://font.emtech.cc/css/LINESeedTW";
+@import "https://font.emtech.cc/css/FiraMono";
+
 *,
 *::before,
 *::after {
@@ -41,7 +44,7 @@ html:has(.displayPost) {
 
 body {
     font-family:
-        "GenYoGothic TW",
+        "LINESeedTW",
         system-ui,
         -apple-system,
         BlinkMacSystemFont,
