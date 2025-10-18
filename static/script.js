@@ -1,4 +1,3 @@
-
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 let currentPage = "post",
@@ -43,7 +42,6 @@ const updateReadHistory = (id) => {
                     .join("");
         else list.innerHTML = "";
     });
-    
 };
 
 const updateDate = (element) => {
@@ -182,7 +180,6 @@ const loadArticleList = async (postList, category) => {
                 }
                 addClassToVisibleElements();
                 resolve();
-                
             })
             .catch(reject);
     });
@@ -259,8 +256,6 @@ const postScrollAnimations = () => {
                             "沒有更多文章了";
                         next.classList.remove("loaded");
                     }
-
-                    
 
                     fetch("/p/clean/" + randomPost.id + ".html")
                         .then((response) => {
@@ -475,7 +470,7 @@ const initPost = (page, direct = false) => {
     // update .related-posts
     loadArticleList(related.querySelector("div"), "category/" + cat);
     related.querySelector("h2").textContent = cat + " 的其他文章";
-    
+
     startAds();
 };
 
@@ -617,13 +612,13 @@ const switchToPost = (a) => {
             .catch((error) => {
                 let retryDelay = 3;
                 believe.innerHTML = `等等不太對，我 3 秒之後再試一次...`;
-                
+
                 const retryInterval = setInterval(() => {
                     retryDelay--;
                     believe.innerHTML = `等等不太對，我 ${retryDelay} 秒之後再試一次...`;
                     if (retryDelay === 0) {
                         believe.innerHTML = `嗯，你的網路有點爛...`;
-                        
+
                         clearInterval(retryInterval);
                         fetchPostContent(url);
                     }
@@ -726,7 +721,6 @@ fetch("/meta/tags.json")
             first
         );
         moveCategories("精選");
-        
     });
 
 document.body.addEventListener("click", (e) => {
@@ -796,12 +790,10 @@ fetch("/meta/search.json")
                 latest.querySelector("h3").textContent = data.title;
                 latest.querySelector("img").src = data.thumbnail;
                 latest.querySelector("img").style.backgroundImage = data.colors;
-                
             });
         document
             .getElementById("search")
             .addEventListener("input", function () {
-                
                 const searchInput = this.value.trim().toLowerCase();
                 const searchTerms = searchInput
                     .split(/\s+/)
@@ -898,7 +890,6 @@ fetch("/meta/search.json")
                         `;
                     })
                     .join("");
-                
             });
         document.getElementById("search").dispatchEvent(new Event("input"));
     });
