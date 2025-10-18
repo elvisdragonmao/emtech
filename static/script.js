@@ -410,6 +410,18 @@ const initPost = (page, direct = false) => {
     });
 
     toc.appendChild(ul);
+    
+    // Create mobile TOC line indicators
+    const tocLines = document.createElement("div");
+    tocLines.className = "toc-lines";
+    headers.forEach((header, index) => {
+        const line = document.createElement("div");
+        line.className = "toc-line";
+        line.dataset.index = index;
+        tocLines.appendChild(line);
+    });
+    toc.insertBefore(tocLines, toc.firstChild);
+    
     startAds();
     // Create an intersection observer to highlight the current section in the table of contents
     const observer = new IntersectionObserver(
@@ -423,6 +435,16 @@ const initPost = (page, direct = false) => {
                             a.classList.remove("current")
                         );
                         tocItem.classList.add("current");
+                        
+                        // Update mobile line indicators
+                        const currentIndex = Array.from(toc.querySelectorAll("a")).indexOf(tocItem);
+                        toc.querySelectorAll(".toc-line").forEach((line, index) => {
+                            if (index === currentIndex) {
+                                line.classList.add("active");
+                            } else {
+                                line.classList.remove("active");
+                            }
+                        });
                     }
                 }
             });
