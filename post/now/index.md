@@ -60,7 +60,7 @@ description: 毛哥EM的近況。
 
 喜歡聽的東西很多，最近特別愛的：
 
-* [Gummy B - 更好（專輯）](https://open.spotify.com/album/0FKC566l6cp7gHF0QXe9G3?si=KcQKTUwWRiWe6BUwlc1Y0w)
+- [Gummy B - 更好（專輯）](https://open.spotify.com/album/0FKC566l6cp7gHF0QXe9G3?si=KcQKTUwWRiWe6BUwlc1Y0w)
 
 長期聽的：
 
