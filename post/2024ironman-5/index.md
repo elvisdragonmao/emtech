@@ -31,10 +31,10 @@ Prettier 有內建的格式化規則，但你也可以通過配置文件來自�
 
 ```json
 {
-    "semi": false,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5"
+	"semi": false,
+	"singleQuote": true,
+	"tabWidth": 2,
+	"trailingComma": "es5"
 }
 ```
 
@@ -57,7 +57,7 @@ npm install --save-dev prettier prettier-config-google
 
 ```json
 {
-    "extends": "prettier-config-google"
+	"extends": "prettier-config-google"
 }
 ```
 
@@ -91,10 +91,10 @@ build
 
     ```json
     {
-        "semi": true,
-        "singleQuote": false,
-        "tabWidth": 4,
-        "trailingComma": "none"
+    	"semi": true,
+    	"singleQuote": false,
+    	"tabWidth": 4,
+    	"trailingComma": "none"
     }
     ```
 
@@ -109,9 +109,9 @@ build
 
     ```json
     {
-        "name": "John Doe",
-        "age": 30,
-        "email": ""
+    	"name": "John Doe",
+    	"age": 30,
+    	"email": ""
     }
     ```
 

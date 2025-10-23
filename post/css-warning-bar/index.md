@@ -31,14 +31,7 @@ console.log("%cHello, world!", "color: red; font-size: 20px;");
 首先很多人應該跟我一樣直覺想到的是 `linear-gradient`，然後使用 `background-repeat: repeat-x` 來實現這個效果。
 
 ```css
-background-image: linear-gradient(
-    45deg,
-    #ebc405,
-    #ebc405 20px,
-    #000 20px,
-    #000 40px,
-    #000 40px
-);
+background-image: linear-gradient(45deg, #ebc405, #ebc405 20px, #000 20px, #000 40px, #000 40px);
 background-size: 40px 100%;
 ```
 
@@ -58,14 +51,9 @@ background-size: 40px 100%;
 
 ```css
 div {
-    height: 100px;
-    background-image: linear-gradient(
-        45deg,
-        #ebc405 33%,
-        #000 33% 66%,
-        #ebc405 66% 100%
-    );
-    background-size: 202px 100%;
+	height: 100px;
+	background-image: linear-gradient(45deg, #ebc405 33%, #000 33% 66%, #ebc405 66% 100%);
+	background-size: 202px 100%;
 }
 ```
 
@@ -77,12 +65,8 @@ div {
 
 ```css
 div {
-    height: 100px;
-    background-image: repeating-linear-gradient(
-        45deg,
-        #ebc405 0px 20px,
-        #000 20px 40px
-    );
+	height: 100px;
+	background-image: repeating-linear-gradient(45deg, #ebc405 0px 20px, #000 20px 40px);
 }
 ```
 
@@ -92,13 +76,9 @@ div {
 
 ```css
 div {
-    height: 100px;
-    --width: 20px;
-    background-image: repeating-linear-gradient(
-        45deg,
-        #ebc405 0px var(--width),
-        #000 var(--width) calc(var(--width) * 2)
-    );
+	height: 100px;
+	--width: 20px;
+	background-image: repeating-linear-gradient(45deg, #ebc405 0px var(--width), #000 var(--width) calc(var(--width) * 2));
 }
 ```
 
@@ -114,17 +94,17 @@ div {
 
 ```css
 div {
-    animation: move 1s linear infinite;
-    width: calc(100% + var(--width) * 4);
+	animation: move 1s linear infinite;
+	width: calc(100% + var(--width) * 4);
 }
 
 @keyframes move {
-    from {
-        background-position: 0px;
-    }
-    to {
-        background-position: calc(var(--width) * sqrt(2) * -2);
-    }
+	from {
+		background-position: 0px;
+	}
+	to {
+		background-position: calc(var(--width) * sqrt(2) * -2);
+	}
 }
 ```
 
@@ -138,48 +118,41 @@ div {
 
 ```css
 div {
-    margin-top: 40vh;
-    height: 100px;
-    font-size: 40px;
-    --width: 20px;
-    --deg: 45;
-    background-image: repeating-linear-gradient(
-        calc(var(--deg) * 1deg),
-        #ebc405,
-        #ebc405 var(--width),
-        #000 var(--width),
-        #000 calc(var(--width) * 2),
-        #000 calc(var(--width) * 2)
-    );
-    animation:
-        move linear 1s infinite,
-        spin linear 8s infinite;
-    animation-composition: accumulate;
-    width: calc(100% + var(--width) * 4);
+	margin-top: 40vh;
+	height: 100px;
+	font-size: 40px;
+	--width: 20px;
+	--deg: 45;
+	background-image: repeating-linear-gradient(calc(var(--deg) * 1deg), #ebc405, #ebc405 var(--width), #000 var(--width), #000 calc(var(--width) * 2), #000 calc(var(--width) * 2));
+	animation:
+		move linear 1s infinite,
+		spin linear 8s infinite;
+	animation-composition: accumulate;
+	width: calc(100% + var(--width) * 4);
 }
 
 @property --deg {
-    syntax: "<number>";
-    initial-value: 45;
-    inherits: false;
+	syntax: "<number>";
+	initial-value: 45;
+	inherits: false;
 }
 
 @keyframes move {
-    from {
-        background-position: 0px;
-    }
-    to {
-        background-position: calc(var(--width) * sqrt(2) * -2);
-    }
+	from {
+		background-position: 0px;
+	}
+	to {
+		background-position: calc(var(--width) * sqrt(2) * -2);
+	}
 }
 
 @keyframes spin {
-    from {
-        --deg: 0;
-    }
-    to {
-        --deg: 360;
-    }
+	from {
+		--deg: 0;
+	}
+	to {
+		--deg: 360;
+	}
 }
 ```
 

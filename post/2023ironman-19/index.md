@@ -29,7 +29,7 @@ date: 2023-10-03
 
 ```css
 div:target {
-    background: yellow;
+	background: yellow;
 }
 ```
 
@@ -41,39 +41,18 @@ div:target {
 
 ```html
 <div id="one">
-    <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG"
-        alt=""
-    />
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG" alt="" />
 </div>
 <div id="two">
-    <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg"
-        alt=""
-    />
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg" alt="" />
 </div>
 <div id="three">
-    <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg"
-        alt=""
-    />
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg" alt="" />
 </div>
 <section>
-    <a href="#one"
-        ><img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG"
-            alt=""
-    /></a>
-    <a href="#two"
-        ><img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg"
-            alt=""
-    /></a>
-    <a href="#three"
-        ><img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg"
-            alt=""
-    /></a>
+	<a href="#one"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG" alt="" /></a>
+	<a href="#two"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg" alt="" /></a>
+	<a href="#three"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg" alt="" /></a>
 </section>
 <a href="#" id="close">✖</a>
 ```
@@ -85,9 +64,9 @@ div:target {
 <div id="two"><img src="" alt="" /></div>
 <div id="three"><img src="" alt="" /></div>
 <section>
-    <a href="#one"><img src="" alt="" /></a>
-    <a href="#two"><img src="" alt="" /></a>
-    <a href="#three"><img src="" alt="" /></a>
+	<a href="#one"><img src="" alt="" /></a>
+	<a href="#two"><img src="" alt="" /></a>
+	<a href="#three"><img src="" alt="" /></a>
 </section>
 <a href="#" id="close">✖</a>
 ```
@@ -96,20 +75,20 @@ div:target {
 
 ```css
 body {
-    background: #2e3440;
-    text-align: center;
-    color: #eceff4;
-    font-size: system-ui;
+	background: #2e3440;
+	text-align: center;
+	color: #eceff4;
+	font-size: system-ui;
 }
 section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
 }
 a img {
-    width: 30vw;
-    display: block;
+	width: 30vw;
+	display: block;
 }
 ```
 
@@ -117,27 +96,27 @@ a img {
 
 ```css
 div:target > img {
-    opacity: 1;
+	opacity: 1;
 }
 div > img {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    pointer-events: none;
-    width: 90vw;
-    height: calc(100vh - 6rem);
-    object-fit: contain;
-    z-index: 2;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	pointer-events: none;
+	width: 90vw;
+	height: calc(100vh - 6rem);
+	object-fit: contain;
+	z-index: 2;
 }
 
 div:target ~ #close {
-    display: block;
+	display: block;
 }
 
 div:target ~ section {
-    filter: opacity(0.2) blur(10px);
+	filter: opacity(0.2) blur(10px);
 }
 ```
 
@@ -145,13 +124,13 @@ div:target ~ section {
 
 ```css
 #close {
-    display: none;
-    position: fixed;
-    right: 1em;
-    top: 1em;
-    color: #fff;
-    text-decoration: none;
-    font-size: 2rem;
+	display: none;
+	position: fixed;
+	right: 1em;
+	top: 1em;
+	color: #fff;
+	text-decoration: none;
+	font-size: 2rem;
 }
 ```
 
@@ -167,113 +146,91 @@ div:target ~ section {
 
 ```css
 * {
-    transition: all 0.3s;
+	transition: all 0.3s;
 }
 ```
 
 ## 成果
 
-最終成果如下：
-https://codepen.io/edit-mr/pen/jOXpJXX
+最終成果如下： https://codepen.io/edit-mr/pen/jOXpJXX
 
 ![純 CSS 做出圖片 Lightbox](final.gif)
 
 ```html
 <div id="one">
-    <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG"
-        alt=""
-    />
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG" alt="" />
 </div>
 <div id="two">
-    <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg"
-        alt=""
-    />
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg" alt="" />
 </div>
 <div id="three">
-    <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg"
-        alt=""
-    />
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg" alt="" />
 </div>
 <section>
-    <a href="#one"
-        ><img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG"
-            alt=""
-    /></a>
-    <a href="#two"
-        ><img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg"
-            alt=""
-    /></a>
-    <a href="#three"
-        ><img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg"
-            alt=""
-    /></a>
+	<a href="#one"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_cat_in_the_grass.JPG/640px-Domestic_cat_in_the_grass.JPG" alt="" /></a>
+	<a href="#two"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/640px-Cat_August_2010-4.jpg" alt="" /></a>
+	<a href="#three"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/640px-Cat_November_2010-1a.jpg" alt="" /></a>
 </section>
 <a href="#" id="close">✖</a>
 ```
 
 ```css
 * {
-    transition: all 0.3s;
+	transition: all 0.3s;
 }
 body {
-    background: #2e3440;
-    text-align: center;
-    color: #eceff4;
-    font-size: system-ui;
-    display: flex;
-    align-items: center;
-    min-height: 100svh;
-    justify-content: center;
-    overflow: hidden;
+	background: #2e3440;
+	text-align: center;
+	color: #eceff4;
+	font-size: system-ui;
+	display: flex;
+	align-items: center;
+	min-height: 100svh;
+	justify-content: center;
+	overflow: hidden;
 }
 section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
 }
 a img {
-    width: 30vw;
-    display: block;
+	width: 30vw;
+	display: block;
 }
 
 div:target > img {
-    opacity: 1;
+	opacity: 1;
 }
 div > img {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    pointer-events: none;
-    width: 90vw;
-    height: calc(100vh - 6rem);
-    object-fit: contain;
-    z-index: 2;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	pointer-events: none;
+	width: 90vw;
+	height: calc(100vh - 6rem);
+	object-fit: contain;
+	z-index: 2;
 }
 #close {
-    display: none;
-    position: fixed;
-    right: 1em;
-    top: 1em;
-    color: #fff;
-    text-decoration: none;
-    font-size: 2rem;
+	display: none;
+	position: fixed;
+	right: 1em;
+	top: 1em;
+	color: #fff;
+	text-decoration: none;
+	font-size: 2rem;
 }
 div:target ~ #close {
-    display: block;
+	display: block;
 }
 
 div:target ~ section {
-    filter: opacity(0.2) blur(10px);
-    pointer-events: none;
+	filter: opacity(0.2) blur(10px);
+	pointer-events: none;
 }
 ```
 

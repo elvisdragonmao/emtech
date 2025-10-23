@@ -11,14 +11,12 @@ date: 2022-10-07
 
 ![效果比較](EM-SFW-compare.webp)
 
-{{notice}}
-EM-SFW (Site for Webcam)
+{{notice}} EM-SFW (Site for Webcam)
 
 - 開發者:毛哥EM(我)
 - 程式類型：免費開源網站
 - 網站位置：[毛哥EM的基地](https://Edit-Mr.github.io/code/EM-SFW)
-- 縮短網址：[is.gd/EMSFW](https://is.gd/EMSFW)
-  {{noticed}}
+- 縮短網址：[is.gd/EMSFW](https://is.gd/EMSFW) {{noticed}}
 
 ## 使用教學
 
@@ -54,8 +52,7 @@ EM-SFW (Site for Webcam)
 
 在影像模式中可以點擊右鍵並點選儲存圖片來下載當前影像，如老師想儲存他辛辛苦苦寫的黑板。不過儲存的是原始的影像，不會進行翻轉（但比例依舊會被拉長）
 
-{{notice}}
-提示
+{{notice}} 提示
 
 如果你覺得這個免費的網站有幫助到你請分享讓更多人可以有更好的線上上課體驗，讓沒有理由不認真上課
 

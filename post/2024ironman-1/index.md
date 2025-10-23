@@ -142,8 +142,7 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
 
 ### 第一步：創建 Node.js 專案
 
-1. **建立儲存庫**
-   首先，進入 GitHub，點擊右上角的「New」按鈕來建立一個新的儲存庫，並將其克隆到本地。這個倉庫將用於存放我們的 Node.js 專案。如果你已經有現成的 Node.js 專案也可以直接拿來使用。
+1. **建立儲存庫** 首先，進入 GitHub，點擊右上角的「New」按鈕來建立一個新的儲存庫，並將其克隆到本地。這個倉庫將用於存放我們的 Node.js 專案。如果你已經有現成的 Node.js 專案也可以直接拿來使用。
 
     ```bash
      git clone <你的倉庫地址>
@@ -152,22 +151,19 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
 
     > 沒有使用過 Git 和 GitHub 嗎? 你可以參考我之前寫的 [這篇文章](https://emtech.cc/post/github-and-git/)
 
-2. **初始化 Node.js 專案**
-   使用 `npm init` 初始化專案。這會創建一個 `package.json` 文件，用於管理專案的依賴套件和腳本。
+2. **初始化 Node.js 專案** 使用 `npm init` 初始化專案。這會創建一個 `package.json` 文件，用於管理專案的依賴套件和腳本。
 
     ```bash
     npm init -y
     ```
 
-3. **安裝 Jest 測試框架**
-   安裝 `Jest`，這是一個很常見的 JavaScript 測試框架。
+3. **安裝 Jest 測試框架** 安裝 `Jest`，這是一個很常見的 JavaScript 測試框架。
 
     ```bash
     npm install jest --save-dev
     ```
 
-4. **設定測試腳本**
-   在 `package.json` 中添加一個測試腳本，用於運行測試。找到 `scripts` 區塊，並添加以下內容：
+4. **設定測試腳本** 在 `package.json` 中添加一個測試腳本，用於運行測試。找到 `scripts` 區塊，並添加以下內容：
 
     ```json
     "scripts": {
@@ -182,7 +178,7 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
 
     ```javascript
     function add(a, b) {
-        return a + b;
+    	return a + b;
     }
 
     module.exports = add;
@@ -195,7 +191,7 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
     const add = require("./index");
 
     test("adds 1 + 2 to equal 3", () => {
-        expect(add(1, 2)).toBe(3);
+    	expect(add(1, 2)).toBe(3);
     });
     ```
 

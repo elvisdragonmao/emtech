@@ -176,8 +176,7 @@ Mac 的全螢幕（`Ctrl + Cmd + F`）請警慎使用。因為如果你進到全
 要輸入常用的個資如姓名、email、電話，打久了真的很躁。因此手機上我有設定 Apple 內建的替代文字：
 
 - `aaa`: email
-- `hhh`: 住址
-  ...
+- `hhh`: 住址 ...
 
 MacBook 上使用 Raycast 設定快捷鍵，Windows 中則是使用 HotkeyP：
 
@@ -284,20 +283,16 @@ align-items: center;
 
 ```json
 {
-    "Center element with flex box": {
-        "prefix": "mid",
-        "body": [
-            "display: flex;",
-            "justify-content: center;",
-            "align-items: center;"
-        ],
-        "description": "Center element with flex box"
-    },
-    "padding-inline": {
-        "prefix": "pin",
-        "body": ["padding-inline: $1;"],
-        "description": "padding-inline"
-    }
+	"Center element with flex box": {
+		"prefix": "mid",
+		"body": ["display: flex;", "justify-content: center;", "align-items: center;"],
+		"description": "Center element with flex box"
+	},
+	"padding-inline": {
+		"prefix": "pin",
+		"body": ["padding-inline: $1;"],
+		"description": "padding-inline"
+	}
 }
 ```
 

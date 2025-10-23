@@ -58,8 +58,7 @@ date: 2023-10-14
 
 ![](shot.webp)
 
-不過還沒完，因為截圖下來都是 PNG 或著是 JPEG，而我不管是製作網頁還是寫文章都會習慣轉檔成 WebP 格式，讓你們載入更快速。因為太常轉檔了因此我用 python 寫了一個轉檔工具叫做 [NiceFormat](https://github.com/Edit-Mr/NiceFormat)
-，只需要把圖片拖進去就可以轉檔，而且還可以一次轉好幾張。如果把 WebP 圖片拖進去就會轉回 PNG。
+不過還沒完，因為截圖下來都是 PNG 或著是 JPEG，而我不管是製作網頁還是寫文章都會習慣轉檔成 WebP 格式，讓你們載入更快速。因為太常轉檔了因此我用 python 寫了一個轉檔工具叫做 [NiceFormat](https://github.com/Edit-Mr/NiceFormat) ，只需要把圖片拖進去就可以轉檔，而且還可以一次轉好幾張。如果把 WebP 圖片拖進去就會轉回 PNG。
 
 ![轉檔](convert.gif)
 

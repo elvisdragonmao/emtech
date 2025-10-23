@@ -26,34 +26,34 @@ https://codepen.io/edit-mr/pen/poqqoLr
 
 ```html
 <div class="box">
-    <div class="circle-small"></div>
-    <div class="circle-big"></div>
+	<div class="circle-small"></div>
+	<div class="circle-big"></div>
 </div>
 ```
 
 ```css
 .box {
-    position: relative;
-    height: 100vh;
-    background-color: #fff;
+	position: relative;
+	height: 100vh;
+	background-color: #fff;
 }
 .circle-big,
 .circle-small {
-    filter: blur(10px);
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    background-color: red;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+	filter: blur(10px);
+	border-radius: 50%;
+	width: 80px;
+	height: 80px;
+	background-color: red;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 .circle-big {
-    width: 100px;
-    height: 100px;
-    background-color: black;
-    transform: translate(0, -50%);
+	width: 100px;
+	height: 100px;
+	background-color: black;
+	transform: translate(0, -50%);
 }
 ```
 
@@ -63,10 +63,10 @@ https://codepen.io/edit-mr/pen/poqqoLr
 
 ```css
 .box {
-    position: relative;
-    height: 100vh;
-    background-color: #fff;
-    filter: contrast(20);
+	position: relative;
+	height: 100vh;
+	background-color: #fff;
+	filter: contrast(20);
 }
 ```
 
@@ -74,39 +74,39 @@ https://codepen.io/edit-mr/pen/poqqoLr
 
 ```css
 .box {
-    position: relative;
-    height: 500px;
-    filter: contrast(20);
-    background-color: #fff;
+	position: relative;
+	height: 500px;
+	filter: contrast(20);
+	background-color: #fff;
 }
 .circle-big,
 .circle-small {
-    border-radius: 50%;
-    filter: blur(10px);
-    animation: 2s infinite move alternate;
-    width: 80px;
-    height: 80px;
-    background-color: red;
-    transform: translatex(20px);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+	border-radius: 50%;
+	filter: blur(10px);
+	animation: 2s infinite move alternate;
+	width: 80px;
+	height: 80px;
+	background-color: red;
+	transform: translatex(20px);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 .circle-big {
-    width: 100px;
-    height: 100px;
-    background-color: black;
-    animation-delay: -2s;
+	width: 100px;
+	height: 100px;
+	background-color: black;
+	animation-delay: -2s;
 }
 
 @keyframes move {
-    from {
-        transform: translate(calc(-50% + 100px), -50%);
-    }
-    to {
-        transform: translate(calc(-50% - 100px), -50%);
-    }
+	from {
+		transform: translate(calc(-50% + 100px), -50%);
+	}
+	to {
+		transform: translate(calc(-50% - 100px), -50%);
+	}
 }
 ```
 
@@ -116,14 +116,11 @@ https://codepen.io/edit-mr/pen/poqqoLr
 
 你可以自由應用在你的網頁上。以下是幾個範例：
 
-來源：https://codepen.io/Chokcoco
-![](water.gif)
-![](circle.gif)
+來源：https://codepen.io/Chokcoco ![](water.gif) ![](circle.gif)
 
 ![](fire.png)
 
-連結：https://codepen.io/YusukeNakaya/pen/vvEqVx
-![](move.gif)
+連結：https://codepen.io/YusukeNakaya/pen/vvEqVx ![](move.gif)
 
 這個效果明天會使用到，你可以來猜猜看。我剩下六天了，接下來原則上都是蠻重要的內容，要來完成一些很常見的版面和許多人習慣直接套庫的東西。以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 

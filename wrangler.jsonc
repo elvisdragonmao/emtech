@@ -1,9 +1,9 @@
 {
-    "name": "emtech",
-    "compatibility_date": "2024-04-25",
-    "assets": {
-        "directory": "./dist",
-        "html_handling": "force-trailing-slash",
-        "not_found_handling": "404-page"
-    }
+	"name": "emtech",
+	"compatibility_date": "2024-04-25",
+	"assets": {
+		"directory": "./dist",
+		"html_handling": "force-trailing-slash",
+		"not_found_handling": "404-page"
+	}
 }

@@ -196,12 +196,7 @@ YouTube 的 RSS 網址是：
 那你可以從 HTML 中直接尋找 RSS，就可以得到 RSS 網址了。
 
 ```html
-<link
-    rel="alternate"
-    type="application/rss+xml"
-    title="RSS"
-    href="https://www.youtube.com/feeds/videos.xml?channel_id=UCksDP7GImFEZyAIwJk_QxLw"
-/>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.youtube.com/feeds/videos.xml?channel_id=UCksDP7GImFEZyAIwJk_QxLw" />
 ```
 
 ### Podcast

@@ -59,9 +59,8 @@ JavaScript 只需要監聽滾動事件，並在距離範圍套入公式並修改
 ```js
 const element = document.getElementById("element");
 window.addEventListener("scroll", function () {
-    const scrollY = window.scrollY;
-    if (scrollY < 100)
-        element.style.transform = `translateY(${scrollY * 1.4 + 10}px)`;
+	const scrollY = window.scrollY;
+	if (scrollY < 100) element.style.transform = `translateY(${scrollY * 1.4 + 10}px)`;
 });
 ```
 
@@ -80,37 +79,37 @@ https://codepen.io/edit-mr/pen/vYvZagX
 
 ```css
 body {
-    min-height: 300vh;
-    margin: 2rem;
-    text-align: center;
+	min-height: 300vh;
+	margin: 2rem;
+	text-align: center;
 }
 
 div {
-    height: 300px;
-    background: gray;
-    position: relative;
+	height: 300px;
+	background: gray;
+	position: relative;
 }
 
 #element {
-    background: red;
-    width: 50%;
-    height: 200px;
-    z-index: -1;
-    left: 25%;
-    border-radius: 20px 20px 0 0;
+	background: red;
+	width: 50%;
+	height: 200px;
+	z-index: -1;
+	left: 25%;
+	border-radius: 20px 20px 0 0;
 }
 ```
 
 ```js
 const element = document.getElementById("element");
 window.addEventListener("scroll", function () {
-    const scrollY = window.scrollY;
-    if (scrollY < 100) {
-        element.style.transform = `translateY(${scrollY * 1.4 + 10}px)`;
-        document.body.style.background = "white";
-    } else {
-        document.body.style.background = "pink";
-    }
+	const scrollY = window.scrollY;
+	if (scrollY < 100) {
+		element.style.transform = `translateY(${scrollY * 1.4 + 10}px)`;
+		document.body.style.background = "white";
+	} else {
+		document.body.style.background = "pink";
+	}
 });
 ```
 
@@ -125,51 +124,42 @@ window.addEventListener("scroll", function () {
 ```html
 <div></div>
 <p>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem laborum
-    esse adipisci aperiam obcaecati veniam, facilis iste, cupiditate corrupti,
-    ad alias voluptatibus veritatis quae aliquam. Perspiciatis neque labore
-    dolorem ullam. Laborum, sequi. Tenetur aspernatur amet maiores sit possimus,
-    nihil doloremque consequuntur! Neque, suscipit laborum! Accusamus, sint
-    perspiciatis iure ipsa velit necessitatibus aliquam numquam debitis nisi
-    repudiandae nemo laborum exercitationem distinctio? Voluptatum deleniti
-    quasi corrupti consequuntur, iure unde dicta pariatur blanditiis in officiis
-    ab itaque iusto vero praesentium amet ipsa aperiam quo eligendi corporis
-    nulla minus numquam veritatis rem! Nemo, fuga? Quos nulla quae numquam
-    tempore perferendis tenetur, sequi magni iste odit, eius molestias sit enim,
-    amet reiciendis laborum accusamus facere voluptatem! Delectus sit quia
-    libero amet sint! Temporibus, fugiat distinctio! Ipsam, ullam placeat?
-    Corporis exercitationem eius dolores, nulla enim temporibus amet repellendus
-    accusantium suscipit esse non qui similique. Laboriosam sunt sapiente
-    voluptate nihil voluptates rerum facilis itaque aspernatur, optio sint.
+	Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem laborum esse adipisci aperiam obcaecati veniam, facilis iste, cupiditate corrupti, ad alias voluptatibus veritatis quae
+	aliquam. Perspiciatis neque labore dolorem ullam. Laborum, sequi. Tenetur aspernatur amet maiores sit possimus, nihil doloremque consequuntur! Neque, suscipit laborum! Accusamus, sint perspiciatis
+	iure ipsa velit necessitatibus aliquam numquam debitis nisi repudiandae nemo laborum exercitationem distinctio? Voluptatum deleniti quasi corrupti consequuntur, iure unde dicta pariatur blanditiis
+	in officiis ab itaque iusto vero praesentium amet ipsa aperiam quo eligendi corporis nulla minus numquam veritatis rem! Nemo, fuga? Quos nulla quae numquam tempore perferendis tenetur, sequi magni
+	iste odit, eius molestias sit enim, amet reiciendis laborum accusamus facere voluptatem! Delectus sit quia libero amet sint! Temporibus, fugiat distinctio! Ipsam, ullam placeat? Corporis
+	exercitationem eius dolores, nulla enim temporibus amet repellendus accusantium suscipit esse non qui similique. Laboriosam sunt sapiente voluptate nihil voluptates rerum facilis itaque
+	aspernatur, optio sint.
 </p>
 ```
 
 ```css
 body {
-    background: #001c30;
-    color: #dafffb;
+	background: #001c30;
+	color: #dafffb;
 }
 div,
 div::after {
-    background: #176b87;
-    width: 100px;
-    height: 100px;
-    position: fixed;
-    left: 30%;
-    top: calc(50% - 50px);
-    border-radius: 50%;
+	background: #176b87;
+	width: 100px;
+	height: 100px;
+	position: fixed;
+	left: 30%;
+	top: calc(50% - 50px);
+	border-radius: 50%;
 }
 
 div::after {
-    content: "";
-    position: absolute;
-    background: #64ccc5;
-    width: 30px;
-    height: 30px;
-    left: 100%;
+	content: "";
+	position: absolute;
+	background: #64ccc5;
+	width: 30px;
+	height: 30px;
+	left: 100%;
 }
 p {
-    width: 20%;
+	width: 20%;
 }
 ```
 
@@ -184,8 +174,8 @@ transform: translateX(50vw) rotate(90deg);
 ```js
 const planet = document.querySelector("div");
 window.addEventListener("scroll", function () {
-    const scrollY = window.scrollY;
-    planet.style.transform = `translateX(${scrollY * 0.3}vw) rotate(${scrollY * 3}deg)`;
+	const scrollY = window.scrollY;
+	planet.style.transform = `translateX(${scrollY * 0.3}vw) rotate(${scrollY * 3}deg)`;
 });
 ```
 

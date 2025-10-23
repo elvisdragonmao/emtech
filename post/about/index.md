@@ -21,9 +21,7 @@ thumbnail: /static/img/og.webp
 
 部落格初期使用 Hugo 作為生成器，但為了追求效能極致、輕量化、可定制性與安全性，我決定從零開始開發屬於自己的部落格生成器 - emblog。這款自製生成器支援現代的 SEO 邀要求，並透過無前端框架實現了單頁應用（SPA）的流暢體驗，達成零等待載入頁面，動畫順暢，還內建了我所需的各項功能，達到極高的客製化標準。
 
-{{notice}}
-閱讀更多關於 emblog 的資訊：[emblog - 一個不一樣的部落格生成器](https://emtech.cc/p/emblog)
-{{noticed}}
+{{notice}} 閱讀更多關於 emblog 的資訊：[emblog - 一個不一樣的部落格生成器](https://emtech.cc/p/emblog) {{noticed}}
 
 emblog 目前不管是從設計到裡面的核心皆是是為毛哥EM 資訊密技設計，缺少許多自訂功能，所以目前尚未對外開放對外使用。不過所有程式碼皆以 Apache 2.0 授權條款釋出，歡迎自行修改使用。等我之後有空應該會做成能讓大家使用的部落格生成器。歡迎關注我的 [GitHub](https://github.com/Edit-Mr/emtech) 以獲取最新消息。
 

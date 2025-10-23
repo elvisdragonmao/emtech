@@ -26,14 +26,14 @@ history.replaceState(state, title, url);
 
 ```html
 <script>
-    const text = "💀💀🔥🔥👆🤓👇";
-    const chars = Array.from(text);
-    let i = 0;
-    setInterval(() => {
-        const rotated = chars.slice(i).join("") + chars.slice(0, i).join("");
-        history.replaceState(null, "", "/" + rotated);
-        i = (i + 1) % chars.length;
-    }, 200);
+	const text = "💀💀🔥🔥👆🤓👇";
+	const chars = Array.from(text);
+	let i = 0;
+	setInterval(() => {
+		const rotated = chars.slice(i).join("") + chars.slice(0, i).join("");
+		history.replaceState(null, "", "/" + rotated);
+		i = (i + 1) % chars.length;
+	}, 200);
 </script>
 ```
 

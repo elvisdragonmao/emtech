@@ -39,46 +39,46 @@ CSS 設定一下寬高、形狀、與排列方式
 ```css
 .box div,
 .wheel {
-    background-color: #000;
+	background-color: #000;
 }
 body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 main {
-    width: 300px;
-    border: 4px solid #000;
-    display: flex;
-    border-radius: 20px;
-    padding: 10px;
+	width: 300px;
+	border: 4px solid #000;
+	display: flex;
+	border-radius: 20px;
+	padding: 10px;
 }
 .wheel {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
 }
 .box,
 .right,
 .wheelBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	padding: 10px;
 }
 .wheelBox {
-    justify-content: space-between;
-    padding: 10px 20px;
+	justify-content: space-between;
+	padding: 10px 20px;
 }
 .box div {
-    width: 28px;
-    height: 28px;
-    border-radius: 3px;
-    transform: scale(1);
-    animation: 1.5s ease-in-out infinite zoom;
+	width: 28px;
+	height: 28px;
+	border-radius: 3px;
+	transform: scale(1);
+	animation: 1.5s ease-in-out infinite zoom;
 }
 ```
 
@@ -96,15 +96,15 @@ animation: 1.5s ease-in-out infinite zoom;
 
 ```css
 @keyframes zoom {
-    0% {
-        transform: scale(1);
-    }
-    20% {
-        transform: scale(0.7);
-    }
-    40% {
-        transform: scale(1);
-    }
+	0% {
+		transform: scale(1);
+	}
+	20% {
+		transform: scale(0.7);
+	}
+	40% {
+		transform: scale(1);
+	}
 }
 ```
 
@@ -112,13 +112,13 @@ animation: 1.5s ease-in-out infinite zoom;
 
 ```css
 @keyframes zoom {
-    0%,
-    40% {
-        transform: scale(1);
-    }
-    20% {
-        transform: scale(0.7);
-    }
+	0%,
+	40% {
+		transform: scale(1);
+	}
+	20% {
+		transform: scale(0.7);
+	}
 }
 ```
 
@@ -130,26 +130,26 @@ animation: 1.5s ease-in-out infinite zoom;
 
 ```html
 <div class="box">
-    <div style="animation-delay: .0s"></div>
-    <div style="animation-delay: .1s"></div>
-    <div style="animation-delay: .2s"></div>
-    <div style="animation-delay: .3s"></div>
-    <div style="animation-delay: .4s"></div>
-    <div style="animation-delay: .1s"></div>
-    <div style="animation-delay: .2s"></div>
-    <div style="animation-delay: .3s"></div>
-    <div style="animation-delay: .4s"></div>
-    <div style="animation-delay: .5s"></div>
-    <div style="animation-delay: .2s"></div>
-    <div style="animation-delay: .3s"></div>
-    <div style="animation-delay: .4s"></div>
-    <div style="animation-delay: .5s"></div>
-    <div style="animation-delay: .6s"></div>
-    <div style="animation-delay: .3s"></div>
-    <div style="animation-delay: .4s"></div>
-    <div style="animation-delay: .5s"></div>
-    <div style="animation-delay: .6s"></div>
-    <div style="animation-delay: .7s"></div>
+	<div style="animation-delay: .0s"></div>
+	<div style="animation-delay: .1s"></div>
+	<div style="animation-delay: .2s"></div>
+	<div style="animation-delay: .3s"></div>
+	<div style="animation-delay: .4s"></div>
+	<div style="animation-delay: .1s"></div>
+	<div style="animation-delay: .2s"></div>
+	<div style="animation-delay: .3s"></div>
+	<div style="animation-delay: .4s"></div>
+	<div style="animation-delay: .5s"></div>
+	<div style="animation-delay: .2s"></div>
+	<div style="animation-delay: .3s"></div>
+	<div style="animation-delay: .4s"></div>
+	<div style="animation-delay: .5s"></div>
+	<div style="animation-delay: .6s"></div>
+	<div style="animation-delay: .3s"></div>
+	<div style="animation-delay: .4s"></div>
+	<div style="animation-delay: .5s"></div>
+	<div style="animation-delay: .6s"></div>
+	<div style="animation-delay: .7s"></div>
 </div>
 ```
 
@@ -175,9 +175,9 @@ https://codepen.io/edit-mr/pen/LYMZeZE?editors=1100
 
 ```css
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+	to {
+		transform: rotate(360deg);
+	}
 }
 ```
 

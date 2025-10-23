@@ -26,7 +26,7 @@ CSS 的功能是來裝飾 HTML 的，因此這部影片假設你已經會使用 
 
 ```css
 h1 {
-    color: blue;
+	color: blue;
 }
 ```
 
@@ -36,8 +36,8 @@ h1 {
 
 ```css
 h1 {
-    color: blue;
-    font-size: 50px;
+	color: blue;
+	font-size: 50px;
 }
 ```
 
@@ -90,15 +90,13 @@ h1 {
 
 ```css
 h1 {
-    color: red; /* 顏色名稱 */
-    color: #ff0000; /* 16 進位 HEX 碼 */
-    color: rgb(255, 0, 0);
-    color: rgba(255, 0, 0, 1); /* RBG 加上 A 透明度 */
-    color: hsl(0, 100%, 50%); /* HSL 分別代表色相、飽和度、亮度 */
-    color: hsla(0, 100%, 50%, 1); /* HSL 加上 A 透明度 */
-    color: color(
-        display-p3 1 0 0 / 1
-    ); /* 使用 color 可以顯示 RGB 不能表示的顏色，我們之後再來討論 */
+	color: red; /* 顏色名稱 */
+	color: #ff0000; /* 16 進位 HEX 碼 */
+	color: rgb(255, 0, 0);
+	color: rgba(255, 0, 0, 1); /* RBG 加上 A 透明度 */
+	color: hsl(0, 100%, 50%); /* HSL 分別代表色相、飽和度、亮度 */
+	color: hsla(0, 100%, 50%, 1); /* HSL 加上 A 透明度 */
+	color: color(display-p3 1 0 0 / 1); /* 使用 color 可以顯示 RGB 不能表示的顏色，我們之後再來討論 */
 }
 ```
 
@@ -108,14 +106,14 @@ h1 {
 
 ```css
 h1 {
-    font-size: 100px; /* px 是像素 */
-    font-size: 10rem; /* rem 是相對於系統設定的字體大小 */
-    font-size: 10em; /* em 是相對於父元素的字體大小 */
-    font-size: 10vw; /* 10vw 是相對於螢幕寬度 10% */
-    font-size: 10vh; /* 10vh 是相對於螢幕高度的 10% */
-    font-size: 10vmin; /* vmin 是相對於螢幕寬度和高度的最小值的百分比 */
-    font-size: 10vmax; /* vmax 是相對於螢幕寬度和高度的最大值的百分比 */
-    font-size: 10%; /* %在不同時候的意思不太一樣，但原則上就是你想的那樣...嗯對 */
+	font-size: 100px; /* px 是像素 */
+	font-size: 10rem; /* rem 是相對於系統設定的字體大小 */
+	font-size: 10em; /* em 是相對於父元素的字體大小 */
+	font-size: 10vw; /* 10vw 是相對於螢幕寬度 10% */
+	font-size: 10vh; /* 10vh 是相對於螢幕高度的 10% */
+	font-size: 10vmin; /* vmin 是相對於螢幕寬度和高度的最小值的百分比 */
+	font-size: 10vmax; /* vmax 是相對於螢幕寬度和高度的最大值的百分比 */
+	font-size: 10%; /* %在不同時候的意思不太一樣，但原則上就是你想的那樣...嗯對 */
 }
 ```
 
@@ -130,16 +128,16 @@ h1 {
 
 ```css
 h1 {
-    color: red; /*顏色*/
-    font-size: 1em; /*字體大小*/
-    letter-spacing: 10px; /*字體間距*/
-    line-height: 1.5; /*行高。通常會用數字代表正常高的倍數 */
-    font-weight: 500; /*字體粗細，數字最大 900，越大越重，預設*/
-    text-decoration: underline; /*底線，最長是用 none 來把超連結醜醜的底線移除*/
-    font-style: italic; /*斜體*/
-    opacity: 0.5; /*不透明度*/
-    text-align: center; /*文字對齊方向*/
-    font-family: arial, sans-serif; /*字體，如果第一個沒有就依序往後*/
+	color: red; /*顏色*/
+	font-size: 1em; /*字體大小*/
+	letter-spacing: 10px; /*字體間距*/
+	line-height: 1.5; /*行高。通常會用數字代表正常高的倍數 */
+	font-weight: 500; /*字體粗細，數字最大 900，越大越重，預設*/
+	text-decoration: underline; /*底線，最長是用 none 來把超連結醜醜的底線移除*/
+	font-style: italic; /*斜體*/
+	opacity: 0.5; /*不透明度*/
+	text-align: center; /*文字對齊方向*/
+	font-family: arial, sans-serif; /*字體，如果第一個沒有就依序往後*/
 }
 ```
 
@@ -217,11 +215,7 @@ background: linear-gradient(#333, #333 50%, #eee 75%, #333 75%);
 ```css
 background: linear-gradient(#e66465, #9198e5);
 background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
-background: linear-gradient(
-    217deg,
-    rgba(255, 0, 0, 0.8),
-    rgba(255, 0, 0, 0) 70.71%
-);
+background: linear-gradient(217deg, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.71%);
 ```
 
 <img src=https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient/linear-gradient.png style="width:300px;display:inline;" />
@@ -251,8 +245,7 @@ border-top-left-radius: 10%;
 
 ### outline
 
-outline 位置在 border 的外緣，但不佔用元素的任何空間。原則上我通常不會想用到它，因為 border 比較好用。
-outline 不能夠聲明單邊樣式，它一定是圍繞呈現的。  
+outline 位置在 border 的外緣，但不佔用元素的任何空間。原則上我通常不會想用到它，因為 border 比較好用。outline 不能夠聲明單邊樣式，它一定是圍繞呈現的。  
 outline 的形狀可以不規則，它會順著 border 邊緣顯示，不一定得是矩形。可是目前大多數的瀏覽器不支援該特性。實際上驗證之下會發現 outline 並不會去適應 border-radius 的圓弧。
 
 ```css
@@ -331,8 +324,7 @@ clear: left|right|both;
 
 可以讓左/右不會重疊到
 
-![](https://i.imgur.com/KJsAt0K.png)
-![](https://i.imgur.com/In4DqWf.png)
+![](https://i.imgur.com/KJsAt0K.png) ![](https://i.imgur.com/In4DqWf.png)
 
 ## Position
 
@@ -384,8 +376,8 @@ transform: translateY(單位或百分比);
 
 ```css
 .translate {
-    background-color: pink;
-    transform: translate(100px, -50px);
+	background-color: pink;
+	transform: translate(100px, -50px);
 }
 ```
 
@@ -399,13 +391,13 @@ translate 的百分比基準是自己的 width 跟 height
 
 ```css
 .outer {
-    position: relative;
+	position: relative;
 }
 
 img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
 }
 ```
 
@@ -502,7 +494,7 @@ font-size:2em;
 
 ```css
 p::before {
-    content: ”哈囉“;
+	content: ”哈囉“;
 }
 ```
 
@@ -514,5 +506,4 @@ p::before {
 
 好啦，今天我們介紹了許多不同的 CSS 屬性。這些已經是最常用的屬性了，但礙於篇幅我們有一些沒有講的很詳細。如果你想知道更多的屬性，可以到[MDN](https://developer.mozilla.org/zh-TW/docs/Web/CSS)查詢。下一週我們要來介紹如何使用 VSCode 這個酷酷的「整合式開發環境」。
 
-每週一早上六點，我們會在YouTube和各大Podcast平台不定時更新。如果你喜歡文字版，也歡迎在Instagram和Google新聞追蹤毛哥EM資訊密技。
-我是毛哥EM，讓我們下週再見！
+每週一早上六點，我們會在YouTube和各大Podcast平台不定時更新。如果你喜歡文字版，也歡迎在Instagram和Google新聞追蹤毛哥EM資訊密技。我是毛哥EM，讓我們下週再見！

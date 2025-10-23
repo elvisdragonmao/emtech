@@ -50,45 +50,45 @@ date: 2023-10-05
 
 ```html
 <div id="header">
-    <button id="toggle-button">切换</button>
-    <span id="type">CSS Animation</span>
+	<button id="toggle-button">切换</button>
+	<span id="type">CSS Animation</span>
 </div>
 <div id="box-container"></div>
 ```
 
 ```css
 #header {
-    position: sticky;
-    top: 0.5rem;
-    margin: 0 0.5rem;
-    z-index: 100;
-    background-color: lightgreen;
+	position: sticky;
+	top: 0.5rem;
+	margin: 0 0.5rem;
+	z-index: 100;
+	background-color: lightgreen;
 }
 
 #box-container {
-    margin-top: 1.5rem;
-    display: grid;
-    grid-template-columns: repeat(40, 1fr);
-    gap: 15px;
+	margin-top: 1.5rem;
+	display: grid;
+	grid-template-columns: repeat(40, 1fr);
+	gap: 15px;
 }
 
 .box {
-    width: 30px;
-    height: 30px;
-    background-color: red;
+	width: 30px;
+	height: 30px;
+	background-color: red;
 }
 
 .css-animation {
-    animation: animate 6s linear 0s infinite alternate;
+	animation: animate 6s linear 0s infinite alternate;
 }
 
 @keyframes animate {
-    0% {
-        transform: translateX(0) rotate(0deg) scale(0.6);
-    }
-    100% {
-        transform: translateX(500px) rotate(360deg) scale(1.4);
-    }
+	0% {
+		transform: translateX(0) rotate(0deg) scale(0.6);
+	}
+	100% {
+		transform: translateX(500px) rotate(360deg) scale(1.4);
+	}
 }
 ```
 
@@ -100,30 +100,30 @@ const animationType = document.getElementById("type");
 
 // create boxes
 for (let i = 0; i < 1000; i++) {
-    const div = document.createElement("div");
-    div.classList.add("css-animation");
-    div.classList.add("box");
-    boxContainer.appendChild(div);
-    boxes.push(div.style);
+	const div = document.createElement("div");
+	div.classList.add("css-animation");
+	div.classList.add("box");
+	boxContainer.appendChild(div);
+	boxes.push(div.style);
 }
 
 let toggleStatus = true;
 let rafId;
 button.addEventListener("click", () => {
-    if (toggleStatus) {
-        animationType.textContent = " requestAnimationFrame";
-        for (const child of boxContainer.children) {
-            child.classList.remove("css-animation");
-        }
-        rafId = window.requestAnimationFrame(animate);
-    } else {
-        window.cancelAnimationFrame(rafId);
-        animationType.textContent = " CSS animation";
-        for (const child of boxContainer.children) {
-            child.classList.add("css-animation");
-        }
-    }
-    toggleStatus = !toggleStatus;
+	if (toggleStatus) {
+		animationType.textContent = " requestAnimationFrame";
+		for (const child of boxContainer.children) {
+			child.classList.remove("css-animation");
+		}
+		rafId = window.requestAnimationFrame(animate);
+	} else {
+		window.cancelAnimationFrame(rafId);
+		animationType.textContent = " CSS animation";
+		for (const child of boxContainer.children) {
+			child.classList.add("css-animation");
+		}
+	}
+	toggleStatus = !toggleStatus;
 });
 
 const duration = 6000;
@@ -132,34 +132,30 @@ const rotate = 360;
 const scale = 1.4 - 0.6;
 let start;
 function animate(time) {
-    if (!start) {
-        start = time;
-        rafId = window.requestAnimationFrame(animate);
-        return;
-    }
+	if (!start) {
+		start = time;
+		rafId = window.requestAnimationFrame(animate);
+		return;
+	}
 
-    const progress = (time - start) / duration;
-    if (progress < 2) {
-        let x = progress * translateX;
-        let transform;
-        if (progress >= 1) {
-            x = (2 - progress) * translateX;
-            transform = `translateX(${x}px) rotate(${
-                (2 - progress) * rotate
-            }deg) scale(${0.6 + (2 - progress) * scale})`;
-        } else {
-            transform = `translateX(${x}px) rotate(${progress * rotate}deg) scale(${
-                0.6 + progress * scale
-            })`;
-        }
+	const progress = (time - start) / duration;
+	if (progress < 2) {
+		let x = progress * translateX;
+		let transform;
+		if (progress >= 1) {
+			x = (2 - progress) * translateX;
+			transform = `translateX(${x}px) rotate(${(2 - progress) * rotate}deg) scale(${0.6 + (2 - progress) * scale})`;
+		} else {
+			transform = `translateX(${x}px) rotate(${progress * rotate}deg) scale(${0.6 + progress * scale})`;
+		}
 
-        for (const box of boxes) {
-            box.transform = transform;
-        }
-    } else {
-        start = null;
-    }
-    rafId = window.requestAnimationFrame(animate);
+		for (const box of boxes) {
+			box.transform = transform;
+		}
+	} else {
+		start = null;
+	}
+	rafId = window.requestAnimationFrame(animate);
 }
 ```
 

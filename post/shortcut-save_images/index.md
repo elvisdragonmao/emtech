@@ -9,14 +9,11 @@ date: 2021-08-13
 
 只要透過這個捷徑即可一鍵下載網頁中的指定或所有照片。只需要分享網頁並選擇此捷徑即會自動下載並詢問要儲存的照片，選擇後會儲存到相簿。
 
-{{notice}}
-儲存影像
+{{notice}} 儲存影像
 
 - 開發者:毛哥EM(我)
 - 軟體類型:ios 捷徑
-- 下載位置：
-  [iCloud](https://www.icloud.com/shortcuts/1929e97c60ff4fada8b237a3823ceb85)
-  {{noticed}}
+- 下載位置： [iCloud](https://www.icloud.com/shortcuts/1929e97c60ff4fada8b237a3823ceb85) {{noticed}}
 
 捷徑有兩個不同模式，分別是「Safari 網頁」和「網址下載」。原理不太一樣，詳細差異如下。
 
@@ -42,8 +39,6 @@ date: 2021-08-13
 
 請在任意網頁按下分享鍵並選取捷徑，以及模式即可。下載的內容會直接儲存到相簿
 
-{{notice}}
-小提醒
+{{notice}} 小提醒
 
-- 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。
-  {{noticed}}
+- 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。 {{noticed}}

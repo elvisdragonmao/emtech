@@ -1,10 +1,6 @@
 ## ✅ What
 
-
-
 ## 🤔 Why
-
-
 
 ## 👩‍🔬 How to validate
 

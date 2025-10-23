@@ -14,8 +14,7 @@ thumbnail: /static/Homekit-PC/power.webp
 
 <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F676807707915952&width=300&show_text=false&height=676&appId" width="300" height="676" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 
-{{notice}}
-Android 能使用嗎？
+{{notice}} Android 能使用嗎？
 
 我們要使用的函式庫是 Homespan，它支援的是 Homekit 而不是 Matter 協議，因此可能無法在安卓裝置使用。你可以尋找其他函式庫或著替代解決方案。
 
@@ -27,8 +26,7 @@ Android 能使用嗎？
 
 當然，Homekit 並沒有「開機按鈕」這種裝置，也沒有「電腦狀態感測器」。所以我們要~~騙~~和 Homekit 解釋這兩個分別是「燈泡開關」以及「室內溫度」。
 
-{{notice}}
-友善提醒
+{{notice}} 友善提醒
 
 如果你不是一位創客不想要 DIY 的話，在網路上面可以找到直接類似功能的產品。或著是使用智慧開關，並在 BIOS 設定「通電時開機」即可。
 
@@ -86,17 +84,14 @@ Android 能使用嗎？
 接下來我們要來把程式燒錄至 ESP32:
 
 1. 請先從官網下載並安裝 Arduino IDE，點開一直下一步即可。
-2. 在開始燒錄之前我們要先來安裝 ESP32 驅動函式庫和 Homekit 函式庫。請你開啟軟體點擊左上角的「檔案」，並選擇「偏好設置」。
-   ![::img-medium](openper.webp)
+2. 在開始燒錄之前我們要先來安裝 ESP32 驅動函式庫和 Homekit 函式庫。請你開啟軟體點擊左上角的「檔案」，並選擇「偏好設置」。 ![::img-medium](openper.webp)
 3. 在下面有一排可以讓你自行輸入函式庫網址的輸入框，請你貼上以下網址：
 
 ```
 https://dl.espressif.com/dl/package_esp32_index.json
 ```
 
-![::img-medium](url.webp) 4. 請你進入 BOARDS MANAGER 並搜尋 esp32。安裝 Espressif 開發的的 ESP-32 套件。
-![::img-medium](driver.jpg) 5. 請點擊左邊第三個的圖書標誌並搜尋 HomeSpan 並安裝。
-![::img-medium](homespan.webp) 6. 貼上以下程式碼：
+![::img-medium](url.webp) 4. 請你進入 BOARDS MANAGER 並搜尋 esp32。安裝 Espressif 開發的的 ESP-32 套件。 ![::img-medium](driver.jpg) 5. 請點擊左邊第三個的圖書標誌並搜尋 HomeSpan 並安裝。 ![::img-medium](homespan.webp) 6. 貼上以下程式碼：
 
 ```ino
 #include "HomeSpan.h"
@@ -168,8 +163,7 @@ void loop() {
 }
 ```
 
-7. 設定 COM Port，請你點擊左上角的輸入選擇，接著選擇你的 ESP32 的 COM Port。你可以把 ESP-32 拔掉再插上來看看哪個消失再出現就是了。
-   ![::img-medium](com.webp)
+7. 設定 COM Port，請你點擊左上角的輸入選擇，接著選擇你的 ESP32 的 COM Port。你可以把 ESP-32 拔掉再插上來看看哪個消失再出現就是了。 ![::img-medium](com.webp)
 8. 最後，請你點擊左上角的「上傳」按鈕 (往右的箭頭)，並等待燒錄完成即可。如果上傳失敗請點擊 ESP32 上面的 BOOT 按鈕，拔掉重新插上電源並再次上傳。
 
 ## 設定
@@ -200,8 +194,7 @@ void loop() {
 
 將電源開關開啟就會開機或關機了。記得開啟開關就是相當於按下按鈕。所以如果你一直開著就相當於長按開關，如果按太久就會強制關機。
 
-{{notice}}
-按電源鍵關機會傷電腦嗎？
+{{notice}} 按電源鍵關機會傷電腦嗎？
 
 不會。即使是按下電腦電源關機還是走正常關機流程，所以並不會傷害電腦，不過你要確定的是關機前你的文件有先存檔喔。
 

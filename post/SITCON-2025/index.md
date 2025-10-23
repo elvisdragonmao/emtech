@@ -86,11 +86,11 @@ margin: auto;
 
 ```css
 body {
-    font-family: system-ui;
+	font-family: system-ui;
 }
 
 img {
-    max-width: min(100%, 500px);
+	max-width: min(100%, 500px);
 }
 ```
 

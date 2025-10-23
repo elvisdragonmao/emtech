@@ -52,8 +52,8 @@ transition: background 1s;
 
 ```css
 transition:
-    background 1s,
-    color 2s;
+	background 1s,
+	color 2s;
 ```
 
 秒數也可以用毫秒 ms，但我習慣使用秒因為比較短。如果是零點幾零可以省略。比如說以下幾個都是一樣效果
@@ -76,31 +76,31 @@ https://codepen.io/edit-mr/pen/mdaPYLv
 
 ```css
 a:hover {
-    background-color: #ffffff4a;
-    transform: scale(1.2);
+	background-color: #ffffff4a;
+	transform: scale(1.2);
 }
 
 a {
-    transition: transform 0.3s ease-out;
-    /* 以下只是裝飾 */
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    font-family: sans-serif;
-    font-size: 5em;
-    border: #fff solid 5px;
-    padding: 1rem;
-    text-align: center;
-    width: 3em;
+	transition: transform 0.3s ease-out;
+	/* 以下只是裝飾 */
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	font-family: sans-serif;
+	font-size: 5em;
+	border: #fff solid 5px;
+	padding: 1rem;
+	text-align: center;
+	width: 3em;
 }
 
 body {
-    background: #000;
-    min-height: 100svh;
-    /*   昨天講的置中 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	background: #000;
+	min-height: 100svh;
+	/*   昨天講的置中 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 ```
 
@@ -114,34 +114,34 @@ https://codepen.io/edit-mr/pen/RwEamev
 
 ```css
 a::after {
-    transition: width 0.5s ease-out;
-    content: "";
-    height: 2px;
-    display: block;
-    background: red;
-    width: 0em;
+	transition: width 0.5s ease-out;
+	content: "";
+	height: 2px;
+	display: block;
+	background: red;
+	width: 0em;
 }
 a:hover::after,
 a:active::after {
-    width: 100%;
+	width: 100%;
 }
 /* 以下只是裝飾 */
 a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    font-family: sans-serif;
-    font-size: 5em;
-    text-align: center;
-    cursor: pointer;
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	font-family: sans-serif;
+	font-size: 5em;
+	text-align: center;
+	cursor: pointer;
 }
 body {
-    background: #000;
-    min-height: 100svh;
-    /*   昨天講的置中 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	background: #000;
+	min-height: 100svh;
+	/*   昨天講的置中 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 ```
 
@@ -151,16 +151,16 @@ body {
 
 ```css
 @keyframes 動畫名稱 {
-    0% {
-        /* 要套用的 CSS */
-    }
-    30% {
-        /* 要套用的 CSS */
-    }
-    /* ...(中間可以放更多) */
-    100% {
-        /* 要套用的 CSS */
-    }
+	0% {
+		/* 要套用的 CSS */
+	}
+	30% {
+		/* 要套用的 CSS */
+	}
+	/* ...(中間可以放更多) */
+	100% {
+		/* 要套用的 CSS */
+	}
 }
 ```
 
@@ -168,12 +168,12 @@ body {
 
 ```css
 @keyframes drive {
-    0% {
-        left: 0;
-    }
-    100% {
-        left: 50%;
-    }
+	0% {
+		left: 0;
+	}
+	100% {
+		left: 50%;
+	}
 }
 ```
 
@@ -181,12 +181,12 @@ body {
 
 ```css
 @keyframes drive {
-    from {
-        left: 0;
-    }
-    to {
-        left: 50%;
-    }
+	from {
+		left: 0;
+	}
+	to {
+		left: 50%;
+	}
 }
 ```
 
@@ -194,9 +194,9 @@ body {
 
 ```css
 @keyframes drive {
-    to {
-        left: 50%;
-    }
+	to {
+		left: 50%;
+	}
 }
 ```
 
@@ -206,8 +206,7 @@ body {
 animation: drive 3s forwards;
 ```
 
-https://codepen.io/edit-mr/pen/NWeKpjj
-![drive 3s forwards](car.gif)
+https://codepen.io/edit-mr/pen/NWeKpjj ![drive 3s forwards](car.gif)
 
 CSS Animation 的語法如下
 
@@ -224,8 +223,8 @@ animation: slidein linear 3s 1s;
 
 /* 多重動畫 */
 animation:
-    3s linear slidein,
-    3s ease-out 5s slideout;
+	3s linear slidein,
+	3s ease-out 5s slideout;
 ```
 
 ## 速度曲線

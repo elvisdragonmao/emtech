@@ -17,8 +17,7 @@ date: 2023-09-22
 
 應該說隨著瀏覽器和螢幕的發展，螢幕的色域越來越廣，是超過 RGB 能表達的，讓我們可以看到更亮眼跟絢麗的色彩。而且每一間公司出場的螢幕顏色多少有點不一樣，而且科技一直在進步，誰知道發明新的單位什麼時候會淘汰。於是[惠普](https://zh.m.wikipedia.org/wiki/%E6%83%A0%E6%99%AE)與[微軟](https://zh.m.wikipedia.org/wiki/%E5%BE%AE%E8%BD%AF)於 1996 年一起開發了 **sRGB 色彩空間。**
 
-![CIE 1931 xy 色彩圖表示的 sRGB 色彩空間的色域以及原色的位置](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/CIExy1931_sRGB.png/800px-CIExy1931_sRGB.png)
-圖片來源：維基共享資源
+![CIE 1931 xy 色彩圖表示的 sRGB 色彩空間的色域以及原色的位置](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/CIExy1931_sRGB.png/800px-CIExy1931_sRGB.png) 圖片來源：維基共享資源
 
 看我們突然多出好多顏色可以用了！但是人類對色的慾望是用無止境的，一下就發現不夠用了。尤其是藍色的部分很多印刷能夠印出來的顏色在螢幕上根本顯示不出來。於是又跑出 Adobe RGB 等等更多標準…
 

@@ -189,11 +189,9 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=/maps/map.yaml
 
 可以參考基因遺傳演算法 (Genetic Algorithm) 或其他演算法。程式分為三個區塊，裡面分別都有一些小問題要修復。每個區塊五分共十五分。接著你可以嘗試優化它，依照速度最高可以再獲得 7 分。
 
-{{notice}}
-小提示
+{{notice}} 小提示
 
-一些語法錯誤直接 GPT 解就可以了。
-{{noticed}}
+一些語法錯誤直接 GPT 解就可以了。 {{noticed}}
 
 #### 第二大題：讓機器人跑起來 (28 分)
 

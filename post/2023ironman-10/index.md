@@ -13,8 +13,7 @@ date: 2023-09-24
 
 傳統跑馬燈雖然在現代乍看之下是一個又醜又過時的設計，但是如果應用的好的話其實是非常有質感且蠻有趣的。裝飾效果多大於實際用途。
 
-![Alt text](<2023-09-11 12-46-01.gif>)
-這是我幫朋友製作的個人網頁，裡面使用跑馬燈搭配旋轉效果。卡頓是因為 GIF 的緣故，如果想看原始網頁可以到[這裡](https://furryart-tw.github.io/artist/Maple/)。
+![Alt text](<2023-09-11 12-46-01.gif>) 這是我幫朋友製作的個人網頁，裡面使用跑馬燈搭配旋轉效果。卡頓是因為 GIF 的緣故，如果想看原始網頁可以到[這裡](https://furryart-tw.github.io/artist/Maple/)。
 
 如果要你做跑馬燈你會怎麼做呢？如果你是一個有年紀的工程師的話應該使用過 `<marquee>` 吧，然而這是一個還沒正式啟用就已經被淘汰的語法，且能設定的屬性有限。如果你是一個現代的工程師應該有想過使用 `@keyframes` 動畫吧。但是這樣會遇到幾個問題。首先是跑完不會連續，會有一段空白的時間。但是如果說多疊幾個你怎麼知道需要幾個？萬一內容很短又在電競超長曲面螢幕怎麼辦？還有一個最大的問題，我們知道速率的公式是距離除以時間對吧？
 
@@ -32,30 +31,30 @@ $$
 
 ```html
 <div class="marquee">
-    <div class="element">SALE</div>
+	<div class="element">SALE</div>
 </div>
 ```
 
 ```css
 body {
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    margin: 0;
+	min-height: 100svh;
+	display: flex;
+	align-items: center;
+	margin: 0;
 }
 .marquee {
-    font-size: 3rem;
-    color: #fff;
-    height: 1.5em;
-    background: red;
-    width: 100%;
-    position: relative;
-    font-family: Arial;
+	font-size: 3rem;
+	color: #fff;
+	height: 1.5em;
+	background: red;
+	width: 100%;
+	position: relative;
+	font-family: Arial;
 }
 .element {
-    position: absolute;
-    left: 0;
-    top: 0.25em;
+	position: absolute;
+	left: 0;
+	top: 0.25em;
 }
 ```
 
@@ -65,19 +64,19 @@ body {
 
 ```css
 .element {
-    position: absolute;
-    left: 0;
-    top: 0.25em;
-    animation: marquee 2s forwards linear;
+	position: absolute;
+	left: 0;
+	top: 0.25em;
+	animation: marquee 2s forwards linear;
 }
 
 @keyframes marquee {
-    from {
-        transform: translateX(100vw);
-    }
-    to {
-        transform: translateX(-100%);
-    }
+	from {
+		transform: translateX(100vw);
+	}
+	to {
+		transform: translateX(-100%);
+	}
 }
 ```
 
@@ -124,10 +123,10 @@ var loopTime = element_width / v; //每 delay 秒放入一個新的
 
 ```jsx
 setTimeout(
-    () => {
-        marquee.removeChild(marqueeBox);
-    },
-    time * 1000 + 1000
+	() => {
+		marquee.removeChild(marqueeBox);
+	},
+	time * 1000 + 1000
 );
 ```
 
@@ -137,11 +136,11 @@ setTimeout(
 
 ```jsx
 function newMaquee() {
-    var clonedElement = element.cloneNode(true);
-    marquee.appendChild(clonedElement);
-    setTimeout(() => {
-        marquee.removeChild(clonedElement);
-    }, time + 1000);
+	var clonedElement = element.cloneNode(true);
+	marquee.appendChild(clonedElement);
+	setTimeout(() => {
+		marquee.removeChild(clonedElement);
+	}, time + 1000);
 }
 
 setInterval(newMaquee, loopTime);
@@ -167,47 +166,46 @@ element.style.animation = `marquee ${time}ms forwards linear`;
 
 所以把速率計算都丟入函式內，整理一下樣式，完整程式碼如下。
 
-https://codepen.io/edit-mr/pen/YzdZdKv
-![跑馬燈成果](final.gif)
+https://codepen.io/edit-mr/pen/YzdZdKv ![跑馬燈成果](final.gif)
 
 ```html
 <div class="marquee">
-    <div class="element">SALE</div>
+	<div class="element">SALE</div>
 </div>
 ```
 
 ```css
 body {
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    margin: 0;
-    overflow: hidden;
+	min-height: 100svh;
+	display: flex;
+	align-items: center;
+	margin: 0;
+	overflow: hidden;
 }
 .marquee {
-    font-size: 3rem;
-    color: #fff;
-    height: 1.5em;
-    background: red;
-    width: 100%;
-    position: relative;
-    font-family: Arial;
-    font-weight: 800;
-    font-style: italic;
+	font-size: 3rem;
+	color: #fff;
+	height: 1.5em;
+	background: red;
+	width: 100%;
+	position: relative;
+	font-family: Arial;
+	font-weight: 800;
+	font-style: italic;
 }
 .element {
-    position: absolute;
-    left: 0;
-    top: 0.2em;
+	position: absolute;
+	left: 0;
+	top: 0.2em;
 }
 
 @keyframes marquee {
-    from {
-        transform: translateX(100vw);
-    }
-    to {
-        transform: translateX(-100%);
-    }
+	from {
+		transform: translateX(100vw);
+	}
+	to {
+		transform: translateX(-100%);
+	}
 }
 ```
 
@@ -221,14 +219,14 @@ var loopTime = element_width / v + 100;
 const marquee = document.querySelector(".marquee");
 
 function newMaquee() {
-    time = (window.innerWidth + element_width) / v;
-    element.style.animation = `marquee ${time}ms forwards linear`;
-    loopTime = element_width / v + 100;
-    var clonedElement = element.cloneNode(true);
-    marquee.appendChild(clonedElement);
-    setTimeout(() => {
-        marquee.removeChild(clonedElement);
-    }, time + 1000);
+	time = (window.innerWidth + element_width) / v;
+	element.style.animation = `marquee ${time}ms forwards linear`;
+	loopTime = element_width / v + 100;
+	var clonedElement = element.cloneNode(true);
+	marquee.appendChild(clonedElement);
+	setTimeout(() => {
+		marquee.removeChild(clonedElement);
+	}, time + 1000);
 }
 marquee.removeChild(element); //第一個先移除，避免卡住
 newMaquee(); //手動新增第一個

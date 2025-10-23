@@ -27,17 +27,17 @@ date: 2023-10-01
 
 ```css
 div {
-    width: 300px;
-    height: 300px;
-    background: green;
-    border-radius: 45%;
+	width: 300px;
+	height: 300px;
+	background: green;
+	border-radius: 45%;
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100svh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100svh;
 }
 ```
 
@@ -47,17 +47,17 @@ body {
 
 ```css
 div {
-    width: 300px;
-    height: 300px;
-    background: green;
-    border-radius: 45%;
-    animation: spin 5s linear infinite;
+	width: 300px;
+	height: 300px;
+	background: green;
+	border-radius: 45%;
+	animation: spin 5s linear infinite;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+	to {
+		transform: rotate(360deg);
+	}
 }
 ```
 
@@ -81,60 +81,60 @@ https://codepen.io/edit-mr/pen/JjwBbgg
 
 ```html
 <main>
-    <div></div>
-    <div class="“second”"></div>
-    <h2>40%</h2>
+	<div></div>
+	<div class="“second”"></div>
+	<h2>40%</h2>
 </main>
 ```
 
 ```css
 body {
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100svh;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100svh;
 }
 main {
-    width: 300px;
-    height: 300px;
-    background: #03bafc;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 5px solid #fff;
-    outline: 5px solid #03bafc;
-    position: relative;
+	width: 300px;
+	height: 300px;
+	background: #03bafc;
+	overflow: hidden;
+	border-radius: 50%;
+	border: 5px solid #fff;
+	outline: 5px solid #03bafc;
+	position: relative;
 }
 div {
-    width: 450px;
-    height: 450px;
-    background: #52bdff;
-    border-radius: 43%;
-    animation: spin 5s linear infinite;
-    position: absolute;
-    bottom: 100px;
-    left: -75px;
+	width: 450px;
+	height: 450px;
+	background: #52bdff;
+	border-radius: 43%;
+	animation: spin 5s linear infinite;
+	position: absolute;
+	bottom: 100px;
+	left: -75px;
 }
 .second {
-    animation-delay: 0.5s;
-    bottom: 120px;
-    background: #fff;
-    border-radius: 45%;
+	animation-delay: 0.5s;
+	bottom: 120px;
+	background: #fff;
+	border-radius: 45%;
 }
 h2 {
-    position: absolute;
-    font-family: system-ui;
-    font-size: 30px;
-    color: #0369ad;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	font-family: system-ui;
+	font-size: 30px;
+	color: #0369ad;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+	to {
+		transform: rotate(360deg);
+	}
 }
 ```
 

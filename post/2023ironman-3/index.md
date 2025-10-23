@@ -26,24 +26,24 @@ date: 2023-09-17
 ```html
 <!-- section>div*4 -->
 <section>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
 </section>
 ```
 
 ```css
 section {
-    background: #191d88; /* bg #191d88 */
-    padding: 5px; /* p5 */
+	background: #191d88; /* bg #191d88 */
+	padding: 5px; /* p5 */
 }
 
 div {
-    width: 100px; /* w100 */
-    height: 100px; /* h100 */
-    background: #ffc436; /* bg #ffc436 */
-    margin: 20px; /* m20 */
+	width: 100px; /* w100 */
+	height: 100px; /* h100 */
+	background: #ffc436; /* bg #ffc436 */
+	margin: 20px; /* m20 */
 }
 ```
 
@@ -59,10 +59,10 @@ div {
 
 ```css
 section {
-    flex-direction: row; /* 預設左到右 */
-    flex-direction: row-reverse; /* 右到左 */
-    flex-direction: column; /* 上到下 */
-    flex-direction: column-reverse; /* 下到上 */
+	flex-direction: row; /* 預設左到右 */
+	flex-direction: row-reverse; /* 右到左 */
+	flex-direction: column; /* 上到下 */
+	flex-direction: column-reverse; /* 下到上 */
 }
 ```
 
@@ -90,7 +90,7 @@ flex-wrap: wrap-reverse; /* 換行但從下到上排 */
 
 ```css
 .flex-container {
-    flex-flow: < "flex-direction" > || < "flex-wrap" >;
+	flex-flow: < "flex-direction" > || < "flex-wrap" >;
 }
 ```
 
@@ -117,8 +117,7 @@ justify-content: flex-start | flex-end | center | space-between | space-around;
 是上一個屬性的多行版本，比較少用，但排列方式也有多一些，但注意 `stretch` 在高度被限制的情況下不會正常伸展。
 
 ```css
-align-content: flex-start | flex-end | center | space-between | space-around |
-    stretch;
+align-content: flex-start | flex-end | center | space-between | space-around | stretch;
 ```
 
 ![Untitled](align-content.webp)

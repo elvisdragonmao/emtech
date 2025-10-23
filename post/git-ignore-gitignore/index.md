@@ -69,8 +69,7 @@ description: `.gitignore` 能不能 ignore 自己？可以。
 git rm --cached .gitignore
 ```
 
-這會從 Git 的追蹤清單中移除 `.gitignore`，但不會刪掉本地檔案。
-然後之後 `.gitignore` 就真的被 ignore 了。
+這會從 Git 的追蹤清單中移除 `.gitignore`，但不會刪掉本地檔案。然後之後 `.gitignore` 就真的被 ignore 了。
 
 ## 我們學到了什麼？
 

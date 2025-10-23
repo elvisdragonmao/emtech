@@ -17,8 +17,7 @@ date: 2024-09-28
 
 ### 步驟 1：生成 SSH 密鑰對
 
-1. **生成 SSH 密鑰**：
-   打開你的終端（Terminal），輸入以下命令生成新的 SSH 密鑰對：
+1. **生成 SSH 密鑰**：打開你的終端（Terminal），輸入以下命令生成新的 SSH 密鑰對：
 
     ```bash
     ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
@@ -26,8 +25,7 @@ date: 2024-09-28
 
     系統會提示你輸入密鑰文件的位置和名稱，預設為 `~/.ssh/id_rsa`，以及可選擇的密碼。
 
-2. **複製公鑰**：
-   使用以下命令複製公鑰內容：
+2. **複製公鑰**：使用以下命令複製公鑰內容：
 
     ```bash
     cat ~/.ssh/id_rsa.pub
@@ -37,15 +35,13 @@ date: 2024-09-28
 
 ### 步驟 2：將公鑰添加到遠程伺服器
 
-1. **登錄遠程伺服器**：
-   使用 SSH 登錄到你的遠程伺服器（假設伺服器 IP 為 `192.168.1.1`）：
+1. **登錄遠程伺服器**：使用 SSH 登錄到你的遠程伺服器（假設伺服器 IP 為 `192.168.1.1`）：
 
     ```bash
     ssh username@192.168.1.1
     ```
 
-2. **將公鑰添加到伺服器**：
-   打開 `~/.ssh/authorized_keys` 文件（如果該文件不存在，可以創建）並將剛才複製的公鑰內容粘貼到該文件中：
+2. **將公鑰添加到伺服器**：打開 `~/.ssh/authorized_keys` 文件（如果該文件不存在，可以創建）並將剛才複製的公鑰內容粘貼到該文件中：
 
     ```bash
     nano ~/.ssh/authorized_keys
@@ -61,8 +57,7 @@ date: 2024-09-28
 
 讓我們依照第 11 天的步驟，將 SSH 私鑰添加為 GitHub Secrets，以便在 GitHub Actions 中使用。這樣可以保護私鑰不被公開顯示。
 
-1. **將私鑰添加為 GitHub Secret**：
-   在你的 GitHub 倉庫中，導航到 "Settings" -> "Secrets and variables" -> "Actions"，點擊 "New repository secret"。
+1. **將私鑰添加為 GitHub Secret**：在你的 GitHub 倉庫中，導航到 "Settings" -> "Secrets and variables" -> "Actions"，點擊 "New repository secret"。
     - **名稱**：`SSH_PRIVATE_KEY`
     - **值**：你的 SSH 私鑰內容（`~/.ssh/id_rsa` 的內容）
 

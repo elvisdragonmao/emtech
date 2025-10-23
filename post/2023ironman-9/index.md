@@ -62,31 +62,26 @@ https://codepen.io/edit-mr/pen/jOXayXa
 
 ```html
 <h1>
-    09:41
-    <div class="mix">09:41</div>
+	09:41
+	<div class="mix">09:41</div>
 </h1>
 ```
 
 ```css
 body {
-    background: linear-gradient(
-        90deg,
-        rgba(2, 0, 36, 1) 0%,
-        rgba(9, 9, 121, 1) 35%,
-        rgba(0, 212, 255, 1) 100%
-    );
-    color: rgba(255, 255, 255, 0.6);
-    display: flex;
-    align-item: center;
-    justify-content: center;
-    height: 100svh;
-    font-size: 10vw;
+	background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+	color: rgba(255, 255, 255, 0.6);
+	display: flex;
+	align-item: center;
+	justify-content: center;
+	height: 100svh;
+	font-size: 10vw;
 }
 .mix {
-    mix-blend-mode: plus-lighter;
+	mix-blend-mode: plus-lighter;
 }
 * {
-    margin: 0;
+	margin: 0;
 }
 ```
 

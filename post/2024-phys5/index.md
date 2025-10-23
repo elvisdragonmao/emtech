@@ -12,8 +12,7 @@ description: 仰望盃全國科學 HomeRun 實作大賽是科學實驗競賽，�
 
 ![2024 仰望盃全國科學 HomeRun 實作大賽](https://www.kaofamilyfoundation.org.tw/wp-content/uploads/2024/05/1180X437.jpg)
 
-{{notice}}
-溫馨提醒
+{{notice}} 溫馨提醒
 
 這篇文章撰寫時是以 2024 年的比賽為主。從第一屆到第二屆就有非常大的變化，因此可能有些內容在未來的比賽中會有所改變。這裡有我們的[作品說明書](https://phys5.ncue.edu.tw/2024science/word/202410.pdf)提供參考。
 

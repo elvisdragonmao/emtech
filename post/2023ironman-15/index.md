@@ -27,19 +27,19 @@ date: 2023-09-29
 
 ```html
 <div class="hope-container">
-    <input type="radio" name="hope" value="0" />
-    <input type="radio" name="hope" value="1" />
-    <input type="radio" name="hope" value="2" checked="" />
-    <input type="radio" name="hope" value="3" />
-    <input type="radio" name="hope" value="4" />
-    <div class="hope-selected"></div>
-    <div class="hope-label">
-        <div>0</div>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-    </div>
+	<input type="radio" name="hope" value="0" />
+	<input type="radio" name="hope" value="1" />
+	<input type="radio" name="hope" value="2" checked="" />
+	<input type="radio" name="hope" value="3" />
+	<input type="radio" name="hope" value="4" />
+	<div class="hope-selected"></div>
+	<div class="hope-label">
+		<div>0</div>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+	</div>
 </div>
 ```
 
@@ -55,26 +55,26 @@ CSS 的部分我想要製作使用新擬物化設計 Neumorphism，或是說 Sof
 
 ```css
 * {
-    padding: 0;
-    margin: 0;
-    transition: all 0.2s;
+	padding: 0;
+	margin: 0;
+	transition: all 0.2s;
 }
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100svh;
-    background: #e6e7ee;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100svh;
+	background: #e6e7ee;
 }
 .hope-container {
-    height: 2rem;
-    border-radius: 2rem;
-    position: relative;
-    display: flex;
-    box-shadow:
-        3px 3px 6px #b8b9be inset,
-        -3px -3px 6px #fff inset;
-    background-color: #e6e7ee;
+	height: 2rem;
+	border-radius: 2rem;
+	position: relative;
+	display: flex;
+	box-shadow:
+		3px 3px 6px #b8b9be inset,
+		-3px -3px 6px #fff inset;
+	background-color: #e6e7ee;
 }
 ```
 
@@ -84,11 +84,11 @@ body {
 
 ```css
 .hope-container input {
-    width: 2rem;
-    height: 2rem;
-    display: block;
-    opacity: 0;
-    cursor: pointer;
+	width: 2rem;
+	height: 2rem;
+	display: block;
+	opacity: 0;
+	cursor: pointer;
 }
 ```
 
@@ -98,19 +98,19 @@ body {
 
 ```css
 .hope-label {
-    position: absolute;
-    left: 0;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 2rem;
+	position: absolute;
+	left: 0;
+	pointer-events: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 2rem;
 }
 
 .hope-label > div {
-    width: 2rem;
-    text-align: center;
+	width: 2rem;
+	text-align: center;
 }
 ```
 
@@ -120,14 +120,14 @@ body {
 
 ```css
 .hope-selected {
-    width: 2rem;
-    height: 2rem;
-    position: absolute;
-    left: 0;
-    border-radius: 50px;
-    background: #7a85dc;
-    pointer-events: none;
-    box-shadow: 0 0 3px #545fb6 inset;
+	width: 2rem;
+	height: 2rem;
+	position: absolute;
+	left: 0;
+	border-radius: 50px;
+	background: #7a85dc;
+	pointer-events: none;
+	box-shadow: 0 0 3px #545fb6 inset;
 }
 ```
 
@@ -137,19 +137,19 @@ body {
 
 ```css
 .hope-container input:nth-child(2):checked ~ .hope-selected {
-    left: 2rem;
+	left: 2rem;
 }
 
 .hope-container input:nth-child(3):checked ~ .hope-selected {
-    left: 4rem;
+	left: 4rem;
 }
 
 .hope-container input:nth-child(4):checked ~ .hope-selected {
-    left: 6rem;
+	left: 6rem;
 }
 
 .hope-container input:nth-child(5):checked ~ .hope-selected {
-    left: 8rem;
+	left: 8rem;
 }
 ```
 
@@ -157,23 +157,23 @@ body {
 
 ```css
 .hope-container input:nth-child(1):checked ~ .hope-label > div:nth-child(1) {
-    color: #e6e7ee;
+	color: #e6e7ee;
 }
 
 .hope-container input:nth-child(2):checked ~ .hope-label > div:nth-child(2) {
-    color: #e6e7ee;
+	color: #e6e7ee;
 }
 
 .hope-container input:nth-child(3):checked ~ .hope-label > div:nth-child(3) {
-    color: #e6e7ee;
+	color: #e6e7ee;
 }
 
 .hope-container input:nth-child(4):checked ~ .hope-label > div:nth-child(4) {
-    color: #e6e7ee;
+	color: #e6e7ee;
 }
 
 .hope-container input:nth-child(5):checked ~ .hope-label > div:nth-child(5) {
-    color: #e6e7ee;
+	color: #e6e7ee;
 }
 ```
 

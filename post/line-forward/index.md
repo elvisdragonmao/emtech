@@ -9,8 +9,7 @@ date: 2025-04-28
 
 你是否有群組充滿著垃圾訊息？或是你是否想同步兩個群組的訊息？今天我要帶你一步步製作一個簡單的 Line Bot 來轉發群組重要訊息給自己或任意聊天室。不用程式經驗，複製貼上就好了。
 
-{{notice}}
-Line Notify 停用
+{{notice}} Line Notify 停用
 
 兩年前我寫過一篇文章介紹如何使用 Line Notify 來轉發訊息，但由於 Line Notify 的服務是可以免費無限使用的，LINE 賺不到錢，所以已經被棄用。因次我重新撰寫的這篇文章使用 Line Bot 來實現轉發訊息的功能。
 
@@ -103,56 +102,47 @@ const ACCESS_TOKEN = "剛才複製的那一串";
 
 // 這裡定義：哪些人/群組可以轉發，以及要轉到哪裡
 const FORWARD_RULES = {
-    全部: "廣播"
+	全部: "廣播"
 };
 
 // 底下不用更改
 function doPost(e) {
-    const json = JSON.parse(e.postData.contents);
-    // 簡單判斷是不是訊息事件
-    if (json.events && json.events.length > 0) {
-        const event = json.events[0];
+	const json = JSON.parse(e.postData.contents);
+	// 簡單判斷是不是訊息事件
+	if (json.events && json.events.length > 0) {
+		const event = json.events[0];
 
-        if (event.type === "message" && event.message.type === "text") {
-            const forwardTarget =
-                FORWARD_RULES["全部"] ||
-                FORWARD_RULES[event.source.groupId] ||
-                FORWARD_RULES[event.source.userId];
-            if (forwardTarget) {
-                let messageText = event.message.text;
-                if (forwardTarget == "廣播")
-                    messageText +=
-                        "\nUser ID: `" +
-                        event.source.userId +
-                        "`\nGroup ID: `" +
-                        event.source.groupId +
-                        "`";
-                forwardMessage(forwardTarget, messageText);
-            }
-        }
-    }
-    return ContentService.createTextOutput("OK");
+		if (event.type === "message" && event.message.type === "text") {
+			const forwardTarget = FORWARD_RULES["全部"] || FORWARD_RULES[event.source.groupId] || FORWARD_RULES[event.source.userId];
+			if (forwardTarget) {
+				let messageText = event.message.text;
+				if (forwardTarget == "廣播") messageText += "\nUser ID: `" + event.source.userId + "`\nGroup ID: `" + event.source.groupId + "`";
+				forwardMessage(forwardTarget, messageText);
+			}
+		}
+	}
+	return ContentService.createTextOutput("OK");
 }
 // 發送訊息給指定ID
 function forwardMessage(targetId, text) {
-    const url = targetId == "廣播" ? "broadcast" : "push";
-    const options = {
-        method: "post",
-        contentType: "application/json",
-        headers: {
-            Authorization: "Bearer " + ACCESS_TOKEN
-        },
-        payload: JSON.stringify({
-            to: targetId,
-            messages: [
-                {
-                    type: "text",
-                    text: text
-                }
-            ]
-        })
-    };
-    UrlFetchApp.fetch("https://api.line.me/v2/bot/message/" + url, options);
+	const url = targetId == "廣播" ? "broadcast" : "push";
+	const options = {
+		method: "post",
+		contentType: "application/json",
+		headers: {
+			Authorization: "Bearer " + ACCESS_TOKEN
+		},
+		payload: JSON.stringify({
+			to: targetId,
+			messages: [
+				{
+					type: "text",
+					text: text
+				}
+			]
+		})
+	};
+	UrlFetchApp.fetch("https://api.line.me/v2/bot/message/" + url, options);
 }
 ```
 
@@ -220,9 +210,9 @@ TypeError: Cannot read properties of undefined (reading 'postData')
 
 ```js
 const FORWARD_RULES = {
-    "群組 ID": "你的使用者 ID",
-    "使用者 ID": "群組 ID"
-    //... 看你要加幾條規則都可以
+	"群組 ID": "你的使用者 ID",
+	"使用者 ID": "群組 ID"
+	//... 看你要加幾條規則都可以
 };
 ```
 

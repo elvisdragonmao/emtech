@@ -32,20 +32,18 @@ HTML 就是這樣建立一個又一個地”元素” (element) 。因為寫 HTM
 
 ```html
 <p>
-    段落
-    <b>粗體</b>
-    <i>斜體</i>
-    <s>刪除線</s>
-    <u>底線</u>
-    H<sup>+</sup> CO<sub>2</sub>
+	段落
+	<b>粗體</b>
+	<i>斜體</i>
+	<s>刪除線</s>
+	<u>底線</u>
+	H<sup>+</sup> CO<sub>2</sub>
 </p>
 ```
 
 `<p>`元素代表段落區塊 (paragraph)。`<b>`是粗體 (bold)、`<i>`是斜體 (italic)、`<s>`是劃掉 (strike)、`<u>`是底線 (underline)。`<sup>`是上標 (superscript)、`<sub>`是下標 (subscript)。你可以記 super 在上面，而訂閱按鈕 Subscribe 在影片下方等你去按。
 
-**粗體\***斜體\*~~刪除線~~
-<u>底線</u>
-H<sup>+</sup> CO<sub>2</sub>
+**粗體\***斜體\*~~刪除線~~ <u>底線</u> H<sup>+</sup> CO<sub>2</sub>
 
 ## 空白 換行
 
@@ -80,9 +78,9 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <ul>
-    <li>a</li>
-    <li>b</li>
-    <li>c</li>
+	<li>a</li>
+	<li>b</li>
+	<li>c</li>
 </ul>
 ```
 
@@ -96,9 +94,9 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <ol>
-    <li>a</li>
-    <li>b</li>
-    <li>c</li>
+	<li>a</li>
+	<li>b</li>
+	<li>c</li>
 </ol>
 ```
 
@@ -112,16 +110,16 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <ul>
-    <li>玉米濃湯</li>
-    <li>鮪魚吐司</li>
-    <li>
-        薯條
-        <ul>
-            <li>鹽味</li>
-            <li>胡椒鹽</li>
-            <li>番茄醬</li>
-        </ul>
-    </li>
+	<li>玉米濃湯</li>
+	<li>鮪魚吐司</li>
+	<li>
+		薯條
+		<ul>
+			<li>鹽味</li>
+			<li>胡椒鹽</li>
+			<li>番茄醬</li>
+		</ul>
+	</li>
 </ul>
 ```
 
@@ -171,10 +169,7 @@ H<sup>+</sup> CO<sub>2</sub>
 比如說這個是從 Google 首頁抓下來的圖片，我們可以這樣寫：
 
 ```html
-<img
-    src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-    alt="Google"
-/>
+<img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google" />
 ```
 
 ![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
@@ -183,10 +178,7 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <a href="https://www.google.com/">
-    <img
-        src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-        alt="Google"
-    />
+	<img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google" />
 </a>
 ```
 
@@ -200,24 +192,24 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <table>
-    <tr>
-        <th>國家</th>
-        <th>首都</th>
-        <th>人口</th>
-        <th>語言</th>
-    </tr>
-    <tr>
-        <td>USA</td>
-        <td>Washington D.C.</td>
-        <td>309 million</td>
-        <td>English</td>
-    </tr>
-    <tr>
-        <td>Sweden</td>
-        <td>Stockholm</td>
-        <td>9 million</td>
-        <td>Swedish</td>
-    </tr>
+	<tr>
+		<th>國家</th>
+		<th>首都</th>
+		<th>人口</th>
+		<th>語言</th>
+	</tr>
+	<tr>
+		<td>USA</td>
+		<td>Washington D.C.</td>
+		<td>309 million</td>
+		<td>English</td>
+	</tr>
+	<tr>
+		<td>Sweden</td>
+		<td>Stockholm</td>
+		<td>9 million</td>
+		<td>Swedish</td>
+	</tr>
 </table>
 ```
 
@@ -246,32 +238,32 @@ H<sup>+</sup> CO<sub>2</sub>
 
 ```html
 <table>
-    <thead>
-        <tr>
-            <th>項目</th>
-            <th>金額</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>iPhone 11</td>
-            <td>$24,900</td>
-        </tr>
-        <tr>
-            <td>AirPods</td>
-            <td>$6,490</td>
-        </tr>
-        <tr>
-            <td>iPad Pro</td>
-            <td>$25,900</td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-            <th>總金額</th>
-            <td>$57,290</td>
-        </tr>
-    </tfoot>
+	<thead>
+		<tr>
+			<th>項目</th>
+			<th>金額</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>iPhone 11</td>
+			<td>$24,900</td>
+		</tr>
+		<tr>
+			<td>AirPods</td>
+			<td>$6,490</td>
+		</tr>
+		<tr>
+			<td>iPad Pro</td>
+			<td>$25,900</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th>總金額</th>
+			<td>$57,290</td>
+		</tr>
+	</tfoot>
 </table>
 ```
 
@@ -370,9 +362,7 @@ H<sup>+</sup> CO<sub>2</sub>
 <input type="radio" name="color" value="blue" /> blue
 ```
 
-<input type="radio" name="color" value="red"> red<br>
-<input type="radio" name="color" value="green"> green<br>
-<input type="radio" name="color" value="blue"> blue
+<input type="radio" name="color" value="red"> red<br> <input type="radio" name="color" value="green"> green<br> <input type="radio" name="color" value="blue"> blue
 
 記住，radio 是只能選一個的，就想你的收音機一樣，你一次只能聽一個頻道。我們在 HTML 裡面會使用`name`屬性來指定一組單選框，這樣瀏覽器才知道這些單選框是一組的。而 value 代表了選擇他的值，比如說我們選擇了 red，那麼瀏覽器就會把 red 的值傳給伺服器。
 
@@ -398,13 +388,13 @@ iframe 是用來嵌入網頁的，比如說我們要嵌入 YouTube 影片，你�
 
 ```html
 <iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/lOecpIqOjjY"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen
+	width="560"
+	height="315"
+	src="https://www.youtube.com/embed/lOecpIqOjjY"
+	title="YouTube video player"
+	frameborder="0"
+	allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+	allowfullscreen
 ></iframe>
 ```
 
@@ -415,10 +405,7 @@ iframe 是用來嵌入網頁的，比如說我們要嵌入 YouTube 影片，你�
 Audio 是用來播放音樂的，我們可以用`<audio>`元素建立，然後用`src`屬性指定音樂的網址：
 
 ```html
-<audio
-    src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-    controls
-></audio>
+<audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls></audio>
 ```
 
 <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls></audio>
@@ -443,15 +430,12 @@ Video 是用來播放影片的，我們可以用`<video>`元素建立，然後�
 
 ```html
 <div>
-    <h2>注意</h2>
-    <p>感謝你的注意</p>
+	<h2>注意</h2>
+	<p>感謝你的注意</p>
 </div>
 ```
 
-{{notice}}
-注意
-感謝你的注意
-{{noticed}}
+{{notice}} 注意感謝你的注意 {{noticed}}
 
 ### HTML5 版面
 
@@ -492,5 +476,4 @@ Video 是用來播放影片的，我們可以用`<video>`元素建立，然後�
 
 好啦，今天我們介紹了許多不同的 HTML 元素。這些已經是最常用的元素了，如果你想知道更多的元素，可以到[MDN](https://developer.mozilla.org/zh-TW/docs/Web/HTML/Element)查詢。下一週我們要來介紹 CSS 來裝飾我們的網頁。
 
-每週一早上六點，我們會在YouTube和各大Podcast平台不定時更新。如果你喜歡文字版，也歡迎在Instagram和Google新聞追蹤毛哥EM資訊密技。
-我是毛哥EM，讓我們下週再見！
+每週一早上六點，我們會在YouTube和各大Podcast平台不定時更新。如果你喜歡文字版，也歡迎在Instagram和Google新聞追蹤毛哥EM資訊密技。我是毛哥EM，讓我們下週再見！

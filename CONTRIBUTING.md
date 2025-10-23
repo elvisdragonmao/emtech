@@ -85,7 +85,6 @@ If you encounter a bug or have a suggestion:
 
 ---
 
-Thank you for contributing! ❤️
-If you have any questions, feel free to reach out by creating an issue.
+Thank you for contributing! ❤️ If you have any questions, feel free to reach out by creating an issue.
 
 Happy coding! 🚀

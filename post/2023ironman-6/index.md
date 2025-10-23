@@ -39,60 +39,59 @@ position: 屬性;
 
 來一個範例讓大家分辨它們不同的效果
 
-https://codepen.io/edit-mr/pen/rNoYOKZ
-![範例](sunny.webp)
+https://codepen.io/edit-mr/pen/rNoYOKZ ![範例](sunny.webp)
 
 ```html
 <div class="sun">Fixed</div>
 <div class="cloud">Static</div>
 <div class="cloud relative">Relative</div>
 <div class="building">
-    Relative
-    <div class="roof">Absolute</div>
+	Relative
+	<div class="roof">Absolute</div>
 </div>
 ```
 
 ```css
 body {
-    background: lightblue;
-    text-align: center;
-    font-weight: 800;
+	background: lightblue;
+	text-align: center;
+	font-weight: 800;
 }
 .sun {
-    width: 100px;
-    height: 100px;
-    background: yellow;
-    border-radius: 50%;
-    position: fixed;
-    right: 30px;
-    top: 30px;
+	width: 100px;
+	height: 100px;
+	background: yellow;
+	border-radius: 50%;
+	position: fixed;
+	right: 30px;
+	top: 30px;
 }
 .cloud {
-    width: 300px;
-    height: 100px;
-    left: 20%;
-    background: white;
-    border-radius: 30px 20px 100px 50px;
+	width: 300px;
+	height: 100px;
+	left: 20%;
+	background: white;
+	border-radius: 30px 20px 100px 50px;
 }
 .relative {
-    position: relative;
+	position: relative;
 }
 .building {
-    width: 300px;
-    height: 1000px;
-    background: gray;
-    position: relative;
-    left: 50%;
+	width: 300px;
+	height: 1000px;
+	background: gray;
+	position: relative;
+	left: 50%;
 }
 .roof {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 100px;
-    height: 70px;
-    background: #000;
-    margin-top: -70px;
-    color: #fff;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 100px;
+	height: 70px;
+	background: #000;
+	margin-top: -70px;
+	color: #fff;
 }
 ```
 

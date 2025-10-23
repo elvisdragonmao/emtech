@@ -33,15 +33,13 @@ description: 打開開發者工具複製參數，前端直接 fetch 即可。
 
 ## 🧭 步驟二：找到 `entry.xxxxx` 欄位 ID
 
-Google Form 的每個問題都有一個隱藏的編號（`entry.XXXXXXXX`），
-這是送資料時要用的。
+Google Form 的每個問題都有一個隱藏的編號（`entry.XXXXXXXX`），這是送資料時要用的。
 
 找法如下：
 
 1. 按 **右上角三點 → 預覽**
 2. 用開發者工具（F12）開啟檢查器
-3. 點選表單中的輸入框
-   會看到像這樣的 HTML：
+3. 點選表單中的輸入框會看到像這樣的 HTML：
 
     ```html
     <input type="text" name="entry.1867519928" />
@@ -68,51 +66,51 @@ Google Form 的每個問題都有一個隱藏的編號（`entry.XXXXXXXX`），
 ```html
 <!DOCTYPE html>
 <html lang="zh-Hant">
-    <head>
-        <meta charset="UTF-8" />
-        <title>靜態表單示範</title>
-        <style>
-            body {
-                font-family: sans-serif;
-                max-width: 600px;
-                margin: 3rem auto;
-            }
-            label {
-                display: block;
-                margin-top: 1rem;
-            }
-            input,
-            textarea {
-                width: 100%;
-                padding: 0.5rem;
-            }
-            button {
-                margin-top: 1rem;
-                padding: 0.5rem 1rem;
-            }
-            span#form-message {
-                display: block;
-                margin-top: 0.5rem;
-                color: red;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>聯絡我們</h1>
+	<head>
+		<meta charset="UTF-8" />
+		<title>靜態表單示範</title>
+		<style>
+			body {
+				font-family: sans-serif;
+				max-width: 600px;
+				margin: 3rem auto;
+			}
+			label {
+				display: block;
+				margin-top: 1rem;
+			}
+			input,
+			textarea {
+				width: 100%;
+				padding: 0.5rem;
+			}
+			button {
+				margin-top: 1rem;
+				padding: 0.5rem 1rem;
+			}
+			span#form-message {
+				display: block;
+				margin-top: 0.5rem;
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>聯絡我們</h1>
 
-        <form id="contact-form">
-            <label>單位名稱<input name="organization" required /></label>
-            <label>部門<input name="department" /></label>
-            <label>稱呼<input name="name" required /></label>
-            <label>聯絡方式<input name="contact" required /></label>
-            <label>留言<textarea name="message"></textarea></label>
+		<form id="contact-form">
+			<label>單位名稱<input name="organization" required /></label>
+			<label>部門<input name="department" /></label>
+			<label>稱呼<input name="name" required /></label>
+			<label>聯絡方式<input name="contact" required /></label>
+			<label>留言<textarea name="message"></textarea></label>
 
-            <button type="submit" id="submit">送出</button>
-            <span id="form-message"></span>
-        </form>
+			<button type="submit" id="submit">送出</button>
+			<span id="form-message"></span>
+		</form>
 
-        <script src="form.js"></script>
-    </body>
+		<script src="form.js"></script>
+	</body>
 </html>
 ```
 
@@ -123,8 +121,7 @@ Google Form 的每個問題都有一個隱藏的編號（`entry.XXXXXXXX`），
 建立 `form.js`（放同一資料夾），這是表單提交邏輯：
 
 ```js
-const apiUrl =
-    "https://docs.google.com/forms/d/e/1FAIpQLSftAam5nJJQU925yOzuMoome-XY3MEs7idtbd56eqMDRrPKGw/formResponse";
+const apiUrl = "https://docs.google.com/forms/d/e/1FAIpQLSftAam5nJJQU925yOzuMoome-XY3MEs7idtbd56eqMDRrPKGw/formResponse";
 
 const form = document.getElementById("contact-form");
 const submitButton = document.getElementById("submit");
@@ -132,44 +129,44 @@ const messageElement = document.getElementById("form-message");
 
 // 對應 Google Form 欄位
 const entryMap = {
-    organization: "entry.1867519928",
-    department: "entry.363990418",
-    name: "entry.1660888396",
-    contact: "entry.1209239304",
-    message: "entry.65159086"
+	organization: "entry.1867519928",
+	department: "entry.363990418",
+	name: "entry.1660888396",
+	contact: "entry.1209239304",
+	message: "entry.65159086"
 };
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    messageElement.textContent = "";
+form.addEventListener("submit", event => {
+	event.preventDefault();
+	messageElement.textContent = "";
 
-    // 組成 Google Form 的資料格式
-    const formData = new FormData();
-    Object.entries(entryMap).forEach(([key, entryKey]) => {
-        const value = form.querySelector(`[name="${key}"]`).value;
-        formData.append(entryKey, value);
-    });
+	// 組成 Google Form 的資料格式
+	const formData = new FormData();
+	Object.entries(entryMap).forEach(([key, entryKey]) => {
+		const value = form.querySelector(`[name="${key}"]`).value;
+		formData.append(entryKey, value);
+	});
 
-    submitButton.disabled = true;
-    submitButton.textContent = "送出中…";
+	submitButton.disabled = true;
+	submitButton.textContent = "送出中…";
 
-    fetch(apiUrl, {
-        method: "POST",
-        mode: "no-cors", // 避免 CORS 錯誤
-        body: formData
-    })
-        .then(() => {
-            form.reset();
-            messageElement.textContent = "✅ 已成功送出，感謝您的填寫！";
-        })
-        .catch((err) => {
-            console.error("Submit error:", err);
-            messageElement.textContent = "⚠️ 發生錯誤，請稍後再試。";
-        })
-        .finally(() => {
-            submitButton.disabled = false;
-            submitButton.textContent = "送出";
-        });
+	fetch(apiUrl, {
+		method: "POST",
+		mode: "no-cors", // 避免 CORS 錯誤
+		body: formData
+	})
+		.then(() => {
+			form.reset();
+			messageElement.textContent = "✅ 已成功送出，感謝您的填寫！";
+		})
+		.catch(err => {
+			console.error("Submit error:", err);
+			messageElement.textContent = "⚠️ 發生錯誤，請稍後再試。";
+		})
+		.finally(() => {
+			submitButton.disabled = false;
+			submitButton.textContent = "送出";
+		});
 });
 ```
 
@@ -213,5 +210,4 @@ form.addEventListener("submit", (event) => {
 
 ---
 
-要我幫你附上這篇的 **Markdown 版本（可直接貼進你的 GitHub README）** 嗎？
-那樣整篇會自動有標題層級、語法高亮和段落格式。
+要我幫你附上這篇的 **Markdown 版本（可直接貼進你的 GitHub README）** 嗎？那樣整篇會自動有標題層級、語法高亮和段落格式。

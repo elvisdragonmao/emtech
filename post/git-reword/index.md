@@ -18,8 +18,7 @@ description:
 git commit --amend
 ```
 
-這條指令會打開你的編輯器（像是 Vim），讓你重新編輯最後一個 commit 的訊息。
-改完後儲存並關閉。
+這條指令會打開你的編輯器（像是 Vim），讓你重新編輯最後一個 commit 的訊息。改完後儲存並關閉。
 
 1. 強制推送
 
@@ -53,8 +52,7 @@ git rebase -i abc1234
 
 這樣會從這個 commit 的下一個開始全部顯示。
 
-2. 編輯 commit
-   畫面出來後，你會看到類似：
+2. 編輯 commit 畫面出來後，你會看到類似：
 
 ```
 pick abc1234 First commit
@@ -72,8 +70,7 @@ pick ghi9012 Third commit
 
 然後儲存並關閉。
 
-3. 修改訊息
-   Git 會依序個打開你要 `reword` 的 commit，讓你編輯新的訊息。編輯完儲存離開就會進入下一個。
+3. 修改訊息 Git 會依序個打開你要 `reword` 的 commit，讓你編輯新的訊息。編輯完儲存離開就會進入下一個。
 
 4. Rebase 完成後，強制推送
 

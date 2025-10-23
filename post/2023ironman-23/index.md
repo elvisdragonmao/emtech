@@ -15,14 +15,14 @@ date: 2023-10-07
 
 ```css
 body {
-    background: linear-gradient(90deg, red, yellow);
-    animation: gradientChange 1s infinite;
+	background: linear-gradient(90deg, red, yellow);
+	animation: gradientChange 1s infinite;
 }
 
 @keyframes gradientChange {
-    to {
-        background: linear-gradient(90deg, yellow, green);
-    }
+	to {
+		background: linear-gradient(90deg, yellow, green);
+	}
 }
 ```
 
@@ -42,19 +42,19 @@ body {
 
 ```css
 body {
-    background: linear-gradient(90deg, red, yellow);
-    background-size: 200% 100%;
-    background-position: 0 0;
-    animation: gradientChange 2s infinite linear alternate;
+	background: linear-gradient(90deg, red, yellow);
+	background-size: 200% 100%;
+	background-position: 0 0;
+	animation: gradientChange 2s infinite linear alternate;
 }
 
 @keyframes gradientChange {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: 100% 0;
-    }
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 100% 0;
+	}
 }
 ```
 
@@ -66,17 +66,17 @@ body {
 
 ```css
 body {
-    background: linear-gradient(90deg, red, yellow);
-    animation: gradientChange 2s infinite linear alternate;
+	background: linear-gradient(90deg, red, yellow);
+	animation: gradientChange 2s infinite linear alternate;
 }
 
 @keyframes gradientChange {
-    from {
-        background-size: 300% 300%;
-    }
-    to {
-        background-size: 100% 100%;
-    }
+	from {
+		background-size: 300% 300%;
+	}
+	to {
+		background-size: 100% 100%;
+	}
 }
 ```
 
@@ -102,32 +102,32 @@ background-position: 100% 0;
 
 ```css
 body {
-    margin: 0;
-    overflow: hidden;
+	margin: 0;
+	overflow: hidden;
 }
 div {
-    background: linear-gradient(45deg, red, yellow, blue);
-    animation: gradientChange 4s infinite linear;
-    height: 200vh;
-    width: 200vw;
+	background: linear-gradient(45deg, red, yellow, blue);
+	animation: gradientChange 4s infinite linear;
+	height: 200vh;
+	width: 200vw;
 }
 
 @keyframes gradientChange {
-    0% {
-        transform: translate(0, 0);
-    }
-    25% {
-        transform: translate(-50%, 0);
-    }
-    50% {
-        transform: translate(-50%, -50%);
-    }
-    75% {
-        transform: translate(0, -50%);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
+	0% {
+		transform: translate(0, 0);
+	}
+	25% {
+		transform: translate(-50%, 0);
+	}
+	50% {
+		transform: translate(-50%, -50%);
+	}
+	75% {
+		transform: translate(0, -50%);
+	}
+	100% {
+		transform: translate(0, 0);
+	}
 }
 ```
 
@@ -141,22 +141,22 @@ div {
 
 ```css
 body {
-    margin: 0;
+	margin: 0;
 }
 div {
-    background: linear-gradient(45deg, red, yellow);
-    animation: gradientChange 3s infinite;
-    min-height: 100vh;
-    filter: hue-rotate(50deg);
+	background: linear-gradient(45deg, red, yellow);
+	animation: gradientChange 3s infinite;
+	min-height: 100vh;
+	filter: hue-rotate(50deg);
 }
 
 @keyframes gradientChange {
-    0 {
-        filter: hue-rotate(0);
-    }
-    100% {
-        filter: hue-rotate(360deg);
-    }
+	0 {
+		filter: hue-rotate(0);
+	}
+	100% {
+		filter: hue-rotate(360deg);
+	}
 }
 ```
 
@@ -168,22 +168,22 @@ https://codepen.io/edit-mr/pen/mdaabzQ?editors=1100
 
 ```css
 body {
-    margin: 0;
+	margin: 0;
 }
 div {
-    background: linear-gradient(45deg, red, yellow);
-    animation: gradientChange 3s infinite linear alternate;
-    min-height: 100vh;
-    filter: hue-rotate(50deg);
+	background: linear-gradient(45deg, red, yellow);
+	animation: gradientChange 3s infinite linear alternate;
+	min-height: 100vh;
+	filter: hue-rotate(50deg);
 }
 
 @keyframes gradientChange {
-    0 {
-        filter: hue-rotate(0) contrast(1000%) invert(0%);
-    }
-    100% {
-        filter: hue-rotate(360deg) contrast(300%) invert(100%);
-    }
+	0 {
+		filter: hue-rotate(0) contrast(1000%) invert(0%);
+	}
+	100% {
+		filter: hue-rotate(360deg) contrast(300%) invert(100%);
+	}
 }
 ```
 

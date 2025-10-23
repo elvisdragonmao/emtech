@@ -33,9 +33,9 @@ date: 2023-09-25
 
 ```css
 body {
-    background-image: url("your-image.jpg");
-    background-attachment: fixed;
-    background-size: cover; /* 可選，用於調整圖片大小以填充整個視口 */
+	background-image: url("your-image.jpg");
+	background-attachment: fixed;
+	background-size: cover; /* 可選，用於調整圖片大小以填充整個視口 */
 }
 ```
 
@@ -49,8 +49,8 @@ body {
 
 ```css
 body {
-    background-image: url("your-image.jpg");
-    background-attachment: scroll;
+	background-image: url("your-image.jpg");
+	background-attachment: scroll;
 }
 ```
 
@@ -60,15 +60,14 @@ body {
 
 ```css
 .container {
-    background-image: url("your-image.jpg");
-    background-attachment: local;
+	background-image: url("your-image.jpg");
+	background-attachment: local;
 }
 ```
 
 這將使背景圖片與 `.container` 元素的內容滾動同步，而不是整個頁面。
 
-來個大範例
-<https://codepen.io/edit-mr/pen/rNodVbV>
+來個大範例 <https://codepen.io/edit-mr/pen/rNodVbV>
 
 ![飯粒範例](scroll.gif)
 

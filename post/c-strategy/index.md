@@ -55,25 +55,23 @@ description: 簡單來說好好去讀書吧。無論你全部猜 C、平均猜 A
 ```javascript
 // 策略 1: 全部猜 C
 function strategyAllC(correctAnswers) {
-    const guess = 2; // 選項 C 對應索引 2
-    return correctAnswers.filter((answer) => answer === guess).length;
+	const guess = 2; // 選項 C 對應索引 2
+	return correctAnswers.filter(answer => answer === guess).length;
 }
 
 // 策略 2: 隨機猜 ABCD
 function strategyRandom(correctAnswers) {
-    return correctAnswers.filter(
-        (answer) => answer === Math.floor(Math.random() * 4)
-    ).length;
+	return correctAnswers.filter(answer => answer === Math.floor(Math.random() * 4)).length;
 }
 
 // 模擬函數
 function simulate(numQuestions, simulations, strategy) {
-    let totalScore = 0;
-    for (let i = 0; i < simulations; i++) {
-        const correctAnswers = generateCorrectAnswers(numQuestions, 4);
-        totalScore += strategy(correctAnswers);
-    }
-    return totalScore / simulations;
+	let totalScore = 0;
+	for (let i = 0; i < simulations; i++) {
+		const correctAnswers = generateCorrectAnswers(numQuestions, 4);
+		totalScore += strategy(correctAnswers);
+	}
+	return totalScore / simulations;
 }
 ```
 

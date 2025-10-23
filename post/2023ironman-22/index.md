@@ -35,23 +35,23 @@ date: 2023-10-06
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap");
 
 body {
-    background: #000;
-    height: 100svh;
-    overflow: hidden;
-    color: #fff;
+	background: #000;
+	height: 100svh;
+	overflow: hidden;
+	color: #fff;
 }
 
 h1 {
-    font-size: 4em;
-    font-family: "Space Mono", monospace;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -100%);
+	font-size: 4em;
+	font-family: "Space Mono", monospace;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -100%);
 }
 div {
-    width: 100%;
-    word-wrap: break-word;
+	width: 100%;
+	word-wrap: break-word;
 }
 ```
 
@@ -106,11 +106,10 @@ box[Math.floor(Math.random() * box.length)];
 ```js
 const box = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-const randomText = (amount) => {
-    var a = "";
-    for (var i = 0; i < amount; i++)
-        a += box[Math.floor(Math.random() * box.length)];
-    return a;
+const randomText = amount => {
+	var a = "";
+	for (var i = 0; i < amount; i++) a += box[Math.floor(Math.random() * box.length)];
+	return a;
 };
 ```
 
@@ -131,10 +130,7 @@ randomText(10);
 
 ```js
 const singleText = document.querySelector("span");
-const total =
-    (window.innerWidth * window.innerHeight) /
-    singleText.offsetWidth /
-    singleText.offsetHeight;
+const total = (window.innerWidth * window.innerHeight) / singleText.offsetWidth / singleText.offsetHeight;
 //2736
 ```
 
@@ -147,7 +143,7 @@ const total =
 ```js
 console.log("never gonna give you up");
 window.setTimeout(function () {
-    console.log("never gonna let you down");
+	console.log("never gonna let you down");
 }, 2000);
 
 //never gonna give you up
@@ -159,16 +155,16 @@ window.setTimeout(function () {
 
 ```js
 for (let j = 0; j <= titleText.length; j++) {
-    window.setTimeout(function () {
-        var current = j;
-        for (let k = 0; k <= 5; k++) {
-            window.setTimeout(function () {
-                var correct = titleText.slice(0, current);
-                correct += randomText(titleText.length - current);
-                title.innerText = correct;
-            }, 50 * k);
-        }
-    }, 300 * j);
+	window.setTimeout(function () {
+		var current = j;
+		for (let k = 0; k <= 5; k++) {
+			window.setTimeout(function () {
+				var correct = titleText.slice(0, current);
+				correct += randomText(titleText.length - current);
+				title.innerText = correct;
+			}, 50 * k);
+		}
+	}, 300 * j);
 }
 ```
 
@@ -183,14 +179,14 @@ for (let j = 0; j <= titleText.length; j++) {
 偵測滑鼠移動
 
 ```js
-document.onmousemove = (e) => console.log(e);
+document.onmousemove = e => console.log(e);
 // mousemove { target: html, buttons: 0, clientX: 1004, clientY: 242, layerX: 1004, layerY: 242 }
 ```
 
 改成執行我們的函式
 
 ```js
-document.onmousemove = (e) => bluh(e);
+document.onmousemove = e => bluh(e);
 ```
 
 我們把讀到的滑鼠位置，放進 CSS 屬性 `--x` 和 `--y` 裡面。讓遮罩來定位。
@@ -203,19 +199,16 @@ bg.style.setProperty("--y", `${e.clientY}px`);
 完整函式
 
 ```js
-const bluh = (e) => {
-    const bg = document.querySelector("div");
-    const singleText = document.querySelector("span");
-    const total =
-        (window.innerWidth * window.innerHeight) /
-        singleText.offsetWidth /
-        singleText.offsetHeight;
-    bg.innerText = randomText(total);
-    bg.style.setProperty("--x", `${e.clientX}px`);
-    bg.style.setProperty("--y", `${e.clientY}px`);
+const bluh = e => {
+	const bg = document.querySelector("div");
+	const singleText = document.querySelector("span");
+	const total = (window.innerWidth * window.innerHeight) / singleText.offsetWidth / singleText.offsetHeight;
+	bg.innerText = randomText(total);
+	bg.style.setProperty("--x", `${e.clientX}px`);
+	bg.style.setProperty("--y", `${e.clientY}px`);
 };
 
-document.onmousemove = (e) => bluh(e);
+document.onmousemove = e => bluh(e);
 bluh();
 ```
 
@@ -225,15 +218,11 @@ bluh();
 
 ```css
 div {
-    --x: -100vw;
-    --y: -100vh;
-    width: 100%;
-    word-wrap: break-word;
-    -webkit-mask-image: radial-gradient(
-        circle at var(--x) var(--y),
-        #fff,
-        #ffffff44 15em
-    );
+	--x: -100vw;
+	--y: -100vh;
+	width: 100%;
+	word-wrap: break-word;
+	-webkit-mask-image: radial-gradient(circle at var(--x) var(--y), #fff, #ffffff44 15em);
 }
 ```
 
@@ -255,31 +244,27 @@ https://codepen.io/edit-mr/pen/bGOxLoV
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap");
 
 body {
-    background: #000;
-    height: 100svh;
-    overflow: hidden;
-    color: #fff;
+	background: #000;
+	height: 100svh;
+	overflow: hidden;
+	color: #fff;
 }
 
 h1 {
-    font-size: 4em;
-    color: #fff;
-    font-family: "Space Mono", monospace;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -100%);
+	font-size: 4em;
+	color: #fff;
+	font-family: "Space Mono", monospace;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -100%);
 }
 div {
-    --x: -100vw;
-    --y: -100vh;
-    width: 100%;
-    word-wrap: break-word;
-    -webkit-mask-image: radial-gradient(
-        circle at var(--x) var(--y),
-        #fff,
-        #ffffff44 15em
-    );
+	--x: -100vw;
+	--y: -100vh;
+	width: 100%;
+	word-wrap: break-word;
+	-webkit-mask-image: radial-gradient(circle at var(--x) var(--y), #fff, #ffffff44 15em);
 }
 ```
 
@@ -289,42 +274,38 @@ const title = document.querySelector("h1");
 const titleText = "ITHOME";
 
 setInterval(function () {
-    for (let j = 0; j <= titleText.length; j++) {
-        window.setTimeout(function () {
-            var current = j;
-            for (let k = 0; k <= 5; k++) {
-                window.setTimeout(function () {
-                    var correct = titleText.slice(0, current);
-                    correct += randomText(titleText.length - current);
-                    title.innerText = correct;
-                }, 50 * k);
-            }
-        }, 300 * j);
-    }
+	for (let j = 0; j <= titleText.length; j++) {
+		window.setTimeout(function () {
+			var current = j;
+			for (let k = 0; k <= 5; k++) {
+				window.setTimeout(function () {
+					var correct = titleText.slice(0, current);
+					correct += randomText(titleText.length - current);
+					title.innerText = correct;
+				}, 50 * k);
+			}
+		}, 300 * j);
+	}
 }, 5000);
 
 const box = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-const randomText = (amount) => {
-    var a = "";
-    for (var i = 0; i < amount; i++)
-        a += box[Math.floor(Math.random() * box.length)];
-    return a;
+const randomText = amount => {
+	var a = "";
+	for (var i = 0; i < amount; i++) a += box[Math.floor(Math.random() * box.length)];
+	return a;
 };
 
-const bluh = (e) => {
-    const bg = document.querySelector("div");
-    const singleText = document.querySelector("span");
-    const total =
-        (window.innerWidth * window.innerHeight) /
-        singleText.offsetWidth /
-        singleText.offsetHeight;
-    bg.innerText = randomText(total);
-    bg.style.setProperty("--x", `${e.clientX}px`);
-    bg.style.setProperty("--y", `${e.clientY}px`);
+const bluh = e => {
+	const bg = document.querySelector("div");
+	const singleText = document.querySelector("span");
+	const total = (window.innerWidth * window.innerHeight) / singleText.offsetWidth / singleText.offsetHeight;
+	bg.innerText = randomText(total);
+	bg.style.setProperty("--x", `${e.clientX}px`);
+	bg.style.setProperty("--y", `${e.clientY}px`);
 };
 
-document.onmousemove = (e) => bluh(e);
+document.onmousemove = e => bluh(e);
 bluh();
 ```
 

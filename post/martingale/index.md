@@ -16,10 +16,7 @@ description: 馬丁格爾策略的規則是：在每一輪遊戲中，你下注�
 
 比如說：
 
-我先投注 2 元，結果贏了。我得到 2 _ 2 = 4 元。扣掉之前的 2 元，我現在賺了 2 元。
-然後我再投注 2 元，結果輸了。
-接著我投入 2 _ 2 = 4 元，結果還是輸了。
-再來我投入 4 _ 2 = 8 元，贏了。我得到 8 _ 2 = 16 元。扣掉之前的 2 + 4 + 8 = 14 元，我現在賺了 2 元。
+我先投注 2 元，結果贏了。我得到 2 _ 2 = 4 元。扣掉之前的 2 元，我現在賺了 2 元。然後我再投注 2 元，結果輸了。接著我投入 2 _ 2 = 4 元，結果還是輸了。再來我投入 4 _ 2 = 8 元，贏了。我得到 8 _ 2 = 16 元。扣掉之前的 2 + 4 + 8 = 14 元，我現在賺了 2 元。
 
 你可以看到，只要你贏了一次，你就能把之前的虧損都補回來。
 
@@ -45,63 +42,56 @@ description: 馬丁格爾策略的規則是：在每一輪遊戲中，你下注�
 let totalRounds = 0;
 let finalBalance = 0;
 function simulateMartingale() {
-    const initialBet = parseFloat(document.getElementById("initialBet").value);
-    let balance = parseFloat(document.getElementById("startingBalance").value);
-    let bet = initialBet;
-    let round = 0;
-    let output = "模擬結果：\n";
-    let winCount = 0;
-    let loseCount = 0;
+	const initialBet = parseFloat(document.getElementById("initialBet").value);
+	let balance = parseFloat(document.getElementById("startingBalance").value);
+	let bet = initialBet;
+	let round = 0;
+	let output = "模擬結果：\n";
+	let winCount = 0;
+	let loseCount = 0;
 
-    while (balance > 0) {
-        round++;
-        const win = Math.random() < 0.5; // 50% 機率贏
-        output += `第 ${round} 局：投注 ${bet} 元，`;
+	while (balance > 0) {
+		round++;
+		const win = Math.random() < 0.5; // 50% 機率贏
+		output += `第 ${round} 局：投注 ${bet} 元，`;
 
-        if (win) {
-            balance += bet; // 贏了增加本金
-            output += `<div class=green>贏了！當前資金：${balance.toFixed(
-                2
-            )} 元</div>`;
-            bet = initialBet; // 重置投注金額
-            winCount++;
-        } else {
-            balance -= bet; // 輸了扣掉投注金額
-            output += `<div class=red>輸了... 當前資金：${balance.toFixed(
-                2
-            )} 元</div>`;
-            bet *= 2; // 加倍投注金額
-            loseCount++;
+		if (win) {
+			balance += bet; // 贏了增加本金
+			output += `<div class=green>贏了！當前資金：${balance.toFixed(2)} 元</div>`;
+			bet = initialBet; // 重置投注金額
+			winCount++;
+		} else {
+			balance -= bet; // 輸了扣掉投注金額
+			output += `<div class=red>輸了... 當前資金：${balance.toFixed(2)} 元</div>`;
+			bet *= 2; // 加倍投注金額
+			loseCount++;
 
-            if (balance < bet) {
-                output += "<div>資金不足，無法再加倍！模擬結束。</div>";
-                break;
-            }
-        }
+			if (balance < bet) {
+				output += "<div>資金不足，無法再加倍！模擬結束。</div>";
+				break;
+			}
+		}
 
-        if (balance <= 0) {
-            output += "<div>破產！模擬結束。</div>";
-            break;
-        }
-    }
+		if (balance <= 0) {
+			output += "<div>破產！模擬結束。</div>";
+			break;
+		}
+	}
 
-    output += `<div>共進行 ${round} 局，贏了 ${winCount} 局，輸了 ${loseCount} 局。</div>`;
-    totalRounds++;
-    finalBalance += balance;
-    output += `<div>平均最後收入: ${(finalBalance / totalRounds).toFixed(
-        2
-    )} 元</div>`;
+	output += `<div>共進行 ${round} 局，贏了 ${winCount} 局，輸了 ${loseCount} 局。</div>`;
+	totalRounds++;
+	finalBalance += balance;
+	output += `<div>平均最後收入: ${(finalBalance / totalRounds).toFixed(2)} 元</div>`;
 
-    document.getElementById("output").innerHTML = output;
-    // scroll to bottom
-    document.getElementById("output").scrollTop =
-        document.getElementById("output").scrollHeight;
+	document.getElementById("output").innerHTML = output;
+	// scroll to bottom
+	document.getElementById("output").scrollTop = document.getElementById("output").scrollHeight;
 }
 
 const start = () => {
-    for (let i = 0; i < document.getElementById("times").value; i++) {
-        simulateMartingale();
-    }
+	for (let i = 0; i < document.getElementById("times").value; i++) {
+		simulateMartingale();
+	}
 };
 ```
 

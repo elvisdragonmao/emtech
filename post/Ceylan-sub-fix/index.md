@@ -15,44 +15,36 @@ date: 2023-03-14
 
 ```js
 (function () {
-    function modifySubscriberCount() {
-        var subscriberCountElem = document.getElementById("subscriber-count");
-        var channel = document.getElementById("channel-handle");
-        var channelName = document.getElementById("text");
-        var subCount = document.getElementById("owner-sub-count");
-        if (subscriberCountElem && channel) {
-            observer.disconnect();
-            if (channel.innerText == "@xilanceylan") {
-                var subscriberCountText = subscriberCountElem.innerText;
-                if (subscriberCountText.indexOf("K") > -1)
-                    var replacedText =
-                        parseInt(subscriberCountText.replace("K", "")) / 10 +
-                        "T";
-                else
-                    var replacedText = subscriberCountText
-                        .replace("萬", "兆")
-                        .replace("万", "兆");
-                subscriberCountElem.innerText = replacedText;
-            }
-        } else if (subCount && channelName) {
-            observer.disconnect();
-            if (channelName.innerText == "錫蘭 Ceylan") {
-                var subscriberCountText = subCount.innerText;
-                var replacedText = subscriberCountText
-                    .replace("萬", "兆")
-                    .replace("万", "兆");
-                subCount.innerText = replacedText;
-            }
-        }
-    }
-    modifySubscriberCount();
-    window.addEventListener("popstate", modifySubscriberCount);
-    var observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
-            modifySubscriberCount();
-        });
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
+	function modifySubscriberCount() {
+		var subscriberCountElem = document.getElementById("subscriber-count");
+		var channel = document.getElementById("channel-handle");
+		var channelName = document.getElementById("text");
+		var subCount = document.getElementById("owner-sub-count");
+		if (subscriberCountElem && channel) {
+			observer.disconnect();
+			if (channel.innerText == "@xilanceylan") {
+				var subscriberCountText = subscriberCountElem.innerText;
+				if (subscriberCountText.indexOf("K") > -1) var replacedText = parseInt(subscriberCountText.replace("K", "")) / 10 + "T";
+				else var replacedText = subscriberCountText.replace("萬", "兆").replace("万", "兆");
+				subscriberCountElem.innerText = replacedText;
+			}
+		} else if (subCount && channelName) {
+			observer.disconnect();
+			if (channelName.innerText == "錫蘭 Ceylan") {
+				var subscriberCountText = subCount.innerText;
+				var replacedText = subscriberCountText.replace("萬", "兆").replace("万", "兆");
+				subCount.innerText = replacedText;
+			}
+		}
+	}
+	modifySubscriberCount();
+	window.addEventListener("popstate", modifySubscriberCount);
+	var observer = new MutationObserver(function (mutations) {
+		mutations.forEach(function (mutation) {
+			modifySubscriberCount();
+		});
+	});
+	observer.observe(document.body, { childList: true, subtree: true });
 })();
 ```
 

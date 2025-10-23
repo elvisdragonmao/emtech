@@ -52,9 +52,9 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
 
     ```json
     {
-        "scripts": {
-            "test": "jest"
-        }
+    	"scripts": {
+    		"test": "jest"
+    	}
     }
     ```
 
@@ -66,7 +66,7 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
 
     ```javascript
     function sum(a, b) {
-        return a + b;
+    	return a + b;
     }
 
     module.exports = sum;
@@ -78,7 +78,7 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
     const sum = require("./sum");
 
     test("adds 1 + 2 to equal 3", () => {
-        expect(sum(1, 2)).toBe(3);
+    	expect(sum(1, 2)).toBe(3);
     });
     ```
 
@@ -141,7 +141,7 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
     const myFunction = require("./myFunction");
 
     test("matches the snapshot", () => {
-        expect(myFunction()).toMatchSnapshot();
+    	expect(myFunction()).toMatchSnapshot();
     });
     ```
 
@@ -157,13 +157,13 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
     const myModule = require("./myModule");
 
     jest.mock("./myDependency", () => {
-        return {
-            myFunction: jest.fn(() => "mocked value")
-        };
+    	return {
+    		myFunction: jest.fn(() => "mocked value")
+    	};
     });
 
     test("uses the mocked dependency", () => {
-        expect(myModule()).toBe("mocked value");
+    	expect(myModule()).toBe("mocked value");
     });
     ```
 
@@ -175,16 +175,16 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
 
     ```javascript
     function fetchData(callback) {
-        setTimeout(() => {
-            callback("data");
-        }, 1000);
+    	setTimeout(() => {
+    		callback("data");
+    	}, 1000);
     }
 
-    test("fetches data asynchronously", (done) => {
-        fetchData((data) => {
-            expect(data).toBe("data");
-            done();
-        });
+    test("fetches data asynchronously", done => {
+    	fetchData(data => {
+    		expect(data).toBe("data");
+    		done();
+    	});
     });
     ```
 
@@ -192,17 +192,17 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
 
     ```javascript
     function fetchData() {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve("data");
-            }, 1000);
-        });
+    	return new Promise(resolve => {
+    		setTimeout(() => {
+    			resolve("data");
+    		}, 1000);
+    	});
     }
 
     test("fetches data asynchronously with promises", () => {
-        return fetchData().then((data) => {
-            expect(data).toBe("data");
-        });
+    	return fetchData().then(data => {
+    		expect(data).toBe("data");
+    	});
     });
     ```
 
@@ -210,16 +210,16 @@ Jest 是由 Facebook 開發的一個 JavaScript 測試框架，適用於測試 J
 
     ```javascript
     async function fetchData() {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve("data");
-            }, 1000);
-        });
+    	return new Promise(resolve => {
+    		setTimeout(() => {
+    			resolve("data");
+    		}, 1000);
+    	});
     }
 
     test("fetches data asynchronously with async/await", async () => {
-        const data = await fetchData();
-        expect(data).toBe("data");
+    	const data = await fetchData();
+    	expect(data).toBe("data");
     });
     ```
 

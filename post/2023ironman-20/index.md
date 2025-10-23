@@ -61,10 +61,10 @@ GPU 厲害的是他會把在改變的元素獨立抽出來一個圖層，修改�
 
 ```css
 .element {
-    transform: translateZ(0);
-    /**或著**/
-    transform: rotateZ(360deg);
-    transform: translate3d(0, 0, 0);
+	transform: translateZ(0);
+	/**或著**/
+	transform: rotateZ(360deg);
+	transform: translate3d(0, 0, 0);
 }
 ```
 

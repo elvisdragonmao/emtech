@@ -13,8 +13,7 @@ GitHub Actions 是 GitHub 提供的一個 CI/CD 服務，可以讓你在 GitHub 
 
 > 成果倉庫：[GitHub-issue-2-Notion](https://github.com/Edit-Mr/GitHub-issue-2-Notion)
 
-{{notice}}
-溫馨提醒
+{{notice}} 溫馨提醒
 
 我們今天因為目標是要上架至 Marketplace，所以步驟相對於製作一般的 Action 比較不一樣一點。
 
@@ -66,16 +65,16 @@ const core = require("@actions/core");
 // const { markdownToBlocks } = require("@tryfabric/martian");
 
 async function main() {
-    const repo = core.getInput("repo");
-    const notionToken = core.getInput("NOTION_API_KEY");
-    const notionDatabaseId = core.getInput("NOTION_DATABASE_ID");
+	const repo = core.getInput("repo");
+	const notionToken = core.getInput("NOTION_API_KEY");
+	const notionDatabaseId = core.getInput("NOTION_DATABASE_ID");
 
-    // ...
+	// ...
 }
 
-main().catch((error) => {
-    console.error(error);
-    process.exit(1);
+main().catch(error => {
+	console.error(error);
+	process.exit(1);
 });
 ```
 

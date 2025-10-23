@@ -65,121 +65,116 @@ date: 2023-10-11
 
 ```css
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 body {
-    background: #f2f2f2;
-    font-family: system-ui;
+	background: #f2f2f2;
+	font-family: system-ui;
 }
 header > div,
 nav > div,
 main > div {
-    padding: 15px;
-    max-width: 1170px;
-    margin: 0 auto;
+	padding: 15px;
+	max-width: 1170px;
+	margin: 0 auto;
 }
 header {
-    background: #fff;
+	background: #fff;
 }
 header img {
-    width: 14%;
-    margin-top: 45px;
-    margin-bottom: 16px;
-    padding-right: 10px;
+	width: 14%;
+	margin-top: 45px;
+	margin-bottom: 16px;
+	padding-right: 10px;
 }
 .fixedNav {
-    margin-bottom: 50px;
+	margin-bottom: 50px;
 }
 
 nav {
-    width: 100%;
-    background-color: #00a0e9;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	background-color: #00a0e9;
+	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
 }
 nav > div {
-    min-height: 50px;
-    display: flex;
-    align-items: center;
-    color: #fff;
-    font-weight: 700;
-    padding: 0 10px;
+	min-height: 50px;
+	display: flex;
+	align-items: center;
+	color: #fff;
+	font-weight: 700;
+	padding: 0 10px;
 }
 li {
-    display: inline-block;
-    padding: 0 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+	display: inline-block;
+	padding: 0 12px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
 }
 i {
-    font-size: 1.2em;
+	font-size: 1.2em;
 }
 .button {
-    color: #0f6b95;
-    font-size: 1em;
+	color: #0f6b95;
+	font-size: 1em;
 }
 .caret {
-    display: inline-block;
-    margin-left: 2px;
-    border-top: 4px solid;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
+	display: inline-block;
+	margin-left: 2px;
+	border-top: 4px solid;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
 }
 ul {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 button {
-    font-family: system-ui;
-    display: block;
-    padding: 2px 8px 5px;
-    box-shadow: 0px 2px 1px 1px #00637d;
-    background-color: #ffffff;
-    color: #1b79a2;
-    border-radius: 6px;
-    font-size: 16px;
-    outline: none;
-    border: none;
+	font-family: system-ui;
+	display: block;
+	padding: 2px 8px 5px;
+	box-shadow: 0px 2px 1px 1px #00637d;
+	background-color: #ffffff;
+	color: #1b79a2;
+	border-radius: 6px;
+	font-size: 16px;
+	outline: none;
+	border: none;
 }
 .right {
-    justify-content: flex-end;
-    flex-grow: 1;
+	justify-content: flex-end;
+	flex-grow: 1;
 }
 .right li {
-    padding: 0 10px;
+	padding: 0 10px;
 }
 
 li img {
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
 }
 aside {
-    width: 300px;
+	width: 300px;
 }
 aside,
 section {
-    background: #fff;
-    height: 200vh;
+	background: #fff;
+	height: 200vh;
 }
 main > div {
-    display: flex;
-    gap: 30px;
-    padding-top: 30px;
+	display: flex;
+	gap: 30px;
+	padding-top: 30px;
 }
 section {
-    flex-grow: 1;
-    border-top: 3px solid #00a0e9;
+	flex-grow: 1;
+	border-top: 3px solid #00a0e9;
 }
 aside {
-    background: linear-gradient(
-        #f2f2f2 270px,
-        #00a0e9 270px,
-        #00a0e9 320px,
-        #fff 320px
-    );
+	background: linear-gradient(#f2f2f2 270px, #00a0e9 270px, #00a0e9 320px, #fff 320px);
 }
 ```
 
@@ -202,9 +197,7 @@ const white = document.querySelector("header");
 滾動時，如果導覽列底部超出視窗，就給藍色選單加上 `.fixedNav` 這個 class。如果沒有就會移除。
 
 ```js
-document.addEventListener("scroll", () =>
-    white.classList.toggle("fixedNav", white.getBoundingClientRect().bottom < 0)
-);
+document.addEventListener("scroll", () => white.classList.toggle("fixedNav", white.getBoundingClientRect().bottom < 0));
 ```
 
 > `element.classList.toggle` 會在 class 存在時移除，不存在時加上。如果填寫兩個參數，第一個是要添加或移除的 class；第二個參數是布林值，會在布林值為 true 時加上，false 時移除。
@@ -217,9 +210,9 @@ ok 最後來補上一點 CSS。先是讓導覽列固定在最上方。
 
 ```css
 .fixedNav + nav {
-    position: fixed;
-    top: 0;
-    left: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 ```
 
@@ -238,15 +231,12 @@ HTML 加上圖片
 ```html
 <!-- ... -->
 <nav>
-    <div>
-        <img
-            src="https://ithelp.ithome.com.tw/storage/image/nav_logo.svg"
-            alt=""
-        />
-        <ul class="left">
-            <!-- ... -->
-        </ul>
-    </div>
+	<div>
+		<img src="https://ithelp.ithome.com.tw/storage/image/nav_logo.svg" alt="" />
+		<ul class="left">
+			<!-- ... -->
+		</ul>
+	</div>
 </nav>
 ```
 
@@ -258,14 +248,14 @@ iT 邦幫忙的作法是把右邊的選單用 `transform:translate()` 往左平�
 
 ```css
 nav > div > img {
-    width: 0px;
-    transition: width 0.2s linear;
-    object-fit: cover;
-    object-position: left;
-    height: 24px;
+	width: 0px;
+	transition: width 0.2s linear;
+	object-fit: cover;
+	object-position: left;
+	height: 24px;
 }
 .fixedNav + nav > div > img {
-    width: 109px;
+	width: 109px;
 }
 ```
 

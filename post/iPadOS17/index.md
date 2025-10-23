@@ -111,14 +111,8 @@ _(正好下午是英文辯論賽，也許我拿 MVP 他也有功勞吧)_
 
 ![小問題，原則上不影響使用](15.webp)
 
-{{notice}}
-我也要玩 iOS17!
-如果你也想要跟我~~一起受災~~可以參考我寫的[這片文章](https://emtech.cc/post/apple-beta/)。
-{{noticed}}
+{{notice}} 我也要玩 iOS17! 如果你也想要跟我~~一起受災~~可以參考我寫的[這片文章](https://emtech.cc/post/apple-beta/)。 {{noticed}}
 
-{{notice}}
-我遇到軟體問題
-我有整理翻譯[官方釋出錯誤及解決分案](https://em-tec.github.io/post/ios17-problem/)可以提供參考
-{{noticed}}
+{{notice}} 我遇到軟體問題我有整理翻譯[官方釋出錯誤及解決分案](https://em-tec.github.io/post/ios17-problem/)可以提供參考 {{noticed}}
 
 如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM資訊密技。如果你有任何問題，歡迎直接到毛哥EM資訊密技的Instagram私訊我，我很樂意協助解決你的問題。

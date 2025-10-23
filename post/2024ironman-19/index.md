@@ -1,13 +1,6 @@
 ---
 authors: elvismao
-tags:
-    [
-        "看好了 GitHub Actions，我只示範一次",
-        GitHub Actions,
-        Node.js,
-        DevOps,
-        Zeabur
-    ]
+tags: ["看好了 GitHub Actions，我只示範一次", GitHub Actions, Node.js, DevOps, Zeabur]
 categories: [自動化]
 date: 2024-10-02
 ---
@@ -158,12 +151,12 @@ Vercel 最方便的是它會在每次代碼推送後自動部署你的應用程�
 
 ```json
 {
-    "git": {
-        "deploymentEnabled": {
-            "main": false,
-            "new-site": false
-        }
-    }
+	"git": {
+		"deploymentEnabled": {
+			"main": false,
+			"new-site": false
+		}
+	}
 }
 ```
 
@@ -171,9 +164,7 @@ Vercel 最方便的是它會在每次代碼推送後自動部署你的應用程�
 
 ```json
 {
-    "redirects": [
-        { "source": "/me", "destination": "/profile.html", "permanent": false }
-    ]
+	"redirects": [{ "source": "/me", "destination": "/profile.html", "permanent": false }]
 }
 ```
 
@@ -193,13 +184,13 @@ Zeabur 是一個可以幫助你部署服務的平台，而且只需要透過幾�
 
 ```json
 {
-    "build_command": "npm install && npm run build:dist"
+	"build_command": "npm install && npm run build:dist"
 }
 ```
 
 ```json
 {
-    "start_command": "php artisan migrate && _startup"
+	"start_command": "php artisan migrate && _startup"
 }
 ```
 

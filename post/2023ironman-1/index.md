@@ -34,10 +34,10 @@ date: 2023-09-15
 
 ```css
 .car {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 ```
 

@@ -127,21 +127,21 @@ https://codepen.io/edit-mr/pen/GRPyNYY
 
 ```css
 :root {
-    --color: blue;
+	--color: blue;
 }
 
 body {
-    background: var(--color);
-    min-height: 100svh;
-    margin: 0;
+	background: var(--color);
+	min-height: 100svh;
+	margin: 0;
 }
 body::after {
-    display: block;
-    width: 100%;
-    height: 100svh;
-    content: "";
-    background: linear-gradient(var(--color), transparent);
-    filter: hue-rotate(-60deg) brightness(3);
+	display: block;
+	width: 100%;
+	height: 100svh;
+	content: "";
+	background: linear-gradient(var(--color), transparent);
+	filter: hue-rotate(-60deg) brightness(3);
 }
 ```
 

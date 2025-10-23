@@ -29,9 +29,9 @@ let numbers = [1, 2, 3, 4, 5];
 let evens = [];
 
 for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] % 2 === 0) {
-        evens.push(numbers[i]);
-    }
+	if (numbers[i] % 2 === 0) {
+		evens.push(numbers[i]);
+	}
 }
 
 console.log(evens); // [2, 4]
@@ -43,7 +43,7 @@ console.log(evens); // [2, 4]
 
 ```javascript
 let numbers = [1, 2, 3, 4, 5];
-let evens = numbers.filter((n) => n % 2 === 0);
+let evens = numbers.filter(n => n % 2 === 0);
 
 console.log(evens); // [2, 4]
 ```
@@ -90,7 +90,7 @@ SQL 語言是宣告式的，我們只描述「要哪些資料」，資料庫引�
 
 ```jsx
 function App() {
-    return <h1>Hello, World!</h1>;
+	return <h1>Hello, World!</h1>;
 }
 ```
 
@@ -100,8 +100,8 @@ React 允許開發者只需「描述 UI 的狀態」，而不需手動更新 DOM
 
 ```css
 button {
-    background-color: blue;
-    color: white;
+	background-color: blue;
+	color: white;
 }
 ```
 

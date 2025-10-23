@@ -62,9 +62,9 @@ h2+p
 ```html
 <!-- ul>li*3 -->
 <ul>
-    <li></li>
-    <li></li>
-    <li></li>
+	<li></li>
+	<li></li>
+	<li></li>
 </ul>
 ```
 
@@ -75,9 +75,9 @@ h2+p
 ```html
 <!-- ul>(li>a)*3 -->
 <ul>
-    <li><a href=""></a></li>
-    <li><a href=""></a></li>
-    <li><a href=""></a></li>
+	<li><a href=""></a></li>
+	<li><a href=""></a></li>
+	<li><a href=""></a></li>
 </ul>
 ```
 

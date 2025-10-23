@@ -55,55 +55,55 @@ curl -v -X POST https://api.line.me/v2/bot/chat/loading/start \
 const token = "XXXXXXXXXXXXXXXXXXXXXXXXXXXx=";
 
 function doPost(e) {
-    var contents = JSON.parse(e.postData.contents);
-    var chatId = contents.events[0].source.userId;
-    var replyToken = contents.events[0].replyToken;
+	var contents = JSON.parse(e.postData.contents);
+	var chatId = contents.events[0].source.userId;
+	var replyToken = contents.events[0].replyToken;
 
-    // Start the loading animation
-    sendLoading(chatId, 5);
+	// Start the loading animation
+	sendLoading(chatId, 5);
 
-    // Set a timer to end the loading animation and send a reply after 5 seconds
-    Utilities.sleep(5000);
-    sendReply(replyToken, "好喔");
+	// Set a timer to end the loading animation and send a reply after 5 seconds
+	Utilities.sleep(5000);
+	sendReply(replyToken, "好喔");
 }
 
 function sendLoading(chatId, seconds) {
-    var url = "https://api.line.me/v2/bot/chat/loading/start";
-    var payload = {
-        chatId: chatId,
-        loadingSeconds: seconds
-    };
-    var options = {
-        method: "post",
-        contentType: "application/json",
-        headers: {
-            Authorization: "Bearer " + token
-        },
-        payload: JSON.stringify(payload)
-    };
-    UrlFetchApp.fetch(url, options);
+	var url = "https://api.line.me/v2/bot/chat/loading/start";
+	var payload = {
+		chatId: chatId,
+		loadingSeconds: seconds
+	};
+	var options = {
+		method: "post",
+		contentType: "application/json",
+		headers: {
+			Authorization: "Bearer " + token
+		},
+		payload: JSON.stringify(payload)
+	};
+	UrlFetchApp.fetch(url, options);
 }
 
 function sendReply(replyToken, message) {
-    var url = "https://api.line.me/v2/bot/message/reply";
-    var payload = {
-        replyToken: replyToken,
-        messages: [
-            {
-                type: "text",
-                text: message
-            }
-        ]
-    };
-    var options = {
-        method: "post",
-        contentType: "application/json",
-        headers: {
-            Authorization: "Bearer " + token
-        },
-        payload: JSON.stringify(payload)
-    };
-    UrlFetchApp.fetch(url, options);
+	var url = "https://api.line.me/v2/bot/message/reply";
+	var payload = {
+		replyToken: replyToken,
+		messages: [
+			{
+				type: "text",
+				text: message
+			}
+		]
+	};
+	var options = {
+		method: "post",
+		contentType: "application/json",
+		headers: {
+			Authorization: "Bearer " + token
+		},
+		payload: JSON.stringify(payload)
+	};
+	UrlFetchApp.fetch(url, options);
 }
 ```
 

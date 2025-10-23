@@ -46,58 +46,58 @@ curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generat
 
 ````json
 {
-    "candidates": [
-        {
-            "content": {
-                "parts": [
-                    {
-                        "text": "```python\n# Example list to be sorted\nlist1 = [5, 3, 1, 2, 4]\n\n# Sort the list in ascending order\nlist1.sort()\n\n# Print the sorted list\nprint(list1)\n```"
-                    }
-                ],
-                "role": "model"
-            },
-            "finishReason": "STOP",
-            "index": 0,
-            "safetyRatings": [
-                {
-                    "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                    "probability": "NEGLIGIBLE"
-                },
-                {
-                    "category": "HARM_CATEGORY_HATE_SPEECH",
-                    "probability": "NEGLIGIBLE"
-                },
-                {
-                    "category": "HARM_CATEGORY_HARASSMENT",
-                    "probability": "NEGLIGIBLE"
-                },
-                {
-                    "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-                    "probability": "NEGLIGIBLE"
-                }
-            ]
-        }
-    ],
-    "promptFeedback": {
-        "safetyRatings": [
-            {
-                "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                "probability": "NEGLIGIBLE"
-            },
-            {
-                "category": "HARM_CATEGORY_HATE_SPEECH",
-                "probability": "NEGLIGIBLE"
-            },
-            {
-                "category": "HARM_CATEGORY_HARASSMENT",
-                "probability": "NEGLIGIBLE"
-            },
-            {
-                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-                "probability": "NEGLIGIBLE"
-            }
-        ]
-    }
+	"candidates": [
+		{
+			"content": {
+				"parts": [
+					{
+						"text": "```python\n# Example list to be sorted\nlist1 = [5, 3, 1, 2, 4]\n\n# Sort the list in ascending order\nlist1.sort()\n\n# Print the sorted list\nprint(list1)\n```"
+					}
+				],
+				"role": "model"
+			},
+			"finishReason": "STOP",
+			"index": 0,
+			"safetyRatings": [
+				{
+					"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+					"probability": "NEGLIGIBLE"
+				},
+				{
+					"category": "HARM_CATEGORY_HATE_SPEECH",
+					"probability": "NEGLIGIBLE"
+				},
+				{
+					"category": "HARM_CATEGORY_HARASSMENT",
+					"probability": "NEGLIGIBLE"
+				},
+				{
+					"category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+					"probability": "NEGLIGIBLE"
+				}
+			]
+		}
+	],
+	"promptFeedback": {
+		"safetyRatings": [
+			{
+				"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+				"probability": "NEGLIGIBLE"
+			},
+			{
+				"category": "HARM_CATEGORY_HATE_SPEECH",
+				"probability": "NEGLIGIBLE"
+			},
+			{
+				"category": "HARM_CATEGORY_HARASSMENT",
+				"probability": "NEGLIGIBLE"
+			},
+			{
+				"category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+				"probability": "NEGLIGIBLE"
+			}
+		]
+	}
 }
 ````
 
@@ -109,24 +109,24 @@ curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generat
 
 ```json
 {
-    "contents": [
-        {
-            "parts": [
-                {
-                    "text": "This image contains a sketch of a potential product along with some notes. \
+	"contents": [
+		{
+			"parts": [
+				{
+					"text": "This image contains a sketch of a potential product along with some notes. \
         Given the product sketch, describe the product as thoroughly as possible based on what you \
         see in the image, making sure to note all of the product features. Return output in json format: \
         {description: description, features: [feature1, feature2, feature3, etc]}"
-                },
-                {
-                    "inline_data": {
-                        "mime_type": "image/jpeg",
-                        "data": "'$(base64 -w0 image.jpg)'"
-                    }
-                }
-            ]
-        }
-    ]
+				},
+				{
+					"inline_data": {
+						"mime_type": "image/jpeg",
+						"data": "'$(base64 -w0 image.jpg)'"
+					}
+				}
+			]
+		}
+	]
 }
 ```
 
@@ -174,122 +174,105 @@ Gemini 還有很多其他的設定，例如 `max_tokens` 用來設定最大回�
 ```html
 <!doctype html>
 <html lang="zh-Hant">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Gemini API 聊天 Demo</title>
-        <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js
+	<head>
+		<meta charset="UTF-8" />
+		<title>Gemini API 聊天 Demo</title>
+		<script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js
 "></script>
-        <style>
-            * {
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
-            }
-            body {
-                font-family:
-                    system-ui,
-                    -apple-system,
-                    BlinkMacSystemFont,
-                    "Segoe UI",
-                    Roboto,
-                    Oxygen,
-                    Ubuntu,
-                    Cantarell,
-                    "Open Sans",
-                    "Helvetica Neue",
-                    sans-serif;
-                padding: 2rem;
-                display: flex;
-                flex-direction: column;
-                height: 100dvh;
-            }
-            #chatHistory {
-                flex-grow: 1;
-            }
-            .inputs {
-                display: flex;
-            }
-            #messageInput {
-                flex-grow: 1;
-            }
-            .inputs > * {
-                height: 2rem;
-                padding: 0.5rem;
-            }
-            #chatHistory > div {
-                margin-top: 1rem;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Gemini API 聊天 Demo</h1>
-        <p>
-            毛哥EM製作 <a href="https://emtech.cc/post/gemini-html">教學文章</a>
-        </p>
-        <div id="chatHistory">
-            <!-- Chat history will appear here -->
-        </div>
-        <div class="inputs">
-            <input type="password" id="apiKey" placeholder="API Key" />
-            <input
-                type="text"
-                id="messageInput"
-                placeholder="Type your message here..."
-            />
-            <button onclick="sendMessage()">Send</button>
-        </div>
-        <script>
-            const converter = new showdown.Converter();
-            let thread = [];
-            function sendMessage() {
-                var apiKey = document.getElementById("apiKey").value;
-                const message = document.getElementById("messageInput").value;
-                document.getElementById("chatHistory").innerHTML +=
-                    "<div><div class='author'>You:</div>" + message + "</div>";
-                thread.push({
-                    role: "user",
-                    parts: [{ text: message }]
-                });
-                console.log(apiKey);
-                fetch(
-                    "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" +
-                        apiKey,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            contents: thread
-                        })
-                    }
-                )
-                    .then((response) => response.json())
-                    .then((data) => {
-                        const msg = data.candidates[0].content.parts[0].text;
-                        document.getElementById("chatHistory").innerHTML +=
-                            "<div><div class='author'>Bot:</div>" +
-                            converter.makeHtml(msg) +
-                            "</div>";
-                        thread.push({
-                            role: "model",
-                            parts: [
-                                {
-                                    text: msg
-                                }
-                            ]
-                        });
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error);
-                        document.getElementById("chatHistory").innerHTML +=
-                            "<div><div class='author'>Bot:</div>Error: " +
-                            error +
-                            "</div>";
-                    });
-            }
-        </script>
-    </body>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family:
+					system-ui,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe UI",
+					Roboto,
+					Oxygen,
+					Ubuntu,
+					Cantarell,
+					"Open Sans",
+					"Helvetica Neue",
+					sans-serif;
+				padding: 2rem;
+				display: flex;
+				flex-direction: column;
+				height: 100dvh;
+			}
+			#chatHistory {
+				flex-grow: 1;
+			}
+			.inputs {
+				display: flex;
+			}
+			#messageInput {
+				flex-grow: 1;
+			}
+			.inputs > * {
+				height: 2rem;
+				padding: 0.5rem;
+			}
+			#chatHistory > div {
+				margin-top: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Gemini API 聊天 Demo</h1>
+		<p>毛哥EM製作 <a href="https://emtech.cc/post/gemini-html">教學文章</a></p>
+		<div id="chatHistory">
+			<!-- Chat history will appear here -->
+		</div>
+		<div class="inputs">
+			<input type="password" id="apiKey" placeholder="API Key" />
+			<input type="text" id="messageInput" placeholder="Type your message here..." />
+			<button onclick="sendMessage()">Send</button>
+		</div>
+		<script>
+			const converter = new showdown.Converter();
+			let thread = [];
+			function sendMessage() {
+				var apiKey = document.getElementById("apiKey").value;
+				const message = document.getElementById("messageInput").value;
+				document.getElementById("chatHistory").innerHTML += "<div><div class='author'>You:</div>" + message + "</div>";
+				thread.push({
+					role: "user",
+					parts: [{ text: message }]
+				});
+				console.log(apiKey);
+				fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + apiKey, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						contents: thread
+					})
+				})
+					.then(response => response.json())
+					.then(data => {
+						const msg = data.candidates[0].content.parts[0].text;
+						document.getElementById("chatHistory").innerHTML += "<div><div class='author'>Bot:</div>" + converter.makeHtml(msg) + "</div>";
+						thread.push({
+							role: "model",
+							parts: [
+								{
+									text: msg
+								}
+							]
+						});
+					})
+					.catch(error => {
+						console.error("Error:", error);
+						document.getElementById("chatHistory").innerHTML += "<div><div class='author'>Bot:</div>Error: " + error + "</div>";
+					});
+			}
+		</script>
+	</body>
 </html>
 ```
 

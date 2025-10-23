@@ -40,9 +40,7 @@ https://codepen.io/edit-mr/pen/ExGrxjX
 ```html
 <h1 class="aos">Animate On Scroll</h1>
 <p class="aos">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, mollitia magni
-    nemo eius obcaecati aliquam ex nisi maiores. Autem hic illo quas amet ipsam.
-    Eos tempore repellat sint illum tenetur!
+	Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, mollitia magni nemo eius obcaecati aliquam ex nisi maiores. Autem hic illo quas amet ipsam. Eos tempore repellat sint illum tenetur!
 </p>
 <h2 class="aos">Scroll</h2>
 <div></div>
@@ -54,17 +52,17 @@ https://codepen.io/edit-mr/pen/ExGrxjX
 
 ```css
 body {
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: 2em;
+	max-width: 600px;
+	margin: 0 auto;
+	font-size: 2em;
 }
 h2 {
-    font-size: 2em;
+	font-size: 2em;
 }
 div {
-    height: 5em;
-    background: lightblue;
-    margin: 1em;
+	height: 5em;
+	background: lightblue;
+	margin: 1em;
 }
 ```
 
@@ -72,12 +70,12 @@ div {
 
 ```css
 .aos {
-    opacity: 0;
-    transition: opacity 1s;
+	opacity: 0;
+	transition: opacity 1s;
 }
 
 .aos.ed {
-    opacity: 1;
+	opacity: 1;
 }
 ```
 
@@ -85,16 +83,16 @@ div {
 
 ```js
 function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return rect.bottom < 0 || rect.top > window.innerHeight;
+	const rect = el.getBoundingClientRect();
+	return rect.bottom < 0 || rect.top > window.innerHeight;
 }
 
 function addClassToVisibleElements() {
-    var aosElements = document.querySelectorAll(".aos");
-    aosElements.forEach(function (aosElement) {
-        if (!isElementInViewport(aosElement)) aosElement.classList.add("ed");
-        else aosElement.classList.remove("ed");
-    });
+	var aosElements = document.querySelectorAll(".aos");
+	aosElements.forEach(function (aosElement) {
+		if (!isElementInViewport(aosElement)) aosElement.classList.add("ed");
+		else aosElement.classList.remove("ed");
+	});
 }
 
 document.addEventListener("scroll", addClassToVisibleElements);
@@ -111,10 +109,10 @@ ok 成功，我們來多做幾個更浮誇的動畫。
 
 ```css
 .slideIn {
-    transform: translateY(1em);
+	transform: translateY(1em);
 }
 .slideIn.ed {
-    transform: translateY(0em);
+	transform: translateY(0em);
 }
 ```
 
@@ -122,10 +120,10 @@ ok 成功，我們來多做幾個更浮誇的動畫。
 
 ```css
 .slideInLeft {
-    transform: translateX(-100vw);
+	transform: translateX(-100vw);
 }
 .slideInLeft.ed {
-    transform: translateX(0);
+	transform: translateX(0);
 }
 ```
 
@@ -133,27 +131,27 @@ ok 成功，我們來多做幾個更浮誇的動畫。
 
 ```css
 .zoom {
-    opacity: 1;
+	opacity: 1;
 }
 .zoom.ed {
-    animation: zoom 1.5s forwards linear;
+	animation: zoom 1.5s forwards linear;
 }
 @keyframes zoom {
-    0% {
-        scale: 1;
-    }
-    25% {
-        scale: 1.5;
-    }
-    50% {
-        scale: 1;
-    }
-    75% {
-        scale: 1.25;
-    }
-    100% {
-        scale: 1;
-    }
+	0% {
+		scale: 1;
+	}
+	25% {
+		scale: 1.5;
+	}
+	50% {
+		scale: 1;
+	}
+	75% {
+		scale: 1.25;
+	}
+	100% {
+		scale: 1;
+	}
 }
 ```
 
@@ -166,9 +164,7 @@ https://codepen.io/edit-mr/pen/rNoPBZe
 ```html
 <h1 class="aos slideIn">Animate On Scroll</h1>
 <p class="aos slideIn">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, mollitia magni
-    nemo eius obcaecati aliquam ex nisi maiores. Autem hic illo quas amet ipsam.
-    Eos tempore repellat sint illum tenetur!
+	Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, mollitia magni nemo eius obcaecati aliquam ex nisi maiores. Autem hic illo quas amet ipsam. Eos tempore repellat sint illum tenetur!
 </p>
 <h2 class="aos slideIn">Scroll</h2>
 <div class="aos"></div>
@@ -180,80 +176,80 @@ https://codepen.io/edit-mr/pen/rNoPBZe
 
 ```css
 body {
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: 2em;
+	max-width: 600px;
+	margin: 0 auto;
+	font-size: 2em;
 }
 h2 {
-    font-size: 2em;
+	font-size: 2em;
 }
 
 div {
-    height: 5em;
-    background: lightblue;
-    margin: 1em;
+	height: 5em;
+	background: lightblue;
+	margin: 1em;
 }
 
 .aos {
-    opacity: 0;
-    transition: all 1s;
+	opacity: 0;
+	transition: all 1s;
 }
 
 .aos.ed {
-    opacity: 1;
+	opacity: 1;
 }
 
 .slideIn {
-    transform: translateY(1em);
+	transform: translateY(1em);
 }
 .slideIn.ed {
-    transform: translateY(0em);
+	transform: translateY(0em);
 }
 
 .slideInLeft {
-    transform: translateX(-100vw);
+	transform: translateX(-100vw);
 }
 .slideInLeft.ed {
-    transform: translateX(0);
+	transform: translateX(0);
 }
 
 .zoom {
-    opacity: 1;
+	opacity: 1;
 }
 .zoom.ed {
-    animation: zoom 1.5s forwards linear;
+	animation: zoom 1.5s forwards linear;
 }
 @keyframes zoom {
-    0% {
-        scale: 1;
-    }
-    25% {
-        scale: 1.5;
-    }
-    50% {
-        scale: 1;
-    }
-    75% {
-        scale: 1.25;
-    }
-    100% {
-        scale: 1;
-    }
+	0% {
+		scale: 1;
+	}
+	25% {
+		scale: 1.5;
+	}
+	50% {
+		scale: 1;
+	}
+	75% {
+		scale: 1.25;
+	}
+	100% {
+		scale: 1;
+	}
 }
 ```
 
 ```js
 function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return rect.bottom < 0 || rect.top > window.innerHeight;
+	const rect = el.getBoundingClientRect();
+	return rect.bottom < 0 || rect.top > window.innerHeight;
 }
 
 function addClassToVisibleElements() {
-    var aosElements = document.querySelectorAll(".aos");
-    aosElements.forEach(function (aosElement) {
-        if (!isElementInViewport(aosElement)) aosElement.classList.add("ed");
-        else aosElement.classList.remove("ed");
-    });
+	var aosElements = document.querySelectorAll(".aos");
+	aosElements.forEach(function (aosElement) {
+		if (!isElementInViewport(aosElement)) aosElement.classList.add("ed");
+		else aosElement.classList.remove("ed");
+	});
 }
 
 document.addEventListener("scroll", addClassToVisibleElements);

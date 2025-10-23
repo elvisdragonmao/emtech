@@ -1,43 +1,38 @@
 <header>
-    <div id="header-playground">
-        <div class="header-title">
-            <h1>毛哥EM<span>資訊密技</span></h1>
-        </div>
-    </div>
-    <div class="header-right">
-        <div class="header-categories">
-            <a href="/p/about" class="header-categories-item">關於本站</a
-            ><a href="/rss.xml" class="header-categories-item">RSS</a
-            ><a href="/p/friends" class="header-categories-item">友情連結</a
-            ><a href="/p/emblog" class="header-categories-item">關於 emblog</a>
-        </div>
-        <a href="">
-            <div class="header-newPost">
-                <img
-                    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                    alt=""
-                />
-                <div class="header-newPost-hover">
-                    <h3></h3>
-                </div>
-            </div>
-        </a>
-    </div>
+	<div id="header-playground">
+		<div class="header-title">
+			<h1>毛哥EM<span>資訊密技</span></h1>
+		</div>
+	</div>
+	<div class="header-right">
+		<div class="header-categories">
+			<a href="/p/about" class="header-categories-item">關於本站</a><a href="/rss.xml" class="header-categories-item">RSS</a><a href="/p/friends" class="header-categories-item">友情連結</a
+			><a href="/p/emblog" class="header-categories-item">關於 emblog</a>
+		</div>
+		<a href="">
+			<div class="header-newPost">
+				<img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="" />
+				<div class="header-newPost-hover">
+					<h3></h3>
+				</div>
+			</div>
+		</a>
+	</div>
 </header>
 <main>
-    <section>
-        <div class="categories">
-            <div class="categories-left" onclick="categoriesMove(-1)"></div>
-            <div id="categories"></div>
-            <div class="categories-right" onclick="categoriesMove(1)"></div>
-        </div>
-        <h2 class="categories-title"></h2>
-        <p class="categories-description"></p>
-        <div id="posts"></div>
-        <div class="more-post"></div>
-    </section>
-    <aside>
-        {{about}}
-        <div class="sticky">{{aside}}</div>
-    </aside>
+	<section>
+		<div class="categories">
+			<div class="categories-left" onclick="categoriesMove(-1)"></div>
+			<div id="categories"></div>
+			<div class="categories-right" onclick="categoriesMove(1)"></div>
+		</div>
+		<h2 class="categories-title"></h2>
+		<p class="categories-description"></p>
+		<div id="posts"></div>
+		<div class="more-post"></div>
+	</section>
+	<aside>
+		{{about}}
+		<div class="sticky">{{aside}}</div>
+	</aside>
 </main>
