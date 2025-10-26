@@ -2159,6 +2159,10 @@ iframe {
 		position: relative;
 	}
 
+	aside{
+		width: unset;
+	}
+
 	.toc {
 		display: flex;
 		flex-direction: column;
