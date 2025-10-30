@@ -18,6 +18,12 @@ jobs:
           chmod +x .github/workflows/markdown-validation.sh
           .github/workflows/markdown-validation.sh
 
+  winston:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Check markdown files with Winston API
         run: |
           set -e
@@ -25,10 +31,16 @@ jobs:
           API_URL="https://winston.emtech.cc/api/check"
           HAS_ERRORS=0
 
-          # 找出所有 post/*.md 檔案
-          for file in post/*.md; do
+          mapfile -t FILES < <(find post -type f -name "*.md")
+
+          if [ ${#FILES[@]} -eq 0 ]; then
+            echo "⚠️ No markdown files found under post/"
+            exit 0
+          fi
+
+          for file in "${FILES[@]}"; do
             echo "🔍 Checking $file ..."
-            TEXT=$(cat "$file" | jq -Rs .) # 把整個檔案內容包成 JSON-safe 字串
+            TEXT=$(jq -Rs . < "$file")
 
             RESPONSE=$(curl -s -X POST "$API_URL" \
               -H "Content-Type: application/json" \
@@ -37,7 +49,7 @@ jobs:
             # 檢查 mistakes 是否為空
             if echo "$RESPONSE" | jq -e '.mistakes | length > 0' >/dev/null; then
               echo "❌ Found issues in $file"
-              echo "$RESPONSE" | jq -r '.mistakes[] | 
+              echo "$RESPONSE" | jq -r '.mistakes[] |
                 if .type == "spelling_correction" or .type == "case" then
                   "「\(.wrong)」應寫成「\(.correct | join("、"))」"
                 elif .type == "term_ambiguity_check" then
