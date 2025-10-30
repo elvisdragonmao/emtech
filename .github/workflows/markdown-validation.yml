@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Install prettier
+        run: npm install -g prettier
+
       - name: Run prettier
         run: npx prettier --write .
         continue-on-error: true
