@@ -12,7 +12,7 @@ date: 2023-04-28
 {{notice}} CrossDown
 
 - 網站：<https://edit-mr.github.io/CrossDown/>
-- Github: <https://github.com/Edit-Mr/CrossDown> {{noticed}}
+- GitHub: <https://github.com/Edit-Mr/CrossDown> {{noticed}}
 
 > 好不容易忙完午休沒事，就花了下午下課時間搞出來了它。分享給大家，希望大家喜歡。
 
@@ -20,7 +20,7 @@ CrossDown 是一個簡潔而實用的 Markdown 編輯器，它可以在窗口中
 
 CrossDown 的介面非常簡單，由一個編輯區域和一個預覽區域組成。你可以在編輯區域中編寫 Markdown 文本，同時在預覽區域中查看你的編輯結果。它還具有一個可以打開新窗口的按鈕，以便你可以將預覽區域放在一個獨立的窗口中，使你可以在多個屏幕上同時查看你的 Markdown 文本。如果你沒有打開獨立窗口，編輯時按鈕會抖動提醒你。
 
-CrossDown 的另一個重要功能是它的 Markdown 格式化和快捷鍵。你可以使用 Ctrl+B、Ctrl+I、Ctrl+U 和 Ctrl+Shift+S 等快捷鍵對選定的文本進行格式化，也可以使用 Ctrl+K 快捷鍵添加超鏈接。這使得編寫 Markdown 文本更加容易且高效。
+CrossDown 的另一個重要功能是它的 Markdown 格式化和快捷鍵。你可以使用 Ctrl+B、Ctrl+I、Ctrl+U 和 Ctrl+Shift+S 等快捷鍵對選定的文本進行格式化，也可以使用 Ctrl+K 快捷鍵添加超連結。這使得編寫 Markdown 文本更加容易且高效。
 
 它還支持淺色和暗色主題，可以根據系統首選的顏色方案進行自動切換，或是於右上角手動作切換。
 

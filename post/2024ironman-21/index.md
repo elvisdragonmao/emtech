@@ -9,7 +9,7 @@ date: 2024-10-04
 
 > 不如虎穴，焉得虎子，說明了 pyinstaller 要打包 macOS 的執行檔一定要在 macOS 環境運行。
 
-為了支援多平台的 Python 應用打包（例如 Windows、macOS 和 Linux），我們可以使用 GitHub Actions 和 PyInstaller 配合使用。以下是一步步的詳細指南，介紹如何在 GitHub Actions 中設置自動化打包，生成適用於不同作業系統的可執行文件。
+為了支援多平台的 Python 應用打包（例如 Windows、macOS 和 Linux），我們可以使用 GitHub Actions 和 PyInstaller 配合使用。以下是一步步的詳細指南，介紹如何在 GitHub Actions 中設定自動化打包，生成適用於不同作業系統的可執行文件。
 
 ## 背景
 
@@ -32,7 +32,7 @@ pyinstaller --onefile hello.py
 
 ## 準備工作
 
-首先，請先準備一份你的 Python 文件。如果你還沒有，可以使用以下的範例代碼，這是一台簡單的計算機。
+首先，請先準備一份你的 Python 文件。如果你還沒有，可以使用以下的範例程式，這是一台簡單的計算機。
 
 ```python
 def calculator():
@@ -62,11 +62,11 @@ Python 計算機
 結果: 7
 ```
 
-## 設置 GitHub Actions
+## 設定 GitHub Actions
 
 我們需要配置 GitHub Actions 來在不同的操作系統上運行 PyInstaller。以下是一個例子，展示了如何在 macOS、Windows 和 Linux 上自動化打包過程。
 
-在你的 GitHub repository 中，創建一個新的工作流程文件。例如，在 `.github/workflows` 目錄下創建一個名為 `build-multi-platform.yml` 的文件，並添加以下內容：
+在你的 GitHub repository 中，建立一個新的工作流程文件。例如，在 `.github/workflows` 目錄下建立一個名為 `build-multi-platform.yml` 的文件，並添加以下內容：
 
 ```yaml
 name: Build Multi-Platform
@@ -112,10 +112,10 @@ jobs:
 
 ### 詳細步驟解析
 
-- **Checkout repository**: 檢出 GitHub repository 的代碼。
+- **Checkout repository**: 檢出 GitHub repository 的程式。
 - **Set up Python**: 安裝指定版本的 Python。
 - **Install dependencies**: 安裝 PyInstaller。
-- **Build application**: 使用 PyInstaller 打包 Python 應用，根據運行的操作系統環境變數來確定可執行文件的名稱和擴展名。
+- **Build application**: 使用 PyInstaller 打包 Python 應用，根據運行的操作系統環境變數來確定可執行文件的名稱和附檔名。
 - **Archive artifacts**: 上傳生成的可執行文件作為 GitHub Actions 的構建產物，供後續下載或分發使用。
 
 ## 測試和驗證
@@ -124,4 +124,4 @@ jobs:
 
 ## 小結
 
-通過這篇教程，我們學會了如何在 GitHub Actions 中設置多平台的自動打包流程。這樣，我們可以在不同的操作系統上生成對應的可執行文件，並自動化打包和分發過程，提高了開發效率和應用的可用性。如果有任何問題或需要進一步的幫助，隨時告訴我！
+通過這篇教程，我們學會了如何在 GitHub Actions 中設定多平台的自動打包流程。這樣，我們可以在不同的操作系統上生成對應的可執行文件，並自動化打包和分發過程，提高了開發效率和應用的可用性。如果有任何問題或需要進一步的幫助，隨時告訴我！

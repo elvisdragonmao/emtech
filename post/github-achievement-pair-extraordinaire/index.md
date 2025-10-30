@@ -3,7 +3,7 @@ authors: elvismao
 tags: [GitHub, Git, bash, 別說我教的]
 categories: [程式開發]
 date: 2024-12-31
-description: "用 bash 腳本自動化提交有 co-author 的 commit、創建 Pull Request、並自動合併。"
+description: "用 bash 腳本自動化提交有 co-author 的 commit、建立 Pull Request、並自動合併。"
 ---
 
 # 如何快速取得 GitHub 成就 Pair Extraordinaire 金色徽章

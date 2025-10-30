@@ -57,12 +57,12 @@ function simulateMartingale() {
 
 		if (win) {
 			balance += bet; // 贏了增加本金
-			output += `<div class=green>贏了！當前資金：${balance.toFixed(2)} 元</div>`;
+			output += `<div class=green>贏了！目前資金：${balance.toFixed(2)} 元</div>`;
 			bet = initialBet; // 重置投注金額
 			winCount++;
 		} else {
 			balance -= bet; // 輸了扣掉投注金額
-			output += `<div class=red>輸了... 當前資金：${balance.toFixed(2)} 元</div>`;
+			output += `<div class=red>輸了... 目前資金：${balance.toFixed(2)} 元</div>`;
 			bet *= 2; // 加倍投注金額
 			loseCount++;
 

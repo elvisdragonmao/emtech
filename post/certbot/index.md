@@ -15,7 +15,7 @@ Certbot 是一個由 Electronic Frontier Foundation (EFF) 開發的免費、開�
 
 ## 為什麼要使用 SSL 憑證？
 
-**簡單來說就是讓你的網址從 `http://` 變成 `https://`。**使用 SSL 憑證可以幫助你的網站加密數據，保護用戶的隱私。此外，Google 也將使用 SSL 憑證作為搜索排名的一個指標，所以使用 SSL 憑證也有助於提高你的網站在搜索引擎上的排名。
+**簡單來說就是讓你的網址從 `http://` 變成 `https://`。**使用 SSL 憑證可以幫助你的網站加密資料，保護用戶的隱私。此外，Google 也將使用 SSL 憑證作為搜索排名的一個指標，所以使用 SSL 憑證也有助於提高你的網站在搜索引擎上的排名。
 
 ## 如何使用 Certbot 申請免費的 SSL 憑證？
 
@@ -109,14 +109,14 @@ This certificate expires on 2024-06-08.
 These files will be updated when the certificate renews.
 ```
 
-當你在 DNS 服務商的控制面板中添加了 TXT 記錄後，按下 Enter 鍵，Certbot 會提示你成功接收到了 SSL 憑證，並告訴你憑證的保存位置。
+當你在 DNS 服務商的控制面板中添加了 TXT 記錄後，按下 Enter 鍵，Certbot 會提示你成功接收到了 SSL 憑證，並告訴你憑證的儲存位置。
 
 ## 檔案介紹
 
 - `fullchain.pem`：這是你的 SSL 憑證，它包含了你的域名和中間證書。
   - `chain.pem`：這是中間證書。
   - `cert.pem`：這是你的域名憑證。
-- `privkey.pem`：這是你的私鑰，它用來加密和解密數據。
+- `privkey.pem`：這是你的私鑰，它用來加密和解密資料。
 
 通常只會需要用到 `fullchain.pem` 和 `privkey.pem` 這兩個檔案。
 
@@ -128,7 +128,7 @@ Let's Encrypt 的 SSL 憑證有效期只有 90 天，所以你需要定期更新
 sudo certbot renew
 ```
 
-你可以使用 `crontab` 來設置定時任務，定期更新你的 SSL 憑證。
+你可以使用 `crontab` 來設定定時任務，定期更新你的 SSL 憑證。
 
 ```bash
 sudo crontab -e

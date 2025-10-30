@@ -276,7 +276,7 @@ Gemini 還有很多其他的設定，例如 `max_tokens` 用來設定最大回�
 </html>
 ```
 
-你可以看到我們使用了 `fetch` 來發送請求，然後將回應顯示在網頁上。其中設定了變數 `thread` 來保存對話內容，這樣我們就可以連續對話了。由於 Gemini 回覆的格式是 Markdown，所以我們使用了 `showdown` 來將 Markdown 轉換成 HTML。加上一些簡單的 CSS，我們就完成了一個簡單的線上對話網站。
+你可以看到我們使用了 `fetch` 來發送請求，然後將回應顯示在網頁上。其中設定了變數 `thread` 來儲存對話內容，這樣我們就可以連續對話了。由於 Gemini 回覆的格式是 Markdown，所以我們使用了 `showdown` 來將 Markdown 轉換成 HTML。加上一些簡單的 CSS，我們就完成了一個簡單的線上對話網站。
 
 ![成果](result.webp)
 

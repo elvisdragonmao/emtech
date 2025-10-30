@@ -11,19 +11,19 @@ date: 2024-09-30
 
 > 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/17>
 
-今天，我們將介紹如何使用 Bash 腳本或 Node.js 編寫 GitHub Actions，自動從 Notion 獲取待辦事項並更新到 Discord 頻道。希望能透過這個小專題幫助你了解如何利用進行自動化操作呼叫 API。如果你不會使用 Notion 的話，~~那你該去學學。~~你可以參考大致的流程與程式的邏輯。
+今天，我們將介紹如何使用 Bash 腳本或 Node.js 編寫 GitHub Actions，自動從 Notion 取得待辦事項並更新到 Discord 頻道。希望能透過這個小專題幫助你了解如何利用進行自動化操作呼叫 API。如果你不會使用 Notion 的話，~~那你該去學學。~~你可以參考大致的流程與程式的邏輯。
 
 首先讓我們看一下成果。你可以看到 Discord 頻道的標題會根據 Notion 中的待辦事項進行更新。
 
 ![Discord Demo](discord-demo.webp)
 
-## 事前準備：建立 Notion 資料庫並獲取 API
+## 事前準備：建立 Notion 資料庫並取得 API
 
 我們在開始之前需要獲得幾個變數：
 
 ### Notion 資料庫 ID
 
-在我們開始時做之前請先打開 Notion 建立一個資料庫。這裡我以中電會的 Notion 為例。可以看到左到右分別是預設的 To-do、In progress、Complete。我們將會從這個資料庫中獲取待辦事項。
+在我們開始時做之前請先打開 Notion 建立一個資料庫。這裡我以中電會的 Notion 為例。可以看到左到右分別是預設的 To-do、In progress、Complete。我們將會從這個資料庫中取得待辦事項。
 
 ![建立資料庫](notion.webp)
 
@@ -43,7 +43,7 @@ https://www.notion.so/6e7c50281a8b406dbxxxxxxxx7892659?v=fe8e4b0c57e24axxxxxxxxx
 
 ![建立新的應用](new.webp)
 
-請你複製這一串 Integration Token。生成完 API 之後，記得要邀請你剛才創建的機器人。點擊 Notion 右上角的三個點，Connect to，並選擇剛才創建的機器人。
+請你複製這一串 Integration Token。生成完 API 之後，記得要邀請你剛才建立的機器人。點擊 Notion 右上角的三個點，Connect to，並選擇剛才建立的機器人。
 
 ![請你複製這串 ID](intergration.webp)
 
@@ -65,9 +65,9 @@ https://www.notion.so/6e7c50281a8b406dbxxxxxxxx7892659?v=fe8e4b0c57e24axxxxxxxxx
 
 Bash 自定義 Actions 允許我們使用 Shell 腳本來執行操作。這是一種簡單且強大的方式，可以實現許多自動化需求。相較於 JavaScript 自定義 Actions，Bash 版本通常較為簡單，適合用來執行簡單的 Shell 命令和操作。
 
-### 步驟 1：設置專案結構
+### 步驟 1：設定專案結構
 
-首先，創建一個新的 GitHub 存儲庫來容納我們的自定義 Action。在存儲庫中，創建以下目錄結構：
+首先，建立一個新的 GitHub 存儲庫來容納我們的自定義 Action。在存儲庫中，建立以下目錄結構：
 
 ```
 my-custom-action/
@@ -108,9 +108,9 @@ runs:
         DISCORD_TOKEN: ${{ inputs.discord_token }}
 ```
 
-欸你發現了嗎？我們這裡使用了一個之前沒使用過的參數 `composite`。這個參數可以讓我們在 Action 中執行多個步驟，這樣我們就可以在 Action 中執行多個 Shell 命令。同時我們還使用了之前沒使用過的 `inputs` 關鍵字，這個關鍵字可以讓我們在 Action 中訪問輸入的參數。
+欸你發現了嗎？我們這裡使用了一個之前沒使用過的參數 `composite`。這個參數可以讓我們在 Action 中執行多個步驟，這樣我們就可以在 Action 中執行多個 Shell 命令。同時我們還使用了之前沒使用過的 `inputs` 關鍵字，這個關鍵字可以讓我們在 Action 中存取輸入的參數。
 
-`inputs` 關鍵字用於定義 Action 的輸入參數，這些參數可以在 Action 運行時從外部設置。在這個例子中，我們定義了四個輸入參數：`notion_database_id`、`notion_token`、`discord_channel_id` 和 `discord_token`。這些參數將用於從 Notion 獲取待辦事項並更新 Discord 頻道。當使用者第一次安裝 Action 時，他們需要提供這些參數的值。
+`inputs` 關鍵字用於定義 Action 的輸入參數，這些參數可以在 Action 運行時從外部設定。在這個例子中，我們定義了四個輸入參數：`notion_database_id`、`notion_token`、`discord_channel_id` 和 `discord_token`。這些參數將用於從 Notion 取得待辦事項並更新 Discord 頻道。當使用者第一次安裝 Action 時，他們需要提供這些參數的值。
 
 ### 步驟 3：編寫 Bash 腳本
 
@@ -127,7 +127,7 @@ update_tasks() {
     local discord_channel_id="$DISCORD_CHANNEL_ID"
     local discord_token="$DISCORD_TOKEN"
 
-    # 從 Notion 獲取待辦事項
+    # 從 Notion 取得待辦事項
     response=$(curl -s -X POST -H "Authorization: ${notion_token}" -H "Notion-Version: 2022-06-28" -H "Content-Type: application/json" "https://api.notion.com/v1/databases/${notion_database_id}/query")
 
     if [ -n "$(echo "${response}" | jq '.results')" ]; then
@@ -166,18 +166,18 @@ update_discord_channel_title() {
 update_tasks
 ```
 
-在腳本中，我們使用 `curl` 來從 Notion API 獲取待辦事項，並根據狀態更新 Discord 頻道的標題。
+在腳本中，我們使用 `curl` 來從 Notion API 取得待辦事項，並根據狀態更新 Discord 頻道的標題。
 
-## 步驟 4：設置 GitHub Secrets
+## 步驟 4：設定 GitHub Secrets
 
-在 GitHub 存儲庫的設置中，添加所需的 Secrets：
+在 GitHub 存儲庫的設定中，添加所需的 Secrets：
 
 - `NOTION_DATABASE_ID`
 - `NOTION_TOKEN`
 - `DISCORD_CHANNEL_ID`
 - `DISCORD_TOKEN`
 
-這些 Secrets 將用於在 Action 中安全地傳遞敏感信息。
+這些 Secrets 將用於在 Action 中安全地傳遞敏感訊息。
 
 ## 步驟 5：運行和測試 Actions
 
@@ -185,9 +185,9 @@ update_tasks
 
 ## JavaScript 版本
 
-### 步驟 1：設置專案結構
+### 步驟 1：設定專案結構
 
-首先，我們需要創建一個新的 GitHub 存儲庫來容納我們的自定義 Action。在存儲庫中，創建以下目錄結構：
+首先，我們需要建立一個新的 GitHub 存儲庫來容納我們的自定義 Action。在存儲庫中，建立以下目錄結構：
 
 ```
 my-custom-action/
@@ -225,7 +225,7 @@ runs:
 
 ### 步驟 3：編寫 Action 腳本
 
-在 `app.js` 文件中，我們將編寫 JavaScript 代碼來完成具體的操作。以下是 `index.js` 的內容：
+在 `app.js` 文件中，我們將編寫 JavaScript 程式來完成具體的操作。以下是 `index.js` 的內容：
 
 ```javascript
 const core = require("@actions/core");
@@ -239,7 +239,7 @@ async function updateTasks() {
 		const discordChannelId = core.getInput("discord_channel_id");
 		const discordToken = core.getInput("discord_token");
 
-		// 從 Notion 獲取待辦事項
+		// 從 Notion 取得待辦事項
 		const notionResponse = await axios.post(
 			`https://api.notion.com/v1/databases/${notionDatabaseId}/query`,
 			{},
@@ -301,7 +301,7 @@ async function updateTasks() {
 updateTasks();
 ```
 
-首先我們引入了 `@actions/core` 來訪問 Action 的輸入參數，並引入 `axios` 來發送 HTTP 請求。在 `updateTasks` 函數中，我們讀取輸入參數，從 Notion API 獲取待辦事項，並更新 Discord 頻道的標題。
+首先我們引入了 `@actions/core` 來存取 Action 的輸入參數，並引入 `axios` 來發送 HTTP 請求。在 `updateTasks` 函數中，我們讀取輸入參數，從 Notion API 取得待辦事項，並更新 Discord 頻道的標題。
 
 ### 步驟 4：安裝套件
 
@@ -313,7 +313,7 @@ updateTasks();
 
 ## 配置 GitHub Actions 工作流程
 
-現在，我們需要創建一個 GitHub Actions 工作流程來使用我們的自定義 Action。在 `.github/workflows` 目錄下創建一個新的 YAML 文件，例如 `main.yml`，並添加以下內容：
+現在，我們需要建立一個 GitHub Actions 工作流程來使用我們的自定義 Action。在 `.github/workflows` 目錄下建立一個新的 YAML 文件，例如 `main.yml`，並添加以下內容：
 
 ```yaml
 name: Update Notion to Discord
@@ -340,16 +340,16 @@ jobs:
           discord_token: ${{ secrets.DISCORD_TOKEN }}
 ```
 
-## 4. 設置 GitHub Secrets
+## 4. 設定 GitHub Secrets
 
-在 GitHub 存儲庫的設置中，添加所需的 Secrets：
+在 GitHub 存儲庫的設定中，添加所需的 Secrets：
 
 - `NOTION_DATABASE_ID`
 - `NOTION_TOKEN`
 - `DISCORD_CHANNEL_ID`
 - `DISCORD_TOKEN`
 
-這些 Secrets 將用於在 Action 中安全地傳遞敏感信息。
+這些 Secrets 將用於在 Action 中安全地傳遞敏感訊息。
 
 on 的部分定義了觸發條件。你可以根據具體需求選擇不同的觸發條件，例如 schedule（定時觸發），或其他事件。
 
@@ -365,4 +365,4 @@ on:
 
 ## 小結
 
-今天我們探討了如何使用 Bash 腳本編寫 GitHub Actions 自定義 Action。我們編寫了一個簡單的 Bash 腳本，從 Notion 獲取待辦事項並更新 Discord 頻道的標題。通過這個實踐，我們了解了如何使用 Shell 腳本來實現自動化操作，並且學會了如何配置和使用自定義 Actions。希望這篇教程對你有所幫助。s
+今天我們探討了如何使用 Bash 腳本編寫 GitHub Actions 自定義 Action。我們編寫了一個簡單的 Bash 腳本，從 Notion 取得待辦事項並更新 Discord 頻道的標題。通過這個實踐，我們了解了如何使用 Shell 腳本來實現自動化操作，並且學會了如何配置和使用自定義 Actions。希望這篇教程對你有所幫助。s

@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [自製，Github, JSON, iOS 捷徑]
+tags: [自製，GitHub, JSON, iOS 捷徑]
 categories: [生活駭客]
 date: 2021-12-01
 ---
@@ -19,7 +19,7 @@ date: 2021-12-01
 
 ## 當週週報連結
 
-如果你平常只需要獲取當周週報，可直接到以下網址，永久有效。歡迎設為書籤。
+如果你平常只需要取得當周週報，可直接到以下網址，永久有效。歡迎設為書籤。
 
 周間時當週週報教會可能還未釋出，若無法下載（出現 404）請過一陣子再試。
 
@@ -27,7 +27,7 @@ date: 2021-12-01
 
 ## ios 捷徑（稍後更新連結）
 
-若你使用的是 ios 裝置，你可以使用我製作的捷徑腳本來快速獲取當天、上一次、或指定日期的週報。 {{notice}} 小提醒
+若你使用的是 ios 裝置，你可以使用我製作的捷徑腳本來快速取得當天、上一次、或指定日期的週報。 {{notice}} 小提醒
 
 - 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。
 - 此網站及捷徑皆為開源項目，歡迎到[GitHub](https://github.com/Edit-Mr/Edit-Mr.github.io/tree/main/code/weekly)查看。

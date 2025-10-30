@@ -9,7 +9,7 @@ date: 2024-09-16
 
 > GitHub Actions 如同九方皋相馬，見其所見，不見其所不見；視其所視，而遺其所不視。預設環境是讀不到 Code 的，要使用 actions/checkout 才能讀取 repo 內容。
 
-今天我們要來討論如何使用 GitHub Actions 來自動化 Git 操作，例如自動編輯文件、提交（commit）變更以及推送（push）代碼到儲存庫中。這些操作可以讓你的開發流程更為順暢，尤其在一些重複性任務上，例如定期更新版本號、自動生成文件或部署後自動提交紀錄等。今天將介紹兩種方法：一種是手動使用 Shell 指令，另一種是使用現成的 GitHub Actions 函式庫。
+今天我們要來討論如何使用 GitHub Actions 來自動化 Git 操作，例如自動編輯文件、提交（commit）變更以及推送（push）程式到儲存庫中。這些操作可以讓你的開發流程更為順暢，尤其在一些重複性任務上，例如定期更新版本號、自動生成文件或部署後自動提交紀錄等。今天將介紹兩種方法：一種是手動使用 Shell 指令，另一種是使用現成的 GitHub Actions 函式庫。
 
 > 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/3>
 
@@ -27,11 +27,11 @@ date: 2024-09-16
 
 ## 實作：手動使用 Shell 指令自動化 Git 操作
 
-我們先來看看如何手動編寫 Shell 指令來自動提交和推送代碼。
+我們先來看看如何手動編寫 Shell 指令來自動提交和推送程式。
 
 **步驟 1：建立工作流程文件**
 
-1. 在儲存庫中，創建一個新的 GitHub Actions 工作流程文件，例如 `.github/workflows/auto-commit.yml`。
+1. 在儲存庫中，建立一個新的 GitHub Actions 工作流程文件，例如 `.github/workflows/auto-commit.yml`。
 
 **步驟 2：編寫 YAML 配置文件**
 
@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 檢出代碼
+      - name: 檢出程式
         uses: actions/checkout@v3
 
       - name: 進行修改
@@ -63,7 +63,7 @@ jobs:
           git add .
           git commit -m "Automated commit on $(date)"
 
-      - name: 推送代碼
+      - name: 推送程式
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: git push origin main
@@ -73,9 +73,9 @@ jobs:
 
 - **`schedule:`** 使用 cron 表達式來設定工作流程的自動觸發時間。這裡設定為每天凌晨 12 點自動執行。
 - **`workflow_dispatch:`** 允許手動觸發工作流程。
-- **`steps:`** 分別執行檢出代碼、進行修改、提交變更以及推送代碼。
-- **`git config:`** 設置提交時使用的用戶信息，使用過 git 的話你會知道這是必要的，否則提交會失敗。
-- **`GITHUB_TOKEN:`** 使用 GitHub 提供的內建密鑰來進行認證並推送代碼。
+- **`steps:`** 分別執行檢出程式、進行修改、提交變更以及推送程式。
+- **`git config:`** 設定提交時使用的用戶訊息，使用過 git 的話你會知道這是必要的，否則提交會失敗。
+- **`GITHUB_TOKEN:`** 使用 GitHub 提供的內建密鑰來進行認證並推送程式。
 
 **步驟 3：推送工作流程文件**
 
@@ -88,7 +88,7 @@ git push origin main
 **應用範例：**
 
 - **定期更新項目狀態：** 可以每天自動更新一個狀態文件，記錄當天的構建或測試結果。
-- **自動生成文檔：** 在代碼變更後，自動重新生成文檔並提交到儲存庫。
+- **自動生成說明文件：** 在程式變更後，自動重新生成說明文件並提交到儲存庫。
 
 ## 實作：使用現成的函式庫自動化 Git 操作
 
@@ -113,7 +113,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 檢出代碼
+      - name: 檢出程式
         uses: actions/checkout@v3
 
       - name: 進行修改
@@ -146,24 +146,24 @@ git push origin main
 
 **應用範例：**
 
-- **版本號自動更新：** 每次 push 代碼時，自動增加版本號並提交。
+- **版本號自動更新：** 每次 push 程式時，自動增加版本號並提交。
 - **自動同步：** 在分支間進行自動同步，保持不同環境的一致性。
 
 #### 常用技巧與注意事項
 
 1. **避免無限遞迴提交：**
-   - 當自動提交導致觸發條件發生變化時，可能會導致無限遞迴。要避免這種情況，可以設置條件或標記來限制提交次數。
+   - 當自動提交導致觸發條件發生變化時，可能會導致無限遞迴。要避免這種情況，可以設定條件或標記來限制提交次數。
 
 > 你 push 之後，Acction 看到有人 push 所以也 push，Acction 看到有人 push 所以也 push，Acction 看到有人 push 所以也 push...
 
 2. **使用 GitHub Secrets：**
-   - 將敏感信息（如 GitHub Token、用戶憑證）儲存在 GitHub Secrets 中，並在工作流程中引用，以保證安全性。
+   - 將敏感訊息（如 GitHub Token、用戶憑證）儲存在 GitHub Secrets 中，並在工作流程中引用，以保證安全性。
 
 3. **檢查提交日誌：**
    - 使用 `git log` 檢查自動提交的日誌，確保提交的內容正確且符合預期。
 
 4. **靈活使用 cron 表達式：**
-   - 根據需要設置自動觸發時間，例如每天、多次每天、每週等，來更好地控制自動化流程。
+   - 根據需要設定自動觸發時間，例如每天、多次每天、每週等，來更好地控制自動化流程。
 
 ## 結語
 

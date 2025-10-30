@@ -82,7 +82,7 @@ pdftk 可以將多個 PDF 檔案合併成一個檔案。比如下面的例子：
 pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
 ```
 
-或者使用檔案控制代碼這樣就能控制順序：
+或者使用檔案控制程式這樣就能控制順序：
 
 ```
 pdftk A=1.pdf B=2.pdf cat A B output 12.pdf
@@ -202,7 +202,7 @@ pdftk secured.pdf input_pw foopass output unsecured.pdf
 
 ### 合併兩個 PDF 文件，其中有一個是加密的
 
-在合併時要使用控制代碼選項來指定密碼。下面是一個範例，shortsec.pdf 是一個加密過的 PDF 文件，在合併時如果沒有指定密碼，則會出錯：
+在合併時要使用控制程式選項來指定密碼。下面是一個範例，shortsec.pdf 是一個加密過的 PDF 文件，在合併時如果沒有指定密碼，則會出錯：
 
 ```
 pdftk A=a.pdf B=b.pdf cat output combined.pdf
@@ -218,7 +218,7 @@ Errors encountered.  No output created.
 Done.  Input errors, so no output created.
 ```
 
-下面通過控制代碼選項指定密碼則可以正常合併：
+下面通過控制程式選項指定密碼則可以正常合併：
 
 ```
 pdftk A=a.pdf B=b.pdf input_pw A=foopass cat output combined.pdf
@@ -248,7 +248,7 @@ pdftk in.pdf stamp back.pdf output out.pdf
 pdftk in.pdf attach_files 1.html 2.html to_page 6 output out.pdf
 ```
 
-下面的例子將附件解壓縮到當前資料夾：
+下面的例子將附件解壓縮到目前資料夾：
 
 ```
 pdftk report.pdf unpack_files output .

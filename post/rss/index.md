@@ -133,9 +133,9 @@ FreshRSS 支援 Google Reader API，讓你可以使用第三方的閱讀器來�
 
 ### 開啟 API 功能
 
-首先我們需要先在 FreshRSS 上面開啟 API 功能。請到「設定 > 驗證」開啟允許 API 訪問，並點擊提交儲存。
+首先我們需要先在 FreshRSS 上面開啟 API 功能。請到「設定 > 驗證」開啟允許 API 存取，並點擊提交儲存。
 
-![FreshRSS 允許 API 訪問](fresh-api.webp)
+![FreshRSS 允許 API 存取](fresh-api.webp)
 
 接下來請你在「使用者資訊 > API 管理」設定一個 API 密碼，建議可以直接使用跟登入密碼相同的。
 
@@ -209,7 +209,7 @@ Podcast 本身其實就是 RSS 網址，只不過你平常習慣使用 Spotify�
 
 ### 其他
 
-想要訂閱其他的網址找不到的話可以到 [RSSHub](https://rsshub.app/) 的文檔看看他們有沒有整理出來，或是你也可以直接部署使用這個爬蟲工具來訂閱。
+想要訂閱其他的網址找不到的話可以到 [RSSHub](https://rsshub.app/) 的說明文件看看他們有沒有整理出來，或是你也可以直接部署使用這個爬蟲工具來訂閱。
 
 ## 總結
 

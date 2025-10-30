@@ -64,7 +64,7 @@ color(colorspace c1 c2 c3[ / A])
 /* 在 sRGB 色彩空間中指定紅色 */
 color(srgb 1 0 0);
 
-/* 在 display-p3 色彩空間中指定橙色，同時設置透明度為 50% */
+/* 在 display-p3 色彩空間中指定橙色，同時設定透明度為 50% */
 color(display-p3 1 0.5 0 / 0.5);
 
 ```

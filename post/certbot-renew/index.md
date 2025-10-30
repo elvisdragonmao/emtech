@@ -23,14 +23,14 @@ Failed to renew certificate example.com with error: The manual plugin is not wor
 
 ![Failed to renew certificate](failed.webp)
 
-這表示 Certbot 無法使用手動插件進行非交互式更新，需要提供身份驗證腳本。
+這表示 Certbot 無法使用手動插件進行非交互式更新，需要提供身分驗證腳本。
 
 ### 解決方案
 
 有兩種方法可以解決這個問題：
 
 1. **切換到自動化的網頁伺服器插件**
-2. **提供手動身份驗證腳本**
+2. **提供手動身分驗證腳本**
 
 #### 方法一：切換到自動化的網頁伺服器插件
 
@@ -94,11 +94,11 @@ Successfully deployed certificate for pi.elvismao.com to /etc/nginx/sites-enable
 Congratulations! You have successfully enabled HTTPS on https://pi.elvismao.com
 ```
 
-#### 方法二：提供手動身份驗證腳本
+#### 方法二：提供手動身分驗證腳本
 
-如果你需要繼續使用手動方法，則必須提供身份驗證腳本。基本上它就是模擬你手動輸入驗證碼的過程。首先，創建一個腳本來執行 DNS 或 HTTP 驗證步驟，然後使用 `--manual-auth-hook` 選項。
+如果你需要繼續使用手動方法，則必須提供身分驗證腳本。基本上它就是模擬你手動輸入驗證碼的過程。首先，建立一個腳本來執行 DNS 或 HTTP 驗證步驟，然後使用 `--manual-auth-hook` 選項。
 
-##### 1. 範例身份驗證腳本
+##### 1. 範例身分驗證腳本
 
 以下是一個簡單的 DNS 驗證腳本範例：
 
@@ -123,7 +123,7 @@ sleep 60
 
 確保根據你的 DNS 提供商的 API 要求調整腳本。
 
-##### 2. 使用手動身份驗證腳本更新憑證
+##### 2. 使用手動身分驗證腳本更新憑證
 
 運行以下命令來更新憑證：
 
@@ -153,4 +153,4 @@ sudo certbot certificates
 
 ### 結論
 
-透過這篇文章，我們介紹了如何解決 Certbot SSL 手動插件更新失敗的問題，包括使用自動化插件和提供手動身份驗證腳本的詳細步驟。希望這些方法能幫助你順利更新 SSL 憑證，確保網站的安全性。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)。
+透過這篇文章，我們介紹了如何解決 Certbot SSL 手動插件更新失敗的問題，包括使用自動化插件和提供手動身分驗證腳本的詳細步驟。希望這些方法能幫助你順利更新 SSL 憑證，確保網站的安全性。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)。

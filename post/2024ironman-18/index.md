@@ -19,11 +19,11 @@ date: 2024-10-01
 
 ### 事前準備：建立 Notion 整合
 
-首先請你參考昨天的步驟，建立一個 Notion 整合。請至 [Notion Developers](https://www.notion.so/my-integrations) 創建一個新的整合，並獲取 API 密鑰，然後整合至 Workspace。這個 API 密鑰將用於訪問 Notion 的 API，以便將 GitHub 的 issue 同步到 Notion 中。
+首先請你參考昨天的步驟，建立一個 Notion 整合。請至 [Notion Developers](https://www.notion.so/my-integrations) 建立一個新的整合，並取得 API 密鑰，然後整合至 Workspace。這個 API 密鑰將用於存取 Notion 的 API，以便將 GitHub 的 issue 同步到 Notion 中。
 
-### 步驟 1：設置專案結構
+### 步驟 1：設定專案結構
 
-首先，創建一個新的 GitHub 存儲庫來容納我們的自定義 Action。結構如下：
+首先，建立一個新的 GitHub 存儲庫來容納我們的自定義 Action。結構如下：
 
 ```
 github-issue-2-notion/
@@ -68,7 +68,7 @@ runs:
 
 ### 步驟 3：編寫 Node.js 腳本
 
-在 `script.js` 文件中，編寫 Node.js 腳本來實現從 GitHub 獲取 issue 並同步到 Notion。以下是 `script.js` 的完整內容：
+在 `script.js` 文件中，編寫 Node.js 腳本來實現從 GitHub 取得 issue 並同步到 Notion。以下是 `script.js` 的完整內容：
 
 ```javascript
 /** @format */
@@ -194,18 +194,18 @@ main().catch(error => {
 
 - `axios`: 用於發送 HTTP 請求。
 - `@tryfabric/martian`: 用於將 Markdown 轉換為 Notion 的 block。
-- `@actions/core`: 用於訪問 Action 的輸入和輸出。
+- `@actions/core`: 用於存取 Action 的輸入和輸出。
 
-### 步驟 4：設置 GitHub Secrets
+### 步驟 4：設定 GitHub Secrets
 
-在 GitHub 存儲庫的設置中，添加以下 Secrets：
+在 GitHub 存儲庫的設定中，添加以下 Secrets：
 
 - `NOTION_API_KEY`: 你的 Notion API 密鑰。
 - `NOTION_DATABASE_ID`: 你的 Notion 資料庫 ID。
 
-### 步驟 5：創建工作流程文件
+### 步驟 5：建立工作流程文件
 
-在你的 GitHub 存儲庫的 `.github/workflows` 目錄下創建一個新的 YAML 文件，例如 `sync-issues.yml`，並添加以下內容：
+在你的 GitHub 存儲庫的 `.github/workflows` 目錄下建立一個新的 YAML 文件，例如 `sync-issues.yml`，並添加以下內容：
 
 ```yaml
 name: Sync GitHub Issues to Notion
@@ -234,4 +234,4 @@ jobs:
 
 ## 小結
 
-今天我們探討了如何編寫一個 GitHub Actions 來將 GitHub 的 issue 同步到 Notion。通過這個實踐，我們掌握了如何使用 Node.js 和 GitHub Actions 來自動化從 GitHub 獲取問題並更新 Notion 資料庫的過程。希望這篇教程能幫助你更高效地管理問題並保持項目組織的井然有序。
+今天我們探討了如何編寫一個 GitHub Actions 來將 GitHub 的 issue 同步到 Notion。通過這個實踐，我們掌握了如何使用 Node.js 和 GitHub Actions 來自動化從 GitHub 取得問題並更新 Notion 資料庫的過程。希望這篇教程能幫助你更高效地管理問題並保持項目組織的井然有序。

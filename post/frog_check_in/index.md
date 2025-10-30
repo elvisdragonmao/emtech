@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [自製，HTML, CSS, JavaScript, Github, Google Apps Script, 複製貼上就能成為工程師]
+tags: [自製，HTML, CSS, JavaScript, GitHub, Google Apps Script, 複製貼上就能成為工程師]
 categories: [程式開發，生活駭客]
 date: 2021-10-07
 ---
@@ -23,7 +23,7 @@ date: 2021-10-07
 
 ### 新增學生
 
-![新增學生](frog_check_in-add.png) 輸入名稱並按新增即可。<br /> 電腦會自動在 Google Sheet 建立好欄位。教練只需要到試算表設定學生的課程數就好了。如果沒有課了會用紅色表示，而未設定會被判斷為沒有課程。 ![試算表中的學生列表](frog_check_in-student.PNG) {{notice}} 超重要提醒
+![新增學生](frog_check_in-add.png) 輸入名稱並按新增即可。<br /> 電腦會自動在 Google Sheets 建立好欄位。教練只需要到試算表設定學生的課程數就好了。如果沒有課了會用紅色表示，而未設定會被判斷為沒有課程。 ![試算表中的學生列表](frog_check_in-student.PNG) {{notice}} 超重要提醒
 
 - 學生姓名不可以有空格，如果有空格會自動刪除
 - 要刪除學生請刪除整列，不可留一整列空白 {{noticed}}
@@ -49,12 +49,12 @@ date: 2021-10-07
 
 我們分成三個步驟：
 
-1. 建立試算表 (Google Sheet)
+1. 建立試算表 (Google Sheets)
 2. 生成 Line Notify 仗權 (若不需要 Line 通知可省略)
-3. 創建 API(Google Apps Script) 來處理資料、發送訊息、以及更新試算表
+3. 建立 API(Google Apps Script) 來處理資料、發送訊息、以及更新試算表
 4. 建立一個漂亮的網站方便操作
 
-### 建立試算表 (Google Sheet)
+### 建立試算表 (Google Sheets)
 
 我分成兩個表格，分別叫做`紀錄`和`統計`。為了方便辨識第一排插入標題
 
@@ -76,20 +76,20 @@ date: 2021-10-07
 
 Line Notify 是個比較冷門但是非常好用的工具。我們可以透過他來從第三方 (如你的網站、或是 ios 捷徑) 無限量的廣播訊息到指定的群組，或是單獨發給你。我們會在報到成功後請 Line 用 Line Notify 來在群組裡廣播提醒。
 
-請依照圖片步驟建立一個仗權，要給 Line 看這一串他才知道要傳送信息到哪裡。使用 Line Lontify 而不是 Line 機器人的原因是免費版的官方帳號一個月只能傳送 500 則訊息，但老師的學生數量大，可能會吃不消；且 Line Notify 設定較簡單。
+請依照圖片步驟建立一個仗權，要給 Line 看這一串他才知道要傳送訊息到哪裡。使用 Line Lontify 而不是 Line 機器人的原因是免費版的官方帳號一個月只能傳送 500 則訊息，但老師的學生數量大，可能會吃不消；且 Line Notify 設定較簡單。
 
 ### 建立 API(Google Apps Script)
 
 想要讓網站編輯試算表需要透過 Google Apps Script 來完成。我們要建立四個 API，分別用來：
 
 1. 紀錄出缺席
-2. 獲取學生列表 (以進行報到)
+2. 取得學生列表 (以進行報到)
 3. 查詢紀錄
 4. 新增學生
 
-到時候我們建立的網站會向這四個 API 發送請求來更新試算表或獲取資料
+到時候我們建立的網站會向這四個 API 發送請求來更新試算表或取得資料
 
-{{notice}} 提示 [google 官方文件 spreadsheet method](https://developers.google.com/apps-script/reference/spreadsheet/sheet)，裡面有非常詳盡的介紹，包括可以讀取欄位、讀取資料、排序資料、插入資料等等的功能，其實某方面來說算是功能齊全的類資料庫了。有興趣可以點開來看裡面文件。
+{{notice}} 提示 [Google 官方文件 spreadsheet method](https://developers.google.com/apps-script/reference/spreadsheet/sheet)，裡面有非常詳盡的介紹，包括可以讀取欄位、讀取資料、排序資料、插入資料等等的功能，其實某方面來說算是功能齊全的類資料庫了。有興趣可以點開來看裡面文件。
 
 文件裡面 method 一大堆，還是直接實作比較快。 {{noticed}}
 
@@ -129,7 +129,7 @@ function doGet(e) {
 
 在這個程式當中，我們說當我們拿著資料到這個應用程式時，將我們給的姓名、時間、剩餘課堂數、以及編號寫入到試算表第一頁最後一行的下一行。但是這樣還沒結束，會後我們還要請 Line Notify 幫我們廣播。請在`return ContentService.createTextOutput(true);`之前插入以下程式碼。記得填入剛才生成的仗權。
 
-編輯完成後請按執行。第一次執行時系統會要求你登入 Google，請登入現在使用的帳號並提供編輯試算表的權限。Google 會告訴你不安全因為這是是你自己製作的應用程式，沒有經過 Google 審查。直接點選進階，並繼續前往即可。成功部署後請保存應用程式的網址，之後網站就會傳送資料到這個網站來寫入和讀取資料。<br /> 完成後可能會看到紅色警告說無法執行，因為我們直接執行了程式，沒有給資料（學生名稱）。因此請建立一個程式碼檔案叫做`debug`，並貼上以下內容：
+編輯完成後請按執行。第一次執行時系統會要求你登入 Google，請登入現在使用的帳號並提供編輯試算表的權限。Google 會告訴你不安全因為這是是你自己製作的應用程式，沒有經過 Google 審查。直接點選進階，並繼續前往即可。成功部署後請儲存應用程式的網址，之後網站就會傳送資料到這個網站來寫入和讀取資料。<br /> 完成後可能會看到紅色警告說無法執行，因為我們直接執行了程式，沒有給資料（學生名稱）。因此請建立一個程式碼檔案叫做`debug`，並貼上以下內容：
 
 ```js
 //呼叫
@@ -155,13 +155,13 @@ function debug() {
 
 做好了之後點擊執行▶️，你會需要授予你的程式讀取資料的權限。因為你寫的程式沒有被 Google 驗證過所以會顯示不安全，但我相信你不會把你的帳號搞爆，對吧
 
-接下來我們要部署它，讓它成為一個網站來讓我們抓。這裡選擇網頁應用程式，所有人都以你的身份讀取。按下部署就可以囉
+接下來我們要部署它，讓它成為一個網站來讓我們抓。這裡選擇網頁應用程式，所有人都以你的身分讀取。按下部署就可以囉
 
 這裡我們把部署的網址複製起來。如果要做修改除了按儲存之外要記得重新部署成新版本才會更新喔 {{notice}} 小叮嚀若發布後還有做修改，既得要再次發布且要發布為新版本。 {{noticed}}
 
 #### 學生列表
 
-學生列表不需要輸入，直接讀取內容就好了。這裡使用的輸出格式是 JSON。JSON 就是 ios 捷徑 APP 裡的辭典，簡單來說就是一個對照表。比如說你想要紀錄一個人的基本資料如下
+學生列表不需要輸入，直接讀取內容就好了。這裡使用的輸出格式是 JSON。JSON 就是 ios 捷徑 app 裡的辭典，簡單來說就是一個對照表。比如說你想要紀錄一個人的基本資料如下
 
 ```json
 {
@@ -363,7 +363,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 
 						type: "get",
 
-						// api url - google appscript 產出的 url
+						// api url - Google appscript 產出的 url
 
 						url: "https://script.google.com/............",
 
@@ -410,7 +410,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 <script>
  //用 Get 讀取資料
     window.onload = () => {
-     // api url - google appscript 產出的 url
+     // api url - Google appscript 產出的 url
         let requestURL = "https://script.google.com/.........";
         let request = new XMLHttpRequest();
         request.open("GET", requestURL);
@@ -450,7 +450,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
         $.ajax({
             // 這邊用 get type
             type: "get",
-            // api url - google appscript 產出的 url
+            // api url - Google appscript 產出的 url
             url: "https://script.google.com/.........",
             // 剛剛整理好的資料帶入
             data: data,
@@ -542,7 +542,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 					$.ajax({
 						// 這邊用 post type
 						type: "post",
-						// api url - google appscript 產出的 url
+						// api url - Google appscript 產出的 url
 						url: "https://script.google.com/...........",
 						data: data,
 						dataType: "JSON",

@@ -15,7 +15,7 @@ date: 2024-09-17
 
 ## 國小複習：GitHub 的 Artifact 是什麼？
 
-簡單來說就是輸出的附件。在 GitHub Actions 中，Artifact 代表工作流程運行產生的檔案或資料。通過上傳 Artifact，我們可以將檔案保存起來，以便後續操作或共享。Artifact 可以是構建產生的檔案、測試報告、日誌等，通常用於構建、測試和部署流程中。通過 Artifact，我們可以方便地查看和下載工作流程運行產生的檔案，並進行後續操作。Artifact 會保存在 GitHub Actions 的工作流程中，並且可以在工作流程運行詳情頁面中查看和下載。
+簡單來說就是輸出的附件。在 GitHub Actions 中，Artifact 代表工作流程運行產生的檔案或資料。通過上傳 Artifact，我們可以將檔案儲存起來，以便後續操作或共享。Artifact 可以是構建產生的檔案、測試報告、日誌等，通常用於構建、測試和部署流程中。通過 Artifact，我們可以方便地查看和下載工作流程運行產生的檔案，並進行後續操作。Artifact 會儲存在 GitHub Actions 的工作流程中，並且可以在工作流程運行詳情頁面中查看和下載。
 
 我曾經有看到有人是使用 GitHub Actions 在某天堂漫畫網站下載漫畫碎片，組裝完之後上傳到 GitHub 作為 Artifact 來下載。這樣的操作方式也是蠻很有趣的。有興趣進行相關*學術研究*的朋友可以參考一下。
 
@@ -25,7 +25,7 @@ date: 2024-09-17
 
 **步驟 1：建立工作流程文件**
 
-1. 在儲存庫中，創建一個新的 GitHub Actions 工作流程文件，例如 `.github/workflows/compress-and-upload.yml`。
+1. 在儲存庫中，建立一個新的 GitHub Actions 工作流程文件，例如 `.github/workflows/compress-and-upload.yml`。
 
 **步驟 2：編寫 YAML 配置文件**
 
@@ -35,20 +35,20 @@ name: 壓縮並上傳為工件
 on:
   push:
     branches:
-      - main # 觸發條件：當代碼推送到 main 分支時
+      - main # 觸發條件：當程式推送到 main 分支時
 
 jobs:
   compress:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 檢出代碼
+      - name: 檢出程式
         uses: actions/checkout@v3
 
       - name: 壓縮檔案
         run: |
           mkdir compressed
-          tar -czf compressed/files.tar.gz .  # 壓縮當前目錄中的所有檔案和子目錄，並存儲為 files.tar.gz
+          tar -czf compressed/files.tar.gz .  # 壓縮目前目錄中的所有檔案和子目錄，並存儲為 files.tar.gz
 
       - name: 上傳工件
         uses: actions/upload-artifact@v3
@@ -60,8 +60,8 @@ jobs:
 **YAML 文件解析：**
 
 - **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
-- **`actions/checkout@v3:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
-- **`tar -czf:`** 使用 `tar` 命令來壓縮目錄或檔案。`-c` 創建壓縮檔案，`-z` 使用 gzip 壓縮，`-f` 指定檔案名。
+- **`actions/checkout@v3:`** 檢出程式，確保工作流程在最新的程式基礎上運行。
+- **`tar -czf:`** 使用 `tar` 命令來壓縮目錄或檔案。`-c` 建立壓縮檔案，`-z` 使用 gzip 壓縮，`-f` 指定檔案名。
 - **`actions/upload-artifact@v3:`** 上傳壓縮檔案作為工件，工件名為 `compressed-files`。
 
 **步驟 3：推送工作流程文件**
@@ -81,7 +81,7 @@ git push origin main
 
 **步驟 1：建立解壓縮工作流程文件**
 
-1. 在儲存庫中，創建一個新的 GitHub Actions 工作流程文件，例如 `.github/workflows/download-and-extract.yml`。
+1. 在儲存庫中，建立一個新的 GitHub Actions 工作流程文件，例如 `.github/workflows/download-and-extract.yml`。
 
 **步驟 2：編寫 YAML 配置文件**
 
@@ -132,8 +132,8 @@ git push origin main
 
 **應用範例：**
 
-- **資料處理：** 在工作流程中自動下載、解壓縮並處理外部數據檔案。
-- **測試階段：** 在 CI/CD 流程中，自動下載並解壓縮測試數據檔案，進行測試操作。
+- **資料處理：** 在工作流程中自動下載、解壓縮並處理外部資料檔案。
+- **測試階段：** 在 CI/CD 流程中，自動下載並解壓縮測試資料檔案，進行測試操作。
 
 ## 實作：部屬 Vite 網頁
 
@@ -150,7 +150,7 @@ cd HSL-ball
 
 **步驟 1：建立部屬工作流程文件**
 
-1. 在儲存庫中，創建一個新的 GitHub Actions 工作流程文件，例如 `.github/workflows/deploy-vite.yml`。
+1. 在儲存庫中，建立一個新的 GitHub Actions 工作流程文件，例如 `.github/workflows/deploy-vite.yml`。
 
 **步驟 2：編寫 YAML 配置文件**
 
@@ -213,7 +213,7 @@ jobs:
 - **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
 - **`permissions:`** 設定 GITHUB_TOKEN 的權限，允許部屬到 GitHub Pages。
 - **`concurrency:`** 設定允許同時運行一個部屬工作流程。
-- **`actions/checkout@v4:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
+- **`actions/checkout@v4:`** 檢出程式，確保工作流程在最新的程式基礎上運行。
 - **`actions/setup-node@v4:`** 設定 Node.js 環境。
 - **`npm ci:`** 安裝依賴。
 - **`npm run build:`** 構建 Vite 網頁。
@@ -243,11 +243,11 @@ git push origin main
    - 如果需要處理大型檔案，可以考慮分段壓縮或使用增量備份的方式來減少單次操作的檔案大小。
 
 4. **安全性考量：**
-   - 確保壓縮檔案中不包含敏感信息。如果需要處理敏感數據，請進行加密處理。
+   - 確保壓縮檔案中不包含敏感訊息。如果需要處理敏感資料，請進行加密處理。
 
 5. **自動化流程測試：**
    - 在正式環境使用前，先在測試環境中檢查壓縮和解壓縮流程的可靠性，以確保無誤。
 
 ## 結語
 
-今天我們探討了如何在 GitHub Actions 中進行檔案壓縮和解壓縮操作，以及如何上傳 Artifact。明天我們要來探討如何使用 prettier 來格式化代碼，統一風格並提高可讀性。
+今天我們探討了如何在 GitHub Actions 中進行檔案壓縮和解壓縮操作，以及如何上傳 Artifact。明天我們要來探討如何使用 prettier 來格式化程式，統一風格並提高可讀性。

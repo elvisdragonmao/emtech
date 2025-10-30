@@ -498,7 +498,7 @@ function extractFrontMatter(content) {
 
 			if (trimmedValue.startsWith("[")) {
 				while (!trimmedValue.endsWith("]")) trimmedValue += lines[++i];
-				// 用正則表達式將每個元素加上雙引號，處理字串內容、特殊字符和空格
+				// 用正則表達式將每個元素加上雙引號，處理字串內容、特殊字元和空格
 				const fixedValue = trimmedValue
 					.replaceAll("，", ",")
 					.replace(/("[^"]+"|[^,\[\]\s]+(?:\s+[^,\[\]\s]+)*)/g, '"$1"')

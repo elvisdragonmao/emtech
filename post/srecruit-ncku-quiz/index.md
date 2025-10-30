@@ -187,7 +187,7 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=/maps/map.yaml
 
 你要當 Google Maps 幫機器人們規畫路徑。
 
-可以參考基因遺傳演算法 (Genetic Algorithm) 或其他演算法。程式分為三個區塊，裡面分別都有一些小問題要修復。每個區塊五分共十五分。接著你可以嘗試優化它，依照速度最高可以再獲得 7 分。
+可以參考基因遺傳演算法 (Genetic Algorithm) 或其他演算法。程式分為三個區塊，裡面分別都有一些小問題要修復。每個區塊五分共十五分。接著你可以嘗試最佳化它，依照速度最高可以再獲得 7 分。
 
 {{notice}} 小提示
 

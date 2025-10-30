@@ -10,9 +10,9 @@ description: 到 GitHub 專案設定改，然後本地重置就可以了。
 
 ## 背景
 
-最近在弄 [emfont](https://font.emtech.cc) 的文檔，整個專案架構大改。從 [Yarn](https://yarnpkg.com/) 改到 [pnpm](https://pnpm.io/zh-TW/)，框架也從 [Docusaurus](https://docusaurus.io/) 變成 [Fumadocs](https://fumadocs.vercel.app/)，因此是從頭到尾重新弄。
+最近在弄 [emfont](https://font.emtech.cc) 的說明文件，整個專案架構大改。從 [Yarn](https://yarnpkg.com/) 改到 [pnpm](https://pnpm.io/zh-TW/)，框架也從 [Docusaurus](https://docusaurus.io/) 變成 [Fumadocs](https://fumadocs.vercel.app/)，因此是從頭到尾重新弄。
 
-為了重新整理，我創建了一個全新沒有父母 (Parent，之前的 commit 紀錄) 的孤兒 (orphan) 分支名叫 `fuma`（額我不確定是不是這樣翻但我都這樣說。）
+為了重新整理，我建立了一個全新沒有父母 (Parent，之前的 commit 紀錄) 的孤兒 (orphan) 分支名叫 `fuma`（額我不確定是不是這樣翻但我都這樣說。）
 
 ```bash
 git checkout --orphan fuma

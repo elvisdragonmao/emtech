@@ -9,7 +9,7 @@ lastmod: 2025-02-26
 
 # 從 Windows 轉到 MacBook 的心得
 
-今年入手了人生第一台筆電，是最新的 M4 MacBook Pro。從小沒摸過幾次 MacOS，一直以來都是 Windows 的使用者。但從開發問題、自動更新、內建病毒 Windows Defender 到躲不掉的各種廣告，讓我對 *Windows ™*有很多不滿。加上考慮到未來可能會開發 iOS App，所以就決定*強力出圈*入手 MacBook。今天我想來*坐和放寬*的分享一下這個轉換過程，以及我的一些做法來提升我的效率，讓失去的那些 Windows 習慣找回來。
+今年入手了人生第一台筆電，是最新的 M4 MacBook Pro。從小沒摸過幾次 macOS，一直以來都是 Windows 的使用者。但從開發問題、自動更新、內建病毒 Windows Defender 到躲不掉的各種廣告，讓我對 *Windows ™*有很多不滿。加上考慮到未來可能會開發 iOS App，所以就決定*強力出圈*入手 MacBook。今天我想來*坐和放寬*的分享一下這個轉換過程，以及我的一些做法來提升我的效率，讓失去的那些 Windows 習慣找回來。
 
 ## 背景
 
@@ -98,7 +98,7 @@ Mac 版 Office 全家桶真的 UI 很好，UX 比 Windows 還糟糕好多。
 
 ![iTerm2 被我玩成的樣子](iTerm.webp)
 
-哦對了，現在備忘錄變成像是 Windows 記事本一樣我隨手拿來當文字編輯器的工具。其他平常工作的軟體都沒有變化，在 MacOS 上面都通用。
+哦對了，現在備忘錄變成像是 Windows 記事本一樣我隨手拿來當文字編輯器的工具。其他平常工作的軟體都沒有變化，在 macOS 上面都通用。
 
 然後我也安裝了 VMware Fusion 來跑 Windows 虛擬機，不過目前還沒有用到過。
 
@@ -137,9 +137,9 @@ Mac 在檔案管理方面的快捷鍵我覺得蠻有趣的。當我想重新命�
 
 #### Karabiner-Elements
 
-> 「重新編排，事事好安排。」——Apple MacOS Catalina 介紹
+> 「重新編排，事事好安排。」——Apple macOS Catalina 介紹
 
-MacOS 雖然給的快捷鍵很多，但很多我平常非常常用的反而沒有。像是 `Windows + 數字` 來開啟工作列的應用程式，`Windows + E` 來開啟檔案總管，`Windows + D` 來最小化所有視窗等等。有一些有更好的替代方案，有一些可以放棄，但有一些我真的需要。上網搜尋找到了一個叫做 [Karabiner-Elements](https://karabiner-elements.pqrs.org/) 的軟體來幫我重新編排快捷鍵。
+macOS 雖然給的快捷鍵很多，但很多我平常非常常用的反而沒有。像是 `Windows + 數字` 來開啟工作列的應用程式，`Windows + E` 來開啟檔案總管，`Windows + D` 來最小化所有視窗等等。有一些有更好的替代方案，有一些可以放棄，但有一些我真的需要。上網搜尋找到了一個叫做 [Karabiner-Elements](https://karabiner-elements.pqrs.org/) 的軟體來幫我重新編排快捷鍵。
 
 查看例子，明確樣子。我自己目前設定了以下幾個：
 
@@ -177,7 +177,7 @@ Windows 中要開啟搜尋不需要點那個又長又醜的 Search Bar。只需�
 
 ![Raycast 顏色搜尋和螢幕滴管](raycast-color.webp)
 
-Raycast 內建就有很多很方便的軟體以及快捷鍵，像是可以搜尋各種圖標的 emoji 鍵盤 `control` + `command` + `space`。你可以安裝甚至自己開發各種擴充功能來符合你的工作流程。
+Raycast 內建就有很多很方便的軟體以及快捷鍵，像是可以搜尋各種圖示的 emoji 鍵盤 `control` + `command` + `space`。你可以安裝甚至自己開發各種擴充功能來符合你的工作流程。
 
 ![Raycast emoji 鍵盤](raycast-emoji.webp)
 

@@ -15,20 +15,20 @@ date: 2024-09-15
 
 ## 國小複習：甚麼是 Shell 指令？
 
-我們小學四年級電腦課都學過 Shell 指令是一種在終端機（Terminal）中執行的命令，用於與操作系統進行交互。通過 Shell 指令，我們可以執行各種操作，例如創建文件、刪除文件、運行程序等。在 GitHub Actions 中，我們可以使用 Shell 指令來自動化各種操作，例如構建代碼、部署應用程序等。
+我們小學四年級電腦課都學過 Shell 指令是一種在終端機（Terminal）中執行的命令，用於與操作系統進行交互。通過 Shell 指令，我們可以執行各種操作，例如建立文件、刪除文件、運行程序等。在 GitHub Actions 中，我們可以使用 Shell 指令來自動化各種操作，例如構建程式、部署應用程序等。
 
 ## 實作：運行 Shell 指令
 
-現在讓我們來實作一個簡單的工作流程，當我們推送代碼到 GitHub 儲存庫時，這個工作流程將自動運行一些基本的 Shell 指令。
+現在讓我們來實作一個簡單的工作流程，當我們推送程式到 GitHub 儲存庫時，這個工作流程將自動運行一些基本的 Shell 指令。
 
 **步驟 1：建立新的 GitHub 儲存庫**
 
-你可以使用現有的儲存庫，或者創建一個新的儲存庫。
+你可以使用現有的儲存庫，或者建立一個新的儲存庫。
 
 **步驟 2：建立工作流程文件**
 
-1. 在你的儲存庫中，創建一個名為 `.github/workflows/` 的目錄。
-2. 在該目錄中創建一個新文件，名為 `hello-world-shell.yml`。
+1. 在你的儲存庫中，建立一個名為 `.github/workflows/` 的目錄。
+2. 在該目錄中建立一個新文件，名為 `hello-world-shell.yml`。
 
 **步驟 3：編寫 YAML 配置文件**
 
@@ -50,10 +50,10 @@ jobs:
       - name: 執行一行 Shell 指令
         run: echo "有朋自遠方來，不亦樂乎？"
 
-      - name: 列出當前目錄
+      - name: 列出目前目錄
         run: ls -la
 
-      - name: 顯示當前目錄
+      - name: 顯示目前目錄
         run: pwd
 
       - name: 顯示環境變數
@@ -68,7 +68,7 @@ jobs:
 - **`runs-on:`** 指定工作流程運行的系統環境，我們選擇 `ubuntu-latest`。
 - **`steps:`** 是工作流程的具體步驟，每一步都有一個 `name:` 和 `run:` 來指定要執行的 Shell 指令。
 
-**步驟 4：推送代碼到 GitHub**
+**步驟 4：推送程式到 GitHub**
 
 1. 在本地端將 `.github/workflows/hello-world-shell.yml` 文件加入到版本控制中：
    ```bash
@@ -80,7 +80,7 @@ jobs:
 
 ## 深入應用：Shell 指令在實際場景中的應用
 
-這裡列出幾個實際場景中常見的 Shell 指令應用，你可以根據自己的需求進行擴展和應用。
+這裡列出幾個實際場景中常見的 Shell 指令應用，你可以根據自己的需求進行拓展和應用。
 
 1. **自動化部署：**
    - 使用 `scp` 或 `rsync` 指令自動將構建好的文件部署到遠程伺服器。
@@ -89,7 +89,7 @@ jobs:
        run: scp -r ./dist user@yourserver.com:/path/to/deploy
      ```
 
-2. **備份數據：**
+2. **備份資料：**
    - 使用 `tar` 指令將文件夾壓縮並備份到遠程伺服器或雲端存儲。
    - ```yaml
      - name: Backup files
@@ -103,15 +103,15 @@ jobs:
        run: curl -I https://yourapi.com/health
      ```
 
-4. **環境設置：**
-   - 使用 `export` 設置環境變數，或者使用 `source` 加載環境配置文件。
+4. **環境設定：**
+   - 使用 `export` 設定環境變數，或者使用 `source` 載入環境配置文件。
    - ```yaml
      - name: Set environment variable
        run: export NODE_ENV=production
      ```
 
 5. **日誌分析：**
-   - 使用 `grep` 來分析日誌文件中的錯誤信息。
+   - 使用 `grep` 來分析日誌文件中的錯誤訊息。
    - ```yaml
      - name: Analyze logs
        run: grep "ERROR" /var/log/application.log

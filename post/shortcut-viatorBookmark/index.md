@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [自製，衛道中學，Github, JSON, ios 捷徑]
+tags: [自製，衛道中學，GitHub, JSON, ios 捷徑]
 categories: [生活駭客]
 date: 2021-06-04
 ---
@@ -17,7 +17,7 @@ date: 2021-06-04
 
 ## 原理
 
-原理其實也很簡單，就是先 Get 一個我預先放在 Github 的 JSON 檔案來查看我設定好的連結，再用選單讓你選。如果你選擇的是網頁的話會用 Chrome 來打開它；如果是檔案的話會直接下再並開啟預覽。 {{notice}} 小提醒
+原理其實也很簡單，就是先 Get 一個我預先放在 GitHub 的 JSON 檔案來查看我設定好的連結，再用選單讓你選。如果你選擇的是網頁的話會用 Chrome 來打開它；如果是檔案的話會直接下再並開啟預覽。 {{notice}} 小提醒
 
 - 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。
 - 你也可以用 Siri 執行這個捷徑。 {{noticed}}

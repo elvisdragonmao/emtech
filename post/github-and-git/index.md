@@ -1,27 +1,27 @@
 ---
 authors: elvismao
-tags: [Git, Github]
+tags: [Git, GitHub]
 categories: [程式教學]
 date: 2022-08-22
 ---
 
 # Git & GitHub 基本教學
 
-這一篇文章我會用簡單好理解的方式讓你學會基本的使用 Github 和 Git。且*複製貼上就能成為工程師*系列所搭建的網站都可以免費架設在 Github
+這一篇文章我會用簡單好理解的方式讓你學會基本的使用 GitHub 和 Git。且*複製貼上就能成為工程師*系列所搭建的網站都可以免費架設在 GitHub
 
 這篇文章拖很久，8 月就在寫了一直沒空更新
 
-# Github 是什麼
+# GitHub 是什麼
 
-Github 可以說是程式的雲端硬碟或 IG。註冊帳號就可以上傳檔案，可以自己決定要不要讓別人看到。當然也可以留言、按讚（星星）、或轉發改編。上傳檔案除了可以像社群一樣用網頁版直接傳之外，因為通常一個專案裡面會有很多資料夾和檔案，所以通常會用一個叫做 git 的技術來實現同步檔案。
+GitHub 可以說是程式的雲端硬碟或 IG。註冊帳號就可以上傳檔案，可以自己決定要不要讓別人看到。當然也可以留言、按讚（星星）、或轉發改編。上傳檔案除了可以像社群一樣用網頁版直接傳之外，因為通常一個專案裡面會有很多資料夾和檔案，所以通常會用一個叫做 git 的技術來實現同步檔案。
 
-Github 的單位是`使用者/倉庫/檔案`。我們會在電腦裡放一個資料夾裝一個專案，並透過 git 來同步如果你還是有點不懂，實際操作一次就知道了。
+GitHub 的單位是`使用者/倉庫/檔案`。我們會在電腦裡放一個資料夾裝一個專案，並透過 git 來同步如果你還是有點不懂，實際操作一次就知道了。
 
 # Git 是什麼
 
-你也可以想像 Github 是物流中心，而 git 就是物流。我們透過物流來傳資料到 Github 的倉庫合獲取檔案。git 厲害的地方是每次上傳或下載時它會比較差異，只傳送不同的檔案。除了節省時間流量之外，因為記錄了每一次的更動，所以可以進行版本控制。包括釋出不同版本，和復原到指定版本。
+你也可以想像 GitHub 是物流中心，而 git 就是物流。我們透過物流來傳資料到 GitHub 的倉庫合取得檔案。git 厲害的地方是每次上傳或下載時它會比較差異，只傳送不同的檔案。除了節省時間流量之外，因為記錄了每一次的更動，所以可以進行版本控制。包括釋出不同版本，和復原到指定版本。
 
-# 註冊 Github 並建立倉庫
+# 註冊 GitHub 並建立倉庫
 
 進入[github.com](https://github.com)點擊 Sign Up 註冊跟著步驟填入資訊就好了。記得用戶名會變成你的免費網域（用戶名.github.io）所以記得好好取 ಡ ͜ ʖ ಡ
 
@@ -54,17 +54,17 @@ Github 的單位是`使用者/倉庫/檔案`。我們會在電腦裡放一個資
 
 # 基本設定及 clone
 
-## 使用 Github Destop（限電腦，以 PC 做示範）
+## 使用 GitHub Destop（限電腦，以 PC 做示範）
 
 {{notice}} Gitub Destop
 
-- 開發者:Github (Microsoft)
+- 開發者:GitHub (Microsoft)
 - 軟體類型：免費軟體
-- 網址：[Github](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) {{noticed}}
+- 網址：[GitHub](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) {{noticed}}
 
-Github Destop 可以讓你有按鈕可以按，不用打指令也可以使用 git。多少可以節省一點時間，但看起來就沒有那麼酷（下載 Github Destop 並安裝，原則上就是你也懂的一直下一步。安裝成功後他會叫你輸入剛才講的個人資訊，並且請你登入你的 Github 帳號。
+GitHub Destop 可以讓你有按鈕可以按，不用打指令也可以使用 git。多少可以節省一點時間，但看起來就沒有那麼酷（下載 GitHub Destop 並安裝，原則上就是你也懂的一直下一步。安裝成功後他會叫你輸入剛才講的個人資訊，並且請你登入你的 GitHub 帳號。
 
-登入完後他會請你選擇一個專案來 clone。沒錯就是剛才講的複製下載檔案。預設位置會放到你的`文件資料夾/Github/專案名`裡面。按下`Ctrl+Shift+E`即可直接打開資料夾。
+登入完後他會請你選擇一個專案來 clone。沒錯就是剛才講的複製下載檔案。預設位置會放到你的`文件資料夾/GitHub/專案名`裡面。按下`Ctrl+Shift+E`即可直接打開資料夾。
 
 ## 使用 Git（所有裝置適用）
 
@@ -85,7 +85,7 @@ git config --global user.email "<電子信箱>"
 git clone
 ```
 
-假設你想要確定是否和 Github 的內容是一樣的，點擊 fetch(`git fetch`) 它就會幫你自動比較。點擊後上面寫的數字就是不同檔案的數量。再次點擊 pull(`git pull`) 就會將這兩個版本合併了。
+假設你想要確定是否和 GitHub 的內容是一樣的，點擊 fetch(`git fetch`) 它就會幫你自動比較。點擊後上面寫的數字就是不同檔案的數量。再次點擊 pull(`git pull`) 就會將這兩個版本合併了。
 
 # 上傳檔案
 
@@ -108,17 +108,17 @@ git clone
 
 相信你一定把最後一行文字刪了。你可以用瀏覽器打開看看這個網站（HTML 檔），你會發現 HTML 只不過是一個要用瀏覽器打開的 word 檔而已！
 
-# 上傳到 Github
+# 上傳到 GitHub
 
-現在我們來將它上傳到 Github 吧。回到 Github Destop 或你的終端機（確認是在你的專案），Github Destop 上你會發現它知道你新增了一個檔案。而 git 需要先輸入`git add .`才會比較你有沒有更動檔案。那個`.`代表所有的檔案。而如果你只要打包某些檔案可以直接輸入檔名如`git add index.html`或指定副檔名如`git add .html`。
+現在我們來將它上傳到 GitHub 吧。回到 GitHub Destop 或你的終端機（確認是在你的專案），GitHub Destop 上你會發現它知道你新增了一個檔案。而 git 需要先輸入`git add .`才會比較你有沒有更動檔案。那個`.`代表所有的檔案。而如果你只要打包某些檔案可以直接輸入檔名如`git add index.html`或指定副檔名如`git add .html`。
 
 我們在左下角那個**小**的輸入框打入這次你做的事（使用 git 請打指令`git commit -m '<訊息>`），或是你可以發現它預設給你打了一個訊息，懶得打直接按 Commit 也可以。
 
-打包完之後我們可以上傳囉。點擊 push 就好了（指令為`git push`），是不是超級簡單 w。如果使用終端機且沒有設定 SSH 會叫你輸入 Github 的帳號密碼。且如果你輸入你真的密碼可能會有兩步驟驗證的問題，所以在這裡我們有兩個辦法解決。
+打包完之後我們可以上傳囉。點擊 push 就好了（指令為`git push`），是不是超級簡單 w。如果使用終端機且沒有設定 SSH 會叫你輸入 GitHub 的帳號密碼。且如果你輸入你真的密碼可能會有兩步驟驗證的問題，所以在這裡我們有兩個辦法解決。
 
 ## Git - 辦一個密碼
 
-到 Github 的設定生成一個看起來像亂碼的密碼。大概長這樣
+到 GitHub 的設定生成一個看起來像亂碼的密碼。大概長這樣
 
 ```
 ghp_5xcCouSaccQcDw87FRFL6B0IaX0nzJ4MdWaK
@@ -128,9 +128,9 @@ ghp_5xcCouSaccQcDw87FRFL6B0IaX0nzJ4MdWaK
 
 ## 密碼好麻煩 用 SSH
 
-SSH 像是一個信物。我們生成一個 SSH，並告訴 Github 說只要有拿這個東西就有權限做哪些事。如果你是使用 Github Destop 的話上傳時不用輸入密碼。因為 Github 自動幫你生成了 SSH 並存在你的帳號。
+SSH 像是一個信物。我們生成一個 SSH，並告訴 GitHub 說只要有拿這個東西就有權限做哪些事。如果你是使用 GitHub Destop 的話上傳時不用輸入密碼。因為 GitHub 自動幫你生成了 SSH 並存在你的帳號。
 
-如何設定可以先參考[這篇文章](https://cynthiachuang.github.io/Generating-a-Ssh-Key-and-Adding-It-to-the-Github/)或是[官方文件](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+如何設定可以先參考[這篇文章](https://cynthiachuang.github.io/Generating-a-Ssh-Key-and-Adding-It-to-the-GitHub/)或是[官方文件](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 ## 衝突！？
 

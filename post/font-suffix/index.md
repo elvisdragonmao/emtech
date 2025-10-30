@@ -33,7 +33,7 @@ description: 看看哪個好看選哪個。不知道怎麼選就選 TW，沒有�
 | 900  | Black (Heavy)             |
 | 950  | Extra Black (Ultra Black) |
 
-數據實際上可以從 1 到 1000，但是實際上大多情況只會使用 [OpenType 規定](https://learn.microsoft.com/en-us/typography/opentype/spec/os2#usweightclass) 的 100 到 900 這幾種。且字體由時候會縮寫成一兩個字母，比如說 Blod 會縮寫成 B，Semi Bold 會縮寫成 SB。
+資料實際上可以從 1 到 1000，但是實際上大多情況只會使用 [OpenType 規定](https://learn.microsoft.com/en-us/typography/opentype/spec/os2#usweightclass) 的 100 到 900 這幾種。且字體由時候會縮寫成一兩個字母，比如說 Blod 會縮寫成 B，Semi Bold 會縮寫成 SB。
 
 ### Normal 與 Regular
 
@@ -47,7 +47,7 @@ Normal 和 Regular 通常都是指一般的字重 400。不過有時候有些字
 
 **TC（Traditional Chinese）：** 表示該字體適用於繁體中文，符合 CNS 11643 編碼。
 
-**HK（Hong Kong）：** 指的是符合香港特區標準的繁體中文字形，通常根據 HKSCS（香港增補字符集）設計。
+**HK（Hong Kong）：** 指的是符合香港特區標準的繁體中文字形，通常根據 HKSCS（香港增補字元集）設計。
 
 **TW (Taiwan)：** 表示該字體專為台灣地區的排版習慣設計，或是按照台灣教育部的書寫風格。比如說台灣學生愛用的 [芫荽 GitHub 頁面](https://github.com/ButTaiwan/iansui) 有註明：
 
@@ -63,7 +63,7 @@ Normal 和 Regular 通常都是指一般的字重 400。不過有時候有些字
 
 **CL**：參考早期鉛字印刷字形常見寫法，回歸舊式印刷字形。類似於繁體中文中的 TC。
 
-**MN**：兼顧現代書寫方法以及部分傳統寫法的折中印刷字形。有時候也是指 Mongolian，表示該字體包含蒙古文（蒙文）擴展字符，適用於內蒙古自治區使用的雙語排版。
+**MN**：兼顧現代書寫方法以及部分傳統寫法的折中印刷字形。有時候也是指 Mongolian，表示該字體包含蒙古文（蒙文）拓展字元，適用於內蒙古自治區使用的雙語排版。
 
 ## 日文和韓文字型 - JP、KR
 
@@ -85,7 +85,7 @@ Normal 和 Regular 通常都是指一般的字重 400。不過有時候有些字
 
 ## Plus 擴充版
 
-有些字體一開始只有設計簡體中文或繁體中文，但後來是出了 Plus 版本，表示該字體包含更多的字符集 (如繁體字或較不常用的生僻字)。檔案會大一點點但可以支援夠多的文字。
+有些字體一開始只有設計簡體中文或繁體中文，但後來是出了 Plus 版本，表示該字體包含更多的字元集 (如繁體字或較不常用的生僻字)。檔案會大一點點但可以支援夠多的文字。
 
 ## Beta 測試版
 

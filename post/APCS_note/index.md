@@ -33,7 +33,7 @@ date: 2022-07-17
 
 ```c
 printf("字串");
-printf("字串或格式代碼",var1,var2,var3);
+printf("字串或格式程式",var1,var2,var3);
 puts("ABC");//自動換行，但沒有格式化字串的功能。只能顯示字串
 ```
 

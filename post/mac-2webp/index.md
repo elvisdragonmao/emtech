@@ -1,14 +1,14 @@
 ---
 authors: elvismao
-tags: [MacOS]
+tags: [macOS]
 categories: [程式開發，生活駭客]
 date: 2025-03-11
-description: 在 MacOS 的右鍵選單加上一個項目，快速把圖片轉成 WebP、影片轉成 GIF。
+description: 在 macOS 的右鍵選單加上一個項目，快速把圖片轉成 WebP、影片轉成 GIF。
 ---
 
-# MacOS 快速把圖片轉成 WebP、影片轉成 GIF
+# macOS 快速把圖片轉成 WebP、影片轉成 GIF
 
-平常在進行網頁開發、甚至是文章撰寫時經常會把 JPG、PNG 這種很大、載入很慢的圖片轉成 WebP 格式，或是把影片轉成 GIF 格式方便發在 Discord、GitHub 訊息當中。這篇文章將介紹如何在 MacOS 的右鍵選單加上一個項目，快速把圖片轉成 WebP、影片轉成 GIF。
+平常在進行網頁開發、甚至是文章撰寫時經常會把 JPG、PNG 這種很大、載入很慢的圖片轉成 WebP 格式，或是把影片轉成 GIF 格式方便發在 Discord、GitHub 訊息當中。這篇文章將介紹如何在 macOS 的右鍵選單加上一個項目，快速把圖片轉成 WebP、影片轉成 GIF。
 
 ## 1. 安裝 ffmpeg
 
@@ -109,4 +109,4 @@ open ~/Library/Services
 
 ![右鍵選單中的服務](finder.webp)
 
-這樣你就可以快速的在 MacOS 中快速把圖片轉成 WebP、影片轉成 GIF 了。
+這樣你就可以快速的在 macOS 中快速把圖片轉成 WebP、影片轉成 GIF 了。

@@ -21,7 +21,7 @@ date: 2024-10-07
 
 ## 準備專案
 
-1. **創建專案文件夾**
+1. **建立專案文件夾**
 
    ```bash
    mkdir performance-test
@@ -34,9 +34,9 @@ date: 2024-10-07
    git init
    ```
 
-3. **創建性能測試腳本**
+3. **建立性能測試腳本**
 
-   在 `performance-test` 目錄下創建 `test.js` 文件，並加入以下內容：
+   在 `performance-test` 目錄下建立 `test.js` 文件，並加入以下內容：
 
    ```javascript
    // test.js
@@ -75,9 +75,9 @@ date: 2024-10-07
     choco install k6
    ```
 
-## 步驟 2: 設置 GitHub Actions
+## 步驟 2: 設定 GitHub Actions
 
-在 `.github/workflows` 目錄下創建 `performance-test.yml` 文件，並加入以下內容：
+在 `.github/workflows` 目錄下建立 `performance-test.yml` 文件，並加入以下內容：
 
 ```yaml
 name: Performance Testing
@@ -131,7 +131,7 @@ jobs:
 
 ### 工作流程解釋
 
-- **`Checkout code`**：檢出代碼，以便 `k6` 能夠運行測試腳本。
+- **`Checkout code`**：檢出程式，以便 `k6` 能夠運行測試腳本。
 - **`Set up k6`**：安裝 `k6` 工具。
 - **`Run performance tests`**：執行性能測試腳本 `test.js`。
 - **`Upload test results`**：上傳測試結果到 GitHub Actions artifacts，以便後續查看。
@@ -139,10 +139,10 @@ jobs:
 
 ## 配置 GitHub Pages
 
-1. **設置 GitHub Pages**
+1. **設定 GitHub Pages**
    - 進入 GitHub repository 的 `Settings` 頁面。
    - 選擇 `Pages`，然後在 `Source` 下拉菜單中選擇 `main` 分支。
-   - 點擊 `Save` 以保存更改。
+   - 點擊 `Save` 以儲存更改。
 
 ## 步驟 4: 測試工作流程
 
@@ -165,4 +165,4 @@ jobs:
 
 ## 小結
 
-在本文中，我們設置了一個自動化性能測試的 CI/CD 流程，使用 `k6` 工具進行負載測試並生成性能報告。這樣的流程可以確保你的應用在高負載下表現良好，並及時發現性能問題。
+在本文中，我們設定了一個自動化性能測試的 CI/CD 流程，使用 `k6` 工具進行負載測試並生成性能報告。這樣的流程可以確保你的應用在高負載下表現良好，並及時發現性能問題。

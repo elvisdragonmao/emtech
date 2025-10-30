@@ -49,7 +49,7 @@ CSS 的部分我想要製作使用新擬物化設計 Neumorphism，或是說 Sof
 
 ![](example.webp)
 
-來源：[Payment App (Neumorphism)](https://codepen.io/sdbrannum/pen/PowKRGj)
+來源：[Payment a (Neumorphism)](https://codepen.io/sdbrannum/pen/PowKRGj)
 
 基本外框如下
 

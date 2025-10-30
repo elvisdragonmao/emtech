@@ -121,7 +121,7 @@ section button:first-child:hover {
 
 ## JavaScript
 
-先用變數用來追蹤當前顯示的圖片的索引。一開始它被設定為 0，代表第一張圖片。
+先用變數用來追蹤當下顯示的圖片的索引。一開始它被設定為 0，代表第一張圖片。
 
 ```js
 let currentIndex = 0;
@@ -144,7 +144,7 @@ function foward() {
 }
 ```
 
-來寫滾動的函式。它會計算當前圖片的寬度，然後根據 currentIndex 的值來滾動 itemsContainer 到正確的位置，使用平滑的滾動效果。然後它呼叫 `hideButton()` 函式來控制按鈕的可見度，讓按鈕在滾動到最左邊或最右邊時隱藏。
+來寫滾動的函式。它會計算當下圖片的寬度，然後根據 currentIndex 的值來滾動 itemsContainer 到正確的位置，使用平滑的滾動效果。然後它呼叫 `hideButton()` 函式來控制按鈕的可見度，讓按鈕在滾動到最左邊或最右邊時隱藏。
 
 ```js
 function scrollToCurrentIndex() {
@@ -239,6 +239,6 @@ https://codepen.io/edit-mr/pen/dywrReK
 
 ![成果](final.gif)
 
-以上就是我今天的分享，我們使用少許的程式碼就做出這個性能十分不錯的陽春 slider。你可以再加上一點裝飾，比如在底下放上顯示當前圖片的小圓點，或是加上自動播放。如果你有興趣可以自己試試看，抓取個數、移動的距離、以及移動的函數上面都有提供。_也需這個系列出書之後就會提到呢!_ 歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，我們使用少許的程式碼就做出這個性能十分不錯的陽春 slider。你可以再加上一點裝飾，比如在底下放上顯示目前圖片的小圓點，或是加上自動播放。如果你有興趣可以自己試試看，抓取個數、移動的距離、以及移動的函數上面都有提供。_也需這個系列出書之後就會提到呢!_ 歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
 我是毛哥 EM，讓我們明天再見。

@@ -5,7 +5,7 @@ categories: [自動化]
 date: 2024-10-03
 ---
 
-# 渲染 Markdown 文件 - 自動生成和更新項目文檔
+# 渲染 Markdown 文件 - 自動生成和更新項目說明文件
 
 > 司馬遷如果使用 GitHub Actions 就可以自動更新《史記》了。
 
@@ -17,13 +17,13 @@ date: 2024-10-03
 
 ## 1. 背景與目標
 
-emfont 是一個免費的繁體中文 Web Font 服務。在之前字體列表存放在 `Database/fonts.json` 文件中，我們希望自動更新 `README.md` 文件中的字體列表。這樣可以確保文檔始終保持最新狀態，並且減少了手動更新的工作量。
+emfont 是一個免費的繁體中文 Web Font 服務。在之前字體列表存放在 `Database/fonts.json` 文件中，我們希望自動更新 `README.md` 文件中的字體列表。這樣可以確保說明文件始終保持最新狀態，並且減少了手動更新的工作量。
 
 ![表格效果](table.webp)
 
 > emfont GitHub: <https://github.com/emfont/emfont>
 
-今天我們要來復刻這個專案。首先請你準備 `fonts.json`。你可以透過上面的 GitHub 連結下載。這個 JSON 文件包含了字體的詳細信息，例如名稱、風格、字種、版本、許可證和來源。以下是 JSON 文件的一部分內容：
+今天我們要來復刻這個專案。首先請你準備 `fonts.json`。你可以透過上面的 GitHub 連結下載。這個 JSON 文件包含了字體的詳細訊息，例如名稱、風格、字種、版本、許可證和來源。以下是 JSON 文件的一部分內容：
 
 ```json
 {
@@ -78,9 +78,9 @@ emfont 是一個免費的繁體中文 Web Font 服務。在之前字體列表存
 
 我們將設定 GitHub Actions 自動更新 `README.md` 文件。當 `Database/fonts.json` 文件有變動時，工作流程會自動執行，生成新的 Markdown 表格並更新 README 文件。
 
-### 步驟 1：創建 GitHub Actions 工作流程
+### 步驟 1：建立 GitHub Actions 工作流程
 
-在 `.github/workflows` 目錄下創建一個新的 YAML 文件，例如 `update-font-list.yml`，並添加以下內容：
+在 `.github/workflows` 目錄下建立一個新的 YAML 文件，例如 `update-font-list.yml`，並添加以下內容：
 
 ```yaml
 name: Update Font List
@@ -131,7 +131,7 @@ jobs:
 
 ### 步驟 2：編寫生成 Markdown 的腳本
 
-在 `src/workflows` 目錄下創建 `update-readme.js` 文件，並添加以下內容：
+在 `src/workflows` 目錄下建立 `update-readme.js` 文件，並添加以下內容：
 
 ```javascript
 import fs from "fs";
@@ -178,10 +178,10 @@ console.log("README.md has been updated");
 
 ### 腳本解析
 
-- **讀取 JSON 文件**: 腳本從 `Database/fonts.json` 讀取字體數據。
-- **生成 Markdown 表格**: `generateMarkdownTable` 函數將 JSON 數據轉換為 Markdown 格式的表格。
+- **讀取 JSON 文件**: 腳本從 `Database/fonts.json` 讀取字體資料。
+- **生成 Markdown 表格**: `generateMarkdownTable` 函數將 JSON 資料轉換為 Markdown 格式的表格。
 - **更新 README 文件**: 腳本讀取 `README.md` 文件，並將生成的 Markdown 表格插入到標記為 `<!-- fonts table start -->` 和 `<!-- fonts table end -->` 之間的區域。
 
 ## 小結
 
-通過今天的教程，我們探討了如何使用 GitHub Actions 自動生成和更新 Markdown 文件。我們通過編寫腳本來從 JSON 文件生成 Markdown 表格，並將其更新到 `README.md` 文件中。這樣的自動化流程能夠確保文檔始終保持最新狀態，並且減少了手動更新的工作量。
+通過今天的教程，我們探討了如何使用 GitHub Actions 自動生成和更新 Markdown 文件。我們通過編寫腳本來從 JSON 文件生成 Markdown 表格，並將其更新到 `README.md` 文件中。這樣的自動化流程能夠確保說明文件始終保持最新狀態，並且減少了手動更新的工作量。

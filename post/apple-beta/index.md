@@ -11,7 +11,7 @@ iOS、iPadOS、還有所有 Apple 的系統在正式發布之前都會向部分�
 
 請注意 Beta 版可能還會有一些問題（閃退、耗電等），但也可以反過來說原本有的 Bug 在 Beta 會先修復。（我有裝置有問題升到 Beta 就好了過）
 
-首先請到 Apple 官網登入 Apple ID 來加入 Beta 計畫。如果沒有加入過 beta 請點選 Sign Up，反之 Sign In
+首先請到 Apple 官網登入 Apple 帳號 來加入 Beta 計畫。如果沒有加入過 beta 請點選 Sign Up，反之 Sign In
 
 ![登入](apple-beta-sign.webp)
 

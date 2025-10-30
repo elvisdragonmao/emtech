@@ -23,21 +23,21 @@ date: 2024-09-24
 
 也許你會擔心，GitHub Actions 裡面的 Log 不是會把所有的資料都印下來嗎？不用擔心，GitHub Actions 會自動過濾掉 Secrets，把他們全部變成 `***`。
 
-## 實作：設置和使用 API 金鑰進行身份驗證
+## 實作：設定和使用 API 金鑰進行身分驗證
 
-**步驟 1：設置 GitHub Secrets**
+**步驟 1：設定 GitHub Secrets**
 
-1. **創建 Secret**
+1. **建立 Secret**
    - 進入你的 GitHub 儲存庫。
    - 點擊頁面上方的 `Settings` 標籤。
    - 在左側菜單中選擇 `Secrets and variables` -> `Actions`。
    - 點擊 `New repository secret` 按鈕。
    - 輸入 Secret 的名稱（例如 `API_KEY`）和對應的值（例如你的 API 金鑰）。
-   - 點擊 `Add secret` 按鈕保存。
+   - 點擊 `Add secret` 按鈕儲存。
 
 2. **在工作流程中使用 Secret**
 
-   建立 `.github/workflows/main.yml` 文件，將 Secret 用於工作流程。例如，如果你需要在工作流程中使用 API 金鑰，你可以將其設置為環境變數：
+   建立 `.github/workflows/main.yml` 文件，將 Secret 用於工作流程。例如，如果你需要在工作流程中使用 API 金鑰，你可以將其設定為環境變數：
 
    ```yaml
    name: Example Workflow
@@ -61,32 +61,32 @@ date: 2024-09-24
              API_KEY: ${{ secrets.API_KEY }}
    ```
 
-   在這個例子中，`${{ secrets.API_KEY }}` 用於獲取儲存在 GitHub Secrets 中的 API 金鑰。這樣，API 金鑰就能安全地用於工作流程中，而不會被暴露。
+   在這個例子中，`${{ secrets.API_KEY }}` 用於取得儲存在 GitHub Secrets 中的 API 金鑰。這樣，API 金鑰就能安全地用於工作流程中，而不會被暴露。
 
 ## Node.js 程式中的 Secrets 使用
 
 1. **在 Node.js 中讀取 Secrets**
 
-   在你的 Node.js 程式中，你可以使用環境變數來讀取 Secret。這些環境變數可以通過 `process.env` 來訪問。為了使這些環境變數能在本地開發環境中使用，你可以使用 `.env` 文件。
+   在你的 Node.js 程式中，你可以使用環境變數來讀取 Secret。這些環境變數可以通過 `process.env` 來存取。為了使這些環境變數能在本地開發環境中使用，你可以使用 `.env` 文件。
    - **安裝 dotenv 模組**
 
      ```bash
      npm install dotenv
      ```
 
-   - **創建 `.env` 文件**
+   - **建立 `.env` 文件**
 
-     在專案根目錄下創建 `.env` 文件，並在其中添加你的秘密（這只應在本地開發中使用，不應提交到版本控制系統）：
+     在專案根目錄下建立 `.env` 文件，並在其中添加你的秘密（這只應在本地開發中使用，不應提交到版本控制系統）：
 
      ```
      API_KEY=your-local-api-key
      ```
 
-     > 記得設置 `.env` 文件在 `.gitignore` 中，以避免將其提交到版本控制系統中。
+     > 記得設定 `.env` 文件在 `.gitignore` 中，以避免將其提交到版本控制系統中。
 
-   - **在程式中加載環境變數**
+   - **在程式中載入環境變數**
 
-     在你的 Node.js 程式中，使用 `dotenv` 模組來加載 `.env` 文件中的變數：
+     在你的 Node.js 程式中，使用 `dotenv` 模組來載入 `.env` 文件中的變數：
 
      ```javascript
      require("dotenv").config();
@@ -97,7 +97,7 @@ date: 2024-09-24
 
 2. **在 CI/CD 中使用 Secrets**
 
-   在 GitHub Actions 工作流程中，你可以直接使用 Secrets，如上所示。以下是一個範例工作流程，它使用 Secrets 來設置環境變數，並運行 Node.js 專案：
+   在 GitHub Actions 工作流程中，你可以直接使用 Secrets，如上所示。以下是一個範例工作流程，它使用 Secrets 來設定環境變數，並運行 Node.js 專案：
 
    ```yaml
    name: Node.js CI
@@ -153,10 +153,10 @@ date: 2024-09-24
 
    為了防止敏感資料洩漏，避免在工作流程中直接打印 Secrets。如果需要調試，請確保敏感資料不會顯示在日誌中。
 
-5. **設置環境變數的最小權限原則**
+5. **設定環境變數的最小權限原則**
 
-   設置 Secrets 時，請確保只賦予必要的權限。這樣可以降低敏感資料被濫用的風險。
+   設定 Secrets 時，請確保只賦予必要的權限。這樣可以降低敏感資料被濫用的風險。
 
 ## 結語
 
-今天我們探討了如何在 GitHub Actions 中使用 Secrets 來安全地管理和使用敏感資料。我們展示了如何設置 Secrets，如何在工作流程和 Node.js 程式中使用這些 Secrets，以及一些常用的技巧和最佳實踐。希望這些知識能幫助你更好地保護你的敏感資料，提高應用的安全性。明天我們要來談談另外一種環境變數，這些是 GitHub Actions 預設提供的。敬請期待！
+今天我們探討了如何在 GitHub Actions 中使用 Secrets 來安全地管理和使用敏感資料。我們展示了如何設定 Secrets，如何在工作流程和 Node.js 程式中使用這些 Secrets，以及一些常用的技巧和最佳實踐。希望這些知識能幫助你更好地保護你的敏感資料，提高應用的安全性。明天我們要來談談另外一種環境變數，這些是 GitHub Actions 預設提供的。敬請期待！

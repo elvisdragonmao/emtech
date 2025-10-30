@@ -21,9 +21,9 @@ date: 2023-10-05
 
 ### JavaScript `requestAnimationFrame()`
 
-`requestAnimationFrame()` 會在瀏覽器畫下一幀繪制之前調用。因此比設定固定時間重繪的 `setTimeout()` 或 `setInterval()`效率高得多。開發人員可以通過簡單地改變元素的樣式（或者更新畫布繪制等等）來創建動畫。
+`requestAnimationFrame()` 會在瀏覽器畫下一幀繪制之前調用。因此比設定固定時間重繪的 `setTimeout()` 或 `setInterval()`效率高得多。開發人員可以通過簡單地改變元素的樣式（或者更新畫布繪制等等）來建立動畫。
 
-> 備註：不管是 CSS 動畫還是 JavaScript 動畫，如果你離開當前頁面，動畫就會停止。比如說 [Day10 永無止境跑馬燈 - 不同螢幕 相同速度](https://ithelp.ithome.com.tw/articles/10326819) 的跑馬燈就是如此。
+> 備註：不管是 CSS 動畫還是 JavaScript 動畫，如果你離開目前的頁面，動畫就會停止。比如說 [Day10 永無止境跑馬燈 - 不同螢幕 相同速度](https://ithelp.ithome.com.tw/articles/10326819) 的跑馬燈就是如此。
 >
 > 如果你想要在背景執行動畫，可以使用 [Web Worker](https://developer.mozilla.org/zh-TW/docs/Web/API/Web_Workers_API/Using_web_workers)。
 

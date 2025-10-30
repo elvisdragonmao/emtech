@@ -23,13 +23,13 @@ date: 2023-05-01
 
 ## 步驟一：建立 Google Sheets 文件
 
-首先，我們需要建立一個 Google Sheets 文件，用於存儲學生的出席情況。在這個文件中，我們可以添加學生名稱、出席時間、剩餘課堂等信息。
+首先，我們需要建立一個 Google Sheets 文件，用於存儲學生的出席情況。在這個文件中，我們可以添加學生名稱、出席時間、剩餘課堂等訊息。
 
 請打開我建立的這個[範例文件](https://docs.google.com/spreadsheets/d/1m0F6pOejN-ldKFIrFwssmoEPB3EPDmSQJKEPr9T88-E/edit?usp=sharing)並建立副本
 
 ![建立副本](roll-call-new.webp)
 
-這樣 Google Sheet 就做好了。請複製這個文件的 ID，我們稍後會用到。ID 就是網址中的一長串字母和數字，比如說這個試算表：
+這樣 Google Sheets 就做好了。請複製這個文件的 ID，我們稍後會用到。ID 就是網址中的一長串字母和數字，比如說這個試算表：
 
 ```
 https://docs.google.com/spreadsheets/d/1m0F6pOejN-ldKFIrFwssmoEPB3EPDmSQJKEPr9T88-E/edit#gid=0
@@ -39,7 +39,7 @@ https://docs.google.com/spreadsheets/d/1m0F6pOejN-ldKFIrFwssmoEPB3EPDmSQJKEPr9T8
 
 ## 步驟二：建立 Google Apps Script
 
-現在，我們需要建立一個 Google Apps Script，用於向 Google Sheets 文件中添加和讀取數據。請在網址輸入[script.new](https://script.new/)，進入 Google Apps Script 編輯器。接著貼上我的這一串程式。請把第一行的雙引號裡面換成剛才複製的 ID。
+現在，我們需要建立一個 Google Apps Script，用於向 Google Sheets 文件中添加和讀取資料。請在網址輸入[script.new](https://script.new/)，進入 Google Apps Script 編輯器。接著貼上我的這一串程式。請把第一行的雙引號裡面換成剛才複製的 ID。
 
 ```js
 const id = "1m0F6pOejN-ldKFIrFwssmoEPB3EPDmSQJKEPr9T88-E";
@@ -85,11 +85,11 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
 
 ## 步驟三：建立網頁
 
-請你在任意一個網頁代管服務，比如說 Vercel,Github Pages, Gitlab Pages, Netlify 等等，建立一個網頁。接著在網頁中貼上以下程式碼。
+請你在任意一個網頁代管服務，比如說 Vercel,GitHub Pages, Gitlab Pages, Netlify 等等，建立一個網頁。接著在網頁中貼上以下程式碼。
 
 如果你沒有使用過這些服務，可以參考以下教學：
 
-### 使用 Github Pages 部屬網頁
+### 使用 GitHub Pages 部屬網頁
 
 請先註冊帳號，你可以參考以下影片：
 
@@ -470,19 +470,19 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
 </html>
 ```
 
-請把[第 265 行](https://github.com/Edit-Mr/roll-call/blob/b694aec4381906980277b202fbc7909c95e2c544/index.html#L265)的雙引號裡面換成剛才複製的網頁應用程式網址，然後按下儲存。這樣你的網頁就完成了！你可以到網址`https://你的Github帳號.github.io/`來使用你的網頁。
+請把[第 265 行](https://github.com/Edit-Mr/roll-call/blob/b694aec4381906980277b202fbc7909c95e2c544/index.html#L265)的雙引號裡面換成剛才複製的網頁應用程式網址，然後按下儲存。這樣你的網頁就完成了！你可以到網址`https://你的GitHub帳號.github.io/`來使用你的網頁。
 
 #### Use this template
 
-第二個方式也很簡單，請先到這個[Github 倉庫](https://github.com/Edit-Mr/roll-call)並點擊右上角的 Fork，或是 Use this template。倉庫名稱 Repository name 會成為你的網址 (例如：https://你的 Github 帳號.github.io/倉庫名稱)，然後點擊 Create repository from template。
+第二個方式也很簡單，請先到這個[GitHub 倉庫](https://github.com/Edit-Mr/roll-call)並點擊右上角的 Fork，或是 Use this template。倉庫名稱 Repository name 會成為你的網址 (例如：https://你的 GitHub 帳號.github.io/倉庫名稱)，然後點擊 Create repository from template。
 
 請點擊檔案`index.html`並點擊右上角的鉛筆按鈕編輯，把[第 265 行](https://github.com/Edit-Mr/roll-call/blob/b694aec4381906980277b202fbc7909c95e2c544/index.html#L265)的雙引號裡面換成剛才複製的網頁應用程式網址，然後按下儲存。
 
 然後再到你的倉庫裡面，點擊 Settings，然後點擊左邊的 Pages，把 Branch 改成 main，然後按下 Save，就完成了！
 
-![Github Pages 設定](roll-call-pages.webp)
+![GitHub Pages 設定](roll-call-pages.webp)
 
-好啦，現在你的網頁就完成了！你可以到網址`https://你的Github帳號.github.io/倉庫名稱`來使用你的網頁。
+好啦，現在你的網頁就完成了！你可以到網址`https://你的GitHub帳號.github.io/倉庫名稱`來使用你的網頁。
 
 ### 自訂
 

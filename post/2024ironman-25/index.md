@@ -15,7 +15,7 @@ date: 2024-10-08
 
 ## 使用 Dependabot 進行依賴安全性檢查
 
-### 設置 Dependabot
+### 設定 Dependabot
 
 Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴項。它能夠定期掃描你的依賴項並向你報告漏洞，並且可以自動提交更新以修補已知的安全漏洞。
 
@@ -27,7 +27,7 @@ Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴�
 
 2. **配置 Dependabot**
 
-   創建一個 `.github/dependabot.yml` 文件來配置 Dependabot 的行為。以下是一個基本配置的例子：
+   建立一個 `.github/dependabot.yml` 文件來配置 Dependabot 的行為。以下是一個基本配置的例子：
 
    ```yaml
    version: 2
@@ -48,17 +48,17 @@ Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴�
 
 3. **查看 Dependabot 警報**
 
-   Dependabot 會在 GitHub 的 `Security` 標籤頁面下顯示依賴安全性警報。當檢測到安全漏洞時，它會創建拉取請求以更新相關依賴。
+   Dependabot 會在 GitHub 的 `Security` 標籤頁面下顯示依賴安全性警報。當檢測到安全漏洞時，它會建立拉取請求以更新相關依賴。
 
 ## 使用 GitHub Actions 檢查 secrets 洩漏
 
-我們可以使用 `git-secrets` 這個套件來檢查程式碼中是否存在 secrets 的洩漏。這有助於確保我們的代碼庫不會意外地包含敏感信息，例如 API 密鑰、憑證等。
+我們可以使用 `git-secrets` 這個套件來檢查程式碼中是否存在 secrets 的洩漏。這有助於確保我們的程式庫不會意外地包含敏感訊息，例如 API 密鑰、憑證等。
 
 ### 配置 GitHub Actions 工作流程
 
-1. **創建工作流程文件**
+1. **建立工作流程文件**
 
-   在 `.github/workflows` 目錄下創建 `check-secrets.yml` 文件，並加入以下內容：
+   在 `.github/workflows` 目錄下建立 `check-secrets.yml` 文件，並加入以下內容：
 
    ```yaml
    name: Check Secrets
@@ -91,8 +91,8 @@ Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴�
    ```
 
    **解釋**:
-   - `Install Git Secrets`：安裝 `git-secrets` 工具，用於檢查代碼中的 secrets。
-   - `Scan for secrets`：運行 `git-secrets` 檢查代碼庫中的敏感信息。
+   - `Install Git Secrets`：安裝 `git-secrets` 工具，用於檢查程式中的 secrets。
+   - `Scan for secrets`：運行 `git-secrets` 檢查程式庫中的敏感訊息。
 
 2. **安裝 Git Secrets**
 
@@ -118,9 +118,9 @@ Dependabot 是 GitHub 的一個工具，可以自動檢查和更新你的依賴�
 
 ### 確保 secrets 的安全
 
-- **不將敏感信息硬編碼到代碼中**：使用 GitHub 的 secrets 功能來存儲敏感信息，例如 API 密鑰和憑證。
+- **不將敏感訊息硬編碼到程式中**：使用 GitHub 的 secrets 功能來存儲敏感訊息，例如 API 密鑰和憑證。
 
-- **使用環境變數**：在 GitHub Actions 的配置文件中，使用環境變數來引用 secrets，避免將其直接寫入代碼。
+- **使用環境變數**：在 GitHub Actions 的配置文件中，使用環境變數來引用 secrets，避免將其直接寫入程式。
 
 ## 小結
 
