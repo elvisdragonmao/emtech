@@ -3,7 +3,7 @@ authors: elvismao
 tags: [Windows, macOS, PowerPoint, Office, Keynote]
 categories: [生活駭客]
 date: 2025-10-30
-description: PowerPoint
+description: 在 Windows Powerpoint 中設定自訂功能區，在 macOS 中設定 App 快捷鍵。
 ---
 
 # 如何在 PowerPoint／Keynote 設定置中快捷鍵？
