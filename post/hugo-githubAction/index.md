@@ -9,7 +9,7 @@ date: 2022-08-17
 
 每次寫完文章還要打指令生成網站，麻煩死了！讓 GitHub Actions 幫你自動部署，寫完文章直角上傳就好了！
 
-{{notice}} 在開始之前請先建立好部落格，並且將整個檔案的資料夾上傳到 Github 的`用戶名/用戶名.github.io`repository記住不是裡面的`public`子資料夾，是整個資料夾喔 {{noticed}}
+{{notice}} 在開始之前請先建立好部落格，並且將整個檔案的資料夾上傳到 Github 的`用戶名/用戶名.github.io`repository 記住不是裡面的`public`子資料夾，是整個資料夾喔 {{noticed}}
 
 # 要解決的問題
 

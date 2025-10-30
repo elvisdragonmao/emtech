@@ -246,7 +246,7 @@ date: 2022-08-14
 
 {{notice}} Google Apps Script
 
-開發者:Google類型：免費網站（可付費升級）網址：[script.google.com](https://script.google.com) {{noticed}}
+開發者:Google 類型：免費網站（可付費升級）網址：[script.google.com](https://script.google.com) {{noticed}}
 
 請建立一個新的專案並貼上以下內容。記得貼上 Google Sheet 那段 ID，並修改自己要的範圍，程式碼裡有詳細的註解。原理是讀取一行行的資料並轉成 HTML 表格，其中如果狀態是完成的加上一個 class 讓顏色變綠色。在排序方面我是把完成的和未完成的分成兩個陣列（清單）儲存，在把完成的接在未完成的後面合併。
 

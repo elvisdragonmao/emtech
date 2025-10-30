@@ -84,8 +84,8 @@ description: 在用有腦的方式吵架。
 
 > "Resolved: On balance, the world will be a better place if there are fewer languages." 整體而言，如果世界上的語言變少，世界將會變得更好。
 
-- 支持方 Pro:　利大於弊
-- 反對方 Con:　弊大於利
+- 支持方 Pro: 利大於弊
+- 反對方 Con: 弊大於利
 
 反對方可以講自己的，不一定要一一正面回應正方的問題。
 

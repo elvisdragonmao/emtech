@@ -18,7 +18,7 @@ World Schools Debate（WSDC）是一種結合亞洲議會制與澳洲制的國�
 
 ### 隊伍組成
 
-- 每隊3至5人，每場比賽由 3 人上場發言，其餘隊員可以一起準備但是比賽過程不能用任何方式參與。
+- 每隊 3 至 5 人，每場比賽由 3 人上場發言，其餘隊員可以一起準備但是比賽過程不能用任何方式參與。
 - 比賽分為 Proposition（正方）與 Opposition（反方）兩隊。
 
 ### 發言順序與時間
@@ -27,20 +27,20 @@ World Schools Debate（WSDC）是一種結合亞洲議會制與澳洲制的國�
 
 | 發言順序         | 時長 |
 | ---------------- | ---- |
-| 1. 正方 第一主辯 | 8分  |
-| 2. 反方 第一主辯 | 8分  |
-| 3. 正方 第二主辯 | 8分  |
-| 4. 反方 第二主辯 | 8分  |
-| 5. 正方 第三主辯 | 8分  |
-| 6. 反方 第三主辯 | 8分  |
-| 7. 反方 Reply    | 4分  |
-| 8. 正方 Reply    | 4分  |
+| 1. 正方 第一主辯 | 8 分  |
+| 2. 反方 第一主辯 | 8 分  |
+| 3. 正方 第二主辯 | 8 分  |
+| 4. 反方 第二主辯 | 8 分  |
+| 5. 正方 第三主辯 | 8 分  |
+| 6. 反方 第三主辯 | 8 分  |
+| 7. 反方 Reply    | 4 分  |
+| 8. 正方 Reply    | 4 分  |
 
 Reply speech 必須由第一或第二主辯擔任，且由反方先講，正方後講。
 
 ### Points of Information（POI，質詢點）
 
-在每個8分鐘主辯的第2到第7分鐘（發言的第1分鐘和最後1分鐘為保護時間），對方可提出POI。通常會站起來或舉手喊（POI, Point, 或 Points of Information）發言者可選擇接受或拒絕，每場通常接受2次是最剛好的。被接受後你可以講大約 15 秒內的話，可以是質詢問題也可以單純只是講講。
+在每個 8 分鐘主辯的第 2 到第 7 分鐘（發言的第 1 分鐘和最後 1 分鐘為保護時間），對方可提出 POI。通常會站起來或舉手喊（POI, Point, 或 Points of Information）發言者可選擇接受或拒絕，每場通常接受 2 次是最剛好的。被接受後你可以講大約 15 秒內的話，可以是質詢問題也可以單純只是講講。
 
 比如說：
 
@@ -63,8 +63,8 @@ Reply speech 必須由第一或第二主辯擔任，且由反方先講，正方�
 
 ### 評分方式
 
-- 主辯發言：每人60-80分
-- Reply speech：30-40分
+- 主辯發言：每人 60-80 分
+- Reply speech：30-40 分
 
 贏得隊伍分數加總會比較高。
 
@@ -78,35 +78,35 @@ WSDC 題目可依內容分為三大類：
 
 辯題多為國際性議題，涵蓋政策、價值、倫理、經濟、環境等。但有時候也會指定國家，如「美國應該禁止...」題目都會以 "This house" 開頭。我來隨便舉幾個例子：
 
-### This House Believes That（THBT）
+### This House Believes That (THBT)
 
 討論某一主張是否正確或成立。例如：
 
 > This House believes that satire, as a form of political commentary, does more harm than good.  
 > 本院認為，諷刺喜劇（薩泰爾）作為一種政治評論形式，弊大於利。
 
-### This House Would（THW）
+### This House Would (THW)
 
 「政策型」辯題，要求正方提出具體行動方案，反方則反對該行動（想要替代方案或維持現況）。有時候是 "This House Believes That...should..."。例如：
 
 > This House Would grant legal rights to anime waifus and husbandos.  
 > 本院將授予動漫老婆與老公法律權利。
 
-### This House Regrets（THR）
+### This House Regrets (THR)
 
 「後悔型」辯題，討論是否應該對某現象、政策、趨勢等感到遺憾或否定。簡單來說就是如果世界上沒有發生這件事會更美好。例如：
 
 > This House regrets the viral popularity of the song 八方來財 on social media.  
 > 本院後悔八方來財這首歌在社群媒體爆紅。
 
-### This House Supports（THS）
+### This House Supports (THS)
 
 表示支持某一政策、行動或理念，通常和「believes」類似，但更強調立場表態。例如：
 
 > This House Supports affirmative action policies that multiply Indigenous students’ entrance exam scores by 1.35.  
 > 本院支持將原住民學生入學考試成績提高 1.35 倍的平權行動政策。
 
-### This House Prefers（THP）
+### This House Prefers (THP)
 
 比較兩種選擇，討論哪一種更可取。例如：
 
@@ -120,7 +120,7 @@ WSDC 題目可依內容分為三大類：
 
 ## 現場即席
 
-辯題分為「Prepared Motion」（賽前數週公布，充分準備）與「Impromptu Motion」（現場即席，僅有30-60分鐘準備）。
+辯題分為「Prepared Motion」（賽前數週公布，充分準備）與「Impromptu Motion」（現場即席，僅有 30-60 分鐘準備）。
 
 ### Prepared Motion
 
@@ -128,10 +128,10 @@ WSDC 題目可依內容分為三大類：
 
 ### Impromptu Motion
 
-- 現場公布辯題後，給予30-60分鐘準備時間。
-- 準備期間，僅限本隊3-5人討論，不可與教練或外人聯繫。
+- 現場公布辯題後，給予 30-60 分鐘準備時間。
+- 準備期間，僅限本隊 3-5 人討論，不可與教練或外人聯繫。
 - 僅可攜帶紙本字典、單卷百科、或是年鑑（Almanac），甚至連自己的筆記都不行。禁止使用任何電子設備。
-- 準備結束後，進入比賽現場，3位上場選手不得再與場外溝通。
+- 準備結束後，進入比賽現場，3 位上場選手不得再與場外溝通。
 
 {{notice}}
 
@@ -162,7 +162,7 @@ WSDC 題目可依內容分為三大類：
 
 ### 1. Hook / Introduction（引入）
 
-開場約15-45秒，可以用故事、數據、名言或問題引出辯題，用以吸引評審與觀眾注意。
+開場約 15-45 秒，可以用故事、數據、名言或問題引出辯題，用以吸引評審與觀眾注意。
 
 > 我的朋友上個月搬離這個社區了，因為他們家...因此本院非常自豪的主張...
 
@@ -194,9 +194,9 @@ WSDC 題目可依內容分為三大類：
 
 以上。
 
-### 6. Handling Points of Information（POI）
+### 6. Handling Points of Information (POI)
 
-一辯需在演講過程中適時接受並回應對方提出的POI。不過太多會顯得你的 Case 寫的很不完整，完全不接顯得你很不自信（或是很跩很欠揍。）兩個剛剛好，也有評審嫌我們接太多過。
+一辯需在演講過程中適時接受並回應對方提出的 POI。不過太多會顯得你的 Case 寫的很不完整，完全不接顯得你很不自信（或是很跩很欠揍。）兩個剛剛好，也有評審嫌我們接太多過。
 
 有的人會選擇在段落最後面一起接，類似演講完有 QA 時間，這樣比較不會中間被打斷。
 

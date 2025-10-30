@@ -214,7 +214,7 @@ Windows 官方有一個很棒的官方工具叫做 [PowerToys](https://learn.mic
 ### 其他
 
 - Siri: 右邊的 `cmd` 按兩下。通常拿來設計時器跟找手機。
-- 色彩反轉: `Ctrl + Option + Command + 8` (MacOS)，拿來看一些亮色的東西很刺眼時可以把顏色反過來，或是設計時可以拿來看看對比夠不夠等等。
+- 色彩反轉：`Ctrl + Option + Command + 8` (MacOS)，拿來看一些亮色的東西很刺眼時可以把顏色反過來，或是設計時可以拿來看看對比夠不夠等等。
 - `ctrl + cmd + shift + c`：內建轉繁體
 - `ctrl + cmd + option + shift + c`：内建转简体（超難按）
 

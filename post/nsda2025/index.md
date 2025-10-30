@@ -255,7 +255,7 @@ Panda Express 還不錯但橘子雞我真的不行。你就想像是糖醋排骨
 
 ### Day 3 - 老虎高中
 
-第三天因為 World Schools 打到一個段落了所以我們開始打 Extemp Debate。場地在 Valley High School，吉祥物是老虎。整間學校的的設計很有創意，很漂亮。他們的福利社叫做 「Tiger Perk」，看起來有種籠子的感覺。
+第三天因為 World Schools 打到一個段落了所以我們開始打 Extemp Debate。場地在 Valley High School，吉祥物是老虎。整間學校的的設計很有創意，很漂亮。他們的福利社叫做「Tiger Perk」，看起來有種籠子的感覺。
 
 ![等比賽的人就坐在外面地上準備](tiger.webp)
 

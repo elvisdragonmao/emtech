@@ -82,13 +82,13 @@ div {
 }
 ```
 
-![上: repeating-linear-gradient 下: linear-gradient](result.webp)
+![上：repeating-linear-gradient 下：linear-gradient](result.webp)
 
 [Codepen 範例](https://codepen.io/edit-mr/pen/XJJYEZa)
 
 ## 動畫
 
-接下來你甚至可以玩一些動畫:
+接下來你甚至可以玩一些動畫：
 
 我們讓它動起來：
 

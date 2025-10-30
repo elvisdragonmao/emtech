@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: []
-categories: [生活雜談, 關於]
+categories: [生活雜談，關於]
 date: 2025-06-18
 lastmod: 2025-10-23
 description: 毛哥EM的近況。
@@ -44,7 +44,7 @@ description: 毛哥EM的近況。
 主要是拿來視訊會議及線上~~吵架~~英文辯論。最近都沒空玩音樂。
 
 - **IE100 Pro** - 高 CP 的入耳式監聽耳機。聲音很不錯，是主要在用的耳機。
-- ~~[**水月雨 星野2**](https://moondroplab.com/cn/products/starfield-ii) - 便宜好聽的入耳式耳機。~~ 不見了。
+- ~~[**水月雨 星野 2**](https://moondroplab.com/cn/products/starfield-ii) - 便宜好聽的入耳式耳機。~~ 不見了。
 - [**Shure SM58**](https://www.shure.com/en-US/products/microphones/sm58) - 錫蘭的手持粗管子。聲音好聽，汽車碾都不會壞的麥克風。
 - [**EVO4**](https://evo.audio/products/audio-interfaces/evo-4/overview/) - 便宜好用的錄音介面。
 - [**Launchpad mini MK3**](https://us.novationmusic.com/products/launchpad-mini-mk3) - 做音樂的工具。簡單來說就是 8x8 LED 按鈕矩陣。不過最近比較少用，之後可能會拿來做音遊等等 Project。

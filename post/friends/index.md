@@ -229,11 +229,11 @@ Chung
 
 <a class="friend" href="https://naup.mygo.tw/">
 
-![堇姬Naup](https://naup.mygo.tw/avatar/avatar.webp)
+![堇姬 Naup](https://naup.mygo.tw/avatar/avatar.webp)
 
 <div>
 
-### 堇姬Naup
+### 堇姬 Naup
 
 A 4002-year-old demigod crane
 

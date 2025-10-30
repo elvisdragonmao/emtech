@@ -53,7 +53,7 @@ description: 使用 RSS 讓你奪回資訊的掌控權，讓你決定你要看�
 
 你可以直接從 [GitHub](https://github.com/yang991178/fluent-reader) 或是其他平台下載。
 
-- 電腦: 可以從 [App Store](https://apps.apple.com/app/id1520907427), [Microsoft Store](https://www.microsoft.com/store/apps/9P71FC94LRH8?cid=github), 或是 [GitHub](https://github.com/yang991178/fluent-reader) 下載。
+- 電腦：可以從 [App Store](https://apps.apple.com/app/id1520907427), [Microsoft Store](https://www.microsoft.com/store/apps/9P71FC94LRH8?cid=github), 或是 [GitHub](https://github.com/yang991178/fluent-reader) 下載。
 - iPhone: 可以直接從 [App Store](https://apps.apple.com/app/id1549611796) 下載。
 - Android: 可以從 [GitHub](https://github.com/yang991178/fluent-reader-lite/releases) 免費下載，或是從 [Google Play](https://play.google.com/store/apps/details?id=me.hyliu.fluent_reader_lite) 商店用 $1.99 美金支持作者。
 
@@ -179,7 +179,7 @@ FreshRSS 支援 Google Reader API，讓你可以使用第三方的閱讀器來�
 
 YouTube 的 RSS 網址是：
 
-<https://www.youtube.com/feeds/videos.xml?channel_id=頻道ID>。
+<https://www.youtube.com/feeds/videos.xml?channel_id=頻道 ID>。
 
 頻道 ID 可能是網址後面那一段：
 

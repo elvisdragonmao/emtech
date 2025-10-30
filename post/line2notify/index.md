@@ -43,7 +43,7 @@ https://notify-bot.line.me/my/ => 發行權杖 => 把那一串複製下來�
 
 {{notice}} Google Apps Script
 
-開發者:Google類型：免費網站（可付費升級）網址：[script.google.com](https://script.google.com) {{noticed}}
+開發者:Google 類型：免費網站（可付費升級）網址：[script.google.com](https://script.google.com) {{noticed}}
 
 請建立一個新的專案並貼上以下內容。記得貼上記得貼上 Line Notify Token。
 

@@ -149,7 +149,7 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
     cd <倉庫名>
    ```
 
-   > 沒有使用過 Git 和 GitHub 嗎? 你可以參考我之前寫的 [這篇文章](https://emtech.cc/post/github-and-git/)
+   > 沒有使用過 Git 和 GitHub 嗎？你可以參考我之前寫的 [這篇文章](https://emtech.cc/post/github-and-git/)
 
 2. **初始化 Node.js 專案** 使用 `npm init` 初始化專案。這會創建一個 `package.json` 文件，用於管理專案的依賴套件和腳本。
 

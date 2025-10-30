@@ -14,7 +14,7 @@ description: 看看哪個好看選哪個。不知道怎麼選就選 TW，沒有�
 
 但在下載時你可能會注意到許多字體名稱後面帶有特定的標示，例如 GB、TC、CL、MN、P、TC、Plus 等等。這些標示通常代表字體的語言、地區、用途或風格。我整理了一些目前看到的標示代表的意義以及如何選擇，希望能幫助你選擇適合的字體。
 
-![你分得出來這些字體差在哪嗎?](github.webp)
+![你分得出來這些字體差在哪嗎？](github.webp)
 
 ## 不同字重
 
@@ -41,7 +41,7 @@ Normal 和 Regular 通常都是指一般的字重 400。不過有時候有些字
 
 據 Google 的官方說明之所以有兩個如此接近的字重，是因為 Regular 用來跟 Google 其他語系的開源字體產品線 (Noto Sans / Roboto) 搭配較佳，而 Normal 相信跟 Adobe 的開源英文字體搭配視覺上較佳。不過簡單來說 Normal 會比 Regular 稍微細一點點，在 emfont Normal 會以 `font-weight: 350` 來表示。
 
-> 思源黑體共包含7種字重：ExtraLight 250、Light 300、Normal 350（Noto Sans CJK 中稱為Demilight）、Regular 400、Medium 500、Bold 700、Heavy 900。
+> 思源黑體共包含 7 種字重：ExtraLight 250、Light 300、Normal 350（Noto Sans CJK 中稱為 Demilight）、Regular 400、Medium 500、Bold 700、Heavy 900。
 
 ## 繁體中文字型 - TC、TW、HK
 
@@ -63,7 +63,7 @@ Normal 和 Regular 通常都是指一般的字重 400。不過有時候有些字
 
 **CL**：參考早期鉛字印刷字形常見寫法，回歸舊式印刷字形。類似於繁體中文中的 TC。
 
-**MN**： 兼顧現代書寫方法以及部分傳統寫法的折中印刷字形。有時候也是指 Mongolian，表示該字體包含蒙古文（蒙文）擴展字符，適用於內蒙古自治區使用的雙語排版。
+**MN**：兼顧現代書寫方法以及部分傳統寫法的折中印刷字形。有時候也是指 Mongolian，表示該字體包含蒙古文（蒙文）擴展字符，適用於內蒙古自治區使用的雙語排版。
 
 ## 日文和韓文字型 - JP、KR
 
@@ -91,7 +91,7 @@ Normal 和 Regular 通常都是指一般的字重 400。不過有時候有些字
 
 中文字那麼多，製作字體十分耗費時間跟精力。有些字體會有 beta 版本，表示該字體還在測試階段，可能會有一些問題。
 
-如基於Adobe 所開發、發布的思源黑體改作而成的台北黑體叫做 Taipei Sans TC Beta。
+如基於 Adobe 所開發、發布的思源黑體改作而成的台北黑體叫做 Taipei Sans TC Beta。
 
 ## 冠明版
 
