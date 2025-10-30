@@ -36,7 +36,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "style: 你們為甚麼就不能加個空白呢？"
+            git commit -m "style: 你們為甚麼就不能記得格式化一下？"
             git push
           fi
         env:
