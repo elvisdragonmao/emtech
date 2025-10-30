@@ -872,13 +872,14 @@ aside .adsbygoogle {
 #categories {
 	display: flex;
 	padding-inline: 2rem;
+	padding-top: 0.7rem;
 	align-items: center;
 	gap: 2rem;
 	width: 100%;
 	white-space: nowrap;
 	flex: 1;
 	height: 100%;
-	overflow-x: auto;
+	overflow: auto hidden;
 	position: relative;
 	--offset: 24px;
 	--width: 45px;
@@ -907,6 +908,10 @@ aside .adsbygoogle {
 .categories-description {
 	margin-bottom: 1rem;
 	text-align: center;
+}
+
+.categories-description a {
+	color: var(--blue);
 }
 
 .categories-right,

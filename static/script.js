@@ -264,7 +264,7 @@ const updatePostList = async (category, scroll = true) => {
 	document.querySelector(".categories-title").textContent = decodeURI(category.split("/")[1]);
 	const des = categories[decodeURI(category.split("/")[1])] ? categories[decodeURI(category.split("/")[1])].description : "";
 	if (des) {
-		document.querySelector(".categories-description").textContent = des;
+		document.querySelector(".categories-description").innerHTML = des;
 		document.querySelector(".categories-description").style.display = "block";
 	} else {
 		document.querySelector(".categories-description").style.display = "none";
