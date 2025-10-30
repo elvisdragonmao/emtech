@@ -1,12 +1,45 @@
-name: 🔍文章格式檢查
+name: 🔍 文章格式檢查
 
 on:
   push:
-    branches: [main]
   pull_request:
-    branches: [main]
 
 jobs:
+  prettier:
+    name: ✨ Prettier
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run prettier
+        run: npx prettier --write .
+        continue-on-error: true
+
+      - name: Add changes except package.json
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git reset package.json
+          git reset .github
+      - name: Commit
+        run: |
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+          git commit -m "style: 你們為甚麼就不能加個空白呢？"
+          git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   validate-markdown:
     name: 📰 檢查 Markdown 檔案
     runs-on: ubuntu-latest
@@ -18,68 +51,6 @@ jobs:
           chmod +x .github/workflows/markdown-validation.sh
           .github/workflows/markdown-validation.sh
 
-  winston:
-    name: 📝 Winston 文章檢查
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install jq & parallel
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y jq parallel
-
-      - name: Check markdown files with Winston API (parallel)
-        run: |
-          set -e
-          API_URL="https://winston.emtech.cc/api/check"
-          mkdir -p logs
-
-          echo "🔍 Searching markdown files..."
-          mapfile -t FILES < <(find post -type f -name "*.md")
-
-          if [ ${#FILES[@]} -eq 0 ]; then
-            echo "⚠️ No markdown files found under post/"
-            exit 0
-          fi
-
-          echo "🚀 Running checks in parallel for ${#FILES[@]} files..."
-
-          check_file() {
-            local file="$1"
-            local text
-            text=$(jq -Rs . < "$file")
-            local response
-            response=$(curl -s -X POST "$API_URL" \
-              -H "Content-Type: application/json" \
-              -d "{\"text\": $text}")
-
-            if echo "$response" | jq -e '.mistakes | length > 0' >/dev/null; then
-              echo "❌ [$file]"
-              echo "$response" | jq -r '.mistakes[] |
-                if .type == "spelling_correction" or .type == "case" then
-                  "「\(.wrong)」應寫成「\(.correct | join("、"))」"
-                elif .type == "term_ambiguity_check" then
-                  "你確定你想說的是「\(.wrong)」而不是「\(.correct | join("、"))」嗎？"
-                elif .type == "political_terminology" then
-                  "「\(.wrong)」是含有政治色彩的中國用語，請考慮改用「\(.correct | join("、"))」"
-                elif .type == "regional_difference" then
-                  "「\(.wrong)」（✗）\n「\(.correct | join("、"))」（✓）"
-                else
-                  "⚠️ 其他類型：\(.type) - \(.wrong) → \(.correct | join("、"))"
-                end'
-              echo
-            else
-              echo "✅ [$file] OK"
-            fi
-          }
-
-          export -f check_file
-          export API_URL
-
-          # 平行跑，每次最多 6 個（可調整）
-          parallel -j 6 check_file ::: "${FILES[@]}"
-
-          echo "🏁 All checks finished (warnings do NOT block merge)."
+  winston-bot:
+    name: Winston Bot 中文檢查
+    uses: Edit-Mr/WinstonBot-CI@latest

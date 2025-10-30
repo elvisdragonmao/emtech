@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# 程式由 Claude 撰寫
-# 底下的鬼話是 ChatGPT 說的，看了很難受，讓大家一起難受。
-
 # Initialize arrays to store files
 declare -a warning_files=()
 declare -a error_files=()
