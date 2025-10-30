@@ -4,7 +4,7 @@ tags: []
 categories: [生活雜談，關於]
 date: 2025-06-18
 lastmod: 2025-10-23
-description: 毛哥EM的近況。
+description: 毛哥 EM 的近況。
 ---
 
 # NowNowNow
@@ -23,7 +23,7 @@ description: 毛哥EM的近況。
 ## 近期專案
 
 - [**emfont**](https://font.emtech.cc/) - 開源免費的中文網頁字體服務。
-- [**毛哥EM 資訊密技**](https://emtech.cc/) - 就這裡。
+- [**毛哥 EM 資訊密技**](https://emtech.cc/) - 就這裡。
 
 ## 實務裝備
 

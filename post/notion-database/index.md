@@ -86,6 +86,6 @@ Notion 是一個出色的筆記軟體，但是有一個問題是它的資料庫�
 
 ![下載 PDF](image-8.png)
 
-以上就是我今天的分享，希望能夠幫助正在努力的你。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://emtech.cc/)，若有任何問題歡迎在在 Instagram 私訊我。
+以上就是我今天的分享，希望能夠幫助正在努力的你。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，若有任何問題歡迎在在 Instagram 私訊我。
 
-我是毛哥EM，讓我們下次再見。
+我是毛哥 EM，讓我們下次再見。

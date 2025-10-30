@@ -122,6 +122,6 @@ https://codepen.io/edit-mr/pen/poqqoLr
 
 連結：https://codepen.io/YusukeNakaya/pen/vvEqVx ![](move.gif)
 
-這個效果明天會使用到，你可以來猜猜看。我剩下六天了，接下來原則上都是蠻重要的內容，要來完成一些很常見的版面和許多人習慣直接套庫的東西。以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
+這個效果明天會使用到，你可以來猜猜看。我剩下六天了，接下來原則上都是蠻重要的內容，要來完成一些很常見的版面和許多人習慣直接套庫的東西。以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
-我是毛哥EM，讓我們明天再見。
+我是毛哥 EM，讓我們明天再見。

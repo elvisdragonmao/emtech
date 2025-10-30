@@ -125,6 +125,6 @@ function sendReply(replyToken, message) {
 
 ## 結語
 
-以上就是使用 Line Messaging API 顯示思考中動畫的方法，希望能夠對你有幫助。如果你有任何建議或問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://em-tec.github.io/)。
+以上就是使用 Line Messaging API 顯示思考中動畫的方法，希望能夠對你有幫助。如果你有任何建議或問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://em-tec.github.io/)。
 
 > 參考資料：https://developers.line.biz/en/docs/messaging-api/use-loading-indicator/

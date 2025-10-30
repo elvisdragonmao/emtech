@@ -597,7 +597,7 @@ const generateSitemapAndRSS = async () => {
         xmlns:content="http://purl.org/rss/1.0/modules/content/"
         xmlns:media="http://search.yahoo.com/mrss/">
         <channel>
-        <title>毛哥EM資訊密技</title>
+        <title>毛哥 EM 資訊密技</title>
         <link>https://emtech.cc</link>
         <description>分享各種程式及軟體</description>
         <language>zh-Hant</language>

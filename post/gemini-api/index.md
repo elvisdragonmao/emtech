@@ -223,7 +223,7 @@ Gemini 還有很多其他的設定，例如 `max_tokens` 用來設定最大回�
 	</head>
 	<body>
 		<h1>Gemini API 聊天 Demo</h1>
-		<p>毛哥EM製作 <a href="https://emtech.cc/post/gemini-html">教學文章</a></p>
+		<p>毛哥 EM 製作 <a href="https://emtech.cc/post/gemini-html">教學文章</a></p>
 		<div id="chatHistory">
 			<!-- Chat history will appear here -->
 		</div>
@@ -284,4 +284,4 @@ Gemini 還有很多其他的設定，例如 `max_tokens` 用來設定最大回�
 
 ## 結語
 
-以上就是使用 Gemini API 製作線上對話網站的方法，希望你能從中學到一些東西。如果你有任何建議或問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://em-tec.github.io/)。
+以上就是使用 Gemini API 製作線上對話網站的方法，希望你能從中學到一些東西。如果你有任何建議或問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://em-tec.github.io/)。

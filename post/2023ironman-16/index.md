@@ -346,6 +346,6 @@ https://codepen.io/edit-mr/pen/wvRXMLG
 
 ![Final](final.gif)
 
-以上就是我今天的分享。我有看到有人是算了第一個角度之後就每秒固定加上去度數。不過萬一你有延遲或者是卡頓他的時間就會跑掉了，所以我還是建議每次都重新抓時間做計算。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享。我有看到有人是算了第一個角度之後就每秒固定加上去度數。不過萬一你有延遲或者是卡頓他的時間就會跑掉了，所以我還是建議每次都重新抓時間做計算。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
-我是毛哥EM，讓我們明天再見。
+我是毛哥 EM，讓我們明天再見。

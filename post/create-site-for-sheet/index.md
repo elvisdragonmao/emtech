@@ -19,7 +19,7 @@ date: 2022-08-14
 
 {{notice}} 薩波委託進度
 
-開發者:毛哥EM(我) 類型：網站網址：[毛哥EM的基地](https://Edit-Mr.github.io/code/sabooo) {{noticed}}
+開發者：毛哥 EM(我) 類型：網站網址：[毛哥 EM 的基地](https://Edit-Mr.github.io/code/sabooo) {{noticed}}
 
 ## 架一個網站！
 

@@ -76,4 +76,4 @@ git push origin --delete [branch-name]
 
 選擇合適的方法根據你的具體情況來決定。如果你在團隊中工作，通常使用 `git revert` 來避免改變共享的歷史記錄是更安全的選擇。希望這篇文章能幫助你更好地掌握 Git 的使用，有效地管理你的項目版本。
 
-如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)。
+如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)。

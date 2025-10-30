@@ -173,4 +173,4 @@ description: 教授很嗨，面對好學生都很歡迎，但問的問題是精�
 
 ![又有車禍](bang2.webp)
 
-> 封面圖：炎火山攝於逢甲大學，以 [CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant) 授權。經毛哥EM 後製合成處裡。
+> 封面圖：炎火山攝於逢甲大學，以 [CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant) 授權。經毛哥 EM 後製合成處裡。

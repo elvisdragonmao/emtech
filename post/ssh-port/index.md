@@ -72,4 +72,4 @@ ssh -p 2222 username@hostname
 
 ### 結論
 
-通過更改 SSH 端口號，你可以繞過一些網路限制並增強系統的安全性。使用 Vim 編輯器可以方便地進行配置文件的修改。希望這篇文章對你有幫助，如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://em-tec.github.io/)。
+通過更改 SSH 端口號，你可以繞過一些網路限制並增強系統的安全性。使用 Vim 編輯器可以方便地進行配置文件的修改。希望這篇文章對你有幫助，如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://em-tec.github.io/)。

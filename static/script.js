@@ -244,7 +244,7 @@ const postScrollAnimations = () => {
 							id: nextID,
 							title
 						});
-						document.title = title + " | 毛哥EM資訊密技";
+						document.title = title + " | 毛哥 EM 資訊密技";
 					}
 				}
 			} else {
@@ -369,7 +369,7 @@ const initPost = (page, direct = false) => {
 	if (direct) {
 		const id = page.querySelector(".post").getAttribute("data-id");
 		const title = page.querySelector(".post-header h1").textContent;
-		document.title = title + " | 毛哥EM資訊密技";
+		document.title = title + " | 毛哥 EM 資訊密技";
 		updateReadHistory({ id, title });
 	}
 	const cat = page.querySelector(".header-categorie").textContent;
@@ -410,7 +410,7 @@ if (window.location.pathname.includes("/p/")) {
 	else {
 		updatePostList("category/精選", false);
 		if (window.location.pathname.includes("/search")) {
-			document.title = "搜尋 | 毛哥EM資訊密技";
+			document.title = "搜尋 | 毛哥 EM 資訊密技";
 			const searchKeyword = window.location.search.split("?q=")[1];
 			if (searchKeyword) document.getElementById("search").value = decodeURIComponent(searchKeyword);
 			document.getElementById("search-toggle").checked = true;
@@ -618,20 +618,20 @@ document.body.addEventListener("click", e => {
 		if (a.getAttribute("href") === "") return;
 		if (a.getAttribute("href") === "/") {
 			switchToHome();
-			document.title = "毛哥EM資訊密技";
+			document.title = "毛哥 EM 資訊密技";
 		} else if (a.getAttribute("href").includes("/p/")) {
 			switchToPost(a); // Handle post switch
 			document.getElementById("search-toggle").checked = false;
 		} else if (a.getAttribute("href").includes("/category/")) {
 			updatePostList("category/" + a.textContent);
-			document.title = a.textContent + " | 毛哥EM資訊密技";
+			document.title = a.textContent + " | 毛哥 EM 資訊密技";
 			if (currentPage !== "home") switchToHome();
 			// check if the <a> pressed is the child of #categories
 			moveCategories(a.textContent);
 		} else if (a.getAttribute("href").includes("/tag/")) {
 			const tagTitle = a.getAttribute("href").split("/tag/")[1];
 			updatePostList("tag/" + tagTitle);
-			document.title = tagTitle + " | 毛哥EM資訊密技";
+			document.title = tagTitle + " | 毛哥 EM 資訊密技";
 			if (currentPage !== "home") switchToHome();
 		} else if (a.getAttribute("href") === "/random") {
 			// get random post id from search.json

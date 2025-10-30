@@ -149,6 +149,6 @@ body::after {
 
 這些都是 CSS filter 屬性的一些常見和進階功能。通過組合這些效果，你可以為網站的元素創建出各種視覺效果，無論是圖像處理還是動畫，都能夠實現。我們會在之後的文章繼續講你可以怎麼玩 filter 屬性。
 
-歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
+歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
-我是毛哥EM，讓我們明天再見。
+我是毛哥 EM，讓我們明天再見。

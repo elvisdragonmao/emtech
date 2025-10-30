@@ -82,6 +82,6 @@ GPU 厲害的是他會把在改變的元素獨立抽出來一個圖層，修改�
 
 或著是冬天快要到了，知道怎麼用安卓手機以及學校電腦製作暖暖包了吧 w
 
-沒有在開玩笑，[這個](https://web.basemark.com/)就是一個不錯的暖暖包網頁。以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
+沒有在開玩笑，[這個](https://web.basemark.com/)就是一個不錯的暖暖包網頁。以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
-我是毛哥EM，讓我們明天再見。
+我是毛哥 EM，讓我們明天再見。

@@ -81,7 +81,7 @@ function simulateMartingale() {
 	output += `<div>共進行 ${round} 局，贏了 ${winCount} 局，輸了 ${loseCount} 局。</div>`;
 	totalRounds++;
 	finalBalance += balance;
-	output += `<div>平均最後收入: ${(finalBalance / totalRounds).toFixed(2)} 元</div>`;
+	output += `<div>平均最後收入：${(finalBalance / totalRounds).toFixed(2)} 元</div>`;
 
 	document.getElementById("output").innerHTML = output;
 	// scroll to bottom

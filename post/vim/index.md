@@ -81,4 +81,4 @@ $ vim [filename]
 - `:` [行數] - 跳到文件中的第 [行數] 行
 - `/` [內容] - 在文件中搜索 [內容]
 
-Vim 的命令很多，但只需要熟悉一些常用指令即可快速操作。希望這篇文章能對你快速上手 Vim 有所幫助。如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM資訊密技
+Vim 的命令很多，但只需要熟悉一些常用指令即可快速操作。希望這篇文章能對你快速上手 Vim 有所幫助。如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥 EM 資訊密技

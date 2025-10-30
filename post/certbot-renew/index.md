@@ -153,4 +153,4 @@ sudo certbot certificates
 
 ### 結論
 
-透過這篇文章，我們介紹了如何解決 Certbot SSL 手動插件更新失敗的問題，包括使用自動化插件和提供手動身份驗證腳本的詳細步驟。希望這些方法能幫助你順利更新 SSL 憑證，確保網站的安全性。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)。
+透過這篇文章，我們介紹了如何解決 Certbot SSL 手動插件更新失敗的問題，包括使用自動化插件和提供手動身份驗證腳本的詳細步驟。希望這些方法能幫助你順利更新 SSL 憑證，確保網站的安全性。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)。

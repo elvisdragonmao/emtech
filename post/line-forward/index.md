@@ -123,7 +123,7 @@ function doPost(e) {
 	}
 	return ContentService.createTextOutput("OK");
 }
-// 發送訊息給指定ID
+// 發送訊息給指定 ID
 function forwardMessage(targetId, text) {
 	const url = targetId == "廣播" ? "broadcast" : "push";
 	const options = {

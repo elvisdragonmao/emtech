@@ -29,7 +29,7 @@ iOS & iPadOS 17 Beta Release Notes
 - Spatial
   - 為 Spatial 角度類型引入三角函數功能
   - 為 Spatial 旋轉引入球面線性插值
-  - 為 Spatial 旋轉引入擺盪-扭曲分解
+  - 為 Spatial 旋轉引入擺盪 - 扭曲分解
 - BNNS
   - 引入 BNNSRandomFillCategoricalFloat，用於以事件概率從分類分布中填充張量的隨機值
   - 引入最近鄰居計算
@@ -289,4 +289,4 @@ iOS & iPadOS 17 Beta Release Notes
 - 在某些設備上，使用 Face ID 可能會導致設備重啓。（108195348）解決方法：嘗試關閉應用並重新打開，或者重新啓動設備。
 - 在某些情況下，設備可能會在後台運行應用程序時重新啓動。（108195472）解決方法：嘗試關閉應用並重新打開，或者重新啓動設備。
 
-這些是我能找到的與 iOS 17 測試版相關的已知問題。如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM資訊密技。如果你有任何問題，歡迎直接到毛哥EM資訊密技的Instagram私訊我，我很樂意協助解決你的問題。
+這些是我能找到的與 iOS 17 測試版相關的已知問題。如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥 EM 資訊密技。如果你有任何問題，歡迎直接到毛哥 EM 資訊密技的 Instagram 私訊我，我很樂意協助解決你的問題。

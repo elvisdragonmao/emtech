@@ -35,4 +35,4 @@ date: 2023-02-13
 
 ![開啟 YouTube](akaonisteak-success.webp)
 
-希望這篇文章對你有所幫助，也希望可以讓赤鬼的客量上升（真的很好吃）。如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM資訊密技
+希望這篇文章對你有所幫助，也希望可以讓赤鬼的客量上升（真的很好吃）。如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥 EM 資訊密技

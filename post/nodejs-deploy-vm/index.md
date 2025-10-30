@@ -129,4 +129,4 @@ sudo systemctl restart nginx
 
 ## 結論
 
-透過這篇文章，我們學習了如何使用 pm2 來管理 Node.js 專案，如何使用 Nginx 來轉發 HTTP 請求，以及如何使用 Cloudflare 來設定 DNS 和 SSL。這樣一來，我們就可以將 Node.js 專案部屬到虛擬機上了。因為我實在太長使用到這些工具，所以我決定記錄下來，希望對你有幫助。建議也可以加入書籤，現在部屬的時候才找得到。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://em-tec.github.io/)。
+透過這篇文章，我們學習了如何使用 pm2 來管理 Node.js 專案，如何使用 Nginx 來轉發 HTTP 請求，以及如何使用 Cloudflare 來設定 DNS 和 SSL。這樣一來，我們就可以將 Node.js 專案部屬到虛擬機上了。因為我實在太長使用到這些工具，所以我決定記錄下來，希望對你有幫助。建議也可以加入書籤，現在部屬的時候才找得到。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://em-tec.github.io/)。

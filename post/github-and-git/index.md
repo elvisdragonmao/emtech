@@ -102,7 +102,7 @@ git clone
 <body>
 	<h1>歡迎來到我的網站</h1>
 	<h2>我很開心</h2>
-	<p><a href="https://emtech.cc/">毛哥EM資訊密技</a>的範例程式</p>
+	<p><a href="https://emtech.cc/">毛哥 EM 資訊密技</a>的範例程式</p>
 </body>
 ```
 

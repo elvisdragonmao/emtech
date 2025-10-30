@@ -3,16 +3,16 @@ authors: elvismao
 tags: [emblog, 關於，自製]
 categories: [程式開發，精選]
 date: 2024-10-16
-description: emblog 是一個十分特別且強大的部落格框架，專為毛哥EM資訊密技設計。可以在幾秒內生成出漂亮的靜態單頁式部落格。
+description: emblog 是一個十分特別且強大的部落格框架，專為毛哥 EM 資訊密技設計。可以在幾秒內生成出漂亮的靜態單頁式部落格。
 ---
 
 # emblog - 一個不一樣的部落格生成器
 
-emblog 是一個十分特別且強大的部落格框架，專為毛哥EM 資訊密技設計。可以在幾秒內生成出漂亮的靜態單頁式部落格。
+emblog 是一個十分特別且強大的部落格框架，專為毛哥 EM 資訊密技設計。可以在幾秒內生成出漂亮的靜態單頁式部落格。
 
 ## 背景
 
-毛哥EM 資訊密技從我國二開始一直是使用 [Hugo](https://gohugo.io/) 作為部落格框架。搭配 GitHub Pages 使用 [Hugo Clarity](https://github.com/chipzoller/hugo-clarity) 主題進行部屬。雖然 Hugo 本身是一個很穩很快的部落格生成器，但 Hugo Clarity 用久了發現有蠻多小問題的。除了有些頁面看起來很詭異以外很多問題是圍繞在中文編碼問題導致 SiteMap 跟搜尋功能會有問題。
+毛哥 EM 資訊密技從我國二開始一直是使用 [Hugo](https://gohugo.io/) 作為部落格框架。搭配 GitHub Pages 使用 [Hugo Clarity](https://github.com/chipzoller/hugo-clarity) 主題進行部屬。雖然 Hugo 本身是一個很穩很快的部落格生成器，但 Hugo Clarity 用久了發現有蠻多小問題的。除了有些頁面看起來很詭異以外很多問題是圍繞在中文編碼問題導致 SiteMap 跟搜尋功能會有問題。
 
 ![網站使用者體驗核心指標](google.webp)
 
@@ -85,4 +85,4 @@ emblog 你只需要簡單逛一下就會發現它其實只有兩個頁面，一�
 
 ## 版權
 
-emblog 目前不管是從設計到裡面的核心皆是是為毛哥EM 資訊密技設計，缺少許多自訂功能，所以目前尚未對外開放對外使用。不過所有程式碼皆以 Apache 2.0 授權條款釋出，歡迎自行修改使用。等我之後有空應該會做成能讓大家使用的部落格生成器。歡迎關注我的 [GitHub](https://github.com/Edit-Mr/emtech) 以獲取最新消息。
+emblog 目前不管是從設計到裡面的核心皆是是為毛哥 EM 資訊密技設計，缺少許多自訂功能，所以目前尚未對外開放對外使用。不過所有程式碼皆以 Apache 2.0 授權條款釋出，歡迎自行修改使用。等我之後有空應該會做成能讓大家使用的部落格生成器。歡迎關注我的 [GitHub](https://github.com/Edit-Mr/emtech) 以獲取最新消息。

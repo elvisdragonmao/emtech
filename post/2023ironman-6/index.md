@@ -117,6 +117,6 @@ CSS Position 在網頁設計中當然不只是這樣畫畫，他是非常實用�
 
 這些只是我列出幾個常見的使用方法，我們不管是在前面幾天或者是接下來的文章都一直會使用 position 語法，因此熟悉這篇文章的內容非常重要。
 
-如果還是不清楚或是需要範例都歡迎提出，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
+如果還是不清楚或是需要範例都歡迎提出，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
-我是毛哥EM，讓我們明天再見。
+我是毛哥 EM，讓我們明天再見。
