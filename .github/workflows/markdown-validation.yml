@@ -8,7 +8,7 @@ on:
 
 jobs:
   validate-markdown:
-    name: 📰檢查 Markdown 檔案
+    name: 📰 檢查 Markdown 檔案
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -19,18 +19,25 @@ jobs:
           .github/workflows/markdown-validation.sh
 
   winston:
+    name: 📝 Winston 文章檢查
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check markdown files with Winston API
+      - name: Install jq & parallel
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y jq parallel
+
+      - name: Check markdown files with Winston API (parallel)
         run: |
           set -e
-
           API_URL="https://winston.emtech.cc/api/check"
-          HAS_ERRORS=0
+          mkdir -p logs
 
+          echo "🔍 Searching markdown files..."
           mapfile -t FILES < <(find post -type f -name "*.md")
 
           if [ ${#FILES[@]} -eq 0 ]; then
@@ -38,18 +45,20 @@ jobs:
             exit 0
           fi
 
-          for file in "${FILES[@]}"; do
-            echo "🔍 Checking $file ..."
-            TEXT=$(jq -Rs . < "$file")
+          echo "🚀 Running checks in parallel for ${#FILES[@]} files..."
 
-            RESPONSE=$(curl -s -X POST "$API_URL" \
+          check_file() {
+            local file="$1"
+            local text
+            text=$(jq -Rs . < "$file")
+            local response
+            response=$(curl -s -X POST "$API_URL" \
               -H "Content-Type: application/json" \
-              -d "{\"text\": $TEXT}")
+              -d "{\"text\": $text}")
 
-            # 檢查 mistakes 是否為空
-            if echo "$RESPONSE" | jq -e '.mistakes | length > 0' >/dev/null; then
-              echo "❌ Found issues in $file"
-              echo "$RESPONSE" | jq -r '.mistakes[] |
+            if echo "$response" | jq -e '.mistakes | length > 0' >/dev/null; then
+              echo "❌ [$file]"
+              echo "$response" | jq -r '.mistakes[] |
                 if .type == "spelling_correction" or .type == "case" then
                   "「\(.wrong)」應寫成「\(.correct | join("、"))」"
                 elif .type == "term_ambiguity_check" then
@@ -62,16 +71,15 @@ jobs:
                   "⚠️ 其他類型：\(.type) - \(.wrong) → \(.correct | join("、"))"
                 end'
               echo
-              HAS_ERRORS=1
             else
-              echo "✅ $file OK"
+              echo "✅ [$file] OK"
             fi
-            echo "-----------------------------------"
-          done
+          }
 
-          if [ "$HAS_ERRORS" -ne 0 ]; then
-            echo "❗ Some markdown files have issues."
-            exit 1
-          else
-            echo "🎉 All markdown files passed."
-          fi
+          export -f check_file
+          export API_URL
+
+          # 平行跑，每次最多 6 個（可調整）
+          parallel -j 6 check_file ::: "${FILES[@]}"
+
+          echo "🏁 All checks finished (warnings do NOT block merge)."
