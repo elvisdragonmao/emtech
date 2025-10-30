@@ -23,16 +23,16 @@ Extemporaneous Debate (簡稱 Extemp) 是一種節奏十分快速的英文辯論
 | 階段         | 時長         | 英文                       |
 | ------------ | ------------ | -------------------------- |
 | 賽前準備     | 至少 30 分鐘 |
-| 正方立論     | 2 分鐘        | Prop. Constructive         |
-| 反方質詢     | 1 分鐘        | Cross-Examination of Prop. |
-| 反方立論     | 2 分鐘        | Oppo. Constructive         |
-| 正方質詢     | 1 分鐘        | Cross-Examination Oppo.    |
-| 強制準備     | 1 分鐘        | Mandatory Prep Time        |
-| 正方第一反駁 | 2 分鐘        | Prop. Rebuttal             |
-| 反方第一反駁 | 2 分鐘        | Oppo. Rebuttal             |
-| 強制準備     | 1 分鐘        | Mandatory Prep Time        |
-| 正方第二反駁 | 2 分鐘        | Prop. Rebuttal             |
-| 正方第二反駁 | 2 分鐘        | Oppo. Rebuttal             |
+| 正方立論     | 2 分鐘       | Prop. Constructive         |
+| 反方質詢     | 1 分鐘       | Cross-Examination of Prop. |
+| 反方立論     | 2 分鐘       | Oppo. Constructive         |
+| 正方質詢     | 1 分鐘       | Cross-Examination Oppo.    |
+| 強制準備     | 1 分鐘       | Mandatory Prep Time        |
+| 正方第一反駁 | 2 分鐘       | Prop. Rebuttal             |
+| 反方第一反駁 | 2 分鐘       | Oppo. Rebuttal             |
+| 強制準備     | 1 分鐘       | Mandatory Prep Time        |
+| 正方第二反駁 | 2 分鐘       | Prop. Rebuttal             |
+| 正方第二反駁 | 2 分鐘       | Oppo. Rebuttal             |
 
 ---
 
