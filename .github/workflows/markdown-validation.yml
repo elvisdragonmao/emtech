@@ -55,5 +55,5 @@ jobs:
     name: 📰 Winston Bot 中文檢查
     runs-on: ubuntu-latest
     steps:
-      name: Winston Bot 中文檢查
+    - name: Winston Bot 中文檢查
       uses: Edit-Mr/WinstonBot-CI@latest
