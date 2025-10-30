@@ -3,6 +3,7 @@ name: 🔍 文章格式檢查
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   prettier:
