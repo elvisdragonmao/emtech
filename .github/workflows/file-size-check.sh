@@ -90,9 +90,9 @@ if [ ${#error_files[@]} -gt 0 ]; then
         if [[ $filename =~ \.(jpg|jpeg|png)$ ]]; then
             echo "Converting $filename to WebP..."
             
-            # Create WebP version with max width 1000px
+            # Create WebP version with max width 1200px
             new_filename="${filename%.*}.webp"
-            convert "$filename" -resize '1000x>' -quality 85 "$new_filename"
+            convert "$filename" -resize '1200x>' -quality 85 "$new_filename"
             
             # Remove original file if conversion successful
             if [ $? -eq 0 ]; then
@@ -117,7 +117,7 @@ if [ ${#error_files[@]} -gt 0 ]; then
         git add -A
         
         # Prepare the commit message
-        commit_message="把太大的圖片調教成 WebP，並更新了所有連結。
+        commit_message="把太大的圖片轉檔成 WebP，並更新了所有連結。
 
 The following files were optimized:
 $(printf '* %s\n' "${processed_files[@]}")
@@ -125,7 +125,7 @@ $(printf '* %s\n' "${processed_files[@]}")
 Updated markdown files:
 $(printf '* %s\n' "${updated_md_files[@]}")
 
-- Converted images to WebP with max width 1000px
+- Converted images to WebP with max width 1200px
 - Quality set to 85%
 - Original files removed
 - Updated all markdown references to new WebP files"
@@ -135,32 +135,18 @@ $(printf '* %s\n' "${updated_md_files[@]}")
         git push origin "$branch_name"
         
         # Create pull request using GitHub CLI
-        gh pr create --title "啊～太大了，我快撐不住了啦！" \
-                    --body "🎨 把太大的圖片調教成可愛的 WebP，並更新所有連結。
+        gh pr create --title "圖片太大了啦！" \
+                    --body "🎨 把太大的圖片轉檔成可愛的 WebP，並更新所有連結。
 
-### 調教過的圖片：
+### 轉檔過的圖片：
 $(printf '%s\n' "${processed_files[@]}")
 
-### 調教過的 MD 檔案：
+### 轉檔過的 MD 檔案：
 $(printf '%s\n' "${updated_md_files[@]}")
 
-### 🔗調教細節：
-- 鎖起來，長度只能到 1000px📏
-- 改造成小小的 WebP，品質保持在 85%😏
-- 把沒用的大東西直接丟掉🗑️
-- 連結重新綁起來🪢
+### 🔗轉檔細節：
 
-###  📦驗貨：
-- [ ] Markdown 中的圖片都乖乖地出現了嗎📋？
-- [ ] 調教的品質好嗎🌸？
-- [ ] 連結沒有被玩到壞掉吧👉👈？
-
-###  ✨技術細節：
-- 超過 500KB 的原始圖片通通被乖乖壓縮轉檔了呢～再也不重壓你了！
-- Markdown 的路徑都更新好了，一切都安排得好好的～
-- 全部已經 commit 到這個 PR 了，盡情享受吧～
-
-快來驗收一下吧～人家可是很努力呢❤～" \
+最寬 1200px，品質 85%" \
                     --base main \
                     --head "$branch_name"
         

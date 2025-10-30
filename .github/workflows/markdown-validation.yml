@@ -1,23 +1,65 @@
 name: 🔍文章格式檢查
 
 on:
-    push:
-        branches: [main]
-    pull_request:
-        branches: [main]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-    validate-markdown:
-        name: 📰檢查 Markdown 檔案
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-            - name: Validate Formats
-              run: |
-                  chmod +x .github/workflows/markdown-validation.sh
-                  .github/workflows/markdown-validation.sh
-            # - name: Validate Winson
-            #   run: |
-            #       chmod +x .github/workflows/winston-validation.sh
-            #       .github/workflows/winston-validation.sh
+  validate-markdown:
+    name: 📰檢查 Markdown 檔案
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Validate Formats
+        run: |
+          chmod +x .github/workflows/markdown-validation.sh
+          .github/workflows/markdown-validation.sh
+
+      - name: Check markdown files with Winston API
+        run: |
+          set -e
+
+          API_URL="https://winston.emtech.cc/api/check"
+          HAS_ERRORS=0
+
+          # 找出所有 post/*.md 檔案
+          for file in post/*.md; do
+            echo "🔍 Checking $file ..."
+            TEXT=$(cat "$file" | jq -Rs .) # 把整個檔案內容包成 JSON-safe 字串
+
+            RESPONSE=$(curl -s -X POST "$API_URL" \
+              -H "Content-Type: application/json" \
+              -d "{\"text\": $TEXT}")
+
+            # 檢查 mistakes 是否為空
+            if echo "$RESPONSE" | jq -e '.mistakes | length > 0' >/dev/null; then
+              echo "❌ Found issues in $file"
+              echo "$RESPONSE" | jq -r '.mistakes[] | 
+                if .type == "spelling_correction" or .type == "case" then
+                  "「\(.wrong)」應寫成「\(.correct | join("、"))」"
+                elif .type == "term_ambiguity_check" then
+                  "你確定你想說的是「\(.wrong)」而不是「\(.correct | join("、"))」嗎？"
+                elif .type == "political_terminology" then
+                  "「\(.wrong)」是含有政治色彩的中國用語，請考慮改用「\(.correct | join("、"))」"
+                elif .type == "regional_difference" then
+                  "「\(.wrong)」（✗）\n「\(.correct | join("、"))」（✓）"
+                else
+                  "⚠️ 其他類型：\(.type) - \(.wrong) → \(.correct | join("、"))"
+                end'
+              echo
+              HAS_ERRORS=1
+            else
+              echo "✅ $file OK"
+            fi
+            echo "-----------------------------------"
+          done
+
+          if [ "$HAS_ERRORS" -ne 0 ]; then
+            echo "❗ Some markdown files have issues."
+            exit 1
+          else
+            echo "🎉 All markdown files passed."
+          fi
