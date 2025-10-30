@@ -39,6 +39,7 @@ jobs:
             echo "No changes to commit"
           else
           git commit -m "style: 你們為甚麼就不能加個空白呢？"
+          git pull --rebase
           git push
           fi
         env:
