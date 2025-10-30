@@ -267,7 +267,7 @@ box-sizing:border-box;  // 把寬度範圍指定給整個邊框到邊框之間�
 
 ## display
 
-CSS 的 Display 屬性可以改變元素對外所參與的佈局環境（outer display type），白話文就是元素怎麼排。
+CSS 的 Display 屬性可以改變元素對外所參與的布局環境（outer display type），白話文就是元素怎麼排。
 
 - `inline`: 像文字一樣左到右上到下，不能決定寬高
 - `block`: 佔滿`<body>`整排，下一個東西會換行
@@ -281,12 +281,12 @@ CSS 的 Display 屬性可以改變元素對外所參與的佈局環境（outer d
 
 > 如果使用 inline-block(像是 a 或 li 設定)，標籤之間會有空白字元約 4~5px
 
-也可以為元素創造內部的佈局環境，提供後代元素佈局的規則（inner display type）。對內創造的佈局例如：
+也可以為元素創造內部的布局環境，提供後代元素布局的規則（inner display type）。對內創造的布局例如：
 
 - `flex`  
-  彈性盒佈局，該屬性值的元素本身對外仍參與 normal flow，可是內部環境為獨立的 flex formatting context。
+  彈性盒布局，該屬性值的元素本身對外仍參與 normal flow，可是內部環境為獨立的 flex formatting context。
 - `grid`  
-  格線佈局，該屬性值的元素本身對外仍參與 normal flow，可是內部環境為獨立的彈性盒佈局 grid formatting context。
+  格線布局，該屬性值的元素本身對外仍參與 normal flow，可是內部環境為獨立的彈性盒布局 grid formatting context。
 
 這些我們之後會再細細討論。
 
@@ -411,7 +411,7 @@ img {
 
 ## transition 轉場
 
-當元素因為各種原因改變屬性質，比如說 javascript 改的或著是因為元素被點擊等等。會在指定時間平滑的切換過去，做出簡單的動畫。
+當元素因為各種原因改變屬性質，比如說 JavaScript 改的或著是因為元素被點擊等等。會在指定時間平滑的切換過去，做出簡單的動畫。
 
 ```css
 transition: 屬性 轉換時間 延遲執行動畫的時間 速度;

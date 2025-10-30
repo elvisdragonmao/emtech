@@ -182,7 +182,7 @@ GitHub 的版本是 Markdown + Marp。演講時以及 PDF Release 的版本是 P
 
 ### 簡報怎麼這麼順
 
-> ~~[因為我用的是 Macbook Pro。](https://emtech.cc/p/win-macbook)~~
+> ~~[因為我用的是 MacBook Pro。](https://emtech.cc/p/win-macbook)~~
 
 為了在連續講的內容中畫面不要讓畫面突然變很多來干擾思考，我用了很多 Transition。設計視覺動線，物件移動的方式，讓內容有連貫性。
 

@@ -287,7 +287,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 	<meta charset="utf-8" />
 	<title>點名系統</title>
 	<!-- 網站資訊 -->
-	<meta name="description" content="使用Google sheet的api紀錄出缺席" />
+	<meta name="description" content="使用Google Sheets的api紀錄出缺席" />
 	<meta name="author" content="毛哥EM" />
 	<!-- 讓網址正常顯示以及裝飾 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -314,7 +314,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 	<meta charset="utf-8" />
 	<title>新增學生 - 點名系統</title>
 	<!-- 網站資訊 -->
-	<meta name="description" content="使用Google sheet的api紀錄出缺席" />
+	<meta name="description" content="使用Google Sheets的api紀錄出缺席" />
 	<meta name="author" content="毛哥EM" />
 	<!-- 讓網址正常顯示以及裝飾 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -398,7 +398,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
  <meta charset="utf-8" />
  <title>報到 - 點名系統</title>
  <!-- 網站資訊 -->
- <meta name="description" content="使用Google sheet的api紀錄出缺席" />
+ <meta name="description" content="使用Google Sheets的api紀錄出缺席" />
  <meta name="author" content="毛哥EM" />
  <!-- 讓網址正常顯示已經裝飾 -->
  <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -489,7 +489,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 	<meta charset="utf-8" />
 	<title>查詢 - 點名系統</title>
 	<!-- 網站資訊 -->
-	<meta name="description" content="使用Google sheet的api紀錄出缺席" />
+	<meta name="description" content="使用Google Sheets的api紀錄出缺席" />
 	<meta name="author" content="毛哥EM" />
 	<!-- 讓網址正常顯示以及裝飾 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />

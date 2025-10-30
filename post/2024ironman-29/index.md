@@ -7,7 +7,7 @@ date: 2024-10-12
 
 # 鐵人賽怕忘記發文？讓 GitHub Actions 每小時提醒你！
 
-倒數第二天了，各位今年有參加鐵人賽嗎？記得去年寫[【不用庫 也能酷 - 玩轉 CSS & Js 特效】](https://ithelp.ithome.com.tw/users/20139821/ironman/6133)的時候緊張到好幾天晚上做惡夢夢到忘記發文，不過今天我心裡特別平安，因為我寫了一個 GitHub Action 來提醒我每小時發文。
+倒數第二天了，各位今年有參加鐵人賽嗎？記得去年寫[【不用庫 也能酷 - 玩轉 CSS & Js 特效】](https://ithelp.ithome.com.tw/users/20139821/ironman/6133)的時候緊張到好幾天晚上做惡夢夢到忘記發文，不過今天我心裡特別平安，因為我寫了一個 GitHub Actions 來提醒我每小時發文。
 
 ![成果](remind.webp)
 
@@ -111,7 +111,7 @@ fetch(url)
 
 ### 撰寫 GitHub Action
 
-接著我們就可以撰寫 GitHub Action 來執行這個爬蟲了。
+接著我們就可以撰寫 GitHub Actions 來執行這個爬蟲了。
 
 ```yaml
 # @format
@@ -150,7 +150,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 ```
 
-這裡要注意由於 GitHub Action 的時區是 UTC，所以我們需要將時間 +8 小時，這樣才能在正確的時間執行 Action。這裡我們設定每小時執行一次，從凌晨 12 點 (因為這時候我通常還沒睡，或是一早能看到)。接下來是從中午 12 點到晚上 11 點每個小時執行一次。
+這裡要注意由於 GitHub Actions 的時區是 UTC，所以我們需要將時間 +8 小時，這樣才能在正確的時間執行 Action。這裡我們設定每小時執行一次，從凌晨 12 點 (因為這時候我通常還沒睡，或是一早能看到)。接下來是從中午 12 點到晚上 11 點每個小時執行一次。
 
 ### 執行 Action
 
