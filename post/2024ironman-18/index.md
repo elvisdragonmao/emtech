@@ -42,28 +42,28 @@ github-issue-2-notion/
 name: "Sync GitHub Issues to Notion"
 description: "Synchronize GitHub issues to a Notion database"
 inputs:
-    repo:
-        description: "The GitHub repository (e.g., owner/repo)"
-        required: true
-    NOTION_API_KEY:
-        description: "The API key for the Notion integration"
-        required: true
-    NOTION_DATABASE_ID:
-        description: "The ID of the Notion database"
-        required: true
+  repo:
+    description: "The GitHub repository (e.g., owner/repo)"
+    required: true
+  NOTION_API_KEY:
+    description: "The API key for the Notion integration"
+    required: true
+  NOTION_DATABASE_ID:
+    description: "The ID of the Notion database"
+    required: true
 runs:
-    using: "node20"
-    steps:
-        - name: Run script
-          uses: actions/setup-node@v3
-          with:
-              node-version: "20"
-        - run: npm install
-        - run: node script.js
-          env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              NOTION_API_KEY: ${{ inputs.NOTION_API_KEY }}
-              NOTION_DATABASE_ID: ${{ inputs.NOTION_DATABASE_ID }}
+  using: "node20"
+  steps:
+    - name: Run script
+      uses: actions/setup-node@v3
+      with:
+        node-version: "20"
+    - run: npm install
+    - run: node script.js
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NOTION_API_KEY: ${{ inputs.NOTION_API_KEY }}
+        NOTION_DATABASE_ID: ${{ inputs.NOTION_DATABASE_ID }}
 ```
 
 ### 步驟 3：編寫 Node.js 腳本
@@ -211,23 +211,23 @@ main().catch(error => {
 name: Sync GitHub Issues to Notion
 
 on:
-    issues:
-        types: [opened, edited, deleted, closed, reopened]
-    workflow_dispatch:
+  issues:
+    types: [opened, edited, deleted, closed, reopened]
+  workflow_dispatch:
 
 jobs:
-    sync:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-            - name: Sync issues to Notion
-              uses: ./path-to-your-action # 使用自定義 Action 的路徑
-              with:
-                  repo: ${{ github.repository }}
-                  NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-                  NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+      - name: Sync issues to Notion
+        uses: ./path-to-your-action # 使用自定義 Action 的路徑
+        with:
+          repo: ${{ github.repository }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
 ```
 
 這個工作流程將在 GitHub 的 issue 有變化時觸發，並運行我們的自定義 Action 來同步 issue 到 Notion。

@@ -83,37 +83,37 @@ build
 
 1. 確保你已經安裝了 Prettier 和相關依賴：
 
-    ```bash
-    npm install --save-dev prettier
-    ```
+   ```bash
+   npm install --save-dev prettier
+   ```
 
 2. 在專案根目錄下創建 `.prettierrc` 文件並配置格式化規則。例如：
 
-    ```json
-    {
-    	"semi": true,
-    	"singleQuote": false,
-    	"tabWidth": 4,
-    	"trailingComma": "none"
-    }
-    ```
+   ```json
+   {
+   	"semi": true,
+   	"singleQuote": false,
+   	"tabWidth": 4,
+   	"trailingComma": "none"
+   }
+   ```
 
 3. 創建 `.prettierignore` 文件以忽略不需要格式化的檔案：
 
-    ```
-    node_modules
-    dist
-    ```
+   ```
+   node_modules
+   dist
+   ```
 
 4. 接下來我們來寫一些看起來很邪教的 code，建立 `data.json` 文件，然後我們來置中對齊：
 
-    ```json
-    {
-    	"name": "John Doe",
-    	"age": 30,
-    	"email": ""
-    }
-    ```
+   ```json
+   {
+   	"name": "John Doe",
+   	"age": 30,
+   	"email": ""
+   }
+   ```
 
 **步驟 2：在 GitHub Actions 中自動格式化文件**
 
@@ -121,47 +121,47 @@ build
 
 2. 編寫 YAML 配置文件來自動運行 Prettier：
 
-    ```yaml
-    name: 格式化代碼
+   ```yaml
+   name: 格式化代碼
 
-    on:
-        push:
-            branches:
-                - main # 當推送到 main 分支時觸發
+   on:
+     push:
+       branches:
+         - main # 當推送到 main 分支時觸發
 
-    jobs:
-        format:
-            runs-on: ubuntu-latest
+   jobs:
+     format:
+       runs-on: ubuntu-latest
 
-            steps:
-                - name: 檢出代碼
-                  uses: actions/checkout@v3
+       steps:
+         - name: 檢出代碼
+           uses: actions/checkout@v3
 
-                - name: 安裝依賴套件
-                  run: |
-                      npm install
-                      npm install --save-dev prettier
+         - name: 安裝依賴套件
+           run: |
+             npm install
+             npm install --save-dev prettier
 
-                - name: 格式化代碼
-                  run: npx prettier --write .
+         - name: 格式化代碼
+           run: npx prettier --write .
 
-                - name: 提交格式化後的代碼
-                  run: |
-                      git config --global user.name "GitHub Actions"
-                      git config --global user.email "actions@github.com"
-                      git add .
-                      git commit -m "Apply Prettier formatting"
-                      git push
-                  env:
-                      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    ```
+         - name: 提交格式化後的代碼
+           run: |
+             git config --global user.name "GitHub Actions"
+             git config --global user.email "actions@github.com"
+             git add .
+             git commit -m "Apply Prettier formatting"
+             git push
+           env:
+             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   ```
 
-    **YAML 文件解析：**
-    - **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
-    - **`actions/checkout@v3:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
-    - **`npm install:`** 安裝依賴套件。
-    - **`npx prettier --write .`** 運行 Prettier 來格式化代碼。
-    - **`git commit -m "Apply Prettier formatting"`** 提交格式化後的代碼。
+   **YAML 文件解析：**
+   - **`on: push:`** 設定當推送到 `main` 分支時觸發這個工作流程。
+   - **`actions/checkout@v3:`** 檢出代碼，確保工作流程在最新的代碼基礎上運行。
+   - **`npm install:`** 安裝依賴套件。
+   - **`npx prettier --write .`** 運行 Prettier 來格式化代碼。
+   - **`git commit -m "Apply Prettier formatting"`** 提交格式化後的代碼。
 
 **步驟 3：推送工作流程文件**
 
@@ -174,21 +174,21 @@ git push origin main
 ## 常用技巧與注意事項
 
 1. **Prettier 配置文件：**
-    - `.prettierrc` 配置文件可以使用 JSON、YAML 或 JavaScript 格式。
-    - `.prettierignore` 文件的規則類似於 `.gitignore` 文件。
+   - `.prettierrc` 配置文件可以使用 JSON、YAML 或 JavaScript 格式。
+   - `.prettierignore` 文件的規則類似於 `.gitignore` 文件。
 
 2. **Prettier 和 ESLint 的整合：**
-    - 如果你同時使用 ESLint 和 Prettier，建議安裝 `eslint-config-prettier` 來禁用 ESLint 的格式化規則，避免與 Prettier 衝突。
-    - 使用 `eslint-plugin-prettier` 將 Prettier 的格式檢查集成到 ESLint 中。
+   - 如果你同時使用 ESLint 和 Prettier，建議安裝 `eslint-config-prettier` 來禁用 ESLint 的格式化規則，避免與 Prettier 衝突。
+   - 使用 `eslint-plugin-prettier` 將 Prettier 的格式檢查集成到 ESLint 中。
 
 3. **保持規則的一致性：**
-    - 團隊中應統一使用相同的 Prettier 配置，以確保代碼風格一致。可以將 `.prettierrc` 文件放在版本控制中，以共享配置。
+   - 團隊中應統一使用相同的 Prettier 配置，以確保代碼風格一致。可以將 `.prettierrc` 文件放在版本控制中，以共享配置。
 
 4. **自動格式化和提交：**
-    - 自動格式化可以幫助維持代碼一致性，但請注意在提交格式化後的代碼之前，先進行充分的測試，以確保不會引入錯誤。
+   - 自動格式化可以幫助維持代碼一致性，但請注意在提交格式化後的代碼之前，先進行充分的測試，以確保不會引入錯誤。
 
 5. **手動格式化和 IDE 支持：**
-    - 除了使用 GitHub Actions，你也可以在 VSCode 中手動格式化代碼（快捷鍵：`Shift + Alt + F`），或者在保存時自動格式化（設定 `"editor.formatOnSave": true`）。
+   - 除了使用 GitHub Actions，你也可以在 VSCode 中手動格式化代碼（快捷鍵：`Shift + Alt + F`），或者在保存時自動格式化（設定 `"editor.formatOnSave": true`）。
 
 ## 結語
 

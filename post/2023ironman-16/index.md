@@ -196,8 +196,7 @@ body {
 	width: 300px;
 	height: 300px;
 	background:
-		radial-gradient(#000 65%, transparent 10%), repeating-conic-gradient(from -0.5deg, #fff 0 1deg, transparent 0deg 30deg),
-		repeating-conic-gradient(from -0.5deg, gray 0 1deg, transparent 0deg 6deg);
+		radial-gradient(#000 65%, transparent 10%), repeating-conic-gradient(from -0.5deg, #fff 0 1deg, transparent 0deg 30deg), repeating-conic-gradient(from -0.5deg, gray 0 1deg, transparent 0deg 6deg);
 	border-radius: 50%;
 	position: relative;
 }

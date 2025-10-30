@@ -27,16 +27,16 @@ iOS & iPadOS 17 Beta Release Notes
 
 - 更新包括：
 - Spatial
-    - 為 Spatial 角度類型引入三角函數功能
-    - 為 Spatial 旋轉引入球面線性插值
-    - 為 Spatial 旋轉引入擺盪-扭曲分解
+  - 為 Spatial 角度類型引入三角函數功能
+  - 為 Spatial 旋轉引入球面線性插值
+  - 為 Spatial 旋轉引入擺盪-扭曲分解
 - BNNS
-    - 引入 BNNSRandomFillCategoricalFloat，用於以事件概率從分類分布中填充張量的隨機值
-    - 引入最近鄰居計算
+  - 引入 BNNSRandomFillCategoricalFloat，用於以事件概率從分類分布中填充張量的隨機值
+  - 引入最近鄰居計算
 - vImage
-    - 引入 vImageConvolveFloatKernel_ARGB8888，用於對每通道 8 位、4 通道交錯影像應用卷積，使用 32 位浮點權重
-    - 引入 vImageSepConvolve_ARGB8888，用於對每通道 8 位、4 通道交錯影像應用可分離卷積
-    - 將泛洪填充、透視變換和新的查找表變換添加到 vImage.PixelBuffer (105830806)
+  - 引入 vImageConvolveFloatKernel_ARGB8888，用於對每通道 8 位、4 通道交錯影像應用卷積，使用 32 位浮點權重
+  - 引入 vImageSepConvolve_ARGB8888，用於對每通道 8 位、4 通道交錯影像應用可分離卷積
+  - 將泛洪填充、透視變換和新的查找表變換添加到 vImage.PixelBuffer (105830806)
 
 ### 無障礙功能
 

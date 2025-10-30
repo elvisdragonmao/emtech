@@ -17,20 +17,20 @@ date: 2024-05-31
 
 - **Ubuntu/Debian 系統**:
 
-    ```bash
-    sudo apt-get install p7zip-full
-    ```
+  ```bash
+  sudo apt-get install p7zip-full
+  ```
 
 - **Fedora/RHEL 系統**:
 
-    ```bash
-    sudo dnf install p7zip p7zip-plugins
-    ```
+  ```bash
+  sudo dnf install p7zip p7zip-plugins
+  ```
 
 - **Arch Linux**:
-    ```bash
-    sudo pacman -S p7zip
-    ```
+  ```bash
+  sudo pacman -S p7zip
+  ```
 
 安裝完成後，你可以透過在終端機輸入 `7z` 來檢查 7-Zip 是否安裝成功。
 
@@ -75,24 +75,24 @@ date: 2024-05-31
 
 - **設置壓縮等級**：
 
-    ```bash
-    7z a -mx=9 壓縮檔案名.7z 要壓縮的資料夾或檔案
-    ```
+  ```bash
+  7z a -mx=9 壓縮檔案名.7z 要壓縮的資料夾或檔案
+  ```
 
-    `mx` 參數可以設置壓縮等級，範圍是 0（無壓縮）到 9（最大壓縮）。
+  `mx` 參數可以設置壓縮等級，範圍是 0（無壓縮）到 9（最大壓縮）。
 
 - **加密壓縮檔案**：
 
-    ```bash
-    7z a -p 你的密碼 壓縮檔案名.7z 要壓縮的資料夾或檔案
-    ```
+  ```bash
+  7z a -p 你的密碼 壓縮檔案名.7z 要壓縮的資料夾或檔案
+  ```
 
-    加`-p`選項可以為壓縮檔加密。
+  加`-p`選項可以為壓縮檔加密。
 
 - **查看壓縮檔案內容**：
-    ```bash
-    7z l 壓縮檔案名.7z
-    ```
-    `l` 參數用於列出壓縮檔內的檔案。
+  ```bash
+  7z l 壓縮檔案名.7z
+  ```
+  `l` 參數用於列出壓縮檔內的檔案。
 
 透過這篇文章，你應該已經學會了如何在 Linux 系統中使用 7z 進行壓縮和解壓縮。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://em-tec.github.io/)。

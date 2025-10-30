@@ -53,9 +53,9 @@ h1 {
 - 相鄰兄弟：比如說 ` h1 + p`就是選擇 h1 正後方的那一個 p 元素
 - 一般兄弟：比如說 ` h1 ~ p`就是選擇 h1 後面的所有 p 元素
 - 屬性選擇器：比如說 `a[href="https://twitter.com"]`就是選擇所有連結到 twitter 首頁的 a 元素
-    - 屬性網址包含某字是使用星號：`a[href*="tuts"]` (比如說 nettuts.com、net.tutsplus.com、tutsplus.com)
-    - 屬性開頭是使用上箭頭 caret 符號：`a[href^="http"]`
-    - 屬性結尾是使用錢符號：`[href$=".jpg"]`
+  - 屬性網址包含某字是使用星號：`a[href*="tuts"]` (比如說 nettuts.com、net.tutsplus.com、tutsplus.com)
+  - 屬性開頭是使用上箭頭 caret 符號：`a[href^="http"]`
+  - 屬性結尾是使用錢符號：`[href$=".jpg"]`
 
 ### 權重
 

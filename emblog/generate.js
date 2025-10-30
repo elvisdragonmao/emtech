@@ -108,9 +108,9 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     <div class="code-wrapper">
       <div class="line-numbers">
         ${token.content
-			.split("\n")
-			.map((_, i) => `<div class="ln">${i + 1}</div>`)
-			.join("")}
+					.split("\n")
+					.map((_, i) => `<div class="ln">${i + 1}</div>`)
+					.join("")}
       </div>
       <div class="code-content" tabindex="0">
         <pre class="chroma"><code class="${langClass} hljs" data-lang="${langName}">${highlightedCode}</code></pre>

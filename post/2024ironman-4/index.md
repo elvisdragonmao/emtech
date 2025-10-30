@@ -33,28 +33,28 @@ date: 2024-09-17
 name: 壓縮並上傳為工件
 
 on:
-    push:
-        branches:
-            - main # 觸發條件：當代碼推送到 main 分支時
+  push:
+    branches:
+      - main # 觸發條件：當代碼推送到 main 分支時
 
 jobs:
-    compress:
-        runs-on: ubuntu-latest
+  compress:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: 檢出代碼
-              uses: actions/checkout@v3
+    steps:
+      - name: 檢出代碼
+        uses: actions/checkout@v3
 
-            - name: 壓縮檔案
-              run: |
-                  mkdir compressed
-                  tar -czf compressed/files.tar.gz .  # 壓縮當前目錄中的所有檔案和子目錄，並存儲為 files.tar.gz
+      - name: 壓縮檔案
+        run: |
+          mkdir compressed
+          tar -czf compressed/files.tar.gz .  # 壓縮當前目錄中的所有檔案和子目錄，並存儲為 files.tar.gz
 
-            - name: 上傳工件
-              uses: actions/upload-artifact@v3
-              with:
-                  name: compressed-files
-                  path: compressed/files.tar.gz
+      - name: 上傳工件
+        uses: actions/upload-artifact@v3
+        with:
+          name: compressed-files
+          path: compressed/files.tar.gz
 ```
 
 **YAML 文件解析：**
@@ -89,28 +89,28 @@ git push origin main
 name: 下載並解壓縮工件
 
 on:
-    workflow_run:
-        workflows: ["壓縮並上傳為工件"]
-        types:
-            - completed
+  workflow_run:
+    workflows: ["壓縮並上傳為工件"]
+    types:
+      - completed
 
 jobs:
-    extract:
-        runs-on: ubuntu-latest
+  extract:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: 下載工件
-              uses: actions/download-artifact@v3
-              with:
-                  name: compressed-files
+    steps:
+      - name: 下載工件
+        uses: actions/download-artifact@v3
+        with:
+          name: compressed-files
 
-            - name: 解壓縮檔案
-              run: |
-                  tar -xzf compressed-files/files.tar.gz -C extracted  # 解壓縮到指定目錄
+      - name: 解壓縮檔案
+        run: |
+          tar -xzf compressed-files/files.tar.gz -C extracted  # 解壓縮到指定目錄
 
-            - name: 列出檔案
-              run: |
-                  ls -R extracted  # 列出解壓縮後的檔案
+      - name: 列出檔案
+        run: |
+          ls -R extracted  # 列出解壓縮後的檔案
 ```
 
 **YAML 文件解析：**
@@ -159,53 +159,53 @@ cd HSL-ball
 name: Deploy static content to Pages
 
 on:
-    # Runs on pushes targeting the default branch
-    push:
-        branches: ["main"]
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
 
-    # Allows you to run this workflow manually from the Actions tab
-    workflow_dispatch:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
-    contents: read
-    pages: write
-    id-token: write
+  contents: read
+  pages: write
+  id-token: write
 
 # Allow one concurrent deployment
 concurrency:
-    group: "pages"
-    cancel-in-progress: true
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-    # Single deploy job since we're just deploying
-    deploy:
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-            - name: Set up Node
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
-                  cache: "npm"
-            - name: Install dependencies
-              run: npm ci
-            - name: Build
-              run: npm run build
-            - name: Setup Pages
-              uses: actions/configure-pages@v4
-            - name: Upload artifact
-              uses: actions/upload-pages-artifact@v3
-              with:
-                  # Upload dist folder
-                  path: "./dist"
-            - name: Deploy to GitHub Pages
-              id: deployment
-              uses: actions/deploy-pages@v4
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload dist folder
+          path: "./dist"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 ```
 
 **YAML 文件解析：**
@@ -234,19 +234,19 @@ git push origin main
 ## 常用技巧與注意事項
 
 1. **檔案大小限制：**
-    - GitHub Actions 的工件大小限制為 2 GB。確保壓縮的檔案不超過這個限制。
+   - GitHub Actions 的工件大小限制為 2 GB。確保壓縮的檔案不超過這個限制。
 
 2. **使用適當的壓縮格式：**
-    - 根據需求選擇合適的壓縮格式。例如，`tar.gz` 適合 Linux 環境，而 `zip` 可能在不同平台上更為通用。
+   - 根據需求選擇合適的壓縮格式。例如，`tar.gz` 適合 Linux 環境，而 `zip` 可能在不同平台上更為通用。
 
 3. **處理大檔案：**
-    - 如果需要處理大型檔案，可以考慮分段壓縮或使用增量備份的方式來減少單次操作的檔案大小。
+   - 如果需要處理大型檔案，可以考慮分段壓縮或使用增量備份的方式來減少單次操作的檔案大小。
 
 4. **安全性考量：**
-    - 確保壓縮檔案中不包含敏感信息。如果需要處理敏感數據，請進行加密處理。
+   - 確保壓縮檔案中不包含敏感信息。如果需要處理敏感數據，請進行加密處理。
 
 5. **自動化流程測試：**
-    - 在正式環境使用前，先在測試環境中檢查壓縮和解壓縮流程的可靠性，以確保無誤。
+   - 在正式環境使用前，先在測試環境中檢查壓縮和解壓縮流程的可靠性，以確保無誤。
 
 ## 結語
 

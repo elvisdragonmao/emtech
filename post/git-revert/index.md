@@ -45,24 +45,24 @@ git push
 
 - **軟重設（保留工作目錄中的更改）**：
 
-    ```bash
-    git reset --soft HEAD~1
-    ```
+  ```bash
+  git reset --soft HEAD~1
+  ```
 
-    此命令將回退最後一次提交，但不會更改你的工作目錄。
+  此命令將回退最後一次提交，但不會更改你的工作目錄。
 
 - **硬重設（放棄所有更改）**：
 
-    ```bash
-    git reset --hard HEAD~1
-    ```
+  ```bash
+  git reset --hard HEAD~1
+  ```
 
-    此命令會回退最後一次提交並放棄所有更改，使用時需極其小心。
+  此命令會回退最後一次提交並放棄所有更改，使用時需極其小心。
 
 - **強制推送**：重設後，使用以下命令強制推送到遠程倉庫：
-    ```bash
-    git push origin [branch-name] --force
-    ```
+  ```bash
+  git push origin [branch-name] --force
+  ```
 
 ## 3. 刪除新推送的分支
 

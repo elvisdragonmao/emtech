@@ -119,35 +119,35 @@ fetch(url)
 name: 鐵人賽發文檢查
 
 on:
-    # every hour from 12:00 to 23:00
-    schedule:
-        - cron: "0 4-16 * * *"
-    workflow_dispatch:
+  # every hour from 12:00 to 23:00
+  schedule:
+    - cron: "0 4-16 * * *"
+  workflow_dispatch:
 
 jobs:
-    run-check:
-        runs-on: ubuntu-latest
+  run-check:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: "20"
-            - name: Change Directory to 'check'
-              run: cd check
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - name: Change Directory to 'check'
+        run: cd check
 
-            - name: Install Dependencies
-              run: yarn install
-              working-directory: ./check
+      - name: Install Dependencies
+        run: yarn install
+        working-directory: ./check
 
-            - name: Run Node.js Script
-              run: node index.mjs
-              working-directory: ./check
-              env:
-                  DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Run Node.js Script
+        run: node index.mjs
+        working-directory: ./check
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 ```
 
 這裡要注意由於 GitHub Action 的時區是 UTC，所以我們需要將時間 +8 小時，這樣才能在正確的時間執行 Action。這裡我們設定每小時執行一次，從凌晨 12 點 (因為這時候我通常還沒睡，或是一早能看到)。接下來是從中午 12 點到晚上 11 點每個小時執行一次。

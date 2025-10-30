@@ -30,32 +30,32 @@ description: `.gitignore` 能不能 ignore 自己？可以。
 
 1. 建一個新資料夾，初始化 Git
 
-    ```bash
-    mkdir test-gitignore
-    cd test-gitignore
-    git init
-    ```
+   ```bash
+   mkdir test-gitignore
+   cd test-gitignore
+   git init
+   ```
 
 2. 建立 `.gitignore`，內容寫自己
 
-    ```
-    echo .gitignore > .gitignore
-    ```
+   ```
+   echo .gitignore > .gitignore
+   ```
 
 3. `git add .gitignore` 看看
 
-    你會看到：
+   你會看到：
 
-    ```
-    The following paths are ignored by one of your .gitignore files:
-    .gitignore
-    hint: Use -f if you really want to add them.
-    hint: Disable this message with "git config set advice.addIgnoredFile false"
-    ```
+   ```
+   The following paths are ignored by one of your .gitignore files:
+   .gitignore
+   hint: Use -f if you really want to add them.
+   hint: Disable this message with "git config set advice.addIgnoredFile false"
+   ```
 
-    `.gitignore` 根本不會被加進暫存區。
+   `.gitignore` 根本不會被加進暫存區。
 
-    ✅ **成功忽略自己！**
+   ✅ **成功忽略自己！**
 
 ## 但如果情況是這樣呢？
 

@@ -18,16 +18,16 @@ date: 2022-07-17
 通常會加入`stdio.h`和`stdlib.h`
 
 - stdio.h
-    - puts(char) - 將字串顯示到視窗上，自動換行
-    - gets(char) - 透過鍵盤輸入**字串**
+  - puts(char) - 將字串顯示到視窗上，自動換行
+  - gets(char) - 透過鍵盤輸入**字串**
 - stdlib.h
-    - abs(int x) - 回傳整數 `x` 的絕對值
-    - atoi(char) - 回傳字串轉整數的結果
-    - strtof(char) -
-    - 回傳字串轉 `float` 的結果
+  - abs(int x) - 回傳整數 `x` 的絕對值
+  - atoi(char) - 回傳字串轉整數的結果
+  - strtof(char) -
+  - 回傳字串轉 `float` 的結果
 - [math.h](##數學<math.h>)
 - string.h
-    - strlen(s) - 回傳一個整數，是字串 `s` 的長度，長度的計算不包含字串結尾的 `'\0'`
+  - strlen(s) - 回傳一個整數，是字串 `s` 的長度，長度的計算不包含字串結尾的 `'\0'`
 
 ## 輸出
 

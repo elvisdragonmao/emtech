@@ -72,42 +72,42 @@ Python 計算機
 name: Build Multi-Platform
 
 on:
-    push:
-        branches:
-            - main
-    workflow_dispatch:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-    build:
-        strategy:
-            matrix:
-                os: [ubuntu-latest, macos-latest, windows-latest]
-                python-version: [3.11]
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [3.11]
 
-        runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-            - name: Set up Python
-              uses: actions/setup-python@v3
-              with:
-                  python-version: ${{ matrix.python-version }}
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
 
-            - name: Install dependencies
-              run: |
-                  pip install pyinstaller
+      - name: Install dependencies
+        run: |
+          pip install pyinstaller
 
-            - name: Build application
-              run: |
-                  pyinstaller --onefile hello.py
+      - name: Build application
+        run: |
+          pyinstaller --onefile hello.py
 
-            - name: Archive artifacts
-              uses: actions/upload-artifact@v3
-              with:
-                  name: hello-executable-${{ matrix.os }}
-                  path: dist/hello${{ matrix.os == 'windows-latest' && '.exe' || '' }}
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: hello-executable-${{ matrix.os }}
+          path: dist/hello${{ matrix.os == 'windows-latest' && '.exe' || '' }}
 ```
 
 ### 詳細步驟解析

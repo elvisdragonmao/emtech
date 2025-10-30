@@ -14,7 +14,7 @@ date: 2023-09-18
 - @keyframes - 動作效果
 - transition - 轉場效果
 
-    我們今天都拿 PowerPoint 來舉例，雖然感覺現在的學生都快只認識 Canva 了 (順帶一提 Canva 就是 CSS 動畫)
+  我們今天都拿 PowerPoint 來舉例，雖然感覺現在的學生都快只認識 Canva 了 (順帶一提 Canva 就是 CSS 動畫)
 
 你可以想像 `@Keyframes` 是 PowerPoint 的動畫
 

@@ -31,31 +31,31 @@ date: 2024-09-29
 name: Create Release
 
 on:
-    push:
-        tags:
-            - "v*.*.*" # 當推送以 'v' 開頭的標記時觸發工作流程
+  push:
+    tags:
+      - "v*.*.*" # 當推送以 'v' 開頭的標記時觸發工作流程
 
 jobs:
-    release:
-        runs-on: ubuntu-latest
+  release:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-            - name: Set up Git
-              run: |
-                  git config user.name "GitHub Actions"
-                  git config user.email "actions@github.com"
+      - name: Set up Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
 
-            - name: Create Release
-              id: create_release
-              uses: softprops/action-gh-release@v1
-              with:
-                  files: |
-                      path/to/your/binary
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            path/to/your/binary
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### 步驟 2：創建和推送 Git 標記

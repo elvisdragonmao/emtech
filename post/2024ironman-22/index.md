@@ -157,37 +157,37 @@ main();
 name: crawl
 
 on:
-    schedule:
-        - cron: "0 * * * *" # Runs every hour
-    workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *" # Runs every hour
+  workflow_dispatch:
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: "current"
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "current"
 
-            - name: Install dependencies
-              run: yarn install
+      - name: Install dependencies
+        run: yarn install
 
-            - name: Run index.js
-              run: node index.js
-              env:
-                  WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-            - name: 自動提交
-              uses: stefanzweifel/git-auto-commit-action@v4
-              with:
-                  commit_message: "Update data"
-                  branch: main
-                  commit_user_name: Edit-Mr
-                  commit_user_email: info@elvismao.com
+      - name: Run index.js
+        run: node index.js
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+      - name: 自動提交
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update data"
+          branch: main
+          commit_user_name: Edit-Mr
+          commit_user_email: info@elvismao.com
 ```
 
 請你到 Discord 的伺服器設定中，新增一個 Webhook，並將 Webhook URL 添加到 GitHub 存儲庫的 Secrets 中，名稱為 `WEBHOOK_URL`。這樣，GitHub Actions 就可以使用這個 Webhook URL 來發送 Discord 通知。

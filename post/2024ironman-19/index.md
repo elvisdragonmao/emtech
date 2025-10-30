@@ -25,26 +25,26 @@ date: 2024-10-02
 name: Manage GitHub Issues
 
 on:
-    issues:
-        types: [opened, edited]
+  issues:
+    types: [opened, edited]
 
 jobs:
-    label:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-            - name: Label new issues
-              uses: actions/github-script@v6
-              with:
-                  script: |
-                      const issue = context.issue;
-                      const labels = ['new-issue'];
-                      await github.issues.addLabels({
-                        ...issue,
-                        labels
-                      });
+      - name: Label new issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.issue;
+            const labels = ['new-issue'];
+            await github.issues.addLabels({
+              ...issue,
+              labels
+            });
 ```
 
 這個工作流程在每次 issue 被創建或更新時自動為其添加一個標籤 `new-issue`。
@@ -57,37 +57,37 @@ jobs:
 name: Manage GitHub Issues
 
 on:
-    issues:
-        types: [opened, edited]
+  issues:
+    types: [opened, edited]
 
 jobs:
-    label:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-            - name: Label new issues
-              uses: actions/github-script@v6
-              with:
-                  script: |
-                      const issue = context.issue;
-                      const labels = ['new-issue'];
-                      await github.issues.addLabels({
-                        ...issue,
-                        labels
-                      });
+      - name: Label new issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.issue;
+            const labels = ['new-issue'];
+            await github.issues.addLabels({
+              ...issue,
+              labels
+            });
 
-            - name: Assign bug issues
-              if: contains(github.event.issue.labels.*.name, 'bug')
-              uses: actions/github-script@v6
-              with:
-                  script: |
-                      const issue = context.issue;
-                      await github.issues.addAssignees({
-                        ...issue,
-                        assignees: ['specific-user']
-                      });
+      - name: Assign bug issues
+        if: contains(github.event.issue.labels.*.name, 'bug')
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.issue;
+            await github.issues.addAssignees({
+              ...issue,
+              assignees: ['specific-user']
+            });
 ```
 
 ## 集成第三方服務
@@ -114,23 +114,23 @@ language: "en-US"
 early_access: false
 tone_instructions: "You are a smart cat"
 reviews:
-    profile: "assertive"
-    path_instructions:
-        - path: "templates/*.html"
-          instructions: "All text should follow sparanoid/chinese-copywriting-guidelines. There should be space between English and Chinese."
-    request_changes_workflow: false
-    high_level_summary: true
-    poem: true
-    review_status: true
-    collapse_walkthrough: false
-    auto_review:
-        enabled: true
-        drafts: true
-        base_branches:
-            - main
-            - development
+  profile: "assertive"
+  path_instructions:
+    - path: "templates/*.html"
+      instructions: "All text should follow sparanoid/chinese-copywriting-guidelines. There should be space between English and Chinese."
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: true
+  review_status: true
+  collapse_walkthrough: false
+  auto_review:
+    enabled: true
+    drafts: true
+    base_branches:
+      - main
+      - development
 chat:
-    auto_reply: true
+  auto_reply: true
 ```
 
 ### Vercel 部署

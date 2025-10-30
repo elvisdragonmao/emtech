@@ -545,8 +545,7 @@ function doGet() {
 		</ul>
 		        
 		<p>
-			<a href="https://www.facebook.com/Sabo9335">薩波 FB</a> · <a href="https://instagram.com/sabooo_9335?igshid=YmMyMTA2M2Y=">薩波 IG</a> · <a href="https://discord.gg/ve9ERWVEPR"
-				>橘子牌太空船</a
+			<a href="https://www.facebook.com/Sabo9335">薩波 FB</a> · <a href="https://instagram.com/sabooo_9335?igshid=YmMyMTA2M2Y=">薩波 IG</a> · <a href="https://discord.gg/ve9ERWVEPR">橘子牌太空船</a
 			><br />Made by <a href="https://github.com/Edit-Mr">EDM</a> with❤
 		</p>
 		    

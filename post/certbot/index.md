@@ -114,8 +114,8 @@ These files will be updated when the certificate renews.
 ## 檔案介紹
 
 - `fullchain.pem`：這是你的 SSL 憑證，它包含了你的域名和中間證書。
-    - `chain.pem`：這是中間證書。
-    - `cert.pem`：這是你的域名憑證。
+  - `chain.pem`：這是中間證書。
+  - `cert.pem`：這是你的域名憑證。
 - `privkey.pem`：這是你的私鑰，它用來加密和解密數據。
 
 通常只會需要用到 `fullchain.pem` 和 `privkey.pem` 這兩個檔案。

@@ -19,26 +19,26 @@ date: 2024-10-06
 
 1. **初始化專案**：
 
-    ```bash
-    mkdir node-ci-cd-demo
-    cd node-ci-cd-demo
-    npm init -y
-    ```
+   ```bash
+   mkdir node-ci-cd-demo
+   cd node-ci-cd-demo
+   npm init -y
+   ```
 
 2. **安裝必要的依賴項**：
 
-    ```bash
-    npm install express
-    npm install --save-dev jest
-    ```
+   ```bash
+   npm install express
+   npm install --save-dev jest
+   ```
 
 3. **設置簡單的測試**：  
    在 `package.json` 中添加一個簡單的測試腳本：
-    ```json
-    "scripts": {
-      "test": "jest"
-    }
-    ```
+   ```json
+   "scripts": {
+     "test": "jest"
+   }
+   ```
 
 ## 使用 GitHub Actions 設計 CI/CD 流程
 
@@ -52,35 +52,35 @@ date: 2024-10-06
 name: Node.js CI
 
 on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [20.x, 18.x]
+    strategy:
+      matrix:
+        node-version: [20.x, 18.x]
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install dependencies
-              run: npm install
+      - name: Install dependencies
+        run: npm install
 
-            - name: Run tests
-              run: npm test
+      - name: Run tests
+        run: npm test
 ```
 
 #### 部署階段
@@ -94,19 +94,19 @@ jobs:
 
 ```yaml
 deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-        - name: Checkout code
-          uses: actions/checkout@v3
+  needs: build
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-        - name: Login to Heroku
-          run: echo ${{ secrets.HEROKU_API_KEY }} | docker login --username=_ --password-stdin registry.heroku.com
+    - name: Login to Heroku
+      run: echo ${{ secrets.HEROKU_API_KEY }} | docker login --username=_ --password-stdin registry.heroku.com
 
-        - name: Deploy to Heroku
-          run: |
-              heroku container:push web --app your-heroku-app-name
-              heroku container:release web --app your-heroku-app-name
+    - name: Deploy to Heroku
+      run: |
+        heroku container:push web --app your-heroku-app-name
+        heroku container:release web --app your-heroku-app-name
 ```
 
 #### 發布階段
@@ -115,21 +115,21 @@ deploy:
 
 ```yaml
 publish:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
-        - name: Checkout code
-          uses: actions/checkout@v3
+  needs: deploy
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-        - name: Create Release
-          uses: actions/create-release@v1
-          env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-              tag_name: v1.0.0
-              release_name: "First release"
-              draft: false
-              prerelease: false
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v1.0.0
+        release_name: "First release"
+        draft: false
+        prerelease: false
 ```
 
 最後把他們整合到一個完整的 CI/CD 流程中就可以了。你可以到上面的 GitHub 範例程式中查看完整的 `ci.yml` 文件。
@@ -150,10 +150,10 @@ publish:
 - name: Cache Node.js modules
   uses: actions/cache@v3
   with:
-      path: node_modules
-      key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-      restore-keys: |
-          ${{ runner.os }}-node-
+    path: node_modules
+    key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+    restore-keys: |
+      ${{ runner.os }}-node-
 ```
 
 #### **3. 使用 Lint 驗證代碼風格**

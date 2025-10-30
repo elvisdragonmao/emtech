@@ -90,17 +90,17 @@ docker --version
 
 ```yaml
 services:
-    navidrome:
-        image: deluan/navidrome:latest
-        user: "1000:1000"
-        ports:
-            - "4533:4533"
-        restart: unless-stopped
-        environment:
-            ND_SCANSCHEDULE: 1h
-        volumes:
-            - "C:/Users/user/Desktop/docker/data:/data"
-            - "C:/Users/user/Music:/music"
+  navidrome:
+    image: deluan/navidrome:latest
+    user: "1000:1000"
+    ports:
+      - "4533:4533"
+    restart: unless-stopped
+    environment:
+      ND_SCANSCHEDULE: 1h
+    volumes:
+      - "C:/Users/user/Desktop/docker/data:/data"
+      - "C:/Users/user/Music:/music"
 ```
 
 同個目錄裡面建議一個 `data` 資料夾，然後在 `Music` 資料夾裡面放一些音樂檔案。然後在 PowerShell 或是 Windows 終端機中進到這個目錄，然後執行以下指令。

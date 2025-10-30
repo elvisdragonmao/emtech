@@ -86,43 +86,43 @@ emfont 是一個免費的繁體中文 Web Font 服務。在之前字體列表存
 name: Update Font List
 
 on:
-    push:
-        paths:
-            - "Database/fonts.json"
-    workflow_dispatch:
+  push:
+    paths:
+      - "Database/fonts.json"
+  workflow_dispatch:
 
 jobs:
-    update-readme:
-        runs-on: ubuntu-latest
+  update-readme:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: "20"
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
 
-            - name: Update README.md
-              run: node src/workflows/update-readme.js
+      - name: Update README.md
+        run: node src/workflows/update-readme.js
 
-            - name: Check for changes
-              id: git-diff
-              run: |
-                  git diff --quiet || echo "::set-output name=changes::true"
+      - name: Check for changes
+        id: git-diff
+        run: |
+          git diff --quiet || echo "::set-output name=changes::true"
 
-            - name: Commit and Push Changes
-              run: |
-                  if [[ "${{ steps.git-diff.outputs.changes }}" == "true" ]]; then
-                    git config --local user.email "action@github.com"
-                    git config --local user.name "GitHub Actions"
-                    git add .
-                    git commit -m "📋 Update font list"
-                    git push
-                  else
-                    echo "No changes to commit. Skipping push."
-                  fi
+      - name: Commit and Push Changes
+        run: |
+          if [[ "${{ steps.git-diff.outputs.changes }}" == "true" ]]; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Actions"
+            git add .
+            git commit -m "📋 Update font list"
+            git push
+          else
+            echo "No changes to commit. Skipping push."
+          fi
 ```
 
 這個工作流程會在 `Database/fonts.json` 文件發生變更時自動執行，並更新 `README.md` 文件中的字體列表。

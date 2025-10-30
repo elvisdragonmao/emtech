@@ -21,11 +21,11 @@ description: 打開開發者工具複製參數，前端直接 fetch 即可。
 
 1. [新增一個空白 Google 表單](https://form.new)
 2. 建立幾個問題，例如：
-    - 單位名稱
-    - 部門
-    - 稱呼
-    - 聯絡方式
-    - 留言
+   - 單位名稱
+   - 部門
+   - 稱呼
+   - 聯絡方式
+   - 留言
 
 3. 不用設計太花俏，填好即可。
 
@@ -41,9 +41,9 @@ Google Form 的每個問題都有一個隱藏的編號（`entry.XXXXXXXX`），�
 2. 用開發者工具（F12）開啟檢查器
 3. 點選表單中的輸入框會看到像這樣的 HTML：
 
-    ```html
-    <input type="text" name="entry.1867519928" />
-    ```
+   ```html
+   <input type="text" name="entry.1867519928" />
+   ```
 
 4. 把這些欄位的 `entry.xxxxx` 編號抄下來
 

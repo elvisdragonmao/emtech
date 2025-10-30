@@ -64,33 +64,33 @@ CMD ["npm", "start"]
 name: Build and Push Docker Image
 
 on:
-    push:
-        branches:
-            - main # 當推送到 main 分支時觸發工作流程
+  push:
+    branches:
+      - main # 當推送到 main 分支時觸發工作流程
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Check out code
-              uses: actions/checkout@v3
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
 
-            - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-            - name: Log in to Docker Hub
-              uses: docker/login-action@v2
-              with:
-                  username: ${{ secrets.DOCKER_USERNAME }}
-                  password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-            - name: Build and push Docker image
-              uses: docker/build-push-action@v2
-              with:
-                  context: .
-                  push: true
-                  tags: ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/my-app:latest
 ```
 
 ### 步驟 3：設置 Docker Hub 憑證
@@ -109,9 +109,9 @@ docker pull ${{ secrets.DOCKER_USERNAME }}/my-app:latest
 ## 技巧與應用
 
 1. **自定義標籤**: 你可以使用變數來自定義 Docker 映像的標籤。例如，使用 commit SHA 作為標籤：
-    ```yaml
-    tags: ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
-    ```
+   ```yaml
+   tags: ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
+   ```
 2. **多平台支持**: 使用 `docker/setup-buildx-action` 支持多平台構建，這樣可以在不同的平台上運行你的 Docker 容器。
 3. **清理舊映像**: 定期清理不再使用的舊映像，以節省存儲空間。你可以使用 Docker Hub 的自動清理策略來實現這一點。
 

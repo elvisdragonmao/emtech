@@ -51,16 +51,16 @@ name: Node 測試
 on: [push]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - name: 設置 Node.js 環境
-              uses: actions/setup-node@v3
-              with:
-                  node-version: "20"
-            - run: npm install
-            - run: npm test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: 設置 Node.js 環境
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - run: npm install
+      - run: npm test
 ```
 
 這個工作流配置文件做了以下幾件事：
@@ -90,11 +90,11 @@ YAML 是一種簡單易讀的配置語法，跟 Json 有些類似，常用於編
 
 - **鍵值對**：YAML 以 `key: value` 的形式定義鍵值對。例如：`name: CI for MyProject`。
 - **列表**：使用 `-` 開頭的行表示列表中的每一項。例如：
-    ```yaml
-    steps:
-        - uses: actions/checkout@v3
-        - name: Set up Node.js
-    ```
+  ```yaml
+  steps:
+    - uses: actions/checkout@v3
+    - name: Set up Node.js
+  ```
 - **縮排**：縮排用於表示層次結構。你只要不小心多打一個你的檔案就會爆了。
 
 ### 進階配置：多任務與 Marketplace Actions
@@ -107,18 +107,18 @@ YAML 是一種簡單易讀的配置語法，跟 Json 有些類似，常用於編
 
 ```yaml
 jobs:
-    build-linux:
-        runs-on: ubuntu-latest
-        steps:
-            # Linux 要執行的步驟
-    build-windows:
-        runs-on: windows-latest
-        steps:
-            # Windows 要執行的步驟
-    build-mac:
-        runs-on: macos-latest
-        steps:
-            # MacOS 要執行的步驟
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      # Linux 要執行的步驟
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      # Windows 要執行的步驟
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      # MacOS 要執行的步驟
 ```
 
 #### 使用 Marketplace Actions
@@ -129,7 +129,7 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
 - name: Set up Node.js
   uses: actions/setup-node@v3
   with:
-      node-version: "20"
+    node-version: "20"
 ```
 
 這樣你就不需要手動編寫設置環境的程式，直接引用這個 Action 即可。你也可以自己把常用的 Action 上架至 Marketplace。
@@ -144,56 +144,56 @@ GitHub Actions Marketplace 提供了許多現成的 Actions，能夠幫助你快
 
 1. **建立儲存庫** 首先，進入 GitHub，點擊右上角的「New」按鈕來建立一個新的儲存庫，並將其克隆到本地。這個倉庫將用於存放我們的 Node.js 專案。如果你已經有現成的 Node.js 專案也可以直接拿來使用。
 
-    ```bash
-     git clone <你的倉庫地址>
-     cd <倉庫名>
-    ```
+   ```bash
+    git clone <你的倉庫地址>
+    cd <倉庫名>
+   ```
 
-    > 沒有使用過 Git 和 GitHub 嗎? 你可以參考我之前寫的 [這篇文章](https://emtech.cc/post/github-and-git/)
+   > 沒有使用過 Git 和 GitHub 嗎? 你可以參考我之前寫的 [這篇文章](https://emtech.cc/post/github-and-git/)
 
 2. **初始化 Node.js 專案** 使用 `npm init` 初始化專案。這會創建一個 `package.json` 文件，用於管理專案的依賴套件和腳本。
 
-    ```bash
-    npm init -y
-    ```
+   ```bash
+   npm init -y
+   ```
 
 3. **安裝 Jest 測試框架** 安裝 `Jest`，這是一個很常見的 JavaScript 測試框架。
 
-    ```bash
-    npm install jest --save-dev
-    ```
+   ```bash
+   npm install jest --save-dev
+   ```
 
 4. **設定測試腳本** 在 `package.json` 中添加一個測試腳本，用於運行測試。找到 `scripts` 區塊，並添加以下內容：
 
-    ```json
-    "scripts": {
-      "test": "jest"
-    }
-    ```
+   ```json
+   "scripts": {
+     "test": "jest"
+   }
+   ```
 
 ### 第二步：撰寫簡單的功能和測試
 
 1. **創建功能函數**  
    在專案的根目錄下創建一個 `index.js` 文件，並撰寫一個簡單的函數，例如計算兩數相加的函數：
 
-    ```javascript
-    function add(a, b) {
-    	return a + b;
-    }
+   ```javascript
+   function add(a, b) {
+   	return a + b;
+   }
 
-    module.exports = add;
-    ```
+   module.exports = add;
+   ```
 
 2. **撰寫測試文件**  
    創建一個名為 `index.test.js` 的測試文件，放在專案根目錄中。這個測試文件將測試我們的 `add` 函數是否正常運行：
 
-    ```javascript
-    const add = require("./index");
+   ```javascript
+   const add = require("./index");
 
-    test("adds 1 + 2 to equal 3", () => {
-    	expect(add(1, 2)).toBe(3);
-    });
-    ```
+   test("adds 1 + 2 to equal 3", () => {
+   	expect(add(1, 2)).toBe(3);
+   });
+   ```
 
 現在你可以在本地嘗試運行測試：
 
@@ -223,39 +223,39 @@ Ran all test suites.
 1. **創建 GitHub Actions 配置**  
    在專案的根目錄下創建 `.github/workflows` 資料夾，並在其中創建一個名為 `ci.yml` 的文件。將以下內容貼到 `ci.yml` 中：
 
-    ```yaml
-    name: Node 測試
+   ```yaml
+   name: Node 測試
 
-    on: [push]
+   on: [push]
 
-    jobs:
-        build:
-            runs-on: ubuntu-latest
+   jobs:
+     build:
+       runs-on: ubuntu-latest
 
-            steps:
-                - uses: actions/checkout@v3
-                - name: Set up Node.js
-                  uses: actions/setup-node@v3
-                  with:
-                      node-version: "20"
-                - run: npm install
-                - run: npm test
-    ```
+       steps:
+         - uses: actions/checkout@v3
+         - name: Set up Node.js
+           uses: actions/setup-node@v3
+           with:
+             node-version: "20"
+         - run: npm install
+         - run: npm test
+   ```
 
-    這個工作流會在每次有程式推送（push）到 GitHub 的時候自動運行，它將執行以下步驟：
-    - 檢出程式
-    - 設置 Node.js 環境
-    - 安裝依賴套件
-    - 運行測試
+   這個工作流會在每次有程式推送（push）到 GitHub 的時候自動運行，它將執行以下步驟：
+   - 檢出程式
+   - 設置 Node.js 環境
+   - 安裝依賴套件
+   - 運行測試
 
 2. **推送程式到 GitHub**  
    將這個專案推送到你的 GitHub repository。
 
-    ```bash
-    git add -A
-    git commit -m "Add Node.js project with Jest tests"
-    git push
-    ```
+   ```bash
+   git add -A
+   git commit -m "Add Node.js project with Jest tests"
+   git push
+   ```
 
 ### 第四步：檢查 GitHub Actions 執行狀況
 

@@ -59,14 +59,14 @@ description: 很難，很累。從早上九點寫到下午四點，中間排隊�
 我們要寫程式控制機器人在 3D 物理模擬環境 (Gazebo) 中完成指定動作。整理架構如下：
 
 - Server
-    - Master
-        - Client
-            - Slave
-    - Master
-        - Client
-            - Slave
-        - Client
-            - Slave
+  - Master
+    - Client
+      - Slave
+  - Master
+    - Client
+      - Slave
+    - Client
+      - Slave
 
 * Master: 傳輸資料，記錄過程。
 * Client: 溝通橋梁，對機器人下指令。

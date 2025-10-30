@@ -23,57 +23,57 @@ date: 2024-10-07
 
 1. **創建專案文件夾**
 
-    ```bash
-    mkdir performance-test
-    cd performance-test
-    ```
+   ```bash
+   mkdir performance-test
+   cd performance-test
+   ```
 
 2. **初始化 Git 存儲庫**
 
-    ```bash
-    git init
-    ```
+   ```bash
+   git init
+   ```
 
 3. **創建性能測試腳本**
 
-    在 `performance-test` 目錄下創建 `test.js` 文件，並加入以下內容：
+   在 `performance-test` 目錄下創建 `test.js` 文件，並加入以下內容：
 
-    ```javascript
-    // test.js
-    import http from "k6/http";
-    import { sleep, check } from "k6";
+   ```javascript
+   // test.js
+   import http from "k6/http";
+   import { sleep, check } from "k6";
 
-    export const options = {
-    	vus: 10, // Number of virtual users
-    	duration: "30s" // Test duration
-    };
+   export const options = {
+   	vus: 10, // Number of virtual users
+   	duration: "30s" // Test duration
+   };
 
-    export default function () {
-    	const response = http.get("https://example.com");
-    	check(response, {
-    		"status is 200": r => r.status === 200
-    	});
-    	sleep(1);
-    }
-    ```
+   export default function () {
+   	const response = http.get("https://example.com");
+   	check(response, {
+   		"status is 200": r => r.status === 200
+   	});
+   	sleep(1);
+   }
+   ```
 
-    該腳本使用 `k6` 模擬 10 個虛擬用戶，在 30 秒內對 `https://example.com` 進行負載測試。
+   該腳本使用 `k6` 模擬 10 個虛擬用戶，在 30 秒內對 `https://example.com` 進行負載測試。
 
-    > 資安宣導：你懂的。不要沒事貼心的幫別的網站進行負載測試。
+   > 資安宣導：你懂的。不要沒事貼心的幫別的網站進行負載測試。
 
 4. **安裝 `k6`**
 
-    在本地測試時，你可以使用以下命令安裝 `k6`：
+   在本地測試時，你可以使用以下命令安裝 `k6`：
 
-    ```bash
-    brew install k6
-    ```
+   ```bash
+   brew install k6
+   ```
 
-    在 Windows 上，你可以使用 Chocolatey 安裝 `k6`：
+   在 Windows 上，你可以使用 Chocolatey 安裝 `k6`：
 
-    ```bash
-     choco install k6
-    ```
+   ```bash
+    choco install k6
+   ```
 
 ## 步驟 2: 設置 GitHub Actions
 
@@ -83,50 +83,50 @@ date: 2024-10-07
 name: Performance Testing
 
 on:
-    push:
-        branches:
-            - main
-    workflow_dispatch:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-    performance-test:
-        runs-on: ubuntu-latest
+  performance-test:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-            - name: Set up k6
-              uses: actions/setup-node@v3
-              with:
-                  node-version: "20"
+      - name: Set up k6
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
 
-            - name: Install k6
-              run: |
-                  curl -s https://dl.k6.io/signing.key | sudo apt-key add -
-                  echo "deb https://dl.k6.io/deb/ stable main" | sudo tee /etc/apt/sources.list.d/k6.list
-                  sudo apt-get update
-                  sudo apt-get install k6
+      - name: Install k6
+        run: |
+          curl -s https://dl.k6.io/signing.key | sudo apt-key add -
+          echo "deb https://dl.k6.io/deb/ stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install k6
 
-            - name: Run performance tests
-              run: k6 run test.js
+      - name: Run performance tests
+        run: k6 run test.js
 
-            - name: Upload test results
-              uses: actions/upload-artifact@v3
-              with:
-                  name: performance-results
-                  path: ./results/
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: performance-results
+          path: ./results/
 
-            - name: Deploy performance report to GitHub Pages
-              if: github.ref == 'refs/heads/main'
-              run: |
-                  mkdir -p public
-                  mv results/ public/
-                  git config --global user.name 'GitHub Actions'
-                  git config --global user.email 'action@github.com'
-                  git add public/
-                  git commit -m 'Deploy performance report'
-                  git push
+      - name: Deploy performance report to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p public
+          mv results/ public/
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'action@github.com'
+          git add public/
+          git commit -m 'Deploy performance report'
+          git push
 ```
 
 ### 工作流程解釋
@@ -140,28 +140,28 @@ jobs:
 ## 配置 GitHub Pages
 
 1. **設置 GitHub Pages**
-    - 進入 GitHub repository 的 `Settings` 頁面。
-    - 選擇 `Pages`，然後在 `Source` 下拉菜單中選擇 `main` 分支。
-    - 點擊 `Save` 以保存更改。
+   - 進入 GitHub repository 的 `Settings` 頁面。
+   - 選擇 `Pages`，然後在 `Source` 下拉菜單中選擇 `main` 分支。
+   - 點擊 `Save` 以保存更改。
 
 ## 步驟 4: 測試工作流程
 
 1. **提交更改**
 
-    提交所有更改並推送到 GitHub：
+   提交所有更改並推送到 GitHub：
 
-    ```bash
-    git add .
-    git commit -m "Add performance testing workflow"
-    git push origin main
-    ```
+   ```bash
+   git add .
+   git commit -m "Add performance testing workflow"
+   git push origin main
+   ```
 
 2. **檢查 Actions**
-    - 進入 GitHub repository 的 `Actions` 頁面。
-    - 查看 `Performance Testing` 工作流程的執行情況，確保所有步驟都成功完成。
+   - 進入 GitHub repository 的 `Actions` 頁面。
+   - 查看 `Performance Testing` 工作流程的執行情況，確保所有步驟都成功完成。
 
 3. **查看性能報告**
-    - 在 GitHub Pages 上查看性能報告，確保測試結果能夠正確顯示。
+   - 在 GitHub Pages 上查看性能報告，確保測試結果能夠正確顯示。
 
 ## 小結
 

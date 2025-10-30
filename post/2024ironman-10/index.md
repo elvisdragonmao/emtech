@@ -25,50 +25,50 @@ date: 2024-09-23
 
 1. **創建工作流程配置文件**
 
-    在專案根目錄下創建 `.github/workflows/test.yml` 文件，並設置矩陣構建策略來測試多個 Node.js 版本：
+   在專案根目錄下創建 `.github/workflows/test.yml` 文件，並設置矩陣構建策略來測試多個 Node.js 版本：
 
-    ```yaml
-    name: Node.js CI
+   ```yaml
+   name: Node.js CI
 
-    on:
-        push:
-            branches:
-                - main
-        pull_request:
-            branches:
-                - main
+   on:
+     push:
+       branches:
+         - main
+     pull_request:
+       branches:
+         - main
 
-    jobs:
-        build:
-            runs-on: ubuntu-latest
+   jobs:
+     build:
+       runs-on: ubuntu-latest
 
-            strategy:
-                matrix:
-                    node-version: [18.x, 19.x, 20.x]
+       strategy:
+         matrix:
+           node-version: [18.x, 19.x, 20.x]
 
-            steps:
-                - name: Check out code
-                  uses: actions/checkout@v3
+       steps:
+         - name: Check out code
+           uses: actions/checkout@v3
 
-                - name: Set up Node.js
-                  uses: actions/setup-node@v3
-                  with:
-                      node-version: ${{ matrix.node-version }}
+         - name: Set up Node.js
+           uses: actions/setup-node@v3
+           with:
+             node-version: ${{ matrix.node-version }}
 
-                - name: Install dependencies
-                  run: npm install
+         - name: Install dependencies
+           run: npm install
 
-                - name: Run tests
-                  run: npm test
-    ```
+         - name: Run tests
+           run: npm test
+   ```
 
-    這個配置文件會在 `ubuntu-latest` 環境中，針對 Node.js 12.x、14.x 和 16.x 版本運行測試。
+   這個配置文件會在 `ubuntu-latest` 環境中，針對 Node.js 12.x、14.x 和 16.x 版本運行測試。
 
 **步驟 2：檢查工作流程結果**
 
 1. **推送到 GitHub**
 
-    將修改推送到 GitHub 儲存庫：
+   將修改推送到 GitHub 儲存庫：
 
 ```bash
 git add .github/workflows/test.yml
@@ -78,44 +78,44 @@ git push origin main
 
 2. **查看 Actions 結果**
 
-    在 GitHub 的 `Actions` 標籤頁中，你將看到工作流程的運行結果。每個 Node.js 版本的測試都會顯示在不同的作業中，你可以檢查每個作業的結果以確保代碼在所有版本下都能正常運行。
+   在 GitHub 的 `Actions` 標籤頁中，你將看到工作流程的運行結果。每個 Node.js 版本的測試都會顯示在不同的作業中，你可以檢查每個作業的結果以確保代碼在所有版本下都能正常運行。
 
 ## 多平台測試的應用和技巧
 
 1. **測試不同的 Node.js 版本**
 
-    使用矩陣構建策略可以輕鬆測試不同的 Node.js 版本，這有助於確保你的代碼在各個版本下都能兼容。對於使用最新語法或功能的代碼，測試不同的 Node.js 版本尤為重要。
+   使用矩陣構建策略可以輕鬆測試不同的 Node.js 版本，這有助於確保你的代碼在各個版本下都能兼容。對於使用最新語法或功能的代碼，測試不同的 Node.js 版本尤為重要。
 
 2. **測試不同的操作系統**
 
-    除了 Node.js 版本，你也可以使用矩陣構建策略來測試不同的操作系統。例如，你可以在 Ubuntu、Windows 和 macOS 上運行測試，以確保你的代碼在不同的操作系統上都能正常運行。
+   除了 Node.js 版本，你也可以使用矩陣構建策略來測試不同的操作系統。例如，你可以在 Ubuntu、Windows 和 macOS 上運行測試，以確保你的代碼在不同的操作系統上都能正常運行。
 
-    **範例：**
+   **範例：**
 
-    ```yaml
-    strategy:
-        matrix:
-            os: [ubuntu-latest, windows-latest, macos-latest]
-            node-version: [12.x, 14.x, 16.x]
+   ```yaml
+   strategy:
+     matrix:
+       os: [ubuntu-latest, windows-latest, macos-latest]
+       node-version: [12.x, 14.x, 16.x]
 
-    runs-on: ${{ matrix.os }}
-    ```
+   runs-on: ${{ matrix.os }}
+   ```
 
 3. **測試不同的環境配置**
 
-    矩陣構建策略還可以用於測試不同的環境配置，如不同的依賴項版本或配置文件。這有助於確保你的代碼在不同的環境下都能正常運行。
+   矩陣構建策略還可以用於測試不同的環境配置，如不同的依賴項版本或配置文件。這有助於確保你的代碼在不同的環境下都能正常運行。
 
 4. **並行測試以提高效率**
 
-    矩陣構建策略允許你在多個環境下並行運行測試，這樣可以大大提高測試的效率。這有助於及早發現問題，縮短開發和部署周期。
+   矩陣構建策略允許你在多個環境下並行運行測試，這樣可以大大提高測試的效率。這有助於及早發現問題，縮短開發和部署周期。
 
 5. **配置測試用戶和數據**
 
-    如果你的測試需要用戶和數據，你可以在矩陣構建策略中設置不同的測試用戶和數據。這樣可以確保你的代碼在不同的用戶和數據配置下都能正常運行。
+   如果你的測試需要用戶和數據，你可以在矩陣構建策略中設置不同的測試用戶和數據。這樣可以確保你的代碼在不同的用戶和數據配置下都能正常運行。
 
 6. **根據測試結果進行調整**
 
-    根據測試結果，你可以對代碼進行調整，以修復在特定版本或環境下出現的問題。這樣可以確保代碼在所有目標環境下都能保持穩定。
+   根據測試結果，你可以對代碼進行調整，以修復在特定版本或環境下出現的問題。這樣可以確保代碼在所有目標環境下都能保持穩定。
 
 ## 結語
 

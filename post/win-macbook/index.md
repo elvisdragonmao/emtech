@@ -111,9 +111,9 @@ Mac 的鍵盤相信如果你是第一次看到你都會傻住。從左到右分�
 - Windows 的 `control` 大多情況就是 Mac 的 `command`，像是 `command + c` 是複製，`command + v` 是貼上。
 - 但是 Mac 有一些內建作業系統的快捷鍵會佔用 `command`，像是 `command + H` 來最小化視窗，`command + M` 來隱藏視窗丟一旁，會把一些軟體原本的快捷鍵搶走。不像 Windows 跟作業系統有關的快捷鍵通常是 `windows` 加上數字或字母，或著是其他複雜的組合。
 - 有些軟體選擇擺爛，就直接不給那些快捷鍵了，有些就找找替代方案。
-    - 瀏覽器歷史紀錄不能用 `command + H` 了，要用 `command + Y`。
-    - 切換分頁不能用 `command + tab`，因為 `command + tab` 是切換應用程式，這時又換回 `control + tab` 了。
-    - 切換語言不能用 `command + space` 了，因為 `command + space` 是啟動 Spotlight，這時又換回 `control + space` 了。
+  - 瀏覽器歷史紀錄不能用 `command + H` 了，要用 `command + Y`。
+  - 切換分頁不能用 `command + tab`，因為 `command + tab` 是切換應用程式，這時又換回 `control + tab` 了。
+  - 切換語言不能用 `command + space` 了，因為 `command + space` 是啟動 Spotlight，這時又換回 `control + space` 了。
 - Mac 沒有很多 Windows 有的按鈕，像是 `home`、`end`、`insert`、`delete`，所以你要用 `command + 左右方向鍵`、`command + 上下方向鍵`、`fn + delete` 這些組合來代替。不過不常用且還算直覺，手也不用離開鍵盤。
 - Mac 有很多很奇耙會讓你手打結還按不出來的快捷鍵，像是 VS Code 新增檔案是 `command + option + control + N`，不過目前覺得這種都不常用，不用浪費腦細胞記。
 
