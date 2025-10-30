@@ -11,7 +11,7 @@ draft: true
 
 這封信應該有發出去對吧。
 
-哈囉 {{ .Subscriber.Name }}，這裡是毛哥EM。
+哈囉 {{ .Subscriber.Name }}，這裡是毛哥 EM。
 
 這是第一封 Hmmm，十分感謝你點開這份電子報。
 
