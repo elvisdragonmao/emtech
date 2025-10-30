@@ -56,4 +56,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Winston Bot 中文檢查
-      uses: Edit-Mr/WinstonBot-CI@latest
+      uses: Edit-Mr/WinstonBot-CI@main
