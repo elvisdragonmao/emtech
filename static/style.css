@@ -872,7 +872,7 @@ aside .adsbygoogle {
 #categories {
 	display: flex;
 	padding-inline: 2rem;
-	padding-top: 0.7rem;
+	/* padding-top: 0.7rem; */
 	align-items: center;
 	gap: 2rem;
 	width: 100%;
