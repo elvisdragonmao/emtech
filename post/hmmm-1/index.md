@@ -8,7 +8,7 @@ description: 這封信應該有發出去對吧。
 
 # test 123
 
-> 這是我的電子報 Hmmm，如果你也想要收到的話歡迎可以 [來這裡](https://elvismao.com/zh-Hant/hmmm/) 訂閱！:
+> 這是我的電子報 Hmmm，如果你也想交個朋友，每個月收到的話歡迎可以 [來這裡](https://elvismao.com/zh-Hant/hmmm/) 訂閱！
 
 這封信應該有發出去對吧。
 
