@@ -14,7 +14,6 @@ description: 在辯論場上，要讓一項政策主張站得住腳，我們必�
 
 ![I have concepts of a plan.](trump.gif)
 
-
 > [這是一段川普講關於健保的辯論](https://www.youtube.com/watch?v=8p6zZZ3DPGE)，你有被他的政策說服嗎？
 
 ## Stock Issue 是什麼？
@@ -254,10 +253,10 @@ Topicality 通常是反方拿來提出異議的，正方不太需要主動強調
 
 ## 參考資料
 
-* Wikipedia: [Policy Debate](https://en.wikipedia.org/wiki/Policy_debate)、[Stock issues](https://en.wikipedia.org/wiki/Stock_issues) 
-* [用"需根解损"拆解你的问题 - Peter Rong](https://peterrong.netlify.app/post/cause-need-solve-cost/)
-* [Theory and practice in academic debate - Mohamad Abd Rabbo](https://www.slideshare.net/slideshow/theory-and-practice-in-academic-debate/15511291)
-* [辯論的架構是什麼？需根解損是什麼？ - 蕭志羽的學習心得與筆記](https://derekhsiao.blogspot.com/2019/04/)
-* [辯論的基本觀念 - 游梓翔](https://debandconciv.wordpress.com/wp-content/uploads/2011/10/e8ab96e8beafe88887e795b6e4bba3e69687e6988e-e696b0e78988e69cac.pdf#:~:text=1,%E5%B0%8D%E6%96%B9%E8%A8%88%E7%95%AB%E5%8F%AF%E8%A1%8C%E6%80%A7%E4%BD%8E%E3%80%81%E9%98%BB%E5%8A%9B%E5%A4%A7%EF%BC%88%E5%8F%8D%E9%A7%81%E5%8F%AF%E8%A1%8C%E6%80%A7%2F%E9%98%BB%E6%92%93%EF%BC%89)
-* [黄执中谈需根解损 争鸣辩论网 - 百度文库](https://wenku.baidu.com/view/7459db8c83d049649b665854?pcf=2&bfetype=new&bfetype=new#:~:text=%E8%A6%81%E8%83%BD%E5%A4%9F%E7%9C%9F%E6%AD%A3%E7%90%86%E8%A7%A3%E5%B9%B6%E8%A7%A3%E9%87%8A%E6%94%BF%E7%AD%96%E8%BE%A9%E8%AE%BA%E7%9A%84%E6%9E%B6%E6%9E%84%E8%84%89%E7%BB%9C%EF%BC%8C%E5%85%B6%E6%89%80%E5%BA%94%E9%81%B5%E5%BE%AA%E9%A1%BA%E5%BA%8F%EF%BC%8C%E5%8F%8D%E8%80%8C%E5%BA%94%E8%AF%A5)
-* [Reddit: What is "inherency"? ](https://www.reddit.com/r/Debate/comments/5kessx/what_is_inherency/)
+- Wikipedia: [Policy Debate](https://en.wikipedia.org/wiki/Policy_debate)、[Stock issues](https://en.wikipedia.org/wiki/Stock_issues)
+- [用"需根解损"拆解你的问题 - Peter Rong](https://peterrong.netlify.app/post/cause-need-solve-cost/)
+- [Theory and practice in academic debate - Mohamad Abd Rabbo](https://www.slideshare.net/slideshow/theory-and-practice-in-academic-debate/15511291)
+- [辯論的架構是什麼？需根解損是什麼？ - 蕭志羽的學習心得與筆記](https://derekhsiao.blogspot.com/2019/04/)
+- [辯論的基本觀念 - 游梓翔](https://debandconciv.wordpress.com/wp-content/uploads/2011/10/e8ab96e8beafe88887e795b6e4bba3e69687e6988e-e696b0e78988e69cac.pdf#:~:text=1,%E5%B0%8D%E6%96%B9%E8%A8%88%E7%95%AB%E5%8F%AF%E8%A1%8C%E6%80%A7%E4%BD%8E%E3%80%81%E9%98%BB%E5%8A%9B%E5%A4%A7%EF%BC%88%E5%8F%8D%E9%A7%81%E5%8F%AF%E8%A1%8C%E6%80%A7%2F%E9%98%BB%E6%92%93%EF%BC%89)
+- [黄执中谈需根解损 争鸣辩论网 - 百度文库](https://wenku.baidu.com/view/7459db8c83d049649b665854?pcf=2&bfetype=new&bfetype=new#:~:text=%E8%A6%81%E8%83%BD%E5%A4%9F%E7%9C%9F%E6%AD%A3%E7%90%86%E8%A7%A3%E5%B9%B6%E8%A7%A3%E9%87%8A%E6%94%BF%E7%AD%96%E8%BE%A9%E8%AE%BA%E7%9A%84%E6%9E%B6%E6%9E%84%E8%84%89%E7%BB%9C%EF%BC%8C%E5%85%B6%E6%89%80%E5%BA%94%E9%81%B5%E5%BE%AA%E9%A1%BA%E5%BA%8F%EF%BC%8C%E5%8F%8D%E8%80%8C%E5%BA%94%E8%AF%A5)
+- [Reddit: What is "inherency"? ](https://www.reddit.com/r/Debate/comments/5kessx/what_is_inherency/)
