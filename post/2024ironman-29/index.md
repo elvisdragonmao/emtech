@@ -109,7 +109,7 @@ fetch(url)
 
 建立 Webhook 之後，我們就可以取得 Webhook 的 URL，然後設定到 GitHub 的 Secrets 中。
 
-### 撰寫 GitHub Action
+### 撰寫 GitHub Actions
 
 接著我們就可以撰寫 GitHub Actions 來執行這個爬蟲了。
 
