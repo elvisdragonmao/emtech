@@ -65,4 +65,4 @@ irm https://massgrave.dev/get | iex
 
 如果又出現錯誤說授權到期了只需要再次執行指令就可以囉。
 
-歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)。如果你有任何問題，都可以在 IG 留言或私訊我。
+歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://emtech.cc/)。如果你有任何問題，都可以在 IG 留言或私訊我。

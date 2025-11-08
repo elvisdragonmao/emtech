@@ -121,4 +121,4 @@ Get-ChildItem | Add-AppxPackage
 
 這篇文章教你如何不透過 Microsoft Store 安裝 Microsoft Store 的應用程式。其實在幾年前我就有遇到這個問題，但沒想到過了這麼久這個問題還是存在，且中文部落格還沒有相關教學。希望這篇文章能夠幫助到你。
 
-歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)。如果你有任何問題，都可以在 IG 留言或私訊我。
+歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://emtech.cc/)。如果你有任何問題，都可以在 IG 留言或私訊我。

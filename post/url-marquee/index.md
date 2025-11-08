@@ -45,11 +45,11 @@ history.replaceState(state, title, url);
 
 ![波浪跑馬燈](./wave.gif)
 
-放在毛哥 EM 的基地你可以去玩玩：
+放在毛哥EM 的基地你可以去玩玩：
 
 <https://elvismao.com/code/url-marquee/>
 
-![網址跑馬燈 - 毛哥 EM 的基地](./image.webp)
+![網址跑馬燈 - 毛哥EM 的基地](./image.webp)
 
 雖然這個功能除了讓我瀏覽紀錄出現一堆怪東西以外沒什麼實際用途，但至少讓我等第三班國光候補不那麼無聊。
 

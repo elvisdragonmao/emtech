@@ -75,4 +75,4 @@ date: 2024-08-27
 
 ## 結語：找到最適合的 Git 指令
 
-每個 `git add` 指令都有其獨特的應用場景，了解這些選項並靈活運用，能夠讓你的版本控制更加精確和高效。不管是精細控制變更，還是確保所有變更被正確追蹤，選擇合適的指令將大大提升你的開發體驗。希望這篇文章能幫助你更好地掌握 Git，讓你的工作流更加順暢。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤 [毛哥 EM 資訊密技](https://em-tec.github.io/)。
+每個 `git add` 指令都有其獨特的應用場景，了解這些選項並靈活運用，能夠讓你的版本控制更加精確和高效。不管是精細控制變更，還是確保所有變更被正確追蹤，選擇合適的指令將大大提升你的開發體驗。希望這篇文章能幫助你更好地掌握 Git，讓你的工作流更加順暢。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤 [毛哥EM 資訊密技](https://em-tec.github.io/)。

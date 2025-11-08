@@ -17,11 +17,11 @@ description: 有朋自遠方來，不亦悅乎？
 <div class="friends">
 <a class="friend"  href="/">
 
-![毛哥 EM](/static/img/EMprofile.png)
+![毛哥EM](/static/img/EMprofile.png)
 
 <div>
 
-### 毛哥 EM
+### 毛哥EM
 
 數位創作者，全端工程師
 

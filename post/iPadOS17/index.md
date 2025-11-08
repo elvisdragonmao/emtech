@@ -115,4 +115,4 @@ _(正好下午是英文辯論賽，也許我拿 MVP 他也有功勞吧)_
 
 {{notice}} 我遇到軟體問題我有整理翻譯[官方釋出錯誤及解決分案](https://em-tec.github.io/post/ios17-problem/)可以提供參考 {{noticed}}
 
-如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥 EM 資訊密技。如果你有任何問題，歡迎直接到毛哥 EM 資訊密技的 Instagram 私訊我，我很樂意協助解決你的問題。
+如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM 資訊密技。如果你有任何問題，歡迎直接到毛哥EM 資訊密技的 Instagram 私訊我，我很樂意協助解決你的問題。

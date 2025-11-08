@@ -11,7 +11,7 @@ date: 2021-06-04
 
 記得在國二在家上課的時候常常忘記記課表及找不到 Meet 程式，或著是來不及再去 Classroom 找，因此我做了這個捷徑。<br /> {{notice}} 203 Meet
 
-- 開發者：毛哥 EM(我)
+- 開發者：毛哥EM(我)
 - 軟體類型:ios 捷徑
 - 下載位置：[iCloud](https://www.icloud.com/shortcuts/154933bcaf8145dba8ec955f8695503d) {{noticed}}
 

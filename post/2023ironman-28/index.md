@@ -239,6 +239,6 @@ https://codepen.io/edit-mr/pen/dywrReK
 
 ![成果](final.gif)
 
-以上就是我今天的分享，我們使用少許的程式碼就做出這個性能十分不錯的陽春 slider。你可以再加上一點裝飾，比如在底下放上顯示目前圖片的小圓點，或是加上自動播放。如果你有興趣可以自己試試看，抓取個數、移動的距離、以及移動的函數上面都有提供。_也需這個系列出書之後就會提到呢!_ 歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，我們使用少許的程式碼就做出這個性能十分不錯的陽春 slider。你可以再加上一點裝飾，比如在底下放上顯示目前圖片的小圓點，或是加上自動播放。如果你有興趣可以自己試試看，抓取個數、移動的距離、以及移動的函數上面都有提供。_也需這個系列出書之後就會提到呢!_ 歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
-我是毛哥 EM，讓我們明天再見。
+我是毛哥EM，讓我們明天再見。

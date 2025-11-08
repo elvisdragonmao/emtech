@@ -76,6 +76,6 @@ description: 仰望盃全國科學 HomeRun 實作大賽是科學實驗競賽，�
 
 ![非常感謝師丈半夜 12 點開車載我們安全回家](night.webp)
 
-如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://em-tec.github.io/)。
+如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://em-tec.github.io/)。
 
 > 封面圖我很努力找了但每一張圖片都有人渣眼。

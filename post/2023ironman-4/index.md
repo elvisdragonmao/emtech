@@ -239,6 +239,6 @@ animation:
 
 設定速度曲線可以讓你的動畫更流暢，不會有突然爆走的感覺，也可以讓動畫更有質感。對於超連結 `hover` 做特效建議可以設定成 `ease-out` ，因為滑鼠動畫通常大家會希望有即時反應，但又不希望突然結束。
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
-我是毛哥 EM，讓我們明天再見。
+我是毛哥EM，讓我們明天再見。

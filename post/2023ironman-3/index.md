@@ -146,6 +146,6 @@ https://codepen.io/edit-mr/pen/ZEVWaqq
 
 > [範例網站](https://sysh-tech-volunteer.github.io/Web-Design-Camp/practice/google.html) | [原檔 HTML](https://github.com/SYSH-Tech-Volunteer/Web-Design-Camp/blob/main/practice/google.html) | [原檔 CSS](https://github.com/SYSH-Tech-Volunteer/Web-Design-Camp/blob/main/practice/google.css)
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
-我是毛哥 EM，讓我們明天再見。
+我是毛哥EM，讓我們明天再見。

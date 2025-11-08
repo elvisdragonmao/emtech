@@ -52,7 +52,7 @@ date: 2023-10-11
         <li>發文 <span class="caret"></span></li>
         <li><i class="fa fa-commenting fa-fw button"></i></li>
         <li><i class="fa fa-bell fa-fw button"></i></li>
-        <li class="pro"><img src="https://member.ithome.com.tw/avatars/161968?s=ithelp" alt="">毛哥 EM<span class="caret"></span></li>
+        <li class="pro"><img src="https://member.ithome.com.tw/avatars/161968?s=ithelp" alt="">毛哥EM<span class="caret"></span></li>
       </ul>
     </div>
   </nav>
@@ -269,6 +269,6 @@ https://codepen.io/edit-mr/pen/WNLPYON
 
 ![成果](final.gif)
 
-以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
+以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
-我是毛哥 EM，讓我們明天再見。
+我是毛哥EM，讓我們明天再見。

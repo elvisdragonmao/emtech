@@ -143,6 +143,6 @@ align-item: center;
 
 你可以找你最常使用的幾款 CSS 語法記一下，再搭配 Copilot 就整個飛起來了。
 
-希望今天的分享對你有幫助，我自己還會搭配 Copilot 以及 Copilot Chat 一起使用，可以更進一步的提升你的效率。如果你們有興趣想聽船長是怎麼帶我飛的可以在留言去告訴我，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
+希望今天的分享對你有幫助，我自己還會搭配 Copilot 以及 Copilot Chat 一起使用，可以更進一步的提升你的效率。如果你們有興趣想聽船長是怎麼帶我飛的可以在留言去告訴我，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
-我是毛哥 EM，讓我們明天再見。
+我是毛哥EM，讓我們明天再見。

@@ -97,4 +97,4 @@ function simulate(numQuestions, simulations, strategy) {
 
 ## 結論
 
-結論就是，好好去讀書吧。無論你全部猜 C、平均猜 ABCD 還是完全亂猜，你的平均分數都一樣爛。但如果你有在 [Instagram](https://www.instagram.com/em.tec.blog) 或 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3) 追蹤[毛哥 EM 資訊密技](https://em-tec.github.io/) 分數搞不好會變高喔 w
+結論就是，好好去讀書吧。無論你全部猜 C、平均猜 ABCD 還是完全亂猜，你的平均分數都一樣爛。但如果你有在 [Instagram](https://www.instagram.com/em.tec.blog) 或 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3) 追蹤[毛哥EM 資訊密技](https://em-tec.github.io/) 分數搞不好會變高喔 w

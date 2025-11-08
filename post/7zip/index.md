@@ -95,4 +95,4 @@ date: 2024-05-31
   ```
   `l` 參數用於列出壓縮檔內的檔案。
 
-透過這篇文章，你應該已經學會了如何在 Linux 系統中使用 7z 進行壓縮和解壓縮。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥 EM 資訊密技](https://em-tec.github.io/)。
+透過這篇文章，你應該已經學會了如何在 Linux 系統中使用 7z 進行壓縮和解壓縮。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM 資訊密技](https://em-tec.github.io/)。

@@ -61,13 +61,13 @@ description: 使用 RSS 讓你奪回資訊的掌控權，讓你決定你要看�
 
 ![Fluent Reader 初始畫面](fluent-mac.webp)
 
-我們輸入毛哥 EM 資訊密技的 RSS 網址：<https://emtech.cc/rss.xml>
+我們輸入毛哥EM 資訊密技的 RSS 網址：<https://emtech.cc/rss.xml>
 
 ![添加來源](fluent-new.webp)
 
 點擊左上角返回之後就可以看到我所有的文章了。
 
-![毛哥 EM 資訊密技於 Fluent Reader](fluent-emtech.webp)
+![毛哥EM 資訊密技於 Fluent Reader](fluent-emtech.webp)
 
 > 我得部落格縮圖在逐漸往動物園發展
 
@@ -115,7 +115,7 @@ Zeabur 是一個非常好用的部署平台，可以不用寫程式用手指按�
 
 ![FreshRSS 新增訂閱項目](fresh-new.webp)
 
-這裡我建議大家可以先創立一個分類，比如說科技，生活，Podcast 等等。接著我們來加入一個訂閱源，一樣拿毛哥 EM 資訊密技來當範例。
+這裡我建議大家可以先創立一個分類，比如說科技，生活，Podcast 等等。接著我們來加入一個訂閱源，一樣拿毛哥EM 資訊密技來當範例。
 
 輸入網址並點擊新增：
 

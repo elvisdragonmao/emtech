@@ -39,4 +39,4 @@ date: 2023-08-05
 
 透過以上的方法，你可以將 Twitter 換回原本的 Logo，並享受更貼近原始體驗的使用感受。
 
-如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥 EM 資訊密技。如果你有任何問題，歡迎直接到毛哥 EM 資訊密技的 Instagram 私訊我，我很樂意協助解決你的問題。
+如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM 資訊密技。如果你有任何問題，歡迎直接到毛哥EM 資訊密技的 Instagram 私訊我，我很樂意協助解決你的問題。
