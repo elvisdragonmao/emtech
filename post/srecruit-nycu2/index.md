@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [特殊選才]
+tags: [特殊選才,交大]
 categories: [生活雜談]
 date: 2025-01-15
 description: 交大資安

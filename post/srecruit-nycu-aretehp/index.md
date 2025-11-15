@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [特殊選才]
+tags: [特殊選才,交大]
 categories: [生活雜談]
 date: 2025-02-17
 description: 手寫自傳，強調跨領域整合與創新能力。一半是競賽及技術厲害的，另一半是華德福等實驗高中。
