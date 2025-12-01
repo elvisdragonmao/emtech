@@ -66,7 +66,7 @@ description:
 
 > 學生方案的話是 88。如果你不在乎播放紀錄，每三個月開個 Email，永遠免費。
 
-幾首固定的歌反覆播放根本不符合我實際的聆聽習慣。根據 last.fm 的統計我光上個禮拜就聽了來自 331 個創作者的 693 首歌曲。音樂常常是陪伴我工作、運動、讀書，協助分擔一部分的壓力和讓工作沒那麼痛苦，這時候我十分需要新鮮感陪伴我度過這些時光。串流平台是你想聽什麼可以馬上聽到最方便的做法。同時 Spotify 的推薦都十分合我胃口，也確實讓我發覺許多新的好音樂好創作者。像是這個月我花了很多時間在回味童年音遊時光 [Cytus II](https://open.spotify.com/album/4Ppdruw7TAOg4066ZY41Go?si=f91abf57f2464300) 的原聲帶，最近很喜歡 [AAAA](https://open.spotify.com/artist/6NVMzVjhJiHrjpx6yyNQ5i?si=pXB8OTT_RIC0Rl0RfIdCvg)，還有一些中國的饒舌歌手 [Rapeater](https://open.spotify.com/artist/4lp5luwXaH7oYwU1aoOmUy?si=bSB15i-MQDGFhBddynyHJA)、[華雲龍KLE](https://open.spotify.com/track/1R2ID1L2MjOX6mB9pQuCAh?si=9b87c489744944e7)。
+幾首固定的歌反覆播放根本不符合我實際的聆聽習慣。根據 last.fm 的統計我光上個禮拜就聽了來自 331 個創作者的 693 首歌曲。音樂常常是陪伴我工作、運動、讀書，協助分擔一部分的壓力和讓工作沒那麼痛苦，這時候我十分需要新鮮感陪伴我度過這些時光。串流平台是你想聽什麼可以馬上聽到最方便的做法。同時 Spotify 的推薦都十分合我胃口，也確實讓我發覺許多新的好音樂好創作者。像是這個月我花了很多時間在回味童年音遊時光 [Cytus II](https://open.spotify.com/album/4Ppdruw7TAOg4066ZY41Go?si=f91abf57f2464300) 的原聲帶，最近很喜歡 [AAAA](https://open.spotify.com/artist/6NVMzVjhJiHrjpx6yyNQ5i?si=pXB8OTT_RIC0Rl0RfIdCvg)，還有一些中國的饒舌歌手 [Rapeater](https://open.spotify.com/artist/4lp5luwXaH7oYwU1aoOmUy?si=bSB15i-MQDGFhBddynyHJA)、[華雲龍 KLE](https://open.spotify.com/track/1R2ID1L2MjOX6mB9pQuCAh?si=9b87c489744944e7)。
 
 ![我這個月的紀錄好奇怪喔](fm.webp)
 
