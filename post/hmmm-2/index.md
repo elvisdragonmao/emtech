@@ -3,12 +3,14 @@ authors: elvismao
 tags: []
 categories: [hmmm]
 date: 2025-12-01
-description:
+description: 該。
 ---
 
 # 我該繼續買大便化的 Spotify 嗎？
 
-哈囉 {{ .Subscriber.Name }}，這裡是毛哥EM，十分感謝你點開這份電子報。
+> 這是我的電子報 Hmmm，如果你也想交個朋友，每個月收到的話歡迎可以 [來這裡](https://elvismao.com/zh-Hant/hmmm/) 訂閱！
+
+哈囉，這裡是毛哥EM，十分感謝你點開這份電子報。
 
 本來上個月的計劃是每個月的最後一天發文，這樣算是一整個月的 rewind，沒想到才一個月就破功了。就把這當作 11/31 吧。
 
