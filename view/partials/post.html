@@ -51,13 +51,15 @@
 					><img
 						src="/static/img/link.svg"
 						alt=""
-						onclick="navigator.clipboard.writeText(window.location.href).then(() => { 
-                            const img = this;
-                            img.src = '/static/img/check.svg';
-                            setTimeout(() => {
-                                img.src = '/static/img/link.svg';
-                            }, 3000);
-                        })"
+						onclick="
+							navigator.clipboard.writeText(window.location.href).then(() => {
+								const img = this;
+								img.src = '/static/img/check.svg';
+								setTimeout(() => {
+									img.src = '/static/img/link.svg';
+								}, 3000);
+							})
+						"
 						title="複製連結"
 					/><img
 						src="/static/img/share.svg"
