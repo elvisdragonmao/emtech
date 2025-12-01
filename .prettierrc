@@ -9,5 +9,12 @@
 	"arrowParens": "avoid",
 	"requirePragma": false,
 	"insertPragma": false,
-	"proseWrap": "never"
+	"proseWrap": "never",
+	"endOfLine": "lf",
+	"htmlWhitespaceSensitivity": "ignore",
+	"embeddedLanguageFormatting": "auto",
+	"quoteProps": "as-needed",
+	"jsxSingleQuote": false,
+	"singleAttributePerLine": false,
+	"plugins": ["prettier-plugin-organize-imports", "prettier-plugin-packagejson"]
 }
