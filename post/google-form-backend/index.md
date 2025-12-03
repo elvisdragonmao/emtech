@@ -99,11 +99,26 @@ Google Form 的每個問題都有一個隱藏的編號（`entry.XXXXXXXX`），�
 		<h1>聯絡我們</h1>
 
 		<form id="contact-form">
-			<label>單位名稱<input name="organization" required /></label>
-			<label>部門<input name="department" /></label>
-			<label>稱呼<input name="name" required /></label>
-			<label>聯絡方式<input name="contact" required /></label>
-			<label>留言<textarea name="message"></textarea></label>
+			<label>
+				單位名稱
+				<input name="organization" required />
+			</label>
+			<label>
+				部門
+				<input name="department" />
+			</label>
+			<label>
+				稱呼
+				<input name="name" required />
+			</label>
+			<label>
+				聯絡方式
+				<input name="contact" required />
+			</label>
+			<label>
+				留言
+				<textarea name="message"></textarea>
+			</label>
 
 			<button type="submit" id="submit">送出</button>
 			<span id="form-message"></span>

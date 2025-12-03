@@ -87,7 +87,9 @@ h2+p
 
 ```html
 <!-- a{連結}*3 -->
-<a href="">連結</a><a href="">連結</a><a href="">連結</a>
+<a href="">連結</a>
+<a href="">連結</a>
+<a href="">連結</a>
 ```
 
 ### 插入索引值 - $
@@ -96,7 +98,9 @@ h2+p
 
 ```html
 <!-- a{連結$}*3 -->
-<a href="">連結 1</a><a href="">連結 2</a><a href="">連結 3</a>
+<a href="">連結 1</a>
+<a href="">連結 2</a>
+<a href="">連結 3</a>
 ```
 
 再來一個範例，今天我們要輸入五個 li 標籤，標籤的 class name 分別為 list-1、list-2、list-3、list-4、list-5，輸入 `li.list$*5` 就可以了。

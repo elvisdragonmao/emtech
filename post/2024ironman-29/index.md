@@ -28,7 +28,7 @@ https://ithelp.ithome.com.tw/users/20139821/ironman/7503?page=2
 再觀察一下可以發現顯示天數的 HTML 結構是這樣的：
 
 ```html
-<span class="ir-qa-list__days ir-qa-list__days--profile ">DAY 1 </span>
+<span class="ir-qa-list__days ir-qa-list__days--profile ">DAY 1</span>
 ```
 
 ![鐵人賽頁面](ithome.webp)

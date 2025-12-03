@@ -37,7 +37,10 @@ HTML 就是這樣建立一個又一個地”元素” (element) 。因為寫 HTM
 	<i>斜體</i>
 	<s>刪除線</s>
 	<u>底線</u>
-	H<sup>+</sup> CO<sub>2</sub>
+	H
+	<sup>+</sup>
+	CO
+	<sub>2</sub>
 </p>
 ```
 
@@ -52,7 +55,8 @@ HTML 就是這樣建立一個又一個地”元素” (element) 。因為寫 HTM
 ```html
 橫線
 <hr />
-換行<br />
+換行
+<br />
 ```
 
 這兩個是插入一個元素而不是指定範圍，因此習慣後面會用/>結尾，但如果你要打<br>或<hr>瀏覽器也看得懂。HTML 是一種"好啦我看得懂就好"的語言，因此你就算用大寫，或著是屬性引號不加也沒關係，但是為了你和你的朋友之後維護起來不會那麼累我還是建議你遵守慣例。
@@ -357,9 +361,14 @@ HTML 就是這樣建立一個又一個地”元素” (element) 。因為寫 HTM
 如果我們要建立一個單選框，我們可以這樣寫：
 
 ```html
-<input type="radio" name="color" value="red" /> red<br />
-<input type="radio" name="color" value="green" /> green<br />
-<input type="radio" name="color" value="blue" /> blue
+<input type="radio" name="color" value="red" />
+red
+<br />
+<input type="radio" name="color" value="green" />
+green
+<br />
+<input type="radio" name="color" value="blue" />
+blue
 ```
 
 <input type="radio" name="color" value="red"> red<br> <input type="radio" name="color" value="green"> green<br> <input type="radio" name="color" value="blue"> blue

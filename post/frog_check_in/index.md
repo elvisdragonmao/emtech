@@ -301,7 +301,10 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 		<button onclick="window.location='check-in.html';">報到</button>
 		<button onclick="window.location='search.html';">查詢紀錄</button>
 		<button onclick="window.location='sign-up.html';">新增學生</button>
-		<p><a href="https://Edit-Mr.github.io">毛哥EM</a>製作</p>
+		<p>
+			<a href="https://Edit-Mr.github.io">毛哥EM</a>
+			製作
+		</p>
 	</main>
 </body>
 ```
@@ -330,7 +333,9 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 		<input type="text" class="form-control" id="name" />
 		<button type="button" id="sendOrder">新增</button>
 		<p>
-			<a href="https://Edit-Mr.github.io">毛哥EM</a>製作<br />
+			<a href="https://Edit-Mr.github.io">毛哥EM</a>
+			製作
+			<br />
 			送出後請稍等數秒 勿重複新增
 		</p>
 	</main>
@@ -518,7 +523,9 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 			</tbody>
 		</table>
 		<p>
-			<a href="https://Edit-Mr.github.io">毛哥EM</a>製作<br />
+			<a href="https://Edit-Mr.github.io">毛哥EM</a>
+			製作
+			<br />
 			送出後請稍等數秒
 		</p>
 	</main>

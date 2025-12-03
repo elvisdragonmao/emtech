@@ -334,10 +334,17 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
 		<main>
 			<h1>簡易點名系統</h1>
 			<h2 id="status">歡迎使用</h2>
-			<nav><button onclick="searchA()">查詢紀錄</button><button onclick="callA()">點名</button><button onclick="addA()">新增學生</button></nav>
+			<nav>
+				<button onclick="searchA()">查詢紀錄</button>
+				<button onclick="callA()">點名</button>
+				<button onclick="addA()">新增學生</button>
+			</nav>
 			<section>
 				<div id="history">
-					<div class="search"><input type="text" /><button>搜尋</button></div>
+					<div class="search">
+						<input type="text" />
+						<button>搜尋</button>
+					</div>
 					<table>
 						<thead>
 							<tr>
@@ -352,11 +359,15 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
 					<h2>載入中</h2>
 				</div>
 				<div id="add">
-					<div class="search"><input type="text" /><button>新增</button></div>
+					<div class="search">
+						<input type="text" />
+						<button>新增</button>
+					</div>
 				</div>
 			</section>
 			<footer>
-				<a href="edit-mr.github.io/">毛哥EM</a>製作 |
+				<a href="edit-mr.github.io/">毛哥EM</a>
+				製作 |
 				<a href="https://emtech.cc/post/roll-call">教學</a>
 			</footer>
 		</main>

@@ -210,7 +210,9 @@ date: 2022-08-14
 		<h1>薩波 2022 委託與贈圖表</h1>
 		        
 		<h2>這些不代表畫的順序 會跳著畫</h2>
-		        <img src="header.png" class="header" />         
+		        
+		<img src="header.png" class="header" />
+		        
 		<li class="table-note">            如果要一次看完整表格請切換到電腦版網頁喔         </li>
 		        
 		<ul class="responsive-table">
@@ -228,7 +230,15 @@ date: 2022-08-14
 			</li>
 			            資料載入中         
 		</ul>
-		<p><a href=""></a> · Facebook<a href="https://instagram.com/">Instagram</a><br />Made by <a href="https://github.com/Edit-Mr">Edit Mr.</a> with❤</p>
+		<p>
+			<a href=""></a>
+			· Facebook
+			<a href="https://instagram.com/">Instagram</a>
+			<br />
+			Made by 
+			<a href="https://github.com/Edit-Mr">Edit Mr.</a>
+			 with❤
+		</p>
 		    
 	</div>
 </body>
@@ -525,7 +535,9 @@ function doGet() {
 		<h1>薩波 2022 委託與贈圖表</h1>
 		        
 		<h2>這些不代表畫的順序 會跳著畫</h2>
-		        <img src="header.png" class="header" />         
+		        
+		<img src="header.png" class="header" />
+		        
 		<li class="table-note">            如果要一次看完整表格請切換到電腦版網頁喔         </li>
 		        
 		<ul class="responsive-table">
@@ -545,8 +557,15 @@ function doGet() {
 		</ul>
 		        
 		<p>
-			<a href="https://www.facebook.com/Sabo9335">薩波 FB</a> · <a href="https://instagram.com/sabooo_9335?igshid=YmMyMTA2M2Y=">薩波 IG</a> · <a href="https://discord.gg/ve9ERWVEPR">橘子牌太空船</a
-			><br />Made by <a href="https://github.com/Edit-Mr">EDM</a> with❤
+			<a href="https://www.facebook.com/Sabo9335">薩波 FB</a>
+			 · 
+			<a href="https://instagram.com/sabooo_9335?igshid=YmMyMTA2M2Y=">薩波 IG</a>
+			 · 
+			<a href="https://discord.gg/ve9ERWVEPR">橘子牌太空船</a>
+			<br />
+			Made by 
+			<a href="https://github.com/Edit-Mr">EDM</a>
+			 with❤
 		</p>
 		    
 	</div>

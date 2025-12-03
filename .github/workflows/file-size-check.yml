@@ -1,36 +1,36 @@
 name: 🎇圖片大小檢查
 
 on:
-    push:
-        paths:
-            - "static/**"
-            - "post/**"
-            - ".github/workflows/file-size-check.sh"
-    pull_request:
-        paths:
-            - "static/**"
-            - "post/**"
-    workflow_dispatch:
+  push:
+    paths:
+      - "static/**"
+      - "post/**"
+      - ".github/workflows/file-size-check.sh"
+  pull_request:
+    paths:
+      - "static/**"
+      - "post/**"
+  workflow_dispatch:
 
 jobs:
-    check-file-sizes:
-        name: 🪢 調整圖片
-        runs-on: ubuntu-latest
-        permissions:
-            contents: write
-            pull-requests: write
+  check-file-sizes:
+    name: 🪢 調整圖片
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-            - name: Set up Git config
-              run: |
-                  git config --global user.name "GitHub Actions"
-                  git config --global user.email "actions@github.com"
+      - name: Set up Git config
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
 
-            - name: Check file sizes
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: .github/workflows/file-size-check.sh
+      - name: Check file sizes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: .github/workflows/file-size-check.sh

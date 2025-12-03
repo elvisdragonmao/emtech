@@ -6,9 +6,18 @@
 				<h1>{{title}}</h1>
 			</div>
 			<div class="post-info">
-				<div class="meta"><img src="/static/img/doc.svg" alt="" /><span>{{length}}</span></div>
-				<div class="meta"><img src="/static/img/clock.svg" alt="" /><span>{{readingTime}}</span></div>
-				<div class="meta"><img src="/static/img/date.svg" alt="" /><span>{{date}}{{lastmod}}</span></div>
+				<div class="meta">
+					<img src="/static/img/doc.svg" alt="" />
+					<span>{{length}}</span>
+				</div>
+				<div class="meta">
+					<img src="/static/img/clock.svg" alt="" />
+					<span>{{readingTime}}</span>
+				</div>
+				<div class="meta">
+					<img src="/static/img/date.svg" alt="" />
+					<span>{{date}}{{lastmod}}</span>
+				</div>
 			</div>
 			<div class="post-thumbnail-container" style="aspect-ratio:{{thumbnailWidth}}/{{thumbnailHeight}};background: {{colors}};">
 				<img src="{{thumbnail}}" class="post-thumbnail" fetchpriority="high" alt="{{title}}" onload="this.classList.add('loaded')" />
@@ -24,15 +33,17 @@
 					<img src="/static/img/EMprofile.png" alt="" class="author-avatar" />
 					<h3>毛哥EM</h3>
 					<div class="author-social">
-						<a href="https://github.com/Edit-Mr/" target="_blank" aria-label="GitHub"><img src="/static/img/github-uwu.svg" alt="" /></a
-						><a href="https://www.instagram.com/elvisdragonmao/" aria-label="Instagram" target="_blank"><img src="/static/img/instagram.svg" alt="" /></a>
+						<a href="https://github.com/Edit-Mr/" target="_blank" aria-label="GitHub"><img src="/static/img/github-uwu.svg" alt="" /></a>
+						<a href="https://www.instagram.com/elvisdragonmao/" aria-label="Instagram" target="_blank"><img src="/static/img/instagram.svg" alt="" /></a>
 					</div>
 					<p>數位創作者，全端工程龍</p>
 					<div class="author-copyright">
 						本部落格皆屬原創文章，採
 						<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hant">CC BY-SA 4.0</a>
-						授權，轉載請註明來自毛哥EM 資訊密技。<br />
-						這篇文章對你有幫助嗎？<a href="https://www.buymeacoffee.com/elvismao">考慮幫我買瓶 Red Bull？</a>
+						授權，轉載請註明來自毛哥EM 資訊密技。
+						<br />
+						這篇文章對你有幫助嗎？
+						<a href="https://www.buymeacoffee.com/elvismao">考慮幫我買瓶 Red Bull？</a>
 					</div>
 				</div>
 				<div class="post-tags">標籤：{{postTags}}</div>
@@ -43,12 +54,14 @@
 			<div class="sticky">
 				<div class="share">
 					<div>分享</div>
-					<a href="https://www.facebook.com/sharer.php?u=https://emtech.cc/p/{{postID}}&t={{title}}" target="_blank" rel="noopener" aria-label="Facebook"
-						><img src="/static/img/facebook.svg" alt="" /></a
-					><a href="https://threads.net/intent/post?text={{title}}%0Ahttps://emtech.cc/p/{{postID}}" target="_blank" rel="noopener" aria-label="Threads"><img src="/static/img/threads.svg" alt="" /></a
-					><a href="https://x.com/intent/tweet?text={{title}}&url=https://emtech.cc/p/{{postID}}&tw_p=tweetbutton" target="_blank" rel="noopener" aria-label="Twitter"
-						><img src="/static/img/x.svg" alt="" /></a
-					><img
+					<a href="https://www.facebook.com/sharer.php?u=https://emtech.cc/p/{{postID}}&t={{title}}" target="_blank" rel="noopener" aria-label="Facebook">
+						<img src="/static/img/facebook.svg" alt="" />
+					</a>
+					<a href="https://threads.net/intent/post?text={{title}}%0Ahttps://emtech.cc/p/{{postID}}" target="_blank" rel="noopener" aria-label="Threads"><img src="/static/img/threads.svg" alt="" /></a>
+					<a href="https://x.com/intent/tweet?text={{title}}&url=https://emtech.cc/p/{{postID}}&tw_p=tweetbutton" target="_blank" rel="noopener" aria-label="Twitter">
+						<img src="/static/img/x.svg" alt="" />
+					</a>
+					<img
 						src="/static/img/link.svg"
 						alt=""
 						onclick="
@@ -61,7 +74,8 @@
 							})
 						"
 						title="複製連結"
-					/><img
+					/>
+					<img
 						src="/static/img/share.svg"
 						alt=""
 						onclick="navigator.share({
