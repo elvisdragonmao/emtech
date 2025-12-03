@@ -88,7 +88,7 @@ Jaron 是在 iTune Store 購買，但我大多是在 Bandcamp。iTune Store 的�
 
 當時我在選耳機的考慮的就只有音質跟降噪，所以有排出的名單有 Bose QC Ultra II 9F、Sony WF-1000XM5、Sennheiser TW4、Technics AZ1000。後面兩支沒機會聽到，前面兩隻聲音跟降噪都比較喜歡 Bose QC Ultra II 9F，不過因為生態系考量所以還是決定用 AirPods，音質跟降噪雖然都比預期低但還可以接受。雖然黑五看價格差不多但 AirPods 光是有 Find My 就贏所有耳機了，我超會弄丟東西的。現在我兩個水壺丟在學校都還沒找回來。
 
-## Ramd0m
+## Rand0m
 
 - 平常比起說廁所我比較習慣說化妝室，稍微聽起來好聽高級一點（？化妝室、washroom、bathroom 還能理解，但我一直不知道「restroom 休息室」跟廁所有什麼直接的關聯。看到的一個說法是能讓你「refreshing oneself（自我恢復）」的地方，另一個是 19 世紀末到 20 世紀初的美國百貨公司、劇院等公共場所是真的有叫做 rest room 的房間給你休息、補妝、喝水、洗手。裡面通常有沙發、椅子，甚至女傭服務。後來才把廁所設在同一區域旁邊，於是整區都被叫 restroom。畢竟對於那些穿長裙的貴婦在沒有空調的百貨公司待一整天確實需要貴婦休息區。
 
