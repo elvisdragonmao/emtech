@@ -16,7 +16,7 @@ Office 雖然目前有提供免費線上版，但是都一定要使用線上版�
 
 - [專業增強版 – 繁體中文](https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/zh-tw/ProPlus2024Retail.img)
 - [家用版 – 繁體中文](https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/zh-tw/Home2024Retail.img)
-- [家庭企業版- 繁體中文](https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/zh-tw/HomeBusiness2024Retail.img)
+- [家庭企業版 - 繁體中文](https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/zh-tw/HomeBusiness2024Retail.img)
 - [Project 專業版 – 繁體中文](https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/zh-tw/ProjectPro2024Retail.img)
 - [Project 標準版 – 繁體中文](https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/zh-tw/ProjectStd2024Retail.img)
 - [Visio 專業版 – 繁體中文](https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/zh-tw/VisioPro2024Retail.img)
