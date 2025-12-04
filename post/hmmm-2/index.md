@@ -64,7 +64,7 @@ description: 該。
 
 然後...兩個月後我就打臉我自己乖乖訂回 Spotify 了。
 
-現在我是用家庭方案，一個月五十塊，可以在 iTune Store 買...一首歌。
+現在我是用家庭方案，一個月五十塊，可以在 iTunes Store 買...一首歌。
 
 > 學生方案的話是 88。如果你不在乎播放紀錄，每三個月開個 Email，永遠免費。
 
@@ -76,7 +76,7 @@ description: 該。
 
 雖然我平常聽音樂還是會用 Spotify，但還是架著 Navidrome 放我的收藏。在平常音樂都是當 BGM 又加上是藍牙耳機的情況下 Spotify 的無損音質已經很夠了，不過就跟 CD 一樣，比較多還是收藏價值，還有用實際行動支持作曲者。比如說在去打辯論的飛機上 [草東](https://zh.wikipedia.org/zh-tw/%E8%8D%89%E6%9D%B1%E6%B2%92%E6%9C%89%E6%B4%BE%E5%B0%8D) 陪我度過了愉快的寫稿時光。
 
-Jaron 是在 iTune Store 購買，但我大多是在 Bandcamp。iTune Store 的優點是 Apple Music 自動同步，Bandcamp 的優點是便宜、無損（如果你聽得出來的話）、而且創作者能拿到更多錢。那似乎對於我來說後者完全是比較好的選擇。
+Jaron 是在 iTunes Store 購買，但我大多是在 Bandcamp。iTunes Store 的優點是 Apple Music 自動同步，Bandcamp 的優點是便宜、無損（如果你聽得出來的話）、而且創作者能拿到更多錢。那似乎對於我來說後者完全是比較好的選擇。
 
 ## AirPods Pro 3
 
