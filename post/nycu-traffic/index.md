@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [交大]
-categories: [生活駭客，特殊選材]
+categories: [生活駭客，特殊選才]
 date: 2025-12-13
 description: 這是一篇交通指引。
 ---
