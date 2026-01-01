@@ -15,7 +15,7 @@ We welcome contributions of all kinds, including bug reports, suggestions, and c
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Edit-Mr/emtech.git
+   git clone https://github.com/elvisdragonmao/emtech.git
    cd emtech
    ```
 2. **Install dependencies**:

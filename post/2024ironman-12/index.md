@@ -11,7 +11,7 @@ date: 2024-09-25
 
 在自動化工作流程中，環境變數和條件運行是控制流程的重要工具。這些功能讓我們能夠根據不同的條件或環境設定來靈活地運行特定的任務。今天我要來介紹環境變數的概念、設定方法，以及如何根據條件來控制工作流程的運行。
 
-> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/12>
+> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/12>
 
 ## 什麼是環境變數？
 

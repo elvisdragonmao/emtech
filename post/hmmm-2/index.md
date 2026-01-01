@@ -50,7 +50,7 @@ description: 該。
 根據今年一月我寫給 Wiwi 的信中理由如下：
 
 1. 音質更好，肯定的。
-2. 我喜歡聽的電子舞曲 NCS、TheFatRat 都有提供免費載點，讓我下載高品質的音檔。同時還能下載純伴奏的版本讓我好好品味它的細節。我還為了批量下載 NCS 的音樂製作了一個 [NCS-Downloader](https://github.com/Edit-Mr/NCS-Downloader) 可以快速搜尋下載 NCS 的音樂、作者資訊、以及縮圖並自動合併成 mp3。（沒想到九個月以前的我還在用 yarn XD）
+2. 我喜歡聽的電子舞曲 NCS、TheFatRat 都有提供免費載點，讓我下載高品質的音檔。同時還能下載純伴奏的版本讓我好好品味它的細節。我還為了批量下載 NCS 的音樂製作了一個 [NCS-Downloader](https://github.com/elvisdragonmao/NCS-Downloader) 可以快速搜尋下載 NCS 的音樂、作者資訊、以及縮圖並自動合併成 mp3。（沒想到九個月以前的我還在用 yarn XD）
 3. 平常在工作時我喜歡聽音樂維持節奏，這時候其實比起那種幾百首歌的 lofi music 播放清單我更喜歡反覆聽一首歌或是一張專輯。
 4. 如果我只是要臨時聽一下某首歌打開 YouTube 就好了。
 5. 偶爾聽古典音樂覺得 Spotify 的品質大多真的很糟。

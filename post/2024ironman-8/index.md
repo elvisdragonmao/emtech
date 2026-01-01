@@ -13,7 +13,7 @@ date: 2024-09-21
 
 我們同時也會練習使用 pylint，這是一個 Python 程式檢查工具，可以說是 Python 版本的 ESLint。通過將 ESLint 和 pylint 整合到 CI/CD 流程中，我們可以在程式推送和拉取請求時自動運行程式檢查，確保程式符合規範。
 
-> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/8>
+> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/8>
 
 ## 實作：配置基本的 CI 工作流程運行 ESLint 和 pylint 測試
 

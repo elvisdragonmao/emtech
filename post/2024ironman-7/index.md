@@ -11,7 +11,7 @@ date: 2024-09-20
 
 今天我們要來討論 GitHub Actions 中不同的事件觸發器。事件觸發器是 GitHub Actions 最重要的設定之一，它可以根據特定的 GitHub 事件自動啟動工作流程。讓我們可以在合適的時機自動執行各種操作，例如測試、部署等。在這篇文章中，我們將探討如何設定事件觸發器，並實作不同事件觸發的工作流程。
 
-> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/7>
+> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/7>
 
 ## 什麼是事件觸發器？
 

@@ -800,4 +800,4 @@ console.log(`謝謝你的注意。
   | (￣ヽ＿_ヽ_)__)
   ＼二つ
 emtech.cc is generated with emblog by Elvis Mao`);
-console.log("https://github.com/Edit-Mr/emtech");
+console.log("https://github.com/elvisdragonmao/emtech");

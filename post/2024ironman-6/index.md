@@ -11,7 +11,7 @@ date: 2024-09-19
 
 今天我們要來探討如何讓 GitHub Actions 在進行操作後提 Pull Request（PR）。
 
-> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/6>
+> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/6>
 
 ## 國小複習：Pull Request 是什麼？
 

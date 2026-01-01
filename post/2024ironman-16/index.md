@@ -11,7 +11,7 @@ date: 2024-09-29
 
 在現代軟體開發中版本控制十分重要。利用版本控制系統（如 Git），我們可以追蹤程式碼變化、管理版本和標記釋出版本。今天，我們將探討如何使用 GitHub Actions 自動化版本控制和標記，以便在每次部署或發佈時自動建立 Git 標記並發布新版本。
 
-> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/16>
+> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/16>
 
 ## 認識 Git 標記和發布
 

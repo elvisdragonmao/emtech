@@ -18,7 +18,7 @@ description: 今年 SITCON 一樣很讚。
 
 相關資源
 
-這次議程的簡報、Credit、和相關資源都整理在 [GitHub Repo](https://github.com/Edit-Mr/SITCON2025) 裡面。
+這次議程的簡報、Credit、和相關資源都整理在 [GitHub Repo](https://github.com/elvisdragonmao/SITCON2025) 裡面。
 
 {{noticed}}
 
@@ -44,7 +44,7 @@ description: 今年 SITCON 一樣很讚。
 
 現在相關書籍很多，網路上的資源很豐富，找有興趣的主題搜尋都很多文章或影片。最簡單的就是去找一系列鐵人賽的文章讀完跟著做，就能學到很多東西了。
 
-我的部落格有一些以前不專業的 [基礎語法](https://emtech.cc/category/%E7%A8%8B%E5%BC%8F%E6%95%99%E5%AD%B8) 和 [去年鐵人賽的教學文章](https://emtech.cc/category/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC)，可以給你做參考。其他議程提到的資源可以參考 [這次議程的 GitHub Repo](https://github.com/Edit-Mr/SITCON2025)。
+我的部落格有一些以前不專業的 [基礎語法](https://emtech.cc/category/%E7%A8%8B%E5%BC%8F%E6%95%99%E5%AD%B8) 和 [去年鐵人賽的教學文章](https://emtech.cc/category/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC)，可以給你做參考。其他議程提到的資源可以參考 [這次議程的 GitHub Repo](https://github.com/elvisdragonmao/SITCON2025)。
 
 > 要怎麼學會國中數學
 
@@ -62,7 +62,7 @@ margin: auto;
 
 如果你是要問怎麼用網頁製作紙本履歷，這問我的好朋友 [Riley](https://github.com/rileychh) 他比較熟。
 
-如果是問怎麼用網頁製作網頁履歷，最簡單就是找你喜歡的開發者看看他們是怎麼排版製作的然後照著去修改。如果你是想知道我的個人網頁是怎麼做的可以參考 [GitHub 原始碼 README](https://github.com/Edit-Mr/intro)，我有整理出來裡面用到的技術。
+如果是問怎麼用網頁製作網頁履歷，最簡單就是找你喜歡的開發者看看他們是怎麼排版製作的然後照著去修改。如果你是想知道我的個人網頁是怎麼做的可以參考 [GitHub 原始碼 README](https://github.com/elvisdragonmao/intro)，我有整理出來裡面用到的技術。
 
 ### 講師有在用 Tailwind CSS 嗎，可以只用 Tailwind CSS 寫動畫嗎？
 

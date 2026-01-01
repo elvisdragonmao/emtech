@@ -59,7 +59,7 @@ git push --set-upstream origin new-feature
 
 #### 2. 使用 Bash 腳本
 
-接著請你下載我的 [Bash 腳本](https://github.com/Edit-Mr/SSS/blob/main/github/PairExtraordinaire.sh)。你可以手動下載或是直接 curl 這個檔案。
+接著請你下載我的 [Bash 腳本](https://github.com/elvisdragonmao/SSS/blob/main/github/PairExtraordinaire.sh)。你可以手動下載或是直接 curl 這個檔案。
 
 ```bash
 git checkout -b elvismao

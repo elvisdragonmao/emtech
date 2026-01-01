@@ -236,7 +236,7 @@ date: 2022-08-14
 			<a href="https://instagram.com/">Instagram</a>
 			<br />
 			Made by 
-			<a href="https://github.com/Edit-Mr">Edit Mr.</a>
+			<a href="https://github.com/elvisdragonmao">Edit Mr.</a>
 			 with❤
 		</p>
 		    
@@ -564,7 +564,7 @@ function doGet() {
 			<a href="https://discord.gg/ve9ERWVEPR">橘子牌太空船</a>
 			<br />
 			Made by 
-			<a href="https://github.com/Edit-Mr">EDM</a>
+			<a href="https://github.com/elvisdragonmao">EDM</a>
 			 with❤
 		</p>
 		    

@@ -24,7 +24,7 @@ Although I considered learning Go for this project, I ultimately chose Node.js d
 
 ## Design
 
-Every detail in **emblog**—from page transitions, TikTok-like lazy loading, meticulous SEO optimization, to the RSS feed—has been carefully designed to ensure the final blog delivers outstanding performance and user experience. Some features are still under development due to time constraints, but updates are ongoing. Feedback via [GitHub](https://github.com/Edit-Mr/emtech) is always welcome.
+Every detail in **emblog**—from page transitions, TikTok-like lazy loading, meticulous SEO optimization, to the RSS feed—has been carefully designed to ensure the final blog delivers outstanding performance and user experience. Some features are still under development due to time constraints, but updates are ongoing. Feedback via [GitHub](https://github.com/elvisdragonmao/emtech) is always welcome.
 
 **emblog** primarily consists of just two pages: a homepage and an article page. ~~Definitely not because I was too lazy to add more~~. Some planned features haven't been implemented yet but will be added gradually.
 
@@ -74,7 +74,7 @@ The writing workflow is designed for maximum comfort. The first paragraph automa
 
 ## Try It Yourself
 
-If you'd like to experiment locally, you can download it from [GitHub](https://github.com/Edit-Mr/emtech). Don't forget to leave a star!
+If you'd like to experiment locally, you can download it from [GitHub](https://github.com/elvisdragonmao/emtech). Don't forget to leave a star!
 
 1. Ensure Node.js is installed.
 2. Run `pnpm` to install dependencies.
@@ -83,4 +83,4 @@ If you'd like to experiment locally, you can download it from [GitHub](https://g
 
 ## License
 
-**emblog** was designed for **emtech** and currently lacks customization features for general use. However, all code is released under the Apache 2.0 license, and you're welcome to modify and use it. In the future, I plan to make it a publicly usable blog generator. Follow my [GitHub](https://github.com/Edit-Mr/emtech) for updates.
+**emblog** was designed for **emtech** and currently lacks customization features for general use. However, all code is released under the Apache 2.0 license, and you're welcome to modify and use it. In the future, I plan to make it a publicly usable blog generator. Follow my [GitHub](https://github.com/elvisdragonmao/emtech) for updates.

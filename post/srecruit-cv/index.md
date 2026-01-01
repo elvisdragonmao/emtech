@@ -136,7 +136,7 @@ WinstonBot
 
 你有使用 Discord 嗎？歡迎在伺服器中加入 [WinstonBot](https://discord.com/oauth2/authorize?client_id=1342364253486846032) 來幫你檢查有沒有人使用支語！
 
-GitHub: [WinstonBot](https://github.com/Edit-Mr/WinstonBot)
+GitHub: [WinstonBot](https://github.com/elvisdragonmao/WinstonBot)
 
 {{noticed}}
 

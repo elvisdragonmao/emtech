@@ -11,7 +11,7 @@ date: 2024-10-11
 
 在多倉庫的開發環境中，管理和協作變得複雜。尤其當倉庫之間需要保持同步或協同工作時，手動管理變得難以維持。使用 GitHub Actions 進行跨倉庫的自動化工作流程，可以大幅提升效率，減少手動操作的錯誤。本文將介紹如何設定跨倉庫的自動化工作流程，實現程式同步和自動化任務。
 
-> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/28>
+> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/28>
 
 ## 為什麼需要跨倉庫協作？
 

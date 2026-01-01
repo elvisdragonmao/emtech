@@ -28,7 +28,7 @@ pyinstaller --onefile hello.py
 
 這樣就需要在不同的環境中進行打包，並且需要手動處理和分發生成的可執行文件實在有夠麻煩，你還要為了打包的程式多買一台筆電。為了提高效率，我們可以使用 GitHub Actions 來自動化這個過程，並在不同的操作系統上自動打包 Python 應用。
 
-> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/21>
+> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/21>
 
 ## 準備工作
 

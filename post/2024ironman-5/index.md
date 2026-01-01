@@ -11,7 +11,7 @@ date: 2024-09-18
 
 今天我們要來探討如何使用 Prettier 來進行程式格式化。Prettier 是一個有名的程式格式化工具，它可以幫助你保持程式風格一致，從而提高程式的可讀性和維護性。我們將介紹如何在 VSCode 中安裝和設定 Prettier，並在 GitHub Actions 中使用它來自動格式化或檢查程式。
 
-> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/5>
+> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/5>
 
 ## 認識 Prettier
 

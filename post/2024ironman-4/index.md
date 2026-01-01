@@ -11,7 +11,7 @@ date: 2024-09-17
 
 今天我們要來探討如何使用 GitHub Actions 來進行檔案壓縮和解壓縮操作，並將其上傳為工件（artifact）。
 
-> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/4>
+> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/4>
 
 ## 國小複習：GitHub 的 Artifact 是什麼？
 
@@ -144,7 +144,7 @@ git push origin main
 你可以開啟你已經有的 Vite 專案或是使用我做的這個簡單的小網頁 - [HSL-ball](http://elvismao.com/HSL-ball/)。
 
 ```bash
-git clone https://github.com/Edit-Mr/HSL-ball.git
+git clone https://github.com/elvisdragonmao/HSL-ball.git
 cd HSL-ball
 ```
 

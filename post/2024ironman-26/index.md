@@ -11,7 +11,7 @@ date: 2024-10-09
 
 在持續整合和持續部署 (CI/CD) 流程中，及時了解工作流程的狀態對於快速響應和改進至關重要。本文將介紹如何在 GitHub Actions 工作流程中整合 Slack 通知服務，以便在工作流程運行時獲得實時通知，以及如何生成報告文件來跟蹤工作流程的結果。
 
-> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/26>
+> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/26>
 
 今天的文章假設你會使用 Slack，並且已經有一個 Slack 工作區。如果你還沒有，可以參考 [Slack 官方說明文件](https://slack.com/intl/zh-tw/help/articles/206845317-Create-a-Slack-workspace) 來建立一個。
 

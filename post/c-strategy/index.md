@@ -75,7 +75,7 @@ function simulate(numQuestions, simulations, strategy) {
 }
 ```
 
-完整的程式碼包含 HTML、CSS 和 JavaScript，可以生成一個互動網頁，讓使用者自行選擇模擬次數和策略。你可以在 [這裡](https://github.com/Edit-Mr/Edit-Mr.github.io/tree/main/code/c-strategy) 查看完整的原始碼。
+完整的程式碼包含 HTML、CSS 和 JavaScript，可以生成一個互動網頁，讓使用者自行選擇模擬次數和策略。你可以在 [這裡](https://github.com/elvisdragonmao/Edit-Mr.github.io/tree/main/code/c-strategy) 查看完整的原始碼。
 
 ![猜題策略模擬器](run.webp)
 

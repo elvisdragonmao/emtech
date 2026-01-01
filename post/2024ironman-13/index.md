@@ -11,7 +11,7 @@ date: 2024-09-26
 
 Docker 是一種容器化技術，它可以將應用程序及其所有依賴套件打包成為一個輕量、可移植的容器。這使得應用在不同環境中能夠以一致的方式運行。今天，我們將探討如何使用 GitHub Actions 自動化 Docker 映像的構建和推送。
 
-> 今日範例程式：<https://github.com/Edit-Mr/2024-GitHub-Actions/tree/main/13>
+> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/13>
 
 ## Docker 基本概念
 

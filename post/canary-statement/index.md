@@ -17,6 +17,6 @@ description: 當你看到這裡有東西不見，你就知道發生甚麼事了�
 4. 我從未受到任何政府單位、公司或其他組織的要求，強迫我刪除或修改部落格上的內容。
 5. 這個部落格由我個人維護與管理，沒有第三方擁有管理權。
 
-你可以透過 [GitHub 的 commit 紀錄](https://github.com/Edit-Mr/emtech/commits/main/post/canary-statement/index.md) 來查看這裡的聲明是否有消失。
+你可以透過 [GitHub 的 commit 紀錄](https://github.com/elvisdragonmao/emtech/commits/main/post/canary-statement/index.md) 來查看這裡的聲明是否有消失。
 
 > 縮圖背景來自 [Mark Olsen on Unsplash](https://unsplash.com/photos/yellow-bird-perched-on-white-flower-tjZPseTxe6k)。其實這支好像是 Warbler 不是 Canary 但隨便你們應該也看不出來。
