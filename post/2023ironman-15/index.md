@@ -179,7 +179,7 @@ body {
 
 好啦，這樣就做完了！
 
-https://codepen.io/edit-mr/pen/LYMmQOE
+https://codepen.io/elvismao/pen/LYMmQOE
 
 ![顏色選擇成果](final.gif)
 

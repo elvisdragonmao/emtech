@@ -45,7 +45,7 @@ date: 2023-09-15
 
 我使用 Animate.CSS 想要製作一個車開進來的效果，只需要加入一個 class 就可以了…
 
-https://codepen.io/edit-mr/pen/bGObqWq
+https://codepen.io/elvismao/pen/bGObqWq
 
 等等我們的定位怎麼跑掉啦？仔細一看原來 Animate.css 也是使用 `transform` 屬性來製作動畫，所以我們互相衝突了。
 
@@ -53,9 +53,9 @@ https://codepen.io/edit-mr/pen/bGObqWq
 
 當然你可以為了使用 Animate.css 所有的 CSS 都不使用 `transform` 屬性，但其實自己寫也沒有多麻煩喔，你只需要先把我們原本的 `left: 50` 改成出發點 `0` ，製作動畫 `@keyframes drive { to { left: 50% }` ，然後套用到車子上就可以了。同時你對於車要動多快，加速度，時間點都可以自由地掌握。
 
-<iframe height="300" style="width: 100%;" scrolling="no" title="Car Move" src="https://codepen.io/edit-mr/embed/NWeKpjj?default-tab=css%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/edit-mr/pen/NWeKpjj">
-  Car Move</a> by Edit Mr. (<a href="https://codepen.io/edit-mr">@edit-mr</a>)
+<iframe height="300" style="width: 100%;" scrolling="no" title="Car Move" src="https://codepen.io/elvismao/embed/NWeKpjj?default-tab=css%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/elvismao/pen/NWeKpjj">
+  Car Move</a> by Edit Mr. (<a href="https://codepen.io/elvismao">@edit-mr</a>)
   on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 

@@ -121,7 +121,7 @@ filter: grayscale(50%) brightness(150%) blur(3px);
 
 finter 在製作漸層很實用，可以讓你只需要選擇一個顏色就能生成不錯看的漸層。
 
-https://codepen.io/edit-mr/pen/GRPyNYY
+https://codepen.io/elvismao/pen/GRPyNYY
 
 ![相疊](gradient.webp)
 

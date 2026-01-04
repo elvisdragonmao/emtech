@@ -67,7 +67,7 @@ body {
 
 這將使背景圖片與 `.container` 元素的內容滾動同步，而不是整個頁面。
 
-來個大範例 <https://codepen.io/edit-mr/pen/rNodVbV>
+來個大範例 <https://codepen.io/elvismao/pen/rNodVbV>
 
 ![飯粒範例](scroll.gif)
 

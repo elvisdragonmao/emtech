@@ -215,7 +215,7 @@ filter: blur(30px);
 
 好啦結合在一起完成了，我們來看看成果吧。
 
-https://codepen.io/edit-mr/pen/OJrGmyW
+https://codepen.io/elvismao/pen/OJrGmyW
 
 ![](final.gif)
 

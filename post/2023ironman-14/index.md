@@ -107,7 +107,7 @@ input:checked ~ .light {
 
 最後成果如下
 
-https://codepen.io/edit-mr/pen/KKbZjOq
+https://codepen.io/elvismao/pen/KKbZjOq
 
 ![開關成果](final.gif)
 

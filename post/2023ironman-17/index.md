@@ -63,7 +63,7 @@ div {
 
 是不是有點波浪的感覺？也有點像一些手機充電的動畫。我們就是要借助這個起伏製作出波浪動畫。而實際上要怎麼做呢？我們先把背景設定成藍色，接著把這個椰子放大好幾倍把這個海切出海浪。
 
-https://codepen.io/edit-mr/pen/dywjOyw
+https://codepen.io/elvismao/pen/dywjOyw
 
 ![](wave.gif)
 
@@ -73,7 +73,7 @@ https://codepen.io/edit-mr/pen/dywjOyw
 
 最後來多疊幾個，然後裝飾一下它。成果如下：
 
-https://codepen.io/edit-mr/pen/JjwBbgg
+https://codepen.io/elvismao/pen/JjwBbgg
 
 ![](final.gif)
 

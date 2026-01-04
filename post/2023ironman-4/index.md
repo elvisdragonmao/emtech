@@ -66,7 +66,7 @@ transition: background 0.5s; /* 是不是看起來超舒服！*/
 
 以下是一個按鈕範例。你可以看到放大屬性 `scale` 有設定 `transition` 所以會漸變，而背景顏色則沒有。
 
-https://codepen.io/edit-mr/pen/mdaPYLv
+https://codepen.io/elvismao/pen/mdaPYLv
 
 ![按鈕範例](button.webp)
 
@@ -108,7 +108,7 @@ body {
 
 下面是一個設定 Width 的範例
 
-https://codepen.io/edit-mr/pen/RwEamev
+https://codepen.io/elvismao/pen/RwEamev
 
 ![Width Transition](width.gif)
 
@@ -206,7 +206,7 @@ body {
 animation: drive 3s forwards;
 ```
 
-https://codepen.io/edit-mr/pen/NWeKpjj ![drive 3s forwards](car.gif)
+https://codepen.io/elvismao/pen/NWeKpjj ![drive 3s forwards](car.gif)
 
 CSS Animation 的語法如下
 

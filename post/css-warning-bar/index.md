@@ -84,7 +84,7 @@ div {
 
 ![上：repeating-linear-gradient 下：linear-gradient](result.webp)
 
-[Codepen 範例](https://codepen.io/edit-mr/pen/XJJYEZa)
+[Codepen 範例](https://codepen.io/elvismao/pen/XJJYEZa)
 
 ## 動畫
 
@@ -158,6 +158,6 @@ div {
 
 ![轉起來](spin.gif)
 
-[Codepen 範例](https://codepen.io/edit-mr/pen/qEEQMMp)
+[Codepen 範例](https://codepen.io/elvismao/pen/qEEQMMp)
 
 好了頭已經有點暈了。

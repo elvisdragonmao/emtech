@@ -12,7 +12,7 @@ date: 2023-10-08
 
 今天我們要來做這個紓壓的效果：
 
-https://codepen.io/edit-mr/pen/poqqoLr
+https://codepen.io/elvismao/pen/poqqoLr
 
 ![成果](final.gif)
 
