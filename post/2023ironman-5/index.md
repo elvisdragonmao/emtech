@@ -11,7 +11,7 @@ date: 2023-09-19
 
 假設你今天想製作這個載入動畫…
 
-https://codepen.io/edit-mr/pen/YzdzvdV
+https://codepen.io/elvismao/pen/YzdzvdV
 
 ![Alt text](loading.gif)
 
@@ -161,7 +161,7 @@ animation: 1.5s ease-in-out infinite zoom;
 
 ## 圓圈 Loading 動畫
 
-https://codepen.io/edit-mr/pen/LYMZeZE?editors=1100
+https://codepen.io/elvismao/pen/LYMZeZE?editors=1100
 
 ![有點像 Windows10 更新動畫](spin.gif)
 

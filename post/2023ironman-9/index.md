@@ -56,7 +56,7 @@ mix-blend-mode: luminosity;
 
 我們來實際應用看看吧，這是一個簡單的數字範例。可以看出 mix-blend-mode 讓你的顏色堆疊有著更多的可能，不只是半透明而已，還有顏色互相堆疊渲染的效果。
 
-https://codepen.io/edit-mr/pen/jOXayXa
+https://codepen.io/elvismao/pen/jOXayXa
 
 ![時間數字範例](mix-time.webp)
 

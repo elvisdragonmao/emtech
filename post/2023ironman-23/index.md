@@ -162,7 +162,7 @@ div {
 
 你可以狂加讓他群魔亂舞起來。
 
-https://codepen.io/edit-mr/pen/mdaabzQ?editors=1100
+https://codepen.io/elvismao/pen/mdaabzQ?editors=1100
 
 ![你可以狂加讓他群魔亂舞起來](final.gif)
 

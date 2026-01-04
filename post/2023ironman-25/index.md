@@ -171,7 +171,7 @@ input:checked ~ label > div:nth-child(3) {
 
 再來做一個也很常見的打叉，為了方便我們乾脆全部使用 absolute 定位。成果如下：
 
-https://codepen.io/edit-mr/pen/zYyyEgz
+https://codepen.io/elvismao/pen/zYyyEgz
 
 ![打叉](cross.gif)
 
@@ -335,7 +335,7 @@ div {
 
 加上昨天的相黏效果，變得更可愛了。
 
-https://codepen.io/edit-mr/pen/NWeeYRq
+https://codepen.io/elvismao/pen/NWeeYRq
 
 ![相黏效果](final.gif)
 

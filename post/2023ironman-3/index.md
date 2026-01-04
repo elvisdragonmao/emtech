@@ -132,7 +132,7 @@ align-content: flex-start | flex-end | center | space-between | space-around | s
 
 比如說以下是一個頁首，使用 `flex-grow` 把剩下的空間都給中間。
 
-https://codepen.io/edit-mr/pen/ZEVWaqq
+https://codepen.io/elvismao/pen/ZEVWaqq
 
 ![flex-grow](flex-grow.webp)
 

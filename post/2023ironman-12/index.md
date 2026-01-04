@@ -66,7 +66,7 @@ window.addEventListener("scroll", function () {
 
 以下是一個簡單的範例。
 
-https://codepen.io/edit-mr/pen/vYvZagX
+https://codepen.io/elvismao/pen/vYvZagX
 
 ![Alt text](boom.gif)
 
@@ -180,7 +180,7 @@ window.addEventListener("scroll", function () {
 
 這樣就完成了。來看看成果，十分有趣對吧！
 
-https://codepen.io/edit-mr/pen/gOZRQex
+https://codepen.io/elvismao/pen/gOZRQex
 
 ![Final](spin.gif)
 

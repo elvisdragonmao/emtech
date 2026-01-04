@@ -235,7 +235,7 @@ itemsContainer.addEventListener("scroll", function () {
 }
 ```
 
-https://codepen.io/edit-mr/pen/dywrReK
+https://codepen.io/elvismao/pen/dywrReK
 
 ![成果](final.gif)
 
