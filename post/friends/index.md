@@ -126,7 +126,7 @@ Zeabur 創辦人
 </a>
 <a class="friend" href="https://yuan-tw.net/">
 
-![Yuan](https://yuan-tw.net/images/2.jfif)
+![Yuan](yuan.jfif)
 
 <div>
 
@@ -163,13 +163,25 @@ Zeabur 創辦人
 </a>
 <a class="friend" href="https://superlily.dev/">
 
-![柴犬 Lily](https://pic.superlily.dev/shiba.jpg)
+![柴犬 Lily]()
 
 <div>
 
 ### 柴犬 Lily
 
 據說這隻柴犬叼著毛哥的 SSD 從臺北跑到臺中
+
+</div>
+</a>
+<a class="friend" href="https://510208.github.io/">
+
+![SamHacker](SamHacker.webp)
+
+<div>
+
+### SamHacker
+
+把GitHub當垃圾桶的高中牲
 
 </div>
 </a>
@@ -229,7 +241,7 @@ Chung
 
 <a class="friend" href="https://naup.mygo.tw/">
 
-![堇姬 Naup](https://naup.mygo.tw/avatar/avatar.webp)
+![堇姬 Naup](naup.webp)
 
 <div>
 
@@ -270,7 +282,7 @@ A 4002-year-old demigod crane
 </a>
 <a class="friend" href="https://www.anzifan.com/">
 
-![异次元 de 机智君](https://gravatar.loli.net/avatar/83f6ef7256399833395e9c94ad838442)
+![异次元 de 机智君](jizhi.png)
 
 <div>
 
