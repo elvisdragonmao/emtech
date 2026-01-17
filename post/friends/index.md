@@ -181,7 +181,7 @@ Zeabur 創辦人
 
 ### SamHacker
 
-把GitHub當垃圾桶的高中牲
+把 GitHub 當垃圾桶的高中牲
 
 </div>
 </a>
