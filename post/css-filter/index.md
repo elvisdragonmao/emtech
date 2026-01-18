@@ -23,4 +23,4 @@ date: 2023-03-13
 
 需要注意的是，使用時圖示必須是黑色。如果不是，你可以在 filter 屬性中添加 brightness(0) saturate(100%)，先將它們塗黑。
 
-希望這個 CSS 濾鏡生成器能夠節省你的時間並讓你的網站圖示更加美觀和獨特。如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM 資訊密技
+希望這個 CSS 濾鏡生成器能夠節省你的時間並讓你的網站圖示更加美觀和獨特。如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM資訊密技

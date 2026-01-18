@@ -23,7 +23,7 @@ description: 毛哥EM 的近況。
 ## 近期專案
 
 - [**emfont**](https://font.emtech.cc/) - 開源免費的中文網頁字體服務。
-- [**毛哥EM 資訊密技**](https://emtech.cc/) - 就這裡。
+- [**毛哥EM資訊密技**](https://emtech.cc/) - 就這裡。
 - [SITCON 2026](https://sitcon.org/) - 學生計算機年會。
 
 ## 實務裝備

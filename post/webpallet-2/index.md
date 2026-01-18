@@ -485,4 +485,4 @@ Video 是用來播放影片的，我們可以用`<video>`元素建立，然後�
 
 好啦，今天我們介紹了許多不同的 HTML 元素。這些已經是最常用的元素了，如果你想知道更多的元素，可以到[MDN](https://developer.mozilla.org/zh-TW/docs/Web/HTML/Element)查詢。下一週我們要來介紹 CSS 來裝飾我們的網頁。
 
-每週一早上六點，我們會在 YouTube 和各大 Podcast 平台不定時更新。如果你喜歡文字版，也歡迎在 Instagram 和 Google 新聞追蹤毛哥EM 資訊密技。我是毛哥EM，讓我們下週再見！
+每週一早上六點，我們會在 YouTube 和各大 Podcast 平台不定時更新。如果你喜歡文字版，也歡迎在 Instagram 和 Google 新聞追蹤毛哥EM資訊密技。我是毛哥EM，讓我們下週再見！
