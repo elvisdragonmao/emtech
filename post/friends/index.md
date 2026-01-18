@@ -175,7 +175,7 @@ Zeabur 創辦人
 </a>
 <a class="friend" href="https://510208.github.io/">
 
-![SamHacker](SamHacker.webp)
+![SamHacker](https://gravatar.com/avatar/f7598bd8d4aba38d7219341f81a162fc842376b3b556b1995cbb97271d9e2915?&size=128)
 
 <div>
 
