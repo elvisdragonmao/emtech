@@ -5,6 +5,7 @@
 		"dev": "CACHE=true SKIPPOST=true node emblog/server.js",
 		"format": "prettier --write .",
 		"new": "node emblog/new.js",
+		"prepare": "husky",
 		"start": "node emblog/server.js"
 	},
 	"dependencies": {
@@ -14,6 +15,7 @@
 	},
 	"devDependencies": {
 		"autocorrect-node": "^2.14.0",
+		"husky": "^9.1.7",
 		"prettier": "^3.7.4",
 		"prettier-plugin-organize-imports": "^4.3.0",
 		"prettier-plugin-packagejson": "^2.5.20"
