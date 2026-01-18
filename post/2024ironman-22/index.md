@@ -18,7 +18,7 @@ date: 2024-10-05
 
 身為一位高三的特選生馬上要準備申請大學了，但是每間學校開始申請的時間都不一樣。還好有一間補習班的網站可以查看各間學校的申請時間。但是每天都要打開網站查看有沒有新的公告實在是太麻煩了。所以我決定寫一個爬蟲腳本，每天自動抓取網站上的申請時間，如果有更新的話就使用 Discord 通知我。
 
-![成果](https://raw.githubusercontent.com/Edit-Mr/2024SpecAdmitNotifier/main/demo.png)
+![成果](https://raw.githubusercontent.com/elvisdragonmao/2024SpecAdmitNotifier/main/demo.png)
 
 ## 撰寫爬蟲腳本
 
@@ -186,7 +186,7 @@ jobs:
         with:
           commit_message: "Update data"
           branch: main
-          commit_user_name: Edit-Mr
+          commit_user_name: elvisdragonmao
           commit_user_email: info@elvismao.com
 ```
 

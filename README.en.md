@@ -2,9 +2,9 @@
 
 <https://emtech.cc>
 
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/markdown-validation.yml?label=Markdown) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/autocorrect.yml?label=Format) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/file-size-check.yml?label=Image%20Size)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/elvisdragonmao/emtech/markdown-validation.yml?label=Markdown) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/elvisdragonmao/emtech/autocorrect.yml?label=Format) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/elvisdragonmao/emtech/file-size-check.yml?label=Image%20Size)
 
-![emtech og image](https://raw.githubusercontent.com/Edit-Mr/emtech/main/static/img/og.webp)
+![emtech og image](https://raw.githubusercontent.com/elvisdragonmao/emtech/main/static/img/og.webp)
 
 **emblog** is a distinctive and powerful blog framework specifically designed for **emtech**. It enables you to create stunning single-page static blogs in seconds.
 

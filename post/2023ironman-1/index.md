@@ -55,7 +55,7 @@ https://codepen.io/elvismao/pen/bGObqWq
 
 <iframe height="300" style="width: 100%;" scrolling="no" title="Car Move" src="https://codepen.io/elvismao/embed/NWeKpjj?default-tab=css%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/elvismao/pen/NWeKpjj">
-  Car Move</a> by Edit Mr. (<a href="https://codepen.io/elvismao">@edit-mr</a>)
+  Car Move</a> by Edit Mr. (<a href="https://codepen.io/elvismao">@elvisdragonmao</a>)
   on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
