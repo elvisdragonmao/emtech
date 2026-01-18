@@ -40,7 +40,7 @@ updateDate(document.querySelector(".home-page #time p"));
 updateReadHistory();
 
 const pre = document.createElement("pre");
-document.getElementById("header-playground").appendChild(pre);
+document.getElementById("header-playground").prepend(pre);
 
 let x = 1760,
 	z = 0,
