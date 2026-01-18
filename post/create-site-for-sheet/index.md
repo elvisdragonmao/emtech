@@ -19,7 +19,7 @@ date: 2022-08-14
 
 {{notice}} 薩波委託進度
 
-開發者：毛哥EM(我) 類型：網站網址：[毛哥EM 的基地](https://Edit-Mr.github.io/code/sabooo) {{noticed}}
+開發者：毛哥EM(我) 類型：網站網址：[毛哥EM 的基地](https:/elvismao.com/code/sabooo) {{noticed}}
 
 ## 架一個網站！
 
@@ -48,9 +48,9 @@ date: 2022-08-14
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!--下面這行是縮圖，可以換網址-->
 	    
-	<link href="https://Edit-Mr.github.io/code/sabooo/thumbnail.webp" rel="icon" type="image/x-icon" />
+	<link href="https:/elvismao.com/code/sabooo/thumbnail.webp" rel="icon" type="image/x-icon" />
 	    
-	<link rel="stylesheet" type="text/css" href="https://Edit-Mr.github.io/css/Animate.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="https:/g.elvismao.com/css/Animate.css" media="screen" />
 	<!--下面這行是主題顏色，可以自由更換（支援 HEX）-->
 	    
 	<meta name="theme-color" content="orange" />
@@ -373,9 +373,9 @@ function doGet() {
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!--下面這行是縮圖，可以換網址-->
 	    
-	<link href="https://Edit-Mr.github.io/code/sabooo/thumbnail.webp" rel="icon" type="image/x-icon" />
+	<link href="https:/elvismao.com/code/sabooo/thumbnail.webp" rel="icon" type="image/x-icon" />
 	    
-	<link rel="stylesheet" type="text/css" href="https://Edit-Mr.github.io/css/Animate.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="https:/g.elvismao.com/css/Animate.css" media="screen" />
 	<!--下面這行是主題顏色，可以自由更換（支援 HEX）-->
 	    
 	<meta name="theme-color" content="orange" />

@@ -13,7 +13,7 @@ date: 2023-05-01
 
 ## 範例網頁
 
-首先，我們先來看一下最終的成果。這是我們要製作的點名系統的演示網頁。你可以點擊[這裡](https://edit-mr.github.io/roll-call)查看完整的演示網頁。他有以下幾個功能
+首先，我們先來看一下最終的成果。這是我們要製作的點名系統的演示網頁。你可以點擊[這裡](https:/g.elvismao.com/roll-call)查看完整的演示網頁。他有以下幾個功能
 
 - 點名：點擊學生姓名，即可完成點名
 - 新增學生：輸入學生姓名點擊新增按鈕，即可新增學生
@@ -366,7 +366,7 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
 				</div>
 			</section>
 			<footer>
-				<a href="edit-mr.github.io/">毛哥EM</a>
+				<a href="elvisdragonmao.github.io/">毛哥EM</a>
 				製作 |
 				<a href="https://emtech.cc/post/roll-call">教學</a>
 			</footer>

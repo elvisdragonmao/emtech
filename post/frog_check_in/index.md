@@ -17,7 +17,7 @@ date: 2021-10-07
 
 - 開發者：毛哥EM(我)
 - 類型：網站
-- 網址：[EM's Base](http://edit-mr.github.io/code/frog) {{noticed}}
+- 網址：[EM's Base](http://elvisdragonmao.github.io/code/frog) {{noticed}}
 
 ## 功能
 
@@ -302,7 +302,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 		<button onclick="window.location='search.html';">查詢紀錄</button>
 		<button onclick="window.location='sign-up.html';">新增學生</button>
 		<p>
-			<a href="https://Edit-Mr.github.io">毛哥EM</a>
+			<a href="https:/g.elvismao.com">毛哥EM</a>
 			製作
 		</p>
 	</main>
@@ -333,7 +333,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 		<input type="text" class="form-control" id="name" />
 		<button type="button" id="sendOrder">新增</button>
 		<p>
-			<a href="https://Edit-Mr.github.io">毛哥EM</a>
+			<a href="https:/g.elvismao.com">毛哥EM</a>
 			製作
 			<br />
 			送出後請稍等數秒 勿重複新增
@@ -481,7 +481,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
   <div id="students"></div>
   <h2>已到學生</h2>
   <p class="ed" id="ed"></p>
-  <p><a href="https://Edit-Mr.github.io">毛哥EM</a>製作</p>
+  <p><a href="https:/g.elvismao.com">毛哥EM</a>製作</p>
  </main>
 </body>
 ```
@@ -523,7 +523,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 			</tbody>
 		</table>
 		<p>
-			<a href="https://Edit-Mr.github.io">毛哥EM</a>
+			<a href="https:/g.elvismao.com">毛哥EM</a>
 			製作
 			<br />
 			送出後請稍等數秒

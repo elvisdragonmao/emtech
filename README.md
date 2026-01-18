@@ -4,7 +4,7 @@
 
 <https://emtech.cc> | [英文版 README](README.en.md)
 
-![格式檢查](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/markdown-validation.yml?label=%F0%9F%93%B0%20格式檢查) ![GitHub Actions 工作流程狀態](https://img.shields.io/github/actions/workflow/status/Edit-Mr/emtech/file-size-check.yml?label=%F0%9F%8E%87%E5%9C%96%E7%89%87%E5%A4%A7%E5%B0%8F%E6%AA%A2%E6%9F%A5)
+![格式檢查](https://img.shields.io/github/actions/workflow/status/elvisdragonmao/emtech/markdown-validation.yml?label=%F0%9F%93%B0%20格式檢查) ![GitHub Actions 工作流程狀態](https://img.shields.io/github/actions/workflow/status/elvisdragonmao/emtech/file-size-check.yml?label=%F0%9F%8E%87%E5%9C%96%E7%89%87%E5%A4%A7%E5%B0%8F%E6%AA%A2%E6%9F%A5)
 
 ![毛哥EM 資訊密技 og 圖片](static/img/og.webp)
 

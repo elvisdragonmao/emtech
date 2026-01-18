@@ -142,14 +142,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notion GitHub Issues Automation
-        uses: Edit-Mr/GitHub-issue-2-Notion@main
+        uses: elvisdragonmao/GitHub-issue-2-Notion@main
         with:
           repo: ${{ github.repository }}
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
           NOTION_DATABASE: ${{ secrets.NOTION_DATABASE_ID }}
 ```
 
-這個文件中包含了工作流程的名稱、觸發條件、工作、步驟等等。這裡我們使用了 `Edit-Mr/GitHub-issue-2-Notion@main` 來引入我們的 Action。
+這個文件中包含了工作流程的名稱、觸發條件、工作、步驟等等。這裡我們使用了 `elvisdragonmao/GitHub-issue-2-Notion@main` 來引入我們的 Action。
 
 觸發條件中包含了 `issues` 和 `workflow_dispatch`，這樣當有 issue 被打開、編輯、刪除、關閉、重新打開的時候，或者手動觸發的時候，這個工作流程就會被觸發。常見的觸發條件還有 `push`、`pull_request`、`schedule` 等等，你可以在 [GitHub Actions Documentation](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows) 中找到更多的觸發條件。
 

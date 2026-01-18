@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Winston Bot 中文檢查
-        uses: Edit-Mr/WinstonBot-CI@main
+        uses: elvisdragonmao/WinstonBot-CI@main
         with:
           exts: md
           github_token: ${{ secrets.GITHUB_TOKEN }}

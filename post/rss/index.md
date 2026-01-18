@@ -87,7 +87,7 @@ description: 使用 RSS 讓你奪回資訊的掌控權，讓你決定你要看�
 
 Zeabur 是一個非常好用的部署平台，可以不用寫程式用手指按一按就完成部署。
 
-這裡我們直接點開 [Template](https://zeabur.com/zh-TW/templates/MD4TRW) 然後點擊部署。如果你有 [註冊過帳號](https://zeabur.com/referral?referralCode=Edit-Mr) 的話直接選擇你的伺服器即可。
+這裡我們直接點開 [Template](https://zeabur.com/zh-TW/templates/MD4TRW) 然後點擊部署。如果你有 [註冊過帳號](https://zeabur.com/referral?referralCode=elvisdragonmao) 的話直接選擇你的伺服器即可。
 
 ![使用 Zeabur 部署](zeabur-deploy.webp)
 
