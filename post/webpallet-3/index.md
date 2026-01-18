@@ -506,4 +506,4 @@ p::before {
 
 好啦，今天我們介紹了許多不同的 CSS 屬性。這些已經是最常用的屬性了，但礙於篇幅我們有一些沒有講的很詳細。如果你想知道更多的屬性，可以到[MDN](https://developer.mozilla.org/zh-TW/docs/Web/CSS)查詢。下一週我們要來介紹如何使用 VSCode 這個酷酷的「整合式開發環境」。
 
-每週一早上六點，我們會在 YouTube 和各大 Podcast 平台不定時更新。如果你喜歡文字版，也歡迎在 Instagram 和 Google 新聞追蹤毛哥EM 資訊密技。我是毛哥EM，讓我們下週再見！
+每週一早上六點，我們會在 YouTube 和各大 Podcast 平台不定時更新。如果你喜歡文字版，也歡迎在 Instagram 和 Google 新聞追蹤毛哥EM資訊密技。我是毛哥EM，讓我們下週再見！
