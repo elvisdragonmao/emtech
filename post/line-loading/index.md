@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [JavaScript, Google Apps Script, API, line]
-categories: [程式開發，科技趨勢]
+categories: [軟體開發，科技趨勢]
 date: 2024-05-16
 ---
 
