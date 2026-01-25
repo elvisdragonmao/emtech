@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [GitHub, Hugo]
-categories: [程式開發]
+categories: [軟體開發]
 date: 2022-08-17
 ---
 

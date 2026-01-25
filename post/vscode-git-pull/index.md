@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Git, VSCode]
-categories: [程式開發]
+categories: [軟體開發]
 date: 2025-03-20
 description:
 ---

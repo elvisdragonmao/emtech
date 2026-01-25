@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Git, VSCode]
-categories: [程式開發]
+categories: [軟體開發]
 date: 2025-05-03
 description: 把除了 merge 以外的 commit 接上去，讓 commit 紀錄變得乾淨。
 ---

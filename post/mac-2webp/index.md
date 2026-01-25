@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [macOS]
-categories: [程式開發，生活駭客]
+categories: [軟體開發，生活駭客]
 date: 2025-03-11
 description: 在 macOS 的右鍵選單加上一個項目，快速把圖片轉成 WebP、影片轉成 GIF。
 ---
