@@ -84,7 +84,7 @@ code:not(.hljs) {
 	background-color: #fff;
 	transform: translate(-50%, -50%);
 	z-index: 1000;
-	background-size: auto 100%;
+	background-size: 100% auto;
 	background-position: center;
 	background-repeat: no-repeat;
 	box-shadow: 0 8px 16px -4px #2c2d3030;
@@ -947,7 +947,7 @@ article:hover h3 a {
 }
 
 article:hover .hero {
-	background-size: auto 110%;
+	background-size: 110% auto;
 }
 
 article {
@@ -965,12 +965,12 @@ article:hover {
 }
 
 article .hero {
-	aspect-ratio: 120 / 63;
+	aspect-ratio: 2 / 1;
 	background-repeat: no-repeat;
 	width: 100%;
 	background-color: #e8e8e8;
 	background-image: url(/static/img/blank.webp);
-	background-size: auto 100%;
+	background-size: 100% auto;
 	background-position: center;
 	transition: background-size 0.2s ease-in-out;
 }
