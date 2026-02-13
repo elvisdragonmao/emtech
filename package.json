@@ -10,7 +10,7 @@
 	},
 	"dependencies": {
 		"highlight.js": "^11.11.1",
-		"markdown-it": "^14.1.0",
+		"markdown-it": "^14.1.1",
 		"sharp": "^0.34.5"
 	},
 	"devDependencies": {
