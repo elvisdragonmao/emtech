@@ -115,14 +115,14 @@ git update-index --again
 我們來把所有事合併成一個指令（以 pnpm 為例）：
 
 ```bash
-pnpm add -D husky \
-&& pnpm exec husky init \
-&& cat > .husky/pre-commit <<'EOF'
+pnpm add -D husky &&
+pnpm exec husky init &&
+cat > .husky/pre-commit <<'EOF'
 #!/bin/sh
 pnpm prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
 git update-index --again
-EOF \
-&& chmod +x .husky/pre-commit
+EOF
+chmod +x .husky/pre-commit
 ```
 
 > 封面背景來自 [Reba Spike on Unsplash](https://unsplash.com/photos/white-and-brown-siberian-husky-puppy-on-green-grass-during-daytime-ISahwf9hCNg)。
