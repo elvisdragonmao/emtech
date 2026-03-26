@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [git]
+tags: [Git]
 categories: [軟體開發]
 date: 2026-01-18
 description: Husky 是一個 Git hooks 工具，可以幫助你在提交程式碼之前自動執行一些腳本，比如格式化、測試運行等以遵守一定的規範。
