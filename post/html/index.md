@@ -78,7 +78,7 @@ brew install git
 
 # HTML
 
-HTML 叫做超文本標記語言 (Hyper Text Markup Language)。故名思義就是標記一下文字。 HTML 主要功能不是為了裝飾，目的是讓**瀏覽器／使用者知道這個是什麼**。比如說 Google 想知道網站標題會去找裡面的 `<h1>` ；而給盲人用的語音閱讀器在看到 `<strong>` 會加重語氣。
+HTML 叫做超文本標記語言 (Hyper Text Markup Language)。故名思義就是標記一下文字。HTML 主要功能不是為了裝飾，目的是讓**瀏覽器／使用者知道這個是什麼**。比如說 Google 想知道網站標題會去找裡面的 `<h1>` ；而給盲人用的語音閱讀器在看到 `<strong>` 會加重語氣。
 
 這非常重要，裝飾文字是 CSS 的工作（下禮拜就來講）。
 
