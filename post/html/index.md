@@ -3,7 +3,7 @@ authors: elvismao
 tags: [HTML]
 categories: [程式教學]
 date: 2026-03-26
-description:
+description: HTML 是一種用來建立網頁的語言，透過 HTML 我們可以把文字、圖片、影片等等內容放到網頁上，讓使用者可以看到我們想要呈現的內容。這篇文章會介紹 HTML 的基本語法和常見的元素，讓你可以開始寫自己的網頁。
 ---
 
 # 環境建置與 HTML 完全指南
