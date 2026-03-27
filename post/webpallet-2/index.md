@@ -9,7 +9,7 @@ date: 2023-06-05
 # EP.2 5 分鐘完結 HTML
 
 > 此系列已停更，歡迎可以參考我重新專寫的[網頁開發](https://emtech.cc/category/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC)教學。  
-> 此主題新版的對應文章為：[HTML 教學：完全指南](https://emtech.cc/p/html)
+> 此主題新版的對應文章為：[環境建置與 HTML 完全指南](https://emtech.cc/p/html)
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。今天我要讓你 5 分鐘學會所有常用的 HTML 語法。
 
