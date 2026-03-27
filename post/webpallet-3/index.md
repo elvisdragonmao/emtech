@@ -1,12 +1,15 @@
 ---
 authors: elvismao
-tags: [CSS, "網棧"]
-categories: [網頁開發，程式教學]
+tags: ["網棧"]
+categories: []
 thumbnail: /static/webpallet-0/thumbnail.webp
 date: 2023-06-12
 ---
 
 # EP.3 10 分鐘 基本 CSS 教學
+
+> 此系列已停更，歡迎可以參考我重新專寫的[網頁開發](https://emtech.cc/category/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC)教學。  
+> 此主題新版的對應文章為：[CSS 教學：快速上手](https://emtech.cc/p/css)
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。今天我要讓你 10 分鐘學會所有常用的 CSS 語法
 
