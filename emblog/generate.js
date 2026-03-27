@@ -205,7 +205,7 @@ const generatePartials = async () => {
 		})
 	);
 
-	console.log("➤ Found view files: ", viewFiles);
+	console.log("➤ Found view files: ", viewFiles.join(", "));
 
 	analyze.pages = viewFiles.length;
 
@@ -251,6 +251,9 @@ async function processPosts() {
 	const postTemplate = renderPartials(await fs.readFile("view/partials/post.html", "utf8"));
 	const postPageTemplate = renderPartials(await fs.readFile("view/pages/post.html", "utf8"));
 
+	let skippedPosts = [];
+	let deadPosts = [];
+
 	await Promise.all(
 		postFolders.map(async postID => {
 			try {
@@ -270,9 +273,13 @@ async function processPosts() {
 				// turn image url if not set path like ![](image.webp) to ![](/static/postID/image.webp)
 				// don't change url if absolute path or relative path like /static/image.webp or ../image.webp or https://image.webp
 				if (postMeta.draft == "true") {
-					console.log(`Skip draft: ${postID}`);
+					skippedPosts.push(postID);
+					return;
+				} else if (postMeta.draft == "dead") {
+					deadPosts.push(postID);
 					return;
 				}
+
 				markdownContent = markdownContent.replace(/!\[(.*?)\]\((?!https?:\/\/|\/)(.*?)\)/g, (_, altText, url) => `![${altText}](/static/${encodeURIComponent(postID)}/${url})`);
 				let htmlContent = md.render(renderPartials(markdownContent.replace(/---[\s\S]+?---/, "")));
 				if (!postMeta.title) {
@@ -412,6 +419,9 @@ async function processPosts() {
 			}
 		})
 	);
+
+	console.log(`➤ Skipped posts: ${skippedPosts.join(", ")}`);
+	console.log(`➤ Dead posts: ${deadPosts.join(", ")}`);
 
 	// 輸出 posts.json 和每篇文章的 json
 	await fs.writeFile("dist/p/meta/posts.json", JSON.stringify(postsMeta));
