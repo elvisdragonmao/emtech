@@ -363,9 +363,9 @@ div {
 
 ```css
 div {
-	margin: 16px; /* 全部16px */
-	margin: 16px 32px; /* 上下16px，左右32px */
-	margin: 16px 32px 24px; /* 上16px，左右32px，下24px */
+	margin: 16px; /* 全部 16px */
+	margin: 16px 32px; /* 上下 16px，左右 32px */
+	margin: 16px 32px 24px; /* 上 16px，左右 32px，下 24px */
 	margin-top: 16px;
 	margin-bottom: 16px;
 	margin-left: 16px;
@@ -465,7 +465,7 @@ HTML 元素可以分為兩種，一種是區塊元素，比如說 `<h1>`、 `<p>
 
 不過我們可以更改元素的顯示方式。最常見的例子就是其實圖片 `<img>` 預設是一個行內元素，因此圖片會跟文字擠在一起。
 
-![圖片是行內元素，圖：凌汐Jeffrey](img-inline-element.webp)
+![圖片是行內元素，圖：凌汐 Jeffrey](img-inline-element.webp)
 
 這時我們只需要設定 `display: block` 即可讓他自己佔滿一排。
 
@@ -650,7 +650,7 @@ flex-shrink 則反之，當空間分配還不足時的目前元件的收縮性�
 flex-basis: 30cm;
 ```
 
-> 喔對了前面沒有提到你可以使用單位 cm 對吧？沒錯，不過大家螢幕畫質都很高會放大畫面，所以 1px 不一定是真的 1px。 1cm 本質上其實只是 37.8px。這個單位通常在印刷時使用。
+> 喔對了前面沒有提到你可以使用單位 cm 對吧？沒錯，不過大家螢幕畫質都很高會放大畫面，所以 1px 不一定是真的 1px。1cm 本質上其實只是 37.8px。這個單位通常在印刷時使用。
 
 ### Order
 
