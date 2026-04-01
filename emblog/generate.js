@@ -85,13 +85,14 @@ md.renderer.rules.heading_open = (tokens, idx, options, env, self) => {
 // Custom renderer for code block
 md.renderer.rules.fence = (tokens, idx, options, env, self) => {
 	const token = tokens[idx];
+	const codeContent = token.content.endsWith("\n") ? token.content.slice(0, -1) : token.content;
 	const langClass = token.info ? `language-${token.info.trim()}` : "";
 	const langName = token.info || "code";
 
 	// Use the highlighted code with line numbers
-	const highlightedCode = md.options.highlight(token.content, token.info.trim());
+	const highlightedCode = md.options.highlight(codeContent, token.info.trim());
 	if (!highlightedCode) {
-		return `<pre tabindex="0" class="chroma wtf"><code class="${langClass} hljs" data-lang="${langName}">${md.utils.escapeHtml(token.content)}</code></pre>`;
+		return `<pre tabindex="0" class="chroma wtf"><code class="${langClass} hljs" data-lang="${langName}">${md.utils.escapeHtml(codeContent)}</code></pre>`;
 	}
 	// count how many rows in the code block
 	const rows = highlightedCode.split("\n").length;
@@ -107,10 +108,10 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
   <div class="highlight">
     <div class="code-wrapper">
       <div class="line-numbers">
-        ${token.content
-					.split("\n")
-					.map((_, i) => `<div class="ln">${i + 1}</div>`)
-					.join("")}
+	        ${codeContent
+						.split("\n")
+						.map((_, i) => `<div class="ln">${i + 1}</div>`)
+						.join("")}
       </div>
       <div class="code-content" tabindex="0">
         <pre class="chroma"><code class="${langClass} hljs" data-lang="${langName}">${highlightedCode}</code></pre>
