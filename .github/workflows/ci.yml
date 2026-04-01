@@ -1,0 +1,82 @@
+name: 🔍 文章格式檢查
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: ✨ Format / Typecheck / Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm exec prettier --check .
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Build site
+        run: pnpm build
+
+  validate-markdown:
+    name: 📰 檢查 Markdown 檔案
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Validate Formats
+        run: |
+          chmod +x .github/workflows/markdown-validation.sh
+          .github/workflows/markdown-validation.sh
+
+  winston-bot:
+    name: 📰 Winston Bot 中文檢查
+    runs-on: ubuntu-latest
+    steps:
+      - name: Winston Bot 中文檢查
+        uses: elvisdragonmao/WinstonBot-CI@main
+        with:
+          exts: md
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  check-file-sizes:
+    name: 🪢 調整圖片
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git config
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Check file sizes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: .github/workflows/file-size-check.sh
