@@ -25,8 +25,6 @@ JavaScript 是瀏覽器裡最重要的互動程式語言之一。
 
 這些通常都會用到 JavaScript。
 
----
-
 ## 怎麼把 JavaScript 放進網頁？
 
 最基本有兩種方式：
@@ -86,8 +84,6 @@ console.log(true);
 ![你的第一個 JavaScript](first.webp)
 
 你的瀏覽器開發者工具畫面可能跟我長得稍微有一點點不一樣，因為我是使用 Firefox（我也建議你使用，因為你的隱私很重要，而且狐狸很可愛！）同時 Firefox 有一些很好用的開發者工具。
-
----
 
 接下來我們先來認識一下 JavaScript 的基本語法，這樣我們才有工具可以跟網頁互動。
 
@@ -994,8 +990,6 @@ console.log(adult);
 
 > 新手其實拿 `for`、`forEach`、`map`、`filter` 就很夠用囉！
 
----
-
 講了那麼多 JavaScript 的基本語法，接下來我們要來看看怎麼用 JavaScript 跟網頁互動，這也是 JavaScript 最重要的功能之一了。
 
 ## DOM 是什麼？
@@ -1317,8 +1311,6 @@ btn.addEventListener("click", event => {
 
 如果你按的是按鈕，`event.target` 通常就是那顆按鈕。
 
----
-
 ## 常見事件類型
 
 ### `click`
@@ -1601,8 +1593,6 @@ if (score >= 90) {
 }
 ```
 
----
-
 ### 練習 2 解答：陣列
 
 ```js
@@ -1625,8 +1615,6 @@ numbers.forEach(number => {
 });
 ```
 
----
-
 ### 練習 3 解答：函式
 
 ```js
@@ -1644,8 +1632,6 @@ console.log(isEven(5)); // false
 const isEven = number => number % 2 === 0;
 ```
 
----
-
 ### 練習 4 解答：DOM 基本操作
 
 ```js
@@ -1654,8 +1640,6 @@ const title = document.querySelector("#title");
 title.textContent = "我被 JavaScript 改掉了";
 title.style.color = "blue";
 ```
-
----
 
 ### 練習 5 解答：事件監聽
 
