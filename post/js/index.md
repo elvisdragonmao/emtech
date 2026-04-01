@@ -6,7 +6,7 @@ date: 2026-04-01
 description: 這份講義會從 JavaScript 基本語法開始，一路帶你走到 function、DOM 操作、event listener。
 ---
 
-## JavaScript 教學：從入門到精通
+# JavaScript 教學：從入門到精通
 
 JavaScript 是瀏覽器裡最重要的互動程式語言之一。
 
