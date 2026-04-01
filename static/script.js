@@ -8,9 +8,6 @@ let search = [];
 
 // get read history page id and title from localStorage
 let readHistory = JSON.parse(localStorage.getItem("readHistory")) || [];
-// get Url check is it localhost
-const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-const startAds = isLocalhost ? () => {} : () => (adsbygoogle = window.adsbygoogle || []).push({});
 
 // update read history list
 const updateReadHistory = id => {
@@ -304,17 +301,6 @@ const initPost = (page, direct = false) => {
 		listItem.appendChild(link);
 		ul.appendChild(listItem);
 		adsCount++;
-		if (!isLocalhost && adsCount > 2 && adsCount % 2 === 1)
-			header.insertAdjacentHTML(
-				"beforebegin",
-				`<ins
-                    class="adsbygoogle post-adsbygoogle"
-                    data-ad-layout="in-article"
-                    data-ad-format="fluid"
-                    data-ad-client="ca-pub-9975357988525791"
-                    data-ad-slot="1149587298"
-                ></ins>`
-			);
 	});
 
 	toc.appendChild(ul);
@@ -330,7 +316,6 @@ const initPost = (page, direct = false) => {
 	});
 	toc.insertBefore(tocLines, toc.firstChild);
 
-	startAds();
 	// Create an intersection observer to highlight the current section in the table of contents
 	const observer = new IntersectionObserver(
 		entries => {
@@ -377,8 +362,6 @@ const initPost = (page, direct = false) => {
 	// update .related-posts
 	loadArticleList(related.querySelector("div"), "category/" + cat);
 	related.querySelector("h2").textContent = cat + " 的其他文章";
-
-	startAds();
 };
 
 const moveCategories = category => {
