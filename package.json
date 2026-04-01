@@ -1,12 +1,14 @@
 {
 	"name": "emtech",
+	"type": "module",
 	"scripts": {
-		"build": "node emblog/generate.js",
-		"dev": "CACHE=true SKIPPOST=true node emblog/server.js",
+		"build": "tsx emblog/src/cli/generate.ts",
+		"dev": "CACHE=true SKIPPOST=true tsx emblog/src/cli/server.ts",
 		"format": "prettier --write .",
-		"new": "node emblog/new.js",
-		"prepare": "husky",
-		"start": "node emblog/server.js"
+		"new": "tsx emblog/src/cli/new.ts",
+		"prepare": "git config core.hooksPath .githooks",
+		"start": "tsx emblog/src/cli/server.ts",
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"highlight.js": "^11.11.1",
@@ -14,11 +16,14 @@
 		"sharp": "^0.34.5"
 	},
 	"devDependencies": {
+		"@types/markdown-it": "^14.1.2",
+		"@types/node": "^25.5.0",
 		"autocorrect-node": "^2.14.0",
-		"husky": "^9.1.7",
 		"prettier": "^3.8.1",
 		"prettier-plugin-organize-imports": "^4.3.0",
-		"prettier-plugin-packagejson": "^3.0.2"
+		"prettier-plugin-packagejson": "^3.0.2",
+		"tsx": "^4.21.0",
+		"typescript": "^6.0.2"
 	},
 	"packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017",
 	"pnpm": {
