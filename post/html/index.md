@@ -20,7 +20,7 @@ description: HTML 是一種用來建立網頁的語言，透過 HTML 我們可�
 
 所以我們要來安裝一個…整合式開發環境（英文叫 IDE），VS Code。
 
-> VS Code 官網：https://code.visualstudio.com/
+> VS Code 官網：[code.visualstudio.com](https://code.visualstudio.com/)
 
 就是下載…下一步…下一步…下一步…，Mac 就是拖過去，結束。
 
