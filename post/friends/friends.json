@@ -1,0 +1,157 @@
+{
+	"sections": [
+		{
+			"title": "好捧油",
+			"friends": [
+				{
+					"name": "毛哥EM",
+					"url": "/",
+					"image": "/static/img/EMprofile.png",
+					"description": "數位創作者，全端工程師"
+				},
+				{
+					"name": "Wolf Yuan",
+					"url": "https://wolf-yuan.dev/",
+					"image": "wolf-yuan.webp",
+					"description": "Furry Developer"
+				},
+				{
+					"name": "Each Chen",
+					"url": "https://www.iach.cc/",
+					"image": "https://gravatar.com/avatar/17e00664ef815abebb952dc4f449e1f1582d0fe0b94c6701e368d68349e151e6?&size=256",
+					"description": "網路技術愛好者與工程師"
+				},
+				{
+					"name": "颉文",
+					"url": "https://shellwen.com/",
+					"image": "shellwen.webp",
+					"description": "一只会写代码的小棕熊"
+				},
+				{
+					"name": "OsGa",
+					"url": "https://www.osga.dev/",
+					"image": "https://www.osga.dev/_next/image?url=%2Fheader.png&w=384&q=75",
+					"description": "CTF Player | Developer"
+				},
+				{
+					"name": "小蔡",
+					"url": "https://小蔡.tw/",
+					"image": "SHI0103.webp",
+					"description": "他很會連上家裡 Wi-Fi"
+				},
+				{
+					"name": "Chao28661",
+					"url": "https://blog.chaontc.tw/",
+					"image": "https://chaontc.tw/images/me.jpg",
+					"description": "第三屆中電會會長"
+				},
+				{
+					"name": "賴奕帆",
+					"url": "https://linktr.ee/ivantw829",
+					"image": "ivan.webp",
+					"description": "約翰·孟塔古唯一授權三明治經銷商"
+				},
+				{
+					"name": "Yuanlin Lin",
+					"url": "https://yual.in/",
+					"image": "https://avatars.githubusercontent.com/u/21105863",
+					"description": "Zeabur 創辦人"
+				},
+				{
+					"name": "Yuan",
+					"url": "https://yuan-tw.net/",
+					"image": "yuan.jfif",
+					"description": "網路技術愛好者與工程師"
+				},
+				{
+					"name": "Pan in the Nutshell",
+					"url": "https://blog.pan93.com/",
+					"image": "https://avatars.githubusercontent.com/u/28441561?v=4",
+					"description": "後端大大"
+				},
+				{
+					"name": "sangege",
+					"url": "https://linktr.ee/san.ge.ge",
+					"image": "https://www.gravatar.com/avatar/f6d0a62624d1d82d90ea3232e3663561",
+					"description": "超大咖託管 Coffee Host 創始者"
+				},
+				{
+					"name": "柴犬 Lily",
+					"url": "https://superlily.dev/",
+					"image": "",
+					"description": "據說這隻柴犬叼著毛哥的 SSD 從臺北跑到臺中"
+				},
+				{
+					"name": "SamHacker",
+					"url": "https://510208.github.io/",
+					"image": "https://gravatar.com/avatar/f7598bd8d4aba38d7219341f81a162fc842376b3b556b1995cbb97271d9e2915?&size=128",
+					"description": "把 GitHub 當垃圾桶的高中牲"
+				}
+			]
+		},
+		{
+			"title": "交大好同學",
+			"friends": [
+				{
+					"name": "Yorukot",
+					"url": "https://yorukot.me/",
+					"image": "https://gravatar.com/avatar/52aca5d0f69a10506d84c4e7b0af403a",
+					"description": "一隻喜歡開源的小貓"
+				},
+				{
+					"name": "Ching367436",
+					"url": "https://blog.ching367436.me/",
+					"image": "Ching367436.webp",
+					"description": "竹狐隊長"
+				},
+				{
+					"name": "Sean Wei",
+					"url": "https://www.sean.taipei/",
+					"image": "sean.webp",
+					"description": "為國家守護聖文森"
+				},
+				{
+					"name": "CBJ's 程式日記",
+					"url": "https://cbjsprogramdiary.com",
+					"image": "chung.webp",
+					"description": "Chung"
+				},
+				{
+					"name": "堇姬 Naup",
+					"url": "https://naup.mygo.tw/",
+					"image": "naup.webp",
+					"description": "A 4002-year-old demigod crane"
+				}
+			]
+		},
+		{
+			"title": "賽博遊俠",
+			"friends": [
+				{
+					"name": "张洪 Heo",
+					"url": "https://blog.zhheo.com/",
+					"image": "zhheo.webp",
+					"description": "产品设计师，独立开发者，设计与科技分享。"
+				},
+				{
+					"name": "SCOTT Studio",
+					"url": "https://blog.scott-studio.cn/",
+					"image": "SCOTT.webp",
+					"description": "不知名前端攻城狮，分享编程经验和技术干货。"
+				},
+				{
+					"name": "异次元 de 机智君",
+					"url": "https://www.anzifan.com/",
+					"image": "jizhi.png",
+					"description": "前端开发工程师，优质 Notion 主题开发者"
+				},
+				{
+					"name": "鱈魚",
+					"url": "https://codlin.me/",
+					"image": "codlin.webp",
+					"description": "結合各類領域技術、開發酷酷的東西"
+				}
+			]
+		}
+	]
+}

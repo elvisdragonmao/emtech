@@ -12,300 +12,80 @@ description: 有朋自遠方來，不亦悅乎？
 
 與大佬們一起前進。
 
-## 好捧油
-
-<div class="friends">
-<a class="friend"  href="/">
-
-![毛哥EM](/static/img/EMprofile.png)
-
-<div>
-
-### 毛哥EM
-
-數位創作者，全端工程師
-
-</div>
-</a>
-<a class="friend" href="https://wolf-yuan.dev/">
-
-![Wolf](wolf-yuan.webp)
-
-<div>
-
-### Wolf Yuan
-
-Furry Developer
-
-</div>
-</a>
-
-<a class="friend" href="https://www.iach.cc/">
-
-![Each Chan](https://gravatar.com/avatar/17e00664ef815abebb952dc4f449e1f1582d0fe0b94c6701e368d68349e151e6?&size=256)
-
-<div>
-
-### Each Chen
-
-網路技術愛好者與工程師
-
-</div>
-</a>
-<a class="friend" href="https://shellwen.com/">
-
-![颉文](shellwen.webp)
-
-<div>
-
-### 颉文
-
-一只会写代码的小棕熊
-
-</div>
-</a>
-<a class="friend" href="https://www.osga.dev/">
-
-![OsGa](https://www.osga.dev/_next/image?url=%2Fheader.png&w=384&q=75)
-
-<div>
-
-### OsGa
-
-CTF Player | Developer
-
-</div>
-</a>
-<a class="friend" href="https://小蔡.tw/">
-
-![小蔡](SHI0103.webp)
-
-<div>
-
-### 小蔡
-
-他很會連上家裡 Wi-Fi
-
-</div>
-</a>
-<a class="friend" href="https://blog.chaontc.tw/">
-
-![Chao28661](https://chaontc.tw/images/me.jpg)
-
-<div>
-
-### Chao28661
-
-第三屆中電會會長
-
-</div>
-</a>
-<a class="friend" href="https://linktr.ee/ivantw829">
-
-![賴奕帆](ivan.webp)
-
-<div>
-
-### 賴奕帆
-
-約翰·孟塔古唯一授權三明治經銷商
-
-</div>
-</a>
-<a class="friend" href="https://yual.in/">
-
-![Yuanlin Lin](https://avatars.githubusercontent.com/u/21105863)
-
-<div>
-
-### Yuanlin Lin
-
-Zeabur 創辦人
-
-</div>
-</a>
-<a class="friend" href="https://yuan-tw.net/">
-
-![Yuan](yuan.jfif)
-
-<div>
-
-### Yuan
-
-網路技術愛好者與工程師
-
-</div>
-</a>
-
-<a class="friend" href="https://blog.pan93.com/">
-
-![Pan](https://avatars.githubusercontent.com/u/28441561?v=4)
-
-<div>
-
-### Pan in the Nutshell
-
-後端大大
-
-</div>
-</a>
-<a class="friend" href="https://linktr.ee/san.ge.ge">
-
-![sangege](https://www.gravatar.com/avatar/f6d0a62624d1d82d90ea3232e3663561)
-
-<div>
-
-### sangege
-
-超大咖託管 Coffee Host 創始者
-
-</div>
-</a>
-<a class="friend" href="https://superlily.dev/">
-
-![柴犬 Lily]()
-
-<div>
-
-### 柴犬 Lily
-
-據說這隻柴犬叼著毛哥的 SSD 從臺北跑到臺中
-
-</div>
-</a>
-<a class="friend" href="https://510208.github.io/">
-
-![SamHacker](https://gravatar.com/avatar/f7598bd8d4aba38d7219341f81a162fc842376b3b556b1995cbb97271d9e2915?&size=128)
-
-<div>
-
-### SamHacker
-
-把 GitHub 當垃圾桶的高中牲
-
-</div>
-</a>
-</div>
-
-## 交大好同學
-
-<div class="friends">
-<a class="friend" href="https://curious-lucifer.netlify.app/">
-
-![Curious](curious.webp)
-
-<div>
-
-### Curious
-
-BambooFox 社長
-
-</div>
-</a>
-<a class="friend" href="https://blog.ching367436.me/">
-
-![Ching367436](Ching367436.webp)
-
-<div>
-
-### Ching367436
-
-竹狐隊長
-
-</div>
-</a>
-<a class="friend" href="https://www.sean.taipei/">
-
-![Sean Wei](sean.webp)
-
-<div>
-
-### Sean Wei
-
-為國家守護聖文森
-
-</div>
-</a>
-<a class="friend" href="https://cbjsprogramdiary.com">
-
-![Chung](chung.webp)
-
-<div>
-
-### CBJ's 程式日記
-
-Chung
-
-</div>
-</a>
-
-<a class="friend" href="https://naup.mygo.tw/">
-
-![堇姬 Naup](naup.webp)
-
-<div>
-
-### 堇姬 Naup
-
-A 4002-year-old demigod crane
-
-</div>
-</a>
-</div>
-
-## 賽博遊俠
-
-<div class="friends">
-<a class="friend"  href="https://blog.zhheo.com/">
-
-![zhheo](zhheo.webp)
-
-<div>
-
-### 张洪 Heo
-
-产品设计师，独立开发者，设计与科技分享。
-
-</div>
-</a>
-<a class="friend" href="https://blog.scott-studio.cn/">
-
-![scott](SCOTT.webp)
-
-<div>
-
-### SCOTT Studio
-
-不知名前端攻城狮，分享编程经验和技术干货。
-
-</div>
-</a>
-<a class="friend" href="https://www.anzifan.com/">
-
-![异次元 de 机智君](jizhi.png)
-
-<div>
-
-### 异次元 de 机智君
-
-前端开发工程师，优质 Notion 主题开发者
-
-</div>
-</a>
-<a class="friend" href="https://codlin.me/">
-
-![鱈魚](codlin.webp)
-
-<div>
-
-### 鱈魚
-
-結合各類領域技術、開發酷酷的東西
-
-</div>
-</a>
-
-</div>
+<div id="friends-sections"></div>
+
+<script>
+(async () => {
+	const container = document.querySelector("#friends-sections");
+	if (!container) return;
+
+	const collator = new Intl.Collator(["en", "zh-Hant", "zh-Hans"], {
+		numeric: true,
+		sensitivity: "base"
+	});
+
+	const transparentPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+	const resolveImageUrl = value => {
+		if (!value) return transparentPixel;
+		if (/^(https?:)?\/\//i.test(value) || value.startsWith("/")) return value;
+		return `/static/friends/${value.replace(/^\.\//, "").split("/").map(encodeURIComponent).join("/")}`;
+	};
+
+	try {
+		const response = await fetch("/static/friends/friends.json");
+		if (!response.ok) {
+			throw new Error(`Failed to load friends list: ${response.status}`);
+		}
+
+		const { sections = [] } = await response.json();
+
+		sections.forEach(section => {
+			const heading = document.createElement("h2");
+			heading.textContent = section.title;
+			container.appendChild(heading);
+
+			const list = document.createElement("div");
+			list.className = "friends";
+
+			[...(section.friends || [])]
+				.sort((left, right) => collator.compare(left.name, right.name))
+				.forEach(friend => {
+					const card = document.createElement("a");
+					card.className = "friend";
+					card.href = friend.url;
+
+					const figure = document.createElement("figure");
+					const image = document.createElement("img");
+					image.src = resolveImageUrl(friend.image);
+					image.alt = friend.name;
+					image.loading = "lazy";
+
+					const caption = document.createElement("figcaption");
+					caption.textContent = friend.name;
+					figure.append(image, caption);
+
+					const content = document.createElement("div");
+					const name = document.createElement("h3");
+					name.textContent = friend.name;
+
+					const description = document.createElement("p");
+					description.textContent = friend.description;
+
+					content.append(name, description);
+					card.append(figure, content);
+					list.appendChild(card);
+				});
+
+			container.appendChild(list);
+		});
+	} catch (error) {
+		console.error("Failed to render friends list", error);
+		const message = document.createElement("p");
+		message.textContent = "朋友列表載入失敗，請稍後再試。";
+		container.appendChild(message);
+	}
+})();
+</script>
 
 {{notice}} 一起呼！
 
