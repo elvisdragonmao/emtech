@@ -36,7 +36,7 @@ const resolveRequestPath = (requestUrl: string) => {
 		return resolveWithin(DIST_DIR, "index.html");
 	}
 
-	const trimmedPath = decodedPath === "/" ? "index.html" : decodedPath.replace(/^\//, "");
+	const trimmedPath = decodedPath === "/" ? "" : decodedPath.replace(/^\//, "");
 	const withIndex = decodedPath.endsWith("/") || !path.extname(trimmedPath) ? path.join(trimmedPath, "index.html") : trimmedPath;
 	return resolveWithin(DIST_DIR, withIndex);
 };
