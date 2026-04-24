@@ -22,7 +22,7 @@ HackMD 是一個免費好用的線上即時連線 Markdown 編輯器。他有一
 
 {{notice}}
 
-**什麼是共筆？**
+什麼是共筆？
 
 幫每個議程都開一份 HackMD 的共編文件，讓大家可以一起把這場議程的筆記整理上去。SITCON 學生計算機年會的共筆可以參考：[SITCON 2026](https://hackmd.io/@SITCON/2026/)、[SITCON 2025](https://hackmd.io/@SITCON/2025/)、[SITCON 2022](https://hackmd.io/@SITCON/2022/) 等等。
 
