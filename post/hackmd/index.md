@@ -170,14 +170,16 @@ HackMD 是一個免費好用的線上即時連線 Markdown 編輯器。他有一
 
 好接下來是比較進階的了。我們可以使用的元素（至少一我測試下來）能使用的很多，這裡我測試了一下 HackMD 能使用的 HTML 元素來給你參考：
 
-https://hackmd.io/@elvismao/H1_hsuxuWl
+<https://hackmd.io/@elvismao/H1_hsuxuWl>
+
+![HTML 測試](html.webp)
 
 
 不過如果只是外觀樣式的話那我們用 `<div>` 然後 CSS 不就好了，所以我們希望做的是一些酷酷的互動效果。那麼有種兩操作：
 
 ### 使用 Checkbox
 
-Checkbox 應該是 HackMD 裡面唯一可以用點擊來儲存狀態的元素了。那麼我們就可以利用這個特性來做一些互動效果，比如說製作一個 Filter，顯示或隱藏某些連結。
+Checkbox 應該是 HackMD 裡面唯一可以用點擊來儲存狀態的 HTML 元素了。那麼我們就可以利用這個特性來做一些互動效果，比如說製作一個 Filter，顯示或隱藏某些連結。
 
 ![Checkbox](checkbox.webp)
 
@@ -235,8 +237,100 @@ Checkbox 應該是 HackMD 裡面唯一可以用點擊來儲存狀態的元素了
 </style>
 ```
 
+### 自訂滾動條
+
+也是單純簡單的 CSS：
+
+```css
+/* Chrome / Edge / Safari */
+#summary > ul:last-of-type::-webkit-scrollbar {
+	width: 6px;
+}
+
+#summary > ul:last-of-type::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+#summary > ul:last-of-type::-webkit-scrollbar-thumb {
+	background-color: #b98f54;
+	border-radius: 999px;
+}
+
+#summary > ul:last-of-type::-webkit-scrollbar-thumb:hover {
+	background-color: #b98f54;
+}
+```
+
+### 根據時間變化顏色
+
+我們甚至可以做出 highlight 當前時段議程的效果。雖然我們不能直接在 HackMD 裡面寫 JavaScript 來獲取當前時間，不過我們可以用外部算好當前時間對應顏色，生成一張 1x1 的圖片，然後在 HackMD 裡面用 CSS 把這張圖片當作背景色來使用。這樣就可以根據時間變化顏色了。
+
+簡單寫了一個 API，網址語法像這樣：
+
+```ini
+https://hackmd.sitcon.org/?s=12:00&e=20:00&d=D4D4D4&c=FF9000
+```
+
+Repo 在這裡：[sitcon-tw/2026-hackmd](https://github.com/sitcon-tw/2026-hackmd)。我是使用 Cloudflare Workers 來實作的。同時把所有項目都參數化這樣大家都可以使用也方便調整。
+
+實際語法是先設定 CSS 變數來設定好時間抓圖片
+
+```html
+<a href="/4TlWoe2RQUmm-rBPavTROg" style="--a: url(&quot;https://hackmd.sitcon.org/?s=12:00&e=13:00&d=D4D4D4&c=FF9000&quot;)">
+```
+
+然後再用 CSS 把這個圖片當作背景色來使用：
+
+```css
+#summary > ul:last-of-type a::after {
+	content: "";
+	display: block;
+	width: 2px;
+	background-image: var(--a);
+}
+```
+
+## SITCON 2026 的 HackMD 共筆
+
+今年 SITCON 2026 我的排版設計跟過往都不太一樣。覺得以往都是維持 HackMD 預設以會議廳作為分類不太優雅，希望篩選應該是可以放在最上面的，不然在下面的會議廳需要滾動很久。比較核心的語法是完全不用他的標題分類，連接都在最上面來最小化 HackMD 預設樣式的影響。
+
+```html
+<li>
+    <a href="/4TlWoe2RQUmm-rBPavTROg" data-room="R0" style="--a: url(&quot;https://hackmd.sitcon.org/?s=12:00&e=13:00&d=D4D4D4&c=FF9000&quot;)">
+        <div class="time">
+            12:45
+            <br />
+            |
+            <br />
+            13:25
+        </div>
+        <div class="title">
+            <div>我能吞下玻璃而不傷身體</div>
+            <div>毛哥EM<span>R0</span></div>
+        </div>
+    </a>
+</li>
+```
+
+底下就是一點點複雜的 CSS：
+
+```css
+#summary:has(.filter-container > div:nth-of-type(1) input:checked) > ul:last-of-type li:has(a[data-room="R0"]),
+#summary:has(.filter-container > div:nth-of-type(2) input:checked) > ul:last-of-type li:has(a[data-room="R1"]),
+#summary:has(.filter-container > div:nth-of-type(3) input:checked) > ul:last-of-type li:has(a[data-room="R2"]),
+#summary:has(.filter-container > div:nth-of-type(4) input:checked) > ul:last-of-type li:has(a[data-room="R3"]),
+#summary:has(.filter-container > div:nth-of-type(5) input:checked) > ul:last-of-type li:has(a[data-room="S"]),
+#summary:not(:has(.filter-container input:checked)) > ul:last-of-type li {
+	display: block;
+}
+```
+
+同時還有使用上面的那些技巧進行裝飾。
+
+原始碼可以參考：<https://hackmd.io/4jAeIIewROm9mJeARzVcaQ?both>
+
 ## 總結
 
-當然這樣是有點太多了，不過 HackMD 書本模式真的是一個十分開放，讓我們可以發揮各種創意的好地方。同時因為平台以及預設樣式不可移除的關係，AI 不好進行協作，更加的考驗技術與創意。
+不過 HackMD 書本模式真的是一個十分開放，讓我們可以發揮各種創意的好地方。同時因為平台以及預設樣式不可移除的關係，AI 不好進行協作，更加的考驗技術與創意。
 
 希望這篇文章能給你一些靈感，讓你也能把 HackMD 的書本模式側邊欄裝飾得更好看。
