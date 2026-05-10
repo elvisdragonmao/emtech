@@ -1,34 +1,27 @@
 {
-	"name": "emtech",
+	"name": "new",
+	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"build": "tsx emblog/src/cli/generate.ts",
-		"dev": "CACHE=true SKIPPOST=true tsx emblog/src/cli/server.ts",
+		"astro": "astro",
+		"build": "astro build",
+		"dev": "astro dev",
 		"format": "prettier --write .",
-		"new": "tsx emblog/src/cli/new.ts",
-		"prepare": "git config core.hooksPath .githooks",
-		"start": "tsx emblog/src/cli/server.ts",
-		"typecheck": "tsc --noEmit"
+		"preinstall": "npx only-allow pnpm",
+		"prepare": "sh -c 'command -v git >/dev/null 2>&1 && [ -d .git ] && git config core.hooksPath .githooks || exit 0'",
+		"preview": "astro preview",
+		"test": "astro check"
 	},
 	"dependencies": {
-		"highlight.js": "^11.11.1",
-		"markdown-it": "^14.1.1",
-		"sharp": "^0.34.5"
+		"astro": "^6.3.1"
 	},
 	"devDependencies": {
-		"@types/markdown-it": "^14.1.2",
-		"@types/node": "^25.5.0",
-		"autocorrect-node": "^2.14.0",
-		"prettier": "^3.8.1",
+		"prettier": "^3.8.3",
+		"prettier-plugin-astro": "^0.14.1",
 		"prettier-plugin-organize-imports": "^4.3.0",
-		"prettier-plugin-packagejson": "^3.0.2",
-		"tsx": "^4.21.0",
-		"typescript": "^6.0.2"
+		"prettier-plugin-packagejson": "^3.0.2"
 	},
-	"packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017",
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"sharp"
-		]
+	"engines": {
+		"node": ">=22.12.0"
 	}
 }
