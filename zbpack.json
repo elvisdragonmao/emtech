@@ -1,4 +1,0 @@
-{
-	"build_command": "pnpm build --prod",
-	"output_dir": "/dist"
-}
