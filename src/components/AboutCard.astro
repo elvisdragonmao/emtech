@@ -26,11 +26,11 @@ const { compact = false } = Astro.props;
 	.about-card {
 		position: relative;
 		display: grid;
-		grid-template-columns: minmax(0, 1fr) 230px;
+		grid-template-columns: minmax(0, 1fr) 14.375rem;
 		align-items: end;
-		width: min(920px, 100%);
-		min-height: 300px;
-		padding: 42px 42px 30px;
+		width: min(57.5rem, 100%);
+		min-height: 18.75rem;
+		padding: 2.625rem 2.625rem 1.875rem;
 		overflow: hidden;
 		background: color-mix(in oklch, var(--color-surface) 84%, transparent);
 		border: 1px solid var(--color-accent);
@@ -39,7 +39,7 @@ const { compact = false } = Astro.props;
 
 	.about-card::before {
 		position: absolute;
-		inset: 18px;
+		inset: 1.125rem;
 		content: "";
 		border: 1px solid color-mix(in oklch, var(--color-border) 70%, transparent);
 		pointer-events: none;
@@ -47,7 +47,7 @@ const { compact = false } = Astro.props;
 
 	.eyebrow {
 		font-family: var(--font-mono);
-		font-size: 12px;
+		font-size: 0.75rem;
 		font-weight: 800;
 		letter-spacing: 0.08em;
 		color: var(--color-muted);
@@ -55,25 +55,25 @@ const { compact = false } = Astro.props;
 	}
 
 	h2 {
-		margin-top: 14px;
-		font-size: clamp(38px, 7vw, 74px);
+		margin-top: 0.875rem;
+		font-size: clamp(2.375rem, 7vw, 4.625rem);
 		line-height: 0.9;
 		letter-spacing: -0.08em;
 		color: var(--color-ink);
 	}
 
 	.bio {
-		max-width: 460px;
-		margin-top: 22px;
-		font-size: 15px;
+		max-width: 28.75rem;
+		margin-top: 1.375rem;
+		font-size: 0.9375rem;
 		line-height: 1.9;
 		color: var(--color-muted);
 	}
 
 	.links {
 		display: flex;
-		gap: 18px;
-		margin-top: 28px;
+		gap: 1.125rem;
+		margin-top: 1.75rem;
 	}
 
 	.links a {
@@ -87,41 +87,41 @@ const { compact = false } = Astro.props;
 
 	.dragon {
 		position: absolute;
-		right: 36px;
-		bottom: -26px;
+		right: 2.25rem;
+		bottom: -1.625rem;
 		z-index: 1;
 		width: auto;
-		height: 300px;
-		filter: drop-shadow(0 24px 24px color-mix(in oklch, var(--color-accent) 18%, transparent));
+		height: 18.75rem;
+		filter: drop-shadow(0 1.5rem 1.5rem color-mix(in oklch, var(--color-accent) 18%, transparent));
 	}
 
 	.compact {
 		width: 100%;
-		grid-template-columns: 1fr 210px;
-		min-height: 230px;
-		padding: 30px;
+		grid-template-columns: 1fr 13.125rem;
+		min-height: 14.375rem;
+		padding: 1.875rem;
 	}
 
 	.compact h2 {
-		font-size: 42px;
+		font-size: 2.625rem;
 	}
 
 	.compact .bio {
-		font-size: 14px;
+		font-size: 0.875rem;
 	}
 
 	.compact .dragon {
-		right: 34px;
-		bottom: -24px;
+		right: 2.125rem;
+		bottom: -1.5rem;
 		width: auto;
-		height: 218px;
+		height: 13.625rem;
 	}
 
-	@media (max-width: 640px) {
+	@media (max-width: 40rem) {
 		.about-card,
 		.compact {
 			grid-template-columns: 1fr;
-			padding: 30px 24px 0;
+			padding: 1.875rem 1.5rem 0;
 		}
 
 		.dragon,
@@ -130,8 +130,8 @@ const { compact = false } = Astro.props;
 			right: auto;
 			bottom: auto;
 			width: auto;
-			height: 250px;
-			margin: 10px auto -34px;
+			height: 15.625rem;
+			margin: 0.625rem auto -2.125rem;
 			justify-self: center;
 		}
 	}

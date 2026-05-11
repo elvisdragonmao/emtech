@@ -46,28 +46,28 @@ const navItems = [
 		display: grid;
 		grid-template-columns: 1fr auto 1fr;
 		align-items: center;
-		width: min(var(--site-width), calc(100% - 32px));
-		min-height: 66px;
+		width: min(var(--site-width), calc(100% - 2rem));
+		min-height: 4.125rem;
 		margin: 0 auto;
-		padding: 0 8px;
+		padding: 0 0.5rem;
 		border-bottom: 1px solid var(--color-border);
 		background: color-mix(in oklch, var(--color-bg) 88%, transparent);
-		backdrop-filter: blur(18px);
+		backdrop-filter: blur(1.125rem);
 	}
 
 	.brand {
 		display: inline-flex;
 		align-items: center;
-		gap: 10px;
+		gap: 0.625rem;
 		width: fit-content;
-		font-size: 15px;
+		font-size: 0.9375rem;
 		font-weight: 800;
 		letter-spacing: 0.02em;
 		color: var(--color-ink);
 	}
 
 	.brand img {
-		width: 28px;
+		width: 1.75rem;
 		height: auto;
 		filter: saturate(0.65);
 	}
@@ -75,14 +75,14 @@ const navItems = [
 	.main-nav {
 		display: flex;
 		align-items: center;
-		gap: 30px;
-		font-size: 14px;
+		gap: 1.875rem;
+		font-size: 0.875rem;
 		color: var(--color-muted);
 	}
 
 	.main-nav a {
 		position: relative;
-		padding: 24px 0;
+		padding: 1.5rem 0;
 		transition:
 			color 160ms ease,
 			transform 160ms ease;
@@ -91,9 +91,9 @@ const navItems = [
 	.main-nav a::after {
 		position: absolute;
 		right: 0;
-		bottom: -1px;
+		bottom: -0.0625rem;
 		left: 0;
-		height: 2px;
+		height: 0.125rem;
 		content: "";
 		background: var(--color-accent);
 		transform: scaleX(0);
@@ -115,31 +115,31 @@ const navItems = [
 		display: inline-flex;
 		justify-self: end;
 		align-items: center;
-		gap: 8px;
-		min-width: 126px;
-		padding: 8px 10px;
+		gap: 0.5rem;
+		min-width: 7.875rem;
+		padding: 0.5rem 0.625rem;
 		font-family: var(--font-mono);
-		font-size: 12px;
+		font-size: 0.75rem;
 		line-height: 1;
 		color: var(--color-muted);
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
-		box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--color-surface) 55%, transparent);
+		box-shadow: inset 0 0 0 0.0625rem color-mix(in oklch, var(--color-surface) 55%, transparent);
 	}
 
 	.search-button kbd {
-		padding: 2px 4px;
+		padding: 0.125rem 0.25rem;
 		font-family: inherit;
-		font-size: 10px;
+		font-size: 0.625rem;
 		color: var(--color-faint);
 		border: 1px solid var(--color-border);
 	}
 
-	@media (max-width: 760px) {
+	@media (max-width: 47.5rem) {
 		.site-header {
 			grid-template-columns: 1fr auto;
 			min-height: auto;
-			padding: 12px 0;
+			padding: 0.75rem 0;
 		}
 
 		.main-nav {
@@ -147,13 +147,13 @@ const navItems = [
 			justify-content: space-between;
 			order: 3;
 			width: 100%;
-			padding-top: 10px;
+			padding-top: 0.625rem;
 			gap: 0;
 			border-top: 1px solid var(--color-border);
 		}
 
 		.main-nav a {
-			padding: 10px 0 0;
+			padding: 0.625rem 0 0;
 		}
 
 		.search-button span,
@@ -163,7 +163,7 @@ const navItems = [
 
 		.search-button {
 			min-width: auto;
-			padding: 9px;
+			padding: 0.5625rem;
 		}
 	}
 </style>

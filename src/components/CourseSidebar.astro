@@ -38,9 +38,9 @@ const { current = "04" } = Astro.props;
 <style>
 	.course-sidebar {
 		position: sticky;
-		top: 96px;
+		top: 6rem;
 		align-self: start;
-		padding: 26px 24px;
+		padding: 1.625rem 1.5rem;
 		background: color-mix(in oklch, var(--color-surface) 80%, transparent);
 		border: 1px solid var(--color-border);
 	}
@@ -48,10 +48,10 @@ const { current = "04" } = Astro.props;
 	.back-link {
 		display: inline-flex;
 		align-items: center;
-		gap: 8px;
-		margin-bottom: 22px;
+		gap: 0.5rem;
+		margin-bottom: 1.375rem;
 		font-family: var(--font-mono);
-		font-size: 12px;
+		font-size: 0.75rem;
 		font-weight: 800;
 		color: var(--color-accent-strong);
 	}
@@ -62,12 +62,12 @@ const { current = "04" } = Astro.props;
 
 	nav a {
 		display: grid;
-		grid-template-columns: 28px 1fr auto;
+		grid-template-columns: 1.75rem 1fr auto;
 		align-items: center;
-		gap: 8px;
-		min-height: 48px;
-		padding: 10px 0;
-		font-size: 13px;
+		gap: 0.5rem;
+		min-height: 3rem;
+		padding: 0.625rem 0;
+		font-size: 0.8125rem;
 		font-weight: 700;
 		color: var(--color-muted);
 		border-top: 1px solid var(--color-border);
@@ -79,7 +79,7 @@ const { current = "04" } = Astro.props;
 
 	nav a span {
 		font-family: var(--font-mono);
-		font-size: 11px;
+		font-size: 0.6875rem;
 		color: var(--color-muted);
 	}
 
@@ -87,7 +87,7 @@ const { current = "04" } = Astro.props;
 		color: var(--color-accent-strong);
 	}
 
-	@media (max-width: 980px) {
+	@media (max-width: 61.25rem) {
 		.course-sidebar {
 			position: static;
 		}

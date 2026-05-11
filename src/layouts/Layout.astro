@@ -44,21 +44,21 @@ const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥E
 		top: 0;
 		bottom: 0;
 		z-index: -1;
-		width: 44px;
+		width: 2.75rem;
 		content: "";
 		border-inline: 1px solid var(--color-border);
-		background: repeating-linear-gradient(135deg, transparent 0 8px, color-mix(in oklch, var(--color-hatch) 72%, transparent) 8px 10px), color-mix(in oklch, var(--color-surface) 55%, transparent);
+		background: repeating-linear-gradient(135deg, transparent 0 0.5rem, color-mix(in oklch, var(--color-hatch) 72%, transparent) 0.5rem 0.625rem), color-mix(in oklch, var(--color-surface) 55%, transparent);
 	}
 
 	.page-shell::before {
-		left: max(0px, calc((100vw - var(--site-width)) / 2 - 52px));
+		left: max(0rem, calc((100vw - var(--site-width)) / 2 - 3.25rem));
 	}
 
 	.page-shell::after {
-		right: max(0px, calc((100vw - var(--site-width)) / 2 - 52px));
+		right: max(0rem, calc((100vw - var(--site-width)) / 2 - 3.25rem));
 	}
 
-	@media (max-width: 860px) {
+	@media (max-width: 53.75rem) {
 		.page-shell::before,
 		.page-shell::after {
 			display: none;

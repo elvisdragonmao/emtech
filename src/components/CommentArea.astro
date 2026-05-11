@@ -49,13 +49,13 @@ const { compact = false } = Astro.props;
 
 <style>
 	.comment-area {
-		width: min(920px, 100%);
+		width: min(57.5rem, 100%);
 		margin: 0 auto;
 	}
 
 	h2 {
-		margin-bottom: 22px;
-		font-size: clamp(34px, 5vw, 52px);
+		margin-bottom: 1.375rem;
+		font-size: clamp(2.125rem, 5vw, 3.25rem);
 		line-height: 1;
 		letter-spacing: -0.07em;
 		color: var(--color-ink);
@@ -64,13 +64,13 @@ const { compact = false } = Astro.props;
 	.comment-form {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 18px;
+		gap: 1.125rem;
 	}
 
 	label {
 		display: grid;
-		gap: 8px;
-		font-size: 14px;
+		gap: 0.5rem;
+		font-size: 0.875rem;
 		font-weight: 700;
 		color: var(--color-text);
 	}
@@ -83,7 +83,7 @@ const { compact = false } = Astro.props;
 	input,
 	textarea {
 		width: 100%;
-		padding: 14px 16px;
+		padding: 0.875rem 1rem;
 		color: var(--color-text);
 		background: color-mix(in oklch, var(--color-surface) 84%, transparent);
 		border: 1px solid var(--color-border);
@@ -99,16 +99,16 @@ const { compact = false } = Astro.props;
 	.actions {
 		display: flex;
 		align-items: center;
-		gap: 16px;
-		font-size: 14px;
+		gap: 1rem;
+		font-size: 0.875rem;
 		color: var(--color-muted);
 	}
 
 	button {
 		display: inline-flex;
 		align-items: center;
-		gap: 7px;
-		padding: 9px 14px;
+		gap: 0.4375rem;
+		padding: 0.5625rem 0.875rem;
 		color: var(--color-ink);
 		background: var(--color-surface);
 		border: 1px solid var(--color-accent-strong);
@@ -120,8 +120,8 @@ const { compact = false } = Astro.props;
 	}
 
 	.comment-card {
-		margin-top: 38px;
-		padding: 28px;
+		margin-top: 2.375rem;
+		padding: 1.75rem;
 		background: color-mix(in oklch, var(--color-surface) 88%, transparent);
 		border: 1px solid var(--color-border);
 	}
@@ -129,13 +129,13 @@ const { compact = false } = Astro.props;
 	.comment-head {
 		display: flex;
 		align-items: center;
-		gap: 12px;
-		margin-bottom: 18px;
+		gap: 0.75rem;
+		margin-bottom: 1.125rem;
 	}
 
 	.avatar {
-		width: 42px;
-		height: 42px;
+		width: 2.625rem;
+		height: 2.625rem;
 		border-radius: 50%;
 		background:
 			radial-gradient(circle at 35% 35%, var(--color-yellow), transparent 30%), radial-gradient(circle at 70% 30%, var(--color-pink), transparent 34%),
@@ -148,19 +148,19 @@ const { compact = false } = Astro.props;
 	}
 
 	strong {
-		font-size: 14px;
+		font-size: 0.875rem;
 		color: var(--color-ink);
 	}
 
 	time {
-		margin-top: 2px;
+		margin-top: 0.125rem;
 		font-family: var(--font-mono);
-		font-size: 11px;
+		font-size: 0.6875rem;
 		color: var(--color-muted);
 	}
 
 	.comment-card p {
-		font-size: 15px;
+		font-size: 0.9375rem;
 		line-height: 1.9;
 		color: var(--color-text);
 	}
@@ -169,29 +169,29 @@ const { compact = false } = Astro.props;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: 8px;
-		margin-top: 20px;
+		gap: 0.5rem;
+		margin-top: 1.25rem;
 	}
 
 	.comment-bottom span {
-		padding: 5px 9px;
+		padding: 0.3125rem 0.5625rem;
 		font-family: var(--font-mono);
-		font-size: 11px;
+		font-size: 0.6875rem;
 		color: var(--color-muted);
 		border: 1px solid var(--color-border);
 	}
 
 	.comment-bottom button {
 		margin-left: auto;
-		padding: 6px 10px;
-		font-size: 12px;
+		padding: 0.375rem 0.625rem;
+		font-size: 0.75rem;
 	}
 
 	.compact {
 		width: 100%;
 	}
 
-	@media (max-width: 700px) {
+	@media (max-width: 43.75rem) {
 		.comment-form {
 			grid-template-columns: 1fr;
 		}
@@ -202,7 +202,7 @@ const { compact = false } = Astro.props;
 		}
 
 		.comment-card {
-			padding: 22px;
+			padding: 1.375rem;
 		}
 	}
 </style>

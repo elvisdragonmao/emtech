@@ -70,33 +70,33 @@ const outcomes = [
 
 <style>
 	.course-page {
-		padding-top: 88px;
+		padding-top: 5.5rem;
 	}
 
 	.course-hero,
 	.outcomes,
 	.curriculum,
 	.comments-wrap {
-		width: min(var(--site-width), calc(100% - 32px));
+		width: min(var(--site-width), calc(100% - 2rem));
 		margin-inline: auto;
 	}
 
 	.course-hero {
 		display: grid;
-		grid-template-columns: minmax(0, 1fr) 390px;
-		gap: 86px;
+		grid-template-columns: minmax(0, 1fr) 24.375rem;
+		gap: 5.375rem;
 		align-items: start;
-		padding-bottom: 76px;
+		padding-bottom: 4.75rem;
 		border-bottom: 1px solid var(--color-border);
 	}
 
 	.hero-copy {
-		padding-top: 10px;
+		padding-top: 0.625rem;
 	}
 
 	.eyebrow {
 		font-family: var(--font-mono);
-		font-size: 12px;
+		font-size: 0.75rem;
 		font-weight: 800;
 		letter-spacing: 0.08em;
 		color: var(--color-muted);
@@ -104,18 +104,18 @@ const outcomes = [
 	}
 
 	h1 {
-		max-width: 980px;
-		margin-top: 22px;
-		font-size: clamp(56px, 9vw, 104px);
+		max-width: 61.25rem;
+		margin-top: 1.375rem;
+		font-size: clamp(3.5rem, 9vw, 6.5rem);
 		line-height: 0.95;
 		letter-spacing: -0.09em;
 		color: var(--color-ink);
 	}
 
 	.lead {
-		max-width: 920px;
-		margin-top: 30px;
-		font-size: clamp(18px, 2vw, 25px);
+		max-width: 57.5rem;
+		margin-top: 1.875rem;
+		font-size: clamp(1.125rem, 2vw, 1.5625rem);
 		font-weight: 700;
 		line-height: 1.8;
 		color: var(--color-text);
@@ -128,17 +128,17 @@ const outcomes = [
 
 	.overview-card {
 		position: relative;
-		padding: 34px;
-		margin-top: 72px;
+		padding: 2.125rem;
+		margin-top: 4.5rem;
 	}
 
 	.overview-card::after {
 		position: absolute;
-		right: -88px;
-		bottom: -62px;
+		right: -5.5rem;
+		bottom: -3.875rem;
 		z-index: -1;
-		width: 220px;
-		height: 220px;
+		width: 13.75rem;
+		height: 13.75rem;
 		content: "";
 		border: 1px solid color-mix(in oklch, var(--color-accent) 48%, transparent);
 		border-radius: 50%;
@@ -146,43 +146,43 @@ const outcomes = [
 
 	.overview-card > span {
 		font-family: var(--font-mono);
-		font-size: 12px;
+		font-size: 0.75rem;
 		font-weight: 800;
 		letter-spacing: 0.06em;
 		color: var(--color-accent-strong);
 	}
 
 	.overview-card h2 {
-		margin-top: 18px;
-		font-size: clamp(34px, 4vw, 48px);
+		margin-top: 1.125rem;
+		font-size: clamp(2.125rem, 4vw, 3rem);
 		line-height: 1;
 		letter-spacing: -0.07em;
 		color: var(--color-ink);
 	}
 
 	.overview-card p {
-		margin-top: 24px;
-		font-size: 15px;
+		margin-top: 1.5rem;
+		font-size: 0.9375rem;
 		line-height: 1.8;
 		color: var(--color-text);
 	}
 
 	.progress {
-		margin-top: 42px;
+		margin-top: 2.625rem;
 	}
 
 	.progress strong {
 		display: block;
 		font-family: var(--font-mono);
-		font-size: 12px;
+		font-size: 0.75rem;
 		color: var(--color-muted);
 	}
 
 	.progress i {
 		display: block;
 		width: 100%;
-		height: 6px;
-		margin-top: 16px;
+		height: 0.375rem;
+		margin-top: 1rem;
 		background: var(--color-border);
 	}
 
@@ -198,7 +198,7 @@ const outcomes = [
 		width: 100%;
 		aspect-ratio: 16 / 9;
 		height: auto;
-		margin-top: 28px;
+		margin-top: 1.75rem;
 		object-fit: cover;
 		background: var(--color-paper);
 	}
@@ -206,17 +206,17 @@ const outcomes = [
 	.quick-stats {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 10px;
-		margin-top: 28px;
+		gap: 0.625rem;
+		margin-top: 1.75rem;
 	}
 
 	.quick-stats div {
 		display: grid;
 		place-items: center;
-		gap: 8px;
-		min-height: 78px;
+		gap: 0.5rem;
+		min-height: 4.875rem;
 		font-family: var(--font-mono);
-		font-size: 11px;
+		font-size: 0.6875rem;
 		font-weight: 800;
 		color: var(--color-muted);
 		background: var(--color-surface-soft);
@@ -230,16 +230,16 @@ const outcomes = [
 	.outcomes {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 32px;
-		margin-top: 58px;
-		padding-bottom: 74px;
+		gap: 2rem;
+		margin-top: 3.625rem;
+		padding-bottom: 4.625rem;
 		border-bottom: 1px solid var(--color-border);
 	}
 
 	.outcomes span,
 	.curriculum header p {
 		font-family: var(--font-mono);
-		font-size: 12px;
+		font-size: 0.75rem;
 		font-weight: 800;
 		letter-spacing: 0.08em;
 		color: var(--color-muted);
@@ -247,45 +247,45 @@ const outcomes = [
 	}
 
 	.outcomes h2 {
-		margin-top: 18px;
-		font-size: 20px;
+		margin-top: 1.125rem;
+		font-size: 1.25rem;
 		line-height: 1.35;
 		color: var(--color-ink);
 	}
 
 	.outcomes p {
-		margin-top: 12px;
-		font-size: 14px;
+		margin-top: 0.75rem;
+		font-size: 0.875rem;
 		line-height: 1.8;
 		color: var(--color-text);
 	}
 
 	.curriculum {
-		margin-top: 82px;
+		margin-top: 5.125rem;
 		background: color-mix(in oklch, var(--color-surface) 58%, transparent);
 		border: 1px solid var(--color-border);
 	}
 
 	.curriculum header {
 		display: grid;
-		grid-template-columns: 160px 1fr;
+		grid-template-columns: 10rem 1fr;
 		align-items: end;
-		gap: 30px;
-		padding: 34px 18px 18px;
+		gap: 1.875rem;
+		padding: 2.125rem 1.125rem 1.125rem;
 	}
 
 	.curriculum h2 {
-		font-size: clamp(34px, 5vw, 58px);
+		font-size: clamp(2.125rem, 5vw, 3.625rem);
 		line-height: 1;
 		letter-spacing: -0.075em;
 		color: var(--color-ink);
 	}
 
 	.comments-wrap {
-		margin-top: 92px;
+		margin-top: 5.75rem;
 	}
 
-	@media (max-width: 920px) {
+	@media (max-width: 57.5rem) {
 		.course-hero,
 		.outcomes,
 		.curriculum header {
@@ -293,13 +293,13 @@ const outcomes = [
 		}
 
 		.overview-card {
-			margin-top: 20px;
+			margin-top: 1.25rem;
 		}
 	}
 
-	@media (max-width: 620px) {
+	@media (max-width: 38.75rem) {
 		.course-page {
-			padding-top: 52px;
+			padding-top: 3.25rem;
 		}
 
 		.quick-stats {
@@ -307,7 +307,7 @@ const outcomes = [
 		}
 
 		.overview-card {
-			padding: 22px;
+			padding: 1.375rem;
 		}
 	}
 </style>
