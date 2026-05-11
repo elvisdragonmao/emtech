@@ -21,42 +21,42 @@ import { GitBranch, MessageSquare, Rss } from "@lucide/astro";
 	.site-footer {
 		display: grid;
 		grid-template-columns: 1fr auto;
-		width: min(var(--site-width), calc(100% - 32px));
-		margin: 96px auto 0;
+		width: min(var(--site-width), calc(100% - 2rem));
+		margin: 6rem auto 0;
 		border: 1px solid var(--color-border);
 		background: color-mix(in oklch, var(--color-surface) 82%, transparent);
-		backdrop-filter: blur(12px);
+		backdrop-filter: blur(0.75rem);
 	}
 
 	.footer-brand {
 		display: flex;
 		align-items: center;
-		gap: 18px;
-		min-height: 92px;
-		padding: 22px 28px;
+		gap: 1.125rem;
+		min-height: 5.75rem;
+		padding: 1.375rem 1.75rem;
 		color: var(--color-muted);
 	}
 
 	.footer-brand img {
-		width: 28px;
+		width: 1.75rem;
 		height: auto;
 		filter: saturate(0.65);
 	}
 
 	.footer-brand p:first-child {
-		font-size: 14px;
+		font-size: 0.875rem;
 		font-weight: 700;
 		color: var(--color-text);
 	}
 
 	.footer-brand p + p {
-		margin-top: 4px;
-		font-size: 13px;
+		margin-top: 0.25rem;
+		font-size: 0.8125rem;
 	}
 
 	.footer-actions {
 		display: grid;
-		grid-template-columns: repeat(3, 72px);
+		grid-template-columns: repeat(3, 4.5rem);
 		border-left: 1px solid var(--color-border);
 	}
 
@@ -79,20 +79,20 @@ import { GitBranch, MessageSquare, Rss } from "@lucide/astro";
 		background: var(--color-accent-soft);
 	}
 
-	@media (max-width: 700px) {
+	@media (max-width: 43.75rem) {
 		.site-footer {
 			grid-template-columns: 1fr;
-			margin-top: 64px;
+			margin-top: 4rem;
 		}
 
 		.footer-brand {
 			align-items: flex-start;
-			padding: 20px;
+			padding: 1.25rem;
 		}
 
 		.footer-actions {
 			grid-template-columns: repeat(3, 1fr);
-			min-height: 58px;
+			min-height: 3.625rem;
 			border-top: 1px solid var(--color-border);
 			border-left: 0;
 		}
