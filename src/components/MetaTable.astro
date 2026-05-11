@@ -1,0 +1,76 @@
+---
+type MetaItem = {
+	label: string;
+	value: string;
+};
+
+interface Props {
+	items: MetaItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<dl class="meta-table">
+	{
+		items.map(item => (
+			<div>
+				<dt>{item.label}</dt>
+				<dd>{item.value}</dd>
+			</div>
+		))
+	}
+</dl>
+
+<style>
+	.meta-table {
+		display: grid;
+		grid-template-columns: repeat(var(--meta-columns, 5), minmax(0, 1fr));
+		border: 1px solid var(--color-border);
+		background: color-mix(in oklch, var(--color-surface) 76%, transparent);
+	}
+
+	.meta-table div {
+		min-height: 74px;
+		padding: 13px 17px;
+		border-left: 1px solid var(--color-border);
+	}
+
+	.meta-table div:first-child {
+		border-left: 0;
+	}
+
+	dt {
+		font-family: var(--font-mono);
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		color: var(--color-muted);
+	}
+
+	dd {
+		margin-top: 12px;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--color-text);
+	}
+
+	@media (max-width: 780px) {
+		.meta-table {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.meta-table div:nth-child(odd) {
+			border-left: 0;
+		}
+
+		.meta-table div {
+			border-top: 1px solid var(--color-border);
+		}
+
+		.meta-table div:nth-child(-n + 2) {
+			border-top: 0;
+		}
+	}
+</style>

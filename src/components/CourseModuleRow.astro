@@ -1,0 +1,113 @@
+---
+import { ArrowRight } from "@lucide/astro";
+import type { CourseModule } from "../data/prototype";
+
+interface Props {
+	module: CourseModule;
+}
+
+const { module } = Astro.props;
+---
+
+<a class="module-row" href={module.href}>
+	<span class="module-number">{module.number}</span>
+	<img src={module.image.src} width={module.image.width} height={module.image.height} alt={module.title} loading="lazy" />
+	<div class="module-content">
+		<h3>{module.title}</h3>
+		<p>{module.description}</p>
+	</div>
+	<span class="duration">{module.duration}</span>
+	<ArrowRight class="arrow" size={18} stroke-width={1.8} />
+</a>
+
+<style>
+	.module-row {
+		display: grid;
+		grid-template-columns: 118px 220px minmax(0, 1fr) 76px 22px;
+		align-items: center;
+		gap: 30px;
+		padding: 24px 18px;
+		border-top: 1px solid var(--color-border);
+		transition:
+			background 160ms ease,
+			transform 160ms ease;
+	}
+
+	.module-row:hover {
+		background: color-mix(in oklch, var(--color-accent-soft) 40%, transparent);
+	}
+
+	.module-number,
+	.duration {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--color-muted);
+	}
+
+	img {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		height: auto;
+		object-fit: cover;
+	}
+
+	h3 {
+		font-size: clamp(23px, 2.6vw, 32px);
+		line-height: 1.14;
+		letter-spacing: -0.055em;
+		color: var(--color-ink);
+	}
+
+	p {
+		max-width: 680px;
+		margin-top: 10px;
+		font-size: 15px;
+		line-height: 1.75;
+		color: var(--color-muted);
+	}
+
+	.arrow {
+		color: var(--color-accent-strong);
+		opacity: 0;
+		transform: translateX(-8px);
+		transition:
+			opacity 160ms ease,
+			transform 160ms ease;
+	}
+
+	.module-row:hover .arrow {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	@media (max-width: 900px) {
+		.module-row {
+			grid-template-columns: 92px 1fr;
+			gap: 18px;
+		}
+
+		img,
+		.module-content,
+		.duration {
+			grid-column: 2;
+		}
+
+		.arrow {
+			display: none;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.module-row {
+			grid-template-columns: 1fr;
+			padding: 22px 0;
+		}
+
+		img,
+		.module-content,
+		.duration {
+			grid-column: auto;
+		}
+	}
+</style>

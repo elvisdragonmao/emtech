@@ -1,0 +1,138 @@
+---
+import { Camera, GitBranch, Globe } from "@lucide/astro";
+
+interface Props {
+	compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<section class:list={["about-card", { compact }]}>
+	<div>
+		<p class="eyebrow">About me</p>
+		<h2>毛哥EM</h2>
+		<p class="bio">一隻生病腦袋還有英文辯士，熱愛開源、音樂、設計、獸迷文化，專研人機互動與人工智慧。本部落格持續累積從實作到踩坑的筆記。</p>
+		<div class="links" aria-label="社群連結">
+			<a href="https://elvismao.com" aria-label="個人網站"><Globe size={22} stroke-width={1.7} /></a>
+			<a href="https://github.com/" aria-label="GitHub"><GitBranch size={22} stroke-width={1.7} /></a>
+			<a href="https://instagram.com/" aria-label="Instagram"><Camera size={22} stroke-width={1.7} /></a>
+		</div>
+	</div>
+	<img class="dragon" src="/img/avatar_faier.webp" alt="毛哥EM 角色插圖" loading="lazy" />
+</section>
+
+<style>
+	.about-card {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 230px;
+		align-items: end;
+		width: min(920px, 100%);
+		min-height: 300px;
+		padding: 42px 42px 30px;
+		overflow: hidden;
+		background: color-mix(in oklch, var(--color-surface) 84%, transparent);
+		border: 1px solid var(--color-accent);
+		box-shadow: var(--shadow-card);
+	}
+
+	.about-card::before {
+		position: absolute;
+		inset: 18px;
+		content: "";
+		border: 1px solid color-mix(in oklch, var(--color-border) 70%, transparent);
+		pointer-events: none;
+	}
+
+	.eyebrow {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	h2 {
+		margin-top: 14px;
+		font-size: clamp(38px, 7vw, 74px);
+		line-height: 0.9;
+		letter-spacing: -0.08em;
+		color: var(--color-ink);
+	}
+
+	.bio {
+		max-width: 460px;
+		margin-top: 22px;
+		font-size: 15px;
+		line-height: 1.9;
+		color: var(--color-muted);
+	}
+
+	.links {
+		display: flex;
+		gap: 18px;
+		margin-top: 28px;
+	}
+
+	.links a {
+		color: var(--color-muted);
+		transition: color 160ms ease;
+	}
+
+	.links a:hover {
+		color: var(--color-accent-strong);
+	}
+
+	.dragon {
+		position: absolute;
+		right: 36px;
+		bottom: -26px;
+		z-index: 1;
+		width: auto;
+		height: 300px;
+		filter: drop-shadow(0 24px 24px color-mix(in oklch, var(--color-accent) 18%, transparent));
+	}
+
+	.compact {
+		width: 100%;
+		grid-template-columns: 1fr 210px;
+		min-height: 230px;
+		padding: 30px;
+	}
+
+	.compact h2 {
+		font-size: 42px;
+	}
+
+	.compact .bio {
+		font-size: 14px;
+	}
+
+	.compact .dragon {
+		right: 34px;
+		bottom: -24px;
+		width: auto;
+		height: 218px;
+	}
+
+	@media (max-width: 640px) {
+		.about-card,
+		.compact {
+			grid-template-columns: 1fr;
+			padding: 30px 24px 0;
+		}
+
+		.dragon,
+		.compact .dragon {
+			position: relative;
+			right: auto;
+			bottom: auto;
+			width: auto;
+			height: 250px;
+			margin: 10px auto -34px;
+			justify-self: center;
+		}
+	}
+</style>

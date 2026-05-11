@@ -1,0 +1,168 @@
+---
+import { ArrowRight, BookOpen } from "@lucide/astro";
+import type { CourseCard as CourseCardData } from "../data/prototype";
+
+interface Props {
+	course: CourseCardData;
+	featured?: boolean;
+}
+
+const { course, featured = false } = Astro.props;
+---
+
+<a class:list={["course-card", `accent-${course.accent}`, { featured }]} href={course.href}>
+	<div class="visual">
+		<img src={course.image.src} width={course.image.width} height={course.image.height} alt={course.title} loading="lazy" />
+		<span><BookOpen size={15} stroke-width={1.8} />Course</span>
+	</div>
+	<div class="content">
+		<p>{course.meta}</p>
+		<h3>{course.title}</h3>
+		<span class="description">{course.description}</span>
+		<div class="bottom">
+			<span>最後更新 {course.lastUpdated}</span>
+			<ArrowRight size={17} stroke-width={1.9} />
+		</div>
+	</div>
+</a>
+
+<style>
+	.course-card {
+		display: grid;
+		grid-template-rows: auto 1fr;
+		min-height: 100%;
+		background: color-mix(in oklch, var(--color-surface) 88%, transparent);
+		border: 1px solid var(--color-border);
+		overflow: hidden;
+		transition:
+			transform 180ms ease,
+			border-color 180ms ease,
+			box-shadow 180ms ease;
+	}
+
+	.course-card:hover {
+		transform: translateY(-4px);
+		border-color: var(--accent-color);
+		box-shadow: var(--shadow-card);
+	}
+
+	.accent-blue {
+		--accent-color: var(--color-accent);
+		--accent-soft: var(--color-accent-soft);
+	}
+
+	.accent-purple {
+		--accent-color: var(--color-purple);
+		--accent-soft: var(--color-purple-soft);
+	}
+
+	.accent-yellow {
+		--accent-color: var(--color-yellow);
+		--accent-soft: var(--color-paper);
+	}
+
+	.visual {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		margin: 14px 14px 0;
+		overflow: hidden;
+		background: var(--accent-soft);
+	}
+
+	.visual img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 260ms ease;
+	}
+
+	.course-card:hover .visual img {
+		transform: scale(1.04);
+	}
+
+	.visual span {
+		position: absolute;
+		top: 12px;
+		left: 12px;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 6px 9px;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		font-weight: 800;
+		color: var(--color-ink);
+		background: color-mix(in oklch, var(--color-surface) 84%, transparent);
+		border: 1px solid color-mix(in oklch, var(--accent-color) 45%, var(--color-border));
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		padding: 19px 22px 22px;
+	}
+
+	.content > p {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		color: var(--accent-color);
+	}
+
+	h3 {
+		margin-top: 12px;
+		font-size: clamp(25px, 3.3vw, 42px);
+		line-height: 1.04;
+		letter-spacing: -0.07em;
+		color: var(--color-ink);
+	}
+
+	.description {
+		margin-top: 14px;
+		font-size: 15px;
+		line-height: 1.75;
+		color: var(--color-muted);
+	}
+
+	.bottom {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 18px;
+		margin-top: auto;
+		padding-top: 28px;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		color: var(--color-muted);
+	}
+
+	.bottom svg {
+		color: var(--accent-color);
+	}
+
+	.featured {
+		grid-template-columns: 0.86fr 1fr;
+		grid-template-rows: auto;
+	}
+
+	.featured .visual {
+		height: calc(100% - 28px);
+		min-height: 260px;
+	}
+
+	.featured h3 {
+		font-size: clamp(34px, 6vw, 64px);
+	}
+
+	@media (max-width: 820px) {
+		.featured {
+			grid-template-columns: 1fr;
+		}
+
+		.featured .visual {
+			height: auto;
+			min-height: auto;
+		}
+	}
+</style>
