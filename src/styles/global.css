@@ -1,7 +1,93 @@
+@import url("https://font.emtech.cc/fonts/IBMPlexSansTC");
+@import url("https://font.emtech.cc/fonts/JetBrainsMono");
+
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
+}
+
+:root {
+	--color-bg: oklch(99% 0.004 235);
+	--color-surface: oklch(100% 0 0);
+	--color-surface-soft: oklch(98% 0.006 235);
+	--color-paper: oklch(97.2% 0.02 78);
+	--color-ink: oklch(17% 0.022 255);
+	--color-text: oklch(28% 0.025 255);
+	--color-muted: oklch(58% 0.025 255);
+	--color-faint: oklch(76% 0.02 255);
+	--color-border: oklch(89% 0.018 255);
+	--color-border-strong: oklch(77% 0.026 248);
+	--color-grid: oklch(83% 0.05 225);
+	--color-grid-soft: oklch(92% 0.026 225);
+	--color-grid-line: oklch(94% 0.012 240);
+	--color-hatch: oklch(92% 0.012 250);
+	--color-accent: oklch(71% 0.15 225);
+	--color-accent-strong: oklch(61% 0.17 232);
+	--color-accent-soft: oklch(93% 0.045 220);
+	--color-purple: oklch(57% 0.11 305);
+	--color-purple-soft: oklch(92% 0.035 305);
+	--color-yellow: oklch(88% 0.16 96);
+	--color-orange: oklch(70% 0.18 42);
+	--color-green: oklch(72% 0.14 155);
+	--color-pink: oklch(72% 0.18 350);
+	--color-code-bg: oklch(22% 0.03 260);
+	--color-code-ink: oklch(91% 0.018 250);
+	--shadow-soft: 0 28px 90px color-mix(in oklch, var(--color-ink) 9%, transparent);
+	--shadow-card: 0 18px 40px color-mix(in oklch, var(--color-ink) 8%, transparent);
+	--font-sans: "IBMPlexSansTC", "IBM Plex Sans Chinese TC", sans-serif;
+	--font-mono: JetBrainsMono, "JetBrains Mono", monospace;
+	--site-width: 1500px;
+	color-scheme: light;
+}
+
+html {
+	font-family: var(--font-sans);
+	color: var(--color-text);
+	background: var(--color-bg);
+	scroll-behavior: smooth;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	min-width: 320px;
+	min-height: 100vh;
+	background:
+		linear-gradient(90deg, transparent calc(100% - 1px), var(--color-grid-line) 1px), linear-gradient(180deg, transparent calc(100% - 1px), var(--color-grid-line) 1px),
+		radial-gradient(circle, color-mix(in oklch, var(--color-grid) 55%, transparent) 1px, transparent 1.5px), var(--color-bg);
+	background-size:
+		192px 192px,
+		192px 192px,
+		16px 16px,
+		auto;
+}
+
+img,
+svg,
+video {
+	display: block;
+	max-width: 100%;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button,
+input,
+textarea {
+	font: inherit;
+}
+
+button {
+	cursor: pointer;
+}
+
+::selection {
+	color: var(--color-ink);
+	background: color-mix(in oklch, var(--color-accent) 30%, transparent);
 }

@@ -1,0 +1,208 @@
+---
+import { Send } from "@lucide/astro";
+
+interface Props {
+	compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<section id="comments" class:list={["comment-area", { compact }]}>
+	<h2>留言區</h2>
+	<form class="comment-form">
+		<label>
+			暱稱
+			<input type="text" value="毛哥EM" />
+		</label>
+		<label>
+			Email
+			<input type="email" value="info@elvismao.com" />
+		</label>
+		<label class="message">
+			訊息
+			<textarea rows="5">我想說話</textarea>
+		</label>
+		<div class="actions">
+			<button type="button"><Send size={14} stroke-width={1.8} />送出</button>
+			<span>或是先 <a href="/">登入</a></span>
+		</div>
+	</form>
+
+	<article class="comment-card">
+		<div class="comment-head">
+			<span class="avatar"></span>
+			<div>
+				<strong>毛哥EM</strong>
+				<time datetime="2025-05-12">2025-05-12</time>
+			</div>
+		</div>
+		<p>不得不佩服風風怪色精嗎？過了嘈雜犬般被強迫割你吹，還排著搞拒絕。被強硬的壓制之後只能乖乖的不動，明明有很長的線卻只能當空。</p>
+		<div class="comment-bottom">
+			<span>台中</span>
+			<span>macOS Sonoma</span>
+			<span>Firefox</span>
+			<button type="button">回覆</button>
+		</div>
+	</article>
+</section>
+
+<style>
+	.comment-area {
+		width: min(920px, 100%);
+		margin: 0 auto;
+	}
+
+	h2 {
+		margin-bottom: 22px;
+		font-size: clamp(34px, 5vw, 52px);
+		line-height: 1;
+		letter-spacing: -0.07em;
+		color: var(--color-ink);
+	}
+
+	.comment-form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 18px;
+	}
+
+	label {
+		display: grid;
+		gap: 8px;
+		font-size: 14px;
+		font-weight: 700;
+		color: var(--color-text);
+	}
+
+	.message,
+	.actions {
+		grid-column: 1 / -1;
+	}
+
+	input,
+	textarea {
+		width: 100%;
+		padding: 14px 16px;
+		color: var(--color-text);
+		background: color-mix(in oklch, var(--color-surface) 84%, transparent);
+		border: 1px solid var(--color-border);
+		outline: 0;
+		transition: border-color 160ms ease;
+	}
+
+	input:focus,
+	textarea:focus {
+		border-color: var(--color-accent);
+	}
+
+	.actions {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		font-size: 14px;
+		color: var(--color-muted);
+	}
+
+	button {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		padding: 9px 14px;
+		color: var(--color-ink);
+		background: var(--color-surface);
+		border: 1px solid var(--color-accent-strong);
+	}
+
+	a {
+		color: var(--color-accent-strong);
+		border-bottom: 1px solid currentColor;
+	}
+
+	.comment-card {
+		margin-top: 38px;
+		padding: 28px;
+		background: color-mix(in oklch, var(--color-surface) 88%, transparent);
+		border: 1px solid var(--color-border);
+	}
+
+	.comment-head {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 18px;
+	}
+
+	.avatar {
+		width: 42px;
+		height: 42px;
+		border-radius: 50%;
+		background:
+			radial-gradient(circle at 35% 35%, var(--color-yellow), transparent 30%), radial-gradient(circle at 70% 30%, var(--color-pink), transparent 34%),
+			linear-gradient(135deg, var(--color-accent), var(--color-purple));
+	}
+
+	strong,
+	time {
+		display: block;
+	}
+
+	strong {
+		font-size: 14px;
+		color: var(--color-ink);
+	}
+
+	time {
+		margin-top: 2px;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: var(--color-muted);
+	}
+
+	.comment-card p {
+		font-size: 15px;
+		line-height: 1.9;
+		color: var(--color-text);
+	}
+
+	.comment-bottom {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+		margin-top: 20px;
+	}
+
+	.comment-bottom span {
+		padding: 5px 9px;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: var(--color-muted);
+		border: 1px solid var(--color-border);
+	}
+
+	.comment-bottom button {
+		margin-left: auto;
+		padding: 6px 10px;
+		font-size: 12px;
+	}
+
+	.compact {
+		width: 100%;
+	}
+
+	@media (max-width: 700px) {
+		.comment-form {
+			grid-template-columns: 1fr;
+		}
+
+		.actions {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		.comment-card {
+			padding: 22px;
+		}
+	}
+</style>

@@ -1,0 +1,100 @@
+---
+import { GitBranch, MessageSquare, Rss } from "@lucide/astro";
+---
+
+<footer class="site-footer">
+	<div class="footer-brand">
+		<img src="/img/logo.svg" alt="" width="32" height="37" />
+		<div>
+			<p>©2021 - 2026 By 毛哥EM</p>
+			<p>原創文章採 CC BY 4.0 授權，轉載請註明來源。</p>
+		</div>
+	</div>
+	<nav class="footer-actions" aria-label="頁尾連結">
+		<a href="/#comments" aria-label="留言"><MessageSquare size={21} stroke-width={1.7} /></a>
+		<a href="https://github.com/" aria-label="GitHub"><GitBranch size={21} stroke-width={1.7} /></a>
+		<a href="/rss.xml" aria-label="RSS"><Rss size={21} stroke-width={1.7} /></a>
+	</nav>
+</footer>
+
+<style>
+	.site-footer {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		width: min(var(--site-width), calc(100% - 32px));
+		margin: 96px auto 0;
+		border: 1px solid var(--color-border);
+		background: color-mix(in oklch, var(--color-surface) 82%, transparent);
+		backdrop-filter: blur(12px);
+	}
+
+	.footer-brand {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+		min-height: 92px;
+		padding: 22px 28px;
+		color: var(--color-muted);
+	}
+
+	.footer-brand img {
+		width: 28px;
+		height: auto;
+		filter: saturate(0.65);
+	}
+
+	.footer-brand p:first-child {
+		font-size: 14px;
+		font-weight: 700;
+		color: var(--color-text);
+	}
+
+	.footer-brand p + p {
+		margin-top: 4px;
+		font-size: 13px;
+	}
+
+	.footer-actions {
+		display: grid;
+		grid-template-columns: repeat(3, 72px);
+		border-left: 1px solid var(--color-border);
+	}
+
+	.footer-actions a {
+		display: grid;
+		place-items: center;
+		color: var(--color-muted);
+		border-left: 1px solid var(--color-border);
+		transition:
+			color 160ms ease,
+			background 160ms ease;
+	}
+
+	.footer-actions a:first-child {
+		border-left: 0;
+	}
+
+	.footer-actions a:hover {
+		color: var(--color-accent-strong);
+		background: var(--color-accent-soft);
+	}
+
+	@media (max-width: 700px) {
+		.site-footer {
+			grid-template-columns: 1fr;
+			margin-top: 64px;
+		}
+
+		.footer-brand {
+			align-items: flex-start;
+			padding: 20px;
+		}
+
+		.footer-actions {
+			grid-template-columns: repeat(3, 1fr);
+			min-height: 58px;
+			border-top: 1px solid var(--color-border);
+			border-left: 0;
+		}
+	}
+</style>

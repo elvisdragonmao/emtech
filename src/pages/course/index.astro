@@ -1,0 +1,313 @@
+---
+import { BookOpen, Clock, Users } from "@lucide/astro";
+import CommentArea from "../../components/CommentArea.astro";
+import CourseModuleRow from "../../components/CourseModuleRow.astro";
+import Layout from "../../layouts/Layout.astro";
+import { courseModules, courses } from "../../data/prototype";
+
+const course = courses[0];
+const outcomes = [
+	{ label: "Outcome 01", title: "讀懂 HTML 語意結構", text: "能把內容建立穩定骨架，讓瀏覽器和人都知道這份文件在說什麼。" },
+	{ label: "Outcome 02", title: "用 CSS Grid / Flex 做出可維護的出版版面", text: "從間距、對齊、響應式到可讀性，建立系統化排版直覺。" },
+	{ label: "Outcome 03", title: "理解 JavaScript 互動、狀態與可及性", text: "知道什麼時候需要 JS，並讓互動不只是會動而是好用。" }
+];
+---
+
+<Layout title="前端網頁開發入門" description={course.description} active="course">
+	<main class="course-page">
+		<section class="course-hero">
+			<div class="hero-copy">
+				<p class="eyebrow">Coding</p>
+				<h1>前端網頁開發入門</h1>
+				<p class="lead">給想從零建立完整前端心智模型的學習者。不是只背語法，而是理解文件結構、排版系統、互動狀態與部署流程如何連在一起。</p>
+			</div>
+			<article class="overview-card">
+				<span>Course overview</span>
+				<h2>10 單元 / 6.5 小時</h2>
+				<p>Target audience: 初學者、轉職工程師、需要補齊前端基礎的設計師。</p>
+				<div class="progress">
+					<strong>Reading path progress: 42%</strong>
+					<i></i>
+				</div>
+				<img class="overview-thumb" src={course.image.src} width={course.image.width} height={course.image.height} alt={course.title} />
+				<div class="quick-stats">
+					<div><BookOpen size={18} stroke-width={1.8} />10 modules</div>
+					<div><Clock size={18} stroke-width={1.8} />6.5 hours</div>
+					<div><Users size={18} stroke-width={1.8} />Beginner</div>
+				</div>
+			</article>
+		</section>
+
+		<section class="outcomes">
+			{
+				outcomes.map(item => (
+					<article>
+						<>
+							<span>{item.label}</span>
+							<h2>{item.title}</h2>
+							<p>{item.text}</p>
+						</>
+					</article>
+				))
+			}
+		</section>
+
+		<section class="curriculum">
+			<header>
+				<p>Module 01</p>
+				<h2>從基本原理到互動實作</h2>
+			</header>
+			<div class="module-list">
+				{courseModules.map(module => <CourseModuleRow module={module} />)}
+			</div>
+		</section>
+
+		<section class="comments-wrap">
+			<CommentArea />
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.course-page {
+		padding-top: 88px;
+	}
+
+	.course-hero,
+	.outcomes,
+	.curriculum,
+	.comments-wrap {
+		width: min(var(--site-width), calc(100% - 32px));
+		margin-inline: auto;
+	}
+
+	.course-hero {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 390px;
+		gap: 86px;
+		align-items: start;
+		padding-bottom: 76px;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.hero-copy {
+		padding-top: 10px;
+	}
+
+	.eyebrow {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	h1 {
+		max-width: 980px;
+		margin-top: 22px;
+		font-size: clamp(56px, 9vw, 104px);
+		line-height: 0.95;
+		letter-spacing: -0.09em;
+		color: var(--color-ink);
+	}
+
+	.lead {
+		max-width: 920px;
+		margin-top: 30px;
+		font-size: clamp(18px, 2vw, 25px);
+		font-weight: 700;
+		line-height: 1.8;
+		color: var(--color-text);
+	}
+
+	.overview-card {
+		background: color-mix(in oklch, var(--color-surface) 88%, transparent);
+		border: 1px solid var(--color-border);
+	}
+
+	.overview-card {
+		position: relative;
+		padding: 34px;
+		margin-top: 72px;
+	}
+
+	.overview-card::after {
+		position: absolute;
+		right: -88px;
+		bottom: -62px;
+		z-index: -1;
+		width: 220px;
+		height: 220px;
+		content: "";
+		border: 1px solid color-mix(in oklch, var(--color-accent) 48%, transparent);
+		border-radius: 50%;
+	}
+
+	.overview-card > span {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 0.06em;
+		color: var(--color-accent-strong);
+	}
+
+	.overview-card h2 {
+		margin-top: 18px;
+		font-size: clamp(34px, 4vw, 48px);
+		line-height: 1;
+		letter-spacing: -0.07em;
+		color: var(--color-ink);
+	}
+
+	.overview-card p {
+		margin-top: 24px;
+		font-size: 15px;
+		line-height: 1.8;
+		color: var(--color-text);
+	}
+
+	.progress {
+		margin-top: 42px;
+	}
+
+	.progress strong {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		color: var(--color-muted);
+	}
+
+	.progress i {
+		display: block;
+		width: 100%;
+		height: 6px;
+		margin-top: 16px;
+		background: var(--color-border);
+	}
+
+	.progress i::before {
+		display: block;
+		width: 42%;
+		height: 100%;
+		content: "";
+		background: var(--color-accent);
+	}
+
+	.overview-thumb {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		height: auto;
+		margin-top: 28px;
+		object-fit: cover;
+		background: var(--color-paper);
+	}
+
+	.quick-stats {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+		margin-top: 28px;
+	}
+
+	.quick-stats div {
+		display: grid;
+		place-items: center;
+		gap: 8px;
+		min-height: 78px;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		font-weight: 800;
+		color: var(--color-muted);
+		background: var(--color-surface-soft);
+		border: 1px solid var(--color-border);
+	}
+
+	.quick-stats svg {
+		color: var(--color-accent-strong);
+	}
+
+	.outcomes {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 32px;
+		margin-top: 58px;
+		padding-bottom: 74px;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.outcomes span,
+	.curriculum header p {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	.outcomes h2 {
+		margin-top: 18px;
+		font-size: 20px;
+		line-height: 1.35;
+		color: var(--color-ink);
+	}
+
+	.outcomes p {
+		margin-top: 12px;
+		font-size: 14px;
+		line-height: 1.8;
+		color: var(--color-text);
+	}
+
+	.curriculum {
+		margin-top: 82px;
+		background: color-mix(in oklch, var(--color-surface) 58%, transparent);
+		border: 1px solid var(--color-border);
+	}
+
+	.curriculum header {
+		display: grid;
+		grid-template-columns: 160px 1fr;
+		align-items: end;
+		gap: 30px;
+		padding: 34px 18px 18px;
+	}
+
+	.curriculum h2 {
+		font-size: clamp(34px, 5vw, 58px);
+		line-height: 1;
+		letter-spacing: -0.075em;
+		color: var(--color-ink);
+	}
+
+	.comments-wrap {
+		margin-top: 92px;
+	}
+
+	@media (max-width: 920px) {
+		.course-hero,
+		.outcomes,
+		.curriculum header {
+			grid-template-columns: 1fr;
+		}
+
+		.overview-card {
+			margin-top: 20px;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.course-page {
+			padding-top: 52px;
+		}
+
+		.quick-stats {
+			grid-template-columns: 1fr;
+		}
+
+		.overview-card {
+			padding: 22px;
+		}
+	}
+</style>
