@@ -2,13 +2,25 @@
 import { courses } from "../../data/prototype";
 import CourseCard from "../shared/CourseCard.astro";
 import SectionTitle from "../shared/SectionTitle.astro";
+
+const topCourses = courses.slice(0, 3);
+const featuredCourses = courses.slice(3);
 ---
 
 <section class="section-block courses-preview">
-	<SectionTitle eyebrow="Course" title="一篇像廢文<br>一系列看起來就挺有道理。" description="鐵人賽系列文章<br>與詳細的程式開發與設計教學" />
-	<div class="course-grid">
-		{courses.map(course => <CourseCard course={course} />)}
+	<SectionTitle eyebrow="Course" title="一篇像廢文<br>一系列看起來就挺有道理。" description="鐵人賽系列文章<br>和詳細的程式開發與設計教學" />
+	<div class="course-grid-top">
+		{topCourses.map(course => <CourseCard course={course} />)}
 	</div>
+	{
+		featuredCourses.length > 0 && (
+			<div class="course-grid-featured">
+				{featuredCourses.map(course => (
+					<CourseCard course={course} featured={true} />
+				))}
+			</div>
+		)
+	}
 </section>
 
 <style>
@@ -18,17 +30,27 @@ import SectionTitle from "../shared/SectionTitle.astro";
 		gap: 1.75rem;
 	}
 
-	.course-grid {
+	/* Row 1: 3 cards, no gap, leftmost 1.3x wider, borders collapse */
+	.course-grid-top {
 		display: grid;
-		grid-template-columns: 1.18fr 0.91fr 0.91fr;
-		gap: 1.25rem;
+		grid-template-columns: 1.3fr 1fr 1fr;
+		gap: 0;
 	}
 
-	.course-grid :global(.course-card:first-child) {
-		grid-row: span 2;
+	/* first card larger h3 */
+	.course-grid-top :global(.course-card:first-child h3) {
+		font-size: 3rem;
 	}
 
-	.course-grid :global(.course-card:first-child .visual) {
-		aspect-ratio: 2 / 1;
+	.course-grid-top :global(.course-card:not(:hover)) {
+		border-right: none;
+	}
+
+	.course-grid-top :global(.course-card:last-child:not(:hover)) {
+		border-right: 1px solid var(--color-border);
+	}
+
+	.course-grid-featured {
+		display: flex;
 	}
 </style>

@@ -42,10 +42,40 @@ const specialPages = [
 		position: relative;
 		min-height: 8.5rem;
 		padding: 1.75rem;
+		border-left: 1px solid var(--color-border);
+		transition: background 180ms ease;
+	}
+
+	.special-grid a::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		top: auto;
+		height: 2px;
+		background: var(--color-accent);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 220ms ease;
 	}
 
 	.special-grid a:first-child {
-		border-left: 0;
+		border-left: none;
+	}
+
+	.special-grid a:hover {
+		background: color-mix(in oklch, var(--color-surface) 70%, var(--color-bg));
+	}
+
+	.special-grid a:hover::before {
+		transform: scaleX(1);
+	}
+
+	.special-grid a:hover h3 {
+		color: var(--color-accent);
+	}
+
+	.special-grid a:hover svg {
+		transform: translate(0.2rem, -0.2rem);
 	}
 
 	.special-grid h3 {
@@ -53,6 +83,7 @@ const specialPages = [
 		line-height: 1;
 		letter-spacing: -0.055em;
 		color: var(--color-ink);
+		transition: color 180ms ease;
 	}
 
 	.special-grid p {
@@ -66,5 +97,6 @@ const specialPages = [
 		right: 1.5rem;
 		bottom: 1.5rem;
 		color: var(--color-accent-strong);
+		transition: transform 180ms ease;
 	}
 </style>

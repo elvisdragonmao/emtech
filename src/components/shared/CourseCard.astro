@@ -93,7 +93,6 @@ const { course, featured = false } = Astro.props;
 		font-weight: 800;
 		color: var(--color-ink);
 		background: color-mix(in oklch, var(--color-surface) 84%, transparent);
-		border: 1px solid color-mix(in oklch, var(--accent-color) 45%, var(--color-border));
 	}
 
 	.content {
@@ -112,7 +111,7 @@ const { course, featured = false } = Astro.props;
 
 	h3 {
 		margin-top: 0.75rem;
-		font-size: 2.75rem;
+		font-size: 2rem;
 		line-height: 1.04;
 		letter-spacing: -0.07em;
 		color: var(--color-ink);
@@ -142,27 +141,21 @@ const { course, featured = false } = Astro.props;
 	}
 
 	.featured {
+		display: grid;
 		grid-template-columns: 0.86fr 1fr;
-		grid-template-rows: auto;
+		padding: 0;
+	}
+
+	.featured .content {
+		padding: 1.5rem;
 	}
 
 	.featured .visual {
-		height: calc(100% - 1.75rem);
-		min-height: 16.25rem;
+		aspect-ratio: unset;
+		margin: 1rem 0 1rem 1rem;
 	}
 
 	.featured h3 {
-		font-size: 4rem;
-	}
-
-	@media (max-width: 51.25rem) {
-		.featured {
-			grid-template-columns: 1fr;
-		}
-
-		.featured .visual {
-			height: auto;
-			min-height: auto;
-		}
+		font-size: 2rem;
 	}
 </style>
