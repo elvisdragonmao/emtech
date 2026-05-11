@@ -14,8 +14,8 @@ const navItems = [
 ];
 ---
 
-<header class="site-header">
-	<div class="site-header__inner">
+<header class="site-header-container">
+	<div class="site-header">
 		<a class="brand" href="/" aria-label="回到首頁">
 			<img src="/img/logo.svg" alt="" width="32" height="37" />
 			<span>毛哥EM資訊密技</span>
@@ -41,7 +41,7 @@ const navItems = [
 </header>
 
 <style>
-	.site-header {
+	.site-header-container {
 		position: sticky;
 		top: 0;
 		z-index: 20;
@@ -51,7 +51,7 @@ const navItems = [
 		backdrop-filter: blur(1.25rem);
 	}
 
-	.site-header__inner {
+	.site-header {
 		display: grid;
 		grid-template-columns: 1fr auto 1fr;
 		align-items: center;
@@ -65,7 +65,7 @@ const navItems = [
 		align-items: center;
 		gap: 0.75rem;
 		width: fit-content;
-		font-size: 1rem;
+		font-size: 1.1rem;
 		font-weight: 800;
 		letter-spacing: 0.02em;
 		color: var(--color-ink);
@@ -74,7 +74,6 @@ const navItems = [
 	.brand img {
 		width: 1.75rem;
 		height: auto;
-		filter: saturate(0.65);
 	}
 
 	.main-nav {
@@ -87,7 +86,7 @@ const navItems = [
 
 	.main-nav a {
 		position: relative;
-		padding: 1.5rem 0;
+		padding: 1rem 0;
 		transition:
 			color 160ms ease,
 			transform 160ms ease;

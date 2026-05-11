@@ -148,6 +148,15 @@ export const courses: CourseCard[] = [
 		accent: "purple"
 	},
 	{
+		title: "什麼是網站？前端入門必懂",
+		description: "從瀏覽器、伺服器到 DNS，建立開發前最重要的網路直覺。",
+		meta: "零基礎 / 8 H / 課程",
+		lastUpdated: "2026.03.26",
+		href: "/course/",
+		image: courseWebsiteThumbnail,
+		accent: "yellow"
+	},
+	{
 		title: "看好了 GitHub Actions，我只示範一次",
 		description: "把部署和檢查自動化，讓每次 push 都更安心。",
 		meta: "零基礎 / 12 H / 課程",
