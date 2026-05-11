@@ -26,11 +26,11 @@ const { compact = false } = Astro.props;
 	.about-card {
 		position: relative;
 		display: grid;
-		grid-template-columns: minmax(0, 1fr) 14.375rem;
+		grid-template-columns: minmax(0, 1fr) 14.5rem;
 		align-items: end;
 		width: min(57.5rem, 100%);
 		min-height: 18.75rem;
-		padding: 2.625rem 2.625rem 1.875rem;
+		padding: 2.75rem 2.75rem 2rem;
 		overflow: hidden;
 		background: color-mix(in oklch, var(--color-surface) 84%, transparent);
 		border: 1px solid var(--color-accent);
@@ -39,7 +39,7 @@ const { compact = false } = Astro.props;
 
 	.about-card::before {
 		position: absolute;
-		inset: 1.125rem;
+		inset: 1.25rem;
 		content: "";
 		border: 1px solid color-mix(in oklch, var(--color-border) 70%, transparent);
 		pointer-events: none;
@@ -55,8 +55,8 @@ const { compact = false } = Astro.props;
 	}
 
 	h2 {
-		margin-top: 0.875rem;
-		font-size: clamp(2.375rem, 7vw, 4.625rem);
+		margin-top: 1rem;
+		font-size: 4.75rem;
 		line-height: 0.9;
 		letter-spacing: -0.08em;
 		color: var(--color-ink);
@@ -64,15 +64,15 @@ const { compact = false } = Astro.props;
 
 	.bio {
 		max-width: 28.75rem;
-		margin-top: 1.375rem;
-		font-size: 0.9375rem;
+		margin-top: 1.5rem;
+		font-size: 1rem;
 		line-height: 1.9;
 		color: var(--color-muted);
 	}
 
 	.links {
 		display: flex;
-		gap: 1.125rem;
+		gap: 1.25rem;
 		margin-top: 1.75rem;
 	}
 
@@ -88,7 +88,7 @@ const { compact = false } = Astro.props;
 	.dragon {
 		position: absolute;
 		right: 2.25rem;
-		bottom: -1.625rem;
+		bottom: -1.75rem;
 		z-index: 1;
 		width: auto;
 		height: 18.75rem;
@@ -97,31 +97,31 @@ const { compact = false } = Astro.props;
 
 	.compact {
 		width: 100%;
-		grid-template-columns: 1fr 13.125rem;
-		min-height: 14.375rem;
-		padding: 1.875rem;
+		grid-template-columns: 1fr 13.25rem;
+		min-height: 14.5rem;
+		padding: 2rem;
 	}
 
 	.compact h2 {
-		font-size: 2.625rem;
+		font-size: 2.75rem;
 	}
 
 	.compact .bio {
-		font-size: 0.875rem;
+		font-size: 1rem;
 	}
 
 	.compact .dragon {
-		right: 2.125rem;
+		right: 2.25rem;
 		bottom: -1.5rem;
 		width: auto;
-		height: 13.625rem;
+		height: 13.75rem;
 	}
 
 	@media (max-width: 40rem) {
 		.about-card,
 		.compact {
 			grid-template-columns: 1fr;
-			padding: 1.875rem 1.5rem 0;
+			padding: 2rem 1.5rem 0;
 		}
 
 		.dragon,
@@ -130,8 +130,8 @@ const { compact = false } = Astro.props;
 			right: auto;
 			bottom: auto;
 			width: auto;
-			height: 15.625rem;
-			margin: 0.625rem auto -2.125rem;
+			height: 15.75rem;
+			margin: 0.75rem auto -2.25rem;
 			justify-self: center;
 		}
 	}
