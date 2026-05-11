@@ -1,0 +1,70 @@
+---
+import { ArrowRight } from "@lucide/astro";
+import SectionTitle from "../shared/SectionTitle.astro";
+
+const specialPages = [
+	{ title: "交個朋友", description: "打開我的電子報" },
+	{ title: "友情連結", description: "我的好朋友們" },
+	{ title: "關於本站", description: "伴隨我們開始？" },
+	{ title: "RSS", description: "從海量內容中控管" }
+];
+---
+
+<section class="section-block special-pages">
+	<SectionTitle eyebrow="Special Pages" title="疑，這是什麼？" />
+	<div class="special-grid">
+		{
+			specialPages.map(page => (
+				<a class="card" href="/article/">
+					<h3>{page.title}</h3>
+					<p>{page.description}</p>
+					<ArrowRight size={17} stroke-width={1.8} />
+				</a>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.section-block {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+	}
+
+	.special-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		border: 1px solid var(--color-border);
+	}
+
+	.special-grid a {
+		position: relative;
+		min-height: 8.5rem;
+		padding: 1.75rem;
+	}
+
+	.special-grid a:first-child {
+		border-left: 0;
+	}
+
+	.special-grid h3 {
+		font-size: 1.75rem;
+		line-height: 1;
+		letter-spacing: -0.055em;
+		color: var(--color-ink);
+	}
+
+	.special-grid p {
+		margin-top: 0.75rem;
+		font-size: 1rem;
+		color: var(--color-muted);
+	}
+
+	.special-grid svg {
+		position: absolute;
+		right: 1.5rem;
+		bottom: 1.5rem;
+		color: var(--color-accent-strong);
+	}
+</style>

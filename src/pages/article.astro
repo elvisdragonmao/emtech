@@ -1,9 +1,9 @@
 ---
 import { ArrowLeft, ArrowRight } from "@lucide/astro";
-import AboutCard from "../components/AboutCard.astro";
-import ArticleCard from "../components/ArticleCard.astro";
-import CommentArea from "../components/CommentArea.astro";
-import MetaTable from "../components/MetaTable.astro";
+import AboutCard from "../components/shared/AboutCard.astro";
+import ArticleCard from "../components/shared/ArticleCard.astro";
+import CommentArea from "../components/shared/CommentArea.astro";
+import MetaTable from "../components/shared/MetaTable.astro";
 import Layout from "../layouts/Layout.astro";
 import { articleMeta, featuredArticles, relatedArticles } from "../data/prototype";
 
@@ -91,7 +91,7 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 			<h2>相關文章</h2>
 			<div class="related-grid">
 				{relatedArticles.map(related => <ArticleCard article={related} />)}
-				<a class="more-card" href="/">想要更多？<ArrowRight size={18} stroke-width={1.8} /></a>
+				<a class="more-card card" href="/">想要更多？<ArrowRight size={18} stroke-width={1.8} /></a>
 			</div>
 		</section>
 
@@ -239,7 +239,7 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 
 	.hero-image {
 		width: 100%;
-		aspect-ratio: 16 / 9;
+		aspect-ratio: 2 / 1;
 		height: auto;
 		object-fit: cover;
 		margin-bottom: 2.75rem;
@@ -419,8 +419,6 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 		min-height: 15rem;
 		font-weight: 700;
 		color: var(--color-text);
-		background: color-mix(in oklch, var(--color-surface) 82%, transparent);
-		border: 1px solid var(--color-border);
 	}
 
 	.comments-wrap {

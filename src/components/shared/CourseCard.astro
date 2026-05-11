@@ -1,6 +1,6 @@
 ---
 import { ArrowRight, BookOpen } from "@lucide/astro";
-import type { CourseCard as CourseCardData } from "../data/prototype";
+import type { CourseCard as CourseCardData } from "../../data/prototype";
 
 interface Props {
 	course: CourseCardData;
@@ -63,7 +63,7 @@ const { course, featured = false } = Astro.props;
 
 	.visual {
 		position: relative;
-		aspect-ratio: 16 / 9;
+		aspect-ratio: 2 / 1;
 		margin: 1rem 1rem 0;
 		overflow: hidden;
 		background: var(--accent-soft);

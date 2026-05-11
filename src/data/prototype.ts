@@ -11,13 +11,12 @@ export type PrototypeImage = typeof htmlThumbnail;
 
 export type ArticleCard = {
 	title: string;
-	description: string;
-	category: string;
-	date: string;
-	readTime: string;
 	href: string;
 	image: PrototypeImage;
 	tag: string;
+	description?: string;
+	category?: string;
+	date?: string;
 };
 
 export type CourseCard = {
@@ -51,7 +50,6 @@ export const featuredArticles: ArticleCard[] = [
 		description: "側邊欄樣式、書本模式與共筆整理技巧。",
 		category: "軟體開發",
 		date: "2026.05.09",
-		readTime: "12 min",
 		href: "/article/",
 		image: hackmdThumbnail,
 		tag: "#JavaScript"
@@ -61,7 +59,6 @@ export const featuredArticles: ArticleCard[] = [
 		description: "從 function、DOM 到事件監聽的互動基礎。",
 		category: "程式教學",
 		date: "2026.04.01",
-		readTime: "42 min",
 		href: "/course/javascript/",
 		image: courseJsThumbnail,
 		tag: "#JavaScript"

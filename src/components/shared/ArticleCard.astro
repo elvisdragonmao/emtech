@@ -1,0 +1,76 @@
+---
+import { ArrowRight } from "@lucide/astro";
+import type { ArticleCard as ArticleCardData } from "../../data/prototype";
+
+interface Props {
+	article: ArticleCardData;
+	compact?: boolean;
+}
+
+const { article } = Astro.props;
+---
+
+<a class="article-card" href={article.href}>
+	<figure>
+		<img src={article.image.src} width={article.image.width} height={article.image.height} alt={article.title} loading="lazy" />
+	</figure>
+	<h3>{article.title}</h3>
+	<p class="tag">{article.tag}</p>
+</a>
+
+<style>
+	.article-card {
+		display: flex;
+		flex-direction: column;
+		min-height: 100%;
+		padding: 1rem;
+		gap: 2rem;
+		color: var(--color-text);
+		background: color-mix(in oklch, var(--color-surface) 92%, transparent);
+		border: 1px solid var(--color-border);
+		box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--color-surface) 60%, transparent);
+		transition:
+			transform 180ms ease,
+			box-shadow 180ms ease,
+			border-color 180ms ease;
+	}
+
+	.article-card:hover {
+		transform: translateY(-0.25rem);
+		border-color: color-mix(in oklch, var(--color-accent) 55%, var(--color-border));
+		box-shadow: var(--shadow-card);
+	}
+
+	figure {
+		position: relative;
+		aspect-ratio: 2 / 1;
+		background: var(--color-surface-soft);
+		overflow: hidden;
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 260ms ease;
+	}
+
+	.article-card:hover img {
+		transform: scale(1.04);
+	}
+
+	.tag {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--color-muted);
+	}
+
+	h3 {
+		font-size: 1.25rem;
+		line-height: 1.2;
+		letter-spacing: -0.045em;
+		color: var(--color-ink);
+		flex-grow: 1;
+	}
+</style>

@@ -1,0 +1,217 @@
+---
+import { featuredArticles, stats } from "../../data/prototype";
+---
+
+<section class="hero">
+	<div class="hero-copy">
+		<div class="hero-heading">
+			<p class="eyebrow">EMTECH.CC / ELVIS DRAGON MAO</p>
+			<h1>毛哥EM<br />資訊密技</h1>
+			<p class="hero-subtitle">科技、設計、毛茸茸</p>
+		</div>
+		<div class="card stats-panel" aria-label="網站統計">
+			{
+				stats.map(stat => (
+					<div>
+						<span>{stat.label}</span>
+						<strong>{stat.value}</strong>
+					</div>
+				))
+			}
+		</div>
+	</div>
+
+	<div class="hero-gallery" aria-label="精選內容">
+		<img class="dragon" src="/img/dragon.webp" alt="毛哥EM 角色插圖" />
+		<div class="circle circle-one"></div>
+		<div class="circle circle-two"></div>
+		{
+			featuredArticles.map(article => (
+				<a class="feature-note" href={article.href}>
+					<img src={article.image.src} width={article.image.width} height={article.image.height} alt={article.title} />
+					<div>
+						<span>最新文章</span>
+						<strong>{article.title}</strong>
+						<small>{article.description}</small>
+					</div>
+				</a>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, 0.92fr) minmax(22.5rem, 1.08fr);
+		gap: 4rem;
+		align-items: flex-end;
+		min-height: min(calc(100svh - 4.25rem), 70rem);
+		padding: 2rem 0 10rem;
+		margin-bottom: -6rem;
+	}
+
+	.hero::before {
+		position: absolute;
+		top: 9.5rem;
+		left: 0;
+		width: min(32.5rem, 46vw);
+		content: "";
+		border-top: 1px solid var(--color-accent);
+		transform: rotate(-8deg);
+		transform-origin: left center;
+	}
+
+	.hero-copy {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 6rem;
+	}
+
+	.eyebrow {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.09em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	h1 {
+		margin-top: 1.5rem;
+		font-size: 8rem;
+		line-height: 1;
+		letter-spacing: -0.05em;
+		color: var(--color-ink);
+	}
+
+	.hero-subtitle {
+		margin-top: 1.5rem;
+		font-size: 1.75rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		color: var(--color-text);
+	}
+
+	.stats-panel {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		max-width: 35rem;
+	}
+
+	.stats-panel div {
+		padding: 1.25rem;
+		border-left: 1px solid var(--color-border);
+	}
+
+	.stats-panel div:first-child {
+		border-left: 0;
+	}
+
+	.stats-panel span {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	.stats-panel strong {
+		display: block;
+		margin-top: 0.5rem;
+		font-size: 1.75rem;
+		line-height: 1;
+		letter-spacing: -0.04em;
+		color: var(--color-ink);
+	}
+
+	.hero-gallery {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		padding-right: 2rem;
+	}
+
+	.dragon {
+		z-index: 2;
+		width: 40rem;
+		height: auto;
+		filter: drop-shadow(0 2rem 2.25rem color-mix(in oklch, var(--color-accent) 20%, transparent));
+		transform: translateX(9rem) rotate(-4deg);
+	}
+
+	.circle {
+		position: absolute;
+		border: 1px solid color-mix(in oklch, var(--color-accent) 48%, transparent);
+		border-radius: 62.5rem;
+	}
+
+	.circle-one {
+		right: 2.5rem;
+		bottom: 4.5rem;
+		width: 14.75rem;
+		height: 14.75rem;
+	}
+
+	.circle-two {
+		bottom: 9.25rem;
+		left: 2rem;
+		width: 13.75rem;
+		height: 13.75rem;
+	}
+
+	.feature-note {
+		z-index: 3;
+		display: grid;
+		grid-template-columns: 10.75rem 1fr;
+		gap: 1.25rem;
+		width: min(30rem, 100%);
+		padding: 1rem;
+		background: color-mix(in oklch, var(--color-surface) 88%, transparent);
+		border: 1px solid var(--color-border);
+		box-shadow: var(--shadow-card);
+		transition:
+			transform 180ms ease,
+			border-color 180ms ease;
+	}
+
+	.feature-note:hover {
+		transform: translateX(0.25rem);
+		border-color: var(--color-accent);
+	}
+
+	.feature-note img {
+		width: 100%;
+		aspect-ratio: 2 / 1;
+		height: auto;
+		object-fit: cover;
+	}
+
+	.feature-note span,
+	.feature-note small {
+		display: block;
+		font-size: 0.75rem;
+		line-height: 1.5;
+		color: var(--color-muted);
+	}
+
+	.feature-note span {
+		font-family: var(--font-mono);
+		font-weight: 800;
+		color: var(--color-accent-strong);
+	}
+
+	.feature-note strong {
+		display: block;
+		margin: 0.5rem 0;
+		font-size: 1rem;
+		line-height: 1.25;
+		letter-spacing: -0.04em;
+		color: var(--color-ink);
+	}
+</style>
