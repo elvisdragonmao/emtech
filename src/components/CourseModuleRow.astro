@@ -23,10 +23,10 @@ const { module } = Astro.props;
 <style>
 	.module-row {
 		display: grid;
-		grid-template-columns: 7.375rem 13.75rem minmax(0, 1fr) 4.75rem 1.375rem;
+		grid-template-columns: 7.5rem 13.75rem minmax(0, 1fr) 4.75rem 1.5rem;
 		align-items: center;
-		gap: 1.875rem;
-		padding: 1.5rem 1.125rem;
+		gap: 2rem;
+		padding: 1.5rem 1.25rem;
 		border-top: 1px solid var(--color-border);
 		transition:
 			background 160ms ease,
@@ -53,7 +53,7 @@ const { module } = Astro.props;
 	}
 
 	h3 {
-		font-size: clamp(1.4375rem, 2.6vw, 2rem);
+		font-size: 2rem;
 		line-height: 1.14;
 		letter-spacing: -0.055em;
 		color: var(--color-ink);
@@ -61,8 +61,8 @@ const { module } = Astro.props;
 
 	p {
 		max-width: 42.5rem;
-		margin-top: 0.625rem;
-		font-size: 0.9375rem;
+		margin-top: 0.75rem;
+		font-size: 1rem;
 		line-height: 1.75;
 		color: var(--color-muted);
 	}
@@ -84,7 +84,7 @@ const { module } = Astro.props;
 	@media (max-width: 56.25rem) {
 		.module-row {
 			grid-template-columns: 5.75rem 1fr;
-			gap: 1.125rem;
+			gap: 1.25rem;
 		}
 
 		img,
@@ -101,7 +101,7 @@ const { module } = Astro.props;
 	@media (max-width: 38.75rem) {
 		.module-row {
 			grid-template-columns: 1fr;
-			padding: 1.375rem 0;
+			padding: 1.5rem 0;
 		}
 
 		img,

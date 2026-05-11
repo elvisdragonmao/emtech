@@ -35,8 +35,8 @@
 	--color-pink: oklch(72% 0.18 350);
 	--color-code-bg: oklch(22% 0.03 260);
 	--color-code-ink: oklch(91% 0.018 250);
-	--shadow-soft: 0 1.75rem 5.625rem color-mix(in oklch, var(--color-ink) 9%, transparent);
-	--shadow-card: 0 1.125rem 2.5rem color-mix(in oklch, var(--color-ink) 8%, transparent);
+	--shadow-soft: 0 1.75rem 5.75rem color-mix(in oklch, var(--color-ink) 9%, transparent);
+	--shadow-card: 0 1.25rem 2.5rem color-mix(in oklch, var(--color-ink) 8%, transparent);
 	--font-sans: "IBMPlexSansTC", "IBM Plex Sans Chinese TC", sans-serif;
 	--font-mono: JetBrainsMono, "JetBrains Mono", monospace;
 	--site-width: 93.75rem;
@@ -56,8 +56,8 @@ body {
 	min-width: 20rem;
 	min-height: 100vh;
 	background:
-		linear-gradient(90deg, transparent calc(100% - 0.0625rem), var(--color-grid-line) 0.0625rem), linear-gradient(180deg, transparent calc(100% - 0.0625rem), var(--color-grid-line) 0.0625rem),
-		radial-gradient(circle, color-mix(in oklch, var(--color-grid) 55%, transparent) 0.0625rem, transparent 0.09375rem), var(--color-bg);
+		linear-gradient(90deg, transparent calc(100% - 0rem), var(--color-grid-line) 0rem), linear-gradient(180deg, transparent calc(100% - 0rem), var(--color-grid-line) 0rem),
+		radial-gradient(circle, color-mix(in oklch, var(--color-grid) 55%, transparent) 0rem, transparent 0rem), var(--color-bg);
 	background-size:
 		12rem 12rem,
 		12rem 12rem,

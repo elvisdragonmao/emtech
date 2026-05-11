@@ -24,7 +24,7 @@ const { eyebrow, title, description, sideLabel } = Astro.props;
 	}
 
 	.eyebrow {
-		margin-bottom: 0.5625rem;
+		margin-bottom: 0.5rem;
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
 		font-weight: 700;
@@ -42,7 +42,7 @@ const { eyebrow, title, description, sideLabel } = Astro.props;
 
 	h2 {
 		max-width: 51.25rem;
-		font-size: clamp(2.125rem, 6vw, 4.25rem);
+		font-size: 4.25rem;
 		line-height: 0.96;
 		letter-spacing: -0.08em;
 		color: var(--color-ink);
@@ -71,7 +71,7 @@ const { eyebrow, title, description, sideLabel } = Astro.props;
 	@media (max-width: 56.25rem) {
 		.title-row {
 			grid-template-columns: 1fr;
-			gap: 0.875rem;
+			gap: 1rem;
 		}
 
 		.side-label {
