@@ -1,5 +1,5 @@
-@import url("https://font.emtech.cc/fonts/IBMPlexSansTC");
-@import url("https://font.emtech.cc/fonts/JetBrainsMono");
+@import url("https://font.emtech.cc/css/IBMPlexSansTC");
+@import url("https://font.emtech.cc/css/JetBrainsMono");
 
 *,
 *::before,
@@ -56,8 +56,8 @@ body {
 	min-width: 20rem;
 	min-height: 100vh;
 	background:
-		linear-gradient(90deg, transparent calc(100% - 0rem), var(--color-grid-line) 0rem), linear-gradient(180deg, transparent calc(100% - 0rem), var(--color-grid-line) 0rem),
-		radial-gradient(circle, color-mix(in oklch, var(--color-grid) 55%, transparent) 0rem, transparent 0rem), var(--color-bg);
+		linear-gradient(90deg, transparent calc(100% - 1px), var(--color-grid-line) 1px), linear-gradient(180deg, transparent calc(100% - 1px), var(--color-grid-line) 1px),
+		radial-gradient(circle, color-mix(in oklch, var(--color-grid) 55%, transparent) 1px, transparent 1.5px), var(--color-bg);
 	background-size:
 		12rem 12rem,
 		12rem 12rem,

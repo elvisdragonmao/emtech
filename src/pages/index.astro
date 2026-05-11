@@ -47,9 +47,11 @@ const specialPages = [
 		<div class="home-container">
 			<section class="hero">
 				<div class="hero-copy">
-					<p class="eyebrow">EMTECH.CC / ELVIS DRAGON MAO</p>
-					<h1>毛哥EM<br />資訊密技</h1>
-					<p class="hero-subtitle">科技、設計、毛茸茸</p>
+					<div class="hero-heading">
+						<p class="eyebrow">EMTECH.CC / ELVIS DRAGON MAO</p>
+						<h1>毛哥EM<br />資訊密技</h1>
+						<p class="hero-subtitle">科技、設計、毛茸茸</p>
+					</div>
 					<div class="stats-panel" aria-label="網站統計">
 						{
 							stats.map(stat => (
@@ -161,9 +163,10 @@ const specialPages = [
 		position: relative;
 		display: grid;
 		grid-template-columns: minmax(0, 0.92fr) minmax(22.5rem, 1.08fr);
-		align-items: center;
-		min-height: 45rem;
-		padding: 5rem 0 3rem;
+		gap: 4rem;
+		align-items: flex-end;
+		min-height: min(calc(100svh - 4.25rem), 70rem);
+		padding: 2rem 0 10rem;
 	}
 
 	.hero::before {
@@ -171,11 +174,17 @@ const specialPages = [
 		top: 9.5rem;
 		left: 0;
 		width: min(32.5rem, 46vw);
-		height: 0rem;
 		content: "";
-		background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+		border-top: 1px solid var(--color-accent);
 		transform: rotate(-8deg);
 		transform-origin: left center;
+	}
+
+	.hero-copy {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 6rem;
 	}
 
 	.eyebrow {
@@ -189,9 +198,9 @@ const specialPages = [
 
 	h1 {
 		margin-top: 1.5rem;
-		font-size: 10.5rem;
-		line-height: 0.9;
-		letter-spacing: -0.12em;
+		font-size: 8rem;
+		line-height: 1;
+		letter-spacing: -0.05em;
 		color: var(--color-ink);
 	}
 
@@ -207,7 +216,6 @@ const specialPages = [
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		max-width: 35rem;
-		margin-top: 7.25rem;
 		border: 1px solid var(--color-border);
 		background: color-mix(in oklch, var(--color-surface) 82%, transparent);
 	}
@@ -242,16 +250,17 @@ const specialPages = [
 
 	.hero-gallery {
 		position: relative;
-		min-height: 35rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
 	}
 
 	.dragon {
-		position: absolute;
-		top: 2.25rem;
-		right: 2.5rem;
 		z-index: 2;
-		width: min(20.75rem, 38vw);
+		width: 40rem;
+		height: auto;
 		filter: drop-shadow(0 2rem 2.25rem color-mix(in oklch, var(--color-accent) 20%, transparent));
+		transform: translateX(9rem) rotate(-4deg);
 	}
 
 	.circle {
@@ -275,12 +284,11 @@ const specialPages = [
 	}
 
 	.feature-note {
-		position: absolute;
 		z-index: 3;
 		display: grid;
 		grid-template-columns: 10.75rem 1fr;
 		gap: 1.25rem;
-		width: min(27.5rem, 92vw);
+		width: min(30rem, 100%);
 		padding: 1rem;
 		background: color-mix(in oklch, var(--color-surface) 88%, transparent);
 		border: 1px solid var(--color-border);
@@ -293,16 +301,6 @@ const specialPages = [
 	.feature-note:hover {
 		transform: translateY(-0.25rem);
 		border-color: var(--color-accent);
-	}
-
-	.note-1 {
-		right: 1.5rem;
-		bottom: 7.5rem;
-	}
-
-	.note-2 {
-		right: 0.5rem;
-		bottom: -1rem;
 	}
 
 	.feature-note img {
@@ -508,16 +506,11 @@ const specialPages = [
 	@media (max-width: 61.25rem) {
 		.hero {
 			grid-template-columns: 1fr;
-			min-height: auto;
 		}
 
 		.hero-gallery {
-			min-height: 31.25rem;
-			margin-top: 2.25rem;
-		}
-
-		.stats-panel {
-			margin-top: 3.25rem;
+			align-items: flex-start;
+			justify-content: flex-start;
 		}
 
 		.archive-layout,
@@ -576,27 +569,16 @@ const specialPages = [
 		}
 
 		.hero-gallery {
-			min-height: 35rem;
+			align-items: stretch;
 		}
 
 		.dragon {
-			right: 0;
 			width: 16.25rem;
 		}
 
 		.feature-note {
 			grid-template-columns: 1fr;
-			right: auto;
-			left: 0;
 			width: 100%;
-		}
-
-		.note-1 {
-			bottom: 9.75rem;
-		}
-
-		.note-2 {
-			bottom: 0;
 		}
 
 		.home-container {
