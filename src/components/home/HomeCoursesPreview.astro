@@ -1,0 +1,34 @@
+---
+import { courses } from "../../data/prototype";
+import CourseCard from "../shared/CourseCard.astro";
+import SectionTitle from "../shared/SectionTitle.astro";
+---
+
+<section class="section-block courses-preview">
+	<SectionTitle eyebrow="Course" title="一篇像廢文<br>一系列看起來就挺有道理。" description="鐵人賽系列文章<br>與詳細的程式開發與設計教學" />
+	<div class="course-grid">
+		{courses.map(course => <CourseCard course={course} />)}
+	</div>
+</section>
+
+<style>
+	.section-block {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+	}
+
+	.course-grid {
+		display: grid;
+		grid-template-columns: 1.18fr 0.91fr 0.91fr;
+		gap: 1.25rem;
+	}
+
+	.course-grid :global(.course-card:first-child) {
+		grid-row: span 2;
+	}
+
+	.course-grid :global(.course-card:first-child .visual) {
+		aspect-ratio: 2 / 1;
+	}
+</style>

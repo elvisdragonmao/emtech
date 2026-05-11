@@ -3,7 +3,7 @@ import { GitBranch, MessageSquare, Rss } from "@lucide/astro";
 ---
 
 <footer class="site-footer">
-	<div class="footer-brand">
+	<div class="card footer-brand">
 		<img src="/img/logo.svg" alt="" width="32" height="37" />
 		<div>
 			<p>©2021 - 2026 By 毛哥EM</p>
@@ -23,8 +23,6 @@ import { GitBranch, MessageSquare, Rss } from "@lucide/astro";
 		grid-template-columns: 1fr auto;
 		width: min(var(--site-width), calc(100% - 2rem));
 		margin: 6rem auto 0;
-		border: 1px solid var(--color-border);
-		background: color-mix(in oklch, var(--color-surface) 82%, transparent);
 		backdrop-filter: blur(0.75rem);
 	}
 

@@ -1,9 +1,9 @@
 ---
 import { ArrowLeft, ArrowRight } from "@lucide/astro";
-import AboutCard from "../../components/AboutCard.astro";
-import CommentArea from "../../components/CommentArea.astro";
-import CourseSidebar from "../../components/CourseSidebar.astro";
-import MetaTable from "../../components/MetaTable.astro";
+import CourseSidebar from "../../components/course/CourseSidebar.astro";
+import AboutCard from "../../components/shared/AboutCard.astro";
+import CommentArea from "../../components/shared/CommentArea.astro";
+import MetaTable from "../../components/shared/MetaTable.astro";
 import Layout from "../../layouts/Layout.astro";
 import { courseModules } from "../../data/prototype";
 
@@ -42,7 +42,7 @@ const meta = [
 				<p>這也只是什麼我現在意「痕跡」：為什麼表單錯誤訊息要放在欄位下方？為什麼過個資料段可以接受、另一個不行？為什麼藍色只能用在可互動元素，而不能拿來裝飾標題？</p>
 				<p><a href="/article/">這是一個超連結</a> 什麼表單錯誤訊息要放在 <code>what frame</code> 錯誤訊息要放在欄位下方再完整。</p>
 
-				<section class="lesson-card">
+				<section class="lesson-card card">
 					<h3>JavaScript 不是魔法，是頁面狀態的語言</h3>
 					<p>當使用者點擊、輸入、捲動或切換頁面時，我們要更新的是狀態與畫面之間的關係。先理解這件事，比先背完所有 API 更重要。</p>
 				</section>
@@ -172,11 +172,6 @@ const meta = [
 		font-size: 0.86em;
 		background: var(--color-surface-soft);
 		border: 1px solid var(--color-border);
-	}
-
-	.lesson-card {
-		background: color-mix(in oklch, var(--color-surface) 82%, transparent);
-		border-color: var(--color-border);
 	}
 
 	.lesson-card h3 {

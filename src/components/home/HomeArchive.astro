@@ -1,0 +1,167 @@
+---
+import { ChevronDown } from "@lucide/astro";
+import { archiveArticles } from "../../data/prototype";
+import ArticleCard from "../shared/ArticleCard.astro";
+import SectionTitle from "../shared/SectionTitle.astro";
+
+const categories = ["精選文章", "軟體開發", "生活", "程式教學", "生活駭客"];
+const tags = [
+	"標籤",
+	"三個字",
+	"標籤",
+	"標籤",
+	"標籤",
+	"三個字",
+	"標籤",
+	"標籤",
+	"標籤",
+	"三個字",
+	"標籤",
+	"標籤",
+	"三個字",
+	"標籤",
+	"三個字",
+	"三個字",
+	"四個字",
+	"三個字",
+	"三個字",
+	"三個字",
+	"三個字",
+	"三個字",
+	"三個字"
+];
+---
+
+<section id="archive" class="section-block">
+	<SectionTitle eyebrow="Archive / Content Index" title="單篇文章分類" />
+	<div class="category-tabs" aria-label="文章分類">
+		{categories.map(category => <button type="button">{category}</button>)}
+	</div>
+
+	<div class="archive-layout">
+		<div class="article-list">
+			<div class="article-grid">
+				{archiveArticles.map(article => <ArticleCard article={article} />)}
+			</div>
+
+			<a class="card more-link" href="/article/">
+				想要更多？
+				<ChevronDown size={18} stroke-width={1.8} />
+			</a>
+		</div>
+
+		<aside>
+			<article class="card discord-card">
+				<div>Discord</div>
+				<h3>遇到問題嗎？</h3>
+				<p>歡迎加入 Discord 與我們一起討論！</p>
+			</article>
+			<div class="card tag-cloud" aria-label="標籤雲">
+				{tags.map(tag => <a href="/article/">{tag}</a>)}
+			</div>
+		</aside>
+	</div>
+</section>
+
+<style>
+	.section-block {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+	}
+
+	.category-tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.category-tabs button {
+		padding: 0.5rem 1rem;
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--color-text);
+		background: color-mix(in oklch, var(--color-surface) 84%, transparent);
+		border: 1px solid var(--color-border);
+	}
+
+	.category-tabs button:first-child {
+		color: var(--color-accent-strong);
+		border-color: var(--color-accent);
+	}
+
+	.archive-layout {
+		display: grid;
+		grid-template-columns: 1fr 24rem;
+		gap: 1.75rem;
+		position: relative;
+	}
+
+	.article-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-auto-rows: 300px;
+		flex-grow: 1;
+		gap: 1.25rem;
+		margin-bottom: 1rem;
+	}
+
+	aside {
+		position: sticky;
+		top: 6rem;
+		height: fit-content;
+	}
+
+	.discord-card {
+		padding: 1.75rem 2rem;
+		margin-bottom: 1rem;
+	}
+
+	.discord-card div {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-accent-strong);
+		margin-bottom: 1rem;
+	}
+
+	.discord-card h3 {
+		font-size: 1.5rem;
+		line-height: 1;
+		letter-spacing: -0.05em;
+		color: var(--color-ink);
+	}
+
+	.discord-card p {
+		margin-top: 0.75rem;
+		font-size: 0.75rem;
+		line-height: 1.7;
+		color: var(--color-muted);
+	}
+
+	.tag-cloud {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		padding: 1.75rem;
+	}
+
+	.tag-cloud a {
+		padding: 0.5rem 0.75rem;
+		font-size: 0.75rem;
+		line-height: 1;
+		font-weight: 700;
+		color: var(--color-muted);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+	}
+
+	.more-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		min-height: 4.75rem;
+		font-weight: 700;
+		color: var(--color-text);
+	}
+</style>

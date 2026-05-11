@@ -1,7 +1,7 @@
 ---
 import { BookOpen, Clock, Users } from "@lucide/astro";
-import CommentArea from "../../components/CommentArea.astro";
-import CourseModuleRow from "../../components/CourseModuleRow.astro";
+import CourseModuleRow from "../../components/course/CourseModuleRow.astro";
+import CommentArea from "../../components/shared/CommentArea.astro";
 import Layout from "../../layouts/Layout.astro";
 import { courseModules, courses } from "../../data/prototype";
 
@@ -196,7 +196,7 @@ const outcomes = [
 
 	.overview-thumb {
 		width: 100%;
-		aspect-ratio: 16 / 9;
+		aspect-ratio: 2 / 1;
 		height: auto;
 		margin-top: 1.75rem;
 		object-fit: cover;
