@@ -27,7 +27,7 @@ type CategoryStat = {
 
 const sortTagsByFrequency = (a: [string, number], b: [string, number]) => b[1] - a[1] || a[0].localeCompare(b[0], "zh-Hant");
 
-const allPosts = await getCollection("post");
+const allPosts = (await getCollection("post")).filter(post => !post.data.draft);
 const sortedPosts = [...allPosts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const recentFeaturedPosts = sortedPosts.slice(HERO_ARTICLE_COUNT, HERO_ARTICLE_COUNT + FEATURED_RECENT_COUNT);

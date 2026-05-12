@@ -11,6 +11,7 @@ const post = defineCollection({
 		authors: z.string().or(z.array(z.string())).optional(),
 		tags: z.array(z.string()).default([]),
 		categories: z.array(z.string()).default([]),
+		draft: z.boolean().default(false),
 		date: z.coerce.date(),
 		description: z
 			.string()
@@ -59,6 +60,7 @@ const lesson = defineCollection({
 		authors: z.string().or(z.array(z.string())).optional(),
 		tags: z.array(z.string()).default([]),
 		categories: z.array(z.string()).default([]),
+		draft: z.boolean().default(false),
 		date: z.coerce.date(),
 		description: z
 			.string()

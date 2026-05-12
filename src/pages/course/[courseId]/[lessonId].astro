@@ -9,7 +9,7 @@ import { extractTitle, formatDate, formatHashTags, normalizeTerms, readingTime, 
 import CourseSidebar from "../../../components/course/CourseSidebar.astro";
 
 export async function getStaticPaths() {
-	const lessons = await getCollection("lesson");
+	const lessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
 	return lessons.map(lesson => {
 		const [courseId, lessonId] = lesson.id.split("/");
 		return { params: { courseId, lessonId } };
@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 }
 
 const { courseId, lessonId } = Astro.params;
-const allLessons = await getCollection("lesson");
+const allLessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
 const entry = allLessons.find(l => l.id === `${courseId}/${lessonId}`);
 
 if (!entry) return Astro.redirect("/404");
