@@ -49,12 +49,12 @@ https://calendar.google.com/calendar/ical/sysh.tc.edu.tw_iq8pt1qet88ps9ifm6l3cab
 
 在這一步，將剛才修改玩的網址貼上。確認後，你可以選擇你喜歡的標示顏色。
 
-![貼上網址::img-medium](2.webp)
+![貼上網址](2.webp)
 
 ### 完成！
 
 恭喜你，現在你已經成功將學校行事曆加入你的 Apple 日曆中了！你可以透過日曆應用程式隨時查看活動和行事。你可以使用搜尋來塞選活動。
 
-![完成 w100::img-medium](search.webp)
+![完成 w100](search.webp)
 
 希望這篇文章能夠幫助到你。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)。

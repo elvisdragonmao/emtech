@@ -17,13 +17,13 @@ Firefox 有著卓越的性能及隱私保護，加上他有許多實用的開發
 
 首先，我們要新增一個書籤，點擊右上角的「書籤」按鈕，選擇「新增書籤」。這個書籤可以是任何網站 (比如說這個網站)，因為我們接下來會修改它。建議把它放在書籤列，這樣就可以一鍵翻譯網站了。
 
-![新增書籤::img-medium](create.webp)
+![新增書籤](create.webp)
 
 ### 2. 編輯書籤
 
 接下來，我們要編輯剛剛新增的書籤。找到剛剛新增的書籤，點擊右鍵，選擇「編輯」。
 
-![編輯書籤::img-medium](edit.webp)
+![編輯書籤](edit.webp)
 
 ### 3. 修改網址
 
@@ -33,13 +33,13 @@ Firefox 有著卓越的性能及隱私保護，加上他有許多實用的開發
 javascript: window.location.href = `https://translate.google.com.tw/translate?sl=auto&tl=zh-TW&u=${window.location.href}`;
 ```
 
-![修改網址::img-medium](title.webp)
+![修改網址](title.webp)
 
 ### 4. 翻譯網站
 
 現在，我們就可以使用這個書籤來翻譯網站了。你可以到任意外國語言的網站並點擊剛剛新增的書籤，就會自動翻譯網站了。
 
-![成果::img-medium](final.gif)
+![成果](final.gif)
 
 ## 結論
 
