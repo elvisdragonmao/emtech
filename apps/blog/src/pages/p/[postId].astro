@@ -53,10 +53,7 @@ type RelatedFilter = {
 	value: string;
 };
 
-const relatedFilters: RelatedFilter[] = [
-	...entryTags.slice(0, 2).map(value => ({ type: "tag" as const, value })),
-	...entryCategories.slice(0, 1).map(value => ({ type: "category" as const, value }))
-];
+const relatedFilters: RelatedFilter[] = [...entryTags.slice(0, 2).map(value => ({ type: "tag" as const, value })), ...entryCategories.slice(0, 1).map(value => ({ type: "category" as const, value }))];
 
 const getRelatedPosts = (filter: RelatedFilter) =>
 	allPosts
@@ -201,7 +198,7 @@ const relatedCards = related.map(p => {
 			grid-auto-columns: minmax(15.5rem, 72vw);
 		}
 
-		.about-wrap{
+		.about-wrap {
 			margin-top: 0;
 		}
 	}

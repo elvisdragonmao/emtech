@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { checkSpam, emailHash, gravatarUrlFromHash, gravatarUrlForEmail, isValidEmail, normalizeEmail, sanitizeCommentBody } from "../src/index";
+import { checkSpam, emailHash, gravatarUrlForEmail, gravatarUrlFromHash, isValidEmail, normalizeEmail, sanitizeCommentBody } from "../src/index";
 
 describe("email helpers", () => {
 	it("normalizes email before hashing", async () => {

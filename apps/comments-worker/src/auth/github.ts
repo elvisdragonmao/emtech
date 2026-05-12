@@ -13,9 +13,7 @@ export async function startGithubOAuth(request: Request, env: Env): Promise<Resp
 	const now = new Date();
 	const expiresAt = new Date(now.getTime() + STATE_TTL_SECONDS * 1000).toISOString();
 
-	await env.COMMENTS_DB.prepare("INSERT INTO oauth_states (state_hash, return_to, expires_at, created_at) VALUES (?, ?, ?, ?)")
-		.bind(stateHash, returnTo, expiresAt, now.toISOString())
-		.run();
+	await env.COMMENTS_DB.prepare("INSERT INTO oauth_states (state_hash, return_to, expires_at, created_at) VALUES (?, ?, ?, ?)").bind(stateHash, returnTo, expiresAt, now.toISOString()).run();
 
 	const authorize = new URL("https://github.com/login/oauth/authorize");
 	authorize.searchParams.set("client_id", env.GITHUB_CLIENT_ID);

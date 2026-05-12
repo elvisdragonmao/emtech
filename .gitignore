@@ -5,6 +5,8 @@ dist/
 
 # dependencies
 node_modules/
+.wrangler/
+apps/*/.wrangler/
 
 # logs
 npm-debug.log*

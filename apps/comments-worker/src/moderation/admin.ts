@@ -1,6 +1,6 @@
 import type { CommentStatus } from "@emtech/comments-shared";
-import type { AppContext, CommentRow } from "../types";
 import { publicCommentFromRow } from "../db/comments";
+import type { AppContext, CommentRow } from "../types";
 import { randomId } from "../utils/crypto";
 import { json } from "../utils/http";
 import { adminStatusSchema } from "../utils/validation";
@@ -63,9 +63,7 @@ export async function moderateComment(ctx: AppContext, commentId: string, action
 		return json({ error: "Comment not found" }, { status: 404 }, ctx.corsHeaders);
 	}
 
-	await ctx.env.COMMENTS_DB.prepare("INSERT INTO moderation_log (id, comment_id, action, reason, created_at) VALUES (?, ?, ?, ?, ?)")
-		.bind(randomId(), commentId, action, null, now)
-		.run();
+	await ctx.env.COMMENTS_DB.prepare("INSERT INTO moderation_log (id, comment_id, action, reason, created_at) VALUES (?, ?, ?, ?, ?)").bind(randomId(), commentId, action, null, now).run();
 
 	return json({ ok: true, id: commentId, status }, {}, ctx.corsHeaders);
 }
