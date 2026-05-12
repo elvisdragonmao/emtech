@@ -1,9 +1,8 @@
 ---
 import { ArrowLeft, ArrowRight } from "@lucide/astro";
-import CourseSidebar from "../../components/course/CourseSidebar.astro";
 import AboutCard from "../../components/shared/AboutCard.astro";
 import CommentArea from "../../components/shared/CommentArea.astro";
-import MetaTable from "../../components/shared/MetaTable.astro";
+import PostBody from "../../components/shared/PostBody.astro";
 import Layout from "../../layouts/Layout.astro";
 import { courseModules } from "../../data/prototype";
 
@@ -19,168 +18,47 @@ const meta = [
 
 <Layout title={lesson.title} description={lesson.description} active="course">
 	<main class="lesson-page">
-		<div class="lesson-layout">
-			<aside class="lesson-side">
-				<CourseSidebar current="04" />
-				<div class="side-blank" aria-hidden="true"></div>
-			</aside>
+		<PostBody tag="#JavaScript" title={lesson.title} image={lesson.image} meta={meta} tldr={lesson.description} previousHref="/course/" nextHref="/course/" />
 
-			<article class="lesson-content">
-				<p class="tag">#JavaScript</p>
-				<h1>{lesson.title}</h1>
-				<MetaTable items={meta} />
-				<img class="cover" src={lesson.image.src} width={lesson.image.width} height={lesson.image.height} alt={lesson.title} />
+		<nav class="lesson-nav" aria-label="課程上下篇">
+			<a href="/course/"><span>Previous</span><strong>CSS 基礎</strong><ArrowLeft size={16} stroke-width={1.8} /></a>
+			<a class="current" href="/course/javascript/"><span>Current Course</span><strong>前端網頁開發入門</strong></a>
+			<a href="/course/"><span>Next</span><strong>非同步的非同步</strong><ArrowRight size={16} stroke-width={1.8} /></a>
+		</nav>
 
-				<section class="callout">
-					<h2>簡單來說</h2>
-					<p>
-						這也是為什麼我要在意「痕跡」：為什麼表單錯誤訊息要放在欄位下方？為什麼過個資料段可以接受、另一個不行？為什麼藍色只能用在可互動元素，而不能拿來裝飾標題？這些決策如果沒有被寫下來，元件再完整，也只是一套安靜但脆弱的圖庫。
-					</p>
-				</section>
+		<section class="about-wrap">
+			<AboutCard copyright />
+		</section>
 
-				<h2>這是一個二級標題</h2>
-				<p>這也只是什麼我現在意「痕跡」：為什麼表單錯誤訊息要放在欄位下方？為什麼過個資料段可以接受、另一個不行？為什麼藍色只能用在可互動元素，而不能拿來裝飾標題？</p>
-				<p><a href="/article/">這是一個超連結</a> 什麼表單錯誤訊息要放在 <code>what frame</code> 錯誤訊息要放在欄位下方再完整。</p>
-
-				<section class="lesson-card card">
-					<h3>JavaScript 不是魔法，是頁面狀態的語言</h3>
-					<p>當使用者點擊、輸入、捲動或切換頁面時，我們要更新的是狀態與畫面之間的關係。先理解這件事，比先背完所有 API 更重要。</p>
-				</section>
-
-				<nav class="lesson-nav" aria-label="課程上下篇">
-					<a href="/course/"><span>Previous</span><strong>CSS 基礎</strong><ArrowLeft size={16} stroke-width={1.8} /></a>
-					<a class="current" href="/course/javascript/"><span>Current Course</span><strong>前端網頁開發入門</strong></a>
-					<a href="/course/"><span>Next</span><strong>非同步的非同步</strong><ArrowRight size={16} stroke-width={1.8} /></a>
-				</nav>
-
-				<AboutCard copyright />
-
-				<CommentArea compact />
-			</article>
-		</div>
+		<section class="comments-wrap">
+			<CommentArea />
+		</section>
 	</main>
 </Layout>
 
 <style>
 	.lesson-page {
+		width: min(var(--site-width), 100%);
+		margin-inline: auto;
 		padding-top: 5.5rem;
 	}
 
-	.lesson-layout {
-		display: grid;
-		grid-template-columns: 18.75rem minmax(0, 65rem);
-		gap: 3.75rem;
-		align-items: start;
-		width: min(var(--site-width), calc(100% - 2rem));
-		margin-inline: auto;
-	}
-
-	.lesson-side {
-		position: sticky;
-		top: 6rem;
-		display: grid;
-		gap: 1.75rem;
-	}
-
-	.lesson-side :global(.course-sidebar) {
-		position: static;
-	}
-
-	.side-blank {
-		min-height: 32.5rem;
-		background: oklch(100% 0 0 / 78%);
-		border: 1px solid var(--color-border);
-	}
-
-	.lesson-content {
-		display: grid;
-		gap: 2.25rem;
-		min-width: 0;
-	}
-
-	.tag {
-		font-family: var(--font-mono);
-		font-size: 1rem;
-		font-weight: 400;
-		color: var(--color-accent-strong);
-	}
-
-	h1 {
-		font-size: 4.5rem;
-		line-height: 1.03;
-		letter-spacing: -0.08em;
-		color: var(--color-ink);
-	}
-
-	.cover {
+	.about-wrap,
+	.comments-wrap {
 		width: 100%;
-		aspect-ratio: 2.34 / 1;
-		height: auto;
-		object-fit: cover;
-		box-shadow: var(--shadow-card);
 	}
 
-	.callout,
-	.lesson-card {
-		padding: 2.25rem 2.5rem;
-		background: oklch(97.2% 0.02 78 / 72%);
-		border: 1px solid var(--color-border);
-	}
-
-	.callout {
-		border-color: var(--color-accent);
-	}
-
-	.callout h2,
-	.lesson-card h3,
-	.lesson-content > h2 {
-		line-height: 1.15;
-		letter-spacing: -0.06em;
-		color: var(--color-ink);
-	}
-
-	.callout h2 {
-		font-size: 1.5rem;
-	}
-
-	.callout p,
-	.lesson-content > p,
-	.lesson-card p {
-		font-size: 1rem;
-		line-height: 2;
-		color: var(--color-text);
-	}
-
-	.callout p,
-	.lesson-card p {
-		margin-top: 1.25rem;
-	}
-
-	.lesson-content > h2 {
-		margin-top: 1.25rem;
-		font-size: 3.25rem;
-	}
-
-	.lesson-content a {
-		color: var(--color-accent-strong);
-		border-bottom: 1px solid currentColor;
-	}
-
-	.lesson-content code {
-		padding: 0.25rem 0.5rem;
-		font-family: var(--font-mono);
-		font-size: 0.86em;
-		background: var(--color-surface-soft);
-		border: 1px solid var(--color-border);
-	}
-
-	.lesson-card h3 {
-		font-size: 2rem;
+	.about-wrap {
+		display: flex;
+		justify-content: center;
+		margin-top: 5.75rem;
 	}
 
 	.lesson-nav {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
+		width: min(58.25rem, 100%);
+		margin: 5.75rem auto 0;
 		border: 1px solid var(--color-border);
 	}
 
@@ -188,7 +66,7 @@ const meta = [
 		position: relative;
 		display: grid;
 		min-height: 7rem;
-		padding: 1.5rem 1.5rem;
+		padding: 1.5rem;
 		color: var(--color-text);
 		background: oklch(100% 0 0 / 84%);
 		border-left: 1px solid var(--color-border);
@@ -226,29 +104,13 @@ const meta = [
 		border-top: 3px solid var(--color-accent);
 	}
 
-	@media (max-width: 61.25rem) {
-		.lesson-layout {
-			grid-template-columns: 1fr;
-			gap: 2rem;
-		}
-
-		.lesson-side {
-			position: static;
-		}
-
-		.side-blank {
-			display: none;
-		}
+	.comments-wrap {
+		margin-top: 5.75rem;
 	}
 
 	@media (max-width: 40rem) {
 		.lesson-page {
 			padding-top: 3.25rem;
-		}
-
-		.callout,
-		.lesson-card {
-			padding: 1.5rem;
 		}
 
 		.lesson-nav {
@@ -257,8 +119,8 @@ const meta = [
 
 		.lesson-nav a,
 		.lesson-nav a:first-child {
-			border-left: 0;
 			border-top: 1px solid var(--color-border);
+			border-left: 0;
 		}
 
 		.lesson-nav a:first-child {

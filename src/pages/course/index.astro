@@ -20,6 +20,19 @@ const outcomes = [
 				<p class="eyebrow">Coding</p>
 				<h1>前端網頁開發入門</h1>
 				<p class="lead">給想從零建立完整前端心智模型的學習者。不是只背語法，而是理解文件結構、排版系統、互動狀態與部署流程如何連在一起。</p>
+				<div class="outcomes">
+					{
+						outcomes.map(item => (
+							<article>
+								<>
+									<span>{item.label}</span>
+									<h2>{item.title}</h2>
+									<p>{item.text}</p>
+								</>
+							</article>
+						))
+					}
+				</div>
 			</div>
 			<article class="overview-card">
 				<span>Course overview</span>
@@ -31,32 +44,14 @@ const outcomes = [
 				</div>
 				<img class="overview-thumb" src={course.image.src} width={course.image.width} height={course.image.height} alt={course.title} />
 				<div class="quick-stats">
-					<div><BookOpen size={18} stroke-width={1.8} />10 modules</div>
-					<div><Clock size={18} stroke-width={1.8} />6.5 hours</div>
-					<div><Users size={18} stroke-width={1.8} />Beginner</div>
+					<div><BookOpen size={18} stroke-width={1.8} /><span>10 modules</span></div>
+					<div><Clock size={18} stroke-width={1.8} /><span>6.5 hours</span></div>
+					<div><Users size={18} stroke-width={1.8} /><span>Beginner</span></div>
 				</div>
 			</article>
 		</section>
 
-		<section class="outcomes">
-			{
-				outcomes.map(item => (
-					<article>
-						<>
-							<span>{item.label}</span>
-							<h2>{item.title}</h2>
-							<p>{item.text}</p>
-						</>
-					</article>
-				))
-			}
-		</section>
-
 		<section class="curriculum">
-			<header>
-				<p>Module 01</p>
-				<h2>從基本原理到互動實作</h2>
-			</header>
 			<div class="module-list">
 				{courseModules.map(module => <CourseModuleRow module={module} />)}
 			</div>
@@ -74,7 +69,6 @@ const outcomes = [
 	}
 
 	.course-hero,
-	.outcomes,
 	.curriculum,
 	.comments-wrap {
 		width: min(var(--site-width), calc(100% - 2rem));
@@ -84,10 +78,9 @@ const outcomes = [
 	.course-hero {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) 24.5rem;
-		gap: 5.5rem;
+		gap: 2rem;
 		align-items: start;
-		padding-bottom: 4.75rem;
-		border-bottom: 1px solid var(--color-border);
+		padding-bottom: 2rem;
 	}
 
 	.hero-copy {
@@ -117,7 +110,7 @@ const outcomes = [
 		margin-top: 2rem;
 		font-size: 1.5rem;
 		font-weight: 700;
-		line-height: 1.8;
+		line-height: 1.5;
 		color: var(--color-text);
 	}
 
@@ -129,7 +122,7 @@ const outcomes = [
 	.overview-card {
 		position: relative;
 		padding: 2.25rem;
-		margin-top: 4.5rem;
+		margin-top: 2rem;
 	}
 
 	.overview-card::after {
@@ -214,7 +207,7 @@ const outcomes = [
 		display: grid;
 		place-items: center;
 		gap: 0.5rem;
-		min-height: 5rem;
+		padding: 1rem 0.5rem;
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
 		font-weight: 800;
@@ -230,14 +223,21 @@ const outcomes = [
 	.outcomes {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 2rem;
 		margin-top: 3.75rem;
-		padding-bottom: 4.75rem;
-		border-bottom: 1px solid var(--color-border);
+		background: color-mix(in oklch, var(--color-surface) 58%, transparent);
+		border: 1px solid var(--color-border);
 	}
 
-	.outcomes span,
-	.curriculum header p {
+	.outcomes article {
+		padding: 2rem;
+		border-right: 1px solid var(--color-border);
+	}
+
+	.outcomes article:last-child {
+		border-right: none;
+	}
+
+	.outcomes span {
 		display: block;
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
@@ -262,24 +262,9 @@ const outcomes = [
 	}
 
 	.curriculum {
-		margin-top: 5.25rem;
-		background: oklch(100% 0 0 / 58%);
+		background: color-mix(in oklch, var(--color-surface) 58%, transparent);
 		border: 1px solid var(--color-border);
-	}
-
-	.curriculum header {
-		display: grid;
-		grid-template-columns: 7.5rem 1fr;
-		align-items: end;
-		gap: 2rem;
-		padding: 2.25rem 1.25rem 1.25rem;
-	}
-
-	.curriculum h2 {
-		font-size: 3.75rem;
-		line-height: 1;
-		letter-spacing: -0.075em;
-		color: var(--color-ink);
+		border-top-color: var(--color-ink);
 	}
 
 	.comments-wrap {
@@ -287,10 +272,21 @@ const outcomes = [
 	}
 
 	@media (max-width: 57.5rem) {
-		.course-hero,
-		.outcomes,
-		.curriculum header {
+		.course-hero {
 			grid-template-columns: 1fr;
+		}
+
+		.outcomes {
+			grid-template-columns: 1fr;
+		}
+
+		.outcomes article {
+			border-right: none;
+			border-bottom: 1px solid var(--color-border);
+		}
+
+		.outcomes article:last-child {
+			border-bottom: none;
 		}
 
 		.overview-card {
