@@ -4,98 +4,70 @@ import { siGithub, siRss } from "simple-icons";
 import SimpleIcon from "../shared/SimpleIcon.astro";
 ---
 
-<footer class="card site-footer">
+<footer class="site-footer">
+	<a class="footer-action" href="/#comments" aria-label="留言"><img src="/img/logo.svg" alt="Logo" class="footer-logo" width="32" height="37" /></a>
 	<div class="footer-brand">
-		<img src="/img/logo.svg" alt="" width="32" height="37" />
-		<div>
-			<p>©2021 - 2026 By 毛哥EM</p>
-			<p>原創文章採 CC BY 4.0 授權，轉載請註明來源。</p>
-		</div>
+		<p>©2021 - 2026 By 毛哥EM</p>
+		<p>原創文章採 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> 授權，轉載請註明來源。</p>
 	</div>
-	<nav class="footer-actions" aria-label="頁尾連結">
-		<a href="/#comments" aria-label="留言"><MessageSquare size={21} stroke-width={1.7} /></a>
-		<a href="https://github.com/" aria-label="GitHub"><SimpleIcon icon={siGithub} size={21} /></a>
-		<a href="/rss.xml" aria-label="RSS"><SimpleIcon icon={siRss} size={21} /></a>
-	</nav>
+	<a class="footer-action" href="/#comments" aria-label="留言"><MessageSquare size={21} stroke-width={1.7} /></a>
+	<a class="footer-action" href="https://github.com/" aria-label="GitHub"><SimpleIcon icon={siGithub} size={21} /></a>
+	<a class="footer-action" href="/rss.xml" aria-label="RSS"><SimpleIcon icon={siRss} size={21} /></a>
 </footer>
 
 <style>
 	.site-footer {
-		display: grid;
-		grid-template-columns: 1fr auto;
+		display: flex;
 		gap: 1rem;
-		width: calc(100% - 5.5rem);
-		margin: 4rem auto 0;
-		padding: 1rem;
+		width: calc(100% + 2.5rem);
+		margin: 4rem 0 0 -1.25rem;
+		padding-inline: 1rem;
 		backdrop-filter: blur(0.75rem);
 		border-inline: none;
+		margin-bottom: 2rem;
+		color: var(--color-muted);
+		font-size: 0.75rem;
+		border-block: 1px solid var(--color-border);
+	}
+
+	.site-footer > * {
+		border-inline: 1px solid var(--color-border);
+	}
+
+	.footer-logo {
+		width: 2rem;
 	}
 
 	.footer-brand {
-		display: flex;
-		align-items: center;
-		gap: 1.25rem;
-		min-height: 5.75rem;
-		padding: 0.5rem 0.75rem;
-		color: var(--color-muted);
-	}
-
-	.footer-brand img {
-		width: 1.75rem;
-		height: auto;
-		filter: saturate(0.65);
+		flex: 1;
+		padding: 1.25rem;
+		line-height: 1;
 	}
 
 	.footer-brand p:first-child {
 		font-size: 1rem;
 		font-weight: 700;
 		color: var(--color-text);
+		margin-bottom: 0.75rem;
 	}
 
-	.footer-brand p + p {
-		margin-top: 0.25rem;
-		font-size: 0.75rem;
+	.footer-brand a {
+		color: var(--color-accent-strong);
+		transition: color 160ms ease;
 	}
 
-	.footer-actions {
-		display: grid;
-		grid-template-columns: repeat(3, 4.5rem);
-		border: 1px solid var(--color-border);
-	}
-
-	.footer-actions a {
+	.footer-action {
 		display: grid;
 		place-items: center;
 		color: var(--color-muted);
-		border-left: 1px solid var(--color-border);
 		transition:
 			color 160ms ease,
 			background 160ms ease;
+		width: 5rem;
 	}
 
-	.footer-actions a:first-child {
-		border-left: 0;
-	}
-
-	.footer-actions a:hover {
+	.footer-action:hover {
 		color: var(--color-accent-strong);
 		background: var(--color-accent-soft);
-	}
-
-	@media (max-width: 43.75rem) {
-		.site-footer {
-			grid-template-columns: 1fr;
-			margin-top: 4rem;
-		}
-
-		.footer-brand {
-			align-items: flex-start;
-			padding: 0.5rem 0.75rem;
-		}
-
-		.footer-actions {
-			grid-template-columns: repeat(3, 1fr);
-			min-height: 3.75rem;
-		}
 	}
 </style>

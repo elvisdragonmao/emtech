@@ -48,6 +48,7 @@ html {
 	color: var(--color-text);
 	background: var(--color-bg);
 	scroll-behavior: smooth;
+	scroll-padding-top: 5rem;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 }
