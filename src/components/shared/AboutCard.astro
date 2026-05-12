@@ -21,14 +21,14 @@ const { copyright = false } = Astro.props;
 		{
 			copyright && (
 				<p class="bio">
-					本部落格皆屬原創文章，採 CC BY-SA 4.0 授權，
-					<>
-						<br />
-						<br />
-					</>
+					本部落格皆屬原創文章，採 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a> 授權，
+					<br />
 					轉載請註明來自毛哥EM資訊密技。
 					<br />
-					這篇文章對你有幫助嗎？ 考慮幫我買瓶 Red Bull？
+					這篇文章對你有幫助嗎？
+					<a href="https://www.buymeacoffee.com/elvismao" target="_blank" rel="noreferrer">
+						考慮幫我買瓶 Red Bull？
+					</a>
 				</p>
 			)
 		}
@@ -84,8 +84,12 @@ const { copyright = false } = Astro.props;
 		max-width: 28.75rem;
 		margin-top: 1.5rem;
 		font-size: 1rem;
-		line-height: 1.9;
+		line-height: 1.33;
 		color: var(--color-muted);
+	}
+
+	.bio a {
+		color: var(--color-accent-strong);
 	}
 
 	.links {
@@ -110,7 +114,7 @@ const { copyright = false } = Astro.props;
 	.dragon {
 		position: absolute;
 		left: 25%;
-		top: 0;
+		top: -1rem;
 		width: 60%;
 		filter: drop-shadow(0 1.5rem 1.5rem oklch(71% 0.15 225 / 18%));
 	}
