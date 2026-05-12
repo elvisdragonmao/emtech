@@ -33,7 +33,7 @@ Docker 是一種容器化技術，它可以將應用程序及其所有依賴套�
 
 在你的專案根目錄中建立一個 `Dockerfile`，該文件描述了如何構建 Docker 映像。例如，對於一個 Node.js 應用，`Dockerfile` 可以如下：
 
-```Dockerfile
+```dockerfile
 # 使用官方 Node.js 映像作為基礎
 FROM node:20
 
