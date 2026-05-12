@@ -21,7 +21,7 @@ brew install pdftk
 
 > [!NOTE]
 >
-> **PDF Toolkit (pdftk)**
+> ### PDF Toolkit (pdftk)
 > - 開發者:pdflabs
 > - 軟體類型：終端機套件
 > - 網址：[www.pdflabs.com](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
@@ -32,7 +32,7 @@ brew install pdftk
 
 > [!NOTE]
 >
-> **Termux**
+> ### Termux
 > - 開發者:Termux
 > - 軟體類型：安卓應用程式
 > - 官網：[termux.com](https://termux.com/)
@@ -104,7 +104,7 @@ pdftk A=one.pdf B=two.pdf cat A1-7 B1-5 A8 output combined.pdf
 
 > [!NOTE]
 >
-> **小提醒注：檔名一定要正確，有時看著一樣確還差個/，最好使用 Tab 鍵來自動補全。**
+> ### 小提醒注：檔名一定要正確，有時看著一樣確還差個/，最好使用 Tab 鍵來自動補全。
 
 ## 將 PDF 檔案中的一部分取出生成一個新檔案
 

@@ -189,7 +189,7 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=/maps/map.yaml
 
 > [!NOTE]
 >
-> **小提示**
+> ### 小提示
 > 一些語法錯誤直接 GPT 解就可以了。
 
 #### 第二大題：讓機器人跑起來 (28 分)

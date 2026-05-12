@@ -11,7 +11,7 @@ date: 2023-02-22
 
 > [!NOTE]
 >
-> **Line Notify 停用**
+> ### Line Notify 停用
 > Line Notify 已經停用，請參考我寫的這篇新文章：
 >
 > [自製 Line Bot 轉發群組訊息給自己](https://emtech.cc/p/line-forward/)
@@ -44,7 +44,7 @@ https://notify-bot.line.me/my/ => 發行權杖 => 把那一串複製下來�
 
 > [!NOTE]
 >
-> **Google Apps Script**
+> ### Google Apps Script
 > 開發者:Google 類型：免費網站（可付費升級）網址：[script.google.com](https://script.google.com)
 
 請建立一個新的專案並貼上以下內容。記得貼上記得貼上 Line Notify Token。
@@ -89,7 +89,7 @@ function doPost(e) {
 
 > [!NOTE]
 >
-> **小叮嚀 為避免程式碼站太多空間，可能會部分隱藏。請記得展開或直接複製。**
+> ### 小叮嚀 為避免程式碼站太多空間，可能會部分隱藏。請記得展開或直接複製。
 
 ![Google Apps Script 快速教學](/static/img/gas.webp)
 

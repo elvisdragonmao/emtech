@@ -13,7 +13,7 @@ date: 2021-12-01
 
 > [!NOTE]
 >
-> **旌旗教會週報下載器**
+> ### 旌旗教會週報下載器
 > - 開發者：毛哥EM(我)
 > - 類型：網站
 > - 連結：[iCloud](https:/elvismao.com/code/weekly)
@@ -32,7 +32,7 @@ date: 2021-12-01
 
 > [!NOTE]
 >
-> **小提醒**
+> ### 小提醒
 > - 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。
 > - 此網站及捷徑皆為開源項目，歡迎到[GitHub](https://github.com/elvisdragonmao/elvisdragonmao.github.io/tree/main/code/weekly)查看。
 > - 你也可以用 Siri 執行這個捷徑。

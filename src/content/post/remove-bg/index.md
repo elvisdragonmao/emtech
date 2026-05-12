@@ -13,7 +13,7 @@ date: 2022-01-06
 
 > [!NOTE]
 >
-> **Remove.bg**
+> ### Remove.bg
 > - 開發者：[Kaleido](https://www.kaleido.ai/)
 > - 類型：網站/網路應用程式
 > - 連結：[Remove.bg](https://Remove.bg)
@@ -28,13 +28,13 @@ date: 2022-01-06
 
 > [!NOTE]
 >
-> **API 是什麼 API(Application Programming Interface)，中文叫做應用程式介面。你可以想像有一台飲料機，上面的按鈕就是 API，當你投入錢並按下按鈕時飲料機就收到了你的需求，並將飲料從取物口送出，而投入的方式可以是硬幣、鈔票、或刷卡。**
+> ### API 是什麼 API(Application Programming Interface)，中文叫做應用程式介面。你可以想像有一台飲料機，上面的按鈕就是 API，當你投入錢並按下按鈕時飲料機就收到了你的需求，並將飲料從取物口送出，而投入的方式可以是硬幣、鈔票、或刷卡。
 
 以下是一個簡單的捷徑示範，你可以直接下載來使用。後面會提供簡單的製作教學。有多簡單呢，只有兩個方塊！
 
 > [!NOTE]
 >
-> **Remove.bg 一鍵去背**
+> ### Remove.bg 一鍵去背
 > - 開發者：毛哥EM(我)
 > - 軟體類型:ios 捷徑
 > - 下載位置：[iCloud](https://www.icloud.com/shortcuts/fce4a5a7643e4fc2b8c26fa82f5a2fc3)
