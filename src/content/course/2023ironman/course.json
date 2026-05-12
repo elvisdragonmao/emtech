@@ -1,6 +1,7 @@
 {
 	"title": "不用庫也能酷：玩轉 CSS & JS 特效",
 	"description": "不用框架也能做出動畫、互動和微型特效。30 天鐵人賽系列，從基礎特效到進階互動一步一步帶你實作。",
+	"displayOrder": 30,
 	"accent": "blue",
 	"thumbnail": "2023ironman-1/thumbnail.webp",
 	"meta": "零基礎 / 鐵人賽 / 30 天",
