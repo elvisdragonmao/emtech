@@ -9,9 +9,10 @@ interface Props {
 }
 
 const { courseId, lessons, currentId } = Astro.props;
+const progressStorageKey = `emtech:course-progress:${courseId}`;
 ---
 
-<aside class="course-sidebar">
+<aside class="course-sidebar" data-course-progress-key={progressStorageKey}>
 	<a class="back-link" href={`/course/${courseId}/`}><ArrowLeft size={15} stroke-width={1.8} />Back to course overview</a>
 	<nav aria-label="課程章節">
 		{
@@ -19,16 +20,47 @@ const { courseId, lessons, currentId } = Astro.props;
 				const isActive = lesson.id === currentId;
 				const number = String(i + 1).padStart(2, "0");
 				return (
-					<a class:list={[{ active: isActive }]} href={lesson.href}>
+					<a class:list={[{ active: isActive }]} href={lesson.href} data-lesson-id={lesson.id}>
 						<span>{number}</span>
 						{lesson.title}
-						{isActive && <CircleCheck size={15} stroke-width={1.8} />}
+						<CircleCheck size={15} stroke-width={1.8} />
 					</a>
 				);
 			})
 		}
 	</nav>
 </aside>
+
+<script>
+	const sidebar = document.querySelector<HTMLElement>("[data-course-progress-key]");
+	const progressKey = sidebar?.dataset.courseProgressKey;
+	const lessonLinks = Array.from(sidebar?.querySelectorAll<HTMLAnchorElement>("[data-lesson-id]") ?? []);
+
+	const parseProgress = (value: string | null) => {
+		if (!value) return [];
+		try {
+			const parsed = JSON.parse(value);
+			return Array.isArray(parsed) ? parsed.filter((item): item is string => typeof item === "string") : [];
+		} catch {
+			return [];
+		}
+	};
+
+	const renderProgress = (completed: string[]) => {
+		const completedSet = new Set(completed);
+		for (const link of lessonLinks) {
+			link.classList.toggle("completed", completedSet.has(link.dataset.lessonId ?? ""));
+		}
+	};
+
+	if (progressKey) {
+		renderProgress(parseProgress(window.localStorage.getItem(progressKey)));
+		window.addEventListener("emtech:course-progress", event => {
+			const detail = (event as CustomEvent<{ storageKey?: string; completed?: string[] }>).detail;
+			if (detail?.storageKey === progressKey && Array.isArray(detail.completed)) renderProgress(detail.completed);
+		});
+	}
+</script>
 
 <style>
 	.course-sidebar {
@@ -69,7 +101,7 @@ const { courseId, lessons, currentId } = Astro.props;
 	}
 
 	nav a.active {
-		color: var(--color-ink);
+		color: var(--color-accent-strong);
 	}
 
 	nav a span {
@@ -79,7 +111,12 @@ const { courseId, lessons, currentId } = Astro.props;
 	}
 
 	nav a svg {
+		display: none;
 		color: var(--color-accent-strong);
+	}
+
+	nav a.completed svg {
+		display: block;
 	}
 
 	@media (max-width: 61.25rem) {

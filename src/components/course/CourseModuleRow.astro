@@ -21,19 +21,7 @@ const { module } = Astro.props;
 <a class="module-row" href={module.href}>
 	<span class="module-number">{module.number}</span>
 	<div class="thumb">
-		{
-			module.image ? (
-				<img
-					src={module.image.src}
-					width={module.image.width}
-					height={module.image.height}
-					alt={module.title}
-					loading="lazy"
-				/>
-			) : (
-				<div class="thumb-placeholder" aria-hidden="true" />
-			)
-		}
+		{module.image ? <img src={module.image.src} width={module.image.width} height={module.image.height} alt={module.title} loading="lazy" /> : <div class="thumb-placeholder" aria-hidden="true" />}
 	</div>
 	<div class="module-content">
 		<h3>{module.title}</h3>
@@ -46,7 +34,7 @@ const { module } = Astro.props;
 <style>
 	.module-row {
 		display: grid;
-		grid-template-columns: 7.5rem 13.75rem minmax(0, 1fr) 4.75rem 1.5rem;
+		grid-template-columns: 7.5rem 13.75rem minmax(0, 1fr) 5.75rem 1.5rem;
 		align-items: start;
 		gap: 2rem;
 		padding: 1.5rem 1.25rem;
@@ -89,11 +77,21 @@ const { module } = Astro.props;
 	}
 
 	p {
+		display: -webkit-box;
 		max-width: 42.5rem;
 		margin-top: 0.75rem;
+		overflow: hidden;
 		font-size: 1rem;
 		line-height: 1.75;
 		color: var(--color-muted);
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+	}
+
+	.duration {
+		justify-self: end;
+		padding-top: 0.35rem;
+		white-space: nowrap;
 	}
 
 	.arrow {

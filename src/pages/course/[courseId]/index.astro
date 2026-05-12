@@ -4,22 +4,22 @@ import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
 import CourseModuleRow from "../../../components/course/CourseModuleRow.astro";
 import Layout from "../../../layouts/Layout.astro";
-import { formatDate, extractTitle } from "../../../utils/content";
+import { formatDate, extractTitle, readingTime } from "../../../utils/content";
 
 export async function getStaticPaths() {
 	const courses = await getCollection("course");
-	return courses.map((course) => ({ params: { courseId: course.id } }));
+	return courses.map(course => ({ params: { courseId: course.id } }));
 }
 
 const { courseId } = Astro.params;
 const courses = await getCollection("course");
-const courseEntry = courses.find((c) => c.id === courseId);
+const courseEntry = courses.find(c => c.id === courseId);
 
 if (!courseEntry) return Astro.redirect("/404");
 
 const allLessons = await getCollection("lesson");
 const lessons = allLessons
-	.filter((l) => l.id.startsWith(`${courseId}/`))
+	.filter(l => l.id.startsWith(`${courseId}/`))
 	.sort((a, b) => {
 		const order = courseEntry.data.order;
 		const aId = a.id.replace(`${courseId}/`, "");
@@ -28,10 +28,7 @@ const lessons = allLessons
 	});
 
 // Discover thumbnails for lessons
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>(
-	"../../../content/course/*/*/thumbnail.webp",
-	{ eager: true }
-);
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("../../../content/course/*/*/thumbnail.webp", { eager: true });
 
 // Course-level thumbnail
 const courseThumbKey = `../../../content/course/${courseId}/${courseEntry.data.thumbnail}`;
@@ -77,17 +74,7 @@ const outcomes = courseData.outcomes ?? [];
 					<strong>Reading path</strong>
 					<i></i>
 				</div>
-				{
-					courseThumbnail && (
-						<img
-							class="overview-thumb"
-							src={courseThumbnail.src}
-							width={courseThumbnail.width}
-							height={courseThumbnail.height}
-							alt={courseData.title}
-						/>
-					)
-				}
+				{courseThumbnail && <img class="overview-thumb" src={courseThumbnail.src} width={courseThumbnail.width} height={courseThumbnail.height} alt={courseData.title} />}
 				<div class="quick-stats">
 					<div><BookOpen size={18} stroke-width={1.8} /><span>{totalModules} modules</span></div>
 					<div>
@@ -112,7 +99,7 @@ const outcomes = courseData.outcomes ?? [];
 									number: `Module ${String(i + 1).padStart(2, "0")}`,
 									title: extractTitle(lesson.body) || lesson.data.description || lessonId,
 									description: lesson.data.description ?? "",
-									duration: "",
+									duration: readingTime(lesson.body ?? lesson.data.description ?? ""),
 									image: thumb,
 									href: `/course/${courseId}/${lessonId}/`
 								}}
@@ -312,9 +299,18 @@ const outcomes = courseData.outcomes ?? [];
 	}
 
 	.curriculum {
+		width: 100%;
+		margin-left: 0;
+		margin-right: auto;
 		background: color-mix(in oklch, var(--color-surface) 58%, transparent);
 		border: 1px solid var(--color-border);
+		border-left: 0;
 		border-top-color: var(--color-ink);
+	}
+
+	.module-list {
+		width: min(var(--site-width), calc(100% - 1rem));
+		margin-right: auto;
 	}
 
 	@media (max-width: 57.5rem) {
