@@ -6,61 +6,65 @@ import AboutCard from "../../components/shared/AboutCard.astro";
 import ArticleCard from "../../components/shared/ArticleCard.astro";
 import PostBody from "../../components/shared/PostBody.astro";
 import Layout from "../../layouts/Layout.astro";
-import { formatDate, extractTitle, type MetaItem } from "../../utils/content";
+import { extractTitle, formatDate, formatHashTags, normalizeTerms, readingTime, wordCount, type MetaItem } from "../../utils/content";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("post");
-	return posts.map((post) => ({ params: { postId: post.id } }));
+	return posts.map(post => ({ params: { postId: post.id } }));
 }
 
 const { postId } = Astro.params;
 const posts = await getCollection("post");
-const entry = posts.find((p) => p.id === postId);
+const entry = posts.find(p => p.id === postId);
 
 if (!entry) return Astro.redirect("/404");
 
 const { Content, headings } = await render(entry);
 
 // Discover co-located thumbnail via glob (supports image optimisation)
-const thumbnails = import.meta.glob<{ default: ImageMetadata }>(
-	"../../content/post/*/thumbnail.webp",
-	{ eager: true }
-);
+const thumbnails = import.meta.glob<{ default: ImageMetadata }>("../../content/post/*/thumbnail.webp", { eager: true });
 const thumbKey = `../../content/post/${postId}/thumbnail.webp`;
 const thumbnail: ImageMetadata | null = thumbnails[thumbKey]?.default ?? null;
 
 const title = headings[0]?.text ?? postId;
 const description = entry.data.description ?? "";
-const tag = entry.data.tags[0] ? `#${entry.data.tags[0]}` : entry.data.categories[0] ?? "";
+const entryTags = normalizeTerms(entry.data.tags);
+const entryCategories = normalizeTerms(entry.data.categories);
+const tag = formatHashTags(entryTags.length > 0 ? entryTags : entryCategories);
 
-// Build body text for reading time (rough estimate from rendered content)
-// We'll estimate from description + heading count as Astro doesn't expose raw text here
-// For a more accurate count, wordCount helpers accept rendered html text — we use a simple heuristic
+const contentText = entry.body ?? "";
 const meta: MetaItem[] = [
 	{ label: "Date", value: formatDate(entry.data.date) },
-	{ label: "Category", value: entry.data.categories[0] ?? "" },
+	{ label: "Category", value: entryCategories[0] ?? "" },
+	{ label: "Read Time", value: readingTime(contentText) },
+	{ label: "Word", value: wordCount(contentText) },
 	{ label: "Last Mod", value: formatDate(entry.data.date) }
 ];
 
-// Related articles: 3 most-recent other posts in the same category
+const relatedFilterType = entryTags[0] ? "tag" : "category";
+const relatedFilterValue = entryTags[0] ?? entryCategories[0] ?? "";
+
+// Related articles: latest posts with the same first tag, falling back to category.
 const allPosts = await getCollection("post");
 const related = allPosts
-	.filter(
-		(p) =>
-			p.id !== postId &&
-			p.data.categories.some((c) => entry.data.categories.includes(c))
-	)
+	.filter(p => {
+		if (p.id === postId || !relatedFilterValue) return false;
+		const terms = relatedFilterType === "tag" ? normalizeTerms(p.data.tags) : normalizeTerms(p.data.categories);
+		return terms.includes(relatedFilterValue);
+	})
 	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-	.slice(0, 3);
+	.slice(0, 10);
+
+const moreRelatedHref = relatedFilterValue ? `/?${relatedFilterType}=${encodeURIComponent(relatedFilterValue)}#archive` : "/#archive";
 
 // Build related article card data (needs thumbnail discovery)
-const relatedCards = related.map((p) => {
+const relatedCards = related.map(p => {
 	const rKey = `../../content/post/${p.id}/thumbnail.webp`;
 	return {
 		title: extractTitle(p.body) || p.id,
 		href: `/p/${p.id}/`,
 		image: thumbnails[rKey]?.default ?? null,
-		tag: p.data.tags[0] ? `#${p.data.tags[0]}` : p.data.categories[0] ?? "",
+		tag: formatHashTags(normalizeTerms(p.data.tags).length > 0 ? p.data.tags : p.data.categories),
 		description: p.data.description ?? "",
 		category: p.data.categories[0],
 		date: formatDate(p.data.date)
@@ -83,10 +87,10 @@ const relatedCards = related.map((p) => {
 				<section class="related-wrap">
 					<h2>相關文章</h2>
 					<div class="related-grid">
-						{relatedCards.map((related) => (
+						{relatedCards.map(related => (
 							<ArticleCard article={related} />
 						))}
-						<a class="more-card card" href="/archive/">
+						<a class="more-card card" href={moreRelatedHref}>
 							想要更多？
 							<ArrowRight size={18} stroke-width={1.8} />
 						</a>

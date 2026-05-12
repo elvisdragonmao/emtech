@@ -41,4 +41,19 @@ export function extractTitle(body: string | undefined): string {
 	return match ? match[1].trim() : "";
 }
 
+export function normalizeTerms(terms: string[] | undefined): string[] {
+	return (terms ?? []).flatMap(term =>
+		term
+			.split(/[，,]/)
+			.map(part => part.trim())
+			.filter(Boolean)
+	);
+}
+
+export function formatHashTags(terms: string[] | undefined): string {
+	return normalizeTerms(terms)
+		.map(term => `#${term.replace(/^#+/, "")}`)
+		.join(" ");
+}
+
 export type { ImageMetadata };
