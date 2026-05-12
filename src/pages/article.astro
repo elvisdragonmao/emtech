@@ -1,87 +1,18 @@
 ---
-import { ArrowLeft, ArrowRight } from "@lucide/astro";
+import { ArrowRight } from "@lucide/astro";
 import AboutCard from "../components/shared/AboutCard.astro";
 import ArticleCard from "../components/shared/ArticleCard.astro";
 import CommentArea from "../components/shared/CommentArea.astro";
-import MetaTable from "../components/shared/MetaTable.astro";
+import PostBody from "../components/shared/PostBody.astro";
 import Layout from "../layouts/Layout.astro";
 import { articleMeta, featuredArticles, relatedArticles } from "../data/prototype";
 
 const article = featuredArticles[0];
-const tocItems = ["On This Page", "01 Title", "01 Title", "01 Title", "01 Title", "01 Title", "01 Title"];
 ---
 
 <Layout title={article.title} description={article.description} active="blog">
 	<main class="article-page">
-		<section class="article-hero">
-			<div></div>
-			<div class="hero-main">
-				<p class="tag">{article.tag}</p>
-				<h1>{article.title}</h1>
-				<MetaTable items={articleMeta} />
-			</div>
-			<aside class="hero-tldr">
-				<p>TLDR</p>
-				<span>HackMD 側邊欄設計教學與技巧分享。</span>
-				<div class="side-nav">
-					<a href="/"><ArrowLeft size={14} stroke-width={1.8} />上一篇</a>
-					<a href="/course/javascript/">下一篇<ArrowRight size={14} stroke-width={1.8} /></a>
-				</div>
-			</aside>
-		</section>
-
-		<section class="article-shell">
-			<aside class="toc" aria-label="文章目錄">
-				{tocItems.map(item => <a href="#content">{item}</a>)}
-			</aside>
-
-			<article id="content" class="article-content">
-				<img class="hero-image" src={article.image.src} width={article.image.width} height={article.image.height} alt={article.title} />
-				<div class="callout">
-					<strong>簡單來說</strong>
-					<p>
-						這也是為什麼我要在意「痕跡」：為什麼表單錯誤訊息要放在欄位下方？為什麼過個資料段要可以接受、另一個不行？為什麼藍色只能用在可互動元素，而不能拿來裝飾標題？這些決策如果沒有被寫下來，元件再完整，也只是一套安靜但脆弱的圖庫。
-					</p>
-					<span>TL;DR</span>
-				</div>
-
-				<h2>這是一個二級標題</h2>
-				<p>
-					很多團隊第一次建立設計系統時，會把力氣放在按鈕、輸入框、卡片與頁面範例。這些東西很重要，但它們通常不是系統失效的原因。系統真正失效的時刻，是一個新的產品情境出現，元件庫裡沒有剛好對應的選項，而團隊無法判斷該延伸、該重組，還是該拒絕需求。
-				</p>
-
-				<h3>三級標題</h3>
-				<p>當一個 Prototype 只是看起來完整，卻沒有清楚的規則，就很容易在實作時分裂成不同方向。反過來，如果版面、間距、顏色與互動的意圖都被整理清楚，前端就能很快把設計翻譯成可維護的元件。</p>
-
-				<h4>四級標題</h4>
-				<p><a href="/course/">這是一個超連結</a> 什麼表單錯誤訊息要放在 <code>what frame</code> 錯誤訊息要放在欄位下方再完整，也只是一套安靜但脆弱的圖庫。</p>
-
-				<ul>
-					<li>你覺得遇到貼文有什麼問題？</li>
-					<li>留言每年和人發文尊重。</li>
-					<li>我才詢問。</li>
-					<li>我不喜歡自己出現在文章上。</li>
-				</ul>
-
-				<figure class="code-figure">
-					<div class="code-window">
-						<span></span><span></span><span></span>
-						<pre><code>const sidebar = document.querySelector(".summary");
-sidebar?.classList.add("theme-sitcon");
-
-const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail", "18rem");</code></pre>
-					</div>
-					<figcaption>Fig. 02 一同一套繪圖系統可以容納獨立文章、課程文章與閱讀筆記。</figcaption>
-				</figure>
-
-				<div class="notice-box">
-					<h5>六級標題</h5>
-					<p>這也是為什麼我要在意「痕跡」：為什麼表單錯誤訊息要放在欄位下方？這些決策如果有被寫下來，就能讓每一個 Prototype 看起來像同一個產品。</p>
-				</div>
-			</article>
-
-			<div></div>
-		</section>
+		<PostBody tag={article.tag} title={article.title} image={article.image} meta={articleMeta} />
 
 		<section class="about-wrap">
 			<AboutCard copyright />
@@ -108,284 +39,10 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 		padding-top: 5.5rem;
 	}
 
-	.article-hero,
-	.article-shell,
-	.related-wrap,
 	.about-wrap,
+	.related-wrap,
 	.comments-wrap {
 		width: 100%;
-	}
-
-	.article-hero {
-		display: grid;
-		grid-template-columns: 12.5rem minmax(0, 58.25rem) 12.5rem;
-		gap: 2.75rem;
-		align-items: start;
-	}
-
-	.hero-main {
-		min-width: 0;
-	}
-
-	.hero-tldr {
-		position: relative;
-		margin-top: 7.5rem;
-		color: var(--color-muted);
-	}
-
-	.hero-tldr::before {
-		position: absolute;
-		top: -6.75rem;
-		left: -4.75rem;
-		z-index: -1;
-		width: 16.25rem;
-		height: 16.25rem;
-		content: "";
-		border: 1px solid oklch(71% 0.15 225 / 48%);
-		border-radius: 50%;
-	}
-
-	.hero-tldr p {
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		font-weight: 800;
-		letter-spacing: 0.08em;
-		color: var(--color-text);
-	}
-
-	.hero-tldr span {
-		display: block;
-		margin-top: 0.75rem;
-		font-size: 1rem;
-		line-height: 1.8;
-	}
-
-	.tag {
-		font-family: var(--font-mono);
-		font-size: 1rem;
-		font-weight: 400;
-		color: var(--color-accent-strong);
-	}
-
-	h1 {
-		margin: 1.25rem 0 2rem;
-		font-size: 4rem;
-		line-height: 1.2;
-		letter-spacing: -0.05em;
-		color: var(--color-ink);
-	}
-
-	.article-shell {
-		display: grid;
-		grid-template-columns: 12.5rem minmax(0, 58.25rem) 12.5rem;
-		gap: 2.75rem;
-		align-items: start;
-		margin-top: 2.75rem;
-	}
-
-	.toc,
-	.article-side {
-		position: sticky;
-		top: 6rem;
-		padding-top: 1.25rem;
-	}
-
-	.toc a {
-		display: block;
-		padding: 0.5rem 0;
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		font-weight: 700;
-		color: var(--color-muted);
-	}
-
-	.article-side {
-		color: var(--color-muted);
-	}
-
-	.article-side p {
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		font-weight: 800;
-		letter-spacing: 0.08em;
-		color: var(--color-text);
-	}
-
-	.article-side span {
-		display: block;
-		margin-top: 0.75rem;
-		font-size: 1rem;
-		line-height: 1.8;
-	}
-
-	.side-nav {
-		display: grid;
-		gap: 0.5rem;
-		margin-top: 1.25rem;
-	}
-
-	.side-nav a {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.75rem;
-		color: var(--color-accent-strong);
-	}
-
-	.article-content {
-		font-size: 1rem;
-		line-height: 2;
-		color: var(--color-text);
-	}
-
-	.hero-image {
-		width: 100%;
-		aspect-ratio: 2 / 1;
-		height: auto;
-		object-fit: cover;
-		margin-bottom: 2.75rem;
-		box-shadow: var(--shadow-card);
-	}
-
-	.article-content h2,
-	.article-content h3,
-	.article-content h4,
-	.article-content h5 {
-		line-height: 1.15;
-		letter-spacing: -0.06em;
-		color: var(--color-ink);
-	}
-
-	.article-content h2 {
-		margin: 4.5rem 0 1.5rem;
-		font-size: 3.25rem;
-	}
-
-	.article-content h3 {
-		margin: 2.75rem 0 1rem;
-		font-size: 2rem;
-	}
-
-	.article-content h4 {
-		margin: 2.25rem 0 1rem;
-		font-size: 1.5rem;
-	}
-
-	.article-content h5 {
-		font-size: 1.25rem;
-	}
-
-	.article-content p + p,
-	.article-content p + ul {
-		margin-top: 1.25rem;
-	}
-
-	.article-content a {
-		color: var(--color-accent-strong);
-		border-bottom: 1px solid currentColor;
-	}
-
-	.article-content code {
-		padding: 0.25rem 0.5rem;
-		font-family: var(--font-mono);
-		font-size: 0.86em;
-		background: var(--color-surface-soft);
-		border: 1px solid var(--color-border);
-	}
-
-	.article-content ul {
-		padding-left: 1.2em;
-	}
-
-	.callout {
-		position: relative;
-		padding: 2.25rem 2.75rem;
-		overflow: hidden;
-		background: oklch(93% 0.045 220 / 55%);
-		border: 1px solid var(--color-accent);
-	}
-
-	.callout strong {
-		display: block;
-		margin-bottom: 1.25rem;
-		font-size: 1.25rem;
-		color: var(--color-ink);
-	}
-
-	.callout p {
-		position: relative;
-		z-index: 1;
-		max-width: 38.75rem;
-	}
-
-	.callout span {
-		position: absolute;
-		right: 1.5rem;
-		bottom: -0.75rem;
-		font-size: 4.75rem;
-		font-weight: 900;
-		line-height: 1;
-		letter-spacing: -0.08em;
-		color: oklch(71% 0.15 225 / 42%);
-	}
-
-	.code-figure {
-		margin: 3.25rem 0;
-	}
-
-	.code-window {
-		position: relative;
-		padding: 3rem 1.5rem 1.5rem;
-		background: var(--color-code-bg);
-		border: 1px solid var(--color-border-strong);
-		box-shadow: var(--shadow-card);
-	}
-
-	.code-window > span {
-		position: absolute;
-		top: 1.25rem;
-		width: 0.5rem;
-		height: 0.5rem;
-		border-radius: 50%;
-		background: var(--color-muted);
-	}
-
-	.code-window > span:nth-child(1) {
-		left: 1.25rem;
-	}
-
-	.code-window > span:nth-child(2) {
-		left: 2.25rem;
-	}
-
-	.code-window > span:nth-child(3) {
-		left: 3.25rem;
-	}
-
-	pre {
-		overflow-x: auto;
-		font-family: var(--font-mono);
-		font-size: 1rem;
-		line-height: 1.8;
-		color: var(--color-code-ink);
-	}
-
-	figcaption {
-		margin-top: 0.75rem;
-		font-size: 0.75rem;
-		text-align: center;
-		color: var(--color-muted);
-	}
-
-	.notice-box {
-		margin-top: 3rem;
-		padding: 2rem 2.25rem;
-		background: oklch(97.2% 0.02 78 / 70%);
-		border: 1px solid var(--color-yellow);
-	}
-
-	.notice-box p {
-		margin-top: 1rem;
 	}
 
 	.about-wrap {
@@ -427,19 +84,6 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 	}
 
 	@media (max-width: 68.75rem) {
-		.article-hero,
-		.article-shell {
-			grid-template-columns: minmax(0, 1fr);
-			max-width: 51.25rem;
-		}
-
-		.toc,
-		.article-side,
-		.hero-tldr,
-		.article-hero > div:first-child {
-			display: none;
-		}
-
 		.related-grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
@@ -448,15 +92,6 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 	@media (max-width: 40rem) {
 		.article-page {
 			padding-top: 3.25rem;
-		}
-
-		.callout,
-		.notice-box {
-			padding: 1.5rem;
-		}
-
-		.callout span {
-			font-size: 3.25rem;
 		}
 
 		.related-grid {
