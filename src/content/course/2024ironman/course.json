@@ -1,6 +1,7 @@
 {
 	"title": "看好了 GitHub Actions，我只示範一次",
 	"description": "把部署和檢查自動化，讓每次 push 都更安心。30 天鐵人賽系列，從 CI/CD 基礎到進階部署流程。",
+	"displayOrder": 20,
 	"accent": "yellow",
 	"thumbnail": "2024ironman-1/thumbnail.webp",
 	"meta": "零基礎 / 鐵人賽 / 30 天",

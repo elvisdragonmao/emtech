@@ -1,5 +1,5 @@
-import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
+import { defineCollection, z } from "astro:content";
 
 const post = defineCollection({
 	loader: glob({
@@ -12,7 +12,10 @@ const post = defineCollection({
 		tags: z.array(z.string()).default([]),
 		categories: z.array(z.string()).default([]),
 		date: z.coerce.date(),
-		description: z.string().nullish().transform(v => v ?? undefined),
+		description: z
+			.string()
+			.nullish()
+			.transform(v => v ?? undefined),
 		thumbnail: z.string().optional() // legacy absolute path for older posts
 	})
 });
@@ -27,6 +30,7 @@ const course = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
+		displayOrder: z.number().default(Number.MAX_SAFE_INTEGER),
 		accent: z.enum(["blue", "purple", "yellow"]).default("blue"),
 		/** Ordered list of lesson folder names */
 		order: z.array(z.string()),
@@ -56,7 +60,10 @@ const lesson = defineCollection({
 		tags: z.array(z.string()).default([]),
 		categories: z.array(z.string()).default([]),
 		date: z.coerce.date(),
-		description: z.string().nullish().transform(v => v ?? undefined),
+		description: z
+			.string()
+			.nullish()
+			.transform(v => v ?? undefined),
 		thumbnail: z.string().optional()
 	})
 });

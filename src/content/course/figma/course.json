@@ -1,8 +1,9 @@
 {
 	"title": "figma",
 	"description": "Figma 專業實戰",
+	"displayOrder": 50,
 	"accent": "purple",
-	"thumbnail": "figma/thumbnail.webp",
+	"thumbnail": "../frontend/js/thumbnail.webp",
 	"meta": "零基礎 / 還沒寫完",
 	"order": []
 }
