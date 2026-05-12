@@ -65,12 +65,16 @@ const progressStorageKey = `emtech:course-progress:${courseId}`;
 <style>
 	.course-sidebar {
 		position: sticky;
-		top: 6rem;
+		top: 4rem;
 		align-self: start;
 		padding: 1.75rem 1.5rem;
 		background: oklch(100% 0 0 / 80%);
 		border: 1px solid var(--color-border);
+		border-top: none;
+		height: calc(100dvh - 4rem);
+		overflow-y: auto;
 	}
+
 
 	.back-link {
 		display: inline-flex;
@@ -98,6 +102,7 @@ const progressStorageKey = `emtech:course-progress:${courseId}`;
 		font-weight: 700;
 		color: var(--color-muted);
 		border-top: 1px solid var(--color-border);
+		line-height: 1.5;
 	}
 
 	nav a.active {
@@ -117,11 +122,5 @@ const progressStorageKey = `emtech:course-progress:${courseId}`;
 
 	nav a.completed svg {
 		display: block;
-	}
-
-	@media (max-width: 61.25rem) {
-		.course-sidebar {
-			position: static;
-		}
 	}
 </style>

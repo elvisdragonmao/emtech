@@ -82,16 +82,13 @@ const sidebarLessons = courseLessons.map(l => {
 
 			<div class="lesson-body">
 				<PostBody
+					layout="course"
 					tag={tag}
 					title={title}
 					image={thumbnail}
 					meta={meta}
 					tldr={description}
 					headings={headings}
-					previousHref={prevId ? `/course/${courseId}/${prevId}/` : undefined}
-					previousTitle={prevLesson ? extractTitle(prevLesson.body) || prevLesson.data.description : undefined}
-					nextHref={nextId ? `/course/${courseId}/${nextId}/` : undefined}
-					nextTitle={nextLesson ? extractTitle(nextLesson.body) || nextLesson.data.description : undefined}
 					progressStorageKey={`emtech:course-progress:${courseId}`}
 					progressItemId={lessonId}
 				>
@@ -132,23 +129,19 @@ const sidebarLessons = courseLessons.map(l => {
 </Layout>
 
 <style>
-	.lesson-page {
-		padding-top: 5.5rem;
-	}
-
 	.lesson-layout {
 		display: grid;
-		grid-template-columns: 18rem minmax(0, 1fr);
+		grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
 		width: 100%;
 		margin-inline: auto;
 		align-items: start;
 	}
 
 	.lesson-body {
-		grid-column: 1 / -1;
+		padding: 5.5rem 2rem 0;
+		grid-column: 2;
 		grid-row: 1;
-		width: min(var(--site-width), 100%);
-		margin-inline: auto;
+		width: 100%;
 		min-width: 0;
 	}
 
@@ -221,7 +214,7 @@ const sidebarLessons = courseLessons.map(l => {
 	}
 
 	@media (max-width: 40rem) {
-		.lesson-page {
+		.lesson-body {
 			padding-top: 3.25rem;
 		}
 

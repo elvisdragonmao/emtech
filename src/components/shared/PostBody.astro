@@ -17,46 +17,50 @@ interface Props {
 	nextTitle?: string;
 	progressStorageKey?: string;
 	progressItemId?: string;
+	layout?: "post" | "course";
 }
 
-const { tag, title, image, meta, tldr, headings = [], previousHref, previousTitle, nextHref, nextTitle, progressStorageKey, progressItemId } = Astro.props;
+const { tag, title, image, meta, tldr, headings = [], previousHref, previousTitle, nextHref, nextTitle, progressStorageKey, progressItemId, layout = "post" } = Astro.props;
 
 // Only show TOC headings at depth 2 and 3
 const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
+const isCourseLayout = layout === "course";
 ---
 
-<section class="article-hero">
+<section class:list={["article-hero", { "course-layout": isCourseLayout }]}>
 	<div></div>
 	<div class="hero-main">
 		<p class="tag">{tag}</p>
 		<h1>{title}</h1>
 		<MetaTable items={meta} />
 	</div>
-	<aside class="hero-side-nav" aria-label="文章導覽">
-		{
-			(previousHref || nextHref) && (
-				<div class="side-nav">
-					{previousHref && (
-						<a href={previousHref}>
-							<ArrowLeft size={14} stroke-width={1.8} />
-							<span>上一篇</span>
-							<strong>{previousTitle ?? "上一篇"}</strong>
-						</a>
-					)}
-					{nextHref && (
-						<a href={nextHref}>
-							<span>下一篇</span>
-							<strong>{nextTitle ?? "下一篇"}</strong>
-							<ArrowRight size={14} stroke-width={1.8} />
-						</a>
-					)}
-				</div>
-			)
-		}
-	</aside>
+	{
+		!isCourseLayout && (
+			<aside class="hero-side-nav" aria-label="文章導覽">
+				{(previousHref || nextHref) && (
+					<div class="side-nav">
+						{previousHref && (
+							<a href={previousHref}>
+								<ArrowLeft size={14} stroke-width={1.8} />
+								<span>上一篇</span>
+								<strong>{previousTitle ?? "上一篇"}</strong>
+							</a>
+						)}
+						{nextHref && (
+							<a href={nextHref}>
+								<span>下一篇</span>
+								<strong>{nextTitle ?? "下一篇"}</strong>
+								<ArrowRight size={14} stroke-width={1.8} />
+							</a>
+						)}
+					</div>
+				)}
+			</aside>
+		)
+	}
 </section>
 
-<section class="article-shell">
+<section class:list={["article-shell", { "course-layout": isCourseLayout }]}>
 	<aside class="toc" aria-label="文章目錄">
 		{
 			tocItems.length > 0 ? (
@@ -314,6 +318,27 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		margin-top: 1.5rem;
 	}
 
+	.article-hero.course-layout,
+	.article-shell.course-layout {
+		grid-template-columns: minmax(0, 58.25rem) minmax(10rem, 12.5rem);
+		justify-content: center;
+	}
+
+	.article-hero.course-layout > div:first-child,
+	.article-shell.course-layout > div:last-child {
+		display: none;
+	}
+
+	.article-hero.course-layout .hero-main,
+	.article-shell.course-layout .article-content {
+		grid-column: 1;
+	}
+
+	.article-shell.course-layout .toc {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
 	.toc {
 		position: sticky;
 		top: 6rem;
@@ -485,7 +510,6 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		max-height: min(34rem, 82vh);
 		height: auto;
 		display: block;
-		margin: 2rem auto;
 		object-fit: contain;
 	}
 
