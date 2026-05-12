@@ -1,17 +1,17 @@
 ---
 import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
-import CourseCard from "../shared/CourseCard.astro";
-import SectionTitle from "../shared/SectionTitle.astro";
-import { formatDate } from "../../utils/content";
-import type { CourseCardData } from "../shared/CourseCard.astro";
+import CourseCard from "@/components/shared/CourseCard.astro";
+import SectionTitle from "@/components/shared/SectionTitle.astro";
+import { formatDate } from "@/utils/content";
+import type { CourseCardData } from "@/components/shared/CourseCard.astro";
 
 const courses = (await getCollection("course")).sort((a, b) => a.data.displayOrder - b.data.displayOrder || a.data.title.localeCompare(b.data.title));
 const allLessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>("../../content/course/*/*/thumbnail.webp", { eager: true });
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("@/content/course/*/*/thumbnail.webp", { eager: true });
 
 const courseCards: CourseCardData[] = courses.map(c => {
-	const thumbKey = `../../content/course/${c.id}/${c.data.thumbnail}`;
+	const thumbKey = `@/content/course/${c.id}/${c.data.thumbnail}`;
 	const img = allThumbs[thumbKey]?.default ?? null;
 	const courseLessons = allLessons.filter(l => l.id.startsWith(`${c.id}/`));
 	const latestDate = courseLessons.reduce((acc, l) => (l.data.date > acc ? l.data.date : acc), new Date(0));
