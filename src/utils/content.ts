@@ -41,6 +41,16 @@ export function extractTitle(body: string | undefined): string {
 	return match ? match[1].trim() : "";
 }
 
+export function extractExcerpt(body: string | undefined): string {
+	if (!body) return "";
+	const paragraphs = body
+		.split(/\n{2,}/)
+		.map(part => part.trim())
+		.filter(part => part && !part.startsWith("#") && !part.startsWith("!") && !part.startsWith("```") && !part.startsWith("<"));
+
+	return paragraphs[0]?.replace(/\s+/g, " ") ?? "";
+}
+
 export function normalizeTerms(terms: string[] | undefined): string[] {
 	return (terms ?? []).flatMap(term =>
 		term
