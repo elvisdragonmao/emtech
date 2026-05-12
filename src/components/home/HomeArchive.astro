@@ -5,76 +5,284 @@ import type { ImageMetadata } from "astro";
 import ArticleCard from "../shared/ArticleCard.astro";
 import SectionTitle from "../shared/SectionTitle.astro";
 import { extractTitle, formatDate } from "../../utils/content";
-import config from "../../data/config.json";
+
+const INITIAL_VISIBLE_ARTICLES = 6;
+const LOAD_MORE_ARTICLES = 12;
+const FEATURED_CATEGORY = "精選";
+const HERO_ARTICLE_COUNT = 2;
+const FEATURED_RECENT_COUNT = 3;
+
+const normalizeTerms = (terms: string[]) =>
+	terms.flatMap(term =>
+		term
+			.split(/[，,]/)
+			.map(part => part.trim())
+			.filter(Boolean)
+	);
+
+type CategoryStat = {
+	count: number;
+	latest: number;
+};
+
+const sortTagsByFrequency = (a: [string, number], b: [string, number]) => b[1] - a[1] || a[0].localeCompare(b[0], "zh-Hant");
 
 const allPosts = await getCollection("post");
-const recentPosts = [...allPosts]
-	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-	.slice(0, 6);
+const sortedPosts = [...allPosts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>(
-	"../../content/post/*/thumbnail.webp",
-	{ eager: true }
-);
+const recentFeaturedPosts = sortedPosts.slice(HERO_ARTICLE_COUNT, HERO_ARTICLE_COUNT + FEATURED_RECENT_COUNT);
+const recentFeaturedIds = new Set(recentFeaturedPosts.map(p => p.id));
+const taggedFeaturedPosts = sortedPosts.filter(p => {
+	const terms = [...normalizeTerms(p.data.categories), ...normalizeTerms(p.data.tags)];
+	return terms.includes(FEATURED_CATEGORY) && !recentFeaturedIds.has(p.id);
+});
+const featuredOrder = new Map([...recentFeaturedPosts, ...taggedFeaturedPosts].map((p, index) => [p.id, index]));
 
-const archiveArticles = recentPosts.map(p => {
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("../../content/post/*/thumbnail.webp", { eager: true });
+
+const archiveArticles = sortedPosts.map(p => {
 	const thumbKey = `../../content/post/${p.id}/thumbnail.webp`;
+	const tags = normalizeTerms(p.data.tags);
+	const categories = normalizeTerms(p.data.categories);
+	const featuredRank = featuredOrder.get(p.id) ?? null;
+
 	return {
 		title: extractTitle(p.body) || p.id,
 		href: `/p/${p.id}/`,
 		image: allThumbs[thumbKey]?.default ?? null,
-		tag: p.data.tags[0] ? `#${p.data.tags[0]}` : p.data.categories[0] ?? "",
+		tag: tags[0] ? `#${tags[0]}` : (categories[0] ?? ""),
+		tags,
 		description: p.data.description ?? "",
-		category: p.data.categories[0],
+		category: categories[0],
+		categories,
+		featuredRank,
 		date: formatDate(p.data.date)
 	};
 });
 
-const categories = ["精選文章", ...Object.keys(config.category).slice(0, 4)];
+const featuredArticleCount = featuredOrder.size;
 
-// Aggregate tags by frequency, take top 20
+const categoryStats = new Map<string, CategoryStat>();
 const tagFreq = new Map<string, number>();
-for (const p of allPosts) {
-	for (const t of p.data.tags) {
-		tagFreq.set(t, (tagFreq.get(t) ?? 0) + 1);
+
+for (const p of sortedPosts) {
+	for (const category of new Set(normalizeTerms(p.data.categories))) {
+		const current = categoryStats.get(category) ?? { count: 0, latest: 0 };
+		categoryStats.set(category, {
+			count: current.count + 1,
+			latest: Math.max(current.latest, p.data.date.getTime())
+		});
+	}
+
+	for (const tag of new Set(normalizeTerms(p.data.tags))) {
+		tagFreq.set(tag, (tagFreq.get(tag) ?? 0) + 1);
 	}
 }
-const tags = [...tagFreq.entries()]
-	.sort((a, b) => b[1] - a[1])
-	.slice(0, 20)
-	.map(([t]) => t);
+
+if (!categoryStats.has(FEATURED_CATEGORY) && featuredArticleCount > 0) {
+	categoryStats.set(FEATURED_CATEGORY, {
+		count: featuredArticleCount,
+		latest: recentFeaturedPosts[0]?.data.date.getTime() ?? 0
+	});
+}
+
+const categories = [...categoryStats.entries()]
+	.sort(([a, aStat], [b, bStat]) => {
+		if (a === FEATURED_CATEGORY) return -1;
+		if (b === FEATURED_CATEGORY) return 1;
+		return bStat.latest - aStat.latest || a.localeCompare(b, "zh-Hant");
+	})
+	.map(([category]) => ({
+		label: category === FEATURED_CATEGORY ? "精選文章" : category,
+		value: category
+	}));
+const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count]) => ({ tag, count }));
 ---
 
 <section id="archive" class="section-block">
 	<SectionTitle eyebrow="Archive / Content Index" title="單篇文章分類" />
 	<div class="category-tabs" aria-label="文章分類">
-		{categories.map(category => <button type="button">{category}</button>)}
+		{
+			categories.map(category => (
+				<button type="button" data-filter-button data-filter-type="category" data-filter-value={category.value} aria-pressed={category.value === FEATURED_CATEGORY ? "true" : "false"}>
+					{category.label}
+				</button>
+			))
+		}
 	</div>
 
 	<div class="archive-layout">
 		<div class="article-list">
-			<div class="article-grid">
-				{archiveArticles.map(article => <ArticleCard article={article} />)}
+			<div class="article-grid" data-archive-grid data-initial-visible={INITIAL_VISIBLE_ARTICLES}>
+				{
+					archiveArticles.map(article => (
+						<div
+							class="article-card-shell is-seen"
+							data-archive-card
+							data-categories={JSON.stringify(article.categories)}
+							data-tags={JSON.stringify(article.tags)}
+							data-featured-rank={article.featuredRank}
+							style={article.featuredRank === null ? undefined : `--card-order: ${article.featuredRank}`}
+							hidden={article.featuredRank === null || article.featuredRank >= INITIAL_VISIBLE_ARTICLES}
+						>
+							<ArticleCard article={article} />
+						</div>
+					))
+				}
 			</div>
 
-			<a class="card more-link" href="/archive/">
+			<button class="card more-link" type="button" data-load-more data-load-step={LOAD_MORE_ARTICLES} hidden={featuredArticleCount <= INITIAL_VISIBLE_ARTICLES}>
 				想要更多？
 				<ChevronDown size={18} stroke-width={1.8} />
-			</a>
+			</button>
 		</div>
 
 		<aside>
-			<article class="card discord-card">
+			<a class="card discord-card" href="https://dc.elvismao.com" target="_blank" rel="noreferrer">
 				<div>Discord</div>
 				<h3>遇到問題嗎？</h3>
 				<p>歡迎加入 Discord 與我們一起討論！</p>
-			</article>
+			</a>
 			<div class="card tag-cloud" aria-label="標籤雲">
-				{tags.map(tag => <a href={`/archive/`}>#{tag}</a>)}
+				{
+					tags.map(({ tag, count }) => (
+						<button type="button" data-filter-button data-filter-type="tag" data-filter-value={tag} aria-pressed="false">
+							<span>#{tag}</span>
+							<small>{count}</small>
+						</button>
+					))
+				}
 			</div>
 		</aside>
 	</div>
 </section>
+
+<script>
+	type FilterType = "category" | "tag";
+	type ActiveFilter = {
+		type: FilterType;
+		value: string;
+	};
+	const DEFAULT_FILTER: ActiveFilter = { type: "category", value: "精選" };
+
+	const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+	const archiveGrid = document.querySelector<HTMLElement>("[data-archive-grid]");
+	const archiveCards = Array.from(document.querySelectorAll<HTMLElement>("[data-archive-card]"));
+	const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-filter-button]"));
+	const loadMore = document.querySelector<HTMLButtonElement>("[data-load-more]");
+	const loadStep = Number(loadMore?.dataset.loadStep ?? 12);
+	const initialVisible = Number(archiveGrid?.dataset.initialVisible ?? 6);
+	const searchParams = new URLSearchParams(window.location.search);
+	const requestedTag = searchParams.get("tag");
+	const requestedCategory = searchParams.get("category");
+	let visibleCount = initialVisible;
+	let activeFilter: ActiveFilter | null = requestedTag ? { type: "tag", value: requestedTag } : requestedCategory ? { type: "category", value: requestedCategory } : DEFAULT_FILTER;
+
+	const parseTerms = (value: string | undefined) => {
+		if (!value) return [];
+
+		try {
+			const parsed = JSON.parse(value);
+			return Array.isArray(parsed) ? parsed.filter((term): term is string => typeof term === "string") : [];
+		} catch {
+			return [];
+		}
+	};
+
+	const getCardTerms = (card: HTMLElement, type: FilterType) => parseTerms(type === "category" ? card.dataset.categories : card.dataset.tags);
+
+	const getFeaturedRank = (card: HTMLElement) => {
+		const rank = Number(card.dataset.featuredRank);
+		return Number.isFinite(rank) ? rank : null;
+	};
+
+	const cardMatchesFilter = (card: HTMLElement) => {
+		if (!activeFilter) return true;
+		if (activeFilter.type === "category" && activeFilter.value === DEFAULT_FILTER.value) return getFeaturedRank(card) !== null;
+		return getCardTerms(card, activeFilter.type).includes(activeFilter.value);
+	};
+
+	const sortMatchingCards = (cards: HTMLElement[]) => {
+		if (activeFilter?.type !== "category" || activeFilter.value !== DEFAULT_FILTER.value) return cards;
+
+		return [...cards].sort((a, b) => (getFeaturedRank(a) ?? Number.MAX_SAFE_INTEGER) - (getFeaturedRank(b) ?? Number.MAX_SAFE_INTEGER));
+	};
+
+	const revealObserver =
+		"IntersectionObserver" in window
+			? new IntersectionObserver(
+					entries => {
+						for (const entry of entries) {
+							if (!entry.isIntersecting) continue;
+
+							entry.target.classList.add("is-seen");
+							revealObserver?.unobserve(entry.target);
+						}
+					},
+					{ threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+				)
+			: null;
+
+	const prepareReveal = (card: HTMLElement, index: number) => {
+		card.style.setProperty("--reveal-delay", `${Math.min(index, 8) * 36}ms`);
+		card.classList.remove("is-seen");
+
+		if (prefersReducedMotion.matches || !revealObserver) {
+			card.classList.add("is-seen");
+			return;
+		}
+
+		revealObserver.observe(card);
+	};
+
+	const updateActiveButtons = () => {
+		for (const button of filterButtons) {
+			const isActive = activeFilter ? activeFilter.type === button.dataset.filterType && activeFilter.value === button.dataset.filterValue : false;
+			button.setAttribute("aria-pressed", isActive ? "true" : "false");
+		}
+	};
+
+	const applyArchiveState = (animateVisibleCards = false) => {
+		const matchingCards = sortMatchingCards(archiveCards.filter(cardMatchesFilter));
+		const visibleCards = matchingCards.slice(0, visibleCount);
+		const visibleSet = new Set(visibleCards);
+
+		for (const card of archiveCards) {
+			const shouldShow = visibleSet.has(card);
+			const wasHidden = card.hidden;
+
+			card.hidden = !shouldShow;
+
+			if (shouldShow && (wasHidden || animateVisibleCards)) {
+				card.style.setProperty("--card-order", String(visibleCards.indexOf(card)));
+				prepareReveal(card, visibleCards.indexOf(card));
+			}
+		}
+
+		if (loadMore) loadMore.hidden = visibleCount >= matchingCards.length;
+		updateActiveButtons();
+	};
+
+	for (const button of filterButtons) {
+		button.addEventListener("click", () => {
+			const type = button.dataset.filterType as FilterType | undefined;
+			const value = button.dataset.filterValue;
+
+			if (!type || !value) return;
+
+			activeFilter = activeFilter?.type === type && activeFilter.value === value ? null : { type, value };
+			visibleCount = initialVisible;
+			applyArchiveState(true);
+		});
+	}
+
+	loadMore?.addEventListener("click", () => {
+		visibleCount += loadStep;
+		applyArchiveState();
+	});
+
+	applyArchiveState(true);
+</script>
 
 <style>
 	.section-block {
@@ -96,10 +304,23 @@ const tags = [...tagFreq.entries()]
 		color: var(--color-text);
 		background: oklch(100% 0 0 / 84%);
 		border: 1px solid var(--color-border);
+		transition:
+			background 180ms ease,
+			border-color 180ms ease,
+			color 180ms ease,
+			transform 180ms ease;
 	}
 
-	.category-tabs button:first-child {
+	.category-tabs button:hover,
+	.tag-cloud button:hover {
+		transform: translateY(-0.12rem);
+		border-color: var(--color-accent);
+	}
+
+	.category-tabs button[aria-pressed="true"],
+	.tag-cloud button[aria-pressed="true"] {
 		color: var(--color-accent-strong);
+		background: var(--color-accent-soft);
 		border-color: var(--color-accent);
 	}
 
@@ -118,6 +339,31 @@ const tags = [...tagFreq.entries()]
 		margin-bottom: 1rem;
 	}
 
+	.article-card-shell {
+		order: var(--card-order, 0);
+		min-height: 100%;
+		opacity: 0;
+		transform: translateY(1rem) scale(0.985);
+		transition:
+			opacity 360ms ease,
+			transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+		transition-delay: var(--reveal-delay, 0ms);
+		will-change: opacity, transform;
+	}
+
+	.article-card-shell[hidden] {
+		display: none;
+	}
+
+	.article-card-shell.is-seen {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+
+	.article-card-shell :global(.article-card) {
+		height: 100%;
+	}
+
 	aside {
 		position: sticky;
 		top: 6rem;
@@ -125,8 +371,17 @@ const tags = [...tagFreq.entries()]
 	}
 
 	.discord-card {
+		display: block;
 		padding: 1.75rem 2rem;
 		margin-bottom: 1rem;
+		transition:
+			transform 180ms ease,
+			border-color 180ms ease;
+	}
+
+	.discord-card:hover {
+		transform: translateY(-0.2rem);
+		border-color: var(--color-accent);
 	}
 
 	.discord-card div {
@@ -157,7 +412,10 @@ const tags = [...tagFreq.entries()]
 		padding: 1.75rem;
 	}
 
-	.tag-cloud a {
+	.tag-cloud button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
 		padding: 0.5rem 0.75rem;
 		font-size: 0.75rem;
 		line-height: 1;
@@ -165,9 +423,27 @@ const tags = [...tagFreq.entries()]
 		color: var(--color-muted);
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
+		transition:
+			background 180ms ease,
+			border-color 180ms ease,
+			color 180ms ease,
+			transform 180ms ease;
+	}
+
+	.tag-cloud small {
+		min-width: 1.15rem;
+		padding: 0.14rem 0.35rem;
+		font-family: var(--font-mono);
+		font-size: 0.625rem;
+		line-height: 1;
+		text-align: center;
+		color: var(--color-accent-strong);
+		background: var(--color-accent-soft);
+		border-radius: 999px;
 	}
 
 	.more-link {
+		width: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -175,5 +451,34 @@ const tags = [...tagFreq.entries()]
 		min-height: 4.75rem;
 		font-weight: 700;
 		color: var(--color-text);
+		transition:
+			transform 180ms ease,
+			border-color 180ms ease,
+			background 180ms ease;
+	}
+
+	.more-link:hover {
+		transform: translateY(-0.18rem);
+		border-color: var(--color-accent);
+		background: oklch(100% 0 0 / 92%);
+	}
+
+	.more-link[hidden] {
+		display: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.category-tabs button,
+		.tag-cloud button,
+		.discord-card,
+		.more-link,
+		.article-card-shell {
+			transition: none;
+		}
+
+		.article-card-shell {
+			opacity: 1;
+			transform: none;
+		}
 	}
 </style>
