@@ -141,4 +141,62 @@ const navItems = [
 		color: var(--color-faint);
 		border: 1px solid var(--color-border);
 	}
+
+	@media (max-width: 56rem) {
+		.site-header {
+			grid-template-columns: auto minmax(0, 1fr) auto;
+			column-gap: 1rem;
+		}
+
+		.main-nav {
+			justify-content: center;
+			gap: 1.25rem;
+		}
+	}
+
+	@media (max-width: 43rem) {
+		.site-header {
+			grid-template-columns: 1fr auto;
+			row-gap: 0.35rem;
+			min-height: auto;
+			padding-block: 0.65rem 0;
+		}
+
+		.brand {
+			min-width: 0;
+			gap: 0.55rem;
+			font-size: 0.95rem;
+		}
+
+		.brand span {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.main-nav {
+			grid-column: 1 / -1;
+			justify-content: flex-start;
+			gap: 1.5rem;
+			min-width: 0;
+			min-height: 2.5rem;
+			overflow-x: auto;
+			font-size: 0.95rem;
+			scrollbar-width: none;
+		}
+
+		.main-nav::-webkit-scrollbar {
+			display: none;
+		}
+
+		.search-button {
+			min-width: 2.5rem;
+			padding: 0.65rem;
+		}
+
+		.search-button span,
+		.search-button kbd {
+			display: none;
+		}
+	}
 </style>

@@ -122,4 +122,46 @@ const { copyright = false } = Astro.props;
 		width: 60%;
 		filter: drop-shadow(0 1.5rem 1.5rem oklch(71% 0.15 225 / 18%));
 	}
+
+	@media (max-width: 48rem) {
+		.about-card {
+			display: grid;
+			gap: 1.5rem;
+			padding: 2rem;
+		}
+
+		.bio {
+			max-width: none;
+		}
+
+		.dragon-container {
+			min-height: 12rem;
+		}
+
+		.dragon {
+			top: auto;
+			right: 0;
+			bottom: -2rem;
+			left: auto;
+			width: min(13rem, 52vw);
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.about-card {
+			padding: 1.5rem;
+		}
+
+		.about-card::before {
+			inset: 0.75rem;
+		}
+
+		h2 {
+			font-size: 2.75rem;
+		}
+
+		.dragon-container {
+			display: none;
+		}
+	}
 </style>

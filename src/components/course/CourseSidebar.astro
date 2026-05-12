@@ -75,7 +75,6 @@ const progressStorageKey = `emtech:course-progress:${courseId}`;
 		overflow-y: auto;
 	}
 
-
 	.back-link {
 		display: inline-flex;
 		align-items: center;
@@ -122,5 +121,24 @@ const progressStorageKey = `emtech:course-progress:${courseId}`;
 
 	nav a.completed svg {
 		display: block;
+	}
+
+	@media (max-width: 76rem) {
+		.course-sidebar {
+			position: static;
+			height: auto;
+			max-height: 18rem;
+			border-top: 1px solid var(--color-border);
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.course-sidebar {
+			padding: 1.25rem 1rem;
+		}
+
+		nav a {
+			grid-template-columns: 1.5rem minmax(0, 1fr) auto;
+		}
 	}
 </style>

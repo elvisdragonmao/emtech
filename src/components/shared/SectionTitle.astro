@@ -59,7 +59,8 @@ const { eyebrow, title, description } = Astro.props;
 		}
 
 		h2 {
-			font-size: 4.25rem;
+			font-size: clamp(2.5rem, 8vw, 4.25rem);
+			line-height: 1.05;
 			letter-spacing: -0.08em;
 		}
 
@@ -67,6 +68,18 @@ const { eyebrow, title, description } = Astro.props;
 			font-size: 1.5rem;
 			font-weight: 600;
 			text-align: right;
+		}
+
+		@media (max-width: 43.75rem) {
+			.title-row {
+				display: grid;
+				gap: 1rem;
+			}
+
+			.title-row p {
+				font-size: 1.1rem;
+				text-align: left;
+			}
 		}
 	</style>
 </div>

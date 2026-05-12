@@ -31,6 +31,7 @@ const { items } = Astro.props;
 	}
 
 	.meta-table div {
+		min-width: 0;
 		min-height: 4.75rem;
 		padding: 0.75rem 1rem;
 		border-left: 1px solid var(--color-border);
@@ -54,6 +55,7 @@ const { items } = Astro.props;
 		font-size: 1rem;
 		font-weight: 700;
 		color: var(--color-text);
+		overflow-wrap: anywhere;
 	}
 
 	@media (max-width: 48.75rem) {
@@ -70,6 +72,23 @@ const { items } = Astro.props;
 		}
 
 		.meta-table div:nth-child(-n + 2) {
+			border-top: 0;
+		}
+	}
+
+	@media (max-width: 30rem) {
+		.meta-table {
+			grid-template-columns: 1fr;
+		}
+
+		.meta-table div,
+		.meta-table div:nth-child(odd),
+		.meta-table div:nth-child(-n + 2) {
+			border-top: 1px solid var(--color-border);
+			border-left: 0;
+		}
+
+		.meta-table div:first-child {
 			border-top: 0;
 		}
 	}

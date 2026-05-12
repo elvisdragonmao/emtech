@@ -130,15 +130,24 @@ const featuredCourses = courseCards.slice(3);
 		.course-grid-top :global(.course-card:last-child:not(:hover)) {
 			border-bottom: 1px solid var(--color-border);
 		}
+
+		.course-grid-featured {
+			display: grid;
+			grid-template-columns: 1fr;
+		}
 	}
 
 	@media (max-width: 40rem) {
 		.courses-page {
-			padding-top: 3.25rem;
+			padding: 3.25rem 0 5.5rem;
 		}
 
 		h1 {
 			font-size: 5rem;
+		}
+
+		.course-grid-top :global(.course-card:first-child h3) {
+			font-size: 2.25rem;
 		}
 	}
 </style>

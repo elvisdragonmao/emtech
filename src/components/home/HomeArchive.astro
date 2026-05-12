@@ -333,7 +333,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 
 	.article-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.75rem), 1fr));
 		flex-grow: 1;
 		gap: 1.25rem;
 		margin-bottom: 1rem;
@@ -479,6 +479,32 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 		.article-card-shell {
 			opacity: 1;
 			transform: none;
+		}
+	}
+
+	@media (max-width: 64rem) {
+		.archive-layout {
+			grid-template-columns: 1fr;
+		}
+
+		aside {
+			position: static;
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.tag-cloud,
+		.discord-card {
+			padding: 1.25rem;
+		}
+
+		.category-tabs {
+			gap: 0.5rem;
+		}
+
+		.category-tabs button,
+		.tag-cloud button {
+			padding: 0.5rem 0.65rem;
 		}
 	}
 </style>
