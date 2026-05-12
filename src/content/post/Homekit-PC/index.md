@@ -43,7 +43,7 @@ thumbnail: /static/Homekit-PC/power.webp
 
 首先，請你確認主機板上面的腳位。可以查詢主機板的說明書，或者是直接看上面的文字標示。以我的老電腦 ASUS B150 pro 為例。PWR_LED 就是電源的指示燈 (Power LED)，PWR_SW 和 RESET 分邊是開關機鍵 (Power Switch) 與重新開機鍵。
 
-![主機板腳位::img-medium](b150.webp)
+![主機板腳位](b150.webp)
 
 ### 拔下原本杜邦線
 
@@ -53,7 +53,7 @@ thumbnail: /static/Homekit-PC/power.webp
 
 拔下來之後我們用公對公的杜邦線依序把電腦上的接口連接到麵包板上，接下來比較好操作。
 
-![拔下原本杜邦線、連結電腦接口至麵包板::img-medium](wire.webp)
+![拔下原本杜邦線、連結電腦接口至麵包板](wire.webp)
 
 #### 連接 LED 指示燈
 
@@ -73,7 +73,7 @@ thumbnail: /static/Homekit-PC/power.webp
 
 這樣硬體組裝的部分，ESP32 建議可以放在主機裡面，然後找洞讓供電的 USB 線通過即可。
 
-![成果::img-medium](power.webp)
+![成果](power.webp)
 
 最難的部分已經完成囉。
 
@@ -82,14 +82,14 @@ thumbnail: /static/Homekit-PC/power.webp
 接下來我們要來把程式燒錄至 ESP32:
 
 1. 請先從官網下載並安裝 Arduino IDE，點開一直下一步即可。
-2. 在開始燒錄之前我們要先來安裝 ESP32 驅動函式庫和 Homekit 函式庫。請你開啟軟體點擊左上角的「檔案」，並選擇「偏好設定」。 ![::img-medium](openper.webp)
+2. 在開始燒錄之前我們要先來安裝 ESP32 驅動函式庫和 Homekit 函式庫。請你開啟軟體點擊左上角的「檔案」，並選擇「偏好設定」。 ![](openper.webp)
 3. 在下面有一排可以讓你自行輸入函式庫網址的輸入框，請你貼上以下網址：
 
 ```
 https://dl.espressif.com/dl/package_esp32_index.json
 ```
 
-![::img-medium](url.webp) 4. 請你進入 BOARDS MANAGER 並搜尋 esp32。安裝 Espressif 開發的的 ESP-32 套件。 ![::img-medium](driver.jpg) 5. 請點擊左邊第三個的圖書標誌並搜尋 HomeSpan 並安裝。 ![::img-medium](homespan.webp) 6. 貼上以下程式碼：
+![](url.webp) 4. 請你進入 BOARDS MANAGER 並搜尋 esp32。安裝 Espressif 開發的的 ESP-32 套件。 ![](driver.jpg) 5. 請點擊左邊第三個的圖書標誌並搜尋 HomeSpan 並安裝。 ![](homespan.webp) 6. 貼上以下程式碼：
 
 ```ino
 #include "HomeSpan.h"
@@ -161,7 +161,7 @@ void loop() {
 }
 ```
 
-7. 設定 COM Port，請你點擊左上角的輸入選擇，接著選擇你的 ESP32 的 COM Port。你可以把 ESP-32 拔掉再插上來看看哪個消失再出現就是了。 ![::img-medium](com.webp)
+7. 設定 COM Port，請你點擊左上角的輸入選擇，接著選擇你的 ESP32 的 COM Port。你可以把 ESP-32 拔掉再插上來看看哪個消失再出現就是了。 ![](com.webp)
 8. 最後，請你點擊左上角的「上傳」按鈕 (往右的箭頭)，並等待燒錄完成即可。如果上傳失敗請點擊 ESP32 上面的 BOOT 按鈕，拔掉重新插上電源並再次上傳。
 
 ## 設定
