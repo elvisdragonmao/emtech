@@ -12,14 +12,7 @@ const commentApiBaseUrl = (import.meta.env.COMMENT_API_BASE_URL ?? import.meta.e
 const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
 ---
 
-<section
-	id="comments"
-	class="comments"
-	data-comments-root
-	data-page-path={pagePath}
-	data-api-base={commentApiBaseUrl}
-	data-turnstile-site-key={turnstileSiteKey}
->
+<section id="comments" class="comments" data-comments-root data-page-path={pagePath} data-api-base={commentApiBaseUrl} data-turnstile-site-key={turnstileSiteKey}>
 	<div class="comments-heading">
 		<div>
 			<p class="eyebrow">Comments</p>
@@ -61,7 +54,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			留言
 			<textarea name="body" rows="5" maxlength="3000" required placeholder="寫下你的想法"></textarea>
 		</label>
-		{turnstileSiteKey && <div class="turnstile cf-turnstile" data-sitekey={turnstileSiteKey}></div>}
+		{turnstileSiteKey && <div class="turnstile cf-turnstile" data-sitekey={turnstileSiteKey} />}
 		<div class="actions">
 			<button type="submit">
 				<Send size={14} stroke-width={1.8} />
@@ -71,7 +64,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 	</form>
 </section>
 
-{turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+{turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />}
 
 <script>
 	type PublicComment = {

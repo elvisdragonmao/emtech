@@ -99,9 +99,7 @@ async function hitRateLimit(ctx: AppContext, key: string): Promise<boolean> {
 	const current = await ctx.env.COMMENTS_DB.prepare("SELECT count, window_start AS windowStart FROM rate_limits WHERE key = ?").bind(key).first<{ count: number; windowStart: string }>();
 
 	if (!current || current.windowStart < windowStart) {
-		await ctx.env.COMMENTS_DB.prepare("INSERT OR REPLACE INTO rate_limits (key, count, window_start, updated_at) VALUES (?, ?, ?, ?)")
-			.bind(key, 1, now.toISOString(), now.toISOString())
-			.run();
+		await ctx.env.COMMENTS_DB.prepare("INSERT OR REPLACE INTO rate_limits (key, count, window_start, updated_at) VALUES (?, ?, ?, ?)").bind(key, 1, now.toISOString(), now.toISOString()).run();
 		return false;
 	}
 

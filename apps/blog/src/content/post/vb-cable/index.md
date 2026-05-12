@@ -26,6 +26,7 @@ date: 2021-08-14
 > [!NOTE]
 >
 > ### Zoom
+>
 > - 開發者:Zoom Video Communications
 > - 軟體類型：商業軟體
 > - 下載位置：[官網](https://zoom.us/download)

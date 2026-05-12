@@ -14,6 +14,7 @@ date: 2022-01-06
 > [!NOTE]
 >
 > ### Remove.bg
+>
 > - 開發者：[Kaleido](https://www.kaleido.ai/)
 > - 類型：網站/網路應用程式
 > - 連結：[Remove.bg](https://Remove.bg)
@@ -35,6 +36,7 @@ date: 2022-01-06
 > [!NOTE]
 >
 > ### Remove.bg 一鍵去背
+>
 > - 開發者：毛哥EM(我)
 > - 軟體類型:ios 捷徑
 > - 下載位置：[iCloud](https://www.icloud.com/shortcuts/fce4a5a7643e4fc2b8c26fa82f5a2fc3)
