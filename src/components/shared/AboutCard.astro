@@ -1,5 +1,7 @@
 ---
-import { Camera, GitBranch, Globe } from "@lucide/astro";
+import { Globe } from "@lucide/astro";
+import { siGithub, siInstagram } from "simple-icons";
+import SimpleIcon from "./SimpleIcon.astro";
 
 interface Props {
 	copyright?: boolean;
@@ -32,8 +34,8 @@ const { copyright = false } = Astro.props;
 		}
 		<div class="links" aria-label="社群連結">
 			<a href="https://elvismao.com" aria-label="個人網站"><Globe size={22} stroke-width={1.7} /></a>
-			<a href="https://github.com/" aria-label="GitHub"><GitBranch size={22} stroke-width={1.7} /></a>
-			<a href="https://instagram.com/" aria-label="Instagram"><Camera size={22} stroke-width={1.7} /></a>
+			<a href="https://github.com/" aria-label="GitHub"><SimpleIcon icon={siGithub} size={22} /></a>
+			<a href="https://instagram.com/" aria-label="Instagram"><SimpleIcon icon={siInstagram} size={22} /></a>
 		</div>
 	</div>
 	<div class="dragon-container">
@@ -107,9 +109,9 @@ const { copyright = false } = Astro.props;
 
 	.dragon {
 		position: absolute;
-		left: 30%;
+		left: 25%;
 		top: 0;
-		width: 50%;
+		width: 60%;
 		filter: drop-shadow(0 1.5rem 1.5rem color-mix(in oklch, var(--color-accent) 18%, transparent));
 	}
 </style>

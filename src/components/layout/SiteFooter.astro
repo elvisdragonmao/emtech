@@ -1,9 +1,11 @@
 ---
-import { GitBranch, MessageSquare, Rss } from "@lucide/astro";
+import { MessageSquare } from "@lucide/astro";
+import { siGithub, siRss } from "simple-icons";
+import SimpleIcon from "../shared/SimpleIcon.astro";
 ---
 
-<footer class="site-footer">
-	<div class="card footer-brand">
+<footer class="card site-footer">
+	<div class="footer-brand">
 		<img src="/img/logo.svg" alt="" width="32" height="37" />
 		<div>
 			<p>©2021 - 2026 By 毛哥EM</p>
@@ -12,8 +14,8 @@ import { GitBranch, MessageSquare, Rss } from "@lucide/astro";
 	</div>
 	<nav class="footer-actions" aria-label="頁尾連結">
 		<a href="/#comments" aria-label="留言"><MessageSquare size={21} stroke-width={1.7} /></a>
-		<a href="https://github.com/" aria-label="GitHub"><GitBranch size={21} stroke-width={1.7} /></a>
-		<a href="/rss.xml" aria-label="RSS"><Rss size={21} stroke-width={1.7} /></a>
+		<a href="https://github.com/" aria-label="GitHub"><SimpleIcon icon={siGithub} size={21} /></a>
+		<a href="/rss.xml" aria-label="RSS"><SimpleIcon icon={siRss} size={21} /></a>
 	</nav>
 </footer>
 
@@ -21,9 +23,12 @@ import { GitBranch, MessageSquare, Rss } from "@lucide/astro";
 	.site-footer {
 		display: grid;
 		grid-template-columns: 1fr auto;
-		width: min(var(--site-width), calc(100% - 2rem));
-		margin: 6rem auto 0;
+		gap: 1rem;
+		width: calc(100% - 5.5rem);
+		margin: 4rem auto 0;
+		padding: 1rem;
 		backdrop-filter: blur(0.75rem);
+		border-inline: none;
 	}
 
 	.footer-brand {
@@ -31,7 +36,7 @@ import { GitBranch, MessageSquare, Rss } from "@lucide/astro";
 		align-items: center;
 		gap: 1.25rem;
 		min-height: 5.75rem;
-		padding: 1.5rem 1.75rem;
+		padding: 0.5rem 0.75rem;
 		color: var(--color-muted);
 	}
 
@@ -55,7 +60,7 @@ import { GitBranch, MessageSquare, Rss } from "@lucide/astro";
 	.footer-actions {
 		display: grid;
 		grid-template-columns: repeat(3, 4.5rem);
-		border-left: 1px solid var(--color-border);
+		border: 1px solid var(--color-border);
 	}
 
 	.footer-actions a {
@@ -85,14 +90,12 @@ import { GitBranch, MessageSquare, Rss } from "@lucide/astro";
 
 		.footer-brand {
 			align-items: flex-start;
-			padding: 1.25rem;
+			padding: 0.5rem 0.75rem;
 		}
 
 		.footer-actions {
 			grid-template-columns: repeat(3, 1fr);
 			min-height: 3.75rem;
-			border-top: 1px solid var(--color-border);
-			border-left: 0;
 		}
 	}
 </style>

@@ -17,6 +17,7 @@ export type ArticleCard = {
 	description?: string;
 	category?: string;
 	date?: string;
+	readTime?: string;
 };
 
 export type CourseCard = {
