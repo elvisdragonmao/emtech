@@ -31,7 +31,7 @@ const { course, featured = false } = Astro.props;
 		display: grid;
 		grid-template-rows: auto 1fr;
 		min-height: 100%;
-		background: color-mix(in oklch, var(--color-surface) 88%, transparent);
+		background: oklch(100% 0 0 / 88%);
 		border: 1px solid var(--color-border);
 		overflow: hidden;
 		transition:
@@ -92,7 +92,7 @@ const { course, featured = false } = Astro.props;
 		font-size: 0.75rem;
 		font-weight: 800;
 		color: var(--color-ink);
-		background: color-mix(in oklch, var(--color-surface) 84%, transparent);
+		background: oklch(100% 0 0 / 84%);
 	}
 
 	.content {

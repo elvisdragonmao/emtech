@@ -84,7 +84,7 @@ const { compact = false } = Astro.props;
 		width: 100%;
 		padding: 0.5rem 1rem;
 		color: var(--color-text);
-		background: color-mix(in oklch, var(--color-surface) 84%, transparent);
+		background: oklch(100% 0 0 / 84%);
 		border: 1px solid var(--color-border);
 		outline: 0;
 		transition: border-color 160ms ease;
@@ -120,9 +120,9 @@ const { compact = false } = Astro.props;
 	}
 
 	button:hover {
-		background: color-mix(in oklch, var(--color-surface) 82%, var(--color-accent-soft));
+		background: oklch(93% 0.045 220 / 45%);
 		border-color: var(--color-accent);
-		box-shadow: 0 0.35rem 1rem color-mix(in oklch, var(--color-accent) 12%, transparent);
+		box-shadow: 0 0.35rem 1rem oklch(71% 0.15 225 / 12%);
 		transform: translateY(-0.1rem);
 	}
 
@@ -142,7 +142,7 @@ const { compact = false } = Astro.props;
 	.comment-card {
 		margin-top: 2.5rem;
 		padding: 1rem;
-		background: color-mix(in oklch, var(--color-surface) 88%, transparent);
+		background: oklch(100% 0 0 / 88%);
 		border: 1px solid var(--color-border);
 		display: flex;
 		flex-direction: column;

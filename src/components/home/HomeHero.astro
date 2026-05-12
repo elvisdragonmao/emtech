@@ -141,13 +141,13 @@ import { featuredArticles, stats } from "../../data/prototype";
 		z-index: 2;
 		width: 40rem;
 		height: auto;
-		/* filter: drop-shadow(0 2rem 2.25rem color-mix(in oklch, var(--color-accent) 20%, transparent)); */
+		/* filter: drop-shadow(0 2rem 2.25rem oklch(71% 0.15 225 / 20%)); */
 		transform: translateX(9rem) rotate(-4deg);
 	}
 
 	.circle {
 		position: absolute;
-		border: 1px solid color-mix(in oklch, var(--color-accent) 48%, transparent);
+		border: 1px solid oklch(71% 0.15 225 / 48%);
 		border-radius: 62.5rem;
 	}
 
@@ -172,7 +172,7 @@ import { featuredArticles, stats } from "../../data/prototype";
 		gap: 1.25rem;
 		width: min(30rem, 100%);
 		padding: 1rem;
-		background: color-mix(in oklch, var(--color-surface) 88%, transparent);
+		background: oklch(100% 0 0 / 88%);
 		border: 1px solid var(--color-border);
 		box-shadow: var(--shadow-card);
 		transition:
