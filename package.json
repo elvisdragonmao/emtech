@@ -1,32 +1,22 @@
 {
-	"name": "new",
+	"name": "emtech-monorepo",
 	"version": "0.0.1",
+	"private": true,
 	"type": "module",
 	"scripts": {
-		"astro": "astro",
-		"build": "astro build",
-		"dev": "astro dev",
+		"build": "pnpm -r build",
+		"dev": "pnpm --filter blog dev",
 		"format": "prettier --write .",
-		"preinstall": "npx only-allow pnpm",
-		"prepare": "sh -c 'command -v git >/dev/null 2>&1 && [ -d .git ] && git config core.hooksPath .githooks || exit 0'",
-		"preview": "astro preview",
-		"test": "astro check"
-	},
-	"dependencies": {
-		"@lucide/astro": "^1.14.0",
-		"astro": "^6.3.1",
-		"astro-pagefind": "^2.0.0",
-		"sharp": "^0.34.5",
-		"simple-icons": "^16.19.0"
+		"lint": "pnpm -r typecheck",
+		"test": "pnpm -r test",
+		"typecheck": "pnpm -r typecheck"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.9.9",
 		"prettier": "^3.8.3",
 		"prettier-plugin-astro": "^0.14.1",
 		"prettier-plugin-organize-imports": "^4.3.0",
 		"prettier-plugin-packagejson": "^3.0.2",
-		"typescript": "^6.0.3",
-		"unist-util-visit": "^5.1.0"
+		"typescript": "^6.0.3"
 	},
 	"packageManager": "pnpm@11.0.9+sha512.34ce82e6780233cf9cad8685029a8f81d2e06196c5a9bad98879f7424940c6817c4e4524fb7d38b8553ceed48b9758b8ebaf1abd3600c232c4c8cf7366086f38",
 	"engines": {
