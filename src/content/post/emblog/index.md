@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [emblog, 自製, 關於]
-categories: [軟體開發，精選]
+categories: [軟體開發]
 date: 2024-10-16
 description: emblog 是一個十分特別且強大的部落格框架，專為毛哥EM資訊密技設計。可以在幾秒內生成出漂亮的靜態單頁式部落格。
 ---
