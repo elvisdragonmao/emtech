@@ -3,7 +3,7 @@ authors: elvismao
 tags: [Git]
 categories: [軟體開發]
 date: 2025-05-11
-description: `.gitignore` 能不能 ignore 自己？可以。
+description: "`.gitignore` 能不能 ignore 自己？可以。"
 ---
 
 # 如果在 .gitignore ignore .gitignore 那 .gitignore 會被 git 因為 .gitignore ignore 了 .gitignore 而被 ignore 嗎？

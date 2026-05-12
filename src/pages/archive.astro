@@ -1,0 +1,211 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import { extractTitle, formatDate } from "../utils/content";
+
+const allPosts = await getCollection("post");
+const sorted = [...allPosts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Group by year
+const byYear = new Map<number, typeof sorted>();
+for (const post of sorted) {
+	const year = post.data.date.getFullYear();
+	if (!byYear.has(year)) byYear.set(year, []);
+	byYear.get(year)!.push(post);
+}
+const years = [...byYear.keys()].sort((a, b) => b - a);
+---
+
+<Layout title="歸檔" description="所有文章依時間排列" active="blog">
+	<main class="archive-page">
+		<header class="archive-header">
+			<p class="eyebrow">Archive / Timeline</p>
+			<h1>歸檔</h1>
+			<p class="lead">{allPosts.length} 篇文章</p>
+		</header>
+
+		<div class="archive-timeline">
+			{
+				years.map(year => (
+					<section class="year-group">
+						<h2 class="year-label">{year}</h2>
+						<ol class="post-list">
+							{byYear.get(year)!.map(post => {
+								const title = extractTitle(post.body) || post.id;
+								const category = post.data.categories[0] ?? "";
+								const tag = post.data.tags[0] ?? "";
+								return (
+									<li>
+										<a href={`/p/${post.id}/`} class="post-row">
+											<time datetime={post.data.date.toISOString()}>
+												{formatDate(post.data.date)}
+											</time>
+											<span class="title">{title}</span>
+											{category && <span class="cat">{category}</span>}
+											{tag && <span class="tag">#{tag}</span>}
+										</a>
+									</li>
+								);
+							})}
+						</ol>
+					</section>
+				))
+			}
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.archive-page {
+		width: min(var(--site-width), 100%);
+		margin-inline: auto;
+		padding-top: 5.5rem;
+		padding-bottom: 7.5rem;
+	}
+
+	.archive-header {
+		padding-bottom: 4rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.eyebrow {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.09em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	h1 {
+		margin-top: 1.5rem;
+		font-size: 8rem;
+		line-height: 1;
+		letter-spacing: -0.06em;
+		color: var(--color-ink);
+	}
+
+	.lead {
+		margin-top: 1.5rem;
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: var(--color-muted);
+	}
+
+	.archive-timeline {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+		margin-top: 4rem;
+	}
+
+	.year-group {
+		display: grid;
+		grid-template-columns: 8rem 1fr;
+		gap: 0 2rem;
+		align-items: start;
+	}
+
+	.year-label {
+		position: sticky;
+		top: 5.5rem;
+		font-family: var(--font-mono);
+		font-size: 1.25rem;
+		font-weight: 800;
+		color: var(--color-muted);
+		letter-spacing: -0.04em;
+		padding-top: 1.25rem;
+	}
+
+	.post-list {
+		list-style: none;
+		border-top: 1px solid var(--color-ink);
+	}
+
+	.post-list li {
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.post-row {
+		display: grid;
+		grid-template-columns: 7rem 1fr auto auto;
+		align-items: center;
+		gap: 1.5rem;
+		padding: 1.1rem 0;
+		color: var(--color-text);
+		transition: color 140ms ease;
+	}
+
+	.post-row:hover {
+		color: var(--color-ink);
+	}
+
+	.post-row:hover .title {
+		color: var(--color-accent-strong);
+	}
+
+	time {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	.title {
+		font-size: 1rem;
+		font-weight: 700;
+		line-height: 1.35;
+		letter-spacing: -0.03em;
+		color: var(--color-ink);
+		transition: color 140ms ease;
+	}
+
+	.cat {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	.tag {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--color-accent-strong);
+		white-space: nowrap;
+	}
+
+	@media (max-width: 57.5rem) {
+		.year-group {
+			grid-template-columns: 1fr;
+		}
+
+		.year-label {
+			position: static;
+			padding-top: 0;
+			padding-bottom: 1rem;
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.archive-page {
+			padding-top: 3.25rem;
+		}
+
+		h1 {
+			font-size: 5rem;
+		}
+
+		.post-row {
+			grid-template-columns: 1fr;
+			gap: 0.35rem;
+		}
+
+		.cat,
+		.tag {
+			display: none;
+		}
+	}
+</style>

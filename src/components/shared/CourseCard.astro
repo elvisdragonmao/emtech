@@ -1,6 +1,16 @@
 ---
 import { ArrowRight, BookOpen } from "@lucide/astro";
-import type { CourseCard as CourseCardData } from "../../data/prototype";
+import type { ImageMetadata } from "astro";
+
+export type CourseCardData = {
+	title: string;
+	description: string;
+	meta: string;
+	lastUpdated: string;
+	href: string;
+	image: ImageMetadata | null;
+	accent: "blue" | "purple" | "yellow";
+};
 
 interface Props {
 	course: CourseCardData;
@@ -12,7 +22,19 @@ const { course, featured = false } = Astro.props;
 
 <a class:list={["course-card", `accent-${course.accent}`, { featured }]} href={course.href}>
 	<div class="visual">
-		<img src={course.image.src} width={course.image.width} height={course.image.height} alt={course.title} loading="lazy" />
+		{
+			course.image ? (
+				<img
+					src={course.image.src}
+					width={course.image.width}
+					height={course.image.height}
+					alt={course.title}
+					loading="lazy"
+				/>
+			) : (
+				<div class="placeholder" aria-hidden="true" />
+			)
+		}
 		<span><BookOpen size={15} stroke-width={1.8} />Course</span>
 	</div>
 	<div class="content">
@@ -69,7 +91,8 @@ const { course, featured = false } = Astro.props;
 		background: var(--accent-soft);
 	}
 
-	.visual img {
+	.visual img,
+	.placeholder {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;

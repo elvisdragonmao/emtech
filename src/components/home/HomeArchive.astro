@@ -1,35 +1,48 @@
 ---
 import { ChevronDown } from "@lucide/astro";
-import { archiveArticles } from "../../data/prototype";
+import { getCollection } from "astro:content";
+import type { ImageMetadata } from "astro";
 import ArticleCard from "../shared/ArticleCard.astro";
 import SectionTitle from "../shared/SectionTitle.astro";
+import { extractTitle, formatDate } from "../../utils/content";
+import config from "../../data/config.json";
 
-const categories = ["精選文章", "軟體開發", "生活", "程式教學", "生活駭客"];
-const tags = [
-	"標籤",
-	"三個字",
-	"標籤",
-	"標籤",
-	"標籤",
-	"三個字",
-	"標籤",
-	"標籤",
-	"標籤",
-	"三個字",
-	"標籤",
-	"標籤",
-	"三個字",
-	"標籤",
-	"三個字",
-	"三個字",
-	"四個字",
-	"三個字",
-	"三個字",
-	"三個字",
-	"三個字",
-	"三個字",
-	"三個字"
-];
+const allPosts = await getCollection("post");
+const recentPosts = [...allPosts]
+	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+	.slice(0, 6);
+
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>(
+	"../../content/post/*/thumbnail.webp",
+	{ eager: true }
+);
+
+const archiveArticles = recentPosts.map(p => {
+	const thumbKey = `../../content/post/${p.id}/thumbnail.webp`;
+	return {
+		title: extractTitle(p.body) || p.id,
+		href: `/p/${p.id}/`,
+		image: allThumbs[thumbKey]?.default ?? null,
+		tag: p.data.tags[0] ? `#${p.data.tags[0]}` : p.data.categories[0] ?? "",
+		description: p.data.description ?? "",
+		category: p.data.categories[0],
+		date: formatDate(p.data.date)
+	};
+});
+
+const categories = ["精選文章", ...Object.keys(config.category).slice(0, 4)];
+
+// Aggregate tags by frequency, take top 20
+const tagFreq = new Map<string, number>();
+for (const p of allPosts) {
+	for (const t of p.data.tags) {
+		tagFreq.set(t, (tagFreq.get(t) ?? 0) + 1);
+	}
+}
+const tags = [...tagFreq.entries()]
+	.sort((a, b) => b[1] - a[1])
+	.slice(0, 20)
+	.map(([t]) => t);
 ---
 
 <section id="archive" class="section-block">
@@ -44,7 +57,7 @@ const tags = [
 				{archiveArticles.map(article => <ArticleCard article={article} />)}
 			</div>
 
-			<a class="card more-link" href="/article/">
+			<a class="card more-link" href="/archive/">
 				想要更多？
 				<ChevronDown size={18} stroke-width={1.8} />
 			</a>
@@ -57,7 +70,7 @@ const tags = [
 				<p>歡迎加入 Discord 與我們一起討論！</p>
 			</article>
 			<div class="card tag-cloud" aria-label="標籤雲">
-				{tags.map(tag => <a href="/article/">{tag}</a>)}
+				{tags.map(tag => <a href={`/archive/`}>#{tag}</a>)}
 			</div>
 		</aside>
 	</div>

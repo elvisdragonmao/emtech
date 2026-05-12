@@ -1,9 +1,18 @@
 ---
 import { ArrowRight } from "@lucide/astro";
-import type { CourseModule } from "../../data/prototype";
+import type { ImageMetadata } from "astro";
+
+export type CourseModuleData = {
+	number: string;
+	title: string;
+	description: string;
+	duration: string;
+	image: ImageMetadata | null;
+	href: string;
+};
 
 interface Props {
-	module: CourseModule;
+	module: CourseModuleData;
 }
 
 const { module } = Astro.props;
@@ -11,12 +20,26 @@ const { module } = Astro.props;
 
 <a class="module-row" href={module.href}>
 	<span class="module-number">{module.number}</span>
-	<img src={module.image.src} width={module.image.width} height={module.image.height} alt={module.title} loading="lazy" />
+	<div class="thumb">
+		{
+			module.image ? (
+				<img
+					src={module.image.src}
+					width={module.image.width}
+					height={module.image.height}
+					alt={module.title}
+					loading="lazy"
+				/>
+			) : (
+				<div class="thumb-placeholder" aria-hidden="true" />
+			)
+		}
+	</div>
 	<div class="module-content">
 		<h3>{module.title}</h3>
 		<p>{module.description}</p>
 	</div>
-	<span class="duration">{module.duration}</span>
+	{module.duration && <span class="duration">{module.duration}</span>}
 	<ArrowRight class="arrow" size={18} stroke-width={1.8} />
 </a>
 
@@ -45,10 +68,16 @@ const { module } = Astro.props;
 		color: var(--color-muted);
 	}
 
-	img {
-		width: 100%;
+	.thumb {
 		aspect-ratio: 2 / 1;
-		height: auto;
+		overflow: hidden;
+		background: var(--color-surface-soft);
+	}
+
+	.thumb img,
+	.thumb-placeholder {
+		width: 100%;
+		height: 100%;
 		object-fit: cover;
 	}
 
@@ -88,7 +117,7 @@ const { module } = Astro.props;
 			gap: 1.25rem;
 		}
 
-		img,
+		.thumb,
 		.module-content,
 		.duration {
 			grid-column: 2;
@@ -105,7 +134,7 @@ const { module } = Astro.props;
 			padding: 1.5rem 0;
 		}
 
-		img,
+		.thumb,
 		.module-content,
 		.duration {
 			grid-column: auto;

@@ -1,37 +1,32 @@
 ---
 import { ArrowLeft, CircleCheck } from "@lucide/astro";
-import { courseModules } from "../../data/prototype";
 
 interface Props {
-	current?: string;
+	courseId: string;
+	courseTitle: string;
+	lessons: Array<{ id: string; title: string; href: string }>;
+	currentId: string;
 }
 
-const { current = "04" } = Astro.props;
+const { courseId, lessons, currentId } = Astro.props;
 ---
 
 <aside class="course-sidebar">
-	<a class="back-link" href="/course/"><ArrowLeft size={15} stroke-width={1.8} />Back to course overview</a>
+	<a class="back-link" href={`/course/${courseId}/`}><ArrowLeft size={15} stroke-width={1.8} />Back to course overview</a>
 	<nav aria-label="課程章節">
 		{
-			courseModules.map(module => {
-				const number = module.number.replace("Module ", "");
+			lessons.map((lesson, i) => {
+				const isActive = lesson.id === currentId;
+				const number = String(i + 1).padStart(2, "0");
 				return (
-					<a class:list={[{ active: current === number }]} href={module.href}>
+					<a class:list={[{ active: isActive }]} href={lesson.href}>
 						<span>{number}</span>
-						{module.title}
-						{current === number && <CircleCheck size={15} stroke-width={1.8} />}
+						{lesson.title}
+						{isActive && <CircleCheck size={15} stroke-width={1.8} />}
 					</a>
 				);
 			})
 		}
-		<a href="/course/">
-			<span>05</span>
-			非同步的非同步
-		</a>
-		<a href="/course/">
-			<span>06</span>
-			搜尋引擎最佳化 SEO
-		</a>
 	</nav>
 </aside>
 
