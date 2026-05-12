@@ -1,10 +1,12 @@
-import { fileURLToPath } from "node:url";
+import pagefind from "astro-pagefind";
 import { defineConfig, passthroughImageService } from "astro/config";
+import { fileURLToPath } from "node:url";
 import { rehypeCallouts } from "./src/plugins/rehype-callouts.js";
 import { rehypeCodeBlocks } from "./src/plugins/rehype-code-blocks.js";
 import { rehypeImageCaptions } from "./src/plugins/rehype-image-captions.js";
 
 export default defineConfig({
+	integrations: [pagefind()],
 	image: {
 		service: passthroughImageService()
 	},

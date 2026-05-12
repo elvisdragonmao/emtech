@@ -25,13 +25,15 @@ const { tag, title, image, meta, tldr, headings = [], previousHref, previousTitl
 // Only show TOC headings at depth 2 and 3
 const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 const isCourseLayout = layout === "course";
+const pagefindType = isCourseLayout ? "課程" : "文章";
+const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 ---
 
 <section class:list={["article-hero", { "course-layout": isCourseLayout }]}>
 	<div></div>
 	<div class="hero-main">
 		<p class="tag">{tag}</p>
-		<h1>{title}</h1>
+		<h1 data-pagefind-meta="title">{title}</h1>
 		<MetaTable items={meta} />
 	</div>
 	{
@@ -76,7 +78,15 @@ const isCourseLayout = layout === "course";
 		}
 	</aside>
 
-	<article id="content" class="article-content" data-progress-storage-key={progressStorageKey} data-progress-item-id={progressItemId}>
+	<article id="content" class="article-content" data-pagefind-body data-progress-storage-key={progressStorageKey} data-progress-item-id={progressItemId}>
+		<span class="sr-only" data-pagefind-meta="type">{pagefindType}</span>
+		{
+			pagefindDate && (
+				<span class="sr-only" data-pagefind-meta="date" data-pagefind-sort="date">
+					{pagefindDate}
+				</span>
+			)
+		}
 		{image && <img class="hero-image" src={image.src} width={image.width} height={image.height} alt={title} />}
 		{
 			tldr && (
@@ -480,6 +490,18 @@ const isCourseLayout = layout === "course";
 		line-height: 2;
 		color: var(--color-text);
 		overflow-wrap: break-word;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
 	}
 
 	.reading-toast {
