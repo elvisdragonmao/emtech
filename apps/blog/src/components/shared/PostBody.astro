@@ -104,7 +104,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	<div></div>
 </section>
 
-<div class="reading-toast" data-reading-toast role="status" aria-live="polite" hidden>閱讀完成已紀錄</div>
+<div class:list={["reading-toast", { "course-layout": isCourseLayout }]} data-reading-toast role="status" aria-live="polite" hidden>閱讀完成已紀錄</div>
 
 <script>
 	const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"));
@@ -169,7 +169,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			toast.classList.remove("visible");
 			window.setTimeout(() => {
 				toast.hidden = true;
-			}, 180);
+			}, 280);
 		}, 2600);
 	};
 
@@ -505,22 +505,44 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	}
 
 	.reading-toast {
+		--reading-toast-top: 4rem;
+		--reading-toast-left: var(--page-padding, 0rem);
+		--reading-toast-right: var(--page-padding, 0rem);
+
 		position: fixed;
-		top: 7rem;
-		right: 5rem;
-		z-index: 30;
-		padding: 0.8rem 1rem;
+		top: var(--reading-toast-top);
+		right: var(--reading-toast-right);
+		left: var(--reading-toast-left);
+		z-index: 15;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 3.25rem;
+		padding: 0.85rem 1.25rem;
+		font-family: var(--font-mono);
 		font-size: 0.875rem;
-		font-weight: 700;
+		font-weight: 800;
+		letter-spacing: 0.04em;
 		color: var(--color-ink);
-		background: oklch(100% 0 0 / 92%);
+		text-align: center;
+		background: oklch(100% 0 0 / 94%);
 		border: 1px solid var(--color-accent);
 		box-shadow: var(--shadow-card);
+		backdrop-filter: blur(1rem);
 		opacity: 0;
-		transform: translateY(-0.5rem);
+		pointer-events: none;
+		transform: translateY(-100%);
 		transition:
-			opacity 180ms ease,
-			transform 180ms ease;
+			opacity 220ms ease,
+			transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+	}
+
+	.reading-toast.course-layout {
+		--reading-toast-left: calc(var(--page-padding, 0rem) + 18rem);
+	}
+
+	.reading-toast[hidden] {
+		display: none;
 	}
 
 	.reading-toast.visible {
@@ -870,7 +892,22 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		}
 	}
 
+	@media (max-width: 76rem) {
+		.reading-toast.course-layout {
+			--reading-toast-top: 7.75rem;
+			--reading-toast-left: var(--page-padding, 0rem);
+		}
+	}
+
 	@media (max-width: 40rem) {
+		.reading-toast {
+			--reading-toast-top: 4.5rem;
+		}
+
+		.reading-toast.course-layout {
+			--reading-toast-top: 8.25rem;
+		}
+
 		h1 {
 			font-size: 2.65rem;
 			line-height: 1.12;

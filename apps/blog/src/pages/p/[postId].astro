@@ -4,6 +4,7 @@ import { getCollection, render } from "astro:content";
 import type { ImageMetadata } from "astro";
 import AboutCard from "@/components/shared/AboutCard.astro";
 import ArticleCard from "@/components/shared/ArticleCard.astro";
+import Comments from "@/components/Comments.astro";
 import PostBody from "@/components/shared/PostBody.astro";
 import Layout from "@/layouts/Layout.astro";
 import { extractTitle, formatDate, formatHashTags, normalizeImportPath, normalizeTerms, readingTime, wordCount, type MetaItem } from "@/utils/content";
@@ -110,6 +111,10 @@ const relatedCards = related.map(p => {
 			<AboutCard copyright />
 		</section>
 
+		<section class="comments-wrap">
+			<Comments pagePath={Astro.url.pathname} />
+		</section>
+
 		{
 			relatedCards.length > 0 && (
 				<section class="related-wrap">
@@ -148,6 +153,10 @@ const relatedCards = related.map(p => {
 	}
 
 	.related-wrap {
+		margin-top: 5.75rem;
+	}
+
+	.comments-wrap {
 		margin-top: 5.75rem;
 	}
 
@@ -207,6 +216,10 @@ const relatedCards = related.map(p => {
 		}
 
 		.related-wrap {
+			margin-top: 2rem;
+		}
+
+		.comments-wrap {
 			margin-top: 2rem;
 		}
 	}

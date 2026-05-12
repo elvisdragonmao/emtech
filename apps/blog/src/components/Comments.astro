@@ -1,0 +1,545 @@
+---
+import { LogOut, Send } from "@lucide/astro";
+import { siGithub } from "simple-icons";
+import SimpleIcon from "@/components/shared/SimpleIcon.astro";
+
+interface Props {
+	pagePath?: string;
+}
+
+const { pagePath = Astro.url.pathname } = Astro.props;
+const commentApiBaseUrl = (import.meta.env.COMMENT_API_BASE_URL ?? import.meta.env.PUBLIC_COMMENT_API_BASE_URL ?? "http://127.0.0.1:8787").replace(/\/$/, "");
+const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
+---
+
+<section
+	id="comments"
+	class="comments"
+	data-comments-root
+	data-page-path={pagePath}
+	data-api-base={commentApiBaseUrl}
+	data-turnstile-site-key={turnstileSiteKey}
+>
+	<div class="comments-heading">
+		<div>
+			<p class="eyebrow">Comments</p>
+			<h2>留言區</h2>
+		</div>
+		<a class="github-login" data-github-login href={`${commentApiBaseUrl}/api/auth/github/start?returnTo=${encodeURIComponent(pagePath)}`}>
+			<SimpleIcon icon={siGithub} size={16} />
+			GitHub 登入
+		</a>
+	</div>
+
+	<div class="auth-panel" data-auth-panel hidden>
+		<span data-auth-name></span>
+		<button type="button" data-logout>
+			<LogOut size={14} stroke-width={1.8} />
+			登出
+		</button>
+	</div>
+
+	<div class="notice" data-notice role="status"></div>
+
+	<div class="comment-list" data-comment-list></div>
+
+	<form class="comment-form" data-comment-form>
+		<input type="hidden" name="parentId" data-parent-id />
+		<div class="replying" data-replying hidden>
+			<span data-replying-label></span>
+			<button type="button" data-cancel-reply>取消回覆</button>
+		</div>
+		<label>
+			顯示名稱
+			<input name="name" type="text" maxlength="80" autocomplete="name" placeholder="Anonymous" />
+		</label>
+		<label>
+			Email
+			<input name="email" type="email" autocomplete="email" placeholder="只用於 Gravatar，不會公開" />
+		</label>
+		<label class="message">
+			留言
+			<textarea name="body" rows="5" maxlength="3000" required placeholder="寫下你的想法"></textarea>
+		</label>
+		{turnstileSiteKey && <div class="turnstile cf-turnstile" data-sitekey={turnstileSiteKey}></div>}
+		<div class="actions">
+			<button type="submit">
+				<Send size={14} stroke-width={1.8} />
+				送出留言
+			</button>
+		</div>
+	</form>
+</section>
+
+{turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+
+<script>
+	type PublicComment = {
+		id: string;
+		pagePath: string;
+		parentId: string | null;
+		body: string;
+		author: {
+			type: "anonymous" | "named" | "gravatar" | "github";
+			name: string;
+			avatarUrl: string | null;
+		};
+		createdAt: string;
+	};
+
+	const root = document.querySelector<HTMLElement>("[data-comments-root]");
+	if (root) {
+		const apiBase = root.dataset.apiBase ?? "";
+		const pagePath = root.dataset.pagePath ?? location.pathname;
+		const form = root.querySelector<HTMLFormElement>("[data-comment-form]");
+		const list = root.querySelector<HTMLElement>("[data-comment-list]");
+		const notice = root.querySelector<HTMLElement>("[data-notice]");
+		const authPanel = root.querySelector<HTMLElement>("[data-auth-panel]");
+		const authName = root.querySelector<HTMLElement>("[data-auth-name]");
+		const loginLink = root.querySelector<HTMLAnchorElement>("[data-github-login]");
+		const logoutButton = root.querySelector<HTMLButtonElement>("[data-logout]");
+		const parentInput = root.querySelector<HTMLInputElement>("[data-parent-id]");
+		const replying = root.querySelector<HTMLElement>("[data-replying]");
+		const replyingLabel = root.querySelector<HTMLElement>("[data-replying-label]");
+		const cancelReply = root.querySelector<HTMLButtonElement>("[data-cancel-reply]");
+
+		const setNotice = (message: string, tone: "neutral" | "error" | "success" = "neutral") => {
+			if (!notice) return;
+			notice.textContent = message;
+			notice.dataset.tone = tone;
+		};
+
+		const apiUrl = (path: string) => `${apiBase}${path}`;
+
+		const refreshAuth = async () => {
+			try {
+				const response = await fetch(apiUrl("/api/auth/me"), { credentials: "include" });
+				const data = await response.json();
+				if (data.authenticated && authPanel && authName && loginLink) {
+					authName.textContent = `已用 GitHub 登入：${data.user.login}`;
+					authPanel.hidden = false;
+					loginLink.hidden = true;
+				}
+			} catch {
+				// Comments still work anonymously if auth state cannot be loaded.
+			}
+		};
+
+		const loadComments = async () => {
+			if (!list) return;
+			list.textContent = "載入留言中...";
+			try {
+				const response = await fetch(apiUrl(`/api/comments?pagePath=${encodeURIComponent(pagePath)}`), { credentials: "include" });
+				const data = (await response.json()) as { comments: PublicComment[] };
+				list.replaceChildren();
+				renderComments(data.comments, list);
+			} catch {
+				list.textContent = "";
+				setNotice("留言載入失敗，請稍後再試。", "error");
+			}
+		};
+
+		const renderComments = (comments: PublicComment[], container: HTMLElement) => {
+			const byParent = new Map<string, PublicComment[]>();
+			for (const comment of comments) {
+				const key = comment.parentId ?? "";
+				byParent.set(key, [...(byParent.get(key) ?? []), comment]);
+			}
+
+			const renderGroup = (parentId: string, target: HTMLElement) => {
+				const group = byParent.get(parentId) ?? [];
+				for (const comment of group) {
+					const article = renderComment(comment);
+					target.appendChild(article);
+					const replies = document.createElement("div");
+					replies.className = "replies";
+					article.appendChild(replies);
+					renderGroup(comment.id, replies);
+				}
+			};
+
+			renderGroup("", container);
+			if (!container.childElementCount) {
+				const empty = document.createElement("p");
+				empty.className = "empty";
+				empty.textContent = "還沒有留言。";
+				container.appendChild(empty);
+			}
+		};
+
+		const renderComment = (comment: PublicComment) => {
+			const article = document.createElement("article");
+			article.className = "comment-card";
+
+			const head = document.createElement("div");
+			head.className = "comment-head";
+
+			const avatar = document.createElement("span");
+			avatar.className = "avatar";
+			if (comment.author.avatarUrl) {
+				const img = document.createElement("img");
+				img.src = comment.author.avatarUrl;
+				img.alt = "";
+				img.loading = "lazy";
+				avatar.appendChild(img);
+			}
+
+			const meta = document.createElement("div");
+			const name = document.createElement("strong");
+			name.textContent = comment.author.name;
+			const time = document.createElement("time");
+			time.dateTime = comment.createdAt;
+			time.textContent = new Date(comment.createdAt).toLocaleString("zh-TW", { dateStyle: "medium", timeStyle: "short" });
+			meta.append(name, time);
+			head.append(avatar, meta);
+
+			const body = document.createElement("p");
+			body.innerHTML = comment.body;
+
+			const bottom = document.createElement("div");
+			bottom.className = "comment-bottom";
+			const type = document.createElement("span");
+			type.textContent = comment.author.type === "github" ? "GitHub" : "匿名";
+			const reply = document.createElement("button");
+			reply.type = "button";
+			reply.textContent = "回覆";
+			reply.addEventListener("click", () => {
+				if (!parentInput || !replying || !replyingLabel || !form) return;
+				parentInput.value = comment.id;
+				replyingLabel.textContent = `回覆給 ${comment.author.name}`;
+				replying.hidden = false;
+				form.querySelector("textarea")?.focus();
+			});
+			bottom.append(type, reply);
+			article.append(head, body, bottom);
+			return article;
+		};
+
+		cancelReply?.addEventListener("click", () => {
+			if (!parentInput || !replying) return;
+			parentInput.value = "";
+			replying.hidden = true;
+		});
+
+		logoutButton?.addEventListener("click", async () => {
+			await fetch(apiUrl("/api/auth/logout"), { method: "POST", credentials: "include" });
+			location.reload();
+		});
+
+		form?.addEventListener("submit", async event => {
+			event.preventDefault();
+			const data = new FormData(form);
+			const submit = form.querySelector<HTMLButtonElement>("button[type='submit']");
+			const turnstileToken = form.querySelector<HTMLInputElement>("[name='cf-turnstile-response']")?.value ?? "";
+			submit?.setAttribute("disabled", "true");
+			setNotice("送出中...");
+
+			try {
+				const response = await fetch(apiUrl("/api/comments"), {
+					method: "POST",
+					credentials: "include",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						pagePath,
+						parentId: data.get("parentId") || undefined,
+						name: data.get("name") || undefined,
+						email: data.get("email") || undefined,
+						body: data.get("body"),
+						turnstileToken
+					})
+				});
+				const result = await response.json();
+				if (!response.ok) {
+					throw new Error(result.error ?? "留言送出失敗");
+				}
+				form.reset();
+				if (parentInput) parentInput.value = "";
+				if (replying) replying.hidden = true;
+				setNotice(result.status === "approved" ? "留言已發布。" : "留言正在等待審核。", "success");
+				await loadComments();
+				(window as unknown as { turnstile?: { reset: () => void } }).turnstile?.reset();
+			} catch (error) {
+				setNotice(error instanceof Error ? error.message : "留言送出失敗", "error");
+			} finally {
+				submit?.removeAttribute("disabled");
+			}
+		});
+
+		refreshAuth();
+		loadComments();
+	}
+</script>
+
+<style>
+	.comments {
+		width: min(57.5rem, 100%);
+		margin: 0 auto;
+	}
+
+	.comments-heading {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.eyebrow {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	h2 {
+		margin-top: 0.5rem;
+		font-size: 3.25rem;
+		line-height: 1;
+		letter-spacing: -0.07em;
+		color: var(--color-ink);
+	}
+
+	.github-login,
+	.auth-panel button,
+	.actions button,
+	.replying button,
+	.comment-bottom button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		line-height: 1;
+		color: var(--color-ink);
+		background: var(--color-surface);
+		border: 1px solid var(--color-accent-strong);
+		transition:
+			background 160ms ease,
+			border-color 160ms ease,
+			box-shadow 160ms ease,
+			transform 160ms ease;
+	}
+
+	.github-login,
+	.actions button {
+		padding: 0.75rem 1rem;
+	}
+
+	.auth-panel {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1rem;
+		padding: 0.75rem 1rem;
+		background: oklch(100% 0 0 / 84%);
+		border: 1px solid var(--color-border);
+	}
+
+	.auth-panel button,
+	.replying button,
+	.comment-bottom button {
+		padding: 0.5rem 0.75rem;
+		font-size: 0.85rem;
+	}
+
+	.github-login:hover,
+	.auth-panel button:hover,
+	.actions button:hover,
+	.replying button:hover,
+	.comment-bottom button:hover {
+		background: oklch(93% 0.045 220 / 45%);
+		border-color: var(--color-accent);
+		box-shadow: 0 0.35rem 1rem oklch(71% 0.15 225 / 12%);
+		transform: translateY(-0.1rem);
+	}
+
+	.notice {
+		min-height: 1.5rem;
+		margin-bottom: 1rem;
+		font-size: 0.95rem;
+		color: var(--color-muted);
+	}
+
+	.notice[data-tone="error"] {
+		color: oklch(52% 0.17 28);
+	}
+
+	.notice[data-tone="success"] {
+		color: oklch(43% 0.13 150);
+	}
+
+	.comment-list {
+		display: grid;
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.empty {
+		color: var(--color-muted);
+	}
+
+	.comment-form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+
+	label {
+		display: grid;
+		gap: 0.25rem;
+		font-size: 1rem;
+		color: var(--color-text);
+	}
+
+	.message,
+	.actions,
+	.turnstile,
+	.replying {
+		grid-column: 1 / -1;
+	}
+
+	input,
+	textarea {
+		width: 100%;
+		padding: 0.5rem 1rem;
+		color: var(--color-text);
+		background: oklch(100% 0 0 / 84%);
+		border: 1px solid var(--color-border);
+		outline: 0;
+		transition: border-color 160ms ease;
+	}
+
+	textarea {
+		resize: vertical;
+	}
+
+	input:focus,
+	textarea:focus {
+		border-color: var(--color-accent);
+	}
+
+	.replying {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.75rem 1rem;
+		color: var(--color-text);
+		background: var(--color-surface-soft);
+		border: 1px solid var(--color-border);
+	}
+
+	.actions {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.comment-card {
+		padding: 1rem;
+		background: oklch(100% 0 0 / 88%);
+		border: 1px solid var(--color-border);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.comment-head {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		line-height: 1;
+	}
+
+	.avatar {
+		display: grid;
+		place-items: center;
+		width: 2.75rem;
+		height: 2.75rem;
+		overflow: hidden;
+		border-radius: 50%;
+		background:
+			radial-gradient(circle at 35% 35%, var(--color-yellow), transparent 30%), radial-gradient(circle at 70% 30%, var(--color-pink), transparent 34%),
+			linear-gradient(135deg, var(--color-accent), var(--color-purple));
+	}
+
+	.avatar img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	strong,
+	time {
+		display: block;
+	}
+
+	strong {
+		font-size: 1rem;
+		color: var(--color-ink);
+	}
+
+	time {
+		margin-top: 0.3rem;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-muted);
+	}
+
+	.comment-card p {
+		font-size: 1rem;
+		line-height: 1.9;
+		color: var(--color-text);
+		white-space: pre-wrap;
+	}
+
+	.comment-bottom {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.comment-bottom span {
+		padding: 0.25rem 0.5rem;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-muted);
+		border: 1px solid var(--color-border);
+	}
+
+	.comment-bottom button {
+		margin-left: auto;
+	}
+
+	.replies {
+		display: grid;
+		gap: 1rem;
+		margin-left: 2rem;
+		padding-left: 1rem;
+		border-left: 1px solid var(--color-border);
+	}
+
+	@media (max-width: 43.75rem) {
+		.comments-heading,
+		.auth-panel,
+		.replying {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		.comment-form {
+			grid-template-columns: 1fr;
+		}
+
+		.comment-card {
+			padding: 1.5rem;
+		}
+
+		.replies {
+			margin-left: 0.5rem;
+			padding-left: 0.75rem;
+		}
+	}
+</style>

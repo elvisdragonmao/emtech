@@ -3,6 +3,7 @@ import { BookOpen, Clock, Users } from "@lucide/astro";
 import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
 import CourseModuleRow from "@/components/course/CourseModuleRow.astro";
+import Comments from "@/components/Comments.astro";
 import Layout from "@/layouts/Layout.astro";
 import { extractExcerpt, extractTitle, formatDate, normalizeImportPath, readingTime } from "@/utils/content";
 
@@ -106,6 +107,9 @@ const outcomes = courseData.outcomes ?? [];
 					);
 				})
 			}
+		</section>
+		<section class="comments-wrap">
+			<Comments pagePath={Astro.url.pathname} />
 		</section>
 	</main>
 </Layout>
@@ -305,6 +309,11 @@ const outcomes = courseData.outcomes ?? [];
 		border-top-color: var(--color-ink);
 	}
 
+	.comments-wrap {
+		width: min(var(--site-width), calc(100% - 2rem));
+		margin: 5.75rem auto 0;
+	}
+
 	@media (max-width: 57.5rem) {
 		.course-hero {
 			grid-template-columns: 1fr;
@@ -352,6 +361,10 @@ const outcomes = courseData.outcomes ?? [];
 
 		.overview-card::after {
 			display: none;
+		}
+
+		.comments-wrap {
+			margin-top: 3rem;
 		}
 	}
 </style>
