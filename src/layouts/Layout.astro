@@ -1,6 +1,7 @@
 ---
 import SiteFooter from "@/components/layout/SiteFooter.astro";
 import SiteHeader from "@/components/layout/SiteHeader.astro";
+import SearchDialog from "@/components/shared/SearchDialog.astro";
 import ScrollToTopButton from "@/components/shared/ScrollToTopButton.astro";
 import "@/styles/global.css";
 
@@ -28,6 +29,7 @@ const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥E
 			<SiteHeader active={active} />
 			<slot />
 			<SiteFooter />
+			<SearchDialog />
 			<ScrollToTopButton />
 		</div>
 	</body>

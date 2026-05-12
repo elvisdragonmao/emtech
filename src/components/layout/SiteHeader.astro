@@ -1,5 +1,5 @@
 ---
-import { Search } from "@lucide/astro";
+import { Menu, Search, X } from "@lucide/astro";
 
 interface Props {
 	active?: "home" | "blog" | "course";
@@ -21,7 +21,7 @@ const navItems = [
 			<span>毛哥EM資訊密技</span>
 		</a>
 
-		<nav class="main-nav" aria-label="主要導覽">
+		<nav id="site-main-nav" class="main-nav" aria-label="主要導覽">
 			{
 				navItems.map(item => (
 					<a href={item.href} class:list={[{ active: active === item.key }]}>
@@ -31,14 +31,54 @@ const navItems = [
 			}
 		</nav>
 
-		<button class="search-button" type="button" aria-label="搜尋文章">
+		<button class="search-button" type="button" aria-label="搜尋文章與課程" aria-controls="site-search" data-search-open>
 			<Search size={15} stroke-width={1.8} />
 			<span>Search</span>
 			<kbd>/</kbd>
 			<kbd>⌘K</kbd>
 		</button>
+
+		<button class="menu-button" type="button" aria-label="開啟導覽選單" aria-controls="site-main-nav" aria-expanded="false" data-menu-toggle>
+			<Menu class="menu-icon" size={18} stroke-width={1.8} />
+			<X class="close-icon" size={18} stroke-width={1.8} />
+		</button>
 	</div>
 </header>
+
+<script>
+	const header = document.querySelector<HTMLElement>(".site-header");
+	const nav = document.querySelector<HTMLElement>(".main-nav");
+	const menuToggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+	const mobileMenu = window.matchMedia("(max-width: 43rem)");
+
+	const setMenuOpen = (isOpen: boolean) => {
+		if (!header || !nav || !menuToggle) return;
+		header.classList.toggle("is-menu-open", isOpen);
+		menuToggle.setAttribute("aria-expanded", String(isOpen));
+		menuToggle.setAttribute("aria-label", isOpen ? "關閉導覽選單" : "開啟導覽選單");
+		nav.toggleAttribute("inert", mobileMenu.matches && !isOpen);
+		nav.setAttribute("aria-hidden", String(mobileMenu.matches && !isOpen));
+	};
+
+	menuToggle?.addEventListener("click", () => {
+		setMenuOpen(!header?.classList.contains("is-menu-open"));
+	});
+
+	nav?.addEventListener("click", event => {
+		if (event.target instanceof HTMLAnchorElement) setMenuOpen(false);
+	});
+
+	window.addEventListener("keydown", event => {
+		if (event.key === "Escape") setMenuOpen(false);
+	});
+
+	mobileMenu.addEventListener("change", event => {
+		if (!event.matches) setMenuOpen(false);
+		else setMenuOpen(header?.classList.contains("is-menu-open") ?? false);
+	});
+
+	setMenuOpen(false);
+</script>
 
 <style>
 	.site-header-container {
@@ -142,6 +182,31 @@ const navItems = [
 		border: 1px solid var(--color-border);
 	}
 
+	.menu-button {
+		display: none;
+		position: relative;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		overflow: hidden;
+		color: var(--color-ink);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+	}
+
+	.menu-button svg {
+		position: absolute;
+		transition:
+			opacity 140ms ease,
+			transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+	}
+
+	.menu-button .close-icon {
+		opacity: 0;
+		transform: scale(0.45);
+	}
+
 	@media (max-width: 56rem) {
 		.site-header {
 			grid-template-columns: auto minmax(0, 1fr) auto;
@@ -155,11 +220,17 @@ const navItems = [
 	}
 
 	@media (max-width: 43rem) {
+		.site-header-container {
+			overflow: visible;
+		}
+
 		.site-header {
-			grid-template-columns: 1fr auto;
-			row-gap: 0.35rem;
+			position: relative;
+			grid-template-columns: 1fr auto auto;
+			column-gap: 0.5rem;
+			row-gap: 0;
 			min-height: auto;
-			padding-block: 0.65rem 0;
+			padding-block: 0.65rem;
 		}
 
 		.brand {
@@ -175,18 +246,52 @@ const navItems = [
 		}
 
 		.main-nav {
-			grid-column: 1 / -1;
-			justify-content: flex-start;
-			gap: 1.5rem;
-			min-width: 0;
-			min-height: 2.5rem;
-			overflow-x: auto;
-			font-size: 0.95rem;
-			scrollbar-width: none;
+			position: fixed;
+			top: calc(100% + 1px);
+			right: 0;
+			left: 0;
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0;
+			height: auto;
+			padding: 0.35rem;
+			font-size: 1rem;
+			background: oklch(99% 0.004 235 / 94%);
+			border: 1px solid var(--color-border);
+			box-shadow: 0 1rem 2rem oklch(17% 0.022 255 / 8%);
+			backdrop-filter: blur(1.25rem);
+			opacity: 0;
+			pointer-events: none;
+			transform: translateY(-0.85rem);
+			transition:
+				opacity 180ms ease,
+				transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
 		}
 
-		.main-nav::-webkit-scrollbar {
-			display: none;
+		.site-header.is-menu-open .main-nav {
+			opacity: 1;
+			pointer-events: auto;
+			transform: translateY(0);
+		}
+
+		.main-nav a {
+			justify-content: center;
+			min-height: 2.75rem;
+			padding-inline: 0.75rem;
+		}
+
+		.main-nav a::after {
+			right: 0.75rem;
+			bottom: 0;
+			left: 0;
+			height: 0.2rem;
+			transform: scaleX(0);
+			transform-origin: center;
+		}
+
+		.main-nav a:hover::after,
+		.main-nav a.active::after {
+			transform: scaleX(1);
 		}
 
 		.search-button {
@@ -197,6 +302,25 @@ const navItems = [
 		.search-button span,
 		.search-button kbd {
 			display: none;
+		}
+
+		.menu-button {
+			display: inline-flex;
+		}
+
+		.site-header.is-menu-open .menu-button .menu-icon {
+			opacity: 0;
+			transform: scale(0.45);
+		}
+
+		.site-header.is-menu-open .menu-button .close-icon {
+			opacity: 1;
+			transform: scale(1);
+			transition-delay: 80ms;
+		}
+
+		.site-header:not(.is-menu-open) .menu-button .menu-icon {
+			transition-delay: 80ms;
 		}
 	}
 </style>
