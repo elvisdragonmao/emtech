@@ -17,7 +17,7 @@ const courseEntry = courses.find(c => c.id === courseId);
 
 if (!courseEntry) return Astro.redirect("/404");
 
-const allLessons = await getCollection("lesson");
+const allLessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
 const lessons = allLessons
 	.filter(l => l.id.startsWith(`${courseId}/`))
 	.sort((a, b) => {

@@ -7,7 +7,7 @@ import { formatDate } from "../../utils/content";
 import type { CourseCardData } from "../shared/CourseCard.astro";
 
 const courses = (await getCollection("course")).sort((a, b) => a.data.displayOrder - b.data.displayOrder || a.data.title.localeCompare(b.data.title));
-const allLessons = await getCollection("lesson");
+const allLessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
 const allThumbs = import.meta.glob<{ default: ImageMetadata }>("../../content/course/*/*/thumbnail.webp", { eager: true });
 
 const courseCards: CourseCardData[] = courses.map(c => {
