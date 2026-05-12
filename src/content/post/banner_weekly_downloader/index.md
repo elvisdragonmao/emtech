@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [自製，GitHub, JSON, iOS 捷徑]
+tags: [自製, GitHub, JSON, iOS 捷徑]
 categories: [生活駭客]
 date: 2021-12-01
 ---

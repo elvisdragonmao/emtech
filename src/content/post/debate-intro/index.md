@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: []
+tags: [辯論]
 categories: [英文辯論]
 date: 2025-05-20
 description: 在用有腦的方式吵架。

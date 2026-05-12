@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [自製，JavaScript, Google Apps Script]
+tags: [自製, JavaScript, Google Apps Script, Line]
 categories: [生活駭客]
 date: 2023-02-22
 ---

@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [演算法，JavaScript, CSS, React, SQL]
+tags: [JavaScript, React, SQL]
 categories: [軟體開發]
 date: 2025-03-02
 description: 宣告式程式設計（Declarative Programming）是一種描述「要做什麼」而不是「怎麼做」的程式設計方式。

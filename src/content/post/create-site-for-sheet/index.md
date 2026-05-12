@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [自製，HTML, CSS, JavaScript, GitHub, Google Apps Script, 複製貼上就能成為工程師]
+tags: [自製, HTML, CSS, JavaScript, GitHub, Google Apps Script, 複製貼上就能成為工程師]
 categories: [軟體開發，生活駭客]
 date: 2022-08-14
 ---

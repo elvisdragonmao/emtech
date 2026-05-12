@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [競賽心得]
+tags: [競賽心得, 辯論]
 categories: [英文辯論]
 date: 2025-07-20
 description: 不是去派對，是去吵架。拓展視野，體驗國際級的辯論。

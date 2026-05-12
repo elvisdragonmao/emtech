@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [HTML, CSS, JavaScript]
+tags: [HTML, CSS, JavaScript, Google Forms]
 categories: [網頁開發]
 date: 2026-03-27
 description: Google 表單 API 不管資料來源，打開開發者工具複製參數，前端直接 fetch 即可。

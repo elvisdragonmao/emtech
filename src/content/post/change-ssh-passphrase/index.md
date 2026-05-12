@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [Terminal]
+tags: [Terminal, SSH]
 categories: [軟體開發]
 date: 2022-08-19
 ---

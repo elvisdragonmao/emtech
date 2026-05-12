@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [Windows, macOS, PowerPoint, Office, Keynote]
+tags: [Windows, macOS, PowerPoint, Office, Keynote, 快捷鍵]
 categories: [生活駭客]
 date: 2025-10-30
 description: 在 Windows Powerpoint 中設定自訂功能區，在 macOS 中設定 app 快捷鍵。

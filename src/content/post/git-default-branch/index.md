@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [Git]
+tags: [Git, GitHub]
 categories: [軟體開發]
 date: 2025-03-17
 description: 到 GitHub 專案設定改，然後本地重置就可以了。

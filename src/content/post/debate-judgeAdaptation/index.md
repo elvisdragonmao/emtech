@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [精選]
+tags: [辯論, 精選]
 categories: [英文辯論]
 date: 2025-05-25
 description: 見人說人話，見鬼說鬼話才是從好辯士邁向勝利者的關鍵。

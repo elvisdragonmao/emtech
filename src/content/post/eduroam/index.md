@@ -1,7 +1,7 @@
 ---
 authors: elvismao
-tags: []
-categories: [精選，生活駭客]
+tags: [eduroam, 教育部]
+categories: [精選, 生活駭客]
 date: 2025-03-07
 description: 註冊教育雲帳號，然後連接 Wi-Fi 即可。
 ---

@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [Zeabur]
+tags: [RSS, Zeabur]
 categories: [生活駭客]
 date: 2025-06-07
 description: 使用 RSS 讓你奪回資訊的掌控權，讓你決定你要看到什麼。

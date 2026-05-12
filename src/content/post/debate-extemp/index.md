@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: []
+tags: [辯論]
 categories: [英文辯論]
 date: 2025-06-27
 ---
