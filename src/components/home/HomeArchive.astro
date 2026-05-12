@@ -2,9 +2,9 @@
 import { ChevronDown } from "@lucide/astro";
 import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
-import ArticleCard from "../shared/ArticleCard.astro";
-import SectionTitle from "../shared/SectionTitle.astro";
-import { extractTitle, formatDate } from "../../utils/content";
+import ArticleCard from "@/components/shared/ArticleCard.astro";
+import SectionTitle from "@/components/shared/SectionTitle.astro";
+import { extractTitle, formatDate } from "@/utils/content";
 
 const INITIAL_VISIBLE_ARTICLES = 9;
 const LOAD_MORE_ARTICLES = 12;
@@ -38,10 +38,10 @@ const taggedFeaturedPosts = sortedPosts.filter(p => {
 });
 const featuredOrder = new Map([...recentFeaturedPosts, ...taggedFeaturedPosts].map((p, index) => [p.id, index]));
 
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>("../../content/post/*/thumbnail.webp", { eager: true });
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("@/content/post/*/thumbnail.webp", { eager: true });
 
 const archiveArticles = sortedPosts.map(p => {
-	const thumbKey = `../../content/post/${p.id}/thumbnail.webp`;
+	const thumbKey = `@/content/post/${p.id}/thumbnail.webp`;
 	const tags = normalizeTerms(p.data.tags);
 	const categories = normalizeTerms(p.data.categories);
 	const featuredRank = featuredOrder.get(p.id) ?? null;

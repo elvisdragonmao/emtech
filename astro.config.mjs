@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { defineConfig, passthroughImageService } from "astro/config";
 import { rehypeCallouts } from "./src/plugins/rehype-callouts.js";
 import { rehypeCodeBlocks } from "./src/plugins/rehype-code-blocks.js";
@@ -9,5 +10,12 @@ export default defineConfig({
 	},
 	markdown: {
 		rehypePlugins: [rehypeCallouts, rehypeImageCaptions, rehypeCodeBlocks]
+	},
+	vite: {
+		resolve: {
+			alias: {
+				"@": fileURLToPath(new URL("./src", import.meta.url))
+			}
+		}
 	}
 });
