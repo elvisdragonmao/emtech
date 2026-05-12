@@ -32,21 +32,21 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		<h1>{title}</h1>
 		<MetaTable items={meta} />
 	</div>
-	<aside class="hero-tldr">
-		<p>TLDR</p>
-		<span>{tldr ?? ""}</span>
+	<aside class="hero-side-nav" aria-label="文章導覽">
 		{
 			(previousHref || nextHref) && (
 				<div class="side-nav">
 					{previousHref && (
 						<a href={previousHref}>
 							<ArrowLeft size={14} stroke-width={1.8} />
-							{previousTitle ?? "上一篇"}
+							<span>上一篇</span>
+							<strong>{previousTitle ?? "上一篇"}</strong>
 						</a>
 					)}
 					{nextHref && (
 						<a href={nextHref}>
-							{nextTitle ?? "下一篇"}
+							<span>下一篇</span>
+							<strong>{nextTitle ?? "下一篇"}</strong>
 							<ArrowRight size={14} stroke-width={1.8} />
 						</a>
 					)}
@@ -74,6 +74,15 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 
 	<article id="content" class="article-content" data-progress-storage-key={progressStorageKey} data-progress-item-id={progressItemId}>
 		{image && <img class="hero-image" src={image.src} width={image.width} height={image.height} alt={title} />}
+		{
+			tldr && (
+				<aside class="tldr-callout">
+					<strong>TL;DR</strong>
+					<p>{tldr}</p>
+					<span aria-hidden="true">TL;DR</span>
+				</aside>
+			)
+		}
 		<slot />
 		<div data-read-complete-sentinel aria-hidden="true"></div>
 	</article>
@@ -209,13 +218,13 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		min-width: 0;
 	}
 
-	.hero-tldr {
+	.hero-side-nav {
 		position: relative;
 		margin-top: 7.5rem;
 		color: var(--color-muted);
 	}
 
-	.hero-tldr::before {
+	.hero-side-nav::before {
 		position: absolute;
 		top: -6.75rem;
 		left: -4.75rem;
@@ -225,21 +234,6 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		content: "";
 		border: 1px solid oklch(71% 0.15 225 / 48%);
 		border-radius: 50%;
-	}
-
-	.hero-tldr p {
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		font-weight: 800;
-		letter-spacing: 0.08em;
-		color: var(--color-text);
-	}
-
-	.hero-tldr span {
-		display: block;
-		margin-top: 0.75rem;
-		font-size: 1rem;
-		line-height: 1.8;
 	}
 
 	.tag {
@@ -262,7 +256,7 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		grid-template-columns: 12.5rem minmax(0, 58.25rem) 12.5rem;
 		gap: 2.75rem;
 		align-items: start;
-		margin-top: 2.75rem;
+		margin-top: 1.5rem;
 	}
 
 	.toc {
@@ -300,16 +294,33 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 
 	.side-nav {
 		display: grid;
-		gap: 0.5rem;
-		margin-top: 1.25rem;
+		gap: 0.75rem;
 	}
 
 	.side-nav a {
-		display: inline-flex;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 0.65rem;
+		padding: 0.85rem 0;
+		border-top: 1px solid var(--color-border);
 		font-size: 0.75rem;
 		color: var(--color-accent-strong);
+	}
+
+	.side-nav span {
+		font-family: var(--font-mono);
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.side-nav strong {
+		min-width: 0;
+		font-weight: 500;
+		font-size: 0.875rem;
+		line-height: 1.35;
+		color: var(--color-muted);
 	}
 
 	.article-content {
@@ -347,8 +358,12 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		aspect-ratio: 2 / 1;
 		height: auto;
 		object-fit: cover;
-		margin-bottom: 2.75rem;
+		margin-bottom: 1.5rem;
 		box-shadow: var(--shadow-card);
+	}
+
+	.article-content :global(h1) {
+		display: none;
 	}
 
 	/* ── Article typography ─────────────────────────── */
@@ -448,6 +463,7 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 	/* ── Callout blocks ──────────────────────────────── */
 
 	/* > [!TLDR] / > [!SUMMARY] → prominent accent callout */
+	.tldr-callout,
 	.article-content :global(.callout-tldr) {
 		position: relative;
 		padding: 2.25rem 2.75rem;
@@ -457,6 +473,7 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		margin: 2rem 0;
 	}
 
+	.tldr-callout > strong,
 	.article-content :global(.callout-tldr > strong) {
 		display: block;
 		margin-bottom: 1.25rem;
@@ -464,6 +481,7 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		color: var(--color-ink);
 	}
 
+	.tldr-callout > p,
 	.article-content :global(.callout-tldr > p) {
 		position: relative;
 		z-index: 1;
@@ -471,6 +489,7 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 	}
 
 	/* watermark span */
+	.tldr-callout > span[aria-hidden],
 	.article-content :global(.callout-tldr > span[aria-hidden]) {
 		position: absolute;
 		right: 1.5rem;
@@ -515,6 +534,16 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		color: oklch(40% 0.12 20);
 	}
 
+	.article-content :global(.callout-tldr > h3),
+	.article-content :global(.callout-note > h3),
+	.article-content :global(.callout-tip > h3),
+	.article-content :global(.callout-warning > h3) {
+		margin: 0 0 0.75rem;
+		font-size: 1.15rem;
+		line-height: 1.25;
+		letter-spacing: -0.03em;
+	}
+
 	/* ── Responsive ──────────────────────────────────── */
 	@media (max-width: 68.75rem) {
 		.article-hero,
@@ -525,7 +554,7 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		}
 
 		.toc,
-		.hero-tldr,
+		.hero-side-nav,
 		.article-hero > div:first-child {
 			display: none;
 		}
