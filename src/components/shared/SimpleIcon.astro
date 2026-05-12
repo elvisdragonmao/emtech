@@ -1,0 +1,20 @@
+---
+import type { SimpleIcon as SimpleIconData } from "simple-icons";
+
+interface Props {
+	icon: SimpleIconData;
+	size?: number | string;
+}
+
+const { icon, size = 24 } = Astro.props;
+---
+
+<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+	<path d={icon.path}></path>
+</svg>
+
+<style>
+	svg {
+	display: block;
+	}
+</style>
