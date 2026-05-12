@@ -23,7 +23,7 @@ thumbnail: /static/img/og.webp
 
 > [!NOTE]
 >
-> **閱讀更多關於 emblog 的資訊：[emblog - 一個不一樣的部落格生成器](https://emtech.cc/p/emblog)**
+> ### 閱讀更多關於 emblog 的資訊：[emblog - 一個不一樣的部落格生成器](https://emtech.cc/p/emblog)
 
 emblog 目前不管是從設計到裡面的核心皆是是為毛哥EM資訊密技設計，缺少許多自訂功能，所以目前尚未對外開放對外使用。不過所有程式碼皆以 Apache 2.0 授權條款釋出，歡迎自行修改使用。等我之後有空應該會做成能讓大家使用的部落格生成器。歡迎關注我的 [GitHub](https://github.com/elvisdragonmao/emtech) 以取得最新消息。
 

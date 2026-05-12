@@ -13,7 +13,7 @@ date: 2022-10-07
 
 > [!NOTE]
 >
-> **EM-SFW (Site for Webcam)**
+> ### EM-SFW (Site for Webcam)
 > - 開發者：毛哥EM(我)
 > - 程式類型：免費開源網站
 > - 網站位置：[毛哥EM 的基地](https:/elvismao.com/code/EM-SFW)
@@ -55,5 +55,5 @@ date: 2022-10-07
 
 > [!NOTE]
 >
-> **提示**
+> ### 提示
 > 如果你覺得這個免費的網站有幫助到你請分享讓更多人可以有更好的線上上課體驗，讓沒有理由不認真上課
