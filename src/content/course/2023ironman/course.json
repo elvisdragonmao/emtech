@@ -1,0 +1,53 @@
+{
+	"title": "不用庫也能酷：玩轉 CSS & JS 特效",
+	"description": "不用框架也能做出動畫、互動和微型特效。30 天鐵人賽系列，從基礎特效到進階互動一步一步帶你實作。",
+	"accent": "blue",
+	"thumbnail": "2023ironman-1/thumbnail.webp",
+	"meta": "零基礎 / 鐵人賽 / 30 天",
+	"order": [
+		"2023ironman-1",
+		"2023ironman-2",
+		"2023ironman-3",
+		"2023ironman-4",
+		"2023ironman-5",
+		"2023ironman-6",
+		"2023ironman-7",
+		"2023ironman-8",
+		"2023ironman-9",
+		"2023ironman-10",
+		"2023ironman-11",
+		"2023ironman-12",
+		"2023ironman-13",
+		"2023ironman-14",
+		"2023ironman-15",
+		"2023ironman-16",
+		"2023ironman-17",
+		"2023ironman-18",
+		"2023ironman-19",
+		"2023ironman-20",
+		"2023ironman-21",
+		"2023ironman-22",
+		"2023ironman-23",
+		"2023ironman-24",
+		"2023ironman-25",
+		"2023ironman-26",
+		"2023ironman-27",
+		"2023ironman-28",
+		"2023ironman-29",
+		"2023ironman-30"
+	],
+	"outcomes": [
+		{
+			"title": "純 CSS 動畫與特效",
+			"text": "掌握 animation、transition、transform，不靠 JavaScript 也能做出流暢特效。"
+		},
+		{
+			"title": "原生 JS 互動設計",
+			"text": "用 DOM 操作與事件監聽做出真實互動，理解框架背後的原理。"
+		},
+		{
+			"title": "30 個可直接使用的特效元件",
+			"text": "每天一個實作範例，從跑馬燈、時鐘到 3D 卡片效果，累積可複用的元件庫。"
+		}
+	]
+}

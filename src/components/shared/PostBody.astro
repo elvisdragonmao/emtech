@@ -1,25 +1,37 @@
 ---
 import { ArrowLeft, ArrowRight } from "@lucide/astro";
-import type { PrototypeImage } from "../../data/prototype";
+import type { ImageMetadata } from "astro";
+import type { MetaItem, TocHeading } from "../../utils/content";
 import MetaTable from "./MetaTable.astro";
-
-type MetaItem = {
-	label: string;
-	value: string;
-};
 
 interface Props {
 	tag: string;
 	title: string;
-	image: PrototypeImage;
+	image?: ImageMetadata | null;
 	meta: MetaItem[];
 	tldr?: string;
+	headings?: TocHeading[];
 	previousHref?: string;
+	previousTitle?: string;
 	nextHref?: string;
+	nextTitle?: string;
 }
 
-const { tag, title, image, meta, tldr = "HackMD 側邊欄設計教學與技巧分享。", previousHref = "/", nextHref = "/course/javascript/" } = Astro.props;
-const tocItems = ["On This Page", "01 Title", "01 Title", "01 Title", "01 Title", "01 Title", "01 Title"];
+const {
+	tag,
+	title,
+	image,
+	meta,
+	tldr,
+	headings = [],
+	previousHref,
+	previousTitle,
+	nextHref,
+	nextTitle
+} = Astro.props;
+
+// Only show TOC headings at depth 2 and 3
+const tocItems = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
 <section class="article-hero">
@@ -31,62 +43,60 @@ const tocItems = ["On This Page", "01 Title", "01 Title", "01 Title", "01 Title"
 	</div>
 	<aside class="hero-tldr">
 		<p>TLDR</p>
-		<span>{tldr}</span>
-		<div class="side-nav">
-			<a href={previousHref}><ArrowLeft size={14} stroke-width={1.8} />上一篇</a>
-			<a href={nextHref}>下一篇<ArrowRight size={14} stroke-width={1.8} /></a>
-		</div>
+		<span>{tldr ?? ""}</span>
+		{
+			(previousHref || nextHref) && (
+				<div class="side-nav">
+					{previousHref && (
+						<a href={previousHref}>
+							<ArrowLeft size={14} stroke-width={1.8} />
+							{previousTitle ?? "上一篇"}
+						</a>
+					)}
+					{nextHref && (
+						<a href={nextHref}>
+							{nextTitle ?? "下一篇"}
+							<ArrowRight size={14} stroke-width={1.8} />
+						</a>
+					)}
+				</div>
+			)
+		}
 	</aside>
 </section>
 
 <section class="article-shell">
 	<aside class="toc" aria-label="文章目錄">
-		{tocItems.map(item => <a href="#content">{item}</a>)}
+		{
+			tocItems.length > 0 ? (
+				<>
+					<span class="toc-label">On This Page</span>
+					{tocItems.map((item) => (
+						<a
+							href={`#${item.slug}`}
+							class:list={[{ "toc-h3": item.depth === 3 }]}
+						>
+							{item.text}
+						</a>
+					))}
+				</>
+			) : null
+		}
 	</aside>
 
 	<article id="content" class="article-content">
-		<img class="hero-image" src={image.src} width={image.width} height={image.height} alt={title} />
-		<div class="callout">
-			<strong>簡單來說</strong>
-			<p>
-				這也是為什麼我要在意「痕跡」：為什麼表單錯誤訊息要放在欄位下方？為什麼過個資料段要可以接受、另一個不行？為什麼藍色只能用在可互動元素，而不能拿來裝飾標題？這些決策如果沒有被寫下來，元件再完整，也只是一套安靜但脆弱的圖庫。
-			</p>
-			<span>TL;DR</span>
-		</div>
-
-		<h2>這是一個二級標題</h2>
-		<p>
-			很多團隊第一次建立設計系統時，會把力氣放在按鈕、輸入框、卡片與頁面範例。這些東西很重要，但它們通常不是系統失效的原因。系統真正失效的時刻，是一個新的產品情境出現，元件庫裡沒有剛好對應的選項，而團隊無法判斷該延伸、該重組，還是該拒絕需求。
-		</p>
-
-		<h3>三級標題</h3>
-		<p>當一個 Prototype 只是看起來完整，卻沒有清楚的規則，就很容易在實作時分裂成不同方向。反過來，如果版面、間距、顏色與互動的意圖都被整理清楚，前端就能很快把設計翻譯成可維護的元件。</p>
-
-		<h4>四級標題</h4>
-		<p><a href="/course/">這是一個超連結</a> 什麼表單錯誤訊息要放在 <code>what frame</code> 錯誤訊息要放在欄位下方再完整，也只是一套安靜但脆弱的圖庫。</p>
-
-		<ul>
-			<li>你覺得遇到貼文有什麼問題？</li>
-			<li>留言每年和人發文尊重。</li>
-			<li>我才詢問。</li>
-			<li>我不喜歡自己出現在文章上。</li>
-		</ul>
-
-		<figure class="code-figure">
-			<div class="code-window">
-				<span></span><span></span><span></span>
-				<pre><code>const sidebar = document.querySelector(".summary");
-sidebar?.classList.add("theme-sitcon");
-
-const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail", "18rem");</code></pre>
-			</div>
-			<figcaption>Fig. 02 一同一套繪圖系統可以容納獨立文章、課程文章與閱讀筆記。</figcaption>
-		</figure>
-
-		<div class="notice-box">
-			<h5>六級標題</h5>
-			<p>這也是為什麼我要在意「痕跡」：為什麼表單錯誤訊息要放在欄位下方？這些決策如果有被寫下來，就能讓每一個 Prototype 看起來像同一個產品。</p>
-		</div>
+		{
+			image && (
+				<img
+					class="hero-image"
+					src={image.src}
+					width={image.width}
+					height={image.height}
+					alt={title}
+				/>
+			)
+		}
+		<slot />
 	</article>
 
 	<div></div>
@@ -171,13 +181,26 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 		padding-top: 1.25rem;
 	}
 
-	.toc a {
+	.toc-label {
 		display: block;
 		padding: 0.5rem 0;
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
+		font-weight: 800;
+		color: var(--color-ink);
+	}
+
+	.toc a {
+		display: block;
+		padding: 0.4rem 0;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
 		font-weight: 700;
 		color: var(--color-muted);
+	}
+
+	.toc a.toc-h3 {
+		padding-left: 0.75rem;
 	}
 
 	.side-nav {
@@ -209,45 +232,47 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 		box-shadow: var(--shadow-card);
 	}
 
-	.article-content h2,
-	.article-content h3,
-	.article-content h4,
-	.article-content h5 {
+	/* ── Article typography ─────────────────────────── */
+	.article-content :global(h2),
+	.article-content :global(h3),
+	.article-content :global(h4),
+	.article-content :global(h5) {
 		line-height: 1.15;
 		letter-spacing: -0.06em;
 		color: var(--color-ink);
 	}
 
-	.article-content h2 {
+	.article-content :global(h2) {
 		margin: 4.5rem 0 1.5rem;
 		font-size: 3.25rem;
 	}
 
-	.article-content h3 {
+	.article-content :global(h3) {
 		margin: 2.75rem 0 1rem;
 		font-size: 2rem;
 	}
 
-	.article-content h4 {
+	.article-content :global(h4) {
 		margin: 2.25rem 0 1rem;
 		font-size: 1.5rem;
 	}
 
-	.article-content h5 {
+	.article-content :global(h5) {
 		font-size: 1.25rem;
 	}
 
-	.article-content p + p,
-	.article-content p + ul {
+	.article-content :global(p + p),
+	.article-content :global(p + ul),
+	.article-content :global(p + ol) {
 		margin-top: 1.25rem;
 	}
 
-	.article-content a {
+	.article-content :global(a) {
 		color: var(--color-accent-strong);
 		border-bottom: 1px solid currentColor;
 	}
 
-	.article-content code {
+	.article-content :global(code) {
 		padding: 0.25rem 0.5rem;
 		font-family: var(--font-mono);
 		font-size: 0.86em;
@@ -255,32 +280,79 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 		border: 1px solid var(--color-border);
 	}
 
-	.article-content ul {
+	.article-content :global(ul),
+	.article-content :global(ol) {
 		padding-left: 1.2em;
+		margin-top: 0.75rem;
 	}
 
-	.callout {
+	.article-content :global(li + li) {
+		margin-top: 0.4rem;
+	}
+
+	.article-content :global(img) {
+		max-width: 100%;
+		height: auto;
+		display: block;
+		margin: 2rem auto;
+	}
+
+	/* code blocks — wrapped by rehype-code-window if present */
+	.article-content :global(pre) {
+		overflow-x: auto;
+		padding: 1.5rem;
+		font-family: var(--font-mono);
+		font-size: 0.92rem;
+		line-height: 1.8;
+		color: var(--color-code-ink);
+		background: var(--color-code-bg);
+		border: 1px solid var(--color-border-strong);
+		box-shadow: var(--shadow-card);
+		margin: 2.5rem 0;
+	}
+
+	.article-content :global(pre code) {
+		padding: 0;
+		font-size: inherit;
+		background: none;
+		border: none;
+	}
+
+	/* figcaption */
+	.article-content :global(figcaption) {
+		margin-top: 0.75rem;
+		font-size: 0.75rem;
+		text-align: center;
+		color: var(--color-muted);
+	}
+
+	/* ── Callout blocks ──────────────────────────────── */
+
+	/* > [!TLDR] / > [!SUMMARY] → prominent accent callout */
+	.article-content :global(.callout-tldr) {
 		position: relative;
 		padding: 2.25rem 2.75rem;
 		overflow: hidden;
 		background: oklch(93% 0.045 220 / 55%);
 		border: 1px solid var(--color-accent);
+		margin: 2rem 0;
 	}
 
-	.callout strong {
+	.article-content :global(.callout-tldr > strong) {
 		display: block;
 		margin-bottom: 1.25rem;
 		font-size: 1.25rem;
 		color: var(--color-ink);
 	}
 
-	.callout p {
+	.article-content :global(.callout-tldr > p) {
 		position: relative;
 		z-index: 1;
 		max-width: 38.75rem;
 	}
 
-	.callout span {
+	/* watermark span */
+	.article-content :global(.callout-tldr > span[aria-hidden]) {
 		position: absolute;
 		right: 1.5rem;
 		bottom: -0.75rem;
@@ -289,67 +361,42 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 		line-height: 1;
 		letter-spacing: -0.08em;
 		color: oklch(71% 0.15 225 / 42%);
+		pointer-events: none;
 	}
 
-	.code-figure {
-		margin: 3.25rem 0;
-	}
-
-	.code-window {
-		position: relative;
-		padding: 3rem 1.5rem 1.5rem;
-		background: var(--color-code-bg);
-		border: 1px solid var(--color-border-strong);
-		box-shadow: var(--shadow-card);
-	}
-
-	.code-window > span {
-		position: absolute;
-		top: 1.25rem;
-		width: 0.5rem;
-		height: 0.5rem;
-		border-radius: 50%;
-		background: var(--color-muted);
-	}
-
-	.code-window > span:nth-child(1) {
-		left: 1.25rem;
-	}
-
-	.code-window > span:nth-child(2) {
-		left: 2.25rem;
-	}
-
-	.code-window > span:nth-child(3) {
-		left: 3.25rem;
-	}
-
-	pre {
-		overflow-x: auto;
-		font-family: var(--font-mono);
-		font-size: 1rem;
-		line-height: 1.8;
-		color: var(--color-code-ink);
-	}
-
-	figcaption {
-		margin-top: 0.75rem;
-		font-size: 0.75rem;
-		text-align: center;
-		color: var(--color-muted);
-	}
-
-	.notice-box {
-		margin-top: 3rem;
+	/* > [!NOTE] / > [!TIP] → warm notice box */
+	.article-content :global(.callout-note),
+	.article-content :global(.callout-tip) {
+		margin: 2rem 0;
 		padding: 2rem 2.25rem;
 		background: oklch(97.2% 0.02 78 / 70%);
 		border: 1px solid var(--color-yellow);
 	}
 
-	.notice-box p {
-		margin-top: 1rem;
+	.article-content :global(.callout-note > strong),
+	.article-content :global(.callout-tip > strong) {
+		display: block;
+		margin-bottom: 0.75rem;
+		font-size: 1rem;
+		color: var(--color-ink);
 	}
 
+	/* > [!WARNING] → red-tinted warning */
+	.article-content :global(.callout-warning) {
+		margin: 2rem 0;
+		padding: 2rem 2.25rem;
+		background: oklch(97% 0.02 20 / 70%);
+		border: 1px solid oklch(65% 0.15 20);
+	}
+
+	.article-content :global(.callout-warning > strong) {
+		display: block;
+		margin-bottom: 0.75rem;
+		font-size: 1rem;
+		color: oklch(40% 0.12 20);
+	}
+
+	/* ── Responsive ──────────────────────────────────── */
 	@media (max-width: 68.75rem) {
 		.article-hero,
 		.article-shell {
@@ -366,12 +413,14 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 	}
 
 	@media (max-width: 40rem) {
-		.callout,
-		.notice-box {
+		.article-content :global(.callout-tldr),
+		.article-content :global(.callout-note),
+		.article-content :global(.callout-tip),
+		.article-content :global(.callout-warning) {
 			padding: 1.5rem;
 		}
 
-		.callout span {
+		.article-content :global(.callout-tldr > span[aria-hidden]) {
 			font-size: 3.25rem;
 		}
 	}
