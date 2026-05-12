@@ -6,32 +6,25 @@ import { extractTitle, formatDate } from "../../utils/content";
 const allPosts = await getCollection("post");
 const courses = await getCollection("course");
 
-// Compute site age from launch date
-const LAUNCH = new Date("2021-06-05");
-const now = new Date();
-const totalDays = Math.floor((now.getTime() - LAUNCH.getTime()) / (1000 * 60 * 60 * 24));
-const years = Math.floor(totalDays / 365.25);
-const remainingDays = Math.round(totalDays - years * 365.25);
+const LAUNCH_DATE = "2021-06-05";
 
 const stats = [
 	{ label: "Post", value: String(allPosts.length) },
 	{ label: "Course", value: String(courses.length) },
-	{ label: "Lived for", value: `${years}y ${remainingDays}d` }
+	{ label: "Lived for", value: "--", livedFor: true }
 ];
 
 // 2 most recent posts
-const recentPosts = [...allPosts]
-	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-	.slice(0, 2);
+const recentPosts = [...allPosts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 2);
 
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>(
-	"../../content/post/*/thumbnail.webp",
-	{ eager: true }
-);
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("../../content/post/*/thumbnail.webp", { eager: true });
 
-const featuredArticles = recentPosts.map(p => {
+const articleTags = ["最新文章", "次新文章"];
+
+const featuredArticles = recentPosts.map((p, index) => {
 	const thumbKey = `../../content/post/${p.id}/thumbnail.webp`;
 	return {
+		tag: articleTags[index] ?? "最新文章",
 		title: extractTitle(p.body) || p.id,
 		description: p.data.description ?? "",
 		href: `/p/${p.id}/`,
@@ -53,7 +46,13 @@ const featuredArticles = recentPosts.map(p => {
 				stats.map(stat => (
 					<div>
 						<span>{stat.label}</span>
-						<strong>{stat.value}</strong>
+						{stat.livedFor ? (
+							<strong data-lived-for data-launch-date={LAUNCH_DATE} aria-live="polite">
+								{stat.value}
+							</strong>
+						) : (
+							<strong>{stat.value}</strong>
+						)}
 					</div>
 				))
 			}
@@ -67,15 +66,9 @@ const featuredArticles = recentPosts.map(p => {
 		{
 			featuredArticles.map(article => (
 				<a class="feature-note" href={article.href}>
-					{
-						article.image ? (
-							<img src={article.image.src} width={article.image.width} height={article.image.height} alt={article.title} />
-						) : (
-							<div class="thumb-placeholder" aria-hidden="true" />
-						)
-					}
+					{article.image ? <img src={article.image.src} width={article.image.width} height={article.image.height} alt={article.title} /> : <div class="thumb-placeholder" aria-hidden="true" />}
 					<div>
-						<span>最新文章</span>
+						<span>{article.tag}</span>
 						<strong>{article.title}</strong>
 						<small>{article.description}</small>
 					</div>
@@ -84,6 +77,20 @@ const featuredArticles = recentPosts.map(p => {
 		}
 	</div>
 </section>
+
+<script>
+	const livedFor = document.querySelector("[data-lived-for]");
+	const launchDate = livedFor?.getAttribute("data-launch-date");
+
+	if (livedFor instanceof HTMLElement && launchDate) {
+		const launch = new Date(`${launchDate}T00:00:00`);
+		const totalDays = Math.max(0, Math.floor((Date.now() - launch.getTime()) / (1000 * 60 * 60 * 24)));
+		const years = Math.floor(totalDays / 365.25);
+		const remainingDays = Math.round(totalDays - years * 365.25);
+
+		livedFor.textContent = `${years}y ${remainingDays}d`;
+	}
+</script>
 
 <style>
 	.hero {
@@ -254,6 +261,13 @@ const featuredArticles = recentPosts.map(p => {
 		font-family: var(--font-mono);
 		font-weight: 800;
 		color: var(--color-accent-strong);
+	}
+
+	.feature-note small {
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 	}
 
 	.feature-note strong {
