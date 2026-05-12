@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
 import CourseModuleRow from "../../../components/course/CourseModuleRow.astro";
 import Layout from "../../../layouts/Layout.astro";
-import { formatDate, extractTitle, readingTime } from "../../../utils/content";
+import { extractExcerpt, extractTitle, formatDate, readingTime } from "../../../utils/content";
 
 export async function getStaticPaths() {
 	const courses = await getCollection("course");
@@ -76,18 +76,17 @@ const outcomes = courseData.outcomes ?? [];
 				</div>
 				{courseThumbnail && <img class="overview-thumb" src={courseThumbnail.src} width={courseThumbnail.width} height={courseThumbnail.height} alt={courseData.title} />}
 				<div class="quick-stats">
-					<div><BookOpen size={18} stroke-width={1.8} /><span>{totalModules} modules</span></div>
+					<div><BookOpen size={18} stroke-width={1.8} /><span>{totalModules} 章節</span></div>
 					<div>
 						<Clock size={18} stroke-width={1.8} />
 						<span>最後更新 {formatDate(latestDate)}</span>
 					</div>
-					<div><Users size={18} stroke-width={1.8} /><span>Beginner</span></div>
+					<div><Users size={18} stroke-width={1.8} /><span>適合<br>所有學習者</span></div>
 				</div>
 			</article>
 		</section>
 
 		<section class="curriculum">
-			<div class="module-list">
 				{
 					lessons.map((lesson, i) => {
 						const lessonId = lesson.id.replace(`${courseId}/`, "");
@@ -98,7 +97,7 @@ const outcomes = courseData.outcomes ?? [];
 								module={{
 									number: `Module ${String(i + 1).padStart(2, "0")}`,
 									title: extractTitle(lesson.body) || lesson.data.description || lessonId,
-									description: lesson.data.description ?? "",
+									description: lesson.data.description ?? extractExcerpt(lesson.body),
 									duration: readingTime(lesson.body ?? lesson.data.description ?? ""),
 									image: thumb,
 									href: `/course/${courseId}/${lessonId}/`
@@ -107,7 +106,6 @@ const outcomes = courseData.outcomes ?? [];
 						);
 					})
 				}
-			</div>
 		</section>
 	</main>
 </Layout>
@@ -127,7 +125,7 @@ const outcomes = courseData.outcomes ?? [];
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) 24.5rem;
 		gap: 2rem;
-		align-items: start;
+		align-items: flex-end;
 		padding-bottom: 2rem;
 	}
 
@@ -243,6 +241,7 @@ const outcomes = courseData.outcomes ?? [];
 	.quick-stats div {
 		display: grid;
 		place-items: center;
+		text-align: center;
 		gap: 0.5rem;
 		padding: 1rem 0.5rem;
 		font-family: var(--font-mono);
@@ -299,18 +298,10 @@ const outcomes = courseData.outcomes ?? [];
 	}
 
 	.curriculum {
-		width: 100%;
-		margin-left: 0;
-		margin-right: auto;
 		background: color-mix(in oklch, var(--color-surface) 58%, transparent);
 		border: 1px solid var(--color-border);
 		border-left: 0;
 		border-top-color: var(--color-ink);
-	}
-
-	.module-list {
-		width: min(var(--site-width), calc(100% - 1rem));
-		margin-right: auto;
 	}
 
 	@media (max-width: 57.5rem) {

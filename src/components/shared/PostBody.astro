@@ -313,6 +313,7 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		font-weight: 800;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
+		white-space: nowrap;
 	}
 
 	.side-nav strong {
@@ -424,11 +425,21 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 		margin-top: 0.4rem;
 	}
 
-	.article-content :global(img) {
+	.article-content :global(img:not(.hero-image)) {
 		max-width: 100%;
+		max-height: min(34rem, 82vh);
 		height: auto;
 		display: block;
 		margin: 2rem auto;
+		object-fit: contain;
+	}
+
+	.article-content :global(figure) {
+		margin: 2rem auto;
+	}
+
+	.article-content :global(figure img) {
+		margin: 0 auto;
 	}
 
 	/* code blocks — wrapped by rehype-code-window if present */
@@ -506,7 +517,7 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 	.article-content :global(.callout-note),
 	.article-content :global(.callout-tip) {
 		margin: 2rem 0;
-		padding: 2rem 2.25rem;
+		padding: 1.5rem 2rem;
 		background: oklch(97.2% 0.02 78 / 70%);
 		border: 1px solid var(--color-yellow);
 	}
