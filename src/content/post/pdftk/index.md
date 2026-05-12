@@ -19,22 +19,24 @@ date: 2022-09-06
 brew install pdftk
 ```
 
-{{notice}} PDF Toolkit (pdftk)
-
-- 開發者:pdflabs
-- 軟體類型：終端機套件
-- 網址：[www.pdflabs.com](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) {{noticed}}
+> [!NOTE]
+>
+> **PDF Toolkit (pdftk)**
+> - 開發者:pdflabs
+> - 軟體類型：終端機套件
+> - 網址：[www.pdflabs.com](http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
 
 ## 安卓安裝
 
 這裡提供安卓系統的安裝方法。請先到 F-Droid 下載 Termux 來模擬終端機。你可以直接下載 apk 或先下載 F-Droid 再下載。記得不要去 Google Play 下載，會有問題。
 
-{{notice}} Termux
-
-- 開發者:Termux
-- 軟體類型：安卓應用程式
-- 官網：[termux.com](https://termux.com/)
-- 安裝網址：[F-Droid](https://f-droid.org/packages/com.termux/) {{noticed}}
+> [!NOTE]
+>
+> **Termux**
+> - 開發者:Termux
+> - 軟體類型：安卓應用程式
+> - 官網：[termux.com](https://termux.com/)
+> - 安裝網址：[F-Droid](https://f-droid.org/packages/com.termux/)
 
 進去後貼上這一串。問你什麼就好好好或 enter 就好了。看我多用心給你複製鍵就算了還全部合成一行指令。
 
@@ -100,7 +102,9 @@ pdftk *.pdf cat output combined.pdf
 pdftk A=one.pdf B=two.pdf cat A1-7 B1-5 A8 output combined.pdf
 ```
 
-{{notice}} 小提醒注：檔名一定要正確，有時看著一樣確還差個/，最好使用 Tab 鍵來自動補全。 {{noticed}}
+> [!NOTE]
+>
+> **小提醒注：檔名一定要正確，有時看著一樣確還差個/，最好使用 Tab 鍵來自動補全。**
 
 ## 將 PDF 檔案中的一部分取出生成一個新檔案
 

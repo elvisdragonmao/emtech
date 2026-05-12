@@ -59,14 +59,12 @@ git reset --hard origin/main
 - `git fetch origin` 會把遠端的最新資訊拉下來，但不動你的檔案。
 - `git reset --hard origin/main` 把本地的 `main` 分支硬生生對齊到遠端的 `main`，連檔案也一起覆蓋掉。
 
-{{notice}}
-
-### 提醒
-
-- 這個指令會**砍掉本地所有未提交的修改**，所以如果有重要的東西，請先 `git stash` 或是手動備份一下。
-- 如果 force push 的分支不是 `main`，請把 `main` 換成你要的分支名稱。
-
-{{noticed}}
+> [!NOTE]
+>
+> ### 提醒
+>
+> - 這個指令會**砍掉本地所有未提交的修改**，所以如果有重要的東西，請先 `git stash` 或是手動備份一下。
+> - 如果 force push 的分支不是 `main`，請把 `main` 換成你要的分支名稱。
 
 執行完，你的電腦上 `main` 就跟 GitHub 上的一模一樣了。
 

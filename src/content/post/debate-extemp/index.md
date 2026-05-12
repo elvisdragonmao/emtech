@@ -77,20 +77,18 @@ Extemporaneous Debate (簡稱 Extemp) 是一種節奏十分快速的英文辯論
 
 因為只有兩分鐘，你能解釋的有限，所以必須非常精準的打擊，且很考驗語言表達能力。建議你不要講太多太深需要點時間解釋和理解的東西，比如說在講全民基本收入的時候我不太應該去談 AI 世代下全球產能過剩的問題，因為有太多東西需要解釋他是什麼，以及為什麼很有可能會發生。
 
-{{notice}}
-
-### AI 世代產能過剩的問題
-
-Elon Musk 等科技領袖從 2016 就認為，當 AI 讓生產力極大提升、工作機會大幅減少時，政府不管你有沒有工作都會給你「全民基本收入」（Universal Basic Income, UBI）。
-
-- 以前工業革命是機器取代工作，但 AI 世代是取代人。他學得比你快，做得比你好，大家都會失業。
-- AI 種出一堆食物，但沒有人買得起食物。
-- 商人反而希望政府給你錢花，他才能賺到錢。
-- 美國現況從 0.2% 富人多課個 1% 的稅其實就可行了。
-
-延伸閱讀：['There Will Be Universal High Income' — Elon Musk Predicts With 80% Certainty That 'None of Us' Will Have Jobs, But Bill Gates Says It's Too Soon - Benzinga](https://finance.yahoo.com/news/universal-high-income-elon-musk-160056830.html)
-
-{{noticed}}
+> [!NOTE]
+>
+> ### AI 世代產能過剩的問題
+>
+> Elon Musk 等科技領袖從 2016 就認為，當 AI 讓生產力極大提升、工作機會大幅減少時，政府不管你有沒有工作都會給你「全民基本收入」（Universal Basic Income, UBI）。
+>
+> - 以前工業革命是機器取代工作，但 AI 世代是取代人。他學得比你快，做得比你好，大家都會失業。
+> - AI 種出一堆食物，但沒有人買得起食物。
+> - 商人反而希望政府給你錢花，他才能賺到錢。
+> - 美國現況從 0.2% 富人多課個 1% 的稅其實就可行了。
+>
+> 延伸閱讀：['There Will Be Universal High Income' — Elon Musk Predicts With 80% Certainty That 'None of Us' Will Have Jobs, But Bill Gates Says It's Too Soon - Benzinga](https://finance.yahoo.com/news/universal-high-income-elon-musk-160056830.html)
 
 再加上有些評審完全是 Speech 的評審，沒有辯論背景（基本上大部分的評審都沒在做筆記 flow，都是坐在那裡當在 Threads 上看人吵架一樣。），因此肢體語言，口音，~~總族~~，甚至是預設立場都很容易影響評審的判決。
 

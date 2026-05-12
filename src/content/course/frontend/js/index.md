@@ -398,23 +398,21 @@ switch (role) {
 一般使用者
 ```
 
-{{notice}}
-
-## 小練習 1：條件判斷
-
-請寫一段程式：
-
-- 如果分數 >= 90，顯示 `優秀`
-- 如果分數 >= 60，顯示 `及格`
-- 否則顯示 `不及格`
-
-```js
-const score = 75;
-```
-
-先自己試試看，不要馬上偷看答案。
-
-{{noticed}}
+> [!NOTE]
+>
+> ## 小練習 1：條件判斷
+>
+> 請寫一段程式：
+>
+> - 如果分數 >= 90，顯示 `優秀`
+> - 如果分數 >= 60，顯示 `及格`
+> - 否則顯示 `不及格`
+>
+> ```js
+> const score = 75;
+> ```
+>
+> 先自己試試看，不要馬上偷看答案。
 
 ## 迴圈
 
@@ -629,23 +627,21 @@ fruits.forEach(fruit => {
 });
 ```
 
-{{notice}}
-
-## 小練習 2：陣列
-
-給你下面的陣列：
-
-```js
-const numbers = [10, 20, 30, 40];
-```
-
-請完成：
-
-1. 印出陣列長度
-2. 把 `50` 加到最後面
-3. 用迴圈把每個數字都印出來
-
-{{noticed}}
+> [!NOTE]
+>
+> ## 小練習 2：陣列
+>
+> 給你下面的陣列：
+>
+> ```js
+> const numbers = [10, 20, 30, 40];
+> ```
+>
+> 請完成：
+>
+> 1. 印出陣列長度
+> 2. 把 `50` 加到最後面
+> 3. 用迴圈把每個數字都印出來
 
 ## 物件 Object
 
@@ -839,18 +835,16 @@ const welcome = () => {
 const square = x => x * x;
 ```
 
-{{notice}}
-
-## 小練習 3：函式
-
-請寫一個函式 `isEven(number)`：
-
-- 如果是偶數，回傳 `true`
-- 否則回傳 `false`
-
-提示：可以用 `%` 來取餘數。
-
-{{noticed}}
+> [!NOTE]
+>
+> ## 小練習 3：函式
+>
+> 請寫一個函式 `isEven(number)`：
+>
+> - 如果是偶數，回傳 `true`
+> - 否則回傳 `false`
+>
+> 提示：可以用 `%` 來取餘數。
 
 ## 作用域與 hoisting 基礎觀念
 
@@ -1134,24 +1128,22 @@ title.classList.toggle("active");
 - 顯示/隱藏內容
 - 切換深色模式 class
 
-{{notice}}
-
-## 小練習 4：DOM 基本操作
-
-給你這段 HTML：
-
-```html
-<h1 id="title">原本標題</h1>
-<button id="btn">按我</button>
-```
-
-請寫 JavaScript：
-
-1. 取得 `h1`
-2. 把文字改成 `我被 JavaScript 改掉了`
-3. 把字體顏色改成藍色
-
-{{noticed}}
+> [!NOTE]
+>
+> ## 小練習 4：DOM 基本操作
+>
+> 給你這段 HTML：
+>
+> ```html
+> <h1 id="title">原本標題</h1>
+> <button id="btn">按我</button>
+> ```
+>
+> 請寫 JavaScript：
+>
+> 1. 取得 `h1`
+> 2. 把文字改成 `我被 JavaScript 改掉了`
+> 3. 把字體顏色改成藍色
 
 ## 建立與刪除 DOM 元素
 
@@ -1387,22 +1379,20 @@ form.addEventListener("submit", e => {
 });
 ```
 
-{{notice}}
-
-## 小練習 5：事件監聽
-
-HTML：
-
-```html
-<button id="btn">按我</button>
-<p id="text">還沒改變</p>
-```
-
-請寫 JavaScript，讓使用者按下按鈕時：
-
-- `p` 的文字改成 `你按下按鈕了`
-
-{{noticed}}
+> [!NOTE]
+>
+> ## 小練習 5：事件監聽
+>
+> HTML：
+>
+> ```html
+> <button id="btn">按我</button>
+> <p id="text">還沒改變</p>
+> ```
+>
+> 請寫 JavaScript，讓使用者按下按鈕時：
+>
+> - `p` 的文字改成 `你按下按鈕了`
 
 ## 取得 input 的值
 

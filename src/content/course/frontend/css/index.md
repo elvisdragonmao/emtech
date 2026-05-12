@@ -41,15 +41,13 @@ description: CSS 是用來裝飾網頁的語言，學會 CSS 你就能把網頁�
 
 等一下我們的 CSS 就寫在 `<style>` 之間。準備好了嗎？點擊右下角的 Go Live 來開啟瀏覽器開始寫 CSS 吧！
 
-{{notice}}
-
-### 小提示
-
-建議你可以把 VS Code 放螢幕左側（ `Windows` + `←` / Mac: `🌐` + `⌃` + `←` )，瀏覽器放右邊
-
-![VS Code 和瀏覽器的配置](vscode-browser-layout.webp)
-
-{{noticed}}
+> [!NOTE]
+>
+> ### 小提示
+>
+> 建議你可以把 VS Code 放螢幕左側（ `Windows` + `←` / Mac: `🌐` + `⌃` + `←` )，瀏覽器放右邊
+>
+> ![VS Code 和瀏覽器的配置](vscode-browser-layout.webp)
 
 ## 簡單的 CSS
 
@@ -509,13 +507,11 @@ img {
 </section>
 ```
 
-{{notice}}
-
-emmet 語法
-
-輸入 `section>div*4` 然後點 `Tab`，底下註解也都是 emmet 縮寫
-
-{{noticed}}
+> [!NOTE]
+>
+> emmet 語法
+>
+> 輸入 `section>div*4` 然後點 `Tab`，底下註解也都是 emmet 縮寫
 
 ```css
 section {
@@ -854,13 +850,11 @@ h2 {
 
 [Screen Recording 2026-03-23 at 2.42.56 PM.webp](position-sticky-demo.webp)
 
-{{notice}}
-
-### Lorem Ipsum 是什麼？
-
-這段咒語不是任何語言，是個方便進行平面設計和網頁開發的佔位符假文。字母頻率與現代英語接近，可以方便排版但是不會受內文影響。比如說我在裡面打一段笑話可能會讓你笑一下~~誤以為~~網頁開發是很快樂的事。
-
-{{noticed}}
+> [!NOTE]
+>
+> ### Lorem Ipsum 是什麼？
+>
+> 這段咒語不是任何語言，是個方便進行平面設計和網頁開發的佔位符假文。字母頻率與現代英語接近，可以方便排版但是不會受內文影響。比如說我在裡面打一段笑話可能會讓你笑一下~~誤以為~~網頁開發是很快樂的事。
 
 ## 範例
 

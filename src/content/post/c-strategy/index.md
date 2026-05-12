@@ -34,13 +34,11 @@ description: 簡單來說好好去讀書吧。無論你全部猜 C、平均猜 A
 
 ## 程式模擬
 
-{{notice}}
-
-猜題策略模擬器
-
-<https://elvismao.com/code/c-strategy/>
-
-{{noticed}}
+> [!NOTE]
+>
+> 猜題策略模擬器
+>
+> <https://elvismao.com/code/c-strategy/>
 
 為了進一步驗證數學結果，我們可以使用 JavaScript 模擬上述三種策略。以下是模擬器的功能：
 
