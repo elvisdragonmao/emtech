@@ -22,19 +22,7 @@ const { course, featured = false } = Astro.props;
 
 <a class:list={["course-card", `accent-${course.accent}`, { featured }]} href={course.href}>
 	<div class="visual">
-		{
-			course.image ? (
-				<img
-					src={course.image.src}
-					width={course.image.width}
-					height={course.image.height}
-					alt={course.title}
-					loading="lazy"
-				/>
-			) : (
-				<div class="placeholder" aria-hidden="true" />
-			)
-		}
+		{course.image ? <img src={course.image.src} width={course.image.width} height={course.image.height} alt={course.title} loading="lazy" /> : <div class="placeholder" aria-hidden="true" />}
 		<span><BookOpen size={15} stroke-width={1.8} />Course</span>
 	</div>
 	<div class="content">
