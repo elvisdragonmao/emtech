@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
 import CourseCard from "@/components/shared/CourseCard.astro";
+import Comments from "@/components/Comments.astro";
 import Layout from "@/layouts/Layout.astro";
 import { formatDate, normalizeImportPath } from "@/utils/content";
 import type { CourseCardData } from "@/components/shared/CourseCard.astro";
@@ -51,6 +52,9 @@ const featuredCourses = courseCards.slice(3);
 				)
 			}
 		</section>
+		<section class="comments-wrap">
+			<Comments pagePath={Astro.url.pathname} />
+		</section>
 	</main>
 </Layout>
 
@@ -93,6 +97,10 @@ const featuredCourses = courseCards.slice(3);
 		display: flex;
 		flex-direction: column;
 		gap: 1.75rem;
+	}
+
+	.comments-wrap {
+		margin-top: 5.75rem;
 	}
 
 	.course-grid-top {
@@ -148,6 +156,10 @@ const featuredCourses = courseCards.slice(3);
 
 		.course-grid-top :global(.course-card:first-child h3) {
 			font-size: 2.25rem;
+		}
+
+		.comments-wrap {
+			margin-top: 3rem;
 		}
 	}
 </style>
