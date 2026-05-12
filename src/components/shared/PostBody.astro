@@ -48,8 +48,8 @@ const isCourseLayout = layout === "course";
 						)}
 						{nextHref && (
 							<a href={nextHref}>
-								<span>下一篇</span>
 								<strong>{nextTitle ?? "下一篇"}</strong>
+								<span>下一篇</span>
 								<ArrowRight size={14} stroke-width={1.8} />
 							</a>
 						)}
@@ -204,9 +204,21 @@ const isCourseLayout = layout === "course";
 		}
 	}
 
+	const getLineText = (line: HTMLElement) => {
+		const hasElementChildren = Array.from(line.childNodes).some(node => node.nodeType === Node.ELEMENT_NODE);
+
+		return Array.from(line.childNodes)
+			.map(node => {
+				const text = node.textContent ?? "";
+				if (hasElementChildren && node.nodeType === Node.TEXT_NODE && !text.trim()) return "";
+				return text;
+			})
+			.join("");
+	};
+
 	const getCodeText = (code: HTMLElement) => {
 		const lines = Array.from(code.querySelectorAll<HTMLElement>(".line"));
-		if (lines.length > 0) return lines.map(line => line.textContent ?? "").join("\n");
+		if (lines.length > 0) return lines.map(getLineText).join("\n");
 		return code.textContent ?? "";
 	};
 
@@ -230,10 +242,73 @@ const isCourseLayout = layout === "course";
 		if (!copied) throw new Error("Copy command failed");
 	};
 
+	const languageLabels: Record<string, string> = {
+		bash: "Bash",
+		c: "C",
+		"c++": "C++",
+		cpp: "C++",
+		cs: "C#",
+		csharp: "C#",
+		css: "CSS",
+		dockerfile: "Dockerfile",
+		html: "HTML",
+		javascript: "JS",
+		js: "JS",
+		json: "JSON",
+		jsx: "JSX",
+		markdown: "MD",
+		md: "MD",
+		plaintext: "Text",
+		powershell: "PowerShell",
+		ps1: "PowerShell",
+		py: "Python",
+		python: "Python",
+		sh: "Shell",
+		shell: "Shell",
+		ts: "TS",
+		tsx: "TSX",
+		typescript: "TS",
+		xml: "XML",
+		yaml: "YAML",
+		yml: "YAML",
+		zsh: "Zsh"
+	};
+
+	const normalizeLanguageLabel = (language: string | null | undefined) => {
+		const normalized = language?.trim() ?? "";
+		if (!normalized) return "Text";
+		return languageLabels[normalized.toLowerCase()] ?? normalized;
+	};
+
+	const getCodeLanguage = (block: HTMLElement, code: HTMLElement) => {
+		const pre = code.closest("pre");
+		const dataLanguage = pre?.getAttribute("data-language") || code.getAttribute("data-language");
+		const languageClass = [...code.classList, ...(pre ? [...pre.classList] : []), ...block.classList].find(className => className.startsWith("language-"));
+		return normalizeLanguageLabel(dataLanguage || languageClass?.replace(/^language-/, ""));
+	};
+
+	const ensureCodeLanguageLabel = (block: HTMLElement, code: HTMLElement) => {
+		const toolbar = block.querySelector<HTMLElement>(".code-block-toolbar");
+		if (!toolbar) return;
+
+		let label = toolbar.querySelector<HTMLElement>(".code-block-language");
+		if (!label) {
+			label = document.createElement("span");
+			label.className = "code-block-language";
+			toolbar.prepend(label);
+		}
+
+		if (!label.textContent?.trim()) label.textContent = getCodeLanguage(block, code);
+	};
+
 	for (const block of document.querySelectorAll<HTMLElement>("[data-code-block]")) {
-		const button = block.querySelector<HTMLButtonElement>("[data-code-copy-button]");
 		const code = block.querySelector<HTMLElement>("pre code");
-		if (!button || !code) continue;
+		if (!code) continue;
+
+		ensureCodeLanguageLabel(block, code);
+
+		const button = block.querySelector<HTMLButtonElement>("[data-code-copy-button]");
+		if (!button) continue;
 
 		const defaultLabel = button.textContent ?? "複製";
 		let resetTimer = 0;
@@ -370,11 +445,6 @@ const isCourseLayout = layout === "course";
 
 	.toc a.toc-h3 {
 		padding-left: 0.75rem;
-	}
-
-	.side-nav {
-		display: grid;
-		gap: 0.75rem;
 	}
 
 	.side-nav a {
@@ -565,6 +635,7 @@ const isCourseLayout = layout === "course";
 		display: inline-flex;
 		align-items: center;
 		gap: 0.55rem;
+		min-width: 0;
 		padding-inline: 1rem;
 		font-family: var(--font-mono);
 		font-size: 0.72rem;
@@ -572,18 +643,13 @@ const isCourseLayout = layout === "course";
 		line-height: 1;
 		color: oklch(91% 0.018 250 / 74%);
 		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		white-space: nowrap;
 	}
 
 	.article-content :global(.code-block-language::before) {
-		width: 0.45rem;
-		height: 0.45rem;
+		display: none;
 		content: "";
-		background: oklch(72% 0.14 155);
-		border-radius: 50%;
-		box-shadow:
-			0.72rem 0 0 oklch(88% 0.16 96),
-			1.44rem 0 0 oklch(72% 0.18 350);
-		margin-right: 1.35rem;
 	}
 
 	.article-content :global(.code-copy-button) {
@@ -629,7 +695,7 @@ const isCourseLayout = layout === "course";
 		margin: 0;
 		font-size: 0.92rem;
 		line-height: 1.5;
-		white-space: pre;
+		white-space: normal;
 		background: transparent !important;
 		border: 0;
 		box-shadow: none;
@@ -640,25 +706,29 @@ const isCourseLayout = layout === "course";
 		font: inherit;
 		line-height: inherit;
 		min-width: max-content;
-		white-space: inherit;
+		white-space: normal;
 		counter-reset: code-line;
 	}
 
 	.article-content :global(.code-block .line) {
-		display: block;
+		display: flex;
+		align-items: baseline;
 		min-height: 1.5em;
 		line-height: inherit;
+		white-space: pre;
 		padding-right: 1.5rem;
 		counter-increment: code-line;
 	}
 
 	.article-content :global(.code-block .line > *) {
+		flex: 0 0 auto;
 		line-height: inherit;
+		white-space: inherit;
 	}
 
 	.article-content :global(.code-block .line::before) {
-		display: inline-block;
-		width: 2.75rem;
+		display: block;
+		flex: 0 0 2.75rem;
 		margin-right: 1.1rem;
 		color: oklch(91% 0.018 250 / 48%);
 		text-align: right;
@@ -780,7 +850,7 @@ const isCourseLayout = layout === "course";
 		}
 
 		.article-content :global(.code-block .line::before) {
-			width: 2.25rem;
+			flex-basis: 2.25rem;
 			margin-right: 0.8rem;
 		}
 
