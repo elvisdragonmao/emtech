@@ -66,4 +66,16 @@ export function formatHashTags(terms: string[] | undefined): string {
 		.join(" ");
 }
 
+export function normalizeImportPath(path: string): string {
+	const parts: string[] = [];
+
+	for (const part of path.split("/")) {
+		if (!part || part === ".") continue;
+		if (part === "..") parts.pop();
+		else parts.push(part);
+	}
+
+	return `/${parts.join("/")}`;
+}
+
 export type { ImageMetadata };

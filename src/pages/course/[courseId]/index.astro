@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
 import CourseModuleRow from "@/components/course/CourseModuleRow.astro";
 import Layout from "@/layouts/Layout.astro";
-import { extractExcerpt, extractTitle, formatDate, readingTime } from "@/utils/content";
+import { extractExcerpt, extractTitle, formatDate, normalizeImportPath, readingTime } from "@/utils/content";
 
 export async function getStaticPaths() {
 	const courses = await getCollection("course");
@@ -28,10 +28,10 @@ const lessons = allLessons
 	});
 
 // Discover thumbnails for lessons
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>("@/content/course/*/*/thumbnail.webp", { eager: true });
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/*/*/thumbnail.webp", { eager: true });
 
 // Course-level thumbnail
-const courseThumbKey = `@/content/course/${courseId}/${courseEntry.data.thumbnail}`;
+const courseThumbKey = normalizeImportPath(`/src/content/course/${courseId}/${courseEntry.data.thumbnail}`);
 const courseThumbnail: ImageMetadata | null = allThumbs[courseThumbKey]?.default ?? null;
 
 // Most-recent lesson update date
@@ -90,7 +90,7 @@ const outcomes = courseData.outcomes ?? [];
 			{
 				lessons.map((lesson, i) => {
 					const lessonId = lesson.id.replace(`${courseId}/`, "");
-					const thumbKey = `@/content/course/${courseId}/${lessonId}/thumbnail.webp`;
+					const thumbKey = normalizeImportPath(`/src/content/course/${courseId}/${lessonId}/thumbnail.webp`);
 					const thumb = allThumbs[thumbKey]?.default ?? null;
 					return (
 						<CourseModuleRow

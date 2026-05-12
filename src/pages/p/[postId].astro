@@ -6,7 +6,7 @@ import AboutCard from "@/components/shared/AboutCard.astro";
 import ArticleCard from "@/components/shared/ArticleCard.astro";
 import PostBody from "@/components/shared/PostBody.astro";
 import Layout from "@/layouts/Layout.astro";
-import { extractTitle, formatDate, formatHashTags, normalizeTerms, readingTime, wordCount, type MetaItem } from "@/utils/content";
+import { extractTitle, formatDate, formatHashTags, normalizeImportPath, normalizeTerms, readingTime, wordCount, type MetaItem } from "@/utils/content";
 
 export async function getStaticPaths() {
 	const posts = (await getCollection("post")).filter(post => !post.data.draft);
@@ -22,8 +22,8 @@ if (!entry) return Astro.redirect("/404");
 const { Content, headings } = await render(entry);
 
 // Discover co-located thumbnail via glob (supports image optimisation)
-const thumbnails = import.meta.glob<{ default: ImageMetadata }>("@/content/post/*/thumbnail.webp", { eager: true });
-const thumbKey = `@/content/post/${postId}/thumbnail.webp`;
+const thumbnails = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/*/thumbnail.webp", { eager: true });
+const thumbKey = normalizeImportPath(`/src/content/post/${postId}/thumbnail.webp`);
 const thumbnail: ImageMetadata | null = thumbnails[thumbKey]?.default ?? null;
 
 const title = headings[0]?.text ?? postId;
@@ -64,7 +64,7 @@ const moreRelatedHref = relatedFilterValue ? `/?${relatedFilterType}=${encodeURI
 
 // Build related article card data (needs thumbnail discovery)
 const relatedCards = related.map(p => {
-	const rKey = `@/content/post/${p.id}/thumbnail.webp`;
+	const rKey = normalizeImportPath(`/src/content/post/${p.id}/thumbnail.webp`);
 	return {
 		title: extractTitle(p.body) || p.id,
 		href: `/p/${p.id}/`,
@@ -188,6 +188,10 @@ const relatedCards = related.map(p => {
 
 		.related-wrap > h2 {
 			font-size: 2.35rem;
+		}
+
+		.related-wrap {
+			margin-top: 2rem;
 		}
 	}
 </style>

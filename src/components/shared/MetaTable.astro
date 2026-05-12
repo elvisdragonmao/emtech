@@ -71,24 +71,16 @@ const { items } = Astro.props;
 			border-top: 1px solid var(--color-border);
 		}
 
-		.meta-table div:nth-child(-n + 2) {
+		.meta-table div:nth-child(3),
+		.meta-table div:nth-child(4) {
+			border-bottom: 1px solid var(--color-border);
+		}
+
+		.meta-table div:nth-child(5) {
 			border-top: 0;
 		}
-	}
 
-	@media (max-width: 30rem) {
-		.meta-table {
-			grid-template-columns: 1fr;
-		}
-
-		.meta-table div,
-		.meta-table div:nth-child(odd),
 		.meta-table div:nth-child(-n + 2) {
-			border-top: 1px solid var(--color-border);
-			border-left: 0;
-		}
-
-		.meta-table div:first-child {
 			border-top: 0;
 		}
 	}
