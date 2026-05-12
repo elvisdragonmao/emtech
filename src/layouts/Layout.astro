@@ -9,7 +9,7 @@ interface Props {
 	active?: "home" | "blog" | "course";
 }
 
-const { title = "毛哥EM資訊密技", description = "科技、設計、毛茸茸的資訊密技與教學筆記。", active = "home" } = Astro.props;
+const { title = "毛哥EM資訊密技", description = "科技、設計、毛茸茸的資訊密技與教學筆記。", active } = Astro.props;
 const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥EM資訊密技`;
 ---
 

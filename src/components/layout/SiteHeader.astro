@@ -5,7 +5,7 @@ interface Props {
 	active?: "home" | "blog" | "course";
 }
 
-const { active = "home" } = Astro.props;
+const { active } = Astro.props;
 
 const navItems = [
 	{ label: "首頁", href: "/", key: "home" },
