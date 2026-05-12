@@ -324,7 +324,7 @@ int main(){
 
 ### enum
 
-```C
+```c
 #include<stdio.h>
 #include<stdlib.h>
 

@@ -91,7 +91,7 @@ https://dl.espressif.com/dl/package_esp32_index.json
 
 ![](url.webp) 4. 請你進入 BOARDS MANAGER 並搜尋 esp32。安裝 Espressif 開發的的 ESP-32 套件。 ![](driver.jpg) 5. 請點擊左邊第三個的圖書標誌並搜尋 HomeSpan 並安裝。 ![](homespan.webp) 6. 貼上以下程式碼：
 
-```ino
+```cpp
 #include "HomeSpan.h"
 
 struct PC : Service::LightBulb {
