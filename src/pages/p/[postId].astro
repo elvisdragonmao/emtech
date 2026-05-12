@@ -9,12 +9,12 @@ import Layout from "../../layouts/Layout.astro";
 import { extractTitle, formatDate, formatHashTags, normalizeTerms, readingTime, wordCount, type MetaItem } from "../../utils/content";
 
 export async function getStaticPaths() {
-	const posts = await getCollection("post");
+	const posts = (await getCollection("post")).filter(post => !post.data.draft);
 	return posts.map(post => ({ params: { postId: post.id } }));
 }
 
 const { postId } = Astro.params;
-const posts = await getCollection("post");
+const posts = (await getCollection("post")).filter(post => !post.data.draft);
 const entry = posts.find(p => p.id === postId);
 
 if (!entry) return Astro.redirect("/404");
@@ -44,8 +44,13 @@ const meta: MetaItem[] = [
 const relatedFilterType = entryTags[0] ? "tag" : "category";
 const relatedFilterValue = entryTags[0] ?? entryCategories[0] ?? "";
 
+const allPosts = (await getCollection("post")).filter(post => !post.data.draft);
+const postsByDate = [...allPosts].sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+const currentPostIndex = postsByDate.findIndex(p => p.id === postId);
+const previousPost = currentPostIndex > 0 ? postsByDate[currentPostIndex - 1] : null;
+const nextPost = currentPostIndex >= 0 && currentPostIndex < postsByDate.length - 1 ? postsByDate[currentPostIndex + 1] : null;
+
 // Related articles: latest posts with the same first tag, falling back to category.
-const allPosts = await getCollection("post");
 const related = allPosts
 	.filter(p => {
 		if (p.id === postId || !relatedFilterValue) return false;
@@ -74,7 +79,18 @@ const relatedCards = related.map(p => {
 
 <Layout title={title} description={description} active="blog">
 	<main class="article-page">
-		<PostBody tag={tag} title={title} image={thumbnail} meta={meta} tldr={description} headings={headings}>
+		<PostBody
+			tag={tag}
+			title={title}
+			image={thumbnail}
+			meta={meta}
+			tldr={description}
+			headings={headings}
+			previousHref={previousPost ? `/p/${previousPost.id}/` : undefined}
+			previousTitle={previousPost ? extractTitle(previousPost.body) || previousPost.id : undefined}
+			nextHref={nextPost ? `/p/${nextPost.id}/` : undefined}
+			nextTitle={nextPost ? extractTitle(nextPost.body) || nextPost.id : undefined}
+		>
 			<Content />
 		</PostBody>
 
@@ -133,8 +149,20 @@ const relatedCards = related.map(p => {
 
 	.related-grid {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-auto-columns: minmax(16.5rem, 20rem);
+		grid-auto-flow: column;
 		gap: 1.25rem;
+		margin: -0.5rem -0.5rem 0;
+		overflow-x: auto;
+		padding: 0.5rem 0.5rem 0.75rem;
+		scroll-padding-inline: 1px;
+		scroll-snap-type: x proximity;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.related-grid :global(.article-card),
+	.more-card {
+		scroll-snap-align: start;
 	}
 
 	.more-card {
@@ -149,17 +177,13 @@ const relatedCards = related.map(p => {
 
 	@media (max-width: 68.75rem) {
 		.related-grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
+			grid-auto-columns: minmax(15.5rem, 72vw);
 		}
 	}
 
 	@media (max-width: 40rem) {
 		.article-page {
 			padding-top: 3.25rem;
-		}
-
-		.related-grid {
-			grid-template-columns: 1fr;
 		}
 	}
 </style>
