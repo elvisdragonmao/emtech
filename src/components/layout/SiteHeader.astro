@@ -58,6 +58,7 @@ const navItems = [
 		align-items: center;
 		max-width: var(--site-width);
 		margin: auto;
+		min-height: 4rem;
 	}
 
 	.brand {
@@ -78,15 +79,17 @@ const navItems = [
 
 	.main-nav {
 		display: flex;
-		align-items: center;
+		align-items: stretch;
 		gap: 2rem;
 		font-size: 1rem;
 		color: var(--color-muted);
+		height: 100%;
 	}
 
 	.main-nav a {
 		position: relative;
-		padding: 1rem 0;
+		display: flex;
+		align-items: center;
 		transition:
 			color 160ms ease,
 			transform 160ms ease;

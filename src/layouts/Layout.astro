@@ -35,7 +35,7 @@ const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥E
 
 <style>
 	.page-shell {
-		--page-padding: 4rem;
+		--page-padding: 2.75rem;
 		position: relative;
 		min-height: 100vh;
 		padding-inline: var(--page-padding);
@@ -47,7 +47,7 @@ const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥E
 		position: fixed;
 		top: 0;
 		bottom: 0;
-		width: 2.75rem;
+		width: var(--page-padding);
 		content: "";
 		border-inline: 1px solid var(--color-border);
 		background: repeating-linear-gradient(135deg, transparent 0 0.5rem, oklch(92% 0.012 250 / 72%) 0.5rem 0.75rem), oklch(100% 0 0 / 55%);
