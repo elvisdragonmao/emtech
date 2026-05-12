@@ -1,7 +1,7 @@
 ---
 title:
 authors: elvismao
-tags: []
+tags: [Node.js, JavaScript, SEO]
 categories: []
 date: 2026-04-02
 description: 今天我們要來講怎麼安裝 nvm、Node.js 和 pnpm。

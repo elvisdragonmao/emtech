@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: []
+tags: [辯論]
 categories: [英文辯論]
 date: 2025-05-25
 description: 「我不跟你玩你設定的遊戲規則，我要挑戰你那套規則本身」

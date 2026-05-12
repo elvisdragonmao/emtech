@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [Docker]
+tags: [Windows, Docker]
 categories: [軟體開發]
 date: 2025-03-06
 description: 直接去官方 GitHub Release 安裝下載 WSL，然後安裝 Docker Desktop 即可。

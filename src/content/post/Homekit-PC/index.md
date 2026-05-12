@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [iOS, 自製，Arduino, ESP32]
+tags: [iOS, HomeKit, Arduino, ESP32, 自製]
 categories: [生活駭客]
 date: 2024-01-09
 thumbnail: /static/Homekit-PC/power.webp

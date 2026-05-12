@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [Terminal, Windows, Android]
+tags: [PDF, Terminal, Windows, macOS, Android]
 categories: [生活駭客]
 date: 2022-09-06
 ---

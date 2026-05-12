@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: [競賽心得]
+tags: [競賽心得, 辯論]
 categories: [英文辯論]
 date: 2025-05-26
 description: 這是一個充滿師大魔法的比賽。你不能保證你有好的成績，但你能做到讓自己盡量成為一個好的辯士。

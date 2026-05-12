@@ -1,7 +1,7 @@
 ---
 title:
 authors: elvismao
-tags: []
+tags: [JavaScript]
 categories: []
 date: 2026-04-02
 description: 今天我們要來講 JavaScript 的非同步，從 callback、Promise 到 async/await。

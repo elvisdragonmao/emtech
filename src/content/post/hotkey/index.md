@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: []
+tags: [Windows, macOS, 快捷鍵]
 categories: [生活駭客]
 date: 2025-07-05
 description: 如果一顆按鈕你常會按，或是一個指令你常會打，那你就應該看看有沒有快捷鍵。沒有的話你就自己做一個。

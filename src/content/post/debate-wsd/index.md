@@ -1,6 +1,6 @@
 ---
 authors: elvismao
-tags: []
+tags: [辯論]
 categories: [英文辯論]
 date: 2025-06-28
 description: World Schools Debate 是一種結合國際議題與即席思辨的高中英文辯論賽制，強調邏輯、互動與價值衝突，而不只是堆砌證據。
