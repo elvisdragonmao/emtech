@@ -1,7 +1,7 @@
 {
 	"title": "前端網頁開發入門",
 	"description": "給想從零建立完整前端心智模型的學習者。不是只背語法，而是理解文件結構、排版系統、互動狀態與部署流程如何連在一起。",
-	"displayOrder": 10,
+	"displayOrder": 1,
 	"accent": "blue",
 	"thumbnail": "js/thumbnail.webp",
 	"meta": "零基礎 / 24 H / 課程",
