@@ -1,0 +1,414 @@
+---
+import { ArrowLeft, BookOpen, House, SearchX } from "@lucide/astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="404" description="找不到你想看的頁面。">
+	<main class="not-found-page">
+		<section class="hero-card" aria-labelledby="not-found-title">
+			<div class="copy">
+				<p class="eyebrow">Error / Lost Route</p>
+				<h1 id="not-found-title">你說你不想在這裡，<br />我也不想在這裡</h1>
+				<p class="lead">可能是網址打錯、文章搬家，或是你不小心來到不該來的神秘地方...</p>
+
+				<div class="actions" aria-label="404 頁面操作">
+					<a class="primary-action" href="/">
+						<House size={17} stroke-width={1.8} />
+						轉身向首頁走去
+					</a>
+					<a class="secondary-action" href="/archive/">
+						<BookOpen size={17} stroke-width={1.8} />
+						翻文章列表
+					</a>
+				</div>
+			</div>
+
+			<figure class="route-board" aria-label="404 路徑中斷插畫">
+				<div class="board-topline">
+					<span>ROUTE MAP</span>
+					<span>NODE 404</span>
+				</div>
+
+				<div class="code-mark" aria-hidden="true">
+					<span><span>4</span></span>
+					<span><span>0</span></span>
+					<span><span>4</span></span>
+				</div>
+
+				<div class="map" aria-hidden="true">
+					<span class="node node-a"></span>
+					<span class="node node-b"></span>
+					<span class="node node-c"></span>
+					<span class="node node-missing"><SearchX size={24} stroke-width={1.8} /></span>
+					<span class="track track-1"></span>
+					<span class="track track-2"></span>
+					<span class="track track-3"></span>
+					<span class="break-mark">//</span>
+				</div>
+
+				<figcaption>
+					<span>status</span>
+					<strong>path not found</strong>
+				</figcaption>
+			</figure>
+		</section>
+
+		<button class="back-link" type="button" data-go-back>
+			<ArrowLeft size={16} stroke-width={1.8} />
+			回到上一頁
+		</button>
+	</main>
+</Layout>
+
+<script>
+	const backButton = document.querySelector<HTMLButtonElement>("[data-go-back]");
+	backButton?.addEventListener("click", () => {
+		if (window.history.length > 1) {
+			window.history.back();
+			return;
+		}
+
+		window.location.href = "/";
+	});
+</script>
+
+<style>
+	.not-found-page {
+		width: min(var(--site-width), 100%);
+		min-height: calc(100vh - 9rem);
+		margin-inline: auto;
+		padding: clamp(4rem, 8vw, 7.5rem) 0 6rem;
+	}
+
+	.hero-card {
+		display: grid;
+		grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 0.72fr);
+		gap: clamp(2rem, 5vw, 5rem);
+		align-items: center;
+		padding: clamp(1.5rem, 4vw, 3rem);
+		background: oklch(100% 0 0 / 84%);
+		border: 1px solid var(--color-border);
+		border-top: 3px solid var(--color-ink);
+	}
+
+	.copy {
+		max-width: 46rem;
+	}
+
+	.eyebrow {
+		font-family: var(--font-mono);
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		color: var(--color-accent-strong);
+		text-transform: uppercase;
+	}
+
+	h1 {
+		margin-top: 1.25rem;
+		font-size: clamp(2rem, 5vw, 4.5rem);
+		line-height: 1.1;
+		letter-spacing: -0.085em;
+		color: var(--color-ink);
+	}
+
+	.lead {
+		max-width: 34rem;
+		margin-top: 1.75rem;
+		font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+		font-weight: 700;
+		line-height: 1.8;
+		color: var(--color-muted);
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+		margin-top: 2.25rem;
+	}
+
+	.actions a,
+	.back-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		min-height: 3rem;
+		padding: 0.85rem 1rem;
+		font-weight: 800;
+		border: 1px solid var(--color-border-strong);
+		transition:
+			color 160ms ease,
+			background 160ms ease,
+			border-color 160ms ease,
+			transform 160ms ease;
+	}
+
+	.primary-action {
+		color: var(--color-surface);
+		background: var(--color-ink);
+	}
+
+	.secondary-action,
+	.back-link {
+		color: var(--color-ink);
+		background: var(--color-surface);
+	}
+
+	.actions a:hover,
+	.back-link:hover {
+		transform: translateY(-0.12rem);
+		border-color: var(--color-accent-strong);
+	}
+
+	.primary-action:hover {
+		background: var(--color-accent-strong);
+	}
+
+	.secondary-action:hover,
+	.back-link:hover {
+		color: var(--color-accent-strong);
+		background: var(--color-accent-soft);
+	}
+
+	.route-board {
+		position: relative;
+		min-height: 30rem;
+		padding: 1rem;
+		background: var(--color-paper);
+		border: 1px solid var(--color-border-strong);
+	}
+
+	.route-board::before,
+	.route-board::after {
+		position: absolute;
+		width: 1.15rem;
+		height: 1.15rem;
+		content: "";
+		border: 1px solid var(--color-ink);
+	}
+
+	.route-board::before {
+		top: -0.45rem;
+		left: -0.45rem;
+		background: var(--color-accent-soft);
+	}
+
+	.route-board::after {
+		right: -0.45rem;
+		bottom: -0.45rem;
+		background: var(--color-surface);
+	}
+
+	.board-topline,
+	figcaption {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.board-topline {
+		padding-bottom: 0.8rem;
+		color: var(--color-muted);
+		border-bottom: 1px solid var(--color-border-strong);
+	}
+
+	.code-mark {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.75rem;
+		margin-top: 1rem;
+	}
+
+	.code-mark > span {
+		display: grid;
+		min-height: clamp(6rem, 11vw, 9rem);
+		place-items: center;
+		font-family: var(--font-mono);
+		font-size: clamp(4rem, 8vw, 7.5rem);
+		font-weight: 800;
+		line-height: 1;
+		letter-spacing: -0.12em;
+		color: var(--color-ink);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border-strong);
+	}
+
+	.code-mark span:nth-child(2) {
+		color: var(--color-accent-strong);
+		background: var(--color-accent-soft);
+	}
+
+	.code-mark > span > span {
+		transform: translateX(-0.4rem);
+	}
+	.map {
+		position: relative;
+		min-height: 12rem;
+		margin-top: 1rem;
+		background: var(--color-surface-soft);
+		border: 1px solid var(--color-border);
+	}
+
+	.node,
+	.track,
+	.break-mark {
+		position: absolute;
+	}
+
+	.node {
+		z-index: 2;
+		width: 2.5rem;
+		height: 2.5rem;
+		background: var(--color-surface);
+		border: 1px solid var(--color-ink);
+	}
+
+	.node::before,
+	.node::after {
+		position: absolute;
+		content: "";
+		background: var(--color-ink);
+	}
+
+	.node::before {
+		top: 50%;
+		left: 0.62rem;
+		right: 0.62rem;
+		height: 1px;
+	}
+
+	.node::after {
+		top: 0.62rem;
+		bottom: 0.62rem;
+		left: 50%;
+		width: 1px;
+	}
+
+	.node-a {
+		top: 1.5rem;
+		left: 1.5rem;
+	}
+
+	.node-b {
+		top: 1.5rem;
+		right: 1.5rem;
+	}
+
+	.node-c {
+		bottom: 1.5rem;
+		left: 34%;
+	}
+
+	.node-missing {
+		right: 23%;
+		bottom: 1.5rem;
+		display: grid;
+		place-items: center;
+		color: var(--color-orange);
+		background: var(--color-surface);
+		border-style: dashed;
+	}
+
+	.node-missing::before,
+	.node-missing::after {
+		display: none;
+	}
+
+	.track {
+		z-index: 1;
+		background: var(--color-border-strong);
+	}
+
+	.track-1 {
+		top: 2.75rem;
+		left: 4rem;
+		right: 4rem;
+		height: 1px;
+	}
+
+	.track-2 {
+		top: 2.75rem;
+		left: calc(34% + 1.25rem);
+		bottom: 4rem;
+		width: 1px;
+	}
+
+	.track-3 {
+		right: calc(23% + 1.25rem);
+		bottom: 2.75rem;
+		left: calc(34% + 2.5rem);
+		height: 1px;
+		background: var(--color-orange);
+	}
+
+	.break-mark {
+		right: calc(23% + 3.9rem);
+		bottom: 2.15rem;
+		font-family: var(--font-mono);
+		font-size: 1.2rem;
+		font-weight: 800;
+		color: var(--color-orange);
+		background: var(--color-surface-soft);
+	}
+
+	figcaption {
+		padding-top: 0.9rem;
+		margin-top: 1rem;
+		color: var(--color-muted);
+		border-top: 1px solid var(--color-border-strong);
+	}
+
+	figcaption strong {
+		color: var(--color-orange);
+	}
+
+	.back-link {
+		width: fit-content;
+		margin-top: 1rem;
+	}
+
+	@media (max-width: 62rem) {
+		.hero-card {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.not-found-page {
+			padding-top: 2.5rem;
+			padding-bottom: 4rem;
+		}
+
+		.hero-card {
+			padding: 1rem;
+		}
+
+		.actions {
+			flex-direction: column;
+		}
+
+		.actions a,
+		.back-link {
+			justify-content: center;
+			width: 100%;
+		}
+
+		.route-board {
+			min-height: 24rem;
+		}
+
+		.code-mark {
+			gap: 0.45rem;
+		}
+
+		.map {
+			min-height: 10rem;
+		}
+	}
+</style>
