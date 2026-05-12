@@ -506,8 +506,8 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 
 	.reading-toast {
 		position: fixed;
-		top: 1rem;
-		right: 1rem;
+		top: 7rem;
+		right: 5rem;
 		z-index: 30;
 		padding: 0.8rem 1rem;
 		font-size: 0.875rem;
@@ -855,7 +855,9 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	/* ── Responsive ──────────────────────────────────── */
 	@media (max-width: 68.75rem) {
 		.article-hero,
-		.article-shell {
+		.article-hero.course-layout,
+		.article-shell,
+		.article-shell.course-layout {
 			grid-template-columns: minmax(0, 1fr);
 			max-width: 51.25rem;
 			margin-inline: auto;
