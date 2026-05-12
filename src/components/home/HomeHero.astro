@@ -278,4 +278,88 @@ const featuredArticles = recentPosts.map((p, index) => {
 		letter-spacing: -0.04em;
 		color: var(--color-ink);
 	}
+
+	@media (max-width: 72rem) {
+		.hero {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+			align-items: start;
+			min-height: auto;
+			padding-bottom: 6rem;
+			margin-bottom: -3rem;
+		}
+
+		.hero-copy {
+			gap: 2rem;
+		}
+
+		h1 {
+			font-size: clamp(4.5rem, 17vw, 8rem);
+		}
+
+		.hero-gallery {
+			align-items: stretch;
+			padding-right: 0;
+		}
+
+		.dragon {
+			align-self: flex-end;
+			width: min(35rem, 86vw);
+			transform: translateX(1rem) rotate(-4deg);
+		}
+
+		.circle-one {
+			right: 1rem;
+		}
+
+		.circle-two {
+			left: 0;
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.hero {
+			padding-top: 1.5rem;
+			padding-bottom: 4rem;
+		}
+
+		.hero::before,
+		.circle {
+			display: none;
+		}
+
+		h1 {
+			margin-top: 1rem;
+			font-size: clamp(4rem, 24vw, 5.25rem);
+		}
+
+		.hero-subtitle {
+			font-size: 1.25rem;
+		}
+
+		.stats-panel {
+			grid-template-columns: 1fr;
+		}
+
+		.stats-panel div,
+		.stats-panel div:first-child {
+			border-top: 1px solid var(--color-border);
+			border-left: 0;
+		}
+
+		.stats-panel div:first-child {
+			border-top: 0;
+		}
+
+		.dragon {
+			width: min(25rem, 100%);
+			transform: none;
+		}
+
+		.feature-note {
+			grid-template-columns: minmax(5.5rem, 34%) 1fr;
+			gap: 0.85rem;
+			padding: 0.75rem;
+		}
+	}
 </style>

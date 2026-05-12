@@ -169,4 +169,32 @@ const { course, featured = false } = Astro.props;
 	.featured h3 {
 		font-size: 2rem;
 	}
+
+	@media (max-width: 40rem) {
+		h3,
+		.featured h3 {
+			font-size: 1.75rem;
+			letter-spacing: -0.055em;
+		}
+
+		.content,
+		.featured .content {
+			padding: 1.15rem;
+		}
+
+		.featured {
+			grid-template-columns: 1fr;
+		}
+
+		.featured .visual {
+			aspect-ratio: 2 / 1;
+			margin: 1rem 1rem 0;
+		}
+
+		.bottom {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 0.75rem;
+		}
+	}
 </style>

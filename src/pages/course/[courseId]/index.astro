@@ -81,31 +81,31 @@ const outcomes = courseData.outcomes ?? [];
 						<Clock size={18} stroke-width={1.8} />
 						<span>最後更新 {formatDate(latestDate)}</span>
 					</div>
-					<div><Users size={18} stroke-width={1.8} /><span>適合<br>所有學習者</span></div>
+					<div><Users size={18} stroke-width={1.8} /><span>適合<br />所有學習者</span></div>
 				</div>
 			</article>
 		</section>
 
 		<section class="curriculum">
-				{
-					lessons.map((lesson, i) => {
-						const lessonId = lesson.id.replace(`${courseId}/`, "");
-						const thumbKey = `@/content/course/${courseId}/${lessonId}/thumbnail.webp`;
-						const thumb = allThumbs[thumbKey]?.default ?? null;
-						return (
-							<CourseModuleRow
-								module={{
-									number: `Module ${String(i + 1).padStart(2, "0")}`,
-									title: extractTitle(lesson.body) || lesson.data.description || lessonId,
-									description: lesson.data.description ?? extractExcerpt(lesson.body),
-									duration: readingTime(lesson.body ?? lesson.data.description ?? ""),
-									image: thumb,
-									href: `/course/${courseId}/${lessonId}/`
-								}}
-							/>
-						);
-					})
-				}
+			{
+				lessons.map((lesson, i) => {
+					const lessonId = lesson.id.replace(`${courseId}/`, "");
+					const thumbKey = `@/content/course/${courseId}/${lessonId}/thumbnail.webp`;
+					const thumb = allThumbs[thumbKey]?.default ?? null;
+					return (
+						<CourseModuleRow
+							module={{
+								number: `Module ${String(i + 1).padStart(2, "0")}`,
+								title: extractTitle(lesson.body) || lesson.data.description || lessonId,
+								description: lesson.data.description ?? extractExcerpt(lesson.body),
+								duration: readingTime(lesson.body ?? lesson.data.description ?? ""),
+								image: thumb,
+								href: `/course/${courseId}/${lessonId}/`
+							}}
+						/>
+					);
+				})
+			}
 		</section>
 	</main>
 </Layout>
@@ -333,12 +333,25 @@ const outcomes = courseData.outcomes ?? [];
 			padding-top: 3.25rem;
 		}
 
+		h1 {
+			font-size: 3rem;
+			line-height: 1.05;
+		}
+
+		.lead {
+			font-size: 1.15rem;
+		}
+
 		.quick-stats {
 			grid-template-columns: 1fr;
 		}
 
 		.overview-card {
 			padding: 1.5rem;
+		}
+
+		.overview-card::after {
+			display: none;
 		}
 	}
 </style>
