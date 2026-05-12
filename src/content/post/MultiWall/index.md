@@ -11,11 +11,12 @@ date: 2021-09-08
 
 但是有了 MultiWall，你不但可以幫不同的螢幕設定不同的桌布，還可以讓一張背景橫跨多個桌布來達到延伸的效果。
 
-{{notice}} MultiWall
-
-- 開發者:is.gd
-- 軟體類型：免費軟體
-- 網址：[官網](http://windowbox.me/multiwall/downloads.php) {{noticed}}
+> [!NOTE]
+>
+> **MultiWall**
+> - 開發者:is.gd
+> - 軟體類型：免費軟體
+> - 網址：[官網](http://windowbox.me/multiwall/downloads.php)
 
 ## 使用教學
 

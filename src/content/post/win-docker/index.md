@@ -20,13 +20,11 @@ description: 直接去官方 GitHub Release 安裝下載 WSL，然後安裝 Dock
 
 ## 如何安裝
 
-{{notice}}
-
-### 我的電腦可以安裝嗎？
-
-現在不管你是家庭版、專業版、企業版都可以安裝，只要你的電腦支援虛擬化技術和系統版本夠新。完整系統要求可以參考 [官方說明文件](https://docs.docker.com/desktop/windows/install/#system-requirements)。
-
-{{noticed}}
+> [!NOTE]
+>
+> ### 我的電腦可以安裝嗎？
+>
+> 現在不管你是家庭版、專業版、企業版都可以安裝，只要你的電腦支援虛擬化技術和系統版本夠新。完整系統要求可以參考 [官方說明文件](https://docs.docker.com/desktop/windows/install/#system-requirements)。
 
 ### 開啟虛擬化
 

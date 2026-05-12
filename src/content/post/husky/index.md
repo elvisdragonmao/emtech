@@ -51,13 +51,11 @@ git update-index --again
 3. 丟給 Prettier 去格式化這些檔案，並加上 `--ignore-unknown` 來忽略 Prettier 不支援的檔案類型。
 4. `git update-index --again`：重新 add 一次剛才 add 過的檔案。
 
-{{notice}}
-
-### 🚫💩 lint-staged
-
-可以看到這裡的指令開始有點長了。如果你想要添加更複雜的可以考慮使用 [lint-staged](https://github.com/lint-staged/lint-staged)。
-
-{{noticed}}
+> [!NOTE]
+>
+> ### 🚫💩 lint-staged
+>
+> 可以看到這裡的指令開始有點長了。如果你想要添加更複雜的可以考慮使用 [lint-staged](https://github.com/lint-staged/lint-staged)。
 
 ok 這樣就很漂亮了。但是還有一個問題。我們寫的設定放在 `.git/hooks/pre-commit` 裡面，這個檔案是放在 `.git` 目錄下的，而 `.git` 目錄不會被加入版本控制 push 上去，所以其他團隊成員無法共用這個設定。你的傻狗隊友問題還是沒被解決。
 
