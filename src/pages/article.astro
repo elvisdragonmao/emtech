@@ -141,7 +141,7 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 		width: 16.25rem;
 		height: 16.25rem;
 		content: "";
-		border: 1px solid color-mix(in oklch, var(--color-accent) 48%, transparent);
+		border: 1px solid oklch(71% 0.15 225 / 48%);
 		border-radius: 50%;
 	}
 
@@ -301,7 +301,7 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 		position: relative;
 		padding: 2.25rem 2.75rem;
 		overflow: hidden;
-		background: color-mix(in oklch, var(--color-accent-soft) 62%, var(--color-surface));
+		background: oklch(93% 0.045 220 / 55%);
 		border: 1px solid var(--color-accent);
 	}
 
@@ -326,7 +326,7 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 		font-weight: 900;
 		line-height: 1;
 		letter-spacing: -0.08em;
-		color: color-mix(in oklch, var(--color-accent) 42%, transparent);
+		color: oklch(71% 0.15 225 / 42%);
 	}
 
 	.code-figure {
@@ -337,7 +337,7 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 		position: relative;
 		padding: 3rem 1.5rem 1.5rem;
 		background: var(--color-code-bg);
-		border: 1px solid color-mix(in oklch, var(--color-code-bg) 65%, var(--color-border));
+		border: 1px solid var(--color-border-strong);
 		box-shadow: var(--shadow-card);
 	}
 
@@ -380,7 +380,7 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 	.notice-box {
 		margin-top: 3rem;
 		padding: 2rem 2.25rem;
-		background: color-mix(in oklch, var(--color-paper) 65%, var(--color-surface));
+		background: oklch(97.2% 0.02 78 / 70%);
 		border: 1px solid var(--color-yellow);
 	}
 

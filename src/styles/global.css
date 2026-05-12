@@ -35,8 +35,8 @@
 	--color-pink: oklch(72% 0.18 350);
 	--color-code-bg: oklch(22% 0.03 260);
 	--color-code-ink: oklch(91% 0.018 250);
-	--shadow-soft: 0 1.75rem 5.75rem color-mix(in oklch, var(--color-ink) 9%, transparent);
-	--shadow-card: 0 1.25rem 2.5rem color-mix(in oklch, var(--color-ink) 8%, transparent);
+	--shadow-soft: 0 1.75rem 5.75rem oklch(17% 0.022 255 / 9%);
+	--shadow-card: 0 1.25rem 2.5rem oklch(17% 0.022 255 / 8%);
 	--font-sans: "IBMPlexSansTC", "IBM Plex Sans Chinese TC", sans-serif;
 	--font-mono: JetBrainsMono, "JetBrains Mono", monospace;
 	--site-width: 93.75rem;
@@ -58,7 +58,7 @@ body {
 	min-height: 100vh;
 	background:
 		linear-gradient(90deg, transparent calc(100% - 1px), var(--color-grid-line) 1px), linear-gradient(180deg, transparent calc(100% - 1px), var(--color-grid-line) 1px),
-		radial-gradient(circle, color-mix(in oklch, var(--color-grid) 55%, transparent) 1px, transparent 1.5px), var(--color-bg);
+		radial-gradient(circle, oklch(83% 0.05 225 / 55%) 1px, transparent 1.5px), var(--color-bg);
 	background-size:
 		12rem 12rem,
 		12rem 12rem,
@@ -90,10 +90,10 @@ button {
 
 ::selection {
 	color: var(--color-ink);
-	background: color-mix(in oklch, var(--color-accent) 30%, transparent);
+	background: oklch(71% 0.15 225 / 30%);
 }
 
 .card {
-	background: color-mix(in oklch, var(--color-surface) 82%, transparent);
+	background: oklch(100% 0 0 / 82%);
 	border: 1px solid var(--color-border);
 }

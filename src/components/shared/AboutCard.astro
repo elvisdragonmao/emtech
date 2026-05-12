@@ -50,7 +50,7 @@ const { copyright = false } = Astro.props;
 		width: min(57.5rem, 100%);
 		padding: 3rem;
 		overflow: hidden;
-		background: color-mix(in oklch, var(--color-surface) 84%, transparent);
+		background: oklch(100% 0 0 / 84%);
 		border: 1px solid var(--color-accent);
 		box-shadow: var(--shadow-card);
 	}
@@ -59,7 +59,7 @@ const { copyright = false } = Astro.props;
 		position: absolute;
 		inset: 1.25rem;
 		content: "";
-		border: 1px solid color-mix(in oklch, var(--color-border) 70%, transparent);
+		border: 1px solid oklch(89% 0.018 255 / 70%);
 		pointer-events: none;
 	}
 
@@ -112,6 +112,6 @@ const { copyright = false } = Astro.props;
 		left: 25%;
 		top: 0;
 		width: 60%;
-		filter: drop-shadow(0 1.5rem 1.5rem color-mix(in oklch, var(--color-accent) 18%, transparent));
+		filter: drop-shadow(0 1.5rem 1.5rem oklch(71% 0.15 225 / 18%));
 	}
 </style>
