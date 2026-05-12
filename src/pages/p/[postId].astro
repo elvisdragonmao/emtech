@@ -41,24 +41,36 @@ const meta: MetaItem[] = [
 	{ label: "Last Mod", value: formatDate(entry.data.date) }
 ];
 
-const relatedFilterType = entryTags[0] ? "tag" : "category";
-const relatedFilterValue = entryTags[0] ?? entryCategories[0] ?? "";
-
-const allPosts = (await getCollection("post")).filter(post => !post.data.draft);
+const allPosts = posts;
 const postsByDate = [...allPosts].sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
 const currentPostIndex = postsByDate.findIndex(p => p.id === postId);
 const previousPost = currentPostIndex > 0 ? postsByDate[currentPostIndex - 1] : null;
 const nextPost = currentPostIndex >= 0 && currentPostIndex < postsByDate.length - 1 ? postsByDate[currentPostIndex + 1] : null;
 
-// Related articles: latest posts with the same first tag, falling back to category.
-const related = allPosts
-	.filter(p => {
-		if (p.id === postId || !relatedFilterValue) return false;
-		const terms = relatedFilterType === "tag" ? normalizeTerms(p.data.tags) : normalizeTerms(p.data.categories);
-		return terms.includes(relatedFilterValue);
-	})
-	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-	.slice(0, 10);
+type RelatedFilter = {
+	type: "tag" | "category";
+	value: string;
+};
+
+const relatedFilters: RelatedFilter[] = [
+	...entryTags.slice(0, 2).map(value => ({ type: "tag" as const, value })),
+	...entryCategories.slice(0, 1).map(value => ({ type: "category" as const, value }))
+];
+
+const getRelatedPosts = (filter: RelatedFilter) =>
+	allPosts
+		.filter(p => {
+			if (p.id === postId || !filter.value) return false;
+			const terms = filter.type === "tag" ? normalizeTerms(p.data.tags) : normalizeTerms(p.data.categories);
+			return terms.includes(filter.value);
+		})
+		.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+		.slice(0, 10);
+
+const relatedResult = relatedFilters.map(filter => ({ filter, posts: getRelatedPosts(filter) })).find(result => result.posts.length > 0);
+const relatedFilterType = relatedResult?.filter.type ?? relatedFilters[0]?.type ?? "category";
+const relatedFilterValue = relatedResult?.filter.value ?? relatedFilters[0]?.value ?? "";
+const related = relatedResult?.posts ?? [];
 
 const moreRelatedHref = relatedFilterValue ? `/?${relatedFilterType}=${encodeURIComponent(relatedFilterValue)}#archive` : "/#archive";
 
@@ -178,6 +190,10 @@ const relatedCards = related.map(p => {
 	@media (max-width: 68.75rem) {
 		.related-grid {
 			grid-auto-columns: minmax(15.5rem, 72vw);
+		}
+
+		.about-wrap{
+			margin-top: 0;
 		}
 	}
 
