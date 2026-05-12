@@ -5,12 +5,12 @@ import type { ImageMetadata } from "astro";
 import AboutCard from "../../../components/shared/AboutCard.astro";
 import PostBody from "../../../components/shared/PostBody.astro";
 import Layout from "../../../layouts/Layout.astro";
-import { formatDate, extractTitle, type MetaItem } from "../../../utils/content";
+import { extractTitle, formatDate, formatHashTags, normalizeTerms, readingTime, wordCount, type MetaItem } from "../../../utils/content";
 import CourseSidebar from "../../../components/course/CourseSidebar.astro";
 
 export async function getStaticPaths() {
 	const lessons = await getCollection("lesson");
-	return lessons.map((lesson) => {
+	return lessons.map(lesson => {
 		const [courseId, lessonId] = lesson.id.split("/");
 		return { params: { courseId, lessonId } };
 	});
@@ -18,16 +18,16 @@ export async function getStaticPaths() {
 
 const { courseId, lessonId } = Astro.params;
 const allLessons = await getCollection("lesson");
-const entry = allLessons.find((l) => l.id === `${courseId}/${lessonId}`);
+const entry = allLessons.find(l => l.id === `${courseId}/${lessonId}`);
 
 if (!entry) return Astro.redirect("/404");
 
 const courses = await getCollection("course");
-const courseEntry = courses.find((c) => c.id === courseId);
+const courseEntry = courses.find(c => c.id === courseId);
 
 // Ordered lessons for prev/next navigation
 const courseLessons = allLessons
-	.filter((l) => l.id.startsWith(`${courseId}/`))
+	.filter(l => l.id.startsWith(`${courseId}/`))
 	.sort((a, b) => {
 		const order = courseEntry?.data.order ?? [];
 		const aId = a.id.replace(`${courseId}/`, "");
@@ -35,35 +35,37 @@ const courseLessons = allLessons
 		return order.indexOf(aId) - order.indexOf(bId);
 	});
 
-const currentIndex = courseLessons.findIndex((l) => l.id === entry.id);
+const currentIndex = courseLessons.findIndex(l => l.id === entry.id);
 const prevLesson = currentIndex > 0 ? courseLessons[currentIndex - 1] : null;
 const nextLesson = currentIndex < courseLessons.length - 1 ? courseLessons[currentIndex + 1] : null;
 
 const { Content, headings } = await render(entry);
 
 // Discover thumbnail
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>(
-	"../../../content/course/*/*/thumbnail.webp",
-	{ eager: true }
-);
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("../../../content/course/*/*/thumbnail.webp", { eager: true });
 const thumbKey = `../../../content/course/${courseId}/${lessonId}/thumbnail.webp`;
 const thumbnail: ImageMetadata | null = allThumbs[thumbKey]?.default ?? null;
 
 const title = headings[0]?.text ?? lessonId;
 const description = entry.data.description ?? "";
-const tag = entry.data.tags[0] ? `#${entry.data.tags[0]}` : entry.data.categories[0] ?? "";
+const entryTags = normalizeTerms(entry.data.tags);
+const entryCategories = normalizeTerms(entry.data.categories);
+const tag = formatHashTags(entryTags.length > 0 ? entryTags : entryCategories);
 
 const prevId = prevLesson?.id.replace(`${courseId}/`, "");
 const nextId = nextLesson?.id.replace(`${courseId}/`, "");
 
+const contentText = entry.body ?? "";
 const meta: MetaItem[] = [
 	{ label: "Date", value: formatDate(entry.data.date) },
-	{ label: "Category", value: entry.data.categories[0] ?? "" },
+	{ label: "Category", value: entryCategories[0] ?? "" },
+	{ label: "Read Time", value: readingTime(contentText) },
+	{ label: "Word", value: wordCount(contentText) },
 	{ label: "Last Mod", value: formatDate(entry.data.date) }
 ];
 
 // Build sidebar lesson list
-const sidebarLessons = courseLessons.map((l) => {
+const sidebarLessons = courseLessons.map(l => {
 	const slug = l.id.replace(`${courseId}/`, "");
 	return {
 		id: slug,
@@ -76,12 +78,7 @@ const sidebarLessons = courseLessons.map((l) => {
 <Layout title={title} description={description} active="course">
 	<main class="lesson-page">
 		<div class="lesson-layout">
-			<CourseSidebar
-				courseId={courseId}
-				courseTitle={courseEntry?.data.title ?? courseId}
-				lessons={sidebarLessons}
-				currentId={lessonId}
-			/>
+			<CourseSidebar courseId={courseId} courseTitle={courseEntry?.data.title ?? courseId} lessons={sidebarLessons} currentId={lessonId} />
 
 			<div class="lesson-body">
 				<PostBody
@@ -91,37 +88,39 @@ const sidebarLessons = courseLessons.map((l) => {
 					meta={meta}
 					tldr={description}
 					headings={headings}
-				previousHref={prevId ? `/course/${courseId}/${prevId}/` : undefined}
-				previousTitle={prevLesson ? (extractTitle(prevLesson.body) || prevLesson.data.description) : undefined}
-				nextHref={nextId ? `/course/${courseId}/${nextId}/` : undefined}
-				nextTitle={nextLesson ? (extractTitle(nextLesson.body) || nextLesson.data.description) : undefined}
+					previousHref={prevId ? `/course/${courseId}/${prevId}/` : undefined}
+					previousTitle={prevLesson ? extractTitle(prevLesson.body) || prevLesson.data.description : undefined}
+					nextHref={nextId ? `/course/${courseId}/${nextId}/` : undefined}
+					nextTitle={nextLesson ? extractTitle(nextLesson.body) || nextLesson.data.description : undefined}
+					progressStorageKey={`emtech:course-progress:${courseId}`}
+					progressItemId={lessonId}
 				>
 					<Content />
 				</PostBody>
 
 				<nav class="lesson-nav" aria-label="課程上下篇">
-				{
-					prevLesson && (
-						<a href={`/course/${courseId}/${prevId}/`}>
-							<span>Previous</span>
-							<strong>{extractTitle(prevLesson.body) || prevLesson.data.description || prevId}</strong>
-							<ArrowLeft size={16} stroke-width={1.8} />
-						</a>
-					)
-				}
+					{
+						prevLesson && (
+							<a href={`/course/${courseId}/${prevId}/`}>
+								<span>Previous</span>
+								<strong>{extractTitle(prevLesson.body) || prevLesson.data.description || prevId}</strong>
+								<ArrowLeft size={16} stroke-width={1.8} />
+							</a>
+						)
+					}
 					<a class="current" href={`/course/${courseId}/`}>
 						<span>Back to course</span>
 						<strong>{courseEntry?.data.title ?? courseId}</strong>
 					</a>
-				{
-					nextLesson && (
-						<a href={`/course/${courseId}/${nextId}/`}>
-							<span>Next</span>
-							<strong>{extractTitle(nextLesson.body) || nextLesson.data.description || nextId}</strong>
-							<ArrowRight size={16} stroke-width={1.8} />
-						</a>
-					)
-				}
+					{
+						nextLesson && (
+							<a href={`/course/${courseId}/${nextId}/`}>
+								<span>Next</span>
+								<strong>{extractTitle(nextLesson.body) || nextLesson.data.description || nextId}</strong>
+								<ArrowRight size={16} stroke-width={1.8} />
+							</a>
+						)
+					}
 				</nav>
 
 				<section class="about-wrap">
@@ -140,13 +139,16 @@ const sidebarLessons = courseLessons.map((l) => {
 	.lesson-layout {
 		display: grid;
 		grid-template-columns: 18rem minmax(0, 1fr);
-		gap: 3rem;
-		width: min(var(--site-width), 100%);
+		width: 100%;
 		margin-inline: auto;
 		align-items: start;
 	}
 
 	.lesson-body {
+		grid-column: 1 / -1;
+		grid-row: 1;
+		width: min(var(--site-width), 100%);
+		margin-inline: auto;
 		min-width: 0;
 	}
 
@@ -206,9 +208,15 @@ const sidebarLessons = courseLessons.map((l) => {
 		border-top: 3px solid var(--color-accent);
 	}
 
-	@media (max-width: 68.75rem) {
+	@media (max-width: 76rem) {
 		.lesson-layout {
 			grid-template-columns: 1fr;
+			width: min(var(--site-width), 100%);
+		}
+
+		.lesson-body {
+			grid-column: auto;
+			grid-row: auto;
 		}
 	}
 

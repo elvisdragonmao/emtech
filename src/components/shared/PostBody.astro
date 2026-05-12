@@ -15,23 +15,14 @@ interface Props {
 	previousTitle?: string;
 	nextHref?: string;
 	nextTitle?: string;
+	progressStorageKey?: string;
+	progressItemId?: string;
 }
 
-const {
-	tag,
-	title,
-	image,
-	meta,
-	tldr,
-	headings = [],
-	previousHref,
-	previousTitle,
-	nextHref,
-	nextTitle
-} = Astro.props;
+const { tag, title, image, meta, tldr, headings = [], previousHref, previousTitle, nextHref, nextTitle, progressStorageKey, progressItemId } = Astro.props;
 
 // Only show TOC headings at depth 2 and 3
-const tocItems = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 ---
 
 <section class="article-hero">
@@ -71,11 +62,8 @@ const tocItems = headings.filter((h) => h.depth === 2 || h.depth === 3);
 			tocItems.length > 0 ? (
 				<>
 					<span class="toc-label">On This Page</span>
-					{tocItems.map((item) => (
-						<a
-							href={`#${item.slug}`}
-							class:list={[{ "toc-h3": item.depth === 3 }]}
-						>
+					{tocItems.map(item => (
+						<a href={`#${item.slug}`} class:list={[{ "toc-h3": item.depth === 3 }]} data-toc-link={item.slug}>
 							{item.text}
 						</a>
 					))}
@@ -84,23 +72,125 @@ const tocItems = headings.filter((h) => h.depth === 2 || h.depth === 3);
 		}
 	</aside>
 
-	<article id="content" class="article-content">
-		{
-			image && (
-				<img
-					class="hero-image"
-					src={image.src}
-					width={image.width}
-					height={image.height}
-					alt={title}
-				/>
-			)
-		}
+	<article id="content" class="article-content" data-progress-storage-key={progressStorageKey} data-progress-item-id={progressItemId}>
+		{image && <img class="hero-image" src={image.src} width={image.width} height={image.height} alt={title} />}
 		<slot />
+		<div data-read-complete-sentinel aria-hidden="true"></div>
 	</article>
 
 	<div></div>
 </section>
+
+<div class="reading-toast" data-reading-toast role="status" aria-live="polite" hidden>閱讀完成已紀錄</div>
+
+<script>
+	const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"));
+	const tocHeadings = tocLinks
+		.map(link => {
+			const id = link.dataset.tocLink;
+			const heading = id ? document.getElementById(id) : null;
+			return heading ? { id, heading, link } : null;
+		})
+		.filter((item): item is { id: string; heading: HTMLElement; link: HTMLAnchorElement } => Boolean(item));
+
+	const setActiveToc = (id: string) => {
+		for (const { id: itemId, link } of tocHeadings) {
+			link.classList.toggle("active", itemId === id);
+		}
+	};
+
+	let tocFrame = 0;
+	const updateToc = () => {
+		tocFrame = 0;
+		const firstHeading = tocHeadings[0];
+		if (!firstHeading) return;
+
+		const active = tocHeadings.reduce((current, item) => {
+			const top = item.heading.getBoundingClientRect().top;
+			return top <= 120 ? item : current;
+		}, firstHeading);
+
+		setActiveToc(active.id);
+	};
+
+	const queueTocUpdate = () => {
+		if (tocFrame) return;
+		tocFrame = window.requestAnimationFrame(updateToc);
+	};
+
+	if (tocHeadings.length > 0) {
+		updateToc();
+		window.addEventListener("scroll", queueTocUpdate, { passive: true });
+		window.addEventListener("resize", queueTocUpdate);
+	}
+
+	const progressArticle = document.querySelector<HTMLElement>("[data-progress-storage-key][data-progress-item-id]");
+	const sentinel = progressArticle?.querySelector<HTMLElement>("[data-read-complete-sentinel]");
+	const toast = document.querySelector<HTMLElement>("[data-reading-toast]");
+
+	const parseProgress = (value: string | null) => {
+		if (!value) return [];
+		try {
+			const parsed = JSON.parse(value);
+			return Array.isArray(parsed) ? parsed.filter((item): item is string => typeof item === "string") : [];
+		} catch {
+			return [];
+		}
+	};
+
+	const showToast = () => {
+		if (!toast) return;
+		toast.hidden = false;
+		toast.classList.add("visible");
+		window.setTimeout(() => {
+			toast.classList.remove("visible");
+			window.setTimeout(() => {
+				toast.hidden = true;
+			}, 180);
+		}, 2600);
+	};
+
+	const markReadComplete = () => {
+		const storageKey = progressArticle?.dataset.progressStorageKey;
+		const itemId = progressArticle?.dataset.progressItemId;
+		if (!storageKey || !itemId) return;
+
+		const completed = parseProgress(window.localStorage.getItem(storageKey));
+		if (completed.includes(itemId)) return;
+
+		const nextCompleted = [...completed, itemId];
+		window.localStorage.setItem(storageKey, JSON.stringify(nextCompleted));
+		window.dispatchEvent(new CustomEvent("emtech:course-progress", { detail: { storageKey, completed: nextCompleted } }));
+		showToast();
+	};
+
+	if (progressArticle && sentinel) {
+		const supportsIntersectionObserver = typeof window.IntersectionObserver === "function";
+
+		if (supportsIntersectionObserver) {
+			const observer = new IntersectionObserver(
+				entries => {
+					if (entries.some(entry => entry.isIntersecting)) {
+						markReadComplete();
+						observer.disconnect();
+					}
+				},
+				{ rootMargin: "0px 0px -10% 0px" }
+			);
+			observer.observe(sentinel);
+		} else {
+			const scrollTarget: Window = window;
+			scrollTarget.addEventListener(
+				"scroll",
+				() => {
+					const bottom = progressArticle.getBoundingClientRect().bottom;
+					if (bottom <= window.innerHeight + 24) markReadComplete();
+				},
+				{ passive: true }
+			);
+		}
+	}
+</script>
 
 <style>
 	.article-hero,
@@ -197,6 +287,11 @@ const tocItems = headings.filter((h) => h.depth === 2 || h.depth === 3);
 		font-size: 0.75rem;
 		font-weight: 700;
 		color: var(--color-muted);
+		transition: color 140ms ease;
+	}
+
+	.toc a.active {
+		color: var(--color-accent-strong);
 	}
 
 	.toc a.toc-h3 {
@@ -221,6 +316,30 @@ const tocItems = headings.filter((h) => h.depth === 2 || h.depth === 3);
 		font-size: 1rem;
 		line-height: 2;
 		color: var(--color-text);
+	}
+
+	.reading-toast {
+		position: fixed;
+		top: 1rem;
+		right: 1rem;
+		z-index: 30;
+		padding: 0.8rem 1rem;
+		font-size: 0.875rem;
+		font-weight: 700;
+		color: var(--color-ink);
+		background: oklch(100% 0 0 / 92%);
+		border: 1px solid var(--color-accent);
+		box-shadow: var(--shadow-card);
+		opacity: 0;
+		transform: translateY(-0.5rem);
+		transition:
+			opacity 180ms ease,
+			transform 180ms ease;
+	}
+
+	.reading-toast.visible {
+		opacity: 1;
+		transform: translateY(0);
 	}
 
 	.hero-image {
