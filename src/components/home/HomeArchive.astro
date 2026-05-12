@@ -322,7 +322,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 		const probe = document.createElement("div");
 		probe.style.position = "absolute";
 		probe.style.visibility = "hidden";
-		probe.style.height = value || "32rem";
+		probe.style.height = value || "42rem";
 		document.body.append(probe);
 		const height = probe.getBoundingClientRect().height;
 		probe.remove();
@@ -502,7 +502,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 	}
 
 	.tag-cloud {
-		--tag-cloud-collapsed-height: 32rem;
+		--tag-cloud-collapsed-height: 42rem;
 
 		display: flex;
 		flex-wrap: wrap;
