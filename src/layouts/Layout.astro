@@ -1,6 +1,7 @@
 ---
 import SiteFooter from "../components/layout/SiteFooter.astro";
 import SiteHeader from "../components/layout/SiteHeader.astro";
+import ScrollToTopButton from "../components/shared/ScrollToTopButton.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -27,6 +28,7 @@ const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥E
 			<SiteHeader active={active} />
 			<slot />
 			<SiteFooter />
+			<ScrollToTopButton />
 		</div>
 	</body>
 </html>

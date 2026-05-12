@@ -1,0 +1,118 @@
+---
+import { ArrowUp } from "@lucide/astro";
+---
+
+<button class="scroll-to-top" type="button" aria-label="回到頁面頂端" tabindex="-1" aria-hidden="true" data-scroll-to-top>
+	<span class="scroll-to-top__label">Top</span>
+	<ArrowUp size={18} stroke-width={1.9} />
+</button>
+
+<script>
+	const button = document.querySelector<HTMLButtonElement>("[data-scroll-to-top]");
+
+	if (button) {
+		const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+		let ticking = false;
+
+		const updateVisibility = () => {
+			const isVisible = window.scrollY > 360;
+
+			button.toggleAttribute("data-visible", isVisible);
+			button.tabIndex = isVisible ? 0 : -1;
+			button.setAttribute("aria-hidden", String(!isVisible));
+			ticking = false;
+		};
+
+		const handleScroll = () => {
+			if (!ticking) {
+				window.requestAnimationFrame(updateVisibility);
+				ticking = true;
+			}
+		};
+
+		button.addEventListener("click", () => {
+			window.scrollTo({
+				top: 0,
+				behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+			});
+		});
+
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		updateVisibility();
+	}
+</script>
+
+<style>
+	.scroll-to-top {
+		position: fixed;
+		right: max(1rem, var(--page-padding, 1rem));
+		bottom: 1.5rem;
+		z-index: 30;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.7rem 0.85rem;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		line-height: 1;
+		color: var(--color-muted);
+		background:
+			repeating-linear-gradient(135deg, transparent 0 0.45rem, oklch(92% 0.012 250 / 62%) 0.45rem 0.65rem),
+			oklch(100% 0 0 / 88%);
+		border: 1px solid var(--color-border-strong);
+		box-shadow:
+			inset 0 0 0 1px oklch(100% 0 0 / 70%),
+			var(--shadow-card);
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(0.75rem);
+		backdrop-filter: blur(0.75rem);
+		transition:
+			color 160ms ease,
+			background 160ms ease,
+			border-color 160ms ease,
+			opacity 160ms ease,
+			transform 160ms ease;
+	}
+
+	.scroll-to-top[data-visible] {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+
+	.scroll-to-top:hover,
+	.scroll-to-top:focus-visible {
+		color: var(--color-ink);
+		background: var(--color-accent-soft);
+		border-color: var(--color-accent);
+	}
+
+	.scroll-to-top:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 3px;
+	}
+
+	.scroll-to-top__label {
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	@media (max-width: 40rem) {
+		.scroll-to-top {
+			right: 1rem;
+			bottom: 1rem;
+			padding: 0.7rem;
+		}
+
+		.scroll-to-top__label {
+			display: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.scroll-to-top {
+			transition: none;
+		}
+	}
+</style>
