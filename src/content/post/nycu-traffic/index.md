@@ -1,7 +1,7 @@
 ---
 authors: elvismao
-tags: [交大]
-categories: [生活駭客，特殊選才]
+tags: [交大, 特殊選才]
+categories: [生活駭客]
 date: 2025-12-13
 lastmod: 2026-04-17
 description: 陽明交大交通指南
