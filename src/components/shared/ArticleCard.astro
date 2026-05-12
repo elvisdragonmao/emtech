@@ -22,19 +22,7 @@ const { article } = Astro.props;
 
 <a class="article-card" href={article.href}>
 	<figure>
-		{
-			article.image ? (
-				<img
-					src={article.image.src}
-					width={article.image.width}
-					height={article.image.height}
-					alt={article.title}
-					loading="lazy"
-				/>
-			) : (
-				<div class="placeholder" aria-hidden="true" />
-			)
-		}
+		{article.image ? <img src={article.image.src} width={article.image.width} height={article.image.height} alt={article.title} loading="lazy" /> : <div class="placeholder" aria-hidden="true" />}
 	</figure>
 	<h3>{article.title}</h3>
 	<p class="tag">{article.tag}</p>
@@ -75,11 +63,11 @@ const { article } = Astro.props;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		transition: transform 260ms ease;
 	}
 
 	.article-card:hover img {
 		transform: scale(1.04);
-		transition: transform 260ms ease;
 	}
 
 	.tag {

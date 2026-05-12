@@ -25,16 +25,16 @@ const TYPE_MAP = {
 };
 
 export function rehypeCallouts() {
-	return (tree) => {
+	return tree => {
 		visit(tree, "element", (node, index, parent) => {
 			if (node.tagName !== "blockquote") return;
 
 			// Find the first paragraph child
-			const firstP = node.children?.find((c) => c.type === "element" && c.tagName === "p");
+			const firstP = node.children?.find(c => c.type === "element" && c.tagName === "p");
 			if (!firstP) return;
 
 			// Extract the raw text from the first paragraph's first text node
-			const firstText = firstP.children?.find((c) => c.type === "text");
+			const firstText = firstP.children?.find(c => c.type === "text");
 			if (!firstText) return;
 
 			// Text may be "[!NOTE]", "[!NOTE] Title", or "[!NOTE]\nRest of content"
@@ -68,7 +68,7 @@ export function rehypeCallouts() {
 			}
 
 			// Remaining sibling paragraphs in the blockquote
-			const restChildren = node.children.filter((c) => c !== firstP);
+			const restChildren = node.children.filter(c => c !== firstP);
 			calloutChildren.push(...restChildren);
 
 			// Optional watermark span
