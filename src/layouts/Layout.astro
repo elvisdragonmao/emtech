@@ -33,8 +33,10 @@ const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥E
 
 <style>
 	.page-shell {
+		--page-padding: 4rem;
 		position: relative;
 		min-height: 100vh;
+		padding-inline: var(--page-padding);
 		overflow: clip;
 	}
 
@@ -62,6 +64,12 @@ const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥E
 		.page-shell::before,
 		.page-shell::after {
 			display: none;
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.page-shell {
+			--page-padding: 1rem;
 		}
 	}
 </style>

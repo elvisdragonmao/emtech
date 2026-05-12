@@ -45,7 +45,8 @@ const navItems = [
 		position: sticky;
 		top: 0;
 		z-index: 20;
-		width: 100%;
+		margin-inline: calc(var(--page-padding, 0rem) * -1);
+		padding-inline: var(--page-padding, 0rem);
 		border-bottom: 1px solid var(--color-border);
 		background: color-mix(in oklch, var(--color-bg) 88%, transparent);
 		backdrop-filter: blur(1.25rem);
@@ -57,7 +58,6 @@ const navItems = [
 		align-items: center;
 		max-width: var(--site-width);
 		margin: auto;
-		padding: 0 2rem;
 	}
 
 	.brand {

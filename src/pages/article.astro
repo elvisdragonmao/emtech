@@ -103,6 +103,8 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 
 <style>
 	.article-page {
+		width: min(var(--site-width), 100%);
+		margin-inline: auto;
 		padding-top: 5.5rem;
 	}
 
@@ -111,13 +113,12 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 	.related-wrap,
 	.about-wrap,
 	.comments-wrap {
-		width: min(var(--site-width), calc(100% - 2rem));
-		margin-inline: auto;
+		width: 100%;
 	}
 
 	.article-hero {
 		display: grid;
-		grid-template-columns: 12.5rem minmax(0, 58.25rem) 14.5rem;
+		grid-template-columns: 12.5rem minmax(0, 58.25rem) 12.5rem;
 		gap: 2.75rem;
 		align-items: start;
 	}
@@ -161,22 +162,22 @@ const updateLayout = () =&gt; document.documentElement.style.setProperty("--rail
 
 	.tag {
 		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		font-weight: 800;
+		font-size: 1rem;
+		font-weight: 400;
 		color: var(--color-accent-strong);
 	}
 
 	h1 {
 		margin: 1.25rem 0 2rem;
-		font-size: 4.75rem;
-		line-height: 1.02;
-		letter-spacing: -0.085em;
+		font-size: 4rem;
+		line-height: 1.2;
+		letter-spacing: -0.05em;
 		color: var(--color-ink);
 	}
 
 	.article-shell {
 		display: grid;
-		grid-template-columns: 12.5rem minmax(0, 58.25rem) 14.5rem;
+		grid-template-columns: 12.5rem minmax(0, 58.25rem) 12.5rem;
 		gap: 2.75rem;
 		align-items: start;
 		margin-top: 2.75rem;

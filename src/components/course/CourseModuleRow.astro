@@ -24,7 +24,7 @@ const { module } = Astro.props;
 	.module-row {
 		display: grid;
 		grid-template-columns: 7.5rem 13.75rem minmax(0, 1fr) 4.75rem 1.5rem;
-		align-items: center;
+		align-items: start;
 		gap: 2rem;
 		padding: 1.5rem 1.25rem;
 		border-top: 1px solid var(--color-border);
@@ -68,6 +68,7 @@ const { module } = Astro.props;
 	}
 
 	.arrow {
+		align-self: center;
 		color: var(--color-accent-strong);
 		opacity: 0;
 		transform: translateX(-0.5rem);
