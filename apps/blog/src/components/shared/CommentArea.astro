@@ -86,8 +86,7 @@ const { compact = false } = Astro.props;
 		color: var(--color-text);
 		background: oklch(100% 0 0 / 84%);
 		border: 1px solid var(--color-border);
-		outline: 2px solid transparent;
-		outline-offset: 2px;
+		outline: none;
 		transition: border-color 160ms ease;
 	}
 
@@ -98,11 +97,6 @@ const { compact = false } = Astro.props;
 	input:focus,
 	textarea:focus {
 		border-color: var(--color-accent);
-	}
-
-	input:focus-visible,
-	textarea:focus-visible {
-		outline-color: var(--color-accent-strong);
 	}
 
 	.actions {
