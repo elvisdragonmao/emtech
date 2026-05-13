@@ -3,10 +3,10 @@ import { ArrowRight } from "@lucide/astro";
 import SectionTitle from "@/components/shared/SectionTitle.astro";
 
 const specialPages = [
-	{ title: "交個朋友", description: "打開我的電子報" },
-	{ title: "友情連結", description: "我的好朋友們" },
-	{ title: "關於本站", description: "伴隨我們開始？" },
-	{ title: "RSS", description: "從海量內容中控管" }
+	{ title: "交個朋友", description: "打開我的電子報", href: "/article/" },
+	{ title: "友情連結", description: "我的好朋友們", href: "/friends/" },
+	{ title: "關於本站", description: "伴隨我們開始？", href: "/article/" },
+	{ title: "RSS", description: "從海量內容中控管", href: "/rss.xml" }
 ];
 ---
 
@@ -15,7 +15,7 @@ const specialPages = [
 	<div class="special-grid">
 		{
 			specialPages.map(page => (
-				<a class="card" href="/article/">
+				<a class="card" href={page.href}>
 					<h3>{page.title}</h3>
 					<p>{page.description}</p>
 					<ArrowRight size={17} stroke-width={1.8} aria-hidden="true" />
