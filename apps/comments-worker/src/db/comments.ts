@@ -16,13 +16,18 @@ export function publicCommentFromRow(row: CommentRow): PublicComment {
 			name: escapeHtml(name),
 			avatarUrl
 		},
+		meta: {
+			device: row.device_label ? escapeHtml(row.device_label) : null,
+			browser: row.browser_label ? escapeHtml(row.browser_label) : null,
+			location: row.location_label ? escapeHtml(row.location_label) : null
+		},
 		createdAt: row.created_at
 	};
 }
 
 export async function listApprovedComments(env: Env, pagePath: string): Promise<PublicComment[]> {
 	const { results } = await env.COMMENTS_DB.prepare(
-		`SELECT id, page_path, parent_id, body, author_type, author_name, email_hash, github_user_id, github_login, github_avatar_url, status, created_at, updated_at
+		`SELECT id, page_path, parent_id, body, author_type, author_name, email_hash, github_user_id, github_login, github_avatar_url, status, device_label, browser_label, location_label, created_at, updated_at
 		 FROM comments
 		 WHERE page_path = ? AND status = 'approved'
 		 ORDER BY created_at ASC`
@@ -50,6 +55,9 @@ export async function insertComment(
 		status: CommentStatus;
 		ipHash: string | null;
 		userAgentHash: string | null;
+		deviceLabel: string | null;
+		browserLabel: string | null;
+		locationLabel: string | null;
 		user: SessionUser | null;
 	}
 ): Promise<void> {
@@ -60,8 +68,8 @@ export async function insertComment(
 		`INSERT INTO comments (
 			id, page_path, parent_id, body, author_type, author_name, email_hash,
 			github_user_id, github_login, github_avatar_url, status, ip_hash,
-			user_agent_hash, created_at, updated_at
-		) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+			user_agent_hash, device_label, browser_label, location_label, created_at, updated_at
+		) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 	)
 		.bind(
 			data.id,
@@ -77,6 +85,9 @@ export async function insertComment(
 			data.status,
 			data.ipHash,
 			data.userAgentHash,
+			data.deviceLabel,
+			data.browserLabel,
+			data.locationLabel,
 			now,
 			now
 		)

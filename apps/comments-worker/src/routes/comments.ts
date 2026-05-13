@@ -4,6 +4,7 @@ import { insertComment, listApprovedComments, parentExists } from "../db/comment
 import type { AppContext } from "../types";
 import { hashIp, randomId, secretHash } from "../utils/crypto";
 import { clientIp, json, readJson } from "../utils/http";
+import { publicRequestContext } from "../utils/request-context";
 import { createCommentSchema, listCommentsSchema } from "../utils/validation";
 
 const RATE_LIMIT_WINDOW_SECONDS = 60 * 10;
@@ -55,6 +56,7 @@ export async function createComment(ctx: AppContext): Promise<Response> {
 	const maybeEmailHash = normalizedEmail ? await emailHash(normalizedEmail) : null;
 	const userAgent = ctx.request.headers.get("User-Agent") ?? "";
 	const userAgentHash = userAgent ? await secretHash(userAgent, ctx.env.IP_HASH_SECRET) : null;
+	const requestContext = publicRequestContext(ctx.request);
 	const commentId = randomId();
 
 	await insertComment(ctx.env, {
@@ -67,6 +69,9 @@ export async function createComment(ctx: AppContext): Promise<Response> {
 		status,
 		ipHash,
 		userAgentHash,
+		deviceLabel: requestContext.deviceLabel,
+		browserLabel: requestContext.browserLabel,
+		locationLabel: requestContext.locationLabel,
 		user
 	});
 

@@ -45,6 +45,9 @@ export type CommentRow = {
 	github_login: string | null;
 	github_avatar_url: string | null;
 	status: CommentStatus;
+	device_label: string | null;
+	browser_label: string | null;
+	location_label: string | null;
 	created_at: string;
 	updated_at: string;
 };
