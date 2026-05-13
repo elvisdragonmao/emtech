@@ -488,8 +488,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		color: var(--color-text);
 		background: oklch(100% 0 0 / 84%);
 		border: 1px solid var(--color-border);
-		outline: 2px solid transparent;
-		outline-offset: 2px;
+		outline: none;
 		transition: border-color 160ms ease;
 	}
 
@@ -500,11 +499,6 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 	input:focus,
 	textarea:focus {
 		border-color: var(--color-accent);
-	}
-
-	input:focus-visible,
-	textarea:focus-visible {
-		outline-color: var(--color-accent-strong);
 	}
 
 	.replying {

@@ -79,9 +79,13 @@ html {
 	-webkit-font-smoothing: antialiased;
 }
 
-:where(a, button, input, textarea, select, summary):focus-visible {
+:where(a, button, select, summary):focus-visible {
 	outline: 2px solid var(--color-accent-strong);
 	outline-offset: 3px;
+}
+
+:where(input, textarea):focus {
+	outline: none;
 }
 
 :where(main):focus {
