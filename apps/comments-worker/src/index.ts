@@ -6,32 +6,36 @@ import type { AppContext, Env } from "./types";
 import { corsHeaders, json, routeNotFound } from "./utils/http";
 
 export default {
-	async fetch(request: Request, env: Env): Promise<Response> {
-		const headers = corsHeaders(request, env.ALLOWED_ORIGINS ?? "");
-
-		if (request.method === "OPTIONS") {
-			return new Response(null, { status: 204, headers });
-		}
-
-		const url = new URL(request.url);
-		const ctx: AppContext = { request, env, url, corsHeaders: headers };
-
-		try {
-			return await route(ctx);
-		} catch (error) {
-			if (error instanceof Response) {
-				const responseHeaders = new Headers(error.headers);
-				for (const [key, value] of Object.entries(headers)) {
-					responseHeaders.set(key, value);
-				}
-				return new Response(error.body, { status: error.status, statusText: error.statusText, headers: responseHeaders });
-			}
-
-			console.error(error);
-			return json({ error: "Internal server error" }, { status: 500 }, headers);
-		}
+	fetch(request: Request, env: Env): Promise<Response> {
+		return Promise.resolve(handleFetch(request, env));
 	}
 };
+
+async function handleFetch(request: Request, env: Env): Promise<Response> {
+	const headers = corsHeaders(request, env.ALLOWED_ORIGINS ?? "");
+
+	if (request.method === "OPTIONS") {
+		return new Response(null, { status: 204, headers });
+	}
+
+	const url = new URL(request.url);
+	const ctx: AppContext = { request, env, url, corsHeaders: headers };
+
+	try {
+		return await route(ctx);
+	} catch (error) {
+		if (error instanceof Response) {
+			const responseHeaders = new Headers(error.headers);
+			for (const [key, value] of Object.entries(headers)) {
+				responseHeaders.set(key, value);
+			}
+			return new Response(error.body, { status: error.status, statusText: error.statusText, headers: responseHeaders });
+		}
+
+		console.error(error);
+		return json({ error: "Internal server error" }, { status: 500 }, headers);
+	}
+}
 
 async function route(ctx: AppContext): Promise<Response> {
 	const { pathname } = ctx.url;

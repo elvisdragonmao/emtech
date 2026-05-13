@@ -145,7 +145,7 @@ pnpm --filter blog build
 部署 comments worker：
 
 ```bash
-pnpm --filter comments-worker deploy
+pnpm --filter comments-worker run deploy
 ```
 
 若使用 Cloudflare Pages/Workers 靜態資產部署 blog，`apps/blog/wrangler.jsonc` 仍保留原本靜態站設定。
