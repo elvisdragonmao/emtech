@@ -89,8 +89,7 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 		<section class="comments-panel" aria-label="友情連結留言區">
 			<div class="comments-note">
 				<p class="eyebrow">Request</p>
-				<p>如果你也想出現在這裡，歡迎提供照片、網址、簡介等資訊給我。如果你有友列想要加我，也可以直接在下方留言。</p>
-				<p>想加入友情連結可以在這裡留言，記得附上網站、名稱、簡介與頭像連結。</p>
+				<p>如果你也想出現在這裡，或是想加我，歡迎在底下留言提供照片、網址、簡介等資訊給我嗷！</p>
 			</div>
 			<Comments pagePath="/friends/" />
 		</section>
@@ -127,14 +126,6 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 		grid-template-columns: minmax(0, 1fr) auto;
 		align-items: end;
 		gap: 2rem;
-	}
-
-	h1 {
-		margin-top: 1.5rem;
-		font-size: 8rem;
-		line-height: 1;
-		letter-spacing: -0.06em;
-		color: var(--color-ink);
 	}
 
 	.lede {
@@ -369,10 +360,6 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 		.friends-header {
 			padding-inline: 1rem;
 			padding-bottom: 3rem;
-		}
-
-		h1 {
-			font-size: 5rem;
 		}
 
 		.hero-note {

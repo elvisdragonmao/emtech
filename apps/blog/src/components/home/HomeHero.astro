@@ -180,7 +180,7 @@ const featuredArticles = recentPosts.map((p, index) => {
 		display: block;
 		margin-top: 0.5rem;
 		font-size: 1.75rem;
-		line-height: 1;
+		line-height: 1.75rem;
 		letter-spacing: -0.04em;
 		color: var(--color-ink);
 	}
@@ -333,14 +333,18 @@ const featuredArticles = recentPosts.map((p, index) => {
 
 		h1 {
 			margin-top: 1rem;
-			font-size: clamp(4rem, 24vw, 5.25rem);
+			font-size: max(3rem, 20vw);
 		}
 
 		.hero-subtitle {
 			font-size: 1.25rem;
 		}
 
-		.stats-panel {
+		.stats-panel div:last-child strong {
+			font-size: max(1.25rem, 5vw);
+		}
+
+		/* .stats-panel {
 			grid-template-columns: 1fr;
 			width: fit-content;
 		}
@@ -357,7 +361,7 @@ const featuredArticles = recentPosts.map((p, index) => {
 
 		.stats-panel div:first-child {
 			border-top: 0;
-		}
+		} */
 
 		.dragon {
 			width: min(45rem, 100%);
