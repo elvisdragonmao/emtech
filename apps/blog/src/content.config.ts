@@ -19,7 +19,7 @@ const post = defineCollection({
 			.string()
 			.nullish()
 			.transform(v => v ?? undefined),
-		thumbnail: z.string().optional() // legacy absolute path for older posts
+		thumbnail: z.string().optional()
 	})
 });
 

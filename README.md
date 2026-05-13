@@ -4,7 +4,11 @@
 
 <https://emtech.cc>
 
-## Monorepo
+![封面](apps/blog/src/content/post/emtech-2026/thumbnail.webp)
+
+> 關於目前 2026 新架構可參考文章 - [毛哥EM資訊密技 2026：重造了個毛茸茸的大輪子！](https://emtech.cc/p/emtech-2026/)
+
+## 架構
 
 這個 repo 使用 pnpm workspace：
 
@@ -42,7 +46,7 @@ pnpm --filter comments-worker typecheck
 pnpm --filter comments-worker test
 ```
 
-## Comments Worker Setup
+### Comments Worker Setup
 
 先複製本機 env 範例：
 
@@ -66,7 +70,7 @@ COMMENT_DEFAULT_STATUS_GITHUB
 
 本機開發若暫時不使用 Turnstile，可把 `TURNSTILE_SECRET_KEY` 設為 `dev-disabled`。正式環境請用 Cloudflare secret，不要 commit 真實值。
 
-## D1 Database
+### D1 Database
 
 建立 D1：
 
@@ -90,7 +94,7 @@ pnpm --filter comments-worker db:migrate:local
 pnpm --filter comments-worker db:migrate:remote
 ```
 
-## Turnstile
+### Turnstile
 
 在 Cloudflare Turnstile 建立 widget，網域加入正式部落格網域與本機需要的測試網域。設定：
 
@@ -105,7 +109,7 @@ TURNSTILE_SITE_KEY=your-site-key
 COMMENT_API_BASE_URL=https://your-comments-worker.example.com
 ```
 
-## GitHub OAuth
+### GitHub OAuth
 
 到 GitHub Developer Settings 建立 OAuth App：
 
@@ -132,7 +136,7 @@ https://emtech.cc,http://localhost:4321,http://127.0.0.1:4321
 
 Cookie 使用 `HttpOnly; Secure; SameSite=Lax`。本機 HTTP 下 GitHub OAuth session cookie 可能無法完整測試，建議用 HTTPS tunnel 或部署到 Cloudflare 後驗證。
 
-## Deploy
+### Deploy
 
 部署 blog：
 
@@ -148,7 +152,7 @@ pnpm --filter comments-worker run deploy
 
 若使用 Cloudflare Pages/Workers 靜態資產部署 blog，`apps/blog/wrangler.jsonc` 仍保留原本靜態站設定。
 
-## Moderation
+### Moderation
 
 管理介面：
 
@@ -174,7 +178,7 @@ curl -X POST -b cookies.txt \
   "https://your-comments-worker.example.com/api/admin/comments/comment-id/delete"
 ```
 
-## Comments API
+### Comments API
 
 Public routes：
 
@@ -204,4 +208,4 @@ Email 會 normalize 後只儲存 SHA-256 hash，用於產生 Gravatar URL，不�
 
 ## License
 
-毛哥EM 製作。原始碼以 Apache-2.0，文章以 CC BY-4.0 授權釋出。
+毛哥EM 製作。原始碼以 Apache-2.0，文章以 CC BY-SA 4.0 授權釋出。
