@@ -14,7 +14,6 @@
 		"@lucide/astro": "^1.14.0",
 		"astro": "^6.3.1",
 		"astro-pagefind": "^2.0.0",
-		"sharp": "^0.34.5",
 		"simple-icons": "^16.19.0"
 	},
 	"devDependencies": {
