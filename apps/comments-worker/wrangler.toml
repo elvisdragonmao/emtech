@@ -6,11 +6,15 @@ compatibility_date = "2026-05-12"
 binding = "COMMENTS_DB"
 database_name = "emtech-comments"
 # Run `wrangler d1 create emtech-comments`, then replace this placeholder.
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = 22d6a94b-a46f-491b-bf8f-9607f16cf829
 migrations_dir = "migrations"
 
 [vars]
-ALLOWED_ORIGINS = "http://localhost:4321"
+ALLOWED_ORIGINS = "http://localhost:4321,https://emtech.cc"
 COMMENT_DEFAULT_STATUS_ANON = "approved"
 COMMENT_DEFAULT_STATUS_GITHUB = "approved"
-GITHUB_REDIRECT_URI = "http://127.0.0.1:8787/api/auth/github/callback"
+GITHUB_REDIRECT_URI = "https://api.emtech.cc/api/auth/github/callback"
+
+[[routes]]
+pattern = "api.emtech.cc"
+custom_domain = true
