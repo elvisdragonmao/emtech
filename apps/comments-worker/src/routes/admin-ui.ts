@@ -37,14 +37,11 @@ export function adminUi(ctx: AppContext): Response {
 			<a href="/api/auth/github/start?returnTo=/admin">GitHub login</a>
 		</header>
 		<section class="panel" id="gate">
-			<p class="notice">管理介面需要 GitHub 帳號 <strong>elvisdragonmao</strong> 登入。API 操作也需要 ADMIN_TOKEN。</p>
+			<p class="notice">管理介面需要 GitHub 帳號 <strong>elvisdragonmao</strong> 登入。</p>
 			<p id="authState">Checking session...</p>
 		</section>
 		<section class="panel" id="controls" hidden>
 			<div class="toolbar">
-				<label>ADMIN_TOKEN
-					<input id="token" type="password" autocomplete="off" />
-				</label>
 				<label>Status
 					<select id="status">
 						<option value="pending">pending</option>
@@ -65,7 +62,6 @@ export function adminUi(ctx: AppContext): Response {
 		const controls = document.querySelector("#controls");
 		const comments = document.querySelector("#comments");
 		const message = document.querySelector("#message");
-		const token = document.querySelector("#token");
 		const statusSelect = document.querySelector("#status");
 		const load = document.querySelector("#load");
 
@@ -87,9 +83,7 @@ export function adminUi(ctx: AppContext): Response {
 		async function loadComments() {
 			message.textContent = "Loading...";
 			comments.replaceChildren();
-			const res = await fetch("/api/admin/comments?status=" + encodeURIComponent(statusSelect.value), {
-				headers: { Authorization: "Bearer " + token.value }
-			});
+			const res = await fetch("/api/admin/comments?status=" + encodeURIComponent(statusSelect.value), { credentials: "include" });
 			const data = await res.json();
 			if (!res.ok) {
 				message.textContent = data.error || "Failed";
@@ -127,7 +121,7 @@ export function adminUi(ctx: AppContext): Response {
 		async function moderate(id, action) {
 			const res = await fetch("/api/admin/comments/" + encodeURIComponent(id) + "/" + action, {
 				method: "POST",
-				headers: { Authorization: "Bearer " + token.value }
+				credentials: "include"
 			});
 			const data = await res.json();
 			if (!res.ok) {
