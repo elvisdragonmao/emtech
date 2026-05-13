@@ -4,20 +4,20 @@ import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="404" description="找不到你想看的頁面。">
-	<main class="not-found-page">
+	<main id="main-content" class="not-found-page" tabindex="-1">
 		<section class="hero-card" aria-labelledby="not-found-title">
 			<div class="copy">
 				<p class="eyebrow">Error / Lost Route</p>
 				<h1 id="not-found-title">你說你不想在這裡，<br />我也不想在這裡</h1>
-				<p class="lead">可能是網址打錯、文章搬家，或是你不小心來到不該來的神秘地方...</p>
+				<p class="lead">可能是網址打錯、文章搬家，或是你不小心來到不該來的神秘地方…</p>
 
 				<div class="actions" aria-label="404 頁面操作">
 					<a class="primary-action" href="/">
-						<House size={17} stroke-width={1.8} />
+						<House size={17} stroke-width={1.8} aria-hidden="true" />
 						轉身向首頁走去
 					</a>
 					<a class="secondary-action" href="/archive/">
-						<BookOpen size={17} stroke-width={1.8} />
+						<BookOpen size={17} stroke-width={1.8} aria-hidden="true" />
 						翻文章列表
 					</a>
 				</div>
@@ -39,7 +39,7 @@ import Layout from "@/layouts/Layout.astro";
 					<span class="node node-a"></span>
 					<span class="node node-b"></span>
 					<span class="node node-c"></span>
-					<span class="node node-missing"><SearchX size={24} stroke-width={1.8} /></span>
+					<span class="node node-missing"><SearchX size={24} stroke-width={1.8} aria-hidden="true" /></span>
 					<span class="track track-1"></span>
 					<span class="track track-2"></span>
 					<span class="track track-3"></span>
@@ -54,7 +54,7 @@ import Layout from "@/layouts/Layout.astro";
 		</section>
 
 		<button class="back-link" type="button" data-go-back>
-			<ArrowLeft size={16} stroke-width={1.8} />
+			<ArrowLeft size={16} stroke-width={1.8} aria-hidden="true" />
 			回到上一頁
 		</button>
 	</main>

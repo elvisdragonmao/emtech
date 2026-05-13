@@ -13,18 +13,18 @@ const { compact = false } = Astro.props;
 	<form class="comment-form">
 		<label>
 			暱稱
-			<input type="text" value="毛哥EM" />
+			<input name="name" type="text" autocomplete="name" value="毛哥EM" />
 		</label>
 		<label>
 			Email
-			<input type="email" value="info@elvismao.com" />
+			<input name="email" type="email" autocomplete="email" spellcheck="false" value="info@elvismao.com" />
 		</label>
 		<label class="message">
 			訊息
-			<textarea rows="5">我想說話</textarea>
+			<textarea name="body" rows="5">我想說話</textarea>
 		</label>
 		<div class="actions">
-			<button type="button"><Send size={14} stroke-width={1.8} />送出</button>
+			<button type="button"><Send size={14} stroke-width={1.8} aria-hidden="true" />送出</button>
 			<span>或是先 <a href="/">登入</a></span>
 		</div>
 	</form>
@@ -86,7 +86,8 @@ const { compact = false } = Astro.props;
 		color: var(--color-text);
 		background: oklch(100% 0 0 / 84%);
 		border: 1px solid var(--color-border);
-		outline: 0;
+		outline: 2px solid transparent;
+		outline-offset: 2px;
 		transition: border-color 160ms ease;
 	}
 
@@ -97,6 +98,11 @@ const { compact = false } = Astro.props;
 	input:focus,
 	textarea:focus {
 		border-color: var(--color-accent);
+	}
+
+	input:focus-visible,
+	textarea:focus-visible {
+		outline-color: var(--color-accent-strong);
 	}
 
 	.actions {

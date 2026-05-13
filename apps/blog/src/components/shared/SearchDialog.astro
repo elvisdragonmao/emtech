@@ -10,9 +10,9 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 		</div>
 		<label class="search-field">
 			<span class="sr-only">搜尋文章與課程內文</span>
-			<input data-search-input type="search" autocomplete="off" placeholder="搜尋標題、標籤或內文..." />
+			<input data-search-input name="q" type="search" autocomplete="off" placeholder="搜尋標題、標籤或內文…" />
 		</label>
-		<div class="search-meta" data-search-meta>輸入關鍵字開始搜尋</div>
+		<div class="search-meta" data-search-meta role="status" aria-live="polite">輸入關鍵字開始搜尋</div>
 		<ol class="search-results" data-search-results></ol>
 	</section>
 </div>
@@ -30,8 +30,10 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 
 		let pagefindPromise;
 		let activeSearch = 0;
+		let restoreFocusTo = null;
 
 		const pagefindPath = overlay.dataset.pagefindPath || "/pagefind/pagefind.js";
+		const focusableSelector = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex='-1'])";
 
 		const loadPagefind = () => {
 			pagefindPromise ??= import(pagefindPath).then(async pagefind => {
@@ -61,7 +63,7 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 				return;
 			}
 
-			meta.textContent = "搜尋中...";
+			meta.textContent = "搜尋中…";
 
 			try {
 				const pagefind = await loadPagefind();
@@ -102,7 +104,9 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 		};
 
 		const openSearch = () => {
+			restoreFocusTo = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 			overlay.hidden = false;
+			openButtons.forEach(button => button.setAttribute("aria-expanded", "true"));
 			document.documentElement.classList.add("search-open");
 			requestAnimationFrame(() => input.focus());
 			loadPagefind().catch(() => undefined);
@@ -111,7 +115,10 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 
 		const closeSearch = () => {
 			overlay.hidden = true;
+			openButtons.forEach(button => button.setAttribute("aria-expanded", "false"));
 			document.documentElement.classList.remove("search-open");
+			restoreFocusTo?.focus();
+			restoreFocusTo = null;
 		};
 
 		openButtons.forEach(button => button.addEventListener("click", openSearch));
@@ -126,6 +133,22 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 			if (event.key === "Escape" && !overlay.hidden) {
 				event.preventDefault();
 				closeSearch();
+				return;
+			}
+
+			if (event.key === "Tab" && !overlay.hidden) {
+				const focusable = Array.from(overlay.querySelectorAll(focusableSelector)).filter(element => element instanceof HTMLElement && element.offsetParent !== null);
+				const first = focusable[0];
+				const last = focusable[focusable.length - 1];
+				if (first instanceof HTMLElement && last instanceof HTMLElement) {
+					if (event.shiftKey && document.activeElement === first) {
+						event.preventDefault();
+						last.focus();
+					} else if (!event.shiftKey && document.activeElement === last) {
+						event.preventDefault();
+						first.focus();
+					}
+				}
 				return;
 			}
 
@@ -147,6 +170,7 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 		padding: 12vh 1rem 1rem;
 		background: oklch(17% 0.022 255 / 32%);
 		backdrop-filter: blur(0.45rem);
+		overscroll-behavior: contain;
 	}
 
 	.search-overlay[hidden] {
@@ -160,6 +184,7 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 		background: oklch(100% 0 0 / 96%);
 		border: 1px solid var(--color-border-strong);
 		box-shadow: var(--shadow-soft);
+		overscroll-behavior: contain;
 	}
 
 	.search-head {
@@ -204,7 +229,13 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 		color: var(--color-ink);
 		background: transparent;
 		border: 0;
-		outline: none;
+		outline: 2px solid transparent;
+		outline-offset: 0.35rem;
+	}
+
+	.search-field input:focus-visible {
+		outline: 2px solid var(--color-accent-strong);
+		outline-offset: 0.35rem;
 	}
 
 	.search-field input::placeholder {
@@ -244,7 +275,8 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 	:global(.search-results a:focus-visible) {
 		color: var(--color-ink);
 		background: var(--color-accent-soft);
-		outline: none;
+		outline: 2px solid var(--color-accent-strong);
+		outline-offset: -2px;
 	}
 
 	:global(.result-kicker) {

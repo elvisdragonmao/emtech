@@ -77,7 +77,7 @@ const sidebarLessons = courseLessons.map(l => {
 ---
 
 <Layout title={title} description={description} active="course">
-	<main class="lesson-page">
+	<main id="main-content" class="lesson-page" tabindex="-1">
 		<div class="lesson-layout">
 			<CourseSidebar courseId={courseId} courseTitle={courseEntry?.data.title ?? courseId} lessons={sidebarLessons} currentId={lessonId} />
 
@@ -102,7 +102,7 @@ const sidebarLessons = courseLessons.map(l => {
 							<a href={`/course/${courseId}/${prevId}/`}>
 								<span>Previous</span>
 								<strong>{extractTitle(prevLesson.body) || prevLesson.data.description || prevId}</strong>
-								<ArrowLeft size={16} stroke-width={1.8} />
+								<ArrowLeft size={16} stroke-width={1.8} aria-hidden="true" />
 							</a>
 						)
 					}
@@ -115,7 +115,7 @@ const sidebarLessons = courseLessons.map(l => {
 							<a href={`/course/${courseId}/${nextId}/`}>
 								<span>Next</span>
 								<strong>{extractTitle(nextLesson.body) || nextLesson.data.description || nextId}</strong>
-								<ArrowRight size={16} stroke-width={1.8} />
+								<ArrowRight size={16} stroke-width={1.8} aria-hidden="true" />
 							</a>
 						)
 					}

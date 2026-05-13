@@ -88,7 +88,7 @@ const relatedCards = related.map(p => {
 ---
 
 <Layout title={title} description={description} active="blog">
-	<main class="article-page">
+	<main id="main-content" class="article-page" tabindex="-1">
 		<PostBody
 			tag={tag}
 			title={title}
@@ -122,7 +122,7 @@ const relatedCards = related.map(p => {
 						))}
 						<a class="more-card card" href={moreRelatedHref}>
 							想要更多？
-							<ArrowRight size={18} stroke-width={1.8} />
+							<ArrowRight size={18} stroke-width={1.8} aria-hidden="true" />
 						</a>
 					</div>
 				</section>

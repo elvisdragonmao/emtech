@@ -43,7 +43,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 					<div class="side-nav">
 						{previousHref && (
 							<a href={previousHref}>
-								<ArrowLeft size={14} stroke-width={1.8} />
+								<ArrowLeft size={14} stroke-width={1.8} aria-hidden="true" />
 								<span>上一篇</span>
 								<strong>{previousTitle ?? "上一篇"}</strong>
 							</a>
@@ -52,7 +52,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 							<a href={nextHref}>
 								<strong>{nextTitle ?? "下一篇"}</strong>
 								<span>下一篇</span>
-								<ArrowRight size={14} stroke-width={1.8} />
+								<ArrowRight size={14} stroke-width={1.8} aria-hidden="true" />
 							</a>
 						)}
 					</div>
@@ -118,7 +118,10 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 
 	const setActiveToc = (id: string) => {
 		for (const { id: itemId, link } of tocHeadings) {
-			link.classList.toggle("active", itemId === id);
+			const isActive = itemId === id;
+			link.classList.toggle("active", isActive);
+			if (isActive) link.setAttribute("aria-current", "location");
+			else link.removeAttribute("aria-current");
 		}
 	};
 
@@ -568,9 +571,11 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	.article-content :global(h3),
 	.article-content :global(h4),
 	.article-content :global(h5) {
+		scroll-margin-top: 6rem;
 		line-height: 1.15;
 		letter-spacing: -0.06em;
 		color: var(--color-ink);
+		text-wrap: balance;
 	}
 
 	.article-content :global(h2) {
@@ -725,7 +730,8 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		color: var(--color-code-ink);
 		background: oklch(100% 0 0 / 8%);
 		box-shadow: inset 0 0 0 1px oklch(71% 0.15 225 / 42%);
-		outline: none;
+		outline: 2px solid var(--color-accent);
+		outline-offset: -2px;
 	}
 
 	.article-content :global(.code-copy-button[data-copy-state="success"]) {

@@ -28,7 +28,7 @@ const { module } = Astro.props;
 		<p>{module.description}</p>
 	</div>
 	{module.duration && <span class="duration">{module.duration}</span>}
-	<ArrowRight class="arrow" size={18} stroke-width={1.8} />
+	<ArrowRight class="arrow" size={18} stroke-width={1.8} aria-hidden="true" />
 </a>
 
 <style>

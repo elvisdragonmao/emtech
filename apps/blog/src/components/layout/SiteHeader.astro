@@ -24,23 +24,23 @@ const navItems = [
 		<nav id="site-main-nav" class="main-nav" aria-label="主要導覽">
 			{
 				navItems.map(item => (
-					<a href={item.href} class:list={[{ active: active === item.key }]}>
+					<a href={item.href} class:list={[{ active: active === item.key }]} aria-current={active === item.key ? "page" : undefined}>
 						{item.label}
 					</a>
 				))
 			}
 		</nav>
 
-		<button class="search-button" type="button" aria-label="搜尋文章與課程" aria-controls="site-search" data-search-open>
-			<Search size={15} stroke-width={1.8} />
+		<button class="search-button" type="button" aria-label="搜尋文章與課程" aria-controls="site-search" aria-expanded="false" data-search-open>
+			<Search size={15} stroke-width={1.8} aria-hidden="true" />
 			<span>Search</span>
 			<kbd>/</kbd>
 			<kbd>⌘K</kbd>
 		</button>
 
 		<button class="menu-button" type="button" aria-label="開啟導覽選單" aria-controls="site-main-nav" aria-expanded="false" data-menu-toggle>
-			<Menu class="menu-icon" size={18} stroke-width={1.8} />
-			<X class="close-icon" size={18} stroke-width={1.8} />
+			<Menu class="menu-icon" size={18} stroke-width={1.8} aria-hidden="true" />
+			<X class="close-icon" size={18} stroke-width={1.8} aria-hidden="true" />
 		</button>
 	</div>
 </header>
