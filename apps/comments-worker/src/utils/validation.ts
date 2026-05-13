@@ -43,7 +43,7 @@ export const listCommentsSchema = z.object({
 });
 
 export const adminStatusSchema = z.object({
-	status: z.enum(["pending", "approved", "rejected", "spam", "deleted"]).default("pending")
+	status: z.enum(["all", "pending", "approved", "rejected", "spam", "deleted"]).default("all")
 });
 
 export type CreateCommentInput = z.infer<typeof createCommentSchema>;

@@ -75,7 +75,5 @@ function truncate(value: string, maxLength: number): string {
 }
 
 function compactFields(fields: Array<{ name: string; value: string; inline: boolean } | null>): Array<{ name: string; value: string; inline: boolean }> {
-	return fields
-		.filter((field): field is { name: string; value: string; inline: boolean } => field !== null)
-		.map(field => ({ ...field, value: truncate(field.value, 1024) }));
+	return fields.filter((field): field is { name: string; value: string; inline: boolean } => field !== null).map(field => ({ ...field, value: truncate(field.value, 1024) }));
 }

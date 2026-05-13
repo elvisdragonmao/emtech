@@ -2,7 +2,7 @@ import { checkSpam } from "@emtech/comments-shared";
 import { describe, expect, it } from "vitest";
 import { hashIp, signedValue, verifySignedValue } from "../src/utils/crypto";
 import { browserLabel, deviceLabel, locationLabel } from "../src/utils/request-context";
-import { createCommentSchema } from "../src/utils/validation";
+import { adminStatusSchema, createCommentSchema } from "../src/utils/validation";
 
 describe("comment validation", () => {
 	it("requires a non-empty body", () => {
@@ -19,6 +19,14 @@ describe("comment validation", () => {
 			turnstileToken: "token"
 		});
 		expect(result.success).toBe(true);
+	});
+});
+
+describe("admin validation", () => {
+	it("allows all statuses for the moderation dashboard", () => {
+		expect(adminStatusSchema.safeParse({ status: "all" }).success).toBe(true);
+		expect(adminStatusSchema.safeParse({ status: "spam" }).success).toBe(true);
+		expect(adminStatusSchema.safeParse({ status: "unknown" }).success).toBe(false);
 	});
 });
 
