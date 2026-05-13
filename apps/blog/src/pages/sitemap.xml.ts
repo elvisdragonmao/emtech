@@ -1,7 +1,7 @@
-import { getCollection } from "astro:content";
-import type { ImageMetadata } from "astro";
 import { extractTitle, normalizeImportPath } from "@/utils/content";
 import { absoluteUrl, toSeoImage } from "@/utils/seo";
+import type { ImageMetadata } from "astro";
+import { getCollection } from "astro:content";
 
 type SitemapEntry = {
 	loc: string;
@@ -14,13 +14,7 @@ type SitemapEntry = {
 	};
 };
 
-const escapeXml = (value: string) =>
-	value
-		.replaceAll("&", "&amp;")
-		.replaceAll("<", "&lt;")
-		.replaceAll(">", "&gt;")
-		.replaceAll('"', "&quot;")
-		.replaceAll("'", "&apos;");
+const escapeXml = (value: string) => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&apos;");
 
 const formatDate = (date?: Date) => {
 	if (!date || Number.isNaN(date.getTime()) || date.getFullYear() <= 1970) return undefined;

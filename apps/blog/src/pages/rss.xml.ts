@@ -1,7 +1,7 @@
-import { getCollection } from "astro:content";
-import type { ImageMetadata } from "astro";
 import { extractExcerpt, extractTitle, normalizeImportPath, normalizeTerms } from "@/utils/content";
 import { AUTHOR_NAME, SITE_DESCRIPTION, SITE_LANGUAGE, SITE_NAME, absoluteUrl, toSeoImage, type SeoImage } from "@/utils/seo";
+import type { ImageMetadata } from "astro";
+import { getCollection } from "astro:content";
 
 type FeedItem = {
 	title: string;
@@ -12,13 +12,7 @@ type FeedItem = {
 	thumbnail?: SeoImage;
 };
 
-const escapeXml = (value: string) =>
-	value
-		.replaceAll("&", "&amp;")
-		.replaceAll("<", "&lt;")
-		.replaceAll(">", "&gt;")
-		.replaceAll('"', "&quot;")
-		.replaceAll("'", "&apos;");
+const escapeXml = (value: string) => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&apos;");
 
 const renderCategories = (categories: string[]) => categories.map(category => `<category>${escapeXml(category)}</category>`).join("");
 
@@ -78,9 +72,7 @@ export async function GET() {
 		};
 	});
 
-	const items = [...postItems, ...lessonItems]
-		.filter(item => item.date instanceof Date && !Number.isNaN(item.date.getTime()))
-		.sort((a, b) => b.date.getTime() - a.date.getTime());
+	const items = [...postItems, ...lessonItems].filter(item => item.date instanceof Date && !Number.isNaN(item.date.getTime())).sort((a, b) => b.date.getTime() - a.date.getTime());
 	const updated = items[0]?.date ?? new Date();
 
 	const xml = `<?xml version="1.0" encoding="UTF-8"?>
