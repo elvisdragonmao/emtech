@@ -69,6 +69,8 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 {turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />}
 
 <script>
+	import { setupPageLifecycle } from "@/scripts/pageLifecycle";
+
 	type PublicComment = {
 		id: string;
 		pagePath: string;
@@ -87,8 +89,12 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		createdAt: string;
 	};
 
-	const root = document.querySelector<HTMLElement>("[data-comments-root]");
-	if (root) {
+	setupPageLifecycle("comments", () => {
+		const root = document.querySelector<HTMLElement>("[data-comments-root]");
+		if (!root) return;
+
+		const controller = new AbortController();
+		const { signal } = controller;
 		const configuredApiBase = root.dataset.apiBase ?? "";
 		const isLocalPage = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 		const apiBase = isLocalPage && configuredApiBase === "https://api.emtech.cc" ? `${window.location.protocol}//${window.location.hostname}:8787` : configuredApiBase;
@@ -109,6 +115,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		let isAuthenticated = false;
 		let activeReplyCard: HTMLElement | null = null;
 		let turnstileWidgetId: string | null = null;
+		let turnstileRenderTimer = 0;
 
 		if (form && formHost) {
 			formHost.appendChild(form);
@@ -131,7 +138,9 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			const turnstile = (window as unknown as { turnstile?: { render: (container: HTMLElement) => string; reset: (widgetId?: string) => void } }).turnstile;
 			if (!widget || !turnstile) return;
 
-			window.setTimeout(() => {
+			window.clearTimeout(turnstileRenderTimer);
+			turnstileRenderTimer = window.setTimeout(() => {
+				if (signal.aborted) return;
 				widget.replaceChildren();
 				turnstileWidgetId = turnstile.render(widget);
 			}, 0);
@@ -145,8 +154,9 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 		const refreshAuth = async () => {
 			try {
-				const response = await fetch(apiUrl("/api/auth/me"), { credentials: "include" });
+				const response = await fetch(apiUrl("/api/auth/me"), { credentials: "include", signal });
 				const data = await response.json();
+				if (signal.aborted) return;
 				if (data.authenticated && authPanel && authName && loginLink) {
 					authName.textContent = `已用 GitHub 登入：${data.user.login}`;
 					authPanel.hidden = false;
@@ -157,7 +167,8 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 						for (const input of field.querySelectorAll<HTMLInputElement>("input")) input.value = "";
 					}
 				}
-			} catch {
+			} catch (error) {
+				if (error instanceof DOMException && error.name === "AbortError") return;
 				// Comments still work anonymously if auth state cannot be loaded.
 			}
 		};
@@ -166,11 +177,13 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			if (!list) return;
 			list.textContent = "載入留言中…";
 			try {
-				const response = await fetch(apiUrl(`/api/comments?pagePath=${encodeURIComponent(pagePath)}`), { credentials: "include" });
+				const response = await fetch(apiUrl(`/api/comments?pagePath=${encodeURIComponent(pagePath)}`), { credentials: "include", signal });
 				const data = (await response.json()) as { comments: PublicComment[] };
+				if (signal.aborted) return;
 				list.replaceChildren();
 				renderComments(data.comments, list);
-			} catch {
+			} catch (error) {
+				if (error instanceof DOMException && error.name === "AbortError") return;
 				list.textContent = "";
 				setNotice("留言載入失敗，請稍後再試。", "error");
 			}
@@ -254,19 +267,23 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			reply.type = "button";
 			reply.textContent = "回覆";
 			reply.setAttribute("aria-label", `回覆 ${comment.author.name} 的留言`);
-			reply.addEventListener("click", () => {
-				const replySlot = article.querySelector<HTMLElement>(".reply-form-slot");
-				if (!parentInput || !replying || !replyingLabel || !form || !replySlot) return;
-				parentInput.value = comment.id;
-				replyingLabel.textContent = `回覆給 ${comment.author.name}`;
-				replying.hidden = false;
-				activeReplyCard?.classList.remove("reply-target");
-				activeReplyCard = article;
-				activeReplyCard.classList.add("reply-target");
-				replySlot.appendChild(form);
-				rerenderTurnstile();
-				form.querySelector("textarea")?.focus();
-			});
+			reply.addEventListener(
+				"click",
+				() => {
+					const replySlot = article.querySelector<HTMLElement>(".reply-form-slot");
+					if (!parentInput || !replying || !replyingLabel || !form || !replySlot) return;
+					parentInput.value = comment.id;
+					replyingLabel.textContent = `回覆給 ${comment.author.name}`;
+					replying.hidden = false;
+					activeReplyCard?.classList.remove("reply-target");
+					activeReplyCard = article;
+					activeReplyCard.classList.add("reply-target");
+					replySlot.appendChild(form);
+					rerenderTurnstile();
+					form.querySelector("textarea")?.focus();
+				},
+				{ signal }
+			);
 			bottom.append(reply);
 			article.append(head, body, bottom);
 			return article;
@@ -287,56 +304,77 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			}
 		};
 
-		cancelReply?.addEventListener("click", () => resetReply({ focus: true }));
+		cancelReply?.addEventListener("click", () => resetReply({ focus: true }), { signal });
 
-		logoutButton?.addEventListener("click", async () => {
-			await fetch(apiUrl("/api/auth/logout"), { method: "POST", credentials: "include" });
-			location.reload();
-		});
+		logoutButton?.addEventListener(
+			"click",
+			async () => {
+				await fetch(apiUrl("/api/auth/logout"), { method: "POST", credentials: "include", signal });
+				location.reload();
+			},
+			{ signal }
+		);
 
-		form?.addEventListener("submit", async event => {
-			event.preventDefault();
-			const data = new FormData(form);
-			const submit = form.querySelector<HTMLButtonElement>("button[type='submit']");
-			const turnstileToken = form.querySelector<HTMLInputElement>("[name='cf-turnstile-response']")?.value ?? "";
-			form.setAttribute("aria-busy", "true");
-			submit?.setAttribute("disabled", "true");
-			setNotice("送出中…");
+		form?.addEventListener(
+			"submit",
+			async event => {
+				event.preventDefault();
+				if (signal.aborted) return;
+				const data = new FormData(form);
+				const submit = form.querySelector<HTMLButtonElement>("button[type='submit']");
+				const turnstileToken = form.querySelector<HTMLInputElement>("[name='cf-turnstile-response']")?.value ?? "";
+				form.setAttribute("aria-busy", "true");
+				submit?.setAttribute("disabled", "true");
+				setNotice("送出中…");
 
-			try {
-				const response = await fetch(apiUrl("/api/comments"), {
-					method: "POST",
-					credentials: "include",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						pagePath,
-						parentId: data.get("parentId") || undefined,
-						name: isAuthenticated ? undefined : data.get("name") || undefined,
-						email: isAuthenticated ? undefined : data.get("email") || undefined,
-						body: data.get("body"),
-						turnstileToken
-					})
-				});
-				const result = await response.json();
-				if (!response.ok) {
-					throw new Error(result.error ?? "留言送出失敗");
+				try {
+					const response = await fetch(apiUrl("/api/comments"), {
+						method: "POST",
+						credentials: "include",
+						signal,
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							pagePath,
+							parentId: data.get("parentId") || undefined,
+							name: isAuthenticated ? undefined : data.get("name") || undefined,
+							email: isAuthenticated ? undefined : data.get("email") || undefined,
+							body: data.get("body"),
+							turnstileToken
+						})
+					});
+					const result = await response.json();
+					if (signal.aborted) return;
+					if (!response.ok) {
+						throw new Error(result.error ?? "留言送出失敗");
+					}
+					form.reset();
+					resetReply();
+					setNotice(result.status === "approved" ? "留言已發布。" : "留言正在等待審核。", "success");
+					await loadComments();
+					(window as unknown as { turnstile?: { reset: (widgetId?: string) => void } }).turnstile?.reset(turnstileWidgetId ?? undefined);
+				} catch (error) {
+					if (error instanceof DOMException && error.name === "AbortError") return;
+					setNotice(error instanceof Error ? error.message : "留言送出失敗", "error");
+				} finally {
+					if (signal.aborted) return;
+					form.removeAttribute("aria-busy");
+					submit?.removeAttribute("disabled");
 				}
-				form.reset();
-				resetReply();
-				setNotice(result.status === "approved" ? "留言已發布。" : "留言正在等待審核。", "success");
-				await loadComments();
-				(window as unknown as { turnstile?: { reset: (widgetId?: string) => void } }).turnstile?.reset(turnstileWidgetId ?? undefined);
-			} catch (error) {
-				setNotice(error instanceof Error ? error.message : "留言送出失敗", "error");
-			} finally {
-				form.removeAttribute("aria-busy");
-				submit?.removeAttribute("disabled");
-			}
-		});
+			},
+			{ signal }
+		);
 
 		refreshAuth();
 		loadComments();
-	}
+
+		return () => {
+			window.clearTimeout(turnstileRenderTimer);
+			activeReplyCard?.classList.remove("reply-target");
+			const turnstile = (window as unknown as { turnstile?: { remove?: (widgetId?: string) => void } }).turnstile;
+			if (turnstileWidgetId) turnstile?.remove?.(turnstileWidgetId);
+			controller.abort();
+		};
+	});
 </script>
 
 <style>

@@ -6,6 +6,7 @@ import { rehypeCodeBlocks } from "./src/plugins/rehype-code-blocks.js";
 import { rehypeImageCaptions } from "./src/plugins/rehype-image-captions.js";
 
 export default defineConfig({
+	output: "static",
 	integrations: [pagefind()],
 	image: {
 		service: passthroughImageService()

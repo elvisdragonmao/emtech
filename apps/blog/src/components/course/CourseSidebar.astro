@@ -47,52 +47,66 @@ const lessonListId = `course-lesson-list-${courseId}`;
 </aside>
 
 <script>
-	const sidebar = document.querySelector<HTMLElement>("[data-course-progress-key]");
-	const progressKey = sidebar?.dataset.courseProgressKey;
-	const lessonLinks = Array.from(sidebar?.querySelectorAll<HTMLAnchorElement>("[data-lesson-id]") ?? []);
-	const courseToggle = sidebar?.querySelector<HTMLButtonElement>("[data-course-sidebar-toggle]");
-	const coursePanel = sidebar?.querySelector<HTMLElement>("[data-course-sidebar-panel]");
-	const collapsibleSidebar = window.matchMedia("(max-width: 76rem)");
+	import { setupPageLifecycle } from "@/scripts/pageLifecycle";
 
-	const parseProgress = (value: string | null) => {
-		if (!value) return [];
-		try {
-			const parsed = JSON.parse(value);
-			return Array.isArray(parsed) ? parsed.filter((item): item is string => typeof item === "string") : [];
-		} catch {
-			return [];
-		}
-	};
+	setupPageLifecycle("course-sidebar", () => {
+		const sidebar = document.querySelector<HTMLElement>("[data-course-progress-key]");
+		if (!sidebar) return;
 
-	const renderProgress = (completed: string[]) => {
-		const completedSet = new Set(completed);
-		for (const link of lessonLinks) {
-			link.classList.toggle("completed", completedSet.has(link.dataset.lessonId ?? ""));
-		}
-	};
+		const controller = new AbortController();
+		const { signal } = controller;
+		const progressKey = sidebar.dataset.courseProgressKey;
+		const lessonLinks = Array.from(sidebar.querySelectorAll<HTMLAnchorElement>("[data-lesson-id]"));
+		const courseToggle = sidebar.querySelector<HTMLButtonElement>("[data-course-sidebar-toggle]");
+		const coursePanel = sidebar.querySelector<HTMLElement>("[data-course-sidebar-panel]");
+		const collapsibleSidebar = window.matchMedia("(max-width: 76rem)");
 
-	if (progressKey) {
-		renderProgress(parseProgress(window.localStorage.getItem(progressKey)));
-		window.addEventListener("emtech:course-progress", event => {
-			const detail = (event as CustomEvent<{ storageKey?: string; completed?: string[] }>).detail;
-			if (detail?.storageKey === progressKey && Array.isArray(detail.completed)) renderProgress(detail.completed);
-		});
-	}
-
-	if (sidebar && courseToggle && coursePanel) {
-		const setSidebarOpen = (isOpen: boolean) => {
-			sidebar.classList.toggle("is-open", isOpen);
-			courseToggle.setAttribute("aria-expanded", String(isOpen));
-			const hidePanel = collapsibleSidebar.matches && !isOpen;
-			coursePanel.toggleAttribute("inert", hidePanel);
-			coursePanel.setAttribute("aria-hidden", String(hidePanel));
+		const parseProgress = (value: string | null) => {
+			if (!value) return [];
+			try {
+				const parsed = JSON.parse(value);
+				return Array.isArray(parsed) ? parsed.filter((item): item is string => typeof item === "string") : [];
+			} catch {
+				return [];
+			}
 		};
 
-		sidebar.classList.add("is-collapsible");
-		setSidebarOpen(false);
-		courseToggle.addEventListener("click", () => setSidebarOpen(!sidebar.classList.contains("is-open")));
-		collapsibleSidebar.addEventListener("change", () => setSidebarOpen(sidebar.classList.contains("is-open")));
-	}
+		const renderProgress = (completed: string[]) => {
+			const completedSet = new Set(completed);
+			for (const link of lessonLinks) {
+				link.classList.toggle("completed", completedSet.has(link.dataset.lessonId ?? ""));
+			}
+		};
+
+		if (progressKey) {
+			renderProgress(parseProgress(window.localStorage.getItem(progressKey)));
+			window.addEventListener(
+				"emtech:course-progress",
+				event => {
+					const detail = (event as CustomEvent<{ storageKey?: string; completed?: string[] }>).detail;
+					if (detail?.storageKey === progressKey && Array.isArray(detail.completed)) renderProgress(detail.completed);
+				},
+				{ signal }
+			);
+		}
+
+		if (courseToggle && coursePanel) {
+			const setSidebarOpen = (isOpen: boolean) => {
+				sidebar.classList.toggle("is-open", isOpen);
+				courseToggle.setAttribute("aria-expanded", String(isOpen));
+				const hidePanel = collapsibleSidebar.matches && !isOpen;
+				coursePanel.toggleAttribute("inert", hidePanel);
+				coursePanel.setAttribute("aria-hidden", String(hidePanel));
+			};
+
+			sidebar.classList.add("is-collapsible");
+			setSidebarOpen(false);
+			courseToggle.addEventListener("click", () => setSidebarOpen(!sidebar.classList.contains("is-open")), { signal });
+			collapsibleSidebar.addEventListener("change", () => setSidebarOpen(sidebar.classList.contains("is-open")), { signal });
+		}
+
+		return () => controller.abort();
+	});
 </script>
 
 <style>

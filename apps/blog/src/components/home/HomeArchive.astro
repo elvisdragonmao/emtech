@@ -162,6 +162,8 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 </section>
 
 <script>
+	import { setupPageLifecycle } from "@/scripts/pageLifecycle";
+
 	type FilterType = "category" | "tag";
 	type ActiveFilter = {
 		type: FilterType;
@@ -169,215 +171,246 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 	};
 	const DEFAULT_FILTER: ActiveFilter = { type: "category", value: "精選" };
 
-	const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-	const archiveGrid = document.querySelector<HTMLElement>("[data-archive-grid]");
-	const archiveCards = Array.from(document.querySelectorAll<HTMLElement>("[data-archive-card]"));
-	const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-filter-button]"));
-	const loadMore = document.querySelector<HTMLButtonElement>("[data-load-more]");
-	const tagCloud = document.querySelector<HTMLElement>("[data-tag-cloud]");
-	const tagMore = document.querySelector<HTMLButtonElement>("[data-tag-more]");
-	const tagMoreLabel = document.querySelector<HTMLElement>("[data-tag-more-label]");
-	const tagButtons = tagCloud ? Array.from(tagCloud.querySelectorAll<HTMLButtonElement>("[data-filter-button]")) : [];
-	const loadStep = Number(loadMore?.dataset.loadStep ?? 12);
-	const initialVisible = Number(archiveGrid?.dataset.initialVisible ?? 6);
-	const searchParams = new URLSearchParams(window.location.search);
-	const requestedTag = searchParams.get("tag");
-	const requestedCategory = searchParams.get("category");
-	let visibleCount = initialVisible;
-	let activeFilter: ActiveFilter | null = requestedTag ? { type: "tag", value: requestedTag } : requestedCategory ? { type: "category", value: requestedCategory } : DEFAULT_FILTER;
+	setupPageLifecycle("home-archive", () => {
+		const controller = new AbortController();
+		const { signal } = controller;
+		const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+		const archiveGrid = document.querySelector<HTMLElement>("[data-archive-grid]");
+		const archiveCards = Array.from(document.querySelectorAll<HTMLElement>("[data-archive-card]"));
+		const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-filter-button]"));
+		const loadMore = document.querySelector<HTMLButtonElement>("[data-load-more]");
+		const tagCloud = document.querySelector<HTMLElement>("[data-tag-cloud]");
+		const tagMore = document.querySelector<HTMLButtonElement>("[data-tag-more]");
+		const tagMoreLabel = document.querySelector<HTMLElement>("[data-tag-more-label]");
+		if (!archiveGrid) return () => controller.abort();
 
-	const parseTerms = (value: string | undefined) => {
-		if (!value) return [];
+		const tagButtons = tagCloud ? Array.from(tagCloud.querySelectorAll<HTMLButtonElement>("[data-filter-button]")) : [];
+		const loadStep = Number(loadMore?.dataset.loadStep ?? 12);
+		const initialVisible = Number(archiveGrid?.dataset.initialVisible ?? 6);
+		const searchParams = new URLSearchParams(window.location.search);
+		const requestedTag = searchParams.get("tag");
+		const requestedCategory = searchParams.get("category");
+		let visibleCount = initialVisible;
+		let activeFilter: ActiveFilter | null = requestedTag ? { type: "tag", value: requestedTag } : requestedCategory ? { type: "category", value: requestedCategory } : DEFAULT_FILTER;
 
-		try {
-			const parsed = JSON.parse(value);
-			return Array.isArray(parsed) ? parsed.filter((term): term is string => typeof term === "string") : [];
-		} catch {
-			return [];
-		}
-	};
+		const parseTerms = (value: string | undefined) => {
+			if (!value) return [];
 
-	const getCardTerms = (card: HTMLElement, type: FilterType) => parseTerms(type === "category" ? card.dataset.categories : card.dataset.tags);
-
-	const getFeaturedRank = (card: HTMLElement) => {
-		const rank = Number(card.dataset.featuredRank);
-		return Number.isFinite(rank) ? rank : null;
-	};
-
-	const cardMatchesFilter = (card: HTMLElement) => {
-		if (!activeFilter) return true;
-		if (activeFilter.type === "category" && activeFilter.value === DEFAULT_FILTER.value) return getFeaturedRank(card) !== null;
-		return getCardTerms(card, activeFilter.type).includes(activeFilter.value);
-	};
-
-	const sortMatchingCards = (cards: HTMLElement[]) => {
-		if (activeFilter?.type !== "category" || activeFilter.value !== DEFAULT_FILTER.value) return cards;
-
-		return [...cards].sort((a, b) => (getFeaturedRank(a) ?? Number.MAX_SAFE_INTEGER) - (getFeaturedRank(b) ?? Number.MAX_SAFE_INTEGER));
-	};
-
-	const revealObserver =
-		"IntersectionObserver" in window
-			? new IntersectionObserver(
-					entries => {
-						for (const entry of entries) {
-							if (!entry.isIntersecting) continue;
-
-							entry.target.classList.add("is-seen");
-							revealObserver?.unobserve(entry.target);
-						}
-					},
-					{ threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
-				)
-			: null;
-
-	const prepareReveal = (card: HTMLElement, index: number) => {
-		card.style.setProperty("--reveal-delay", `${Math.min(index, 8) * 36}ms`);
-		card.classList.remove("is-seen");
-
-		if (prefersReducedMotion.matches || !revealObserver) {
-			card.classList.add("is-seen");
-			return;
-		}
-
-		revealObserver.observe(card);
-	};
-
-	const updateActiveButtons = () => {
-		for (const button of filterButtons) {
-			const isActive = activeFilter ? activeFilter.type === button.dataset.filterType && activeFilter.value === button.dataset.filterValue : false;
-			button.setAttribute("aria-pressed", isActive ? "true" : "false");
-		}
-	};
-
-	const applyArchiveState = (animateVisibleCards = false) => {
-		const matchingCards = sortMatchingCards(archiveCards.filter(cardMatchesFilter));
-		const visibleCards = matchingCards.slice(0, visibleCount);
-		const visibleSet = new Set(visibleCards);
-
-		for (const card of archiveCards) {
-			const shouldShow = visibleSet.has(card);
-			const wasHidden = card.hidden;
-
-			card.hidden = !shouldShow;
-
-			if (shouldShow && (wasHidden || animateVisibleCards)) {
-				card.style.setProperty("--card-order", String(visibleCards.indexOf(card)));
-				prepareReveal(card, visibleCards.indexOf(card));
+			try {
+				const parsed = JSON.parse(value);
+				return Array.isArray(parsed) ? parsed.filter((term): term is string => typeof term === "string") : [];
+			} catch {
+				return [];
 			}
+		};
+
+		const getCardTerms = (card: HTMLElement, type: FilterType) => parseTerms(type === "category" ? card.dataset.categories : card.dataset.tags);
+
+		const getFeaturedRank = (card: HTMLElement) => {
+			const rank = Number(card.dataset.featuredRank);
+			return Number.isFinite(rank) ? rank : null;
+		};
+
+		const cardMatchesFilter = (card: HTMLElement) => {
+			if (!activeFilter) return true;
+			if (activeFilter.type === "category" && activeFilter.value === DEFAULT_FILTER.value) return getFeaturedRank(card) !== null;
+			return getCardTerms(card, activeFilter.type).includes(activeFilter.value);
+		};
+
+		const sortMatchingCards = (cards: HTMLElement[]) => {
+			if (activeFilter?.type !== "category" || activeFilter.value !== DEFAULT_FILTER.value) return cards;
+
+			return [...cards].sort((a, b) => (getFeaturedRank(a) ?? Number.MAX_SAFE_INTEGER) - (getFeaturedRank(b) ?? Number.MAX_SAFE_INTEGER));
+		};
+
+		const revealObserver =
+			"IntersectionObserver" in window
+				? new IntersectionObserver(
+						entries => {
+							for (const entry of entries) {
+								if (!entry.isIntersecting) continue;
+
+								entry.target.classList.add("is-seen");
+								revealObserver?.unobserve(entry.target);
+							}
+						},
+						{ threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+					)
+				: null;
+
+		const prepareReveal = (card: HTMLElement, index: number) => {
+			card.style.setProperty("--reveal-delay", `${Math.min(index, 8) * 36}ms`);
+			card.classList.remove("is-seen");
+
+			if (prefersReducedMotion.matches || !revealObserver) {
+				card.classList.add("is-seen");
+				return;
+			}
+
+			revealObserver.observe(card);
+		};
+
+		const updateActiveButtons = () => {
+			for (const button of filterButtons) {
+				const isActive = activeFilter ? activeFilter.type === button.dataset.filterType && activeFilter.value === button.dataset.filterValue : false;
+				button.setAttribute("aria-pressed", isActive ? "true" : "false");
+			}
+		};
+
+		const applyArchiveState = (animateVisibleCards = false) => {
+			const matchingCards = sortMatchingCards(archiveCards.filter(cardMatchesFilter));
+			const visibleCards = matchingCards.slice(0, visibleCount);
+			const visibleSet = new Set(visibleCards);
+
+			for (const card of archiveCards) {
+				const shouldShow = visibleSet.has(card);
+				const wasHidden = card.hidden;
+
+				card.hidden = !shouldShow;
+
+				if (shouldShow && (wasHidden || animateVisibleCards)) {
+					card.style.setProperty("--card-order", String(visibleCards.indexOf(card)));
+					prepareReveal(card, visibleCards.indexOf(card));
+				}
+			}
+
+			if (loadMore) loadMore.hidden = visibleCount >= matchingCards.length;
+			updateActiveButtons();
+		};
+
+		for (const button of filterButtons) {
+			button.addEventListener(
+				"click",
+				() => {
+					const type = button.dataset.filterType as FilterType | undefined;
+					const value = button.dataset.filterValue;
+
+					if (!type || !value) return;
+
+					activeFilter = activeFilter?.type === type && activeFilter.value === value ? null : { type, value };
+					visibleCount = initialVisible;
+					applyArchiveState(true);
+				},
+				{ signal }
+			);
 		}
 
-		if (loadMore) loadMore.hidden = visibleCount >= matchingCards.length;
-		updateActiveButtons();
-	};
+		loadMore?.addEventListener(
+			"click",
+			() => {
+				visibleCount += loadStep;
+				applyArchiveState();
+			},
+			{ signal }
+		);
 
-	for (const button of filterButtons) {
-		button.addEventListener("click", () => {
-			const type = button.dataset.filterType as FilterType | undefined;
-			const value = button.dataset.filterValue;
-
-			if (!type || !value) return;
-
-			activeFilter = activeFilter?.type === type && activeFilter.value === value ? null : { type, value };
-			visibleCount = initialVisible;
-			applyArchiveState(true);
-		});
-	}
-
-	loadMore?.addEventListener("click", () => {
-		visibleCount += loadStep;
-		applyArchiveState();
-	});
-
-	const updateTagButtonTabStops = () => {
-		if (!tagCloud) return;
-		const isExpanded = tagCloud.classList.contains("is-expanded");
-		const cloudTop = tagCloud.getBoundingClientRect().top;
-		const visibleBottom = tagCloud.clientHeight + 1;
-
-		for (const button of tagButtons) {
-			const isVisible = isExpanded || button.getBoundingClientRect().bottom - cloudTop <= visibleBottom;
-			button.tabIndex = isVisible ? 0 : -1;
-			if (isVisible) button.removeAttribute("aria-hidden");
-			else button.setAttribute("aria-hidden", "true");
-		}
-	};
-
-	const updateTagMoreVisibility = () => {
-		if (!tagCloud || !tagMore) return;
-		updateTagButtonTabStops();
-		const isExpanded = tagCloud.classList.contains("is-expanded");
-		const hasOverflow = tagCloud.scrollHeight > tagCloud.clientHeight + 1;
-		tagCloud.classList.toggle("has-overflow", hasOverflow && !isExpanded);
-		if (isExpanded) {
-			tagMore.hidden = false;
-			return;
-		}
-		tagMore.hidden = !hasOverflow;
-	};
-
-	const getCollapsedTagCloudHeight = () => {
-		if (!tagCloud) return 0;
-		const value = getComputedStyle(tagCloud).getPropertyValue("--tag-cloud-collapsed-height").trim();
-		const probe = document.createElement("div");
-		probe.style.position = "absolute";
-		probe.style.visibility = "hidden";
-		probe.style.height = value || "42rem";
-		document.body.append(probe);
-		const height = probe.getBoundingClientRect().height;
-		probe.remove();
-		return height;
-	};
-
-	const expandTagCloud = () => {
-		if (!tagCloud || !tagMore) return;
-		tagCloud.classList.add("is-expanded");
-		tagCloud.classList.remove("has-overflow");
-		tagCloud.style.maxHeight = `${tagCloud.scrollHeight}px`;
-		tagMore.setAttribute("aria-expanded", "true");
-		if (tagMoreLabel) tagMoreLabel.textContent = "收回標籤";
-		updateTagButtonTabStops();
-		updateTagMoreVisibility();
-	};
-
-	const collapseTagCloud = () => {
-		if (!tagCloud || !tagMore) return;
-		const collapsedHeight = getCollapsedTagCloudHeight();
-		tagCloud.style.maxHeight = `${tagCloud.scrollHeight}px`;
-		tagCloud.classList.remove("is-expanded");
-		tagCloud.classList.add("has-overflow");
-		tagMore.setAttribute("aria-expanded", "false");
-		if (tagMoreLabel) tagMoreLabel.textContent = "顯示更多標籤";
-
-		requestAnimationFrame(() => {
+		const updateTagButtonTabStops = () => {
 			if (!tagCloud) return;
-			tagCloud.style.maxHeight = `${collapsedHeight}px`;
-			tagCloud.scrollIntoView({ behavior: prefersReducedMotion.matches ? "auto" : "smooth", block: "start" });
+			const isExpanded = tagCloud.classList.contains("is-expanded");
+			const cloudTop = tagCloud.getBoundingClientRect().top;
+			const visibleBottom = tagCloud.clientHeight + 1;
+
+			for (const button of tagButtons) {
+				const isVisible = isExpanded || button.getBoundingClientRect().bottom - cloudTop <= visibleBottom;
+				button.tabIndex = isVisible ? 0 : -1;
+				if (isVisible) button.removeAttribute("aria-hidden");
+				else button.setAttribute("aria-hidden", "true");
+			}
+		};
+
+		const updateTagMoreVisibility = () => {
+			if (!tagCloud || !tagMore) return;
 			updateTagButtonTabStops();
-		});
-	};
+			const isExpanded = tagCloud.classList.contains("is-expanded");
+			const hasOverflow = tagCloud.scrollHeight > tagCloud.clientHeight + 1;
+			tagCloud.classList.toggle("has-overflow", hasOverflow && !isExpanded);
+			if (isExpanded) {
+				tagMore.hidden = false;
+				return;
+			}
+			tagMore.hidden = !hasOverflow;
+		};
 
-	tagMore?.addEventListener("click", () => {
-		if (!tagCloud || !tagMore) return;
-		const shouldExpand = !tagCloud.classList.contains("is-expanded");
-		if (shouldExpand) expandTagCloud();
-		else collapseTagCloud();
-	});
+		const getCollapsedTagCloudHeight = () => {
+			if (!tagCloud) return 0;
+			const value = getComputedStyle(tagCloud).getPropertyValue("--tag-cloud-collapsed-height").trim();
+			const probe = document.createElement("div");
+			probe.style.position = "absolute";
+			probe.style.visibility = "hidden";
+			probe.style.height = value || "42rem";
+			document.body.append(probe);
+			const height = probe.getBoundingClientRect().height;
+			probe.remove();
+			return height;
+		};
 
-	tagCloud?.addEventListener("transitionend", event => {
-		if (event.propertyName !== "max-height") return;
-		updateTagButtonTabStops();
+		const expandTagCloud = () => {
+			if (!tagCloud || !tagMore) return;
+			tagCloud.classList.add("is-expanded");
+			tagCloud.classList.remove("has-overflow");
+			tagCloud.style.maxHeight = `${tagCloud.scrollHeight}px`;
+			tagMore.setAttribute("aria-expanded", "true");
+			if (tagMoreLabel) tagMoreLabel.textContent = "收回標籤";
+			updateTagButtonTabStops();
+			updateTagMoreVisibility();
+		};
+
+		const collapseTagCloud = () => {
+			if (!tagCloud || !tagMore) return;
+			const collapsedHeight = getCollapsedTagCloudHeight();
+			tagCloud.style.maxHeight = `${tagCloud.scrollHeight}px`;
+			tagCloud.classList.remove("is-expanded");
+			tagCloud.classList.add("has-overflow");
+			tagMore.setAttribute("aria-expanded", "false");
+			if (tagMoreLabel) tagMoreLabel.textContent = "顯示更多標籤";
+
+			requestAnimationFrame(() => {
+				if (!tagCloud) return;
+				tagCloud.style.maxHeight = `${collapsedHeight}px`;
+				tagCloud.scrollIntoView({ behavior: prefersReducedMotion.matches ? "auto" : "smooth", block: "start" });
+				updateTagButtonTabStops();
+			});
+		};
+
+		tagMore?.addEventListener(
+			"click",
+			() => {
+				if (!tagCloud || !tagMore) return;
+				const shouldExpand = !tagCloud.classList.contains("is-expanded");
+				if (shouldExpand) expandTagCloud();
+				else collapseTagCloud();
+			},
+			{ signal }
+		);
+
+		tagCloud?.addEventListener(
+			"transitionend",
+			event => {
+				if (event.propertyName !== "max-height") return;
+				updateTagButtonTabStops();
+				updateTagMoreVisibility();
+			},
+			{ signal }
+		);
+
+		window.addEventListener(
+			"resize",
+			() => {
+				if (tagCloud?.classList.contains("is-expanded")) tagCloud.style.maxHeight = `${tagCloud.scrollHeight}px`;
+				else if (tagCloud) tagCloud.style.maxHeight = "";
+				updateTagMoreVisibility();
+			},
+			{ signal }
+		);
+
+		applyArchiveState(true);
 		updateTagMoreVisibility();
-	});
 
-	window.addEventListener("resize", () => {
-		if (tagCloud?.classList.contains("is-expanded")) tagCloud.style.maxHeight = `${tagCloud.scrollHeight}px`;
-		else if (tagCloud) tagCloud.style.maxHeight = "";
-		updateTagMoreVisibility();
+		return () => {
+			revealObserver?.disconnect();
+			controller.abort();
+		};
 	});
-
-	applyArchiveState(true);
-	updateTagMoreVisibility();
 </script>
 
 <style>
