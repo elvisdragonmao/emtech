@@ -1,0 +1,234 @@
+---
+import { Send } from "@lucide/astro";
+
+interface Props {
+	compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<section id="comments" class:list={["comment-area", { compact }]}>
+	<h2>留言區</h2>
+	<form class="comment-form">
+		<label>
+			暱稱
+			<input type="text" value="毛哥EM" />
+		</label>
+		<label>
+			Email
+			<input type="email" value="info@elvismao.com" />
+		</label>
+		<label class="message">
+			訊息
+			<textarea rows="5">我想說話</textarea>
+		</label>
+		<div class="actions">
+			<button type="button"><Send size={14} stroke-width={1.8} />送出</button>
+			<span>或是先 <a href="/">登入</a></span>
+		</div>
+	</form>
+
+	<article class="comment-card">
+		<div class="comment-head">
+			<span class="avatar"></span>
+			<div>
+				<strong>毛哥EM</strong>
+				<time datetime="2025-05-12">2025-05-12</time>
+			</div>
+		</div>
+		<p>不得不佩服風風怪色精嗎？過了嘈雜犬般被強迫割你吹，還排著搞拒絕。被強硬的壓制之後只能乖乖的不動，明明有很長的線卻只能當空。</p>
+		<div class="comment-bottom">
+			<span>台中</span>
+			<span>macOS Sonoma</span>
+			<span>Firefox</span>
+			<button type="button">回覆</button>
+		</div>
+	</article>
+</section>
+
+<style>
+	.comment-area {
+		width: min(57.5rem, 100%);
+		margin: 0 auto;
+	}
+
+	h2 {
+		margin-bottom: 1.5rem;
+		font-size: 3.25rem;
+		line-height: 1;
+		letter-spacing: -0.07em;
+		color: var(--color-ink);
+	}
+
+	.comment-form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+
+	label {
+		display: grid;
+		gap: 0.25rem;
+		font-size: 1rem;
+		color: var(--color-text);
+	}
+
+	.message,
+	.actions {
+		grid-column: 1 / -1;
+	}
+
+	input,
+	textarea {
+		width: 100%;
+		padding: 0.5rem 1rem;
+		color: var(--color-text);
+		background: oklch(100% 0 0 / 84%);
+		border: 1px solid var(--color-border);
+		outline: 0;
+		transition: border-color 160ms ease;
+	}
+
+	textarea {
+		resize: vertical;
+	}
+
+	input:focus,
+	textarea:focus {
+		border-color: var(--color-accent);
+	}
+
+	.actions {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		font-size: 1rem;
+		color: var(--color-muted);
+	}
+
+	button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1rem;
+		color: var(--color-ink);
+		background: var(--color-surface);
+		border: 1px solid var(--color-accent-strong);
+		line-height: 1;
+		transition:
+			background 160ms ease,
+			border-color 160ms ease,
+			box-shadow 160ms ease,
+			transform 160ms ease;
+	}
+
+	button:hover {
+		background: oklch(93% 0.045 220 / 45%);
+		border-color: var(--color-accent);
+		box-shadow: 0 0.35rem 1rem oklch(71% 0.15 225 / 12%);
+		transform: translateY(-0.1rem);
+	}
+
+	button:hover svg {
+		transform: translateX(0.1rem);
+	}
+
+	button svg {
+		transition: transform 160ms ease;
+	}
+
+	a {
+		color: var(--color-accent-strong);
+		border-bottom: 1px solid currentColor;
+	}
+
+	.comment-card {
+		margin-top: 2.5rem;
+		padding: 1rem;
+		background: oklch(100% 0 0 / 88%);
+		border: 1px solid var(--color-border);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.comment-head {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		line-height: 1;
+	}
+
+	.avatar {
+		width: 2.75rem;
+		height: 2.75rem;
+		border-radius: 50%;
+		background:
+			radial-gradient(circle at 35% 35%, var(--color-yellow), transparent 30%), radial-gradient(circle at 70% 30%, var(--color-pink), transparent 34%),
+			linear-gradient(135deg, var(--color-accent), var(--color-purple));
+	}
+
+	strong,
+	time {
+		display: block;
+	}
+
+	strong {
+		font-size: 1rem;
+		color: var(--color-ink);
+	}
+
+	time {
+		margin-top: 0.3rem;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-muted);
+	}
+
+	.comment-card p {
+		font-size: 1rem;
+		line-height: 1.9;
+		color: var(--color-text);
+	}
+
+	.comment-bottom {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.comment-bottom span {
+		padding: 0.25rem 0.5rem;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-muted);
+		border: 1px solid var(--color-border);
+	}
+
+	.comment-bottom button {
+		margin-left: auto;
+		padding: 0.5rem 0.75rem;
+		font-size: 0.75rem;
+	}
+
+	.compact {
+		width: 100%;
+	}
+
+	@media (max-width: 43.75rem) {
+		.comment-form {
+			grid-template-columns: 1fr;
+		}
+
+		.actions {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		.comment-card {
+			padding: 1.5rem;
+		}
+	}
+</style>

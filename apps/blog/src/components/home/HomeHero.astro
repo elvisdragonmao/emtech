@@ -1,0 +1,370 @@
+---
+import { getCollection } from "astro:content";
+import type { ImageMetadata } from "astro";
+import { extractTitle, formatDate, normalizeImportPath } from "@/utils/content";
+
+const allPosts = (await getCollection("post")).filter(post => !post.data.draft);
+const courses = await getCollection("course");
+
+const LAUNCH_DATE = "2021-06-05";
+
+const stats = [
+	{ label: "Post", value: String(allPosts.length) },
+	{ label: "Course", value: String(courses.length) },
+	{ label: "Lived for", value: "--", livedFor: true }
+];
+
+// 2 most recent posts
+const recentPosts = [...allPosts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 2);
+
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/*/thumbnail.webp", { eager: true });
+
+const articleTags = ["最新文章", "次新文章"];
+
+const featuredArticles = recentPosts.map((p, index) => {
+	const thumbKey = normalizeImportPath(`/src/content/post/${p.id}/thumbnail.webp`);
+	return {
+		tag: articleTags[index] ?? "最新文章",
+		title: extractTitle(p.body) || p.id,
+		description: p.data.description ?? "",
+		href: `/p/${p.id}/`,
+		image: allThumbs[thumbKey]?.default ?? null,
+		date: formatDate(p.data.date)
+	};
+});
+---
+
+<section class="hero">
+	<div class="hero-copy">
+		<div class="hero-heading">
+			<p class="eyebrow">EMTECH.CC / ELVIS DRAGON MAO</p>
+			<h1>毛哥EM<br />資訊密技</h1>
+			<p class="hero-subtitle">科技、設計、毛茸茸</p>
+		</div>
+		<div class="card stats-panel" aria-label="網站統計">
+			{
+				stats.map(stat => (
+					<div>
+						<span>{stat.label}</span>
+						{stat.livedFor ? (
+							<strong data-lived-for data-launch-date={LAUNCH_DATE} aria-live="polite">
+								{stat.value}
+							</strong>
+						) : (
+							<strong>{stat.value}</strong>
+						)}
+					</div>
+				))
+			}
+		</div>
+	</div>
+
+	<div class="hero-gallery" aria-label="精選內容">
+		<img class="dragon" src="/img/dragon.webp" alt="毛哥EM 角色插圖" />
+		<div class="circle circle-one"></div>
+		<div class="circle circle-two"></div>
+		{
+			featuredArticles.map(article => (
+				<a class="feature-note" href={article.href}>
+					{article.image ? <img src={article.image.src} width={article.image.width} height={article.image.height} alt={article.title} /> : <div class="thumb-placeholder" aria-hidden="true" />}
+					<div>
+						<span>{article.tag}</span>
+						<strong>{article.title}</strong>
+						<small>{article.description}</small>
+					</div>
+				</a>
+			))
+		}
+	</div>
+</section>
+
+<script>
+	const livedFor = document.querySelector("[data-lived-for]");
+	const launchDate = livedFor?.getAttribute("data-launch-date");
+
+	if (livedFor instanceof HTMLElement && launchDate) {
+		const launch = new Date(`${launchDate}T00:00:00`);
+		const totalDays = Math.max(0, Math.floor((Date.now() - launch.getTime()) / (1000 * 60 * 60 * 24)));
+		const years = Math.floor(totalDays / 365.25);
+		const remainingDays = Math.round(totalDays - years * 365.25);
+
+		livedFor.textContent = `${years}y ${remainingDays}d`;
+	}
+</script>
+
+<style>
+	.hero {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, 0.92fr) minmax(22.5rem, 1.08fr);
+		gap: 4rem;
+		align-items: flex-end;
+		min-height: min(calc(100svh - 4.25rem), 70rem);
+		padding: 2rem 0 10rem;
+		margin-bottom: -6rem;
+	}
+
+	.hero::before {
+		position: absolute;
+		top: 9.5rem;
+		left: 0;
+		width: min(32.5rem, 46vw);
+		content: "";
+		border-top: 1px solid var(--color-accent);
+		transform: rotate(-8deg);
+		transform-origin: left center;
+	}
+
+	.hero-copy {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 6rem;
+	}
+
+	.eyebrow {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.09em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	h1 {
+		margin-top: 1.5rem;
+		font-size: 8rem;
+		line-height: 1;
+		letter-spacing: -0.05em;
+		color: var(--color-ink);
+	}
+
+	.hero-subtitle {
+		margin-top: 1.5rem;
+		font-size: 1.75rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		color: var(--color-text);
+	}
+
+	.stats-panel {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		max-width: 35rem;
+	}
+
+	.stats-panel div {
+		padding: 1.25rem;
+		border-left: 1px solid var(--color-border);
+	}
+
+	.stats-panel div:first-child {
+		border-left: 0;
+	}
+
+	.stats-panel span {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	.stats-panel strong {
+		display: block;
+		margin-top: 0.5rem;
+		font-size: 1.75rem;
+		line-height: 1;
+		letter-spacing: -0.04em;
+		color: var(--color-ink);
+	}
+
+	.hero-gallery {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		padding-right: 2rem;
+	}
+
+	.dragon {
+		z-index: 2;
+		width: 40rem;
+		height: auto;
+		/* filter: drop-shadow(0 2rem 2.25rem oklch(71% 0.15 225 / 20%)); */
+		transform: translateX(9rem) rotate(-4deg);
+	}
+
+	.circle {
+		position: absolute;
+		border: 1px solid oklch(71% 0.15 225 / 48%);
+		border-radius: 62.5rem;
+	}
+
+	.circle-one {
+		right: 2.5rem;
+		bottom: 4.5rem;
+		width: 14.75rem;
+		height: 14.75rem;
+	}
+
+	.circle-two {
+		bottom: 9.25rem;
+		left: 2rem;
+		width: 13.75rem;
+		height: 13.75rem;
+	}
+
+	.feature-note {
+		z-index: 3;
+		display: grid;
+		grid-template-columns: 10.75rem 1fr;
+		gap: 1.25rem;
+		width: min(30rem, 100%);
+		padding: 1rem;
+		background: oklch(100% 0 0 / 88%);
+		border: 1px solid var(--color-border);
+		box-shadow: var(--shadow-card);
+		transition:
+			transform 180ms ease,
+			border-color 180ms ease;
+	}
+
+	.feature-note:hover {
+		transform: translateX(0.25rem);
+		border-color: var(--color-accent);
+	}
+
+	.feature-note img,
+	.thumb-placeholder {
+		width: 100%;
+		aspect-ratio: 2 / 1;
+		height: auto;
+		object-fit: cover;
+	}
+
+	.thumb-placeholder {
+		background: var(--color-surface-soft);
+	}
+
+	.feature-note span,
+	.feature-note small {
+		display: block;
+		font-size: 0.75rem;
+		line-height: 1.5;
+		color: var(--color-muted);
+	}
+
+	.feature-note span {
+		font-family: var(--font-mono);
+		font-weight: 800;
+		color: var(--color-accent-strong);
+	}
+
+	.feature-note small {
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+
+	.feature-note strong {
+		display: block;
+		margin: 0.5rem 0;
+		font-size: 1rem;
+		line-height: 1.25;
+		letter-spacing: -0.04em;
+		color: var(--color-ink);
+	}
+
+	@media (max-width: 72rem) {
+		.hero {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+			align-items: start;
+			min-height: auto;
+			padding-bottom: 6rem;
+			margin-bottom: -3rem;
+		}
+
+		.hero-copy {
+			gap: 2rem;
+		}
+
+		h1 {
+			font-size: clamp(4.5rem, 17vw, 8rem);
+		}
+
+		.hero-gallery {
+			align-items: stretch;
+			padding-right: 0;
+		}
+
+		.dragon {
+			align-self: flex-end;
+			width: min(35rem, 86vw);
+			transform: translateX(1rem) rotate(-4deg);
+		}
+
+		.circle-one {
+			right: 1rem;
+		}
+
+		.circle-two {
+			left: 0;
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.hero {
+			padding-top: 1.5rem;
+			padding-bottom: 4rem;
+		}
+
+		.hero::before,
+		.circle {
+			display: none;
+		}
+
+		h1 {
+			margin-top: 1rem;
+			font-size: clamp(4rem, 24vw, 5.25rem);
+		}
+
+		.hero-subtitle {
+			font-size: 1.25rem;
+		}
+
+		.stats-panel {
+			grid-template-columns: 1fr;
+			width: fit-content;
+		}
+
+		.stats-panel div {
+			padding-inline: 2rem;
+		}
+
+		.stats-panel div,
+		.stats-panel div:first-child {
+			border-top: 1px solid var(--color-border);
+			border-left: 0;
+		}
+
+		.stats-panel div:first-child {
+			border-top: 0;
+		}
+
+		.dragon {
+			width: min(25rem, 100%);
+			transform: none;
+		}
+
+		.feature-note {
+			grid-template-columns: minmax(5.5rem, 34%) 1fr;
+			gap: 0.85rem;
+			padding: 0.75rem;
+		}
+	}
+</style>

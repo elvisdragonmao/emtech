@@ -1,0 +1,24 @@
+{
+	"name": "blog",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"astro": "astro",
+		"build": "astro build",
+		"dev": "astro dev",
+		"preview": "astro preview",
+		"typecheck": "astro check"
+	},
+	"dependencies": {
+		"@lucide/astro": "^1.14.0",
+		"astro": "^6.3.1",
+		"astro-pagefind": "^2.0.0",
+		"sharp": "^0.34.5",
+		"simple-icons": "^16.19.0"
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.9.9",
+		"unist-util-visit": "^5.1.0"
+	}
+}

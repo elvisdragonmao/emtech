@@ -1,0 +1,248 @@
+---
+import { ArrowLeft, ArrowRight } from "@lucide/astro";
+import { getCollection, render } from "astro:content";
+import type { ImageMetadata } from "astro";
+import CourseSidebar from "@/components/course/CourseSidebar.astro";
+import Comments from "@/components/Comments.astro";
+import AboutCard from "@/components/shared/AboutCard.astro";
+import PostBody from "@/components/shared/PostBody.astro";
+import Layout from "@/layouts/Layout.astro";
+import { extractTitle, formatDate, formatHashTags, normalizeImportPath, normalizeTerms, readingTime, wordCount, type MetaItem } from "@/utils/content";
+
+export async function getStaticPaths() {
+	const lessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
+	return lessons.map(lesson => {
+		const [courseId, lessonId] = lesson.id.split("/");
+		return { params: { courseId, lessonId } };
+	});
+}
+
+const { courseId, lessonId } = Astro.params;
+const allLessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
+const entry = allLessons.find(l => l.id === `${courseId}/${lessonId}`);
+
+if (!entry) return Astro.redirect("/404");
+
+const courses = await getCollection("course");
+const courseEntry = courses.find(c => c.id === courseId);
+
+// Ordered lessons for prev/next navigation
+const courseLessons = allLessons
+	.filter(l => l.id.startsWith(`${courseId}/`))
+	.sort((a, b) => {
+		const order = courseEntry?.data.order ?? [];
+		const aId = a.id.replace(`${courseId}/`, "");
+		const bId = b.id.replace(`${courseId}/`, "");
+		return order.indexOf(aId) - order.indexOf(bId);
+	});
+
+const currentIndex = courseLessons.findIndex(l => l.id === entry.id);
+const prevLesson = currentIndex > 0 ? courseLessons[currentIndex - 1] : null;
+const nextLesson = currentIndex < courseLessons.length - 1 ? courseLessons[currentIndex + 1] : null;
+
+const { Content, headings } = await render(entry);
+
+// Discover thumbnail
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/*/*/thumbnail.webp", { eager: true });
+const thumbKey = normalizeImportPath(`/src/content/course/${courseId}/${lessonId}/thumbnail.webp`);
+const thumbnail: ImageMetadata | null = allThumbs[thumbKey]?.default ?? null;
+
+const title = headings[0]?.text ?? lessonId;
+const description = entry.data.description ?? "";
+const entryTags = normalizeTerms(entry.data.tags);
+const entryCategories = normalizeTerms(entry.data.categories);
+const tag = formatHashTags(entryTags.length > 0 ? entryTags : entryCategories);
+
+const prevId = prevLesson?.id.replace(`${courseId}/`, "");
+const nextId = nextLesson?.id.replace(`${courseId}/`, "");
+
+const contentText = entry.body ?? "";
+const meta: MetaItem[] = [
+	{ label: "Date", value: formatDate(entry.data.date) },
+	{ label: "Category", value: entryCategories[0] ?? "" },
+	{ label: "Read Time", value: readingTime(contentText) },
+	{ label: "Word", value: wordCount(contentText) },
+	{ label: "Last Mod", value: formatDate(entry.data.date) }
+];
+
+// Build sidebar lesson list
+const sidebarLessons = courseLessons.map(l => {
+	const slug = l.id.replace(`${courseId}/`, "");
+	return {
+		id: slug,
+		title: extractTitle(l.body) || l.data.description || slug,
+		href: `/course/${courseId}/${slug}/`
+	};
+});
+---
+
+<Layout title={title} description={description} active="course">
+	<main class="lesson-page">
+		<div class="lesson-layout">
+			<CourseSidebar courseId={courseId} courseTitle={courseEntry?.data.title ?? courseId} lessons={sidebarLessons} currentId={lessonId} />
+
+			<div class="lesson-body">
+				<PostBody
+					layout="course"
+					tag={tag}
+					title={title}
+					image={thumbnail}
+					meta={meta}
+					tldr={description}
+					headings={headings}
+					progressStorageKey={`emtech:course-progress:${courseId}`}
+					progressItemId={lessonId}
+				>
+					<Content />
+				</PostBody>
+
+				<nav class="lesson-nav" aria-label="課程上下篇">
+					{
+						prevLesson && (
+							<a href={`/course/${courseId}/${prevId}/`}>
+								<span>Previous</span>
+								<strong>{extractTitle(prevLesson.body) || prevLesson.data.description || prevId}</strong>
+								<ArrowLeft size={16} stroke-width={1.8} />
+							</a>
+						)
+					}
+					<a class="current" href={`/course/${courseId}/`}>
+						<span>Back to course</span>
+						<strong>{courseEntry?.data.title ?? courseId}</strong>
+					</a>
+					{
+						nextLesson && (
+							<a href={`/course/${courseId}/${nextId}/`}>
+								<span>Next</span>
+								<strong>{extractTitle(nextLesson.body) || nextLesson.data.description || nextId}</strong>
+								<ArrowRight size={16} stroke-width={1.8} />
+							</a>
+						)
+					}
+				</nav>
+
+				<section class="about-wrap">
+					<AboutCard copyright />
+				</section>
+
+				<section class="comments-wrap">
+					<Comments pagePath={Astro.url.pathname} />
+				</section>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.lesson-layout {
+		display: grid;
+		grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
+		width: 100%;
+		margin-inline: auto;
+		align-items: start;
+	}
+
+	.lesson-body {
+		padding: 5.5rem 2rem 0;
+		grid-column: 2;
+		grid-row: 1;
+		width: 100%;
+		min-width: 0;
+	}
+
+	.about-wrap {
+		display: flex;
+		justify-content: center;
+		margin-top: 5.75rem;
+	}
+
+	.comments-wrap {
+		margin-top: 5.75rem;
+	}
+
+	.lesson-nav {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		width: min(58.25rem, 100%);
+		margin: 5.75rem auto 0;
+		border: 1px solid var(--color-border);
+	}
+
+	.lesson-nav a {
+		position: relative;
+		display: grid;
+		min-height: 7rem;
+		padding: 1.5rem;
+		color: var(--color-text);
+		background: oklch(100% 0 0 / 84%);
+		border-left: 1px solid var(--color-border);
+	}
+
+	.lesson-nav a:first-child {
+		border-left: 0;
+	}
+
+	.lesson-nav span {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	.lesson-nav strong {
+		align-self: end;
+		font-size: 1.25rem;
+		line-height: 1.25;
+		letter-spacing: -0.04em;
+		color: var(--color-ink);
+	}
+
+	.lesson-nav svg {
+		position: absolute;
+		right: 1.25rem;
+		bottom: 1.5rem;
+		color: var(--color-accent-strong);
+	}
+
+	.lesson-nav .current {
+		border-top: 3px solid var(--color-accent);
+	}
+
+	@media (max-width: 76rem) {
+		.lesson-layout {
+			grid-template-columns: 1fr;
+			width: min(var(--site-width), 100%);
+		}
+
+		.lesson-body {
+			grid-column: auto;
+			grid-row: auto;
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.lesson-body {
+			padding: 3.25rem 0 0;
+		}
+
+		.lesson-nav {
+			grid-template-columns: 1fr;
+		}
+
+		.lesson-nav a,
+		.lesson-nav a:first-child {
+			border-top: 1px solid var(--color-border);
+			border-left: 0;
+		}
+
+		.lesson-nav a:first-child {
+			border-top: 0;
+		}
+
+		.comments-wrap {
+			margin-top: 3rem;
+		}
+	}
+</style>

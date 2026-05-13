@@ -1,17 +1,209 @@
 # 毛哥EM資訊密技
 
-毛哥EM 從國二經營至今的部落格。為網路添加一點點缺少的技術、經驗、技巧、和工具。
+毛哥EM 從國二經營至今的部落格。分享技術、經驗、專案、與生活。
 
-<https://emtech.cc> | [英文版 README](README.en.md)
+<https://emtech.cc>
 
-![格式檢查](https://img.shields.io/github/actions/workflow/status/elvisdragonmao/emtech/markdown-validation.yml?label=%F0%9F%93%B0%20格式檢查) ![GitHub Actions 工作流程狀態](https://img.shields.io/github/actions/workflow/status/elvisdragonmao/emtech/file-size-check.yml?label=%F0%9F%8E%87%E5%9C%96%E7%89%87%E5%A4%A7%E5%B0%8F%E6%AA%A2%E6%9F%A5)
+## Monorepo
 
-![毛哥EM資訊密技 og 圖片](static/img/og.webp)
+這個 repo 使用 pnpm workspace：
 
-## emblog
+```txt
+.
+├── apps/
+│   ├── blog/              # Astro 部落格
+│   └── comments-worker/   # Cloudflare Worker + D1 留言 API
+├── packages/
+│   └── comments-shared/   # Gravatar、sanitize、spam heuristic 等共用工具
+├── package.json
+├── pnpm-workspace.yaml
+└── tsconfig.base.json
+```
 
-部落格初期使用 Hugo 作為生成器，但為了追求效能極致、輕量化、可定制性與安全性，我決定從零開始開發屬於自己的部落格生成器 - emblog。這款自製生成器支援現代的 SEO 要求，並透過無前端框架實現了單頁應用（SPA）的流暢體驗，達成零等待載入頁面，動畫順暢，還內建了我所需的各項功能，達到極高的客製化標準。
+## Development
 
-> 閱讀更多關於 emblog 的資訊：[emblog - 一個不一樣的部落格生成器](https://emtech.cc/p/emblog)
+```bash
+pnpm install
+pnpm dev
+pnpm --filter blog dev
+pnpm --filter comments-worker dev
+```
 
-emblog 目前不管是從設計到裡面的核心皆是為毛哥EM資訊密技打造，缺少許多自訂功能，所以目前尚未對外開放使用。不過所有程式碼皆以 Apache 2.0 授權條款釋出，歡迎自行修改使用。等我之後有空應該會做成能讓大家使用的部落格生成器。歡迎關注我的 [GitHub](https://github.com/elvisdragonmao/emtech) 以取得最新消息。
+`pnpm dev` 會啟動 blog。Worker 請另外開一個 terminal 跑 `pnpm --filter comments-worker dev`。
+
+常用檢查：
+
+```bash
+pnpm build
+pnpm typecheck
+pnpm test
+pnpm --filter blog build
+pnpm --filter comments-worker typecheck
+pnpm --filter comments-worker test
+```
+
+## Comments Worker Setup
+
+先複製本機 env 範例：
+
+```bash
+cp apps/comments-worker/.dev.vars.example apps/comments-worker/.dev.vars
+```
+
+`apps/comments-worker/.dev.vars` 必須填入：
+
+```txt
+GITHUB_CLIENT_ID
+GITHUB_CLIENT_SECRET
+GITHUB_REDIRECT_URI
+SESSION_SECRET
+IP_HASH_SECRET
+TURNSTILE_SECRET_KEY
+ADMIN_TOKEN
+ALLOWED_ORIGINS
+COMMENT_DEFAULT_STATUS_ANON
+COMMENT_DEFAULT_STATUS_GITHUB
+```
+
+本機開發若暫時不使用 Turnstile，可把 `TURNSTILE_SECRET_KEY` 設為 `dev-disabled`。正式環境請用 Cloudflare secret，不要 commit 真實值。
+
+## D1 Database
+
+建立 D1：
+
+```bash
+pnpm --filter comments-worker exec wrangler d1 create emtech-comments
+```
+
+把輸出的 `database_id` 填到 `apps/comments-worker/wrangler.toml`：
+
+```toml
+[[d1_databases]]
+binding = "COMMENTS_DB"
+database_name = "emtech-comments"
+database_id = "your-database-id"
+```
+
+執行 migrations：
+
+```bash
+pnpm --filter comments-worker db:migrate:local
+pnpm --filter comments-worker db:migrate:remote
+```
+
+## Turnstile
+
+在 Cloudflare Turnstile 建立 widget，網域加入正式部落格網域與本機需要的測試網域。設定：
+
+```bash
+pnpm --filter comments-worker exec wrangler secret put TURNSTILE_SECRET_KEY
+```
+
+Astro 前端需要 site key。部署 blog 時設定：
+
+```txt
+TURNSTILE_SITE_KEY=your-site-key
+COMMENT_API_BASE_URL=https://your-comments-worker.example.com
+```
+
+## GitHub OAuth
+
+到 GitHub Developer Settings 建立 OAuth App：
+
+```txt
+Homepage URL: https://your-blog.example.com
+Authorization callback URL: https://your-comments-worker.example.com/api/auth/github/callback
+```
+
+設定 Worker secrets：
+
+```bash
+pnpm --filter comments-worker exec wrangler secret put GITHUB_CLIENT_ID
+pnpm --filter comments-worker exec wrangler secret put GITHUB_CLIENT_SECRET
+pnpm --filter comments-worker exec wrangler secret put GITHUB_REDIRECT_URI
+pnpm --filter comments-worker exec wrangler secret put SESSION_SECRET
+pnpm --filter comments-worker exec wrangler secret put IP_HASH_SECRET
+pnpm --filter comments-worker exec wrangler secret put ADMIN_TOKEN
+```
+
+`ALLOWED_ORIGINS` 需要包含 blog origin，例如：
+
+```txt
+https://emtech.cc,http://localhost:4321,http://127.0.0.1:4321
+```
+
+Cookie 使用 `HttpOnly; Secure; SameSite=Lax`。本機 HTTP 下 GitHub OAuth session cookie 可能無法完整測試，建議用 HTTPS tunnel 或部署到 Cloudflare 後驗證。
+
+## Deploy
+
+部署 blog：
+
+```bash
+pnpm --filter blog build
+```
+
+部署 comments worker：
+
+```bash
+pnpm --filter comments-worker deploy
+```
+
+若使用 Cloudflare Pages/Workers 靜態資產部署 blog，`apps/blog/wrangler.jsonc` 仍保留原本靜態站設定。
+
+## Moderation
+
+管理介面：
+
+```txt
+https://your-comments-worker.example.com/admin
+```
+
+管理介面會要求 GitHub 登入使用者為 `elvisdragonmao`，執行 moderation API 時仍需要 `ADMIN_TOKEN`。
+
+API examples：
+
+```bash
+curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+  "https://your-comments-worker.example.com/api/admin/comments?status=pending"
+
+curl -X POST -H "Authorization: Bearer $ADMIN_TOKEN" \
+  "https://your-comments-worker.example.com/api/admin/comments/comment-id/approve"
+
+curl -X POST -H "Authorization: Bearer $ADMIN_TOKEN" \
+  "https://your-comments-worker.example.com/api/admin/comments/comment-id/reject"
+
+curl -X POST -H "Authorization: Bearer $ADMIN_TOKEN" \
+  "https://your-comments-worker.example.com/api/admin/comments/comment-id/delete"
+```
+
+## Comments API
+
+Public routes：
+
+```txt
+GET  /api/comments?pagePath=/posts/foo
+POST /api/comments
+GET  /api/auth/github/start?returnTo=/posts/foo
+GET  /api/auth/github/callback
+GET  /api/auth/me
+POST /api/auth/logout
+```
+
+`POST /api/comments` accepts:
+
+```json
+{
+	"pagePath": "/posts/foo",
+	"body": "required comment text",
+	"name": "optional display name",
+	"email": "optional email for Gravatar only",
+	"parentId": "optional parent comment id",
+	"turnstileToken": "required unless TURNSTILE_SECRET_KEY=dev-disabled"
+}
+```
+
+Email 會 normalize 後只儲存 SHA-256 hash，用於產生 Gravatar URL，不回傳也不儲存 raw email。
+
+## License
+
+毛哥EM 製作。原始碼以 Apache-2.0，文章以 CC BY-4.0 授權釋出。

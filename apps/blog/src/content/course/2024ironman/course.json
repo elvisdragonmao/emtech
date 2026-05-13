@@ -1,0 +1,54 @@
+{
+	"title": "看好了 GitHub Actions，我只示範一次",
+	"description": "把部署和檢查自動化，讓每次 push 都更安心。30 天鐵人賽系列，從 CI/CD 基礎到進階部署流程。",
+	"displayOrder": 5,
+	"accent": "yellow",
+	"thumbnail": "2024ironman-1/thumbnail.webp",
+	"meta": "零基礎 / 鐵人賽 / 30 天",
+	"order": [
+		"2024ironman-1",
+		"2024ironman-2",
+		"2024ironman-3",
+		"2024ironman-4",
+		"2024ironman-5",
+		"2024ironman-6",
+		"2024ironman-7",
+		"2024ironman-8",
+		"2024ironman-9",
+		"2024ironman-10",
+		"2024ironman-11",
+		"2024ironman-12",
+		"2024ironman-13",
+		"2024ironman-14",
+		"2024ironman-15",
+		"2024ironman-16",
+		"2024ironman-17",
+		"2024ironman-18",
+		"2024ironman-19",
+		"2024ironman-20",
+		"2024ironman-21",
+		"2024ironman-22",
+		"2024ironman-23",
+		"2024ironman-24",
+		"2024ironman-25",
+		"2024ironman-26",
+		"2024ironman-27",
+		"2024ironman-28",
+		"2024ironman-29",
+		"2024ironman-30"
+	],
+	"outcomes": [
+		{
+			"title": "自動化 CI/CD 流程",
+			"text": "每次 push 自動跑測試、建置、部署，讓工作流程更安全可靠。"
+		},
+		{
+			"title": "掌握 GitHub Actions 語法",
+			"text": "理解 workflow、job、step 的結構，能寫出可複用的 Action。"
+		},
+		{
+			"title": "實戰部署與整合",
+			"text": "串接 Docker、SSH 部署、Secrets 管理與第三方服務通知。"
+		}
+	]
+}

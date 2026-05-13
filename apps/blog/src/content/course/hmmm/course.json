@@ -1,0 +1,9 @@
+{
+	"title": "hmmm",
+	"description": "毛哥EM 的電子報。關於科技、設計、生活的碎片思考。",
+	"displayOrder": 2,
+	"accent": "yellow",
+	"thumbnail": "hmmm-1/thumbnail.webp",
+	"meta": "電子報 / 不定期",
+	"order": ["hmmm-1", "hmmm-2", "hmmm-3", "hmmm-4"]
+}

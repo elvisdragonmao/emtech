@@ -1,0 +1,23 @@
+{
+	"title": "前端網頁開發入門（更新中）",
+	"description": "給想從零建立完整前端心智模型的學習者。不是只背語法，而是理解文件結構、排版系統、互動狀態與部署流程如何連在一起。",
+	"displayOrder": 1,
+	"accent": "blue",
+	"thumbnail": "js/thumbnail.webp",
+	"meta": "零基礎 / 24 H / 課程",
+	"order": ["what-is-website", "html", "css", "js", "js-async", "seo"],
+	"outcomes": [
+		{
+			"title": "讀懂 HTML 語意結構",
+			"text": "能把內容建立穩定骨架，讓瀏覽器和人都知道這份文件在說什麼。"
+		},
+		{
+			"title": "用 CSS Grid / Flex 做出可維護的版面",
+			"text": "從間距、對齊、響應式到可讀性，建立系統化排版直覺。"
+		},
+		{
+			"title": "理解 JavaScript 互動、狀態與可及性",
+			"text": "知道什麼時候需要 JS，並讓互動不只是會動而是好用。"
+		}
+	]
+}

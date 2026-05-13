@@ -1,0 +1,955 @@
+---
+import { ArrowLeft, ArrowRight } from "@lucide/astro";
+import type { ImageMetadata } from "astro";
+import type { MetaItem, TocHeading } from "@/utils/content";
+import MetaTable from "./MetaTable.astro";
+
+interface Props {
+	tag: string;
+	title: string;
+	image?: ImageMetadata | null;
+	meta: MetaItem[];
+	tldr?: string;
+	headings?: TocHeading[];
+	previousHref?: string;
+	previousTitle?: string;
+	nextHref?: string;
+	nextTitle?: string;
+	progressStorageKey?: string;
+	progressItemId?: string;
+	layout?: "post" | "course";
+}
+
+const { tag, title, image, meta, tldr, headings = [], previousHref, previousTitle, nextHref, nextTitle, progressStorageKey, progressItemId, layout = "post" } = Astro.props;
+
+// Only show TOC headings at depth 2 and 3
+const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
+const isCourseLayout = layout === "course";
+const pagefindType = isCourseLayout ? "課程" : "文章";
+const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
+---
+
+<section class:list={["article-hero", { "course-layout": isCourseLayout }]}>
+	<div></div>
+	<div class="hero-main">
+		<p class="tag">{tag}</p>
+		<h1 data-pagefind-meta="title">{title}</h1>
+		<MetaTable items={meta} />
+	</div>
+	{
+		!isCourseLayout && (
+			<aside class="hero-side-nav" aria-label="文章導覽">
+				{(previousHref || nextHref) && (
+					<div class="side-nav">
+						{previousHref && (
+							<a href={previousHref}>
+								<ArrowLeft size={14} stroke-width={1.8} />
+								<span>上一篇</span>
+								<strong>{previousTitle ?? "上一篇"}</strong>
+							</a>
+						)}
+						{nextHref && (
+							<a href={nextHref}>
+								<strong>{nextTitle ?? "下一篇"}</strong>
+								<span>下一篇</span>
+								<ArrowRight size={14} stroke-width={1.8} />
+							</a>
+						)}
+					</div>
+				)}
+			</aside>
+		)
+	}
+</section>
+
+<section class:list={["article-shell", { "course-layout": isCourseLayout }]}>
+	<aside class="toc" aria-label="文章目錄">
+		{
+			tocItems.length > 0 ? (
+				<>
+					<span class="toc-label">On This Page</span>
+					{tocItems.map(item => (
+						<a href={`#${item.slug}`} class:list={[{ "toc-h3": item.depth === 3 }]} data-toc-link={item.slug}>
+							{item.text}
+						</a>
+					))}
+				</>
+			) : null
+		}
+	</aside>
+
+	<article id="content" class="article-content" data-pagefind-body data-progress-storage-key={progressStorageKey} data-progress-item-id={progressItemId}>
+		<span class="sr-only" data-pagefind-meta="type">{pagefindType}</span>
+		{
+			pagefindDate && (
+				<span class="sr-only" data-pagefind-meta="date" data-pagefind-sort="date">
+					{pagefindDate}
+				</span>
+			)
+		}
+		{image && <img class="hero-image" src={image.src} width={image.width} height={image.height} alt={title} />}
+		{
+			tldr && (
+				<aside class="tldr-callout">
+					<strong>TL;DR</strong>
+					<p>{tldr}</p>
+					<span aria-hidden="true">TL;DR</span>
+				</aside>
+			)
+		}
+		<slot />
+		<div data-read-complete-sentinel aria-hidden="true"></div>
+	</article>
+
+	<div></div>
+</section>
+
+<div class:list={["reading-toast", { "course-layout": isCourseLayout }]} data-reading-toast role="status" aria-live="polite" hidden>閱讀完成已紀錄</div>
+
+<script>
+	const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"));
+	const tocHeadings = tocLinks
+		.map(link => {
+			const id = link.dataset.tocLink;
+			const heading = id ? document.getElementById(id) : null;
+			return heading ? { id, heading, link } : null;
+		})
+		.filter((item): item is { id: string; heading: HTMLElement; link: HTMLAnchorElement } => Boolean(item));
+
+	const setActiveToc = (id: string) => {
+		for (const { id: itemId, link } of tocHeadings) {
+			link.classList.toggle("active", itemId === id);
+		}
+	};
+
+	let tocFrame = 0;
+	const updateToc = () => {
+		tocFrame = 0;
+		const firstHeading = tocHeadings[0];
+		if (!firstHeading) return;
+
+		const active = tocHeadings.reduce((current, item) => {
+			const top = item.heading.getBoundingClientRect().top;
+			return top <= 120 ? item : current;
+		}, firstHeading);
+
+		setActiveToc(active.id);
+	};
+
+	const queueTocUpdate = () => {
+		if (tocFrame) return;
+		tocFrame = window.requestAnimationFrame(updateToc);
+	};
+
+	if (tocHeadings.length > 0) {
+		updateToc();
+		window.addEventListener("scroll", queueTocUpdate, { passive: true });
+		window.addEventListener("resize", queueTocUpdate);
+	}
+
+	const progressArticle = document.querySelector<HTMLElement>("[data-progress-storage-key][data-progress-item-id]");
+	const sentinel = progressArticle?.querySelector<HTMLElement>("[data-read-complete-sentinel]");
+	const toast = document.querySelector<HTMLElement>("[data-reading-toast]");
+
+	const parseProgress = (value: string | null) => {
+		if (!value) return [];
+		try {
+			const parsed = JSON.parse(value);
+			return Array.isArray(parsed) ? parsed.filter((item): item is string => typeof item === "string") : [];
+		} catch {
+			return [];
+		}
+	};
+
+	const showToast = () => {
+		if (!toast) return;
+		toast.hidden = false;
+		toast.classList.add("visible");
+		window.setTimeout(() => {
+			toast.classList.remove("visible");
+			window.setTimeout(() => {
+				toast.hidden = true;
+			}, 280);
+		}, 2600);
+	};
+
+	const markReadComplete = () => {
+		const storageKey = progressArticle?.dataset.progressStorageKey;
+		const itemId = progressArticle?.dataset.progressItemId;
+		if (!storageKey || !itemId) return;
+
+		const completed = parseProgress(window.localStorage.getItem(storageKey));
+		if (completed.includes(itemId)) return;
+
+		const nextCompleted = [...completed, itemId];
+		window.localStorage.setItem(storageKey, JSON.stringify(nextCompleted));
+		window.dispatchEvent(new CustomEvent("emtech:course-progress", { detail: { storageKey, completed: nextCompleted } }));
+		showToast();
+	};
+
+	if (progressArticle && sentinel) {
+		const supportsIntersectionObserver = typeof window.IntersectionObserver === "function";
+
+		if (supportsIntersectionObserver) {
+			const observer = new IntersectionObserver(
+				entries => {
+					if (entries.some(entry => entry.isIntersecting)) {
+						markReadComplete();
+						observer.disconnect();
+					}
+				},
+				{ rootMargin: "0px 0px -10% 0px" }
+			);
+			observer.observe(sentinel);
+		} else {
+			const scrollTarget: Window = window;
+			scrollTarget.addEventListener(
+				"scroll",
+				() => {
+					const bottom = progressArticle.getBoundingClientRect().bottom;
+					if (bottom <= window.innerHeight + 24) markReadComplete();
+				},
+				{ passive: true }
+			);
+		}
+	}
+
+	const getLineText = (line: HTMLElement) => {
+		const hasElementChildren = Array.from(line.childNodes).some(node => node.nodeType === Node.ELEMENT_NODE);
+
+		return Array.from(line.childNodes)
+			.map(node => {
+				const text = node.textContent ?? "";
+				if (hasElementChildren && node.nodeType === Node.TEXT_NODE && !text.trim()) return "";
+				return text;
+			})
+			.join("");
+	};
+
+	const getCodeText = (code: HTMLElement) => {
+		const lines = Array.from(code.querySelectorAll<HTMLElement>(".line"));
+		if (lines.length > 0) return lines.map(getLineText).join("\n");
+		return code.textContent ?? "";
+	};
+
+	const writeClipboard = async (text: string) => {
+		if (navigator.clipboard?.writeText && window.isSecureContext) {
+			await navigator.clipboard.writeText(text);
+			return;
+		}
+
+		const textarea = document.createElement("textarea");
+		textarea.value = text;
+		textarea.setAttribute("readonly", "");
+		textarea.style.position = "fixed";
+		textarea.style.inset = "0 auto auto 0";
+		textarea.style.opacity = "0";
+		document.body.append(textarea);
+		textarea.select();
+
+		const copied = (document as unknown as { execCommand: (command: string) => boolean }).execCommand("copy");
+		textarea.remove();
+		if (!copied) throw new Error("Copy command failed");
+	};
+
+	const languageLabels: Record<string, string> = {
+		bash: "Bash",
+		c: "C",
+		"c++": "C++",
+		cpp: "C++",
+		cs: "C#",
+		csharp: "C#",
+		css: "CSS",
+		dockerfile: "Dockerfile",
+		html: "HTML",
+		javascript: "JS",
+		js: "JS",
+		json: "JSON",
+		jsx: "JSX",
+		markdown: "MD",
+		md: "MD",
+		plaintext: "Text",
+		powershell: "PowerShell",
+		ps1: "PowerShell",
+		py: "Python",
+		python: "Python",
+		sh: "Shell",
+		shell: "Shell",
+		ts: "TS",
+		tsx: "TSX",
+		typescript: "TS",
+		xml: "XML",
+		yaml: "YAML",
+		yml: "YAML",
+		zsh: "Zsh"
+	};
+
+	const normalizeLanguageLabel = (language: string | null | undefined) => {
+		const normalized = language?.trim() ?? "";
+		if (!normalized) return "Text";
+		return languageLabels[normalized.toLowerCase()] ?? normalized;
+	};
+
+	const getCodeLanguage = (block: HTMLElement, code: HTMLElement) => {
+		const pre = code.closest("pre");
+		const dataLanguage = pre?.getAttribute("data-language") || code.getAttribute("data-language");
+		const languageClass = [...code.classList, ...(pre ? [...pre.classList] : []), ...block.classList].find(className => className.startsWith("language-"));
+		return normalizeLanguageLabel(dataLanguage || languageClass?.replace(/^language-/, ""));
+	};
+
+	const ensureCodeLanguageLabel = (block: HTMLElement, code: HTMLElement) => {
+		const toolbar = block.querySelector<HTMLElement>(".code-block-toolbar");
+		if (!toolbar) return;
+
+		let label = toolbar.querySelector<HTMLElement>(".code-block-language");
+		if (!label) {
+			label = document.createElement("span");
+			label.className = "code-block-language";
+			toolbar.prepend(label);
+		}
+
+		if (!label.textContent?.trim()) label.textContent = getCodeLanguage(block, code);
+	};
+
+	for (const block of document.querySelectorAll<HTMLElement>("[data-code-block]")) {
+		const code = block.querySelector<HTMLElement>("pre code");
+		if (!code) continue;
+
+		ensureCodeLanguageLabel(block, code);
+
+		const button = block.querySelector<HTMLButtonElement>("[data-code-copy-button]");
+		if (!button) continue;
+
+		const defaultLabel = button.textContent ?? "複製";
+		let resetTimer = 0;
+
+		button.addEventListener("click", async () => {
+			window.clearTimeout(resetTimer);
+			button.disabled = true;
+
+			try {
+				await writeClipboard(getCodeText(code));
+				button.dataset.copyState = "success";
+				button.textContent = "已複製";
+			} catch {
+				button.dataset.copyState = "error";
+				button.textContent = "複製失敗";
+			} finally {
+				button.disabled = false;
+				resetTimer = window.setTimeout(() => {
+					delete button.dataset.copyState;
+					button.textContent = defaultLabel;
+				}, 1800);
+			}
+		});
+	}
+</script>
+
+<style>
+	.article-hero,
+	.article-shell {
+		width: 100%;
+	}
+
+	.article-hero {
+		display: grid;
+		grid-template-columns: 12.5rem minmax(0, 58.25rem) 12.5rem;
+		gap: 2.75rem;
+		align-items: start;
+	}
+
+	.hero-main {
+		min-width: 0;
+	}
+
+	.hero-side-nav {
+		position: relative;
+		margin-top: 7.5rem;
+		color: var(--color-muted);
+	}
+
+	.hero-side-nav::before {
+		position: absolute;
+		top: -6.75rem;
+		left: -4.75rem;
+		z-index: -1;
+		width: 16.25rem;
+		height: 16.25rem;
+		content: "";
+		border: 1px solid oklch(71% 0.15 225 / 48%);
+		border-radius: 50%;
+	}
+
+	.tag {
+		font-family: var(--font-mono);
+		font-size: 1rem;
+		font-weight: 400;
+		color: var(--color-accent-strong);
+	}
+
+	h1 {
+		margin: 1.25rem 0 2rem;
+		font-size: 4rem;
+		line-height: 1.2;
+		letter-spacing: -0.05em;
+		color: var(--color-ink);
+	}
+
+	.article-shell {
+		display: grid;
+		grid-template-columns: 12.5rem minmax(0, 58.25rem) 12.5rem;
+		gap: 2.75rem;
+		align-items: start;
+		margin-top: 1.5rem;
+	}
+
+	.article-hero.course-layout,
+	.article-shell.course-layout {
+		grid-template-columns: minmax(0, 58.25rem) minmax(10rem, 12.5rem);
+		justify-content: center;
+	}
+
+	.article-hero.course-layout > div:first-child,
+	.article-shell.course-layout > div:last-child {
+		display: none;
+	}
+
+	.article-hero.course-layout .hero-main,
+	.article-shell.course-layout .article-content {
+		grid-column: 1;
+	}
+
+	.article-shell.course-layout .toc {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	.toc {
+		position: sticky;
+		top: 6rem;
+		padding-top: 1.25rem;
+	}
+
+	.toc-label {
+		display: block;
+		padding: 0.5rem 0;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 800;
+		color: var(--color-ink);
+	}
+
+	.toc a {
+		display: block;
+		padding: 0.4rem 0;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--color-muted);
+		transition: color 140ms ease;
+	}
+
+	.toc a.active {
+		color: var(--color-accent-strong);
+	}
+
+	.toc a.toc-h3 {
+		padding-left: 0.75rem;
+	}
+
+	.side-nav a {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 0.65rem;
+		padding: 0.85rem 0;
+		border-top: 1px solid var(--color-border);
+		font-size: 0.75rem;
+		color: var(--color-accent-strong);
+	}
+
+	.side-nav span {
+		font-family: var(--font-mono);
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	.side-nav strong {
+		min-width: 0;
+		font-weight: 500;
+		font-size: 0.875rem;
+		line-height: 1.35;
+		color: var(--color-muted);
+	}
+
+	.article-content {
+		min-width: 0;
+		font-size: 1rem;
+		line-height: 2;
+		color: var(--color-text);
+		overflow-wrap: break-word;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	.reading-toast {
+		--reading-toast-top: 4rem;
+		--reading-toast-left: var(--page-padding, 0rem);
+		--reading-toast-right: var(--page-padding, 0rem);
+
+		position: fixed;
+		top: var(--reading-toast-top);
+		right: var(--reading-toast-right);
+		left: var(--reading-toast-left);
+		z-index: 15;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 3.25rem;
+		padding: 0.85rem 1.25rem;
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		color: var(--color-ink);
+		text-align: center;
+		background: oklch(100% 0 0 / 94%);
+		border: 1px solid var(--color-accent);
+		box-shadow: var(--shadow-card);
+		backdrop-filter: blur(1rem);
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(-100%);
+		transition:
+			opacity 220ms ease,
+			transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+	}
+
+	.reading-toast.course-layout {
+		--reading-toast-left: calc(var(--page-padding, 0rem) + 18rem);
+	}
+
+	.reading-toast[hidden] {
+		display: none;
+	}
+
+	.reading-toast.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.hero-image {
+		width: 100%;
+		aspect-ratio: 2 / 1;
+		height: auto;
+		object-fit: cover;
+		margin-bottom: 1.5rem;
+		box-shadow: var(--shadow-card);
+	}
+
+	.article-content :global(h1) {
+		display: none;
+	}
+
+	/* ── Article typography ─────────────────────────── */
+	.article-content :global(h2),
+	.article-content :global(h3),
+	.article-content :global(h4),
+	.article-content :global(h5) {
+		line-height: 1.15;
+		letter-spacing: -0.06em;
+		color: var(--color-ink);
+	}
+
+	.article-content :global(h2) {
+		margin: 4.5rem 0 1.5rem;
+		font-size: 3.25rem;
+	}
+
+	.article-content :global(h3) {
+		margin: 2.75rem 0 1rem;
+		font-size: 2rem;
+	}
+
+	.article-content :global(h4) {
+		margin: 2.25rem 0 1rem;
+		font-size: 1.5rem;
+	}
+
+	.article-content :global(h5) {
+		font-size: 1.25rem;
+	}
+
+	.article-content :global(p + p),
+	.article-content :global(p + ul),
+	.article-content :global(p + ol) {
+		margin-top: 1.25rem;
+	}
+
+	.article-content :global(a) {
+		color: var(--color-accent-strong);
+		border-bottom: 1px solid currentColor;
+	}
+
+	.article-content :global(code) {
+		padding: 0.25rem 0.5rem;
+		font-family: var(--font-mono);
+		font-size: 0.86em;
+		background: var(--color-surface-soft);
+		border: 1px solid var(--color-border);
+	}
+
+	.article-content :global(ul),
+	.article-content :global(ol) {
+		padding-left: 1.2em;
+		margin-top: 0.75rem;
+	}
+
+	.article-content :global(li + li) {
+		margin-top: 0.4rem;
+	}
+
+	.article-content :global(img:not(.hero-image)) {
+		max-width: 100%;
+		max-height: min(34rem, 82vh);
+		height: auto;
+		display: block;
+		object-fit: contain;
+	}
+
+	.article-content :global(figure) {
+		margin: 2rem auto;
+	}
+
+	.article-content :global(figure img) {
+		margin: 0 auto;
+	}
+
+	/* code blocks */
+	.article-content :global(pre) {
+		overflow-x: auto;
+		padding: 1.5rem;
+		font-family: var(--font-mono);
+		font-size: 0.92rem;
+		line-height: 1.6;
+		color: var(--color-code-ink);
+		background: var(--color-code-bg);
+		border: 1px solid var(--color-border-strong);
+		box-shadow: var(--shadow-card);
+		margin: 2.5rem 0;
+	}
+
+	.article-content :global(pre code) {
+		padding: 0;
+		font-size: inherit;
+		background: none;
+		border: none;
+	}
+
+	.article-content :global(.code-block) {
+		margin: 2.5rem 0;
+		overflow: hidden;
+		background: var(--color-code-bg);
+		border: 1px solid var(--color-border-strong);
+		box-shadow: var(--shadow-card);
+	}
+
+	.article-content :global(.code-block-toolbar) {
+		display: flex;
+		align-items: stretch;
+		justify-content: space-between;
+		gap: 0.75rem;
+		min-height: 2.55rem;
+		padding: 0;
+		background: oklch(18% 0.028 260);
+		border-bottom: 1px solid oklch(100% 0 0 / 13%);
+	}
+
+	.article-content :global(.code-block-language) {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		min-width: 0;
+		padding-inline: 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 800;
+		line-height: 1;
+		color: oklch(91% 0.018 250 / 74%);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	.article-content :global(.code-block-language::before) {
+		display: none;
+		content: "";
+	}
+
+	.article-content :global(.code-copy-button) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-left: auto;
+		min-width: 4rem;
+		padding: 0 0.95rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		font-weight: 800;
+		line-height: 1;
+		color: oklch(91% 0.018 250 / 72%);
+		letter-spacing: 0.08em;
+		background: transparent;
+		border: 0;
+		border-left: 1px solid oklch(100% 0 0 / 13%);
+		border-radius: 0;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	.article-content :global(.code-copy-button:hover),
+	.article-content :global(.code-copy-button:focus-visible) {
+		color: var(--color-code-ink);
+		background: oklch(100% 0 0 / 8%);
+		box-shadow: inset 0 0 0 1px oklch(71% 0.15 225 / 42%);
+		outline: none;
+	}
+
+	.article-content :global(.code-copy-button[data-copy-state="success"]) {
+		color: oklch(84% 0.16 155);
+	}
+
+	.article-content :global(.code-copy-button[data-copy-state="error"]) {
+		color: oklch(82% 0.16 65);
+	}
+
+	.article-content :global(.code-block pre) {
+		padding: 1rem 0;
+		margin: 0;
+		font-size: 0.92rem;
+		line-height: 1.5;
+		white-space: normal;
+		background: transparent !important;
+		border: 0;
+		box-shadow: none;
+	}
+
+	.article-content :global(.code-block pre code) {
+		display: block;
+		font: inherit;
+		line-height: inherit;
+		min-width: max-content;
+		white-space: normal;
+		counter-reset: code-line;
+	}
+
+	.article-content :global(.code-block .line) {
+		display: flex;
+		align-items: baseline;
+		min-height: 1.5em;
+		line-height: inherit;
+		white-space: pre;
+		padding-right: 1.5rem;
+		counter-increment: code-line;
+	}
+
+	.article-content :global(.code-block .line > *) {
+		flex: 0 0 auto;
+		line-height: inherit;
+		white-space: inherit;
+	}
+
+	.article-content :global(.code-block .line::before) {
+		display: block;
+		flex: 0 0 2.75rem;
+		margin-right: 1.1rem;
+		color: oklch(91% 0.018 250 / 48%);
+		text-align: right;
+		content: counter(code-line);
+		user-select: none;
+	}
+
+	/* figcaption */
+	.article-content :global(figcaption) {
+		margin-top: 0.75rem;
+		font-size: 0.75rem;
+		text-align: center;
+		color: var(--color-muted);
+	}
+
+	/* ── Callout blocks ──────────────────────────────── */
+
+	/* > [!TLDR] / > [!SUMMARY] → prominent accent callout */
+	.tldr-callout,
+	.article-content :global(.callout-tldr) {
+		position: relative;
+		padding: 2.25rem 2.75rem;
+		overflow: hidden;
+		background: oklch(93% 0.045 220 / 55%);
+		border: 1px solid var(--color-accent);
+		margin: 2rem 0;
+	}
+
+	.tldr-callout > strong,
+	.article-content :global(.callout-tldr > strong) {
+		display: block;
+		margin-bottom: 1.25rem;
+		font-size: 1.25rem;
+		color: var(--color-ink);
+	}
+
+	.tldr-callout > p,
+	.article-content :global(.callout-tldr > p) {
+		position: relative;
+		z-index: 1;
+		max-width: 38.75rem;
+	}
+
+	/* watermark span */
+	.tldr-callout > span[aria-hidden],
+	.article-content :global(.callout-tldr > span[aria-hidden]) {
+		position: absolute;
+		right: 1.5rem;
+		bottom: -0.75rem;
+		font-size: 4.75rem;
+		font-weight: 900;
+		line-height: 1;
+		letter-spacing: -0.08em;
+		color: oklch(71% 0.15 225 / 42%);
+		pointer-events: none;
+	}
+
+	/* > [!NOTE] / > [!TIP] → warm notice box */
+	.article-content :global(.callout-note),
+	.article-content :global(.callout-tip) {
+		margin: 2rem 0;
+		padding: 1.5rem 2rem;
+		background: oklch(97.2% 0.02 78 / 70%);
+		border: 1px solid var(--color-yellow);
+	}
+
+	.article-content :global(.callout-note > strong),
+	.article-content :global(.callout-tip > strong) {
+		display: block;
+		margin-bottom: 0.75rem;
+		font-size: 1rem;
+		color: var(--color-ink);
+	}
+
+	/* > [!WARNING] → red-tinted warning */
+	.article-content :global(.callout-warning) {
+		margin: 2rem 0;
+		padding: 2rem 2.25rem;
+		background: oklch(97% 0.02 20 / 70%);
+		border: 1px solid oklch(65% 0.15 20);
+	}
+
+	.article-content :global(.callout-warning > strong) {
+		display: block;
+		margin-bottom: 0.75rem;
+		font-size: 1rem;
+		color: oklch(40% 0.12 20);
+	}
+
+	.article-content :global(.callout-tldr > h3),
+	.article-content :global(.callout-note > h3),
+	.article-content :global(.callout-tip > h3),
+	.article-content :global(.callout-warning > h3) {
+		margin: 0 0 0.75rem;
+		font-size: 1.15rem;
+		line-height: 1.25;
+		letter-spacing: -0.03em;
+	}
+
+	/* ── Responsive ──────────────────────────────────── */
+	@media (max-width: 68.75rem) {
+		.article-hero,
+		.article-hero.course-layout,
+		.article-shell,
+		.article-shell.course-layout {
+			grid-template-columns: minmax(0, 1fr);
+			max-width: 51.25rem;
+			margin-inline: auto;
+		}
+
+		.toc,
+		.hero-side-nav,
+		.article-hero > div:first-child {
+			display: none;
+		}
+	}
+
+	@media (max-width: 76rem) {
+		.reading-toast.course-layout {
+			--reading-toast-top: 7.75rem;
+			--reading-toast-left: var(--page-padding, 0rem);
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.reading-toast {
+			--reading-toast-top: 4.5rem;
+		}
+
+		.reading-toast.course-layout {
+			--reading-toast-top: 8.25rem;
+		}
+
+		h1 {
+			font-size: 2.65rem;
+			line-height: 1.12;
+			letter-spacing: -0.045em;
+		}
+
+		.article-content {
+			font-size: 0.98rem;
+		}
+
+		.article-content :global(h2) {
+			margin-top: 3.25rem;
+			font-size: 2.25rem;
+		}
+
+		.article-content :global(h3) {
+			font-size: 1.65rem;
+		}
+
+		.tldr-callout,
+		.article-content :global(.callout-tldr) {
+			padding: 1.5rem;
+		}
+
+		.article-content :global(.code-block pre) {
+			font-size: 0.82rem;
+		}
+
+		.article-content :global(.code-block .line::before) {
+			flex-basis: 2.25rem;
+			margin-right: 0.8rem;
+		}
+
+		.article-content :global(.callout-tldr),
+		.article-content :global(.callout-note),
+		.article-content :global(.callout-tip),
+		.article-content :global(.callout-warning) {
+			padding: 1.5rem;
+		}
+
+		.article-content :global(.callout-tldr > span[aria-hidden]) {
+			font-size: 3.25rem;
+		}
+	}
+</style>
