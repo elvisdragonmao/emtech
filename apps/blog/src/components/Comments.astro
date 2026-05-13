@@ -66,10 +66,14 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 	<div class="comment-list" data-comment-list role="list" aria-live="polite"></div>
 </section>
 
-{turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />}
-
 <script>
 	import { setupPageLifecycle } from "@/scripts/pageLifecycle";
+
+	type TurnstileApi = {
+		render: (container: HTMLElement, options: { sitekey: string }) => string;
+		reset: (widgetId?: string) => void;
+		remove?: (widgetId?: string) => void;
+	};
 
 	type PublicComment = {
 		id: string;
@@ -117,6 +121,33 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		let turnstileWidgetId: string | null = null;
 		let turnstileRenderTimer = 0;
 
+		const getTurnstile = () => (window as unknown as { turnstile?: TurnstileApi }).turnstile;
+
+		const loadTurnstile = (onReady: () => void) => {
+			if (!root.dataset.turnstileSiteKey) return;
+			if (getTurnstile()) {
+				onReady();
+				return;
+			}
+
+			let script = document.querySelector<HTMLScriptElement>('script[src^="https://challenges.cloudflare.com/turnstile/v0/api.js"]');
+			if (!script) {
+				script = document.createElement("script");
+				script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+				script.async = true;
+				script.defer = true;
+				document.head.appendChild(script);
+			}
+
+			script.addEventListener(
+				"load",
+				() => {
+					if (!signal.aborted) onReady();
+				},
+				{ once: true, signal }
+			);
+		};
+
 		if (form && formHost) {
 			formHost.appendChild(form);
 		}
@@ -135,14 +166,23 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		const rerenderTurnstile = () => {
 			if (!form) return;
 			const widget = form.querySelector<HTMLElement>(".cf-turnstile");
-			const turnstile = (window as unknown as { turnstile?: { render: (container: HTMLElement) => string; reset: (widgetId?: string) => void } }).turnstile;
-			if (!widget || !turnstile) return;
+			const sitekey = widget?.dataset.sitekey ?? root.dataset.turnstileSiteKey;
+			if (!widget || !sitekey) return;
 
 			window.clearTimeout(turnstileRenderTimer);
 			turnstileRenderTimer = window.setTimeout(() => {
 				if (signal.aborted) return;
+				const turnstile = getTurnstile();
+				if (!turnstile) {
+					loadTurnstile(rerenderTurnstile);
+					return;
+				}
+				if (turnstileWidgetId) {
+					turnstile.remove?.(turnstileWidgetId);
+					turnstileWidgetId = null;
+				}
 				widget.replaceChildren();
-				turnstileWidgetId = turnstile.render(widget);
+				turnstileWidgetId = turnstile.render(widget, { sitekey });
 			}, 0);
 		};
 
@@ -351,7 +391,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 					resetReply();
 					setNotice(result.status === "approved" ? "留言已發布。" : "留言正在等待審核。", "success");
 					await loadComments();
-					(window as unknown as { turnstile?: { reset: (widgetId?: string) => void } }).turnstile?.reset(turnstileWidgetId ?? undefined);
+					getTurnstile()?.reset(turnstileWidgetId ?? undefined);
 				} catch (error) {
 					if (error instanceof DOMException && error.name === "AbortError") return;
 					setNotice(error instanceof Error ? error.message : "留言送出失敗", "error");
@@ -366,11 +406,12 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 		refreshAuth();
 		loadComments();
+		rerenderTurnstile();
 
 		return () => {
 			window.clearTimeout(turnstileRenderTimer);
 			activeReplyCard?.classList.remove("reply-target");
-			const turnstile = (window as unknown as { turnstile?: { remove?: (widgetId?: string) => void } }).turnstile;
+			const turnstile = getTurnstile();
 			if (turnstileWidgetId) turnstile?.remove?.(turnstileWidgetId);
 			controller.abort();
 		};
