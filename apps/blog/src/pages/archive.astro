@@ -61,8 +61,7 @@ const years = [...byYear.keys()].sort((a, b) => b - a);
 	.archive-page {
 		width: min(var(--site-width), 100%);
 		margin-inline: auto;
-		padding-top: 5.5rem;
-		padding-bottom: 7.5rem;
+		padding: 5.5rem 2rem 7.5rem;
 	}
 
 	.archive-header {
@@ -201,7 +200,7 @@ const years = [...byYear.keys()].sort((a, b) => b - a);
 
 	@media (max-width: 40rem) {
 		.archive-page {
-			padding-top: 3.25rem;
+			padding: 3.25rem 1rem 0;
 		}
 
 		h1 {
