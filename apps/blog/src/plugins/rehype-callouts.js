@@ -7,6 +7,8 @@
  *   > [!TLDR]           → <div class="callout-tldr"> (big watermark "TL;DR")
  *   > [!WARNING]        → <div class="callout-warning">
  *   > [!TIP]            → <div class="callout-tip">
+ *   > [!IMPORTANT]      → <div class="callout-important">
+ *   > [!CAUTION]        → <div class="callout-caution">
  *
  * After remark converts markdown to HTML, `> [!NOTE]\n> content` becomes:
  *   <blockquote><p>[!NOTE]</p><p>content</p></blockquote>
@@ -17,11 +19,13 @@
 import { visit } from "unist-util-visit";
 
 const TYPE_MAP = {
-	NOTE: { className: "callout-note", label: "Note", watermark: null },
-	TIP: { className: "callout-tip", label: "提示", watermark: null },
-	WARNING: { className: "callout-warning", label: "注意", watermark: null },
-	TLDR: { className: "callout-tldr", label: "TL;DR", watermark: "TL;DR" },
-	SUMMARY: { className: "callout-tldr", label: "簡單來說", watermark: "TL;DR" }
+	NOTE: { className: "callout-note", label: "Note", emoji: "💬", watermark: null },
+	TIP: { className: "callout-tip", label: "提示", emoji: "💡", watermark: null },
+	IMPORTANT: { className: "callout-important", label: "重要", emoji: "❗", watermark: null },
+	WARNING: { className: "callout-warning", label: "注意", emoji: "⚠️", watermark: null },
+	CAUTION: { className: "callout-caution", label: "小心", emoji: "🚧", watermark: null },
+	TLDR: { className: "callout-tldr", label: "TL;DR", emoji: null, watermark: "TL;DR" },
+	SUMMARY: { className: "callout-tldr", label: "簡單來說", emoji: null, watermark: "TL;DR" }
 };
 
 export function rehypeCallouts() {
@@ -53,7 +57,7 @@ export function rehypeCallouts() {
 			const calloutChildren = [];
 
 			// Title / label
-			const labelText = inlineTitle || config.label;
+			const labelText = config.emoji ? `${config.emoji} ${inlineTitle || config.label}` : inlineTitle || config.label;
 			calloutChildren.push({
 				type: "element",
 				tagName: "strong",
