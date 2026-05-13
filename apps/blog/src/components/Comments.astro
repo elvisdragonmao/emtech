@@ -108,6 +108,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		const identityFields = Array.from(root.querySelectorAll<HTMLElement>("[data-identity-field]"));
 		let isAuthenticated = false;
 		let activeReplyCard: HTMLElement | null = null;
+		let turnstileWidgetId: string | null = null;
 
 		if (form && formHost) {
 			formHost.appendChild(form);
@@ -123,6 +124,18 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		setNotice("");
 
 		const apiUrl = (path: string) => `${apiBase}${path}`;
+
+		const rerenderTurnstile = () => {
+			if (!form) return;
+			const widget = form.querySelector<HTMLElement>(".cf-turnstile");
+			const turnstile = (window as unknown as { turnstile?: { render: (container: HTMLElement) => string; reset: (widgetId?: string) => void } }).turnstile;
+			if (!widget || !turnstile) return;
+
+			window.setTimeout(() => {
+				widget.replaceChildren();
+				turnstileWidgetId = turnstile.render(widget);
+			}, 0);
+		};
 
 		if (loginLink) {
 			const returnTo = new URL(window.location.href);
@@ -251,6 +264,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 				activeReplyCard = article;
 				activeReplyCard.classList.add("reply-target");
 				replySlot.appendChild(form);
+				rerenderTurnstile();
 				form.querySelector("textarea")?.focus();
 			});
 			bottom.append(reply);
@@ -266,6 +280,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			activeReplyCard = null;
 			if (form && formHost) {
 				formHost.appendChild(form);
+				rerenderTurnstile();
 			}
 			if (options.focus) {
 				form?.querySelector("textarea")?.focus();
@@ -310,7 +325,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 				resetReply();
 				setNotice(result.status === "approved" ? "留言已發布。" : "留言正在等待審核。", "success");
 				await loadComments();
-				(window as unknown as { turnstile?: { reset: () => void } }).turnstile?.reset();
+				(window as unknown as { turnstile?: { reset: (widgetId?: string) => void } }).turnstile?.reset(turnstileWidgetId ?? undefined);
 			} catch (error) {
 				setNotice(error instanceof Error ? error.message : "留言送出失敗", "error");
 			} finally {
