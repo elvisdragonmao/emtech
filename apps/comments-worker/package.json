@@ -4,8 +4,8 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"db:migrate:local": "wrangler d1 migrations apply COMMENTS_DB --local",
-		"db:migrate:remote": "wrangler d1 migrations apply COMMENTS_DB --remote",
+		"db:migrate:local": "wrangler d1 migrations apply emtech-comments --local",
+		"db:migrate:remote": "wrangler d1 migrations apply emtech-comments --remote",
 		"deploy": "wrangler deploy",
 		"dev": "wrangler dev",
 		"test": "vitest run",
