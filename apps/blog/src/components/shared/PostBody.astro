@@ -868,42 +868,77 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		pointer-events: none;
 	}
 
-	/* > [!NOTE] / > [!TIP] → warm notice box */
+	/* GitHub-style callouts: white panel with a colored left rule */
 	.article-content :global(.callout-note),
-	.article-content :global(.callout-tip) {
+	.article-content :global(.callout-tip),
+	.article-content :global(.callout-important),
+	.article-content :global(.callout-warning),
+	.article-content :global(.callout-caution) {
+		--callout-rule: var(--color-accent-strong);
+		--callout-title: var(--color-accent-strong);
 		margin: 2rem 0;
-		padding: 1.5rem 2rem;
-		background: oklch(97.2% 0.02 78 / 70%);
-		border: 1px solid var(--color-yellow);
+		padding: 1rem 1.25rem;
+		background: oklch(100% 0 0 / 82%);
+		border: 1px solid var(--color-border);
+		border-left: 0.3rem solid var(--callout-rule);
+	}
+
+	.article-content :global(.callout-note) {
+		--callout-rule: var(--color-accent-strong);
+		--callout-title: var(--color-accent-strong);
+	}
+
+	.article-content :global(.callout-tip) {
+		--callout-rule: var(--color-green);
+		--callout-title: oklch(44% 0.13 155);
+	}
+
+	.article-content :global(.callout-important) {
+		--callout-rule: var(--color-purple);
+		--callout-title: var(--color-purple);
+	}
+
+	.article-content :global(.callout-warning) {
+		--callout-rule: var(--color-orange);
+		--callout-title: oklch(50% 0.15 42);
+	}
+
+	.article-content :global(.callout-caution) {
+		--callout-rule: var(--color-pink);
+		--callout-title: oklch(48% 0.17 350);
 	}
 
 	.article-content :global(.callout-note > strong),
-	.article-content :global(.callout-tip > strong) {
+	.article-content :global(.callout-tip > strong),
+	.article-content :global(.callout-important > strong),
+	.article-content :global(.callout-warning > strong),
+	.article-content :global(.callout-caution > strong) {
 		display: block;
-		margin-bottom: 0.75rem;
+		margin-bottom: 0.45rem;
+		font-family: var(--font-mono);
 		font-size: 1rem;
-		color: var(--color-ink);
+		font-weight: 800;
+		line-height: 1.4;
+		color: var(--callout-title);
 	}
 
-	/* > [!WARNING] → red-tinted warning */
-	.article-content :global(.callout-warning) {
-		margin: 2rem 0;
-		padding: 2rem 2.25rem;
-		background: oklch(97% 0.02 20 / 70%);
-		border: 1px solid oklch(65% 0.15 20);
-	}
-
-	.article-content :global(.callout-warning > strong) {
-		display: block;
-		margin-bottom: 0.75rem;
+	.article-content :global(.callout-note > p),
+	.article-content :global(.callout-tip > p),
+	.article-content :global(.callout-important > p),
+	.article-content :global(.callout-warning > p),
+	.article-content :global(.callout-caution > p) {
+		margin: 0.4rem 0 0;
 		font-size: 1rem;
-		color: oklch(40% 0.12 20);
+		line-height: 1.75;
+		color: var(--color-text);
 	}
 
 	.article-content :global(.callout-tldr > h3),
 	.article-content :global(.callout-note > h3),
 	.article-content :global(.callout-tip > h3),
-	.article-content :global(.callout-warning > h3) {
+	.article-content :global(.callout-important > h3),
+	.article-content :global(.callout-warning > h3),
+	.article-content :global(.callout-caution > h3) {
 		margin: 0 0 0.75rem;
 		font-size: 1.15rem;
 		line-height: 1.25;
@@ -980,7 +1015,9 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		.article-content :global(.callout-tldr),
 		.article-content :global(.callout-note),
 		.article-content :global(.callout-tip),
-		.article-content :global(.callout-warning) {
+		.article-content :global(.callout-important),
+		.article-content :global(.callout-warning),
+		.article-content :global(.callout-caution) {
 			padding: 1.5rem;
 		}
 
