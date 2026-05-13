@@ -3,6 +3,7 @@ import { ArrowUpRight } from "@lucide/astro";
 import Comments from "@/components/Comments.astro";
 import friendsData from "@/content/post/friends/friends.json";
 import Layout from "@/layouts/Layout.astro";
+import { absoluteUrl, itemListSchema, publisherSchema, webPageSchema } from "@/utils/seo";
 
 type Friend = {
 	name: string;
@@ -34,9 +35,26 @@ const sections = (friendsData.sections as FriendSection[]).map(section => ({
 }));
 
 const totalFriends = sections.reduce((total, section) => total + section.friends.length, 0);
+const friendItems = sections.flatMap(section =>
+	section.friends.map(friend => ({
+		url: friend.url,
+		name: friend.name,
+		item: {
+			"@type": "WebSite",
+			name: friend.name,
+			url: /^https?:\/\//i.test(friend.url) ? friend.url : absoluteUrl(friend.url),
+			description: friend.description
+		}
+	}))
+);
+const structuredData = [
+	publisherSchema(),
+	webPageSchema({ url: "/friends/", title: "友情連結", description: "有朋自遠方來，不亦悅乎？這裡收藏毛哥EM的朋友們與他們的網站。", type: "CollectionPage" }),
+	itemListSchema(friendItems, "https://emtech.cc/friends/#friend-list")
+];
 ---
 
-<Layout title="友情連結" description="有朋自遠方來，不亦悅乎？這裡收藏毛哥EM的朋友們與他們的網站。">
+<Layout title="友情連結" description="有朋自遠方來，不亦悅乎？這裡收藏毛哥EM的朋友們與他們的網站。" canonicalPath="/friends/" ogType="website" structuredData={structuredData}>
 	<main id="main-content" class="friends-page" tabindex="-1">
 		<header class="friends-header" aria-labelledby="friends-title">
 			<p class="eyebrow">Friends</p>

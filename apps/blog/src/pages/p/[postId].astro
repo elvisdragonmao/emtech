@@ -7,7 +7,8 @@ import ArticleCard from "@/components/shared/ArticleCard.astro";
 import Comments from "@/components/Comments.astro";
 import PostBody from "@/components/shared/PostBody.astro";
 import Layout from "@/layouts/Layout.astro";
-import { extractTitle, formatDate, formatHashTags, normalizeImportPath, normalizeTerms, readingTime, wordCount, type MetaItem } from "@/utils/content";
+import { extractExcerpt, extractTitle, formatDate, formatHashTags, normalizeImportPath, normalizeTerms, readingTime, wordCount, type MetaItem } from "@/utils/content";
+import { blogPostingSchema, breadcrumbSchema, publisherSchema, webPageSchema, wordCountNumber } from "@/utils/seo";
 
 export async function getStaticPaths() {
 	const posts = (await getCollection("post")).filter(post => !post.data.draft);
@@ -28,10 +29,38 @@ const thumbKey = normalizeImportPath(`/src/content/post/${postId}/thumbnail.webp
 const thumbnail: ImageMetadata | null = thumbnails[thumbKey]?.default ?? null;
 
 const title = headings[0]?.text ?? postId;
-const description = entry.data.description ?? "";
+const description = entry.data.description ?? extractExcerpt(entry.body);
 const entryTags = normalizeTerms(entry.data.tags);
 const entryCategories = normalizeTerms(entry.data.categories);
 const tag = formatHashTags(entryTags.length > 0 ? entryTags : entryCategories);
+const modifiedTime = entry.data.lastmod ?? entry.data.date;
+const authors = [entry.data.authors].flat().filter((author): author is string => Boolean(author));
+const displayAuthors = authors.map(author => (author === "elvismao" ? "毛哥EM" : author));
+const breadcrumbId = `https://emtech.cc/p/${postId}/#breadcrumb`;
+const structuredData = [
+	publisherSchema(),
+	breadcrumbSchema(
+		[
+			{ name: "首頁", url: "/" },
+			{ name: "文章", url: "/archive/" },
+			{ name: title, url: `/p/${postId}/` }
+		],
+		breadcrumbId
+	),
+	webPageSchema({ url: `/p/${postId}/`, title, description, image: thumbnail, type: "WebPage", breadcrumbId, dateModified: modifiedTime }),
+	blogPostingSchema({
+		url: `/p/${postId}/`,
+		title,
+		description,
+		image: thumbnail,
+		datePublished: entry.data.date,
+		dateModified: modifiedTime,
+		authors: displayAuthors,
+		tags: entryTags,
+		categories: entryCategories,
+		wordCount: wordCountNumber(entry.body)
+	})
+];
 
 const contentText = entry.body ?? "";
 const meta: MetaItem[] = [
@@ -87,7 +116,20 @@ const relatedCards = related.map(p => {
 });
 ---
 
-<Layout title={title} description={description} active="blog">
+<Layout
+	title={title}
+	description={description}
+	active="blog"
+	canonicalPath={`/p/${postId}/`}
+	image={thumbnail}
+	imageAlt={title}
+	ogType="article"
+	publishedTime={entry.data.date}
+	modifiedTime={modifiedTime}
+	authors={displayAuthors}
+	tags={entryTags}
+	structuredData={structuredData}
+>
 	<main id="main-content" class="article-page" tabindex="-1">
 		<PostBody
 			tag={tag}

@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import { extractTitle, formatDate } from "@/utils/content";
+import { itemListSchema, publisherSchema, webPageSchema } from "@/utils/seo";
 
 const allPosts = (await getCollection("post")).filter(post => !post.data.draft);
 const sorted = [...allPosts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -14,9 +15,21 @@ for (const post of sorted) {
 	byYear.get(year)!.push(post);
 }
 const years = [...byYear.keys()].sort((a, b) => b - a);
+const latestModified = sorted[0]?.data.lastmod ?? sorted[0]?.data.date;
+const structuredData = [
+	publisherSchema(),
+	webPageSchema({ url: "/archive/", title: "歸檔", description: "所有文章依時間排列", type: "CollectionPage", dateModified: latestModified }),
+	itemListSchema(
+		sorted.map(post => ({
+			url: `/p/${post.id}/`,
+			name: extractTitle(post.body) || post.id
+		})),
+		"https://emtech.cc/archive/#post-list"
+	)
+];
 ---
 
-<Layout title="歸檔" description="所有文章依時間排列" active="blog">
+<Layout title="歸檔" description="所有文章依時間排列" active="blog" canonicalPath="/archive/" ogType="website" structuredData={structuredData}>
 	<main id="main-content" class="archive-page" tabindex="-1">
 		<header class="archive-header">
 			<p class="eyebrow">Archive / Timeline</p>

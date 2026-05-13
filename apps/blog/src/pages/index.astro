@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import HomeArchive from "@/components/home/HomeArchive.astro";
 import HomeCoursesPreview from "@/components/home/HomeCoursesPreview.astro";
 import HomeHero from "@/components/home/HomeHero.astro";
@@ -6,9 +7,29 @@ import HomeSpecialPages from "@/components/home/HomeSpecialPages.astro";
 import Comments from "@/components/Comments.astro";
 import AboutCard from "@/components/shared/AboutCard.astro";
 import Layout from "@/layouts/Layout.astro";
+import { SITE_DESCRIPTION, SITE_NAME, authorSchema, itemListSchema, publisherSchema, webPageSchema, webSiteSchema } from "@/utils/seo";
+
+const posts = (await getCollection("post")).filter(post => !post.data.draft);
+const courses = await getCollection("course");
+const latestModified = [...posts.map(post => post.data.lastmod ?? post.data.date)].sort((a, b) => b.getTime() - a.getTime())[0];
+const structuredData = [
+	publisherSchema(),
+	authorSchema(),
+	webSiteSchema(),
+	webPageSchema({ url: "/", title: SITE_NAME, description: SITE_DESCRIPTION, type: "WebPage", dateModified: latestModified }),
+	itemListSchema(
+		courses
+			.sort((a, b) => a.data.displayOrder - b.data.displayOrder || a.data.title.localeCompare(b.data.title))
+			.map(course => ({
+				url: `/course/${course.id}/`,
+				name: course.data.title
+			})),
+		"https://emtech.cc/#course-list"
+	)
+];
 ---
 
-<Layout active="home">
+<Layout active="home" structuredData={structuredData} ogType="website">
 	<main id="main-content" class="home-container" tabindex="-1">
 		<HomeHero />
 		<HomeArchive />
