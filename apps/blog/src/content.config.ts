@@ -14,6 +14,7 @@ const post = defineCollection({
 		categories: z.array(z.string()).default([]),
 		draft: z.boolean().default(false),
 		date: z.coerce.date(),
+		lastmod: z.coerce.date().optional(),
 		description: z
 			.string()
 			.nullish()
@@ -63,6 +64,7 @@ const lesson = defineCollection({
 		categories: z.array(z.string()).default([]),
 		draft: z.boolean().default(false),
 		date: z.coerce.date(),
+		lastmod: z.coerce.date().optional(),
 		description: z
 			.string()
 			.nullish()

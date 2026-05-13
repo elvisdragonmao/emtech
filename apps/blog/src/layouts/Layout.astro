@@ -4,26 +4,92 @@ import SiteFooter from "@/components/layout/SiteFooter.astro";
 import SiteHeader from "@/components/layout/SiteHeader.astro";
 import SearchDialog from "@/components/shared/SearchDialog.astro";
 import ScrollToTopButton from "@/components/shared/ScrollToTopButton.astro";
+import { DEFAULT_SEO_IMAGE, SITE_LANGUAGE, SITE_LOCALE, SITE_NAME, absoluteUrl, pageTitle, safeJsonLd, toSeoImage, withSchemaContext, type JsonLd, type SeoImageInput } from "@/utils/seo";
 import "@/styles/global.css";
 
 interface Props {
 	title?: string;
 	description?: string;
 	active?: "home" | "blog" | "course";
+	canonicalPath?: string;
+	image?: SeoImageInput;
+	imageAlt?: string;
+	ogType?: "website" | "article";
+	noindex?: boolean;
+	publishedTime?: Date | string;
+	modifiedTime?: Date | string;
+	authors?: string[];
+	tags?: string[];
+	structuredData?: JsonLd | JsonLd[];
 }
 
-const { title = "毛哥EM資訊密技", description = "科技、設計、毛茸茸的資訊密技與教學筆記。", active } = Astro.props;
-const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥EM資訊密技`;
+const {
+	title = SITE_NAME,
+	description = "科技、設計、毛茸茸的資訊密技與教學筆記。",
+	active,
+	canonicalPath = Astro.url.pathname,
+	image,
+	imageAlt,
+	ogType = title === SITE_NAME ? "website" : "article",
+	noindex = false,
+	publishedTime,
+	modifiedTime,
+	authors = [],
+	tags = [],
+	structuredData
+} = Astro.props;
+const fullTitle = pageTitle(title);
+const canonicalUrl = absoluteUrl(canonicalPath);
+const seoImage = toSeoImage(image ?? DEFAULT_SEO_IMAGE, imageAlt ?? title);
+const jsonLd = structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : [];
 ---
 
 <!doctype html>
-<html lang="zh-Hant">
+<html lang={SITE_LANGUAGE}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description} />
+		<meta name="author" content={authors[0] ?? "毛哥EM"} />
+		<meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
+		<meta name="theme-color" content="#f7fbff" />
+		<link rel="canonical" href={canonicalUrl} />
 		<link rel="icon" href="/img/favicon/favicon.ico" />
-		<title>{pageTitle}</title>
+		<link rel="apple-touch-icon" href="/img/favicon/apple-touch-icon.png" />
+		<link rel="manifest" href="/img/favicon/site.webmanifest" />
+		<meta property="og:site_name" content={SITE_NAME} />
+		<meta property="og:locale" content={SITE_LOCALE} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={seoImage.src} />
+		<meta property="og:image:secure_url" content={seoImage.src} />
+		{seoImage.type && <meta property="og:image:type" content={seoImage.type} />}
+		{seoImage.width && <meta property="og:image:width" content={String(seoImage.width)} />}
+		{seoImage.height && <meta property="og:image:height" content={String(seoImage.height)} />}
+		<meta property="og:image:alt" content={seoImage.alt} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={seoImage.src} />
+		<meta name="twitter:image:alt" content={seoImage.alt} />
+		{
+			ogType === "article" && (
+				<>
+					{publishedTime && <meta property="article:published_time" content={new Date(publishedTime).toISOString()} />}
+					{modifiedTime && <meta property="article:modified_time" content={new Date(modifiedTime).toISOString()} />}
+					{authors.map(author => (
+						<meta property="article:author" content={author} />
+					))}
+					{tags.map(tag => (
+						<meta property="article:tag" content={tag} />
+					))}
+				</>
+			)
+		}
+		{jsonLd.map(item => <script is:inline type="application/ld+json" set:html={safeJsonLd(withSchemaContext(item))} />)}
+		<title>{fullTitle}</title>
 		<ClientRouter />
 	</head>
 	<body>

@@ -6,6 +6,7 @@ import CourseModuleRow from "@/components/course/CourseModuleRow.astro";
 import Comments from "@/components/Comments.astro";
 import Layout from "@/layouts/Layout.astro";
 import { extractExcerpt, extractTitle, formatDate, normalizeImportPath, readingTime } from "@/utils/content";
+import { courseSchema, breadcrumbSchema, itemListSchema, publisherSchema, webPageSchema } from "@/utils/seo";
 
 export async function getStaticPaths() {
 	const courses = await getCollection("course");
@@ -37,16 +38,42 @@ const courseThumbnail: ImageMetadata | null = allThumbs[courseThumbKey]?.default
 
 // Most-recent lesson update date
 const latestDate = lessons.reduce((acc, l) => {
-	return l.data.date > acc ? l.data.date : acc;
+	const modified = l.data.lastmod ?? l.data.date;
+	return modified > acc ? modified : acc;
 }, new Date(0));
 
 const totalModules = lessons.length;
 
 const courseData = courseEntry.data;
 const outcomes = courseData.outcomes ?? [];
+const breadcrumbId = `https://emtech.cc/course/${courseId}/#breadcrumb`;
+const courseUrl = `/course/${courseId}/`;
+const structuredData = [
+	publisherSchema(),
+	breadcrumbSchema(
+		[
+			{ name: "首頁", url: "/" },
+			{ name: "課程", url: "/course/" },
+			{ name: courseData.title, url: courseUrl }
+		],
+		breadcrumbId
+	),
+	webPageSchema({ url: courseUrl, title: courseData.title, description: courseData.description, image: courseThumbnail, type: "WebPage", breadcrumbId, dateModified: latestDate }),
+	courseSchema({ url: courseUrl, title: courseData.title, description: courseData.description, image: courseThumbnail, courseId, lessonCount: totalModules, dateModified: latestDate }),
+	itemListSchema(
+		lessons.map(lesson => {
+			const lessonId = lesson.id.replace(`${courseId}/`, "");
+			return {
+				url: `/course/${courseId}/${lessonId}/`,
+				name: extractTitle(lesson.body) || lesson.data.description || lessonId
+			};
+		}),
+		`https://emtech.cc/course/${courseId}/#lesson-list`
+	)
+];
 ---
 
-<Layout title={courseData.title} description={courseData.description} active="course">
+<Layout title={courseData.title} description={courseData.description} active="course" canonicalPath={courseUrl} image={courseThumbnail} imageAlt={courseData.title} ogType="website" structuredData={structuredData}>
 	<main id="main-content" class="course-page" tabindex="-1">
 		<section class="course-hero">
 			<div class="hero-copy">
