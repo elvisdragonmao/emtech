@@ -23,7 +23,7 @@ const { course, featured = false } = Astro.props;
 <a class:list={["course-card", `accent-${course.accent}`, { featured }]} href={course.href}>
 	<div class="visual">
 		{course.image ? <img src={course.image.src} width={course.image.width} height={course.image.height} alt={course.title} loading="lazy" /> : <div class="placeholder" aria-hidden="true" />}
-		<span><BookOpen size={15} stroke-width={1.8} />Course</span>
+		<span><BookOpen size={15} stroke-width={1.8} aria-hidden="true" />Course</span>
 	</div>
 	<div class="content">
 		<p>{course.meta}</p>
@@ -31,7 +31,7 @@ const { course, featured = false } = Astro.props;
 		<span class="description">{course.description}</span>
 		<div class="bottom">
 			<span>最後更新 {course.lastUpdated}</span>
-			<ArrowRight size={17} stroke-width={1.9} />
+			<ArrowRight size={17} stroke-width={1.9} aria-hidden="true" />
 		</div>
 	</div>
 </a>

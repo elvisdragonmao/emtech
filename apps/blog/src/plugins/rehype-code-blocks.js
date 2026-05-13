@@ -113,7 +113,8 @@ const createCopyButton = () => ({
 		type: "button",
 		className: ["code-copy-button"],
 		dataCodeCopyButton: "",
-		ariaLabel: "複製程式碼"
+		ariaLabel: "複製程式碼",
+		ariaLive: "polite"
 	},
 	children: [{ type: "text", value: "複製" }]
 });

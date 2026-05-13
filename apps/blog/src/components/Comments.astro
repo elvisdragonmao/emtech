@@ -27,12 +27,12 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 	<div class="auth-panel" data-auth-panel hidden>
 		<span data-auth-name></span>
 		<button type="button" data-logout>
-			<LogOut size={14} stroke-width={1.8} />
+			<LogOut size={14} stroke-width={1.8} aria-hidden="true" />
 			登出
 		</button>
 	</div>
 
-	<div class="notice" data-notice role="status"></div>
+	<div class="notice" data-notice role="status" aria-live="polite"></div>
 
 	<div class="form-host" data-form-host>
 		<form class="comment-form" data-comment-form>
@@ -47,7 +47,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			</label>
 			<label data-identity-field>
 				Email
-				<input name="email" type="email" autocomplete="email" placeholder="只用於 Gravatar，不會公開" />
+				<input name="email" type="email" autocomplete="email" spellcheck="false" placeholder="只用於 Gravatar，不會公開" />
 			</label>
 			<label class="message">
 				留言
@@ -56,14 +56,14 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			{turnstileSiteKey && <div class="turnstile cf-turnstile" data-sitekey={turnstileSiteKey} />}
 			<div class="actions">
 				<button type="submit">
-					<Send size={14} stroke-width={1.8} />
+					<Send size={14} stroke-width={1.8} aria-hidden="true" />
 					送出留言
 				</button>
 			</div>
 		</form>
 	</div>
 
-	<div class="comment-list" data-comment-list></div>
+	<div class="comment-list" data-comment-list role="list" aria-live="polite"></div>
 </section>
 
 {turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />}
@@ -149,7 +149,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 		const loadComments = async () => {
 			if (!list) return;
-			list.textContent = "載入留言中...";
+			list.textContent = "載入留言中…";
 			try {
 				const response = await fetch(apiUrl(`/api/comments?pagePath=${encodeURIComponent(pagePath)}`), { credentials: "include" });
 				const data = (await response.json()) as { comments: PublicComment[] };
@@ -175,6 +175,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 					target.appendChild(article);
 					const replies = document.createElement("div");
 					replies.className = "replies";
+					replies.setAttribute("role", "list");
 					article.appendChild(replies);
 					renderGroup(comment.id, replies);
 					const replySlot = document.createElement("div");
@@ -195,6 +196,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		const renderComment = (comment: PublicComment) => {
 			const article = document.createElement("article");
 			article.className = "comment-card";
+			article.setAttribute("role", "listitem");
 
 			const head = document.createElement("div");
 			head.className = "comment-head";
@@ -205,6 +207,8 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 				const img = document.createElement("img");
 				img.src = comment.author.avatarUrl;
 				img.alt = "";
+				img.width = 44;
+				img.height = 44;
 				img.loading = "lazy";
 				avatar.appendChild(img);
 			}
@@ -234,6 +238,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			const reply = document.createElement("button");
 			reply.type = "button";
 			reply.textContent = "回覆";
+			reply.setAttribute("aria-label", `回覆 ${comment.author.name} 的留言`);
 			reply.addEventListener("click", () => {
 				const replySlot = article.querySelector<HTMLElement>(".reply-form-slot");
 				if (!parentInput || !replying || !replyingLabel || !form || !replySlot) return;
@@ -277,8 +282,9 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			const data = new FormData(form);
 			const submit = form.querySelector<HTMLButtonElement>("button[type='submit']");
 			const turnstileToken = form.querySelector<HTMLInputElement>("[name='cf-turnstile-response']")?.value ?? "";
+			form.setAttribute("aria-busy", "true");
 			submit?.setAttribute("disabled", "true");
-			setNotice("送出中...");
+			setNotice("送出中…");
 
 			try {
 				const response = await fetch(apiUrl("/api/comments"), {
@@ -306,6 +312,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			} catch (error) {
 				setNotice(error instanceof Error ? error.message : "留言送出失敗", "error");
 			} finally {
+				form.removeAttribute("aria-busy");
 				submit?.removeAttribute("disabled");
 			}
 		});
@@ -455,7 +462,8 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		color: var(--color-text);
 		background: oklch(100% 0 0 / 84%);
 		border: 1px solid var(--color-border);
-		outline: 0;
+		outline: 2px solid transparent;
+		outline-offset: 2px;
 		transition: border-color 160ms ease;
 	}
 
@@ -466,6 +474,11 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 	input:focus,
 	textarea:focus {
 		border-color: var(--color-accent);
+	}
+
+	input:focus-visible,
+	textarea:focus-visible {
+		outline-color: var(--color-accent-strong);
 	}
 
 	.replying {

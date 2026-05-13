@@ -133,12 +133,12 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 
 			<button class="card more-link" type="button" data-load-more data-load-step={LOAD_MORE_ARTICLES} hidden={featuredArticleCount <= INITIAL_VISIBLE_ARTICLES}>
 				想要更多？
-				<ChevronDown size={18} stroke-width={1.8} />
+				<ChevronDown size={18} stroke-width={1.8} aria-hidden="true" />
 			</button>
 		</div>
 
 		<aside>
-			<a class="card discord-card" href="https://dc.elvismao.com" target="_blank" rel="noreferrer">
+			<a class="card discord-card" href="https://dc.elvismao.com" target="_blank">
 				<div>Discord</div>
 				<h3>遇到問題嗎？</h3>
 				<p>歡迎加入 Discord 與我們一起討論！</p>
@@ -155,7 +155,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 			</div>
 			<button class="card more-link tag-more-link" type="button" data-tag-more hidden aria-expanded="false">
 				<span data-tag-more-label>顯示更多標籤</span>
-				<ChevronDown size={18} stroke-width={1.8} />
+				<ChevronDown size={18} stroke-width={1.8} aria-hidden="true" />
 			</button>
 		</aside>
 	</div>

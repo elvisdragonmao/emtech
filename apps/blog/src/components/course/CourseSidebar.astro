@@ -17,14 +17,14 @@ const lessonListId = `course-lesson-list-${courseId}`;
 <aside class="course-sidebar" data-course-progress-key={progressStorageKey}>
 	<div class="sidebar-head">
 		<a class="back-link" href={`/course/${courseId}/`}>
-			<ArrowLeft size={15} stroke-width={1.8} />
+			<ArrowLeft size={15} stroke-width={1.8} aria-hidden="true" />
 			<span class="back-label">Back to course overview</span>
 			<span class="back-label-short">Back</span>
 		</a>
 		<button class="course-toggle" type="button" aria-expanded="false" aria-controls={lessonListId} data-course-sidebar-toggle>
 			<span>{courseTitle}</span>
 			<strong>{currentLesson?.title ?? "課程列表"}</strong>
-			<ChevronDown size={16} stroke-width={1.8} />
+			<ChevronDown size={16} stroke-width={1.8} aria-hidden="true" />
 		</button>
 	</div>
 	<div class="course-list-panel" id={lessonListId} data-course-sidebar-panel>
@@ -34,10 +34,10 @@ const lessonListId = `course-lesson-list-${courseId}`;
 					const isActive = lesson.id === currentId;
 					const number = String(i + 1).padStart(2, "0");
 					return (
-						<a class:list={[{ active: isActive }]} href={lesson.href} data-lesson-id={lesson.id}>
+						<a class:list={[{ active: isActive }]} href={lesson.href} data-lesson-id={lesson.id} aria-current={isActive ? "page" : undefined}>
 							<span>{number}</span>
 							{lesson.title}
-							<CircleCheck size={15} stroke-width={1.8} />
+							<CircleCheck size={15} stroke-width={1.8} aria-hidden="true" />
 						</a>
 					);
 				})
@@ -51,6 +51,8 @@ const lessonListId = `course-lesson-list-${courseId}`;
 	const progressKey = sidebar?.dataset.courseProgressKey;
 	const lessonLinks = Array.from(sidebar?.querySelectorAll<HTMLAnchorElement>("[data-lesson-id]") ?? []);
 	const courseToggle = sidebar?.querySelector<HTMLButtonElement>("[data-course-sidebar-toggle]");
+	const coursePanel = sidebar?.querySelector<HTMLElement>("[data-course-sidebar-panel]");
+	const collapsibleSidebar = window.matchMedia("(max-width: 76rem)");
 
 	const parseProgress = (value: string | null) => {
 		if (!value) return [];
@@ -77,12 +79,19 @@ const lessonListId = `course-lesson-list-${courseId}`;
 		});
 	}
 
-	if (sidebar && courseToggle) {
-		sidebar.classList.add("is-collapsible");
-		courseToggle.addEventListener("click", () => {
-			const isOpen = sidebar.classList.toggle("is-open");
+	if (sidebar && courseToggle && coursePanel) {
+		const setSidebarOpen = (isOpen: boolean) => {
+			sidebar.classList.toggle("is-open", isOpen);
 			courseToggle.setAttribute("aria-expanded", String(isOpen));
-		});
+			const hidePanel = collapsibleSidebar.matches && !isOpen;
+			coursePanel.toggleAttribute("inert", hidePanel);
+			coursePanel.setAttribute("aria-hidden", String(hidePanel));
+		};
+
+		sidebar.classList.add("is-collapsible");
+		setSidebarOpen(false);
+		courseToggle.addEventListener("click", () => setSidebarOpen(!sidebar.classList.contains("is-open")));
+		collapsibleSidebar.addEventListener("change", () => setSidebarOpen(sidebar.classList.contains("is-open")));
 	}
 </script>
 

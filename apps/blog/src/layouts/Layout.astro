@@ -25,6 +25,7 @@ const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥E
 		<title>{pageTitle}</title>
 	</head>
 	<body>
+		<a class="skip-link" href="#main-content">跳到主要內容</a>
 		<div class="page-shell">
 			<SiteHeader active={active} />
 			<slot />
@@ -36,6 +37,25 @@ const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥E
 </html>
 
 <style>
+	.skip-link {
+		position: fixed;
+		top: 0.75rem;
+		left: 0.75rem;
+		z-index: 200;
+		padding: 0.65rem 0.85rem;
+		font-weight: 800;
+		color: var(--color-ink);
+		background: var(--color-surface);
+		border: 2px solid var(--color-accent-strong);
+		box-shadow: var(--shadow-card);
+		transform: translateY(calc(-100% - 1rem));
+		transition: transform 160ms ease;
+	}
+
+	.skip-link:focus-visible {
+		transform: translateY(0);
+	}
+
 	.page-shell {
 		--page-padding: 2.75rem;
 		position: relative;

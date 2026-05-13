@@ -16,6 +16,13 @@ const getImageAlt = node => {
 
 export function rehypeImageCaptions() {
 	return tree => {
+		visit(tree, "element", node => {
+			if (!isImage(node)) return;
+			node.properties ??= {};
+			if (node.properties.alt == null) node.properties.alt = "";
+			node.properties.loading ??= "lazy";
+		});
+
 		visit(tree, "element", (node, index, parent) => {
 			if (node.tagName !== "p" || !parent || index == null) return;
 

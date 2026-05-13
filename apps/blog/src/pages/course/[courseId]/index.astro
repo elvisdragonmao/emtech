@@ -47,7 +47,7 @@ const outcomes = courseData.outcomes ?? [];
 ---
 
 <Layout title={courseData.title} description={courseData.description} active="course">
-	<main class="course-page">
+	<main id="main-content" class="course-page" tabindex="-1">
 		<section class="course-hero">
 			<div class="hero-copy">
 				<p class="eyebrow">Course</p>
@@ -77,12 +77,12 @@ const outcomes = courseData.outcomes ?? [];
 				</div>
 				{courseThumbnail && <img class="overview-thumb" src={courseThumbnail.src} width={courseThumbnail.width} height={courseThumbnail.height} alt={courseData.title} />}
 				<div class="quick-stats">
-					<div><BookOpen size={18} stroke-width={1.8} /><span>{totalModules} 章節</span></div>
+					<div><BookOpen size={18} stroke-width={1.8} aria-hidden="true" /><span>{totalModules} 章節</span></div>
 					<div>
-						<Clock size={18} stroke-width={1.8} />
+						<Clock size={18} stroke-width={1.8} aria-hidden="true" />
 						<span>最後更新 {formatDate(latestDate)}</span>
 					</div>
-					<div><Users size={18} stroke-width={1.8} /><span>適合<br />所有學習者</span></div>
+					<div><Users size={18} stroke-width={1.8} aria-hidden="true" /><span>適合<br />所有學習者</span></div>
 				</div>
 			</article>
 		</section>
