@@ -1,4 +1,4 @@
-/about/ /p/about/ 301
+/about/ /p/emtech-2026/ 301
 /post/:slug /p/:slug 301
 /posts/:slug /p/:slug 301
 /series/:slug /category/:slug 301
