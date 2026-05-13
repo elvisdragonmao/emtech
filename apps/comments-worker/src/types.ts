@@ -9,6 +9,7 @@ export type Env = {
 	IP_HASH_SECRET: string;
 	TURNSTILE_SECRET_KEY: string;
 	ALLOWED_ORIGINS: string;
+	DISCORD_WEBHOOK_URL?: string;
 	COMMENT_DEFAULT_STATUS_ANON?: CommentStatus;
 	COMMENT_DEFAULT_STATUS_GITHUB?: CommentStatus;
 };
@@ -18,6 +19,7 @@ export type AppContext = {
 	env: Env;
 	url: URL;
 	corsHeaders: HeadersInit;
+	executionCtx: ExecutionContext;
 };
 
 export type GithubUser = {
