@@ -298,7 +298,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 	.auth-panel button,
 	.actions button,
 	.replying button,
-	.comment-bottom button {
+	.comments :global(.comment-bottom button) {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
@@ -331,7 +331,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 	.auth-panel button,
 	.replying button,
-	.comment-bottom button {
+	.comments :global(.comment-bottom button) {
 		padding: 0.5rem 0.75rem;
 		font-size: 0.85rem;
 	}
@@ -340,7 +340,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 	.auth-panel button:hover,
 	.actions button:hover,
 	.replying button:hover,
-	.comment-bottom button:hover {
+	.comments :global(.comment-bottom button:hover) {
 		background: oklch(93% 0.045 220 / 45%);
 		border-color: var(--color-accent);
 		box-shadow: 0 0.35rem 1rem oklch(71% 0.15 225 / 12%);
@@ -368,7 +368,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		margin-bottom: 2rem;
 	}
 
-	.empty {
+	.comments :global(.empty) {
 		color: var(--color-muted);
 	}
 
@@ -429,7 +429,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		gap: 1rem;
 	}
 
-	.comment-card {
+	.comments :global(.comment-card) {
 		padding: 1rem;
 		background: oklch(100% 0 0 / 88%);
 		border: 1px solid var(--color-border);
@@ -438,14 +438,14 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		gap: 1rem;
 	}
 
-	.comment-head {
+	.comments :global(.comment-head) {
 		display: flex;
 		align-items: center;
 		gap: 0.75rem;
 		line-height: 1;
 	}
 
-	.avatar {
+	.comments :global(.avatar) {
 		display: grid;
 		place-items: center;
 		width: 2.75rem;
@@ -457,44 +457,44 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			linear-gradient(135deg, var(--color-accent), var(--color-purple));
 	}
 
-	.avatar img {
+	.comments :global(.avatar img) {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 	}
 
-	strong,
-	time {
+	.comments :global(.comment-card strong),
+	.comments :global(.comment-card time) {
 		display: block;
 	}
 
-	strong {
+	.comments :global(.comment-card strong) {
 		font-size: 1rem;
 		color: var(--color-ink);
 	}
 
-	time {
+	.comments :global(.comment-card time) {
 		margin-top: 0.3rem;
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
 		color: var(--color-muted);
 	}
 
-	.comment-card p {
+	.comments :global(.comment-card p) {
 		font-size: 1rem;
 		line-height: 1.9;
 		color: var(--color-text);
 		white-space: pre-wrap;
 	}
 
-	.comment-bottom {
+	.comments :global(.comment-bottom) {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
 		gap: 0.5rem;
 	}
 
-	.comment-bottom span {
+	.comments :global(.comment-bottom span) {
 		padding: 0.25rem 0.5rem;
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
@@ -502,11 +502,11 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		border: 1px solid var(--color-border);
 	}
 
-	.comment-bottom button {
+	.comments :global(.comment-bottom button) {
 		margin-left: auto;
 	}
 
-	.replies {
+	.comments :global(.replies) {
 		display: grid;
 		gap: 1rem;
 		margin-left: 2rem;
@@ -526,11 +526,11 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			grid-template-columns: 1fr;
 		}
 
-		.comment-card {
+		.comments :global(.comment-card) {
 			padding: 1.5rem;
 		}
 
-		.replies {
+		.comments :global(.replies) {
 			margin-left: 0.5rem;
 			padding-left: 0.75rem;
 		}
