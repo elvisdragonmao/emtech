@@ -1,4 +1,4 @@
-import { checkSpam, emailHash, type CommentStatus } from "@emtech/comments-shared";
+import { emailHash, type CommentStatus } from "@emtech/comments-shared";
 import { getSessionUser } from "../auth/session";
 import { insertComment, listApprovedComments, parentExists } from "../db/comments";
 import { logDiscordNotificationFailure, notifyDiscordComment } from "../notifications/discord";
@@ -49,7 +49,7 @@ export async function createComment(ctx: AppContext): Promise<Response> {
 	}
 
 	const user = await getSessionUser(ctx.request, ctx.env);
-	const spam = checkSpam(parsed.data.body);
+	const spam = { action: "allow", reasons: "" };
 	const defaultStatus = user ? statusFromEnv(ctx.env.COMMENT_DEFAULT_STATUS_GITHUB, "approved") : statusFromEnv(ctx.env.COMMENT_DEFAULT_STATUS_ANON, "approved");
 	const status = spam.action === "spam" ? "spam" : spam.action === "pending" && defaultStatus === "approved" ? "pending" : defaultStatus;
 	const name = parsed.data.name && parsed.data.name.length > 0 ? parsed.data.name : null;
