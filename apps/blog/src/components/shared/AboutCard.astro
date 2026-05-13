@@ -1,0 +1,157 @@
+---
+import { Globe } from "@lucide/astro";
+import { siGithub, siInstagram } from "simple-icons";
+import SimpleIcon from "./SimpleIcon.astro";
+
+interface Props {
+	copyright?: boolean;
+}
+
+const { copyright = false } = Astro.props;
+---
+
+<section class="about-card">
+	<div>
+		<p class="eyebrow">About me</p>
+		<h2>毛哥EM</h2>
+		<p class="bio">
+			這裡是毛哥EM，一隻全端開發龍還有英文辯士。<br />
+			熱愛開源、音樂、設計、獸迷文化，專研人機互動與人工智慧。
+		</p>
+		{
+			copyright && (
+				<p class="bio">
+					本部落格皆屬原創文章，採{" "}
+					<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+						CC BY-SA 4.0
+					</a>{" "}
+					授權，
+					<br />
+					轉載請註明來自毛哥EM資訊密技。
+					<br />
+					這篇文章對你有幫助嗎？
+					<a href="https://www.buymeacoffee.com/elvismao" target="_blank">
+						考慮幫我買瓶 Red Bull？
+					</a>
+				</p>
+			)
+		}
+		<div class="links" aria-label="社群連結">
+			<a href="https://elvismao.com" target="_blank" aria-label="個人網站"><Globe size={22} stroke-width={1.7} /></a>
+			<a href="https://github.com/" target="_blank" aria-label="GitHub"><SimpleIcon icon={siGithub} size={22} /></a>
+			<a href="https://instagram.com/" target="_blank" aria-label="Instagram"><SimpleIcon icon={siInstagram} size={22} /></a>
+		</div>
+	</div>
+	<div class="dragon-container">
+		<img class="dragon" src="/img/avatar_faier.webp" alt="毛哥EM 角色插圖" loading="lazy" />
+	</div>
+</section>
+
+<style>
+	.about-card {
+		position: relative;
+		display: flex;
+		width: min(57.5rem, 100%);
+		padding: 3rem;
+		overflow: hidden;
+		background: oklch(100% 0 0 / 84%);
+		border: 1px solid var(--color-accent);
+		box-shadow: var(--shadow-card);
+	}
+
+	.about-card::before {
+		position: absolute;
+		inset: 1.25rem;
+		content: "";
+		border: 1px solid oklch(89% 0.018 255 / 70%);
+		pointer-events: none;
+	}
+
+	.eyebrow {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	h2 {
+		margin-top: 1rem;
+		font-size: 3.5rem;
+		line-height: 0.9;
+		letter-spacing: -0.05em;
+		color: var(--color-ink);
+	}
+
+	.bio {
+		max-width: 28.75rem;
+		margin-top: 1.5rem;
+		font-size: 1rem;
+		line-height: 1.33;
+		color: var(--color-muted);
+	}
+
+	.bio a {
+		color: var(--color-accent-strong);
+	}
+
+	.links {
+		display: flex;
+		gap: 1.25rem;
+		margin-top: 1.75rem;
+	}
+
+	.links a {
+		color: var(--color-muted);
+		transition: color 160ms ease;
+	}
+
+	.links a:hover {
+		color: var(--color-accent-strong);
+	}
+	.dragon-container {
+		position: relative;
+		flex-grow: 1;
+		min-width: 10rem;
+	}
+
+	.dragon {
+		position: absolute;
+		left: 25%;
+		top: -1rem;
+		width: min(20vw, 14rem);
+		filter: drop-shadow(0 1.5rem 1.5rem oklch(71% 0.15 225 / 18%));
+	}
+
+	@media (max-width: 55rem) {
+		.dragon {
+			position: absolute;
+			right: 0%;
+			left: unset;
+			top: unset;
+			bottom: -20%;
+			margin-top: -1rem;
+		}
+	}
+
+	@media (max-width: 45rem) {
+		.about-card {
+			flex-direction: column;
+		}
+
+		.dragon-container {
+			height: 10rem;
+		}
+
+		.dragon {
+			top: 0;
+			bottom: unset;
+			width: 10rem;
+		}
+
+		/* .dragon {
+			width: 33.333%;
+		} */
+	}
+</style>

@@ -1,0 +1,85 @@
+---
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description?: string;
+}
+
+const { eyebrow, title, description } = Astro.props;
+---
+
+<div class="section-title">
+	{
+		eyebrow && (
+			<div class="eyebrow-container">
+				<p class="eyebrow">{eyebrow}</p>
+			</div>
+		)
+	}
+	<div class="title-row">
+		<h2 set:html={title} />
+		{description && <p set:html={description} />}
+	</div>
+
+	<style>
+		.section-title {
+			position: relative;
+		}
+
+		.eyebrow-container {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.eyebrow-container::after {
+			content: "";
+			flex-grow: 1;
+			border-bottom: 1px solid var(--color-border);
+			height: 0;
+		}
+
+		.eyebrow {
+			font-family: var(--font-mono);
+			font-size: 0.75rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			color: var(--color-muted);
+			text-transform: uppercase;
+		}
+
+		.title-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+			gap: 2rem;
+			color: var(--color-ink);
+			line-height: 1.2;
+		}
+
+		h2 {
+			font-size: clamp(2.5rem, 8vw, 4.25rem);
+			line-height: 1.05;
+			letter-spacing: -0.08em;
+		}
+
+		.title-row p {
+			font-size: 1.5rem;
+			font-weight: 600;
+			text-align: right;
+		}
+
+		@media (max-width: 43.75rem) {
+			.title-row {
+				display: grid;
+				gap: 1rem;
+			}
+
+			.title-row p {
+				font-size: 1.1rem;
+				text-align: left;
+			}
+		}
+	</style>
+</div>

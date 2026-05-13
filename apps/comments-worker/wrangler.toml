@@ -1,0 +1,16 @@
+name = "emtech-comments-worker"
+main = "src/index.ts"
+compatibility_date = "2026-05-12"
+
+[[d1_databases]]
+binding = "COMMENTS_DB"
+database_name = "emtech-comments"
+# Run `wrangler d1 create emtech-comments`, then replace this placeholder.
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[vars]
+ALLOWED_ORIGINS = "http://localhost:4321"
+COMMENT_DEFAULT_STATUS_ANON = "approved"
+COMMENT_DEFAULT_STATUS_GITHUB = "approved"
+GITHUB_REDIRECT_URI = "http://127.0.0.1:8787/api/auth/github/callback"

@@ -1,0 +1,49 @@
+---
+import HomeArchive from "@/components/home/HomeArchive.astro";
+import HomeCoursesPreview from "@/components/home/HomeCoursesPreview.astro";
+import HomeHero from "@/components/home/HomeHero.astro";
+import HomeSpecialPages from "@/components/home/HomeSpecialPages.astro";
+import Comments from "@/components/Comments.astro";
+import AboutCard from "@/components/shared/AboutCard.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout active="home">
+	<main class="home-container">
+		<HomeHero />
+		<HomeArchive />
+		<HomeCoursesPreview />
+		<HomeSpecialPages />
+
+		<section class="about-section">
+			<AboutCard />
+		</section>
+
+		<section>
+			<Comments pagePath={Astro.url.pathname} />
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.home-container {
+		display: flex;
+		flex-direction: column;
+		gap: 7.5rem;
+		width: min(var(--site-width), 100%);
+		margin-inline: auto;
+		padding: 0 2rem;
+	}
+
+	.about-section {
+		display: flex;
+		justify-content: center;
+	}
+
+	@media (max-width: 40rem) {
+		.home-container {
+			gap: 5.25rem;
+			padding-inline: 0;
+		}
+	}
+</style>

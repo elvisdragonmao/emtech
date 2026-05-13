@@ -1,0 +1,23 @@
+{
+	"name": "comments-worker",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"db:migrate:local": "wrangler d1 migrations apply emtech-comments --local",
+		"db:migrate:remote": "wrangler d1 migrations apply emtech-comments --remote",
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"test": "vitest run",
+		"typecheck": "tsc -p tsconfig.json --noEmit"
+	},
+	"dependencies": {
+		"@emtech/comments-shared": "workspace:*",
+		"zod": "^4.2.1"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20260511.1",
+		"vitest": "^4.0.15",
+		"wrangler": "^4.18.0"
+	}
+}

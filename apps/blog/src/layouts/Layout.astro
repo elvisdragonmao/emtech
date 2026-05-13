@@ -1,0 +1,78 @@
+---
+import SiteFooter from "@/components/layout/SiteFooter.astro";
+import SiteHeader from "@/components/layout/SiteHeader.astro";
+import SearchDialog from "@/components/shared/SearchDialog.astro";
+import ScrollToTopButton from "@/components/shared/ScrollToTopButton.astro";
+import "@/styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+	active?: "home" | "blog" | "course";
+}
+
+const { title = "毛哥EM資訊密技", description = "科技、設計、毛茸茸的資訊密技與教學筆記。", active } = Astro.props;
+const pageTitle = title === "毛哥EM資訊密技" ? title : `${title} | 毛哥EM資訊密技`;
+---
+
+<!doctype html>
+<html lang="zh-Hant">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<link rel="icon" href="/img/favicon/favicon.ico" />
+		<title>{pageTitle}</title>
+	</head>
+	<body>
+		<div class="page-shell">
+			<SiteHeader active={active} />
+			<slot />
+			<SiteFooter />
+			<SearchDialog />
+			<ScrollToTopButton />
+		</div>
+	</body>
+</html>
+
+<style>
+	.page-shell {
+		--page-padding: 2.75rem;
+		position: relative;
+		min-height: 100vh;
+		padding-inline: var(--page-padding);
+		overflow: clip;
+	}
+
+	.page-shell::before,
+	.page-shell::after {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		width: var(--page-padding);
+		content: "";
+		border-inline: 1px solid var(--color-border);
+		background: repeating-linear-gradient(135deg, transparent 0 0.5rem, oklch(92% 0.012 250 / 72%) 0.5rem 0.75rem), oklch(100% 0 0 / 55%);
+	}
+
+	.page-shell::before {
+		left: 0;
+	}
+
+	.page-shell::after {
+		right: 0;
+	}
+
+	@media (max-width: 53.75rem) {
+		.page-shell::before,
+		.page-shell::after {
+			display: none;
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.page-shell {
+			--page-padding: 1rem;
+		}
+	}
+</style>

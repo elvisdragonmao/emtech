@@ -1,0 +1,141 @@
+---
+import { ArrowRight } from "@lucide/astro";
+import type { ImageMetadata } from "astro";
+
+export type CourseModuleData = {
+	number: string;
+	title: string;
+	description: string;
+	duration: string;
+	image: ImageMetadata | null;
+	href: string;
+};
+
+interface Props {
+	module: CourseModuleData;
+}
+
+const { module } = Astro.props;
+---
+
+<a class="module-row" href={module.href}>
+	<span class="module-number">{module.number}</span>
+	<div class="thumb">
+		{module.image ? <img src={module.image.src} width={module.image.width} height={module.image.height} alt={module.title} loading="lazy" /> : <div class="thumb-placeholder" aria-hidden="true" />}
+	</div>
+	<div class="module-content">
+		<h3>{module.title}</h3>
+		<p>{module.description}</p>
+	</div>
+	{module.duration && <span class="duration">{module.duration}</span>}
+	<ArrowRight class="arrow" size={18} stroke-width={1.8} />
+</a>
+
+<style>
+	.module-row {
+		display: grid;
+		grid-template-columns: 7.5rem 13.75rem minmax(0, 1fr) 5.75rem 1.5rem;
+		align-items: start;
+		gap: 2rem;
+		padding: 1.5rem 1.25rem;
+		border-top: 1px solid var(--color-border);
+		transition:
+			background 160ms ease,
+			transform 160ms ease;
+	}
+
+	.module-row:hover {
+		background: oklch(93% 0.045 220 / 40%);
+	}
+
+	.module-number,
+	.duration {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--color-muted);
+	}
+
+	.thumb {
+		aspect-ratio: 2 / 1;
+		overflow: hidden;
+		background: var(--color-surface-soft);
+	}
+
+	.thumb img,
+	.thumb-placeholder {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	h3 {
+		font-size: 2rem;
+		line-height: 1.14;
+		letter-spacing: -0.055em;
+		color: var(--color-ink);
+	}
+
+	p {
+		display: -webkit-box;
+		max-width: 42.5rem;
+		margin-top: 0.75rem;
+		overflow: hidden;
+		font-size: 1rem;
+		line-height: 1.75;
+		color: var(--color-muted);
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+	}
+
+	.duration {
+		justify-self: end;
+		padding-top: 0.35rem;
+		white-space: nowrap;
+	}
+
+	.arrow {
+		align-self: center;
+		color: var(--color-accent-strong);
+		opacity: 0;
+		transform: translateX(-0.5rem);
+		transition:
+			opacity 160ms ease,
+			transform 160ms ease;
+	}
+
+	.module-row:hover .arrow {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	@media (max-width: 56.25rem) {
+		.module-row {
+			grid-template-columns: 5.75rem 1fr;
+			gap: 1.25rem;
+		}
+
+		.thumb,
+		.module-content,
+		.duration {
+			grid-column: 2;
+		}
+
+		.arrow {
+			display: none;
+		}
+	}
+
+	@media (max-width: 38.75rem) {
+		.module-row {
+			grid-template-columns: 1fr;
+			padding: 1.5rem;
+		}
+
+		.thumb,
+		.module-content,
+		.duration {
+			grid-column: auto;
+		}
+	}
+</style>
