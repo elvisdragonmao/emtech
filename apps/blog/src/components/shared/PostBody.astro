@@ -107,245 +107,275 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 <div class:list={["reading-toast", { "course-layout": isCourseLayout }]} data-reading-toast role="status" aria-live="polite" hidden>閱讀完成已紀錄</div>
 
 <script>
-	const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"));
-	const tocHeadings = tocLinks
-		.map(link => {
-			const id = link.dataset.tocLink;
-			const heading = id ? document.getElementById(id) : null;
-			return heading ? { id, heading, link } : null;
-		})
-		.filter((item): item is { id: string; heading: HTMLElement; link: HTMLAnchorElement } => Boolean(item));
+	import { setupPageLifecycle } from "@/scripts/pageLifecycle";
 
-	const setActiveToc = (id: string) => {
-		for (const { id: itemId, link } of tocHeadings) {
-			const isActive = itemId === id;
-			link.classList.toggle("active", isActive);
-			if (isActive) link.setAttribute("aria-current", "location");
-			else link.removeAttribute("aria-current");
+	setupPageLifecycle("post-body", () => {
+		const controller = new AbortController();
+		const { signal } = controller;
+		let readObserver: IntersectionObserver | null = null;
+		let toastHideTimer = 0;
+		let toastHiddenTimer = 0;
+		const copyResetTimers = new Set<number>();
+		const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"));
+		const tocHeadings = tocLinks
+			.map(link => {
+				const id = link.dataset.tocLink;
+				const heading = id ? document.getElementById(id) : null;
+				return heading ? { id, heading, link } : null;
+			})
+			.filter((item): item is { id: string; heading: HTMLElement; link: HTMLAnchorElement } => Boolean(item));
+
+		const setActiveToc = (id: string) => {
+			for (const { id: itemId, link } of tocHeadings) {
+				const isActive = itemId === id;
+				link.classList.toggle("active", isActive);
+				if (isActive) link.setAttribute("aria-current", "location");
+				else link.removeAttribute("aria-current");
+			}
+		};
+
+		let tocFrame = 0;
+		const updateToc = () => {
+			tocFrame = 0;
+			const firstHeading = tocHeadings[0];
+			if (!firstHeading) return;
+
+			const active = tocHeadings.reduce((current, item) => {
+				const top = item.heading.getBoundingClientRect().top;
+				return top <= 120 ? item : current;
+			}, firstHeading);
+
+			setActiveToc(active.id);
+		};
+
+		const queueTocUpdate = () => {
+			if (tocFrame) return;
+			tocFrame = window.requestAnimationFrame(updateToc);
+		};
+
+		if (tocHeadings.length > 0) {
+			updateToc();
+			window.addEventListener("scroll", queueTocUpdate, { passive: true, signal });
+			window.addEventListener("resize", queueTocUpdate, { signal });
 		}
-	};
 
-	let tocFrame = 0;
-	const updateToc = () => {
-		tocFrame = 0;
-		const firstHeading = tocHeadings[0];
-		if (!firstHeading) return;
+		const progressArticle = document.querySelector<HTMLElement>("[data-progress-storage-key][data-progress-item-id]");
+		const sentinel = progressArticle?.querySelector<HTMLElement>("[data-read-complete-sentinel]");
+		const toast = document.querySelector<HTMLElement>("[data-reading-toast]");
 
-		const active = tocHeadings.reduce((current, item) => {
-			const top = item.heading.getBoundingClientRect().top;
-			return top <= 120 ? item : current;
-		}, firstHeading);
+		const parseProgress = (value: string | null) => {
+			if (!value) return [];
+			try {
+				const parsed = JSON.parse(value);
+				return Array.isArray(parsed) ? parsed.filter((item): item is string => typeof item === "string") : [];
+			} catch {
+				return [];
+			}
+		};
 
-		setActiveToc(active.id);
-	};
+		const showToast = () => {
+			if (!toast) return;
+			window.clearTimeout(toastHideTimer);
+			window.clearTimeout(toastHiddenTimer);
+			toast.hidden = false;
+			toast.classList.add("visible");
+			toastHideTimer = window.setTimeout(() => {
+				toast.classList.remove("visible");
+				toastHiddenTimer = window.setTimeout(() => {
+					toast.hidden = true;
+				}, 280);
+			}, 2600);
+		};
 
-	const queueTocUpdate = () => {
-		if (tocFrame) return;
-		tocFrame = window.requestAnimationFrame(updateToc);
-	};
+		const markReadComplete = () => {
+			const storageKey = progressArticle?.dataset.progressStorageKey;
+			const itemId = progressArticle?.dataset.progressItemId;
+			if (!storageKey || !itemId) return;
 
-	if (tocHeadings.length > 0) {
-		updateToc();
-		window.addEventListener("scroll", queueTocUpdate, { passive: true });
-		window.addEventListener("resize", queueTocUpdate);
-	}
+			const completed = parseProgress(window.localStorage.getItem(storageKey));
+			if (completed.includes(itemId)) return;
 
-	const progressArticle = document.querySelector<HTMLElement>("[data-progress-storage-key][data-progress-item-id]");
-	const sentinel = progressArticle?.querySelector<HTMLElement>("[data-read-complete-sentinel]");
-	const toast = document.querySelector<HTMLElement>("[data-reading-toast]");
+			const nextCompleted = [...completed, itemId];
+			window.localStorage.setItem(storageKey, JSON.stringify(nextCompleted));
+			window.dispatchEvent(new CustomEvent("emtech:course-progress", { detail: { storageKey, completed: nextCompleted } }));
+			showToast();
+		};
 
-	const parseProgress = (value: string | null) => {
-		if (!value) return [];
-		try {
-			const parsed = JSON.parse(value);
-			return Array.isArray(parsed) ? parsed.filter((item): item is string => typeof item === "string") : [];
-		} catch {
-			return [];
+		if (progressArticle && sentinel) {
+			const supportsIntersectionObserver = typeof window.IntersectionObserver === "function";
+
+			if (supportsIntersectionObserver) {
+				const observer = new IntersectionObserver(
+					entries => {
+						if (entries.some(entry => entry.isIntersecting)) {
+							markReadComplete();
+							observer.disconnect();
+						}
+					},
+					{ rootMargin: "0px 0px -10% 0px" }
+				);
+				readObserver = observer;
+				observer.observe(sentinel);
+			} else {
+				const scrollTarget: Window = window;
+				scrollTarget.addEventListener(
+					"scroll",
+					() => {
+						const bottom = progressArticle.getBoundingClientRect().bottom;
+						if (bottom <= window.innerHeight + 24) markReadComplete();
+					},
+					{ passive: true, signal }
+				);
+			}
 		}
-	};
 
-	const showToast = () => {
-		if (!toast) return;
-		toast.hidden = false;
-		toast.classList.add("visible");
-		window.setTimeout(() => {
-			toast.classList.remove("visible");
-			window.setTimeout(() => {
-				toast.hidden = true;
-			}, 280);
-		}, 2600);
-	};
+		const getLineText = (line: HTMLElement) => {
+			const hasElementChildren = Array.from(line.childNodes).some(node => node.nodeType === Node.ELEMENT_NODE);
 
-	const markReadComplete = () => {
-		const storageKey = progressArticle?.dataset.progressStorageKey;
-		const itemId = progressArticle?.dataset.progressItemId;
-		if (!storageKey || !itemId) return;
+			return Array.from(line.childNodes)
+				.map(node => {
+					const text = node.textContent ?? "";
+					if (hasElementChildren && node.nodeType === Node.TEXT_NODE && !text.trim()) return "";
+					return text;
+				})
+				.join("");
+		};
 
-		const completed = parseProgress(window.localStorage.getItem(storageKey));
-		if (completed.includes(itemId)) return;
+		const getCodeText = (code: HTMLElement) => {
+			const lines = Array.from(code.querySelectorAll<HTMLElement>(".line"));
+			if (lines.length > 0) return lines.map(getLineText).join("\n");
+			return code.textContent ?? "";
+		};
 
-		const nextCompleted = [...completed, itemId];
-		window.localStorage.setItem(storageKey, JSON.stringify(nextCompleted));
-		window.dispatchEvent(new CustomEvent("emtech:course-progress", { detail: { storageKey, completed: nextCompleted } }));
-		showToast();
-	};
+		const writeClipboard = async (text: string) => {
+			if (navigator.clipboard?.writeText && window.isSecureContext) {
+				await navigator.clipboard.writeText(text);
+				return;
+			}
 
-	if (progressArticle && sentinel) {
-		const supportsIntersectionObserver = typeof window.IntersectionObserver === "function";
+			const textarea = document.createElement("textarea");
+			textarea.value = text;
+			textarea.setAttribute("readonly", "");
+			textarea.style.position = "fixed";
+			textarea.style.inset = "0 auto auto 0";
+			textarea.style.opacity = "0";
+			document.body.append(textarea);
+			textarea.select();
 
-		if (supportsIntersectionObserver) {
-			const observer = new IntersectionObserver(
-				entries => {
-					if (entries.some(entry => entry.isIntersecting)) {
-						markReadComplete();
-						observer.disconnect();
+			const copied = (document as unknown as { execCommand: (command: string) => boolean }).execCommand("copy");
+			textarea.remove();
+			if (!copied) throw new Error("Copy command failed");
+		};
+
+		const languageLabels: Record<string, string> = {
+			bash: "Bash",
+			c: "C",
+			"c++": "C++",
+			cpp: "C++",
+			cs: "C#",
+			csharp: "C#",
+			css: "CSS",
+			dockerfile: "Dockerfile",
+			html: "HTML",
+			javascript: "JS",
+			js: "JS",
+			json: "JSON",
+			jsx: "JSX",
+			markdown: "MD",
+			md: "MD",
+			plaintext: "Text",
+			powershell: "PowerShell",
+			ps1: "PowerShell",
+			py: "Python",
+			python: "Python",
+			sh: "Shell",
+			shell: "Shell",
+			ts: "TS",
+			tsx: "TSX",
+			typescript: "TS",
+			xml: "XML",
+			yaml: "YAML",
+			yml: "YAML",
+			zsh: "Zsh"
+		};
+
+		const normalizeLanguageLabel = (language: string | null | undefined) => {
+			const normalized = language?.trim() ?? "";
+			if (!normalized) return "Text";
+			return languageLabels[normalized.toLowerCase()] ?? normalized;
+		};
+
+		const getCodeLanguage = (block: HTMLElement, code: HTMLElement) => {
+			const pre = code.closest("pre");
+			const dataLanguage = pre?.getAttribute("data-language") || code.getAttribute("data-language");
+			const languageClass = [...code.classList, ...(pre ? [...pre.classList] : []), ...block.classList].find(className => className.startsWith("language-"));
+			return normalizeLanguageLabel(dataLanguage || languageClass?.replace(/^language-/, ""));
+		};
+
+		const ensureCodeLanguageLabel = (block: HTMLElement, code: HTMLElement) => {
+			const toolbar = block.querySelector<HTMLElement>(".code-block-toolbar");
+			if (!toolbar) return;
+
+			let label = toolbar.querySelector<HTMLElement>(".code-block-language");
+			if (!label) {
+				label = document.createElement("span");
+				label.className = "code-block-language";
+				toolbar.prepend(label);
+			}
+
+			if (!label.textContent?.trim()) label.textContent = getCodeLanguage(block, code);
+		};
+
+		for (const block of document.querySelectorAll<HTMLElement>("[data-code-block]")) {
+			const code = block.querySelector<HTMLElement>("pre code");
+			if (!code) continue;
+
+			ensureCodeLanguageLabel(block, code);
+
+			const button = block.querySelector<HTMLButtonElement>("[data-code-copy-button]");
+			if (!button) continue;
+
+			const defaultLabel = button.textContent ?? "複製";
+			let resetTimer = 0;
+
+			button.addEventListener(
+				"click",
+				async () => {
+					window.clearTimeout(resetTimer);
+					copyResetTimers.delete(resetTimer);
+					button.disabled = true;
+
+					try {
+						await writeClipboard(getCodeText(code));
+						button.dataset.copyState = "success";
+						button.textContent = "已複製";
+					} catch {
+						button.dataset.copyState = "error";
+						button.textContent = "複製失敗";
+					} finally {
+						button.disabled = false;
+						resetTimer = window.setTimeout(() => {
+							copyResetTimers.delete(resetTimer);
+							delete button.dataset.copyState;
+							button.textContent = defaultLabel;
+						}, 1800);
+						copyResetTimers.add(resetTimer);
 					}
 				},
-				{ rootMargin: "0px 0px -10% 0px" }
-			);
-			observer.observe(sentinel);
-		} else {
-			const scrollTarget: Window = window;
-			scrollTarget.addEventListener(
-				"scroll",
-				() => {
-					const bottom = progressArticle.getBoundingClientRect().bottom;
-					if (bottom <= window.innerHeight + 24) markReadComplete();
-				},
-				{ passive: true }
+				{ signal }
 			);
 		}
-	}
 
-	const getLineText = (line: HTMLElement) => {
-		const hasElementChildren = Array.from(line.childNodes).some(node => node.nodeType === Node.ELEMENT_NODE);
-
-		return Array.from(line.childNodes)
-			.map(node => {
-				const text = node.textContent ?? "";
-				if (hasElementChildren && node.nodeType === Node.TEXT_NODE && !text.trim()) return "";
-				return text;
-			})
-			.join("");
-	};
-
-	const getCodeText = (code: HTMLElement) => {
-		const lines = Array.from(code.querySelectorAll<HTMLElement>(".line"));
-		if (lines.length > 0) return lines.map(getLineText).join("\n");
-		return code.textContent ?? "";
-	};
-
-	const writeClipboard = async (text: string) => {
-		if (navigator.clipboard?.writeText && window.isSecureContext) {
-			await navigator.clipboard.writeText(text);
-			return;
-		}
-
-		const textarea = document.createElement("textarea");
-		textarea.value = text;
-		textarea.setAttribute("readonly", "");
-		textarea.style.position = "fixed";
-		textarea.style.inset = "0 auto auto 0";
-		textarea.style.opacity = "0";
-		document.body.append(textarea);
-		textarea.select();
-
-		const copied = (document as unknown as { execCommand: (command: string) => boolean }).execCommand("copy");
-		textarea.remove();
-		if (!copied) throw new Error("Copy command failed");
-	};
-
-	const languageLabels: Record<string, string> = {
-		bash: "Bash",
-		c: "C",
-		"c++": "C++",
-		cpp: "C++",
-		cs: "C#",
-		csharp: "C#",
-		css: "CSS",
-		dockerfile: "Dockerfile",
-		html: "HTML",
-		javascript: "JS",
-		js: "JS",
-		json: "JSON",
-		jsx: "JSX",
-		markdown: "MD",
-		md: "MD",
-		plaintext: "Text",
-		powershell: "PowerShell",
-		ps1: "PowerShell",
-		py: "Python",
-		python: "Python",
-		sh: "Shell",
-		shell: "Shell",
-		ts: "TS",
-		tsx: "TSX",
-		typescript: "TS",
-		xml: "XML",
-		yaml: "YAML",
-		yml: "YAML",
-		zsh: "Zsh"
-	};
-
-	const normalizeLanguageLabel = (language: string | null | undefined) => {
-		const normalized = language?.trim() ?? "";
-		if (!normalized) return "Text";
-		return languageLabels[normalized.toLowerCase()] ?? normalized;
-	};
-
-	const getCodeLanguage = (block: HTMLElement, code: HTMLElement) => {
-		const pre = code.closest("pre");
-		const dataLanguage = pre?.getAttribute("data-language") || code.getAttribute("data-language");
-		const languageClass = [...code.classList, ...(pre ? [...pre.classList] : []), ...block.classList].find(className => className.startsWith("language-"));
-		return normalizeLanguageLabel(dataLanguage || languageClass?.replace(/^language-/, ""));
-	};
-
-	const ensureCodeLanguageLabel = (block: HTMLElement, code: HTMLElement) => {
-		const toolbar = block.querySelector<HTMLElement>(".code-block-toolbar");
-		if (!toolbar) return;
-
-		let label = toolbar.querySelector<HTMLElement>(".code-block-language");
-		if (!label) {
-			label = document.createElement("span");
-			label.className = "code-block-language";
-			toolbar.prepend(label);
-		}
-
-		if (!label.textContent?.trim()) label.textContent = getCodeLanguage(block, code);
-	};
-
-	for (const block of document.querySelectorAll<HTMLElement>("[data-code-block]")) {
-		const code = block.querySelector<HTMLElement>("pre code");
-		if (!code) continue;
-
-		ensureCodeLanguageLabel(block, code);
-
-		const button = block.querySelector<HTMLButtonElement>("[data-code-copy-button]");
-		if (!button) continue;
-
-		const defaultLabel = button.textContent ?? "複製";
-		let resetTimer = 0;
-
-		button.addEventListener("click", async () => {
-			window.clearTimeout(resetTimer);
-			button.disabled = true;
-
-			try {
-				await writeClipboard(getCodeText(code));
-				button.dataset.copyState = "success";
-				button.textContent = "已複製";
-			} catch {
-				button.dataset.copyState = "error";
-				button.textContent = "複製失敗";
-			} finally {
-				button.disabled = false;
-				resetTimer = window.setTimeout(() => {
-					delete button.dataset.copyState;
-					button.textContent = defaultLabel;
-				}, 1800);
-			}
-		});
-	}
+		return () => {
+			controller.abort();
+			if (tocFrame) window.cancelAnimationFrame(tocFrame);
+			readObserver?.disconnect();
+			window.clearTimeout(toastHideTimer);
+			window.clearTimeout(toastHiddenTimer);
+			for (const timer of copyResetTimers) window.clearTimeout(timer);
+			copyResetTimers.clear();
+		};
+	});
 </script>
 
 <style>

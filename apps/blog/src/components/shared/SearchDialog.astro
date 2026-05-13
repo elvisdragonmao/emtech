@@ -17,8 +17,33 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 	</section>
 </div>
 
-<script is:inline>
-	(() => {
+<script>
+	import { setupPageLifecycle } from "@/scripts/pageLifecycle";
+
+	type PagefindModule = {
+		init?: () => Promise<void> | void;
+		debouncedSearch: (
+			query: string,
+			options: Record<string, unknown>,
+			delay: number
+		) => Promise<{
+			results: Array<{
+				data: () => Promise<{
+					url?: string;
+					title?: string;
+					excerpt?: string;
+					plain_excerpt?: string;
+					meta?: {
+						type?: string;
+						date?: string;
+						title?: string;
+					};
+				}>;
+			}>;
+		} | null>;
+	};
+
+	setupPageLifecycle("search-dialog", () => {
 		const overlay = document.querySelector("[data-search-overlay]");
 		const input = document.querySelector("[data-search-input]");
 		const results = document.querySelector("[data-search-results]");
@@ -26,25 +51,28 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 		const openButtons = document.querySelectorAll("[data-search-open]");
 		const closeButtons = document.querySelectorAll("[data-search-close]");
 
-		if (!overlay || !input || !results || !meta) return;
+		if (!(overlay instanceof HTMLElement) || !(input instanceof HTMLInputElement) || !(results instanceof HTMLOListElement) || !(meta instanceof HTMLElement)) return;
 
-		let pagefindPromise;
+		const controller = new AbortController();
+		const { signal } = controller;
+		let pagefindPromise: Promise<PagefindModule> | null = null;
 		let activeSearch = 0;
-		let restoreFocusTo = null;
+		let restoreFocusTo: HTMLElement | null = null;
+		let disposed = false;
 
 		const pagefindPath = overlay.dataset.pagefindPath || "/pagefind/pagefind.js";
 		const focusableSelector = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex='-1'])";
 
 		const loadPagefind = () => {
-			pagefindPromise ??= import(pagefindPath).then(async pagefind => {
+			pagefindPromise ??= import(/* @vite-ignore */ pagefindPath).then(async pagefind => {
 				await pagefind.init?.();
-				return pagefind;
+				return pagefind as PagefindModule;
 			});
 
 			return pagefindPromise;
 		};
 
-		const isEditable = target => {
+		const isEditable = (target: EventTarget | null) => {
 			if (!(target instanceof HTMLElement)) return false;
 			return Boolean(target.closest("input, textarea, select, [contenteditable='true']"));
 		};
@@ -58,6 +86,8 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 			const query = input.value.trim();
 			clearResults();
 
+			if (disposed) return;
+
 			if (!query) {
 				meta.textContent = "輸入關鍵字開始搜尋";
 				return;
@@ -68,10 +98,10 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 			try {
 				const pagefind = await loadPagefind();
 				const search = await pagefind.debouncedSearch(query, {}, 180);
-				if (searchId !== activeSearch || search === null) return;
+				if (disposed || searchId !== activeSearch || search === null) return;
 
 				const loaded = await Promise.all(search.results.slice(0, 20).map(result => result.data()));
-				if (searchId !== activeSearch) return;
+				if (disposed || searchId !== activeSearch) return;
 
 				meta.textContent = search.results.length > 0 ? `找到 ${search.results.length} 筆結果` : "沒有找到符合的內容";
 
@@ -84,13 +114,13 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 					const type = item.meta?.type || (item.url?.startsWith("/course/") ? "課程" : "文章");
 					const date = item.meta?.date ? ` / ${item.meta.date}` : "";
 
-					link.href = item.url;
+					link.href = item.url ?? "#";
 					top.className = "result-kicker";
 					title.className = "result-title";
 					excerpt.className = "result-snippet";
 
 					top.textContent = `${type}${date}`;
-					title.textContent = item.meta?.title || item.title || item.url;
+					title.textContent = item.meta?.title || item.title || item.url || "";
 					excerpt.innerHTML = item.excerpt || item.plain_excerpt || "";
 
 					link.append(top, title, excerpt);
@@ -98,7 +128,7 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 					results.append(li);
 				}
 			} catch {
-				if (searchId !== activeSearch) return;
+				if (disposed || searchId !== activeSearch) return;
 				meta.textContent = "搜尋索引尚未載入，請先執行 build 產生 Pagefind index";
 			}
 		};
@@ -121,43 +151,58 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 			restoreFocusTo = null;
 		};
 
-		openButtons.forEach(button => button.addEventListener("click", openSearch));
-		closeButtons.forEach(button => button.addEventListener("click", closeSearch));
-		input.addEventListener("input", renderResults);
+		openButtons.forEach(button => button.addEventListener("click", openSearch, { signal }));
+		closeButtons.forEach(button => button.addEventListener("click", closeSearch, { signal }));
+		input.addEventListener("input", renderResults, { signal });
 
-		overlay.addEventListener("mousedown", event => {
-			if (event.target === overlay) closeSearch();
-		});
+		overlay.addEventListener(
+			"mousedown",
+			event => {
+				if (event.target === overlay) closeSearch();
+			},
+			{ signal }
+		);
 
-		document.addEventListener("keydown", event => {
-			if (event.key === "Escape" && !overlay.hidden) {
-				event.preventDefault();
-				closeSearch();
-				return;
-			}
-
-			if (event.key === "Tab" && !overlay.hidden) {
-				const focusable = Array.from(overlay.querySelectorAll(focusableSelector)).filter(element => element instanceof HTMLElement && element.offsetParent !== null);
-				const first = focusable[0];
-				const last = focusable[focusable.length - 1];
-				if (first instanceof HTMLElement && last instanceof HTMLElement) {
-					if (event.shiftKey && document.activeElement === first) {
-						event.preventDefault();
-						last.focus();
-					} else if (!event.shiftKey && document.activeElement === last) {
-						event.preventDefault();
-						first.focus();
-					}
+		document.addEventListener(
+			"keydown",
+			event => {
+				if (event.key === "Escape" && !overlay.hidden) {
+					event.preventDefault();
+					closeSearch();
+					return;
 				}
-				return;
-			}
 
-			if ((event.key === "/" && !isEditable(event.target)) || ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k")) {
-				event.preventDefault();
-				openSearch();
-			}
-		});
-	})();
+				if (event.key === "Tab" && !overlay.hidden) {
+					const focusable = Array.from(overlay.querySelectorAll(focusableSelector)).filter(element => element instanceof HTMLElement && element.offsetParent !== null);
+					const first = focusable[0];
+					const last = focusable[focusable.length - 1];
+					if (first instanceof HTMLElement && last instanceof HTMLElement) {
+						if (event.shiftKey && document.activeElement === first) {
+							event.preventDefault();
+							last.focus();
+						} else if (!event.shiftKey && document.activeElement === last) {
+							event.preventDefault();
+							first.focus();
+						}
+					}
+					return;
+				}
+
+				if ((event.key === "/" && !isEditable(event.target)) || ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k")) {
+					event.preventDefault();
+					openSearch();
+				}
+			},
+			{ signal }
+		);
+
+		return () => {
+			disposed = true;
+			activeSearch += 1;
+			controller.abort();
+			document.documentElement.classList.remove("search-open");
+		};
+	});
 </script>
 
 <style>

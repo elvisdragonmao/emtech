@@ -79,17 +79,21 @@ const featuredArticles = recentPosts.map((p, index) => {
 </section>
 
 <script>
-	const livedFor = document.querySelector("[data-lived-for]");
-	const launchDate = livedFor?.getAttribute("data-launch-date");
+	import { setupPageLifecycle } from "@/scripts/pageLifecycle";
 
-	if (livedFor instanceof HTMLElement && launchDate) {
-		const launch = new Date(`${launchDate}T00:00:00`);
-		const totalDays = Math.max(0, Math.floor((Date.now() - launch.getTime()) / (1000 * 60 * 60 * 24)));
-		const years = Math.floor(totalDays / 365.25);
-		const remainingDays = Math.round(totalDays - years * 365.25);
+	setupPageLifecycle("home-hero", () => {
+		const livedFor = document.querySelector("[data-lived-for]");
+		const launchDate = livedFor?.getAttribute("data-launch-date");
 
-		livedFor.textContent = `${years}y ${remainingDays}d`;
-	}
+		if (livedFor instanceof HTMLElement && launchDate) {
+			const launch = new Date(`${launchDate}T00:00:00`);
+			const totalDays = Math.max(0, Math.floor((Date.now() - launch.getTime()) / (1000 * 60 * 60 * 24)));
+			const years = Math.floor(totalDays / 365.25);
+			const remainingDays = Math.round(totalDays - years * 365.25);
+
+			livedFor.textContent = `${years}y ${remainingDays}d`;
+		}
+	});
 </script>
 
 <style>

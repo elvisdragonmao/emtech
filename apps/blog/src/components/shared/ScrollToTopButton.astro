@@ -7,38 +7,51 @@ import { ArrowUp } from "@lucide/astro";
 </button>
 
 <script>
-	const button = document.querySelector<HTMLButtonElement>("[data-scroll-to-top]");
+	import { setupPageLifecycle } from "@/scripts/pageLifecycle";
 
-	if (button) {
+	setupPageLifecycle("scroll-to-top", () => {
+		const button = document.querySelector<HTMLButtonElement>("[data-scroll-to-top]");
+		if (!button) return;
+
+		const controller = new AbortController();
+		const { signal } = controller;
 		const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-		let ticking = false;
+		let frame = 0;
 
 		const updateVisibility = () => {
+			frame = 0;
 			const isVisible = window.scrollY > 360;
 
 			button.toggleAttribute("data-visible", isVisible);
 			button.tabIndex = isVisible ? 0 : -1;
 			button.setAttribute("aria-hidden", String(!isVisible));
-			ticking = false;
 		};
 
 		const handleScroll = () => {
-			if (!ticking) {
-				window.requestAnimationFrame(updateVisibility);
-				ticking = true;
+			if (!frame) {
+				frame = window.requestAnimationFrame(updateVisibility);
 			}
 		};
 
-		button.addEventListener("click", () => {
-			window.scrollTo({
-				top: 0,
-				behavior: prefersReducedMotion.matches ? "auto" : "smooth"
-			});
-		});
+		button.addEventListener(
+			"click",
+			() => {
+				window.scrollTo({
+					top: 0,
+					behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+				});
+			},
+			{ signal }
+		);
 
-		window.addEventListener("scroll", handleScroll, { passive: true });
+		window.addEventListener("scroll", handleScroll, { passive: true, signal });
 		updateVisibility();
-	}
+
+		return () => {
+			if (frame) window.cancelAnimationFrame(frame);
+			controller.abort();
+		};
+	});
 </script>
 
 <style>

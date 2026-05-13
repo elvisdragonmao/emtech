@@ -46,38 +46,62 @@ const navItems = [
 </header>
 
 <script>
-	const header = document.querySelector<HTMLElement>(".site-header");
-	const nav = document.querySelector<HTMLElement>(".main-nav");
-	const menuToggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
-	const mobileMenu = window.matchMedia("(max-width: 43rem)");
+	import { setupPageLifecycle } from "@/scripts/pageLifecycle";
 
-	const setMenuOpen = (isOpen: boolean) => {
-		if (!header || !nav || !menuToggle) return;
-		header.classList.toggle("is-menu-open", isOpen);
-		menuToggle.setAttribute("aria-expanded", String(isOpen));
-		menuToggle.setAttribute("aria-label", isOpen ? "關閉導覽選單" : "開啟導覽選單");
-		nav.toggleAttribute("inert", mobileMenu.matches && !isOpen);
-		nav.setAttribute("aria-hidden", String(mobileMenu.matches && !isOpen));
-	};
+	setupPageLifecycle("site-header", () => {
+		const header = document.querySelector<HTMLElement>(".site-header");
+		const nav = document.querySelector<HTMLElement>(".main-nav");
+		const menuToggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+		const mobileMenu = window.matchMedia("(max-width: 43rem)");
+		const controller = new AbortController();
+		const { signal } = controller;
 
-	menuToggle?.addEventListener("click", () => {
-		setMenuOpen(!header?.classList.contains("is-menu-open"));
+		const setMenuOpen = (isOpen: boolean) => {
+			if (!header || !nav || !menuToggle) return;
+			header.classList.toggle("is-menu-open", isOpen);
+			menuToggle.setAttribute("aria-expanded", String(isOpen));
+			menuToggle.setAttribute("aria-label", isOpen ? "關閉導覽選單" : "開啟導覽選單");
+			nav.toggleAttribute("inert", mobileMenu.matches && !isOpen);
+			nav.setAttribute("aria-hidden", String(mobileMenu.matches && !isOpen));
+		};
+
+		menuToggle?.addEventListener(
+			"click",
+			() => {
+				setMenuOpen(!header?.classList.contains("is-menu-open"));
+			},
+			{ signal }
+		);
+
+		nav?.addEventListener(
+			"click",
+			event => {
+				if (event.target instanceof HTMLAnchorElement) setMenuOpen(false);
+			},
+			{ signal }
+		);
+
+		window.addEventListener(
+			"keydown",
+			event => {
+				if (event.key === "Escape") setMenuOpen(false);
+			},
+			{ signal }
+		);
+
+		mobileMenu.addEventListener(
+			"change",
+			event => {
+				if (!event.matches) setMenuOpen(false);
+				else setMenuOpen(header?.classList.contains("is-menu-open") ?? false);
+			},
+			{ signal }
+		);
+
+		setMenuOpen(false);
+
+		return () => controller.abort();
 	});
-
-	nav?.addEventListener("click", event => {
-		if (event.target instanceof HTMLAnchorElement) setMenuOpen(false);
-	});
-
-	window.addEventListener("keydown", event => {
-		if (event.key === "Escape") setMenuOpen(false);
-	});
-
-	mobileMenu.addEventListener("change", event => {
-		if (!event.matches) setMenuOpen(false);
-		else setMenuOpen(header?.classList.contains("is-menu-open") ?? false);
-	});
-
-	setMenuOpen(false);
 </script>
 
 <style>

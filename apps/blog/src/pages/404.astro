@@ -61,14 +61,26 @@ import Layout from "@/layouts/Layout.astro";
 </Layout>
 
 <script>
-	const backButton = document.querySelector<HTMLButtonElement>("[data-go-back]");
-	backButton?.addEventListener("click", () => {
-		if (window.history.length > 1) {
-			window.history.back();
-			return;
-		}
+	import { setupPageLifecycle } from "@/scripts/pageLifecycle";
 
-		window.location.href = "/";
+	setupPageLifecycle("not-found", () => {
+		const backButton = document.querySelector<HTMLButtonElement>("[data-go-back]");
+		const controller = new AbortController();
+
+		backButton?.addEventListener(
+			"click",
+			() => {
+				if (window.history.length > 1) {
+					window.history.back();
+					return;
+				}
+
+				window.location.href = "/";
+			},
+			{ signal: controller.signal }
+		);
+
+		return () => controller.abort();
 	});
 </script>
 
