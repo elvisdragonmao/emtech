@@ -1,21 +1,28 @@
 import type { CommentStatus } from "@emtech/comments-shared";
+import { getSessionUser } from "../auth/session";
 import { publicCommentFromRow } from "../db/comments";
 import type { AppContext, CommentRow } from "../types";
 import { randomId } from "../utils/crypto";
 import { json } from "../utils/http";
 import { adminStatusSchema } from "../utils/validation";
 
-export function requireAdminToken(ctx: AppContext): Response | null {
-	const auth = ctx.request.headers.get("Authorization");
-	const token = auth?.startsWith("Bearer ") ? auth.slice("Bearer ".length).trim() : null;
-	if (!token || token !== ctx.env.ADMIN_TOKEN) {
+const ADMIN_GITHUB_LOGIN = "elvisdragonmao";
+
+export async function requireAdminUser(ctx: AppContext): Promise<Response | null> {
+	const user = await getSessionUser(ctx.request, ctx.env);
+	if (!user) {
 		return json({ error: "Unauthorized" }, { status: 401 }, ctx.corsHeaders);
 	}
+
+	if (user.login !== ADMIN_GITHUB_LOGIN) {
+		return json({ error: "Forbidden" }, { status: 403 }, ctx.corsHeaders);
+	}
+
 	return null;
 }
 
 export async function listAdminComments(ctx: AppContext): Promise<Response> {
-	const unauthorized = requireAdminToken(ctx);
+	const unauthorized = await requireAdminUser(ctx);
 	if (unauthorized) return unauthorized;
 
 	const parsed = adminStatusSchema.safeParse({ status: ctx.url.searchParams.get("status") ?? "pending" });
@@ -47,7 +54,7 @@ export async function listAdminComments(ctx: AppContext): Promise<Response> {
 }
 
 export async function moderateComment(ctx: AppContext, commentId: string, action: "approve" | "reject" | "delete"): Promise<Response> {
-	const unauthorized = requireAdminToken(ctx);
+	const unauthorized = await requireAdminUser(ctx);
 	if (unauthorized) return unauthorized;
 
 	const statusByAction = {

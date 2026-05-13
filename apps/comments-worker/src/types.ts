@@ -8,7 +8,6 @@ export type Env = {
 	SESSION_SECRET: string;
 	IP_HASH_SECRET: string;
 	TURNSTILE_SECRET_KEY: string;
-	ADMIN_TOKEN: string;
 	ALLOWED_ORIGINS: string;
 	COMMENT_DEFAULT_STATUS_ANON?: CommentStatus;
 	COMMENT_DEFAULT_STATUS_GITHUB?: CommentStatus;

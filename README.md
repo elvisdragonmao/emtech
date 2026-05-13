@@ -59,7 +59,6 @@ GITHUB_REDIRECT_URI
 SESSION_SECRET
 IP_HASH_SECRET
 TURNSTILE_SECRET_KEY
-ADMIN_TOKEN
 ALLOWED_ORIGINS
 COMMENT_DEFAULT_STATUS_ANON
 COMMENT_DEFAULT_STATUS_GITHUB
@@ -123,7 +122,6 @@ pnpm --filter comments-worker exec wrangler secret put GITHUB_CLIENT_SECRET
 pnpm --filter comments-worker exec wrangler secret put GITHUB_REDIRECT_URI
 pnpm --filter comments-worker exec wrangler secret put SESSION_SECRET
 pnpm --filter comments-worker exec wrangler secret put IP_HASH_SECRET
-pnpm --filter comments-worker exec wrangler secret put ADMIN_TOKEN
 ```
 
 `ALLOWED_ORIGINS` 需要包含 blog origin，例如：
@@ -158,21 +156,21 @@ pnpm --filter comments-worker run deploy
 https://your-comments-worker.example.com/admin
 ```
 
-管理介面會要求 GitHub 登入使用者為 `elvisdragonmao`，執行 moderation API 時仍需要 `ADMIN_TOKEN`。
+管理介面與 moderation API 都要求 GitHub 登入使用者為 `elvisdragonmao`。沒有額外的 admin token。
 
 API examples：
 
 ```bash
-curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+curl -b cookies.txt \
   "https://your-comments-worker.example.com/api/admin/comments?status=pending"
 
-curl -X POST -H "Authorization: Bearer $ADMIN_TOKEN" \
+curl -X POST -b cookies.txt \
   "https://your-comments-worker.example.com/api/admin/comments/comment-id/approve"
 
-curl -X POST -H "Authorization: Bearer $ADMIN_TOKEN" \
+curl -X POST -b cookies.txt \
   "https://your-comments-worker.example.com/api/admin/comments/comment-id/reject"
 
-curl -X POST -H "Authorization: Bearer $ADMIN_TOKEN" \
+curl -X POST -b cookies.txt \
   "https://your-comments-worker.example.com/api/admin/comments/comment-id/delete"
 ```
 
