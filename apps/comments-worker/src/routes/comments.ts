@@ -1,6 +1,7 @@
 import { checkSpam, emailHash, type CommentStatus } from "@emtech/comments-shared";
 import { getSessionUser } from "../auth/session";
 import { insertComment, listApprovedComments, parentExists } from "../db/comments";
+import { logDiscordNotificationFailure, notifyDiscordComment } from "../notifications/discord";
 import type { AppContext } from "../types";
 import { hashIp, randomId, secretHash } from "../utils/crypto";
 import { clientIp, json, readJson } from "../utils/http";
@@ -74,6 +75,21 @@ export async function createComment(ctx: AppContext): Promise<Response> {
 		locationLabel: requestContext.locationLabel,
 		user
 	});
+
+	ctx.executionCtx.waitUntil(
+		notifyDiscordComment(ctx.env, {
+			id: commentId,
+			pagePath: parsed.data.pagePath,
+			parentId: parsed.data.parentId ?? null,
+			body: parsed.data.body,
+			name,
+			status,
+			deviceLabel: requestContext.deviceLabel,
+			browserLabel: requestContext.browserLabel,
+			locationLabel: requestContext.locationLabel,
+			user
+		}).catch(error => logDiscordNotificationFailure(error, commentId))
+	);
 
 	return json({ ok: true, status, commentId }, { status: 201 }, ctx.corsHeaders);
 }

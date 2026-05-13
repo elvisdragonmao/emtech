@@ -6,12 +6,12 @@ import type { AppContext, Env } from "./types";
 import { corsHeaders, json, routeNotFound } from "./utils/http";
 
 export default {
-	fetch(request: Request, env: Env): Promise<Response> {
-		return Promise.resolve(handleFetch(request, env));
+	fetch(request: Request, env: Env, executionCtx: ExecutionContext): Promise<Response> {
+		return Promise.resolve(handleFetch(request, env, executionCtx));
 	}
 };
 
-async function handleFetch(request: Request, env: Env): Promise<Response> {
+async function handleFetch(request: Request, env: Env, executionCtx: ExecutionContext): Promise<Response> {
 	const headers = corsHeaders(request, env.ALLOWED_ORIGINS ?? "");
 
 	if (request.method === "OPTIONS") {
@@ -19,7 +19,7 @@ async function handleFetch(request: Request, env: Env): Promise<Response> {
 	}
 
 	const url = new URL(request.url);
-	const ctx: AppContext = { request, env, url, corsHeaders: headers };
+	const ctx: AppContext = { request, env, url, corsHeaders: headers, executionCtx };
 
 	try {
 		return await route(ctx);
