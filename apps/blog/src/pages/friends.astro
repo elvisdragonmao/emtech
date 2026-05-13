@@ -38,21 +38,19 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 
 <Layout title="友情連結" description="有朋自遠方來，不亦悅乎？這裡收藏毛哥EM的朋友們與他們的網站。">
 	<main id="main-content" class="friends-page" tabindex="-1">
-		<section class="friends-hero" aria-labelledby="friends-title">
-			<div class="blueprint-mark top-left" aria-hidden="true"></div>
-			<div class="blueprint-mark bottom-right" aria-hidden="true"></div>
+		<header class="friends-header" aria-labelledby="friends-title">
 			<p class="eyebrow">Friends</p>
-			<div class="hero-grid">
+			<div class="header-grid">
 				<div>
 					<h1 id="friends-title">友情連結</h1>
-					<p class="lede">有朋自遠方來，不亦悅乎？一起認識這些正在網路上創作、開發、分享的好朋友們。</p>
+					<p class="lede">有朋自遠方來，不亦悅乎？</p>
 				</div>
 				<div class="hero-note" aria-label={`目前收錄 ${totalFriends} 位朋友`}>
 					<span>{totalFriends}</span>
 					<p>位朋友<br />與他們的網站</p>
 				</div>
 			</div>
-		</section>
+		</header>
 
 		<div class="sections-stack">
 			{
@@ -88,15 +86,10 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 			}
 		</div>
 
-		<section class="join-card" aria-labelledby="join-title">
-			<p class="eyebrow">Add Friend</p>
-			<h2 id="join-title">一起呼！</h2>
-			<p>如果你也想出現在這裡，歡迎提供照片、網址、簡介等資訊給我。如果你有友列想要加我，也可以直接在下方留言。</p>
-		</section>
-
 		<section class="comments-panel" aria-label="友情連結留言區">
 			<div class="comments-note">
 				<p class="eyebrow">Request</p>
+				<p>如果你也想出現在這裡，歡迎提供照片、網址、簡介等資訊給我。如果你有友列想要加我，也可以直接在下方留言。</p>
 				<p>想加入友情連結可以在這裡留言，記得附上網站、名稱、簡介與頭像連結。</p>
 			</div>
 			<Comments pagePath="/friends/" />
@@ -114,69 +107,10 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 		padding: 5.5rem 2rem 1rem;
 	}
 
-	.friends-hero {
+	.friends-header {
 		position: relative;
-		padding: clamp(2rem, 5vw, 4rem);
-		overflow: hidden;
-		background: oklch(99% 0.006 235 / 88%);
-		border: 1px solid var(--color-grid);
-		box-shadow: inset 0 0 0 0.55rem oklch(100% 0 0 / 42%);
-	}
-
-	.friends-hero::before,
-	.friends-hero::after {
-		position: absolute;
-		content: "";
-		pointer-events: none;
-	}
-
-	.friends-hero::before {
-		inset: 1rem;
-		border: 1px dashed oklch(61% 0.17 232 / 42%);
-	}
-
-	.friends-hero::after {
-		top: 50%;
-		right: 1rem;
-		left: 1rem;
-		border-top: 1px solid oklch(61% 0.17 232 / 28%);
-	}
-
-	.blueprint-mark {
-		position: absolute;
-		z-index: 1;
-		width: 4.5rem;
-		height: 4.5rem;
-		pointer-events: none;
-	}
-
-	.blueprint-mark::before,
-	.blueprint-mark::after {
-		position: absolute;
-		content: "";
-		background: var(--color-accent-strong);
-		opacity: 0.62;
-	}
-
-	.blueprint-mark::before {
-		width: 100%;
-		height: 1px;
-	}
-
-	.blueprint-mark::after {
-		width: 1px;
-		height: 100%;
-	}
-
-	.blueprint-mark.top-left {
-		top: 1rem;
-		left: 1rem;
-	}
-
-	.blueprint-mark.bottom-right {
-		right: 1rem;
-		bottom: 1rem;
-		transform: rotate(180deg);
+		padding-bottom: 4rem;
+		border-bottom: 1px solid var(--color-border);
 	}
 
 	.eyebrow {
@@ -188,30 +122,27 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 		text-transform: uppercase;
 	}
 
-	.hero-grid {
-		position: relative;
-		z-index: 1;
+	.header-grid {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) auto;
 		align-items: end;
 		gap: 2rem;
-		margin-top: 1.25rem;
 	}
 
 	h1 {
-		max-width: 14rem;
-		font-size: clamp(4rem, 13vw, 9rem);
-		line-height: 0.85;
-		letter-spacing: -0.1em;
+		margin-top: 1.5rem;
+		font-size: 8rem;
+		line-height: 1;
+		letter-spacing: -0.06em;
 		color: var(--color-ink);
 	}
 
 	.lede {
 		max-width: 41rem;
 		margin-top: 1.5rem;
-		font-size: clamp(1.1rem, 2vw, 1.45rem);
-		font-weight: 600;
-		line-height: 1.45;
+		font-size: 1.5rem;
+		font-weight: 700;
+		line-height: 1.5;
 		color: var(--color-muted);
 	}
 
@@ -220,6 +151,7 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 		grid-template-columns: auto auto;
 		align-items: center;
 		gap: 1rem;
+		justify-self: end;
 		padding: 1.25rem;
 		background: var(--color-surface);
 		border: 1px solid var(--color-grid);
@@ -278,7 +210,7 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 
 	.friend-grid {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 		border-top: 1px solid var(--color-border);
 		border-left: 1px solid var(--color-border);
 	}
@@ -389,29 +321,6 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 		transform: translate(0.18rem, -0.18rem);
 	}
 
-	.join-card {
-		width: min(47rem, 100%);
-		padding: 2rem;
-		background: var(--color-paper);
-		border: 1px solid var(--color-border-strong);
-		box-shadow: var(--shadow-card);
-	}
-
-	.join-card h2 {
-		margin-top: 0.75rem;
-		font-size: clamp(2.2rem, 6vw, 4rem);
-		line-height: 1;
-		letter-spacing: -0.08em;
-		color: var(--color-ink);
-	}
-
-	.join-card p:not(.eyebrow) {
-		margin-top: 1rem;
-		font-size: 1.05rem;
-		line-height: 1.55;
-		color: var(--color-muted);
-	}
-
 	.comments-panel {
 		display: grid;
 		gap: 1.5rem;
@@ -433,6 +342,12 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 		color: var(--color-muted);
 	}
 
+	@media (max-width: 80rem) {
+		.friend-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
 	@media (max-width: 64rem) {
 		.friend-grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -445,14 +360,24 @@ const totalFriends = sections.reduce((total, section) => total + section.friends
 			padding: 3.25rem 0 0;
 		}
 
-		.hero-grid,
+		.header-grid,
 		.section-heading {
 			display: grid;
 			align-items: start;
 		}
 
+		.friends-header {
+			padding-inline: 1rem;
+			padding-bottom: 3rem;
+		}
+
+		h1 {
+			font-size: 5rem;
+		}
+
 		.hero-note {
 			width: fit-content;
+			justify-self: start;
 		}
 
 		.friend-grid {
