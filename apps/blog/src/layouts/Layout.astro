@@ -54,6 +54,7 @@ const jsonLd = structuredData ? (Array.isArray(structuredData) ? structuredData 
 		<meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
 		<meta name="theme-color" content="#f7fbff" />
 		<link rel="canonical" href={canonicalUrl} />
+		<link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} RSS`} href={absoluteUrl("/rss.xml")} />
 		<link rel="icon" href="/img/favicon/favicon.ico" />
 		<link rel="apple-touch-icon" href="/img/favicon/apple-touch-icon.png" />
 		<link rel="manifest" href="/img/favicon/site.webmanifest" />
