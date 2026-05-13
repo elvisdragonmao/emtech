@@ -25,27 +25,26 @@ export async function listAdminComments(ctx: AppContext): Promise<Response> {
 	const unauthorized = await requireAdminUser(ctx);
 	if (unauthorized) return unauthorized;
 
-	const parsed = adminStatusSchema.safeParse({ status: ctx.url.searchParams.get("status") ?? "pending" });
+	const parsed = adminStatusSchema.safeParse({ status: ctx.url.searchParams.get("status") ?? "all" });
 	if (!parsed.success) {
 		return json({ error: "Invalid status" }, { status: 400 }, ctx.corsHeaders);
 	}
 
-	const { results } = await ctx.env.COMMENTS_DB.prepare(
-		`SELECT id, page_path, parent_id, body, author_type, author_name, email_hash, github_user_id, github_login, github_avatar_url, status, device_label, browser_label, location_label, created_at, updated_at
-		 FROM comments
-		 WHERE status = ?
-		 ORDER BY created_at DESC
-		 LIMIT 100`
-	)
-		.bind(parsed.data.status)
-		.all<CommentRow>();
+	const select = `SELECT id, page_path, parent_id, body, author_type, author_name, email_hash, github_user_id, github_login, github_avatar_url, status, device_label, browser_label, location_label, created_at, updated_at
+		FROM comments`;
+	const statement =
+		parsed.data.status === "all"
+			? ctx.env.COMMENTS_DB.prepare(`${select} ORDER BY created_at DESC LIMIT 300`)
+			: ctx.env.COMMENTS_DB.prepare(`${select} WHERE status = ? ORDER BY created_at DESC LIMIT 200`).bind(parsed.data.status);
+	const { results } = await statement.all<CommentRow>();
 
 	return json(
 		{
 			comments: results.map(row => ({
 				...publicCommentFromRow(row),
 				status: row.status,
-				githubLogin: row.github_login
+				githubLogin: row.github_login,
+				updatedAt: row.updated_at
 			}))
 		},
 		{},
