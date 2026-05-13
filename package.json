@@ -9,6 +9,7 @@
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"lint": "pnpm -r typecheck",
+		"new": "node scripts/new-post.mjs",
 		"test": "pnpm -r test",
 		"typecheck": "pnpm -r typecheck"
 	},
