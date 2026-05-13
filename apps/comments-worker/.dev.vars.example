@@ -1,6 +1,6 @@
 GITHUB_CLIENT_ID="replace-with-github-oauth-client-id"
 GITHUB_CLIENT_SECRET="replace-with-github-oauth-client-secret"
-GITHUB_REDIRECT_URI="http://127.0.0.1:8787/api/auth/github/callback"
+GITHUB_REDIRECT_URI="http://localhost:8787/api/auth/github/callback"
 SESSION_SECRET="replace-with-long-random-session-secret"
 IP_HASH_SECRET="replace-with-long-random-ip-hash-secret"
 TURNSTILE_SECRET_KEY="dev-disabled"
