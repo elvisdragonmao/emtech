@@ -11,6 +11,11 @@ export type PublicComment = {
 		name: string;
 		avatarUrl: string | null;
 	};
+	meta: {
+		device: string | null;
+		browser: string | null;
+		location: string | null;
+	};
 	createdAt: string;
 };
 

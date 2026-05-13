@@ -24,7 +24,7 @@ export async function listAdminComments(ctx: AppContext): Promise<Response> {
 	}
 
 	const { results } = await ctx.env.COMMENTS_DB.prepare(
-		`SELECT id, page_path, parent_id, body, author_type, author_name, email_hash, github_user_id, github_login, github_avatar_url, status, created_at, updated_at
+		`SELECT id, page_path, parent_id, body, author_type, author_name, email_hash, github_user_id, github_login, github_avatar_url, status, device_label, browser_label, location_label, created_at, updated_at
 		 FROM comments
 		 WHERE status = ?
 		 ORDER BY created_at DESC

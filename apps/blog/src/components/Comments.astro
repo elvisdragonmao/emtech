@@ -34,34 +34,36 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 	<div class="notice" data-notice role="status"></div>
 
-	<div class="comment-list" data-comment-list></div>
+	<div class="form-host" data-form-host>
+		<form class="comment-form" data-comment-form>
+			<input type="hidden" name="parentId" data-parent-id />
+			<div class="replying" data-replying hidden>
+				<span data-replying-label></span>
+				<button type="button" data-cancel-reply>取消回覆</button>
+			</div>
+			<label data-identity-field>
+				顯示名稱
+				<input name="name" type="text" maxlength="80" autocomplete="name" placeholder="Anonymous" />
+			</label>
+			<label data-identity-field>
+				Email
+				<input name="email" type="email" autocomplete="email" placeholder="只用於 Gravatar，不會公開" />
+			</label>
+			<label class="message">
+				留言
+				<textarea name="body" rows="5" maxlength="3000" required placeholder="寫下你的想法"></textarea>
+			</label>
+			{turnstileSiteKey && <div class="turnstile cf-turnstile" data-sitekey={turnstileSiteKey} />}
+			<div class="actions">
+				<button type="submit">
+					<Send size={14} stroke-width={1.8} />
+					送出留言
+				</button>
+			</div>
+		</form>
+	</div>
 
-	<form class="comment-form" data-comment-form>
-		<input type="hidden" name="parentId" data-parent-id />
-		<div class="replying" data-replying hidden>
-			<span data-replying-label></span>
-			<button type="button" data-cancel-reply>取消回覆</button>
-		</div>
-		<label>
-			顯示名稱
-			<input name="name" type="text" maxlength="80" autocomplete="name" placeholder="Anonymous" />
-		</label>
-		<label>
-			Email
-			<input name="email" type="email" autocomplete="email" placeholder="只用於 Gravatar，不會公開" />
-		</label>
-		<label class="message">
-			留言
-			<textarea name="body" rows="5" maxlength="3000" required placeholder="寫下你的想法"></textarea>
-		</label>
-		{turnstileSiteKey && <div class="turnstile cf-turnstile" data-sitekey={turnstileSiteKey} />}
-		<div class="actions">
-			<button type="submit">
-				<Send size={14} stroke-width={1.8} />
-				送出留言
-			</button>
-		</div>
-	</form>
+	<div class="comment-list" data-comment-list></div>
 </section>
 
 {turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />}
@@ -77,6 +79,11 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			name: string;
 			avatarUrl: string | null;
 		};
+		meta: {
+			device: string | null;
+			browser: string | null;
+			location: string | null;
+		};
 		createdAt: string;
 	};
 
@@ -85,6 +92,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		const apiBase = root.dataset.apiBase ?? "";
 		const pagePath = root.dataset.pagePath ?? location.pathname;
 		const form = root.querySelector<HTMLFormElement>("[data-comment-form]");
+		const formHost = root.querySelector<HTMLElement>("[data-form-host]");
 		const list = root.querySelector<HTMLElement>("[data-comment-list]");
 		const notice = root.querySelector<HTMLElement>("[data-notice]");
 		const authPanel = root.querySelector<HTMLElement>("[data-auth-panel]");
@@ -95,6 +103,13 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		const replying = root.querySelector<HTMLElement>("[data-replying]");
 		const replyingLabel = root.querySelector<HTMLElement>("[data-replying-label]");
 		const cancelReply = root.querySelector<HTMLButtonElement>("[data-cancel-reply]");
+		const identityFields = Array.from(root.querySelectorAll<HTMLElement>("[data-identity-field]"));
+		let isAuthenticated = false;
+		let activeReplyCard: HTMLElement | null = null;
+
+		if (form && formHost) {
+			formHost.appendChild(form);
+		}
 
 		const setNotice = (message: string, tone: "neutral" | "error" | "success" = "neutral") => {
 			if (!notice) return;
@@ -118,6 +133,14 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 					authName.textContent = `已用 GitHub 登入：${data.user.login}`;
 					authPanel.hidden = false;
 					loginLink.hidden = true;
+					isAuthenticated = true;
+					for (const field of identityFields) {
+						field.hidden = true;
+						for (const input of field.querySelectorAll<HTMLInputElement>("input")) {
+							input.value = "";
+							input.disabled = true;
+						}
+					}
 				}
 			} catch {
 				// Comments still work anonymously if auth state cannot be loaded.
@@ -154,6 +177,9 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 					replies.className = "replies";
 					article.appendChild(replies);
 					renderGroup(comment.id, replies);
+					const replySlot = document.createElement("div");
+					replySlot.className = "reply-form-slot";
+					article.appendChild(replySlot);
 				}
 			};
 
@@ -197,28 +223,49 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 			const bottom = document.createElement("div");
 			bottom.className = "comment-bottom";
-			const type = document.createElement("span");
-			type.textContent = comment.author.type === "github" ? "GitHub" : "匿名";
+			const tagLabels = [comment.author.type === "github" ? "GitHub 驗證" : "匿名留言", comment.meta?.device, comment.meta?.browser, comment.meta?.location].filter((label): label is string =>
+				Boolean(label)
+			);
+			for (const label of tagLabels) {
+				const tag = document.createElement("span");
+				tag.textContent = label;
+				bottom.appendChild(tag);
+			}
 			const reply = document.createElement("button");
 			reply.type = "button";
 			reply.textContent = "回覆";
 			reply.addEventListener("click", () => {
-				if (!parentInput || !replying || !replyingLabel || !form) return;
+				const replySlot = article.querySelector<HTMLElement>(".reply-form-slot");
+				if (!parentInput || !replying || !replyingLabel || !form || !replySlot) return;
 				parentInput.value = comment.id;
 				replyingLabel.textContent = `回覆給 ${comment.author.name}`;
 				replying.hidden = false;
+				activeReplyCard?.classList.remove("reply-target");
+				activeReplyCard = article;
+				activeReplyCard.classList.add("reply-target");
+				replySlot.appendChild(form);
 				form.querySelector("textarea")?.focus();
 			});
-			bottom.append(type, reply);
+			bottom.append(reply);
 			article.append(head, body, bottom);
 			return article;
 		};
 
-		cancelReply?.addEventListener("click", () => {
+		const resetReply = (options: { focus?: boolean } = {}) => {
 			if (!parentInput || !replying) return;
 			parentInput.value = "";
 			replying.hidden = true;
-		});
+			activeReplyCard?.classList.remove("reply-target");
+			activeReplyCard = null;
+			if (form && formHost) {
+				formHost.appendChild(form);
+			}
+			if (options.focus) {
+				form?.querySelector("textarea")?.focus();
+			}
+		};
+
+		cancelReply?.addEventListener("click", () => resetReply({ focus: true }));
 
 		logoutButton?.addEventListener("click", async () => {
 			await fetch(apiUrl("/api/auth/logout"), { method: "POST", credentials: "include" });
@@ -241,8 +288,8 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 					body: JSON.stringify({
 						pagePath,
 						parentId: data.get("parentId") || undefined,
-						name: data.get("name") || undefined,
-						email: data.get("email") || undefined,
+						name: isAuthenticated ? undefined : data.get("name") || undefined,
+						email: isAuthenticated ? undefined : data.get("email") || undefined,
 						body: data.get("body"),
 						turnstileToken
 					})
@@ -252,8 +299,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 					throw new Error(result.error ?? "留言送出失敗");
 				}
 				form.reset();
-				if (parentInput) parentInput.value = "";
-				if (replying) replying.hidden = true;
+				resetReply();
 				setNotice(result.status === "approved" ? "留言已發布。" : "留言正在等待審核。", "success");
 				await loadComments();
 				(window as unknown as { turnstile?: { reset: () => void } }).turnstile?.reset();
@@ -368,6 +414,10 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		color: oklch(43% 0.13 150);
 	}
 
+	.form-host {
+		margin-bottom: 2rem;
+	}
+
 	.comment-list {
 		display: grid;
 		gap: 1rem;
@@ -429,6 +479,10 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		border: 1px solid var(--color-border);
 	}
 
+	.replying[hidden] {
+		display: none;
+	}
+
 	.actions {
 		display: flex;
 		align-items: center;
@@ -442,6 +496,11 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+	}
+
+	.comments :global(.comment-card.reply-target) {
+		background: color-mix(in oklch, var(--color-surface-soft) 72%, white);
+		border-color: var(--color-accent);
 	}
 
 	.comments :global(.comment-head) {
@@ -520,6 +579,18 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		border-left: 1px solid var(--color-border);
 	}
 
+	.comments :global(.reply-form-slot) {
+		display: none;
+		margin-top: 0.25rem;
+		padding: 1rem;
+		background: color-mix(in oklch, var(--color-surface-soft) 82%, white);
+		border: 1px solid var(--color-accent);
+	}
+
+	.comments :global(.reply-form-slot:has(.comment-form)) {
+		display: block;
+	}
+
 	@media (max-width: 43.75rem) {
 		.comments-heading,
 		.auth-panel,
@@ -539,6 +610,10 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		.comments :global(.replies) {
 			margin-left: 0.5rem;
 			padding-left: 0.75rem;
+		}
+
+		.comments :global(.reply-form-slot) {
+			padding: 0.75rem;
 		}
 	}
 </style>

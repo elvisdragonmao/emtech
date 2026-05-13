@@ -1,6 +1,7 @@
 import { checkSpam } from "@emtech/comments-shared";
 import { describe, expect, it } from "vitest";
 import { hashIp, signedValue, verifySignedValue } from "../src/utils/crypto";
+import { browserLabel, deviceLabel, locationLabel } from "../src/utils/request-context";
 import { createCommentSchema } from "../src/utils/validation";
 
 describe("comment validation", () => {
@@ -40,5 +41,15 @@ describe("session signing", () => {
 		const signed = await signedValue("session-id", "secret");
 		expect(await verifySignedValue(signed, "secret")).toBe("session-id");
 		expect(await verifySignedValue(signed.replace("session", "other"), "secret")).toBeNull();
+	});
+});
+
+describe("public request context", () => {
+	it("extracts non-sensitive browser, device, and location labels", () => {
+		const ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:150.0) Gecko/20100101 Firefox/150.0";
+
+		expect(deviceLabel(ua)).toBe("Mac");
+		expect(browserLabel(ua)).toBe("Firefox");
+		expect(locationLabel({ city: "Taipei", region: "Taiwan", country: "TW" })).toBe("Taipei, Taiwan, TW");
 	});
 });
