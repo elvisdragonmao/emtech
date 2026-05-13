@@ -1,11 +1,11 @@
 import type { Env, SessionUser } from "../types";
 import { randomId, secretHash, signedValue, verifySignedValue } from "../utils/crypto";
-import { parseCookies, serializeCookie } from "../utils/http";
+import { parseCookies, serializeCookie, shouldUseSecureCookie } from "../utils/http";
 
 const COOKIE_NAME = "emtech_comments_session";
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 30;
 
-export async function createSession(env: Env, githubUserId: number): Promise<string> {
+export async function createSession(request: Request, env: Env, githubUserId: number): Promise<string> {
 	const sessionId = randomId();
 	const sessionHash = await secretHash(sessionId, env.SESSION_SECRET);
 	const now = new Date();
@@ -15,7 +15,7 @@ export async function createSession(env: Env, githubUserId: number): Promise<str
 		.bind(randomId(), sessionHash, githubUserId, expiresAt, now.toISOString())
 		.run();
 
-	return serializeCookie(COOKIE_NAME, await signedValue(sessionId, env.SESSION_SECRET), { maxAge: SESSION_TTL_SECONDS });
+	return serializeCookie(COOKIE_NAME, await signedValue(sessionId, env.SESSION_SECRET), { maxAge: SESSION_TTL_SECONDS, secure: shouldUseSecureCookie(request) });
 }
 
 export async function getSessionUser(request: Request, env: Env): Promise<SessionUser | null> {
@@ -36,6 +36,6 @@ export async function getSessionUser(request: Request, env: Env): Promise<Sessio
 	return row ?? null;
 }
 
-export function clearSessionCookie(): string {
-	return serializeCookie(COOKIE_NAME, "", { maxAge: 0 });
+export function clearSessionCookie(request: Request): string {
+	return serializeCookie(COOKIE_NAME, "", { maxAge: 0, secure: shouldUseSecureCookie(request) });
 }

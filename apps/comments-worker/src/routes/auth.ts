@@ -33,5 +33,5 @@ export async function authMe(ctx: AppContext): Promise<Response> {
 }
 
 export function logout(ctx: AppContext): Response {
-	return json({ ok: true }, { headers: { "Set-Cookie": clearSessionCookie() } }, ctx.corsHeaders);
+	return json({ ok: true }, { headers: { "Set-Cookie": clearSessionCookie(ctx.request) } }, ctx.corsHeaders);
 }

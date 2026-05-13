@@ -46,7 +46,7 @@ export async function handleGithubCallback(request: Request, env: Env): Promise<
 	const token = await exchangeCodeForToken(code, env);
 	const user = await fetchGithubUser(token);
 	await upsertGithubAccount(env, user);
-	const cookie = await createSession(env, user.id);
+	const cookie = await createSession(request, env, user.id);
 
 	return redirect(stateRow.returnTo, { "Set-Cookie": cookie });
 }

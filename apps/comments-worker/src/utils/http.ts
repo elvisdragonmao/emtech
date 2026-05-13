@@ -66,12 +66,21 @@ export function parseCookies(request: Request): Map<string, string> {
 	return cookies;
 }
 
-export function serializeCookie(name: string, value: string, options: { maxAge?: number; path?: string } = {}): string {
-	const parts = [`${name}=${encodeURIComponent(value)}`, `Path=${options.path ?? "/"}`, "HttpOnly", "Secure", "SameSite=Lax"];
+export function serializeCookie(name: string, value: string, options: { maxAge?: number; path?: string; secure?: boolean } = {}): string {
+	const parts = [`${name}=${encodeURIComponent(value)}`, `Path=${options.path ?? "/"}`, "HttpOnly", "SameSite=Lax"];
+	if (options.secure !== false) {
+		parts.push("Secure");
+	}
 	if (typeof options.maxAge === "number") {
 		parts.push(`Max-Age=${options.maxAge}`);
 	}
 	return parts.join("; ");
+}
+
+export function shouldUseSecureCookie(request: Request): boolean {
+	const url = new URL(request.url);
+	if (url.protocol === "https:") return true;
+	return url.hostname !== "localhost" && url.hostname !== "127.0.0.1";
 }
 
 export function clientIp(request: Request): string {

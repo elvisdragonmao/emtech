@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { pagePath = Astro.url.pathname } = Astro.props;
-const commentApiBaseUrl = (import.meta.env.COMMENT_API_BASE_URL ?? import.meta.env.PUBLIC_COMMENT_API_BASE_URL ?? "http://127.0.0.1:8787").replace(/\/$/, "");
+const commentApiBaseUrl = (import.meta.env.COMMENT_API_BASE_URL ?? import.meta.env.PUBLIC_COMMENT_API_BASE_URL ?? "https://api.emtech.cc").replace(/\/$/, "");
 const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
 ---
 
@@ -47,7 +47,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			</label>
 			<label data-identity-field>
 				Email
-				<input name="email" type="email" autocomplete="email" spellcheck="false" placeholder="只用於 Gravatar，不會公開" />
+				<input name="email" type="email" autocomplete="email" spellcheck="false" placeholder="只用於 Gravatar 頭像，不會公開" />
 			</label>
 			<label class="message">
 				留言
@@ -89,7 +89,9 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 	const root = document.querySelector<HTMLElement>("[data-comments-root]");
 	if (root) {
-		const apiBase = root.dataset.apiBase ?? "";
+		const configuredApiBase = root.dataset.apiBase ?? "";
+		const isLocalPage = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+		const apiBase = isLocalPage && configuredApiBase === "https://api.emtech.cc" ? `${window.location.protocol}//${window.location.hostname}:8787` : configuredApiBase;
 		const pagePath = root.dataset.pagePath ?? location.pathname;
 		const form = root.querySelector<HTMLFormElement>("[data-comment-form]");
 		const formHost = root.querySelector<HTMLElement>("[data-form-host]");
@@ -136,10 +138,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 					isAuthenticated = true;
 					for (const field of identityFields) {
 						field.hidden = true;
-						for (const input of field.querySelectorAll<HTMLInputElement>("input")) {
-							input.value = "";
-							input.disabled = true;
-						}
+						for (const input of field.querySelectorAll<HTMLInputElement>("input")) input.value = "";
 					}
 				}
 			} catch {
@@ -375,6 +374,12 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 	.github-login,
 	.actions button {
 		padding: 0.75rem 1rem;
+	}
+
+	.github-login[hidden],
+	.auth-panel[hidden],
+	[data-identity-field][hidden] {
+		display: none;
 	}
 
 	.auth-panel {
