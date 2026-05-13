@@ -528,7 +528,6 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 	.tag-more-link {
 		min-height: 3rem;
 		margin-top: -1px;
-		padding-block: 0.75rem;
 		border-top-color: oklch(100% 0 0 / 0%);
 	}
 
@@ -580,6 +579,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		padding-block: 0.75rem;
 		gap: 0.5rem;
 		font-weight: 700;
 		line-height: 1;
