@@ -18,7 +18,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			<p class="eyebrow">Comments</p>
 			<h2>留言區</h2>
 		</div>
-		<a class="github-login" data-github-login href={`${commentApiBaseUrl}/api/auth/github/start?returnTo=${encodeURIComponent(pagePath)}`}>
+		<a class="github-login" data-github-login href={`${commentApiBaseUrl}/api/auth/github/start?returnTo=${encodeURIComponent(`${pagePath}#comments`)}`}>
 			<SimpleIcon icon={siGithub} size={16} />
 			GitHub 登入
 		</a>
@@ -103,6 +103,12 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		};
 
 		const apiUrl = (path: string) => `${apiBase}${path}`;
+
+		if (loginLink) {
+			const returnTo = new URL(window.location.href);
+			returnTo.hash = "comments";
+			loginLink.href = apiUrl(`/api/auth/github/start?returnTo=${encodeURIComponent(returnTo.toString())}`);
+		}
 
 		const refreshAuth = async () => {
 			try {
