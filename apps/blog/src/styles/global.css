@@ -105,6 +105,14 @@ body {
 		auto;
 }
 
+h1 {
+	margin-top: 1.5rem;
+	font-size: 5rem;
+	line-height: 1;
+	letter-spacing: -0.06em;
+	color: var(--color-ink);
+}
+
 img,
 svg,
 video {
@@ -153,6 +161,12 @@ button {
 		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
+	}
+}
+
+@media (max-width: 40rem) {
+	h1 {
+		font-size: 5rem;
 	}
 }
 
