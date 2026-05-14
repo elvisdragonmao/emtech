@@ -1,13 +1,12 @@
 ---
 import { ArrowLeft, ArrowRight } from "@lucide/astro";
-import type { ImageMetadata } from "astro";
-import type { MetaItem, TocHeading } from "@/utils/content";
+import type { ImageInput, MetaItem, TocHeading } from "@/utils/content";
 import MetaTable from "./MetaTable.astro";
 
 interface Props {
 	tag: string;
 	title: string;
-	image?: ImageMetadata | null;
+	image?: ImageInput;
 	meta: MetaItem[];
 	tldr?: string;
 	headings?: TocHeading[];
@@ -21,6 +20,9 @@ interface Props {
 }
 
 const { tag, title, image, meta, tldr, headings = [], previousHref, previousTitle, nextHref, nextTitle, progressStorageKey, progressItemId, layout = "post" } = Astro.props;
+const imageSrc = typeof image === "string" ? image : image?.src;
+const imageWidth = typeof image === "string" ? undefined : image?.width;
+const imageHeight = typeof image === "string" ? undefined : image?.height;
 
 // Only show TOC headings at depth 2 and 3
 const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
@@ -87,7 +89,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 				</span>
 			)
 		}
-		{image && <img class="hero-image" src={image.src} width={image.width} height={image.height} alt={title} />}
+		{imageSrc && <img class="hero-image" src={imageSrc} width={imageWidth} height={imageHeight} alt={title} />}
 		{
 			tldr && (
 				<aside class="tldr-callout">
@@ -584,12 +586,9 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	}
 
 	.hero-image {
-		width: 100%;
-		aspect-ratio: 2 / 1;
-		height: auto;
-		object-fit: cover;
 		margin-bottom: 1.5rem;
 		box-shadow: var(--shadow-card);
+		height: fit-content;
 	}
 
 	.article-content :global(h1) {

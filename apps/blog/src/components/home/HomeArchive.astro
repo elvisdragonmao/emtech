@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
 import ArticleCard from "@/components/shared/ArticleCard.astro";
 import SectionTitle from "@/components/shared/SectionTitle.astro";
-import { extractTitle, formatDate, normalizeImportPath } from "@/utils/content";
+import { extractTitle, formatDate, resolvePostThumbnail } from "@/utils/content";
 
 const INITIAL_VISIBLE_ARTICLES = 9;
 const LOAD_MORE_ARTICLES = 12;
@@ -38,10 +38,9 @@ const taggedFeaturedPosts = sortedPosts.filter(p => {
 });
 const featuredOrder = new Map([...recentFeaturedPosts, ...taggedFeaturedPosts].map((p, index) => [p.id, index]));
 
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/*/thumbnail.webp", { eager: true });
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/*.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
 
 const archiveArticles = sortedPosts.map(p => {
-	const thumbKey = normalizeImportPath(`/src/content/post/${p.id}/thumbnail.webp`);
 	const tags = normalizeTerms(p.data.tags);
 	const categories = normalizeTerms(p.data.categories);
 	const featuredRank = featuredOrder.get(p.id) ?? null;
@@ -49,7 +48,7 @@ const archiveArticles = sortedPosts.map(p => {
 	return {
 		title: extractTitle(p.body) || p.id,
 		href: `/p/${p.id}/`,
-		image: allThumbs[thumbKey]?.default ?? null,
+		image: resolvePostThumbnail(p, allThumbs),
 		tag: tags[0] ? `#${tags[0]}` : (categories[0] ?? ""),
 		tags,
 		description: p.data.description ?? "",

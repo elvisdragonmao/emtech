@@ -1,4 +1,4 @@
-import { extractExcerpt, extractTitle, normalizeImportPath, normalizeTerms } from "@/utils/content";
+import { extractExcerpt, extractTitle, normalizeImportPath, normalizeTerms, resolvePostThumbnail } from "@/utils/content";
 import { AUTHOR_NAME, SITE_DESCRIPTION, SITE_LANGUAGE, SITE_NAME, absoluteUrl, toSeoImage, type SeoImage } from "@/utils/seo";
 import type { ImageMetadata } from "astro";
 import { getCollection } from "astro:content";
@@ -38,13 +38,12 @@ export async function GET() {
 	const lessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
 	const courses = await getCollection("course");
 	const courseNames = new Map(courses.map(course => [course.id, course.data.title]));
-	const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/*/thumbnail.webp", { eager: true });
+	const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/*.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
 	const lessonThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/*/*/thumbnail.webp", { eager: true });
 
 	const postItems: FeedItem[] = posts.map(post => {
 		const title = extractTitle(post.body) || post.id;
-		const thumbKey = normalizeImportPath(`/src/content/post/${post.id}/thumbnail.webp`);
-		const thumbnail = postThumbs[thumbKey]?.default;
+		const thumbnail = resolvePostThumbnail(post, postThumbs);
 		return {
 			title,
 			url: absoluteUrl(`/p/${post.id}/`),

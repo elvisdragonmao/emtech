@@ -22,7 +22,6 @@ const collator = new Intl.Collator(["zh-Hant", "zh-Hans", "en"], { numeric: true
 
 const resolveImageSrc = (value?: string) => {
 	if (!value) return undefined;
-	if (value === "/static/img/EMprofile.png") return "/img/avatar_faier.webp";
 	if (/^(https?:)?\/\//i.test(value) || value.startsWith("/")) return value;
 
 	const normalized = value.replace(/^\.\//, "");
