@@ -119,7 +119,7 @@ HackMD 是一個免費好用的線上即時連線 Markdown 編輯器。他有一
 ![行內圖片](inline-image.webp)
 
 ```markdown
-- [連結一 <img src=https://emtech.cc/static/img/EMprofile.webp>](https://hackmd.io/@elvismao/Bk6m48PaWl)
+- [連結一 <img src="https://example.com/image.png">](https://hackmd.io/@elvismao/Bk6m48PaWl)
 ```
 
 不過這樣位置就挺被限制住的。就像有的人喜歡偽娘勝過女生一樣，使用偽元素就更自由優雅了：

@@ -4,17 +4,34 @@ tags: []
 categories: [關於]
 date: 2024-10-17
 description: 毛哥EM資訊密技是毛哥EM 的資訊密技
-thumbnail: /static/img/og.webp
+thumbnail: ../../../public/img/og.webp
+
 ---
 
 # 關於本站
 
-毛哥EM資訊密技是我在國二疫情期間開始的部落格。從小對 3C 產品的熱愛，讓我在自學中累積了豐富的技能與創作經驗。由於發現許多優秀軟體和工具缺乏中文資源，官方文件多為英文且不易理解，我決定創辦個人部落格，以淺顯易懂的語言向大眾分享如何使用這些工具，即使是對程式設計不熟悉的人也能輕鬆上手。
+在我國中的時候 GPT 還沒有出現，自學程式並不是一件簡單的事。官方文件不易理解，網路上又缺乏中文學習資源。記得我曾經因為少了一個大括號熬夜研究了一整個晚上都沒找到問題。
 
-這個部落格從國中開始營運，至今已持續更新近五年，內容涵蓋技術、創作、與生活分享，累積超過 140 萬字（相當於 2.6 本《史記》）。吸引了全台教師、學生、與企業的關注，常收到讀者的來信詢問，協助解決實際開發中的挑戰。
+因此在國二隔離疫情期間我使用 Blogger 創建了部落格，名為「毛哥EM資訊密技」。期望以淺顯易懂的語言向大家分享這些實用的軟體、工具、以及程式語言。即使是完全沒碰過程式的人也可以輕易上手。
 
-## emblog
+這個部落格至今已持續更新近五年，內容涵蓋技術、創作、與生活分享，累積超過 34 萬字（排除程式碼）。
 
-emblog 目前不管是從設計到裡面的核心皆是是為毛哥EM資訊密技設計，缺少許多自訂功能，所以目前尚未對外開放對外使用。不過所有程式碼皆以 Apache 2.0 授權條款釋出，歡迎自行修改使用。等我之後有空應該會做成能讓大家使用的部落格生成器。歡迎關注我的 [GitHub](https://github.com/elvisdragonmao/emtech) 以取得最新消息。
+部落格的架構使用 Astro 框架，整個網頁由我自行設計。詳細的介紹可以閱讀：[毛哥EM資訊密技 2026：重造了個毛茸茸的大輪子！](https://emtech.cc/p/emtech-2026/)
 
-「毛哥EM資訊密技」雖然名氣不如知名部落客，但文章總能幫助到面臨技術挑戰的學生、老師和社會人士，讓搜尋引擎也主動推薦本站文章。每當能夠幫助到一位獨自在技術困境中掙扎的朋友，便是我持續維護這個平台的最大動力。每月有約萬次上下瀏覽，現有的廣告收益足以支持我所有開源專案的伺服器和網域費用，實現了自主營運。
+原始碼以 Apache-2.0，文章以 CC BY-SA 4.0 授權釋出。
+
+感謝以下朋友們的貢獻：
+
+![gthanks contributors](https://gthanks.yorukot.me/image?target=elvisdragonmao%2Femtech&include_bots=false&width=1500&shape=square&limit=2000)
+
+也感謝所有的讀者們。
+
+<a href="https://www.star-history.com/?repos=elvisdragonmao%2Femtech&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=elvisdragonmao/emtech&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=elvisdragonmao/emtech&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=elvisdragonmao/emtech&type=date&legend=top-left" />
+ </picture>
+</a>
+
+「毛哥EM資訊密技」雖然名氣不如知名部落客，且目前已移除廣告，無任何收益。但能每個月幫助上萬人的學生、老師、以及各個網路上的朋友，與他們分享我的生活與創作，便是我持續維護這個平台的最大動力。

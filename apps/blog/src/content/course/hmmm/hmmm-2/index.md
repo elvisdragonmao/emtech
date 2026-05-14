@@ -101,7 +101,7 @@ Jaron 是在 iTunes Store 購買，但我大多是在 Bandcamp。iTunes Store �
 
 - 這次比黑客松用的簡報思考脈絡有使用到 Stock Issue，因此寫了篇文章：[Stock Issue - 從辯論到職場，任何計畫缺一不可的關鍵要素](https://emtech.cc/p/debate-stock-issue)。雖然 Stock Issues 來自美國政策辯論（Policy Debate），不過他不只能用在辯論中。不管在提案，黑客松比賽，生涯規劃，Stock Issues 都能幫助你確保你的計畫是全面且有說服力的。
 
-![Stock Issue](https://emtech.cc/static/debate-stock-issue/thumbnail.webp)
+![Stock Issue](../../../post/debate-stock-issue/thumbnail.webp)
 
 - 最近在重新好好研究 Blender 跟 Fusion 360，學習的曲線真的都好陡峭。Fusion 360 我研究了兩個小時才搞懂怎麼「把文字往上移 10 公分」。給你們看我到一半中途放棄的甜甜圈。期末考完再來繼續好好研究。
 

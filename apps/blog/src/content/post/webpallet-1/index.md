@@ -2,7 +2,7 @@
 authors: elvismao
 tags: ["網棧"]
 categories: []
-thumbnail: /static/webpallet-0/thumbnail.webp
+thumbnail: ../webpallet-0/thumbnail.webp
 date: 2023-05-29
 ---
 
