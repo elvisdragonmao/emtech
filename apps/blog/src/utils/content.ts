@@ -63,12 +63,7 @@ export function extractExcerpt(body: string | undefined): string {
 }
 
 export function normalizeTerms(terms: string[] | undefined): string[] {
-	return (terms ?? []).flatMap(term =>
-		term
-			.split(/[，,]/)
-			.map(part => part.trim())
-			.filter(Boolean)
-	);
+	return (terms ?? []).map(term => term.trim()).filter(Boolean);
 }
 
 export function formatHashTags(terms: string[] | undefined): string {
@@ -94,9 +89,7 @@ function resolveContentThumbnail(thumbnail: string | undefined, basePath: string
 
 	if (value) {
 		if (/^https?:\/\//i.test(value) || value.startsWith("/")) return value;
-
-		const publicPath = value.match(/(?:^|\/)public\/(.+)$/)?.[1];
-		if (publicPath) return `/${publicPath}`;
+		if (!/^thumbnail\.[a-z0-9]+$/i.test(value.split("/").at(-1) ?? "")) return null;
 
 		const thumbKey = normalizeImportPath(`${basePath}/${value}`);
 		const image = thumbnails[thumbKey]?.default;
