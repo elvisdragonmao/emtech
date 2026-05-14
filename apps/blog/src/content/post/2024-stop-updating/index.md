@@ -16,7 +16,7 @@ date: 2024-04-01
 
 好了不鬧了，愚人節快樂！為了慶祝這個特別的日子，我把整個部落格除了這篇文章以外的所有字體都換成了 justfont 今天推出的[諧靈附體](https://github.com/justfont/AllPunType)。而具體情況就是：
 
-![](https://raw.githubusercontent.com/justfont/AllPunType/main/assets/example1.png)
+![justfont 諧靈附體字體範例](https://raw.githubusercontent.com/justfont/AllPunType/main/assets/example1.png)
 
 嗯。對。這就是我支持開源專案的方式。
 

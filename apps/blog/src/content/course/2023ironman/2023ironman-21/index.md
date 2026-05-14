@@ -34,7 +34,7 @@ date: 2023-10-05
 
 首先請你先到<about:config>，他很貼心請你要小心，選擇接受風險並繼續即可。
 
-![](warn.webp)
+![Firefox about:config 風險提示](warn.webp)
 
 請你搜尋 gfx.webrender.debug.profiler-ui
 
@@ -43,7 +43,7 @@ date: 2023-10-05
 
 > 記得先設成 `FPS` 再設成 `true`，不然整個畫面會被資訊轟炸，比 Minecraft 的 F3 還要誇張好幾倍。
 
-![](config.webp)
+![Firefox profiler-ui 設定畫面](config.webp)
 
 接下來是暖暖包時間，我們要來翻滾 1000 個 `<div>` 正方形。你可以自行貼上以下程式碼，或是用[我的](https://emtech.cc/post/2023ironman-21/test.html)。然後點擊切換按鈕來切換動畫方式。
 
@@ -162,13 +162,13 @@ function animate(time) {
 
 可以看到 FPS 穩定在 60 左右。
 
-![](css.webp)
+![CSS 動畫 FPS 測試結果](css.webp)
 
 ### JavaScript `requestAnimationFrame()`
 
 可以看到 FPS 掉到 30 左右。
 
-![](js.webp)
+![JavaScript requestAnimationFrame FPS 測試結果](js.webp)
 
 ## なに？為甚麼？
 

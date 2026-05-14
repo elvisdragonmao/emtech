@@ -319,7 +319,7 @@ emmet 還有很多語法我們之後遇到我會再提到。
 <img src="<https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png>" alt="Google" />
 ```
 
-![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
+![Google 標誌](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
 
 ## 相對路徑與絕對路徑
 

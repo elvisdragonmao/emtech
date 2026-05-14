@@ -10,11 +10,11 @@ date: 2023-10-13
 
 相信大家對於這個頁面都不陌生吧。這是我們 2023 iThome 鐵人賽的首頁。我覺得他的粒子特效和地球很酷，所以我們今天就來看看怎麼做吧。
 
-![](original.webp)
+![iThome 鐵人賽首頁太空粒子效果](original.webp)
 
 以下是今天我們的目標。為了版面乾淨我省略了上面的文字，只留下熊俠、標題、粒子特效、和地球。且為了讓他不要太長我有稍微縮小了一點。
 
-![](final.gif)
+![重現的太空粒子與地球動畫](final.gif)
 
 ## HTML 架構
 
@@ -51,7 +51,7 @@ date: 2023-10-13
 
 > 官網在背景圖片設定 `background-size` 時因為被 `background` 屬性預設的 `auto` 值影響，所以使用了 `!important`，不過其實只需要打在後面就可以了。
 
-![](header.webp)
+![鐵人賽首頁 header 版面](header.webp)
 
 ```css
 header {
@@ -75,7 +75,7 @@ header img {
 
 我們先弄一個宇宙
 
-![](space.webp)
+![深藍色宇宙背景](space.webp)
 
 ```css
 background: #11377e;
@@ -85,7 +85,7 @@ position: relative;
 
 然後做一束高光，並進行定位。原理是先搞一個橢圓形
 
-![](oval.webp)
+![藍色橢圓形高光](oval.webp)
 
 ```css
 .horizon {
@@ -101,7 +101,7 @@ position: relative;
 
 然後再模糊一下
 
-![](blur.webp)
+![模糊後的橢圓高光](blur.webp)
 
 ```css
 filter: blur(30px);
@@ -113,7 +113,7 @@ filter: blur(30px);
 
 再多加幾個光點
 
-![Alt text](light.webp)
+![光點](light.webp)
 
 ```css
 .horizon:before {
@@ -157,7 +157,7 @@ filter: blur(30px);
 
 加上一點內陰影讓他看起來更有立體感。
 
-![](earth.webp)
+![帶有內陰影的地球圓弧](earth.webp)
 
 ```css
 .earth {
@@ -176,7 +176,7 @@ filter: blur(30px);
 
 星空效果 iThome 沒有使用什麼 [particles.js](https://vincentgarreau.com/particles.js/)。我們打開 FireFox Dev Tools 的動畫分頁可以看出原來這是一個長 150 秒的往上移動 CSS 動畫。
 
-![](firefox.webp)
+![Firefox DevTools 中的星空動畫](firefox.webp)
 
 ```css
 @keyframes animStar {
@@ -216,7 +216,7 @@ filter: blur(30px);
 
 https://codepen.io/elvismao/pen/OJrGmyW
 
-![](final.gif)
+![完成後的太空粒子與地球動畫](final.gif)
 
 ```html
 <header>

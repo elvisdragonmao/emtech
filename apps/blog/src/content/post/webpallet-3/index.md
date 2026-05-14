@@ -222,7 +222,7 @@ background: linear-gradient(217deg, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.
 ```
 
 <img src=https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient/linear-gradient.png style="width:300px;display:inline;" />
-![](https://i.imgur.com/XUupJaf.png)
+![CSS 漸層範例](https://i.imgur.com/XUupJaf.png)
 
 ## border
 
@@ -301,15 +301,15 @@ CSS 的 Display 屬性可以改變元素對外所參與的布局環境（outer d
 
 #### none
 
-![](https://i.imgur.com/wHErd2k.png)
+![float none 排版範例](https://i.imgur.com/wHErd2k.png)
 
 #### left
 
-![](https://i.imgur.com/Yz6bJ16.png)
+![float left 排版範例](https://i.imgur.com/Yz6bJ16.png)
 
 float 是我比較少用的 CSS，因為會遇到一些問題比如說 float collapse
 
-![](https://i.imgur.com/Zdntd5z.png)
+![float collapse 問題範例](https://i.imgur.com/Zdntd5z.png)
 
 當然解決方法很多，列幾個
 
@@ -327,7 +327,7 @@ clear: left|right|both;
 
 可以讓左/右不會重疊到
 
-![](https://i.imgur.com/KJsAt0K.png) ![](https://i.imgur.com/In4DqWf.png)
+![未使用 clear 的浮動範例](https://i.imgur.com/KJsAt0K.png) ![使用 clear 後的浮動範例](https://i.imgur.com/In4DqWf.png)
 
 ## Position
 
@@ -345,7 +345,7 @@ inline 往右，block 往下
 
 我原本該在哪裡位置就佔著，但我可以看起來要往右/下...
 
-![](https://i.imgur.com/H1Vru7P.png)
+![relative 相對定位範例](https://i.imgur.com/H1Vru7P.png)
 
 ### absolute 絕對定位
 
@@ -359,7 +359,7 @@ inline 往右，block 往下
 
 以自己為基準，卡在那裡，但 sticky 元素仍然 in flow，元素佔位會保留。
 
-![](https://media.giphy.com/media/LRs2BIsDx1WjzSdIAJ/giphy.gif)
+![sticky 定位示意動畫](https://media.giphy.com/media/LRs2BIsDx1WjzSdIAJ/giphy.gif)
 
 ## Transform
 
@@ -384,11 +384,11 @@ transform: translateY(單位或百分比);
 }
 ```
 
-![](https://i.imgur.com/IFdDGiC.png)
+![translate 位移範例](https://i.imgur.com/IFdDGiC.png)
 
 translate 的百分比基準是自己的 width 跟 height
 
-![](https://i.imgur.com/jM1Hazt.png)
+![translate 百分比基準範例](https://i.imgur.com/jM1Hazt.png)
 
 來一個推方塊範例
 
@@ -404,11 +404,11 @@ img {
 }
 ```
 
-![](https://i.imgur.com/Gswm945.png)
+![方塊置中前的定位範例](https://i.imgur.com/Gswm945.png)
 
 再來往左上推：`transform: translate(-50%, -50%);`
 
-![](https://i.imgur.com/YeDUST3.png)
+![使用 translate 置中的方塊範例](https://i.imgur.com/YeDUST3.png)
 
 就做到致中的效果啦
 

@@ -10,7 +10,7 @@ date: 2023-09-30
 
 今天我們要來製作一個時鐘。不使用圖片，只使用 CSS 來繪製。我的目標是可以做出類似於 Apple iOS17 StandBy 的時鐘效果。
 
-![](StandBy.webp)
+![Apple iOS 17 StandBy 時鐘畫面](StandBy.webp)
 
 ## HTML
 
@@ -46,7 +46,7 @@ CSS 要怎麼畫出時鐘呢？我們會需要幫這個 `div` 添加幾個漸層
 
 為了方便大家比較我把圖放在一起。
 
-![](conic.webp)
+![conic-gradient 時間刻度範例](conic.webp)
 
 `conic-gradient` 的語法和其他漸層語法很相似。繞一圈跑，可以設定開始和結束的角度，沒寫角度就自動平分。比如說第一個：
 
@@ -86,7 +86,7 @@ div {
 
 `radial-gradient` 會從裡到外。一樣原理，不給他地方漸層就會出現圓形。~~讓他原形畢露~~
 
-![](radial.webp)
+![radial-gradient 圓形範例](radial.webp)
 
 ```css
 div {
@@ -105,7 +105,7 @@ div {
 
 這個也蠻有趣的。首先在時鐘的中間放一個 `div`，用為元素在右邊放數字。
 
-![](prompt.webp)
+![時鐘數字旋轉定位示意](prompt.webp)
 
 ```html
 <main>
@@ -140,7 +140,7 @@ main {
 
 旋轉方塊裡面裡面數字也會跟著轉。
 
-![](spin.webp)
+![旋轉方塊導致數字歪斜](spin.webp)
 
 ```css
 .no {
@@ -156,7 +156,7 @@ main {
 
 不過這樣數字就歪了！沒事，偽元素轉回來就好了。
 
-![](spinback.webp)
+![偽元素反向旋轉校正數字](spinback.webp)
 
 ```css
 .no::after {
@@ -304,11 +304,11 @@ updateClock();
 
 正當你以為終於結束的時候，你無意間看到了這個畫面…
 
-![](spin.gif)
+![秒針反向旋轉問題](spin.gif)
 
 結果對了，方法錯了。因為角度降回 180，結果他還真的轉回去。
 
-![](https://media.tenor.com/R5IECfIf34YAAAAd/fish-spinning.gif)
+![旋轉的魚 GIF](https://media.tenor.com/R5IECfIf34YAAAAd/fish-spinning.gif)
 
 想要讓他一直轉下去就要提醒他莫忘初衷，把之前轉的度數都加進去即可。
 

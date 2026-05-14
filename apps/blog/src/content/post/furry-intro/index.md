@@ -47,7 +47,7 @@ description: 本文將帶你深入探討獸迷文化，介紹福瑞（獸人）�
 
 有的人說寫程式寫到最後都會變獸控，這完全沒有科學根據，~~但我完全同意~~。
 
-![](scratch.webp)
+![Scratch 貓角色](scratch.webp)
 
 看看這些在中研院[演講的人](https://www.youtube.com/watch?v=yZYOL8Ybdm4)和[工程師們](https://www.facebook.com/share/p/DoATaGrjWavMGwot/)。
 

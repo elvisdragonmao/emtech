@@ -14,7 +14,7 @@ date: 2023-10-09
 
 我先不要一次跳太多步驟。這是一個基本還未完成的版面。
 
-![](layout.webp)
+![漢堡選單基本版面](layout.webp)
 
 ```html
 <input type="checkbox" id="menu" />

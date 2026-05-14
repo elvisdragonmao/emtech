@@ -179,7 +179,7 @@ HTML 就是這樣建立一個又一個地”元素” (element) 。因為寫 HTM
 <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google" />
 ```
 
-![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
+![Google 標誌](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
 
 而連結的文字也可以是圖片，只要把`<img>`元素放在`<a>`元素裡就可以了。
 
