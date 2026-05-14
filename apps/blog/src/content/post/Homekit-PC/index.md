@@ -84,14 +84,27 @@ thumbnail: /static/Homekit-PC/power.webp
 接下來我們要來把程式燒錄至 ESP32:
 
 1. 請先從官網下載並安裝 Arduino IDE，點開一直下一步即可。
-2. 在開始燒錄之前我們要先來安裝 ESP32 驅動函式庫和 Homekit 函式庫。請你開啟軟體點擊左上角的「檔案」，並選擇「偏好設定」。 ![](openper.webp)
+2. 在開始燒錄之前我們要先來安裝 ESP32 驅動函式庫和 Homekit 函式庫。請你開啟軟體點擊左上角的「檔案」，並選擇「偏好設定」。
+
+![Arduino IDE 偏好設定](openper.webp)
+
 3. 在下面有一排可以讓你自行輸入函式庫網址的輸入框，請你貼上以下網址：
 
 ```
 https://dl.espressif.com/dl/package_esp32_index.json
 ```
 
-![](url.webp) 4. 請你進入 BOARDS MANAGER 並搜尋 esp32。安裝 Espressif 開發的的 ESP-32 套件。 ![](driver.jpg) 5. 請點擊左邊第三個的圖書標誌並搜尋 HomeSpan 並安裝。 ![](homespan.webp) 6. 貼上以下程式碼：
+![Arduino IDE 額外開發板管理員網址設定](url.webp)
+
+4. 請你進入 BOARDS MANAGER 並搜尋 esp32。安裝 Espressif 開發的的 ESP-32 套件。
+
+![Arduino IDE 安裝 ESP32 開發板套件](driver.jpg)
+
+5. 請點擊左邊第三個的圖書標誌並搜尋 HomeSpan 並安裝。
+
+![Arduino IDE 安裝 HomeSpan 函式庫](homespan.webp)
+
+6. 貼上以下程式碼：
 
 ```cpp
 #include "HomeSpan.h"
@@ -163,7 +176,10 @@ void loop() {
 }
 ```
 
-7. 設定 COM Port，請你點擊左上角的輸入選擇，接著選擇你的 ESP32 的 COM Port。你可以把 ESP-32 拔掉再插上來看看哪個消失再出現就是了。 ![](com.webp)
+7. 設定 COM Port，請你點擊左上角的輸入選擇，接著選擇你的 ESP32 的 COM Port。你可以把 ESP-32 拔掉再插上來看看哪個消失再出現就是了。
+
+![Arduino IDE 選擇 ESP32 COM Port](com.webp)
+
 8. 最後，請你點擊左上角的「上傳」按鈕 (往右的箭頭)，並等待燒錄完成即可。如果上傳失敗請點擊 ESP32 上面的 BOOT 按鈕，拔掉重新插上電源並再次上傳。
 
 ## 設定

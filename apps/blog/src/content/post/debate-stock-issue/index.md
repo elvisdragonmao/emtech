@@ -12,7 +12,7 @@ description: 在辯論場上，要讓一項政策主張站得住腳，我們必�
 
 雖然 Stock Issues 來自美國政策辯論（Policy Debate），不過他不只能用在辯論中。不管在提案，黑客松比賽，生涯規劃，Stock Issues 都能幫助你確保你的計畫是全面且有說服力的。而今天我們要來談談他的五大核心議題（Significance、Harms、Inherency、Topicality、Solvency），以及如何在辯論與日常生活中運用它們，讓你成為網路和現實世界中的大王。
 
-![I have concepts of a plan.](trump.gif)
+![I have concepts of a plan.](trump.webp)
 
 > [這是一段川普講關於健保的辯論](https://www.youtube.com/watch?v=8p6zZZ3DPGE)，你有被他的政策說服嗎？
 
@@ -37,7 +37,7 @@ Stock Issues 和股票沒有任何關係，直譯為「常備議題」、「核�
 
 > 「這很重要嗎？」
 
-![This is fine.](fine.gif)
+![This is fine.](fine.webp)
 
 正方需要證明所要解決的問題具有相當的嚴重性或廣泛性，如果不加以改變將會造成重大的損失或錯失重大的機會。畢竟以決策者角度能躺平幹嘛冒風險做事？
 
@@ -83,7 +83,7 @@ _辯題：「應該全面禁用一次性塑膠吸管以減少污染」_
 > 「為什麼這個問題不會自己被解決？」  
 > "Why can't we sit back and wait?"
 
-![自己消失？](ok.gif)
+![自己消失？](ok.webp)
 
 正方必須說明為什麼現存體制未能解決弊害？常見的根屬性類型包括：
 

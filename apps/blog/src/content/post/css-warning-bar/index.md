@@ -112,7 +112,7 @@ div {
 
 移動背景的距離是 `var(--width) * sqrt(2) * -2`，這是因為我們的漸層是 45 度，所以斜斜的看是 `var(--width)`，那麼平著看就是 `var(--width)` 乘以根號二。要乘以 2 是因為如果只有 1 的畫只會移動到黃黑交換。而要乘以 -1 是因為我們希望它能夠往左移動。
 
-![動起來](move.gif)
+![動起來](move.webp)
 
 我們甚至可以讓它旋轉起來：
 
@@ -156,7 +156,7 @@ div {
 }
 ```
 
-![轉起來](spin.gif)
+![轉起來](spin.webp)
 
 [Codepen 範例](https://codepen.io/elvismao/pen/qEEQMMp)
 

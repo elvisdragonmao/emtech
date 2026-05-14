@@ -107,7 +107,7 @@ Motion song 是 [攬佬 - 八方來財 因果](https://youtu.be/XD6ASbQtKxw)。
 
 可以看到他的翻譯只有簡體，而且只翻了一些，看了實在有點難受。畢竟是個不錯的開源專案所以我開了個 [issue](https://github.com/TabbycatDebate/tabbycat/issues/2661) 協助繁體中文翻譯。今天早上他把我邀進 Crowdin，然後我翻譯了七十幾句之後發現不對勁。
 
-![Crowdin](image.png)
+![Crowdin](image.webp)
 
 總共有七萬八千句話要翻，坐飛機沒事的時候再翻吧。
 

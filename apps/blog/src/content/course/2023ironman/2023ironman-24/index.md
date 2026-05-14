@@ -12,7 +12,7 @@ date: 2023-10-08
 
 https://codepen.io/elvismao/pen/poqqoLr
 
-![成果](final.gif)
+![成果](final.webp)
 
 然後你可以應用做出一些很酷的效果：
 
@@ -110,15 +110,15 @@ https://codepen.io/elvismao/pen/poqqoLr
 
 好，結束。
 
-![成果](final.gif)
+![成果](final.webp)
 
 你可以自由應用在你的網頁上。以下是幾個範例：
 
-來源：https://codepen.io/Chokcoco ![水波動畫範例](water.gif) ![圓形動畫範例](circle.gif)
+來源：https://codepen.io/Chokcoco ![水波動畫範例](water.webp) ![圓形動畫範例](circle.webp)
 
 ![火焰效果範例](fire.png)
 
-連結：https://codepen.io/YusukeNakaya/pen/vvEqVx ![移動動畫範例](move.gif)
+連結：https://codepen.io/YusukeNakaya/pen/vvEqVx ![移動動畫範例](move.webp)
 
 這個效果明天會使用到，你可以來猜猜看。我剩下六天了，接下來原則上都是蠻重要的內容，要來完成一些很常見的版面和許多人習慣直接套庫的東西。以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 

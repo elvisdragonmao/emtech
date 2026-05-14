@@ -67,7 +67,7 @@ window.addEventListener("scroll", function () {
 
 https://codepen.io/elvismao/pen/vYvZagX
 
-![滾動視差爆炸酷！](boom.gif)
+![滾動視差爆炸酷！](boom.webp)
 
 ```html
 <h1>引爆炸彈</h1>
@@ -181,7 +181,7 @@ window.addEventListener("scroll", function () {
 
 https://codepen.io/elvismao/pen/gOZRQex
 
-![Final](spin.gif)
+![Final](spin.webp)
 
 能夠變的與玩的實在太多了，使用這個方法在每一個屬性都可以套用。歡迎在評論區留下你看到的好網站與你自己的創作。
 

@@ -123,7 +123,7 @@ function changeFontColor(c) {
 
 https://codepen.io/elvismao/pen/abPVWBJ
 
-![顏色選單成果](final.gif)
+![顏色選單成果](final.webp)
 
 ```html
 <h1>顏色選單</h1>

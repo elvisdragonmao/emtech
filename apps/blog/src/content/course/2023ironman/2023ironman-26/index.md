@@ -98,7 +98,7 @@ document.addEventListener("scroll", addClassToVisibleElements);
 addClassToVisibleElements();
 ```
 
-![淡入動畫](fade.gif)
+![淡入動畫](fade.webp)
 
 ok 成功，我們來多做幾個更浮誇的動畫。
 
@@ -158,7 +158,7 @@ ok 成功，我們來多做幾個更浮誇的動畫。
 
 https://codepen.io/elvismao/pen/rNoPBZe
 
-![所有效果](final.gif)
+![所有效果](final.webp)
 
 ```html
 <h1 class="aos slideIn">Animate On Scroll</h1>

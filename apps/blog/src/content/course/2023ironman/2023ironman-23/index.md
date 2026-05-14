@@ -25,7 +25,7 @@ body {
 }
 ```
 
-![bruh](bruh.gif)
+![bruh](bruh.webp)
 
 額，只有層，沒有漸。這是因為漸層是屬於 `background-image`，你要他怎麼漸圖片？
 
@@ -37,7 +37,7 @@ body {
 
 我們先把圖片拉長到兩倍，然後移動 `background-position` 來做出動畫。
 
-![移動 `background-position` 來做出動畫](position.gif)
+![移動 `background-position` 來做出動畫](position.webp)
 
 ```css
 body {
@@ -61,7 +61,7 @@ body {
 
 `background-size` 如果不搭配 `background-position` 的會可以做出這種左邊維持不動，右邊比例不同漸層的效果。
 
-![左邊維持不動，右邊比例不同漸層](size.gif)
+![左邊維持不動，右邊比例不同漸層](size.webp)
 
 ```css
 body {
@@ -89,11 +89,11 @@ background-position: 100% 0;
 
 和 `background-position` 一樣，`transform` 也可以做出類似的效果。不過記得我們在 [Day20 GPU! 啟動！- 淺談 CSS3 硬體加速](https://ithelp.ithome.com.tw/articles/10333947) 有提到 `transform` 會啟動硬體加速，可以讓動畫更流暢，你的 CPU 也會感謝你。
 
-![background-position](transform.gif)
+![background-position](transform.webp)
 
 再把大小調到兩倍大即可。我稍微修改了顏色讓你看得更清楚。
 
-![大小調到兩倍大](transformX2.gif)
+![大小調到兩倍大](transformX2.webp)
 
 ```html
 <div></div>
@@ -136,7 +136,7 @@ div {
 
 > 複習：[Day7 幫我開濾鏡 filter ](https://ithelp.ithome.com.tw/articles/10323423)
 
-![filter](hue.gif)
+![filter](hue.webp)
 
 ```css
 body {
@@ -163,7 +163,7 @@ div {
 
 https://codepen.io/elvismao/pen/mdaabzQ?editors=1100
 
-![你可以狂加讓他群魔亂舞起來](final.gif)
+![你可以狂加讓他群魔亂舞起來](final.webp)
 
 ```css
 body {

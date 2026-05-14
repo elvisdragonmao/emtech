@@ -12,7 +12,7 @@ date: 2023-09-19
 
 https://codepen.io/elvismao/pen/YzdzvdV
 
-![載入中](loading.gif)
+![載入中](loading.webp)
 
 可以看出來每個方塊的縮放速度是一樣的，只是越往右下就越有延遲對吧。昨天我們學到可以在 `animation` 設定延遲，其實也可以在 `animation-delay` 個別設定。讓我們來一步步用前面幾天學到的知識做出這個動畫吧。
 
@@ -162,7 +162,7 @@ animation: 1.5s ease-in-out infinite zoom;
 
 https://codepen.io/elvismao/pen/LYMZeZE?editors=1100
 
-![有點像 Windows10 更新動畫](spin.gif)
+![有點像 Windows10 更新動畫](spin.webp)
 
 有點像 Windows 更新動畫。首先我們先來製作圓圈。我畫了一張圖希望讓你更好理解。
 

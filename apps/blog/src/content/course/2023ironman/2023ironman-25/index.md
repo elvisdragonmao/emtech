@@ -72,7 +72,7 @@ label div {
 
 把原本的勾選框隱藏起來再加上內文。漢堡選單裡面當然就是要放漢堡配料，效果如下
 
-![漢堡配料 In](open.gif)
+![漢堡配料 In](open.webp)
 
 ```html
 <input type="checkbox" id="menu" checked />
@@ -155,7 +155,7 @@ ul {
 
 最後是漢堡動畫，這裡就要發揮你自己的創意了。原理不難，這裡提供一個我現在想到的做法。我想要最上面的和最下面的旋轉 45 度，中間的變短到消失。所以我們先把中間的設定 `width: 0; height: 0;` ，然後我們把最上面的和最下面的設定 `transform: rotate(45deg);`，這樣就會旋轉 45 度了。這樣能夠做出一個箭頭：
 
-![箭頭](arrow.gif)
+![箭頭](arrow.webp)
 
 ```css
 input:checked ~ label > div:first-child {
@@ -173,7 +173,7 @@ input:checked ~ label > div:nth-child(3) {
 
 https://codepen.io/elvismao/pen/zYyyEgz
 
-![打叉](cross.gif)
+![打叉](cross.webp)
 
 ```css
 body {
@@ -259,7 +259,7 @@ label > div:nth-child(3) {
 
 這是一個會四處噴射漢堡選單
 
-![發射漢堡選單](split.gif)
+![發射漢堡選單](split.webp)
 
 ```html
 <input type="checkbox" id="menu" checked />
@@ -337,7 +337,7 @@ div {
 
 https://codepen.io/elvismao/pen/NWeeYRq
 
-![相黏效果](final.gif)
+![相黏效果](final.webp)
 
 ```css
 body {

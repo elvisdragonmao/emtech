@@ -39,7 +39,7 @@ javascript: window.location.href = `https://translate.google.com.tw/translate?sl
 
 現在，我們就可以使用這個書籤來翻譯網站了。你可以到任意外國語言的網站並點擊剛剛新增的書籤，就會自動翻譯網站了。
 
-![成果](final.gif)
+![成果](final.webp)
 
 ## 結論
 

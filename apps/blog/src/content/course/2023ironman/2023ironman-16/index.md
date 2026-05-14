@@ -304,7 +304,7 @@ updateClock();
 
 正當你以為終於結束的時候，你無意間看到了這個畫面…
 
-![秒針反向旋轉問題](spin.gif)
+![秒針反向旋轉問題](spin.webp)
 
 結果對了，方法錯了。因為角度降回 180，結果他還真的轉回去。
 
@@ -343,7 +343,7 @@ updateClock();
 
 https://codepen.io/elvismao/pen/wvRXMLG
 
-![Final](final.gif)
+![Final](final.webp)
 
 以上就是我今天的分享。我有看到有人是算了第一個角度之後就每秒固定加上去度數。不過萬一你有延遲或者是卡頓他的時間就會跑掉了，所以我還是建議每次都重新抓時間做計算。歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
