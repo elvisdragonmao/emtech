@@ -4,6 +4,15 @@
 
 import type { ImageMetadata } from "astro";
 
+export type ImageInput = string | ImageMetadata | null;
+
+type ThumbnailEntry = {
+	id: string;
+	data: {
+		thumbnail?: string;
+	};
+};
+
 export type MetaItem = {
 	label: string;
 	value: string;
@@ -76,6 +85,24 @@ export function normalizeImportPath(path: string): string {
 	}
 
 	return `/${parts.join("/")}`;
+}
+
+export function resolvePostThumbnail(entry: ThumbnailEntry, thumbnails: Record<string, { default: ImageMetadata }>): ImageInput {
+	const thumbnail = entry.data.thumbnail?.trim();
+
+	if (thumbnail) {
+		if (/^https?:\/\//i.test(thumbnail) || thumbnail.startsWith("/")) return thumbnail;
+
+		const publicPath = thumbnail.match(/(?:^|\/)public\/(.+)$/)?.[1];
+		if (publicPath) return `/${publicPath}`;
+
+		const thumbKey = normalizeImportPath(`/src/content/post/${entry.id}/${thumbnail}`);
+		const image = thumbnails[thumbKey]?.default;
+		if (image) return image;
+	}
+
+	const fallbackKey = normalizeImportPath(`/src/content/post/${entry.id}/thumbnail.webp`);
+	return thumbnails[fallbackKey]?.default ?? null;
 }
 
 export type { ImageMetadata };

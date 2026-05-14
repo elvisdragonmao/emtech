@@ -7,7 +7,7 @@ import ArticleCard from "@/components/shared/ArticleCard.astro";
 import Comments from "@/components/Comments.astro";
 import PostBody from "@/components/shared/PostBody.astro";
 import Layout from "@/layouts/Layout.astro";
-import { extractExcerpt, extractTitle, formatDate, formatHashTags, normalizeImportPath, normalizeTerms, readingTime, wordCount, type MetaItem } from "@/utils/content";
+import { extractExcerpt, extractTitle, formatDate, formatHashTags, normalizeTerms, readingTime, resolvePostThumbnail, wordCount, type ImageInput, type MetaItem } from "@/utils/content";
 import { blogPostingSchema, breadcrumbSchema, publisherSchema, webPageSchema, wordCountNumber } from "@/utils/seo";
 
 export async function getStaticPaths() {
@@ -23,10 +23,8 @@ if (!entry) return Astro.redirect("/404");
 
 const { Content, headings } = await render(entry);
 
-// Discover co-located thumbnail via glob (supports image optimisation)
-const thumbnails = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/*/thumbnail.webp", { eager: true });
-const thumbKey = normalizeImportPath(`/src/content/post/${postId}/thumbnail.webp`);
-const thumbnail: ImageMetadata | null = thumbnails[thumbKey]?.default ?? null;
+const thumbnails = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/*.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
+const thumbnail: ImageInput = resolvePostThumbnail(entry, thumbnails);
 
 const title = headings[0]?.text ?? postId;
 const description = entry.data.description ?? extractExcerpt(entry.body);
@@ -103,11 +101,10 @@ const moreRelatedHref = relatedFilterValue ? `/?${relatedFilterType}=${encodeURI
 
 // Build related article card data (needs thumbnail discovery)
 const relatedCards = related.map(p => {
-	const rKey = normalizeImportPath(`/src/content/post/${p.id}/thumbnail.webp`);
 	return {
 		title: extractTitle(p.body) || p.id,
 		href: `/p/${p.id}/`,
-		image: thumbnails[rKey]?.default ?? null,
+		image: resolvePostThumbnail(p, thumbnails),
 		tag: formatHashTags(normalizeTerms(p.data.tags).length > 0 ? p.data.tags : p.data.categories),
 		description: p.data.description ?? "",
 		category: p.data.categories[0],

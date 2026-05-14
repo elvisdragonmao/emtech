@@ -1,4 +1,4 @@
-import { extractTitle, normalizeImportPath } from "@/utils/content";
+import { extractTitle, normalizeImportPath, resolvePostThumbnail } from "@/utils/content";
 import { absoluteUrl, toSeoImage } from "@/utils/seo";
 import type { ImageMetadata } from "astro";
 import { getCollection } from "astro:content";
@@ -44,7 +44,7 @@ export async function GET() {
 	const posts = (await getCollection("post")).filter(post => !post.data.draft);
 	const courses = await getCollection("course");
 	const lessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
-	const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/*/thumbnail.webp", { eager: true });
+	const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/*.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
 	const courseThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/*/*/thumbnail.webp", { eager: true });
 	const latestPostDate = posts.reduce((acc, post) => Math.max(acc, (post.data.lastmod ?? post.data.date).getTime()), 0);
 	const latestLessonDate = lessons.reduce((acc, lesson) => Math.max(acc, (lesson.data.lastmod ?? lesson.data.date).getTime()), 0);
@@ -58,8 +58,7 @@ export async function GET() {
 
 	for (const post of posts) {
 		const title = extractTitle(post.body) || post.id;
-		const thumbKey = normalizeImportPath(`/src/content/post/${post.id}/thumbnail.webp`);
-		const image = postThumbs[thumbKey]?.default;
+		const image = resolvePostThumbnail(post, postThumbs);
 		entries.push({
 			loc: absoluteUrl(`/p/${post.id}/`),
 			lastmod: post.data.lastmod ?? post.data.date,

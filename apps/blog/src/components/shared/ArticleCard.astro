@@ -1,10 +1,10 @@
 ---
-import type { ImageMetadata } from "astro";
+import type { ImageInput } from "@/utils/content";
 
 export type ArticleCardData = {
 	title: string;
 	href: string;
-	image: ImageMetadata | null;
+	image: ImageInput;
 	tag: string;
 	description?: string;
 	category?: string;
@@ -18,11 +18,14 @@ interface Props {
 }
 
 const { article } = Astro.props;
+const imageSrc = typeof article.image === "string" ? article.image : article.image?.src;
+const imageWidth = typeof article.image === "string" ? undefined : article.image?.width;
+const imageHeight = typeof article.image === "string" ? undefined : article.image?.height;
 ---
 
 <a class="article-card" href={article.href}>
 	<figure>
-		{article.image ? <img src={article.image.src} width={article.image.width} height={article.image.height} alt={article.title} loading="lazy" /> : <div class="placeholder" aria-hidden="true" />}
+		{imageSrc ? <img src={imageSrc} width={imageWidth} height={imageHeight} alt={article.title} loading="lazy" /> : <div class="placeholder" aria-hidden="true" />}
 	</figure>
 	<h3>{article.title}</h3>
 	<p class="tag">{article.tag}</p>
