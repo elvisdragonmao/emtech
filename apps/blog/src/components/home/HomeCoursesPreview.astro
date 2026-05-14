@@ -8,7 +8,7 @@ import type { CourseCardData } from "@/components/shared/CourseCard.astro";
 
 const courses = (await getCollection("course")).sort((a, b) => a.data.displayOrder - b.data.displayOrder || a.data.title.localeCompare(b.data.title));
 const allLessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/*.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
 
 const courseCards: CourseCardData[] = courses.map(c => {
 	const img = resolveCourseThumbnail(c, allThumbs);
