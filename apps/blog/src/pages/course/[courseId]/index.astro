@@ -5,7 +5,7 @@ import type { ImageMetadata } from "astro";
 import CourseModuleRow from "@/components/course/CourseModuleRow.astro";
 import Comments from "@/components/Comments.astro";
 import Layout from "@/layouts/Layout.astro";
-import { extractExcerpt, extractTitle, formatDate, normalizeImportPath, readingTime } from "@/utils/content";
+import { extractExcerpt, extractTitle, formatDate, readingTime, resolveCourseThumbnail, resolveLessonThumbnail } from "@/utils/content";
 import { courseSchema, breadcrumbSchema, itemListSchema, publisherSchema, webPageSchema } from "@/utils/seo";
 
 export async function getStaticPaths() {
@@ -30,11 +30,10 @@ const lessons = allLessons
 	});
 
 // Discover thumbnails for lessons
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/*/*/thumbnail.webp", { eager: true });
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/*.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
 
 // Course-level thumbnail
-const courseThumbKey = normalizeImportPath(`/src/content/course/${courseId}/${courseEntry.data.thumbnail}`);
-const courseThumbnail: ImageMetadata | null = allThumbs[courseThumbKey]?.default ?? null;
+const courseThumbnail = resolveCourseThumbnail(courseEntry, allThumbs);
 
 // Most-recent lesson update date
 const latestDate = lessons.reduce((acc, l) => {
@@ -46,6 +45,9 @@ const totalModules = lessons.length;
 
 const courseData = courseEntry.data;
 const outcomes = courseData.outcomes ?? [];
+const courseThumbnailSrc = typeof courseThumbnail === "string" ? courseThumbnail : courseThumbnail?.src;
+const courseThumbnailWidth = typeof courseThumbnail === "string" ? undefined : courseThumbnail?.width;
+const courseThumbnailHeight = typeof courseThumbnail === "string" ? undefined : courseThumbnail?.height;
 const breadcrumbId = `https://emtech.cc/course/${courseId}/#breadcrumb`;
 const courseUrl = `/course/${courseId}/`;
 const structuredData = [
@@ -111,7 +113,7 @@ const structuredData = [
 					<strong>Reading path</strong>
 					<i></i>
 				</div>
-				{courseThumbnail && <img class="overview-thumb" src={courseThumbnail.src} width={courseThumbnail.width} height={courseThumbnail.height} alt={courseData.title} />}
+				{courseThumbnailSrc && <img class="overview-thumb" src={courseThumbnailSrc} width={courseThumbnailWidth} height={courseThumbnailHeight} alt={courseData.title} />}
 				<div class="quick-stats">
 					<div><BookOpen size={18} stroke-width={1.8} aria-hidden="true" /><span>{totalModules} 章節</span></div>
 					<div>
@@ -127,8 +129,7 @@ const structuredData = [
 			{
 				lessons.map((lesson, i) => {
 					const lessonId = lesson.id.replace(`${courseId}/`, "");
-					const thumbKey = normalizeImportPath(`/src/content/course/${courseId}/${lessonId}/thumbnail.webp`);
-					const thumb = allThumbs[thumbKey]?.default ?? null;
+					const thumb = resolveLessonThumbnail(lesson, allThumbs);
 					return (
 						<CourseModuleRow
 							module={{

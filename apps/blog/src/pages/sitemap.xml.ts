@@ -1,4 +1,4 @@
-import { extractTitle, normalizeImportPath, resolvePostThumbnail } from "@/utils/content";
+import { extractTitle, resolveCourseThumbnail, resolveLessonThumbnail, resolvePostThumbnail } from "@/utils/content";
 import { absoluteUrl, toSeoImage } from "@/utils/seo";
 import type { ImageMetadata } from "astro";
 import { getCollection } from "astro:content";
@@ -45,7 +45,7 @@ export async function GET() {
 	const courses = await getCollection("course");
 	const lessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
 	const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/*.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
-	const courseThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/*/*/thumbnail.webp", { eager: true });
+	const courseThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/*.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
 	const latestPostDate = posts.reduce((acc, post) => Math.max(acc, (post.data.lastmod ?? post.data.date).getTime()), 0);
 	const latestLessonDate = lessons.reduce((acc, lesson) => Math.max(acc, (lesson.data.lastmod ?? lesson.data.date).getTime()), 0);
 
@@ -74,8 +74,7 @@ export async function GET() {
 			const date = lesson.data.lastmod ?? lesson.data.date;
 			return date > acc ? date : acc;
 		}, new Date(0));
-		const thumbKey = normalizeImportPath(`/src/content/course/${course.id}/${course.data.thumbnail}`);
-		const image = courseThumbs[thumbKey]?.default;
+		const image = resolveCourseThumbnail(course, courseThumbs);
 		entries.push({
 			loc: absoluteUrl(`/course/${course.id}/`),
 			lastmod: latestCourseDate,
@@ -89,8 +88,7 @@ export async function GET() {
 		const [courseId, lessonId] = lesson.id.split("/");
 		if (!courseId || !lessonId) continue;
 		const title = extractTitle(lesson.body) || lesson.data.description || lessonId;
-		const thumbKey = normalizeImportPath(`/src/content/course/${courseId}/${lessonId}/thumbnail.webp`);
-		const image = courseThumbs[thumbKey]?.default;
+		const image = resolveLessonThumbnail(lesson, courseThumbs);
 		entries.push({
 			loc: absoluteUrl(`/course/${courseId}/${lessonId}/`),
 			lastmod: lesson.data.lastmod ?? lesson.data.date,
