@@ -40,6 +40,12 @@ jobs:
       - name: Typecheck blog
         run: pnpm --filter blog typecheck
 
+      - name: Verify posts
+        run: pnpm verify:posts
+
+      - name: Verify file sizes
+        run: pnpm verify:file-sizes
+
       - name: Build blog
         run: pnpm --filter blog build
 
