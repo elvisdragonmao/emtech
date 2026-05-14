@@ -470,7 +470,8 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		position: sticky;
 		top: 6rem;
 		padding-top: 1.25rem;
-		height: 90vh;
+		box-sizing: border-box;
+		max-height: calc(100vh - 6rem);
 		overflow-y: auto;
 		scrollbar-width: none;
 	}
