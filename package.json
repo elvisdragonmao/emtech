@@ -5,6 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "pnpm -r build",
+		"count:words": "node scripts/count-words.mjs",
 		"dev": "pnpm --filter blog dev",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",

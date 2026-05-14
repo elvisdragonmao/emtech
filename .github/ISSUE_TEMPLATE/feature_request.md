@@ -1,18 +1,7 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ""
+name: 想要有某個功能嗎？
+about: 歡迎給我任何建議！
+title: "[feature] "
 labels: "enhancement"
 assignees: "elvisdragonmao"
 ---
-
-## ✅ What
-
-## 🤔 Why
-
-## 👩‍🔬 How to validate
-
-- [ ] Step 1
-- [ ] Step 2
-
-## 🔖 Further reading

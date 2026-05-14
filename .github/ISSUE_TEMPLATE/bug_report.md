@@ -1,15 +1,7 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ""
-labels: ""
-assignees: ""
+name: 回報蟲蟲
+about: 順便開 PR 那就太棒了（沒
+title: "[bug] "
+labels: "bug"
+assignees: "elvisdragonmao"
 ---
-
-## 🤔 What Happened
-
-## 📱 Device
-
-## 👩‍🔬 How to validate
-
-## 🔖 Links
