@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [SITCON]
-categories: [生活雜談，網頁開發]
+categories: [生活雜談, 網頁開發]
 date: 2025-03-11
 description: 今年 SITCON 一樣很讚。
 ---

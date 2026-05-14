@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-10
+description: "我們都知道 CSS 動畫可以用 @keyframes 來做，但是他們都是馬上就觸發的。就算元素還沒有出現在畫面上，動畫也已經開始了。"
 ---
 
 # Day26 不要躲在下面動！Animate On Scroll 自己做

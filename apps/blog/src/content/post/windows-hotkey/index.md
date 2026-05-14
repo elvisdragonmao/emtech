@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Windows, 快捷鍵]
 categories: [生活駭客]
 date: 2021-08-12
+description: "想要加快工作效率，減少滑鼠的使用是個最直接的方法。這裡我提供了一些我常用但是很少人知道的快捷鍵供大家參考。"
 ---
 
 # 【Windows】賭你不知道的必記快捷鍵

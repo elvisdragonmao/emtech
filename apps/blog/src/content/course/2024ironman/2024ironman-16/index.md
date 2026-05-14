@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-29
+description: "秦始皇焚書坑儒時可以 force push 刪除紀錄，但誰知道有沒有人本地 .git 還留著呢！"
 ---
 
 # 解放你的 Release - 自動化版本控制與發布

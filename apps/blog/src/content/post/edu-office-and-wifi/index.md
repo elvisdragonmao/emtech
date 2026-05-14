@@ -3,6 +3,7 @@ authors: elvismao
 tags: [eduroam, Office, 教育部]
 categories: [生活駭客]
 date: 2022-12-01
+description: "你知道學生在在學期間於全世界皆可使用免費 Wi-Fi Eduroam 還有 Office365 嗎？這裡提供完整的操作說明！這是一個知道的人不會願意告訴你的祕密..."
 ---
 
 # 【學生】免費全球學校 Wi-Fi & Office365 教育版

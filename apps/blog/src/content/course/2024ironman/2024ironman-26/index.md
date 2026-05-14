@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-10-09
+description: "雅典軍隊如果有 Slack 通知，斐迪庇得斯就不用趕著從馬拉松跑回雅典了。"
 ---
 
 # 整合通知服務 - 在 GitHub Actions 中配置 Slack 通知和生成報告文件

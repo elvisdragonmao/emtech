@@ -3,6 +3,7 @@ authors: elvismao
 tags: [自製, 衛道中學, GitHub, JSON, iOS 捷徑]
 categories: [生活駭客]
 date: 2021-06-04
+description: "透過這個捷徑快速進入當節課堂的 Meet，再也不用怕忘記課表"
 ---
 
 # 【捷徑】快速進入當節課堂的 Meet（備份）

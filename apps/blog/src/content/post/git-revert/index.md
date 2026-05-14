@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Git, GitHub]
 categories: [軟體開發]
 date: 2024-06-17
+description: "在使用 Git 管理項目的過程中難免會腦霧，push 完了之後才發現有錯誤，或是不小心推送了不應該存在的分支。"
 ---
 
 # 啊我剛才 push 錯了！如何在 Git 中撤銷提交

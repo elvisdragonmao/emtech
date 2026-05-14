@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Office, Windows]
 categories: [生活駭客]
 date: 2023-01-19
+description: "Office 雖然目前有提供免費線上版，但是都一定要使用線上版。除了十分不方便以外許多操作也都受到限制。因此這一篇文章我要來和大家分享一個可以安全啟動 Office 的工具，同時也可以啟用 Windows。適用於所有版本。"
 lastmod: 2025-12-03
 ---
 

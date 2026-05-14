@@ -1,8 +1,9 @@
 ---
 authors: elvismao
 tags: [自製, HTML, CSS, JavaScript, GitHub, Google Apps Script, 複製貼上就能成為工程師]
-categories: [軟體開發，生活駭客]
+categories: [軟體開發, 生活駭客]
 date: 2021-10-07
+description: "大眼蛙教練的課程是以堂數做計算，也就是來一次算一次，而不是一段時間。因此每次學生上課都需要簽到，最後還需要人工來統計。因此我做了一個簡單的點名系統，讓電腦來做統計和計算的工作。"
 ---
 
 # 【Google Apps Script】自製點名系統

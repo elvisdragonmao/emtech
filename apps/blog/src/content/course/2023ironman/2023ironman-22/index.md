@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-06
+description: "今天我們要來做一些乱薍覼釠亂碼效果。"
 ---
 
 # Day 22 JavaScript 乱薍覼釠亂碼效果

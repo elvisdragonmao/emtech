@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-14
+description: "腓立比書 4 章 13 節「我靠著那加給我力量的 ymal，凡事都能做」"
 ---
 
 # 靠著那 GitHub Actions，凡事都能做

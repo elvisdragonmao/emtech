@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Windows]
 categories: [生活駭客]
 date: 2022-08-18
+description: "使用多個螢幕可以使工作效率大幅提升。不過如果使用 Win+D 來隱藏視窗、會一次隱藏所有螢幕的所有的視窗。不過透過 ShowDesktopPerMonitor 可以模擬 Win+D 的隱藏視窗。除了可以分開螢幕控制以外。"
 ---
 
 # 【ShowDesktopPerMonitor】進化 Win+D！多螢幕不互相干擾/所有桌面視窗一鍵顯示

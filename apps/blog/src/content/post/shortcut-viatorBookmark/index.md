@@ -3,6 +3,7 @@ authors: elvismao
 tags: [自製, 衛道中學, GitHub, JSON, iOS 捷徑]
 categories: [生活駭客]
 date: 2021-06-04
+description: "只須點一下即可快速連結到衛道的網頁或檔案"
 ---
 
 # 【捷徑】衛道網頁書籤

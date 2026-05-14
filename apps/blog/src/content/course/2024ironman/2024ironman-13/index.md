@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-26
+description: "司馬遷敢說：「人固有一死，或重於泰山，或輕於鴻毛。」正是因為他已經把服務打包成 Docker 映像了，就算服務掛了也不怕。"
 ---
 
 # 在碼頭等你 - 自動化 Docker 構建

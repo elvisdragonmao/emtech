@@ -3,6 +3,7 @@ authors: elvismao
 tags: [JavaScript, API, Gemini]
 categories: [軟體開發]
 date: 2024-05-15
+description: "Google 的 Gemini 推出了幾個月，雖然我個人覺得能力不及 GPT-4 但是每分鐘免費 60 次呼叫也太大方了吧！還不趕快來玩一波。今天我們就來使用純 HTML 和 JavaScript 製作一個簡單的線上對話。"
 ---
 
 # Gemini API 快速入門：來用 Js 做一個線上聊天吧

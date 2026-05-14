@@ -3,6 +3,7 @@ authors: elvismao
 tags: [C++]
 categories: [程式教學]
 date: 2022-09-08
+description: "西苑高一電腦課 C++ 題目的最佳解。如果解不出來到想砸電腦或想只到更簡單的方法可以來看看。"
 ---
 
 # 【C++】常見題目解答

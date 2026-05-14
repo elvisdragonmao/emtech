@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-23
+description: "從孟母三遷的故事可以看出孟子在不同環境的相容性都不錯，但結果不一定和預期相同。"
 ---
 
 # 啊我就怕不相容 - 多平台測試

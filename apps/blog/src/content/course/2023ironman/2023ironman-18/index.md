@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-02
+description: "今天我們要使用純 CSS 實現 DVD 反彈動畫，讓大家認識 steps 以及 animation-composition 屬性的使用方式，並提供這個實用的應用。應該吧..."
 ---
 
 # Day18 純 CSS DVD 反彈動畫

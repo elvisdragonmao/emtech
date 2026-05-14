@@ -3,6 +3,7 @@ authors: elvismao
 tags: [自製, YouTube, Tampermonkey, JavaScript]
 categories: [生活駭客]
 date: 2023-03-14
+description: "大家都知道，錫蘭的 YouTube 訂閱數因為某些原因顯示不太準確。但現在，我有了一個好消息：我開發了一個程式，可以輕鬆自動修正它！想知道怎麼做嗎？繼續往下看！"
 ---
 
 # 用擴充功能輕鬆修正錫蘭 YouTube 的訂閱數

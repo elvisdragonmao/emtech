@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-10-03
+description: "司馬遷如果使用 GitHub Actions 就可以自動更新《史記》了。"
 ---
 
 # 渲染 Markdown 文件 - 自動生成和更新項目說明文件

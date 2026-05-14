@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-19
+description: "《三國演義》第六 ○ 回：「竊聞：『 良藥苦口利於病，忠言逆耳利於行。』」處理 Issue 和 PR 很煩但十分重要。"
 ---
 
 # 有意見就說 - 編輯後自動提 Pull Request

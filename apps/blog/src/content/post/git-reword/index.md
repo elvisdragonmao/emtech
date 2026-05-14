@@ -3,7 +3,7 @@ authors: elvismao
 tags: [Git]
 categories: [軟體開發]
 date: 2025-05-04
-description:
+description: '有時候，我們在 git commit 後才發現 commit message 打錯字，或著是你有一個每個都每個 commit 都寫 "fix bug" 的好朋友。因此這篇文章我們要來討論如何修改已經 push 上去的 c。'
 ---
 
 # 如何更改已經 push 的 commit message

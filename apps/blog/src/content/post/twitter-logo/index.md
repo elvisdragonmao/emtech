@@ -3,6 +3,7 @@ authors: elvismao
 tags: [自製, Twitter, iOS]
 categories: [生活駭客]
 date: 2023-08-05
+description: "我自製了一個描述檔可以建立一個書籤在主畫面。是全網唯一沒有捷徑跳轉的方法。"
 ---
 
 # iOS 如何把 Twitter 換成原本 Logo？全網唯一不用捷徑！沒有跳轉！

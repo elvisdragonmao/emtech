@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-23
+description: "昨天我們只是一個人的色而已，今天疊在一起更刺激。"
 ---
 
 # Day9 給你五彩斑斕的黑：mix-blend-mode

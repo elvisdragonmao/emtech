@@ -3,6 +3,7 @@ authors: elvismao
 tags: [iOS 捷徑]
 categories: [生活駭客]
 date: 2022-01-06
+description: "在這篇文章我要介紹 Remove.bg 這個超讚的去被網站，並講解如何使用它提供的 Api 來製作捷徑，使你能夠一鍵去被"
 ---
 
 # 【Remove.bg】讓 AI 幫你一鍵去背

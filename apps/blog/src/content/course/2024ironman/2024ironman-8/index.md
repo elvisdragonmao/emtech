@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-21
+description: "「知者不惑，仁者不憂，勇者不懼。」因為他們都有使用 eslint。"
 ---
 
 # 今天不講 DVD，來談談 CI/CD - eslint 與 pylint

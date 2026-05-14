@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-29
+description: "昨天我們做了一個開關，那麼我們今天就來做一個選單吧！"
 ---
 
 # Day15 今天我想來點...純 CSS 的並排選單

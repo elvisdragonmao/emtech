@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-18
+description: "《史記·秦始皇本紀》：「書同文，車同軌。」秦始皇做專案一定會設定會用 Prettier，讓程式格式一致。"
 ---
 
 # 用 Prettier 統一天下 - 讓程式碼格式一致

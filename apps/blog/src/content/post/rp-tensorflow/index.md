@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Raspberry Pi, Tensorflow, Python, Jupyter Notebook, 機器學習]
 categories: [軟體開發]
 date: 2024-05-01
+description: "本文將教你如何在 Raspberry Pi 樹莓派 上安裝 Tensorflow 以及 Jupyter Notebook。"
 ---
 
 # 如何在 Raspberry Pi 上安裝 Tensorflow? (含 Jupyter Notebook)

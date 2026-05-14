@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Git]
 categories: [軟體開發]
 date: 2024-08-27
+description: "在使用 Git 的過程中，我偶然發現了一個指令，徹底改變了我處理檔案變更的方式——這就是 git add -A。"
 ---
 
 # 你不知道的 git add -A

@@ -3,6 +3,7 @@ authors: elvismao
 tags: [PDF, Terminal, Windows, macOS, Android]
 categories: [生活駭客]
 date: 2022-09-06
+description: "用 PDF Toolkit pdftk 一行指令完成各種 PDF 處裡！"
 ---
 
 # 【pdftk】萬能 PDF 工具！一行指令合併 旋轉 提取

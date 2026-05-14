@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-11
+description: "今天我們要來製作 iT 邦幫忙首頁的導覽列。我們先來看看原本的網站。"
 ---
 
 # Day 27 iT 邦幫忙::一起幫忙製作導覽列，拯救第 27 天

@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Apple]
 categories: [科技趨勢]
 date: 2024-05-07
+description: "在今天 2024 年 5 月 7 日的蘋果發布會 Apple Events 上，他們帶來全新的 iPad Pro、更大的 iPad Air，以及全新的 Apple Pencil Pro。讓我們來看看這次的發布會有哪些亮點。"
 ---
 
 # 蘋果 2024 5 月發布會懶人包 - Apple Pencil Pro 有陀螺儀還會震動，iPad Pro 減掉瀏海

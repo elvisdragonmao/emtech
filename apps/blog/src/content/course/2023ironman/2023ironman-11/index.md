@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-25
+description: "你有看過這種頁面往下滾，但圖片位置沒有往下的效果嗎？"
 ---
 
 # Day11 說滾不是真的要你滾 - 背景滾動視差

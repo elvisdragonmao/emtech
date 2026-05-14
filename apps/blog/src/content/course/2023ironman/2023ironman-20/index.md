@@ -4,6 +4,7 @@ tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", CSS, JavaScript, GPU]
 categories: [網頁開發]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-04
+description: "今天我們要來探討如何善用使用者的 GPU 資源，讓網頁的動畫更加順暢。我盡量讓內容簡單易懂，可以當一篇科普文章閱讀。"
 ---
 
 # Day20 GPU! 啟動！- 淺談 CSS3 硬體加速

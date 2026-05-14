@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-08
+description: "今天我們要來做這個紓壓的效果："
 ---
 
 # Day24 CSS 相融黏滯效果

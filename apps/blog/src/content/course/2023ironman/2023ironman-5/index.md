@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-19
+description: "假設你今天想製作這個載入動畫…"
 ---
 
 # Day5 載入中… Animation-delay

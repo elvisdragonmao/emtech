@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-10-08
+description: "《山河頌》：「外賊易擋，家賊難防」套件的漏洞常常難以發現，還好有 Dependabot 可以定期檢查。"
 ---
 
 # 自動化安全掃描與漏洞檢查 - 使用 Dependabot 和 GitHub Actions

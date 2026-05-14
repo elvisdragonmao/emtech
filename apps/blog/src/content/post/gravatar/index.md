@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Gravatar, Jitsi]
 categories: [生活駭客]
 date: 2024-03-15
+description: "你是否常常煩惱每次更換頭像每個社群平台都需要一個個更換？或著是你是一位程式發者想要自動獲的頭像不用一個個抓？今天我要來和你分享 Gravatar（全球通用頭像），以及介紹他的使用方式。"
 ---
 
 # 如何設定全球通用頭像 Gravatar？以 Jitsi 為例

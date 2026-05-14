@@ -4,6 +4,7 @@ tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 categories: [網頁開發]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-09
+description: "我們今天要來做幾份漢堡選單。"
 ---
 
 # Day25 有料的 CSS 漢堡選單

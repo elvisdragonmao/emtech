@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-03
+description: "最討厭的廣告就是彈出式 Lightbox 廣告了，他會突然跳出來，然後你要去找那個超小的叉叉關掉他。今天我們不是要重現煩人的廣告，而是要來認識 CSS 選擇器 :target 並做出以下效果。"
 ---
 
 # Day19 純 CSS 做出彈出式 Lightbox

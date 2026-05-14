@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-27
+description: "老子能夠無為而治，正是因為他掌握了 GitHub Actions 自動化部屬。"
 ---
 
 # 直上天雲 - 自動化部屬

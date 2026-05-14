@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-27
+description: "昨天的內容是不是有一點燒腦？沒關係，今天來點輕鬆的，只有一行 JavaScript。不管是在線上的文書軟體、製作網站的網站、或甚至是 iOS StandBy 都會有顏色選單。今天我們就來做一個極簡的吧，還要加上自訂顏色的。"
 ---
 
 # Day13 今天我想來點… 顏色選單

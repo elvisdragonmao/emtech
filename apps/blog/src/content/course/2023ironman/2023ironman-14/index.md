@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-28
+description: "在手機開關的設定裡面通常不是 checkbox，而是這種 toggle 開關。因為比較好看，且更有開關的感覺。"
 ---
 
 # Day14 今天我想來點… 純 CSS 的開關

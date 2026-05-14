@@ -3,6 +3,7 @@ authors: elvismao
 tags: [GitHub, Hugo]
 categories: [軟體開發]
 date: 2022-08-17
+description: "每次寫完文章還要打指令生成網站，麻煩死了！讓 GitHub Actions 幫你自動部署，寫完文章直角上傳就好了！"
 ---
 
 # 【GitHub Actions】自動部署你的 Hugo 網站

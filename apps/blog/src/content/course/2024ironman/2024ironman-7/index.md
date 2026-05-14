@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-20
+description: "《禮記·中庸》「凡事預則立，不預則廢。」說明了如果沒有預先設定事件觸發器，需要時 Action 也不會執行。"
 ---
 
 # 時間差不多囉 - 事件觸發器

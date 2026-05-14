@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-15
+description: "「有朋自遠方來，不亦樂乎」應該算是孔子的 Hello World 吧。"
 ---
 
 # Hello World - 運行 Shell 指令

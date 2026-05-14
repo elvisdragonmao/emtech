@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-25
+description: "甚麼是條件運行？孟子說：「生，事之以禮；死，葬之以禮；祭，事之以禮。」"
 ---
 
 # 一切都是有條件的 - 環境變數和條件運行

@@ -4,6 +4,7 @@ tags: ["網棧"]
 categories: []
 thumbnail: ../webpallet-0/thumbnail.webp
 date: 2023-06-05
+description: "此系列已停更，歡迎可以參考我重新專寫的網頁開發教學。 此主題新版的對應文章為：環境建置與 HTML 完全指南"
 ---
 
 # EP.2 5 分鐘完結 HTML

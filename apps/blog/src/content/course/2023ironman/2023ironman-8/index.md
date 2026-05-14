@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-22
+description: "今天這一篇是一個很色的冷知識分享。可以讓你調出很冷的顏色。"
 ---
 
 # Day8 滿足你的色域！color: color

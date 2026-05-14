@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-22
+description: "《論語．公冶長》：「聽其言而觀其行。」說明了 unit test 的重要性。"
 ---
 
 # Jest Do It - 運行單元測試

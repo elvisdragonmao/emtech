@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-07
+description: "今天我們會提到幾個不同的原理。你可以像生菜沙拉一樣自己條配。"
 ---
 
 # Day23 優雅的漸層動畫 - 隨機而有秩序

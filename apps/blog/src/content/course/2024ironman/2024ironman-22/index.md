@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-10-05
+description: "「讀書人的事，能算偷麼？」孔乙己如果是使用 GitHub Actions 運行爬蟲腳本，就不會被人發現還打斷腳了。"
 ---
 
 # 特選簡章 Discord 通知 - 爬蟲腳本與資料處理

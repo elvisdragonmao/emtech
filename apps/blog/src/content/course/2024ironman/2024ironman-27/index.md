@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-10-10
+description: "王貞白曾感嘆「一寸光陰一寸金」，可見最佳化工作流程運行時間的重要性。畢竟 GitHub Actions 在私人倉庫中可不是無限免費的！"
 ---
 
 # 最佳化工作流程運行時間：使用 GitHub Actions 快取來加速構建

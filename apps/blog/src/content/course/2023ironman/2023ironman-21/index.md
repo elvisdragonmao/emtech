@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-05
+description: "今天是第二十一天，已經走完 2/3 的路程，我媽還以為我早被淘汰了。這個系列明明是叫【不用庫 也能酷 - 玩轉 CSS & Js 特效】，但 Js 出現了幾篇？有五篇嗎？難道 JavaScript 是來湊關鍵字的嗎？今天。"
 ---
 
 # Day21 就是要對決 - CSS 和 JS 動畫，哪個更絲滑？
