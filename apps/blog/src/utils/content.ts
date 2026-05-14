@@ -13,6 +13,8 @@ type ThumbnailEntry = {
 	};
 };
 
+type ThumbnailMap = Record<string, { default: ImageMetadata }>;
+
 export type MetaItem = {
 	label: string;
 	value: string;
@@ -87,22 +89,34 @@ export function normalizeImportPath(path: string): string {
 	return `/${parts.join("/")}`;
 }
 
-export function resolvePostThumbnail(entry: ThumbnailEntry, thumbnails: Record<string, { default: ImageMetadata }>): ImageInput {
-	const thumbnail = entry.data.thumbnail?.trim();
+function resolveContentThumbnail(thumbnail: string | undefined, basePath: string, fallbackPath: string, thumbnails: ThumbnailMap): ImageInput {
+	const value = thumbnail?.trim();
 
-	if (thumbnail) {
-		if (/^https?:\/\//i.test(thumbnail) || thumbnail.startsWith("/")) return thumbnail;
+	if (value) {
+		if (/^https?:\/\//i.test(value) || value.startsWith("/")) return value;
 
-		const publicPath = thumbnail.match(/(?:^|\/)public\/(.+)$/)?.[1];
+		const publicPath = value.match(/(?:^|\/)public\/(.+)$/)?.[1];
 		if (publicPath) return `/${publicPath}`;
 
-		const thumbKey = normalizeImportPath(`/src/content/post/${entry.id}/${thumbnail}`);
+		const thumbKey = normalizeImportPath(`${basePath}/${value}`);
 		const image = thumbnails[thumbKey]?.default;
 		if (image) return image;
 	}
 
-	const fallbackKey = normalizeImportPath(`/src/content/post/${entry.id}/thumbnail.webp`);
-	return thumbnails[fallbackKey]?.default ?? null;
+	return thumbnails[normalizeImportPath(fallbackPath)]?.default ?? null;
+}
+
+export function resolvePostThumbnail(entry: ThumbnailEntry, thumbnails: ThumbnailMap): ImageInput {
+	return resolveContentThumbnail(entry.data.thumbnail, `/src/content/post/${entry.id}`, `/src/content/post/${entry.id}/thumbnail.webp`, thumbnails);
+}
+
+export function resolveCourseThumbnail(entry: ThumbnailEntry, thumbnails: ThumbnailMap): ImageInput {
+	return resolveContentThumbnail(entry.data.thumbnail, `/src/content/course/${entry.id}`, `/src/content/course/${entry.id}/thumbnail.webp`, thumbnails);
+}
+
+export function resolveLessonThumbnail(entry: ThumbnailEntry, thumbnails: ThumbnailMap): ImageInput {
+	const thumbnail = entry.data.thumbnail?.trim();
+	return resolveContentThumbnail(thumbnail, `/src/content/course/${entry.id}`, `/src/content/course/${entry.id}/thumbnail.webp`, thumbnails);
 }
 
 export type { ImageMetadata };
