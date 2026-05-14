@@ -4,6 +4,7 @@ tags: ["網棧"]
 categories: []
 thumbnail: ../webpallet-0/thumbnail.webp
 date: 2023-06-12
+description: "此系列已停更，歡迎可以參考我重新專寫的網頁開發教學。 此主題新版的對應文章為：CSS 教學：從入門到精通"
 ---
 
 # EP.3 10 分鐘 基本 CSS 教學

@@ -3,6 +3,7 @@ authors: elvismao
 tags: [自製, JavaScript, Google Apps Script, Line]
 categories: [生活駭客]
 date: 2023-02-22
+description: "你是否有群組充滿著垃圾訊息？用 Line Bot & Line Notify 轉發重要訊息給自己！不用程式經驗，複製貼上就好了！"
 ---
 
 # 【Google Apps Script】用 Line Bot & Line Notify 轉發群組訊息給自己

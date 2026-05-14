@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-30
+description: "今天我們要來製作一個時鐘。不使用圖片，只使用 CSS 來繪製。我的目標是可以做出類似於 Apple iOS17 StandBy 的時鐘效果。"
 ---
 
 # Day16 今天我想來...欸現在幾點？- CSS 畫出 iOS 時鐘

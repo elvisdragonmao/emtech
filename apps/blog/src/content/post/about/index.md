@@ -4,8 +4,7 @@ tags: []
 categories: [關於]
 date: 2024-10-17
 description: 毛哥EM資訊密技是毛哥EM 的資訊密技
-thumbnail: ../../../public/img/og.webp
-
+thumbnail: /img/og.webp
 ---
 
 # 關於本站

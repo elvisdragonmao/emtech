@@ -1,8 +1,9 @@
 ---
 authors: elvismao
 tags: [iOS, iPadOS]
-categories: [生活駭客，科技趨勢]
+categories: [生活駭客, 科技趨勢]
 date: 2023-06-08
+description: "iOS17 在 6/6 號發佈，且在昨天釋出測試版。以下是我整理出來目前 Apple 官方釋出遇到的問題及解決方案，希望能幫助到你。"
 ---
 
 # 所有 iOS & iPadOS 17 Beta 問題整理

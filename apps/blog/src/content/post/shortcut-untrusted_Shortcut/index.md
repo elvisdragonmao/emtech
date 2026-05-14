@@ -3,6 +3,7 @@ authors: elvismao
 tags: [iOS 捷徑]
 categories: [生活駭客]
 date: 2021-06-04
+description: "如果碰見這問題，可以透過這個簡單的方法來解決。"
 ---
 
 # 【捷徑】怎麼加入不受信任的捷徑？

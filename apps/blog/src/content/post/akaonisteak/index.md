@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Android]
 categories: [生活駭客]
 date: 2023-02-13
+description: "赤鬼牛排店之前是使用服務鈴，現在是使用 Samsung Galaxy 的平板進行點餐。想必會有可愛的小朋友拿它來看影片或玩遊戲，而赤鬼基於安全考量後來加了應用程式鎖，而這篇文章就要教你如何破解它開啟你想開的軟體"
 ---
 
 # 破解赤鬼牛排店的平板限制

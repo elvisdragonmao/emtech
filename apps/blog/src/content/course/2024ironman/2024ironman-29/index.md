@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-10-12
+description: "倒數第二天了，各位今年有參加鐵人賽嗎？記得去年寫【不用庫 也能酷 - 玩轉 CSS & Js 特效】的時候緊張到好幾天晚上做惡夢夢到忘記發文，不過今天我心裡特別平安，因為我寫了一個 GitHub Actions 來提醒我。"
 ---
 
 # 鐵人賽怕忘記發文？讓 GitHub Actions 每小時提醒你！

@@ -3,6 +3,7 @@ authors: elvismao
 tags: [iOS]
 categories: [生活駭客]
 date: 2023-01-17
+description: "iOS、iPadOS、還有所有 Apple 的系統在正式發布之前都會向部分的使用者提供搶先版 Beta Version 讓使用者體驗，來蒐集回饋包括問題回報或是功能建議。這篇文章會教你如何加入 Apple 的 Beta。"
 ---
 
 # 【iOS】進入/退出 Apple Beta 的世界 搶先體驗新功能

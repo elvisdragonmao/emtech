@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-17
+description: "宋·張端義《貴耳集》上卷：「言簡理盡，遂成王言。」可見檔案壓縮十分重要。"
 ---
 
 # 弄好了給你 - 上傳與下載工件（artifact）

@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-16
+description: "GitHub Actions 如同九方皋相馬，見其所見，不見其所不見；視其所視，而遺其所不視。預設環境是讀不到 Code 的，要使用 actions/checkout 才能讀取 repo 內容。"
 ---
 
 # 幫我結帳 - 自動化 Git 操作

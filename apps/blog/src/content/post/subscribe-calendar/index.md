@@ -3,6 +3,7 @@ authors: elvismao
 tags: [iOS, 自製]
 categories: [生活駭客]
 date: 2024-01-12
+description: "在這篇文章中，我要教你如何將 Google 行事曆輕鬆加入你的 Apple 日曆中，方便你隨時掌握校園或者活動動態。讓我們開始吧！"
 ---
 
 # 教學：將學校行事曆輕鬆加入 Apple 日曆

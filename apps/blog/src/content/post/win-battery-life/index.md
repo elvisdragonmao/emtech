@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Windows]
 categories: [生活駭客]
 date: 2022-12-03
+description: "在 Windows11 無須依靠第三方軟體，只需要一行指令即可輕鬆取得電池的使用記錄和資訊。"
 ---
 
 # 【Win11】取得電池報告！查看健康度、充電次數、歷史！

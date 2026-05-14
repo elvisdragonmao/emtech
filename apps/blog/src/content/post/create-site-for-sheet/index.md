@@ -1,8 +1,9 @@
 ---
 authors: elvismao
 tags: [自製, HTML, CSS, JavaScript, GitHub, Google Apps Script, 複製貼上就能成為工程師]
-categories: [軟體開發，生活駭客]
+categories: [軟體開發, 生活駭客]
 date: 2022-08-14
+description: "直接把整個試算表連結發給別人除了要載入很久且會出現一堆不需要的按鍵，整個畫面很醜很沒有質感。而且如果你把其他隱私的資料也放在裡面，都會被一次看光光。那我們就來幫試算表包個糖衣吧"
 ---
 
 # 【Google Apps Script】複製貼上讓試算表變身成網頁表格 秀爆你的客戶朋友！

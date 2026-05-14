@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Tampermonkey, JavaScript]
 categories: [生活駭客]
 date: 2024-05-13
+description: "這個腳本能在 GitHub 頁面上添加一個按鈕，點擊後即可複製倉庫名（owner/repo）"
 ---
 
 # Tampermonkey 腳本 - 一鍵複製 GitHub 倉庫名

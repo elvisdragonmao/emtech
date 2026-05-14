@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-24
+description: "水果冰淇淋喜歡你，GitHub Secrets 在這裡。 《易經》：「亂之所生也，則言語以為階。君不密則失臣，臣不密則失身」說明了把 token 存在 Secrets 的重要性。"
 ---
 
 # 告訴你一個大秘密 - 如何在 GitHub Actions 中使用 Secrets

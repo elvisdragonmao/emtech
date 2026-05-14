@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-26
+description: "以下內容是我高一在上公民課時體悟的數學大道理，和網路上大多的做法都不太一樣。這篇文章假設你已學會國中直線方程式。如果不會的話…我也沒辦法。"
 ---
 
 # Day12 Js 滾動視差 甚麼都能滾 (ft. 國中數學)

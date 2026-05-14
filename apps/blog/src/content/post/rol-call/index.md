@@ -1,8 +1,9 @@
 ---
 authors: elvismao
 tags: [HTML, CSS, JavaScript, GitHub, Google Apps Script, 複製貼上就能成為工程師]
-categories: [生活駭客，軟體開發]
+categories: [生活駭客, 軟體開發]
 date: 2023-05-01
+description: "本文將教授如何使用程式製作一個簡單的點名網頁。透過這個點名系統，你可以方便地管理你的學生出席狀況，並且隨時查詢歷史出席紀錄。我們將使用 Google Apps Script, GitHub 和 Google Sheets。"
 ---
 
 # 自製免費點名系統

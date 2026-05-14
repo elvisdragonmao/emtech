@@ -3,6 +3,7 @@ authors: elvismao
 tags: [自製, iOS 捷徑]
 categories: [生活駭客]
 date: 2021-08-13
+description: "我保證這是史上最快的簡訊實名制方法"
 ---
 
 # 【捷徑】史上最快簡訊實名制

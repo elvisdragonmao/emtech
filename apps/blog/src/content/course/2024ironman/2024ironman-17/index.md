@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-30
+description: "孔子能從心所欲不逾矩。正是因為他已經掌握 GitHub Actions，能夠根據自己的需求自動化操作。"
 ---
 
 # 有人在水 - 統計 Notion 待辦事項放到 Discord 頻道

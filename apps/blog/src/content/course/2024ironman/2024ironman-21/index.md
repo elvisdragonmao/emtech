@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-10-04
+description: "不如虎穴，焉得虎子，說明了 pyinstaller 要打包 macOS 的執行檔一定要在 macOS 環境運行。"
 ---
 
 # 我沒錢買 MacBook - 自動化多平台 Python 應用打包

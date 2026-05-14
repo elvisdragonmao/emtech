@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-24
+description: "這是我高一在學校吃肉蛋吐司時想到的做法，因此此篇文章假設你已熟悉國小數學。"
 ---
 
 # Day10 永無止境跑馬燈 - 不同螢幕 相同速度

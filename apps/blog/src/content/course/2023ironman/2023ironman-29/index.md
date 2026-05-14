@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS, JavaScript]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-13
+description: "相信大家對於這個頁面都不陌生吧。這是我們 2023 iThome 鐵人賽的首頁。我覺得他的粒子特效和地球很酷，所以我們今天就來看看怎麼做吧。"
 ---
 
 # Day 29 鐵人賽太空粒子的例子

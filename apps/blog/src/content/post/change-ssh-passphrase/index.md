@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Terminal, SSH]
 categories: [軟體開發]
 date: 2022-08-19
+description: "SSH 是一種簡單的登入方式。以我來說在使用 git 來上傳檔案到 GitHub 時，因為我在手機生成並設定好了 ssh，不用每次上傳都需要輸入帳號和全是亂碼的驗證密碼。不過也可以設定在使用 SSH 登入的時候需要輸入一。"
 ---
 
 # 【終端機】輕鬆更改 SSH 的驗證碼 passpharase

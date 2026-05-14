@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-20
+description: "在使用 CSS 做網站時幾乎一定會使用到 position 屬性，不過你真的知道它的原理和使用方式嗎？雖然乍看之下感覺很複雜但其實超簡單，你只需要幾分鐘就能完全理解了。"
 ---
 
 # Day6 你怎在這？攻克 Position

@@ -1,8 +1,9 @@
 ---
 authors: elvismao
 tags: [JavaScript, Google Apps Script, API, Line]
-categories: [軟體開發，科技趨勢]
+categories: [軟體開發, 科技趨勢]
 date: 2024-05-16
+description: "Line 在 2024/04/17 推出了新的 Messaging API，其中一個功能是可以顯示思考中動畫。讓使用者知道機器人正在思考中，並不是已讀不回。對於現在許多機器人會串接 LLM API 的應用來說，這個功能非。"
 ---
 
 # Line bot 新 API! Messaging API 顯示思考中動畫

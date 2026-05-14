@@ -3,6 +3,7 @@ authors: elvismao
 tags: [iOS, iPadOS]
 categories: [科技趨勢]
 date: 2023-06-09
+description: "iOS 17 與 iPadOS 17 在今年 6/6 號發佈，而隔天就開放 developer beta 版給我們使用了，可以說是最快的一次。儘管在發佈會上 iPadOS 的篇幅並不多，但多了很說實用的小更新，以及介面質。"
 ---
 
 # iPadOS 17 真實心得 官方沒講的秘密，質感體驗的大升級（不斷更新）

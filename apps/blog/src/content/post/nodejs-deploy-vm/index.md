@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["Linux", "Node.js", "Nginx", "Cloudflare", "SSL"]
 categories: [軟體開發]
 date: 2024-05-31
+description: "今天我們寫完了一個 Node.js 專案，接下來要部屬到虛擬機上。這篇文章將會教你如何使用 pm2 來管理 Node.js 專案，nginx 來轉發 HTTP 請求，最後使用 Cloudflare 來設定 DNS 和 S。"
 ---
 
 # 部署 Node.js 專案到虛擬機上 - pm2, nginx 一次上手

@@ -3,6 +3,7 @@ authors: elvismao
 tags: [iOS, HomeKit, Arduino, ESP32, 自製]
 categories: [生活駭客]
 date: 2024-01-09
+description: "你有沒有在遠端想要控制電腦，但是電腦沒有開機？或著是享受一回到家電腦已經開好了的爽快。於是你研究如何使用 Wake On Lan，但是發現一定要用有線網路不能用 Wi-Fi? 看不到狀態就算了有時候還會失效？"
 thumbnail: ./power.webp
 ---
 

@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-10-13
+description: "愛爾蘭詩人葉慈：「學習不是注滿一桶水，而是點燃一把火。"
 ---
 
 # 是時候 Action 了。

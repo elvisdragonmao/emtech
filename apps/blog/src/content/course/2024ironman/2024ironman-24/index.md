@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-10-07
+description: "嬌娘對王安石進行心理上的壓力負載測試後寫下了性能報告：「宰相肚裡能撐船」"
 ---
 
 # 自動化性能測試 - 使用 GitHub Actions 進行負載測試與生成性能報告

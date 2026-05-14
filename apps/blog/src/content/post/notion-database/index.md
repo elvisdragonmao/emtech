@@ -1,8 +1,9 @@
 ---
 authors: elvismao
 tags: [Notion, Python, PDF, Google Colab, 自製]
-categories: [生活駭客，軟體開發]
+categories: [生活駭客, 軟體開發]
 date: 2024-02-22
+description: "Notion 是一個出色的筆記軟體，但是有一個問題是它的資料庫即使是教育方案依舊無法批量輸出 PDF。這對於我來說非常不方便，因為每次打辯論都需要輸出六七十份頁面，每頁都要花個 15 秒才能下載，還要解壓縮，合併 PDF。"
 ---
 
 # Notion 資料庫如何免費批量輸出 PDF，並且合併？

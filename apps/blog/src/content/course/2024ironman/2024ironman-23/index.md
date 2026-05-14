@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-10-06
+description: "子曰：「不在其位，不謀其政。」說明了多階段工作流程的重要性。"
 ---
 
 # 不在其位，不謀其政 - 多階段 CI/CD 流程

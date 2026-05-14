@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-10-11
+description: "《荀子 ─ 勸學》：「不積跬步，無以致千里；不積小流，無以成江海。」"
 ---
 
 # 無國界倉庫 - 管理多倉庫的自動化工作流程

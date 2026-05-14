@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Linux, SSH]
 categories: [軟體開發]
 date: 2024-06-24
+description: "在某些情況下，例如學校或公司網路封鎖了 SSH 預設的 22 埠，你可能需要更改 SSH 伺服器的埠號來確保連接。更改埠號還可以增加一層安全性，因為攻擊者通常會針對常見的 22 埠進行掃描和攻擊。"
 ---
 
 # 如何更改 SSH 預設埠

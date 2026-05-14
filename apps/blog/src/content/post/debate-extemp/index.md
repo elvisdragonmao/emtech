@@ -3,6 +3,7 @@ authors: elvismao
 tags: [辯論]
 categories: [英文辯論]
 date: 2025-06-27
+description: "Extemporaneous Debate 簡稱 Extemp 是一種節奏十分快速的英文辯論賽制。一對一單人辯論，選手在比賽前三十分鐘才知道辯題，並由系統隨機指定正反方。這是 NSDA（美國全國中學生演講與辯論聯賽）設計。"
 ---
 
 # Extemporaneous Debate - 台上兩分鐘，台下半小時

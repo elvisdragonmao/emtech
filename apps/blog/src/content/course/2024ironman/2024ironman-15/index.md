@@ -3,6 +3,7 @@ authors: elvismao
 tags: ["看好了 GitHub Actions, 我只示範一次", GitHub Actions, Node.js, DevOps]
 categories: [自動化]
 date: 2024-09-28
+description: "《史記》「以貌取人，失之子羽」說明了 SSH 身分驗證的重要性。"
 ---
 
 # 這是我家鑰匙 - SSH 自動化部署

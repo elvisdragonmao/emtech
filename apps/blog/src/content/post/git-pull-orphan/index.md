@@ -3,7 +3,7 @@ authors: elvismao
 tags: [Git]
 categories: [軟體開發]
 date: 2025-05-04
-description:
+description: "當我們 force push 了一個孤兒（orphan）分支到 GitHub，結果換電腦以後 Git 提示我分支出現偏離，拉不下來也推不上去。今天我們要來討論這個問題發生的原因，還有應該怎麼安全地處理。"
 ---
 
 # Git force push orphan branch 其他人不能 pull 怎麼辦？

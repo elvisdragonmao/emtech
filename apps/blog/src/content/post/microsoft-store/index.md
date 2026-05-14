@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Windows, Microsoft Store, Terminal]
 categories: [精選, 生活駭客]
 date: 2023-12-05
+description: "Microsoft Store 是 Windows 內建的應用程式商店。理論上它應該是一個很方便的東西，能夠安全的下載應用程式。但是實際上他的 Bug 很多，很多時候會因為一些奇怪的原因無法使用。最常見的就是 Windo。"
 ---
 
 # 如何不透過 Microsoft Store 安裝 Microsoft Store 的應用程式

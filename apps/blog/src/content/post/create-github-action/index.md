@@ -3,6 +3,7 @@ authors: elvismao
 tags: [GitHub, Node.js]
 categories: [軟體開發]
 date: 2024-04-01
+description: "GitHub Actions 是 GitHub 提供的一個 CI/CD 服務，可以讓你在 GitHub 上自動化你的工作流程，幫你生成文件、測試安全性、部署應用程式等等。而 GitHub Marketplace 則是一個。"
 ---
 
 # 如何自製 GitHub Actions 並上架至 Marketplace

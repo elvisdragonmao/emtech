@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-16
+description: "記得我在國一寫 HTML 的時候，傻傻的在那裡打小於、h1、大於、標題、小於、斜線、大於。我的朋友甚至發現了一個偷吃步就是先打好一堆大於小於，然後再填空。"
 ---
 
 # Day2 如何打的更快 | Emmet & 預測輸入

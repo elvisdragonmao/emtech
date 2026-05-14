@@ -1,9 +1,10 @@
 ---
 authors: elvismao
-categories: [生活雜談，網頁開發]
+categories: [生活雜談, 網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效"]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-10-14
+description: "不知不覺，三十天的鐵人賽就要結束了。一開始還覺得時間很漫長，但到了二十幾天之後我開始發現時間不多了，十分珍惜每一次能夠和大家分享的機會。"
 ---
 
 # Day30 三十天的血與淚 - 密技

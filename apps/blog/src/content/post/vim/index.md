@@ -3,6 +3,7 @@ authors: elvismao
 tags: [Terminal, Vim]
 categories: [程式教學]
 date: 2023-02-13
+description: "如果你正在尋求一款快速、高效和功能強大的文本編輯器，那麼 Vim 可能是你的最佳選擇。"
 ---
 
 # 【終端機】快速上手 Vim

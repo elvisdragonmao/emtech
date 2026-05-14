@@ -4,6 +4,7 @@ categories: [網頁開發]
 tags: ["不用庫 也能酷 - 玩轉 CSS & Js 特效", HTML, CSS]
 thumbnail: ../2023ironman-1/thumbnail.webp
 date: 2023-09-21
+description: "CSS 的濾鏡屬性是一個非常實用且可以瞬間讓一個網頁看起來很厲害的功能。讓你可以以各種方式修改和調整圖像和元素的呈現方式，也可以讓元素模糊，或者是直接改變圖示顏色等等。今天我們將深入探討 CSS filter 屬性，解釋。"
 ---
 
 # Day7 幫我開濾鏡 filter

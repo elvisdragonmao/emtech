@@ -3,6 +3,7 @@ authors: elvismao
 tags: [DNS, SSL]
 categories: [軟體開發]
 date: 2024-06-30
+description: "當你的 Certbot SSL 過期時，更新過程可能會出現各種問題，尤其是在使用手動插件時。這篇文章將介紹如何解決 Certbot 手動插件更新失敗的問題，並提供一個完整的解決方案，幫助你順利更新 SSL 憑證。"
 ---
 
 # 解決 Certbot SSL 更新失敗 - The manual plugin is not working

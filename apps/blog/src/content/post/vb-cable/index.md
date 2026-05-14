@@ -3,6 +3,7 @@ authors: elvismao
 tags: [OBS, Windows]
 categories: [生活駭客]
 date: 2021-08-14
+description: "使用 OBS 攝取 Zoom 的視窗。"
 ---
 
 # 【Zoom】是個超讚綠幕！輕鬆去背到 OBS

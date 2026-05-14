@@ -3,6 +3,7 @@ authors: elvismao
 tags: [網址縮短]
 categories: [生活駭客]
 date: 2021-08-16
+description: "太長的網址常除了不好看占版面之外，也難以令人記住。因此所短網址是一個不錯的做法。而其中我最常用的就是 is.gd，因為它 is good"
 ---
 
 # 【is.gd】超好用網址縮短！連 Apple 都在用

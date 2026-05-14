@@ -3,7 +3,7 @@ authors: elvismao
 tags: [Git, VSCode]
 categories: [軟體開發]
 date: 2025-03-20
-description:
+description: "Git pull 的兩種策略"
 ---
 
 # 如何設定 VSCode Git pull 使用 rebase 而不是 merge
