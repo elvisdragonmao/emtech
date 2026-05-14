@@ -9,7 +9,7 @@ date: 2024-05-16
 
 Line 在 2024/04/17 推出了新的 Messaging API，其中一個功能是可以顯示思考中動畫。讓使用者知道機器人正在思考中，並不是已讀不回。對於現在許多機器人會串接 LLM API 的應用來說，這個功能非常實用。為了讓大家更好理解，今天我們先不要急著串接生成式 AI，我們來使用 Google Apps Script 做一個簡單的 Demo 吧！
 
-![成果](result.gif)
+![成果](result.webp)
 
 > 其實這個功能在發布當天我就收到通知了，今天終於抽出時間來玩玩看這個新功能。
 
@@ -121,7 +121,7 @@ function sendReply(replyToken, message) {
 
 現在你可以在 Line 上傳送訊息給你的 Line Bot，你會看到 Line Bot 會回覆你一個思考中的動畫，等待 5 秒後，回應說「好喔」。
 
-![成果](result.gif)
+![成果](result.webp)
 
 ## 結語
 

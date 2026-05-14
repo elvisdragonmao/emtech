@@ -111,7 +111,7 @@ input:checked ~ .light {
 
 https://codepen.io/elvismao/pen/KKbZjOq
 
-![開關成果](final.gif)
+![開關成果](final.webp)
 
 ```html
 <input type="checkbox" id="switch" />

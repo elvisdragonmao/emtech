@@ -10,7 +10,7 @@ date: 2023-09-25
 
 你有看過這種頁面往下滾，但圖片位置沒有往下的效果嗎？
 
-![background-attachment:fixed](scrolling.gif)
+![background-attachment:fixed](scrolling.webp)
 
 這是舊版的毛哥EM資訊密技黑歷史。偷偷告訴你，這個效果只需要一行 CSS 就可以做到。`background-attachment` 屬性可以用來控制背景圖片的滾動方式。在這篇文章中，我們將詳細介紹這個屬性以及如何使用它來實現不同的效果。
 
@@ -38,7 +38,7 @@ body {
 }
 ```
 
-![background-attachment:fixed](scrolling.gif)
+![background-attachment:fixed](scrolling.webp)
 
 這將使背景圖片保持固定，而內容將在其上滾動，建立出一種動態的效果。
 
@@ -68,7 +68,7 @@ body {
 
 來個大範例 <https://codepen.io/elvismao/pen/rNodVbV>
 
-![飯粒範例](scroll.gif)
+![飯粒範例](scroll.webp)
 
 總之，`background-attachment` 屬性是一個強大的工具，可以用來控制背景圖片的滾動方式，從而實現不同的視覺效果。雖然實際功能不大但可以給人一種出乎意料且不會那麼死板的感覺。
 

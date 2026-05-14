@@ -39,11 +39,11 @@ history.replaceState(state, title, url);
 
 喔！成功了！
 
-![跑馬燈](./test.gif)
+![跑馬燈](./test.webp)
 
 然後我又試了幾個不同的效果：
 
-![波浪跑馬燈](./wave.gif)
+![波浪跑馬燈](./wave.webp)
 
 放在毛哥EM 的基地你可以去玩玩：
 

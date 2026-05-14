@@ -12,7 +12,7 @@ date: 2023-09-24
 
 傳統跑馬燈雖然在現代乍看之下是一個又醜又過時的設計，但是如果應用的好的話其實是非常有質感且蠻有趣的。裝飾效果多大於實際用途。
 
-![楓不轉陸轉](maple.gif)
+![楓不轉陸轉](maple.webp)
 
 這是我幫朋友製作的個人網頁，裡面使用跑馬燈搭配旋轉效果。卡頓是因為 GIF 的緣故，如果想看原始網頁可以到[這裡](https://furryart-tw.github.io/artist/Maple/)。
 
@@ -167,7 +167,7 @@ element.style.animation = `marquee ${time}ms forwards linear`;
 
 所以把速率計算都丟入函式內，整理一下樣式，完整程式碼如下。
 
-https://codepen.io/elvismao/pen/YzdZdKv ![跑馬燈成果](final.gif)
+https://codepen.io/elvismao/pen/YzdZdKv ![跑馬燈成果](final.webp)
 
 ```html
 <div class="marquee">

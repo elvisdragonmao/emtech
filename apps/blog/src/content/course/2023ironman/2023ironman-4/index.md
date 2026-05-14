@@ -109,7 +109,7 @@ body {
 
 https://codepen.io/elvismao/pen/RwEamev
 
-![Width Transition](width.gif)
+![Width Transition](width.webp)
 
 ```css
 a::after {
@@ -205,7 +205,7 @@ body {
 animation: drive 3s forwards;
 ```
 
-https://codepen.io/elvismao/pen/NWeKpjj ![drive 3s forwards](car.gif)
+https://codepen.io/elvismao/pen/NWeKpjj ![drive 3s forwards](car.webp)
 
 CSS Animation 的語法如下
 

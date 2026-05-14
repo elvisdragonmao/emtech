@@ -12,7 +12,7 @@ date: 2023-10-12
 
 應用應該不用我多說，不管是公司網站展示產品，學校輪播榮譽榜，還是業界案例輪播介紹都會使用到 slider。而我今天忙到晚上九點半才開始寫文章是因為白天在做這個心理測驗，左右滑動效果也是使用 slider。
 
-![左右滑動心理測驗 slider](slider.gif)
+![左右滑動心理測驗 slider](slider.webp)
 
 不過想到要定位、還要偵測各種滑鼠點擊、移動、手機點擊就十分麻煩。你寫 code 累 debug 累瀏覽器也累要一直監聽…歸剛欸…
 
@@ -236,7 +236,7 @@ itemsContainer.addEventListener("scroll", function () {
 
 https://codepen.io/elvismao/pen/dywrReK
 
-![成果](final.gif)
+![成果](final.webp)
 
 以上就是我今天的分享，我們使用少許的程式碼就做出這個性能十分不錯的陽春 slider。你可以再加上一點裝飾，比如在底下放上顯示目前圖片的小圓點，或是加上自動播放。如果你有興趣可以自己試試看，抓取個數、移動的距離、以及移動的函數上面都有提供。_也需這個系列出書之後就會提到呢!_ 歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 

@@ -10,7 +10,7 @@ date: 2023-10-06
 
 今天我們要來做一些乱薍覼釠亂碼效果。
 
-![成果](final.gif)
+![成果](final.webp)
 
 效過在手，氣氛要有。
 
@@ -231,7 +231,7 @@ div {
 
 https://codepen.io/elvismao/pen/bGOxLoV
 
-![成果](final.gif)
+![成果](final.webp)
 
 ```html
 <h1>ITHOME</h1>

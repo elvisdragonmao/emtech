@@ -14,7 +14,7 @@ date: 2023-10-13
 
 以下是今天我們的目標。為了版面乾淨我省略了上面的文字，只留下熊俠、標題、粒子特效、和地球。且為了讓他不要太長我有稍微縮小了一點。
 
-![重現的太空粒子與地球動畫](final.gif)
+![重現的太空粒子與地球動畫](final.webp)
 
 ## HTML 架構
 
@@ -216,7 +216,7 @@ filter: blur(30px);
 
 https://codepen.io/elvismao/pen/OJrGmyW
 
-![完成後的太空粒子與地球動畫](final.gif)
+![完成後的太空粒子與地球動畫](final.webp)
 
 ```html
 <header>

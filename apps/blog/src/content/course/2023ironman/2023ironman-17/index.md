@@ -42,7 +42,7 @@ body {
 
 如果把它轉起來的話…
 
-![圓角方塊旋轉動畫](spin.gif)
+![圓角方塊旋轉動畫](spin.webp)
 
 ```css
 div {
@@ -64,7 +64,7 @@ div {
 
 https://codepen.io/elvismao/pen/dywjOyw
 
-![使用旋轉圓角方塊製作的波浪](wave.gif)
+![使用旋轉圓角方塊製作的波浪](wave.webp)
 
 這裡關於置中我想補充一個點，就是因為我們已經在使用 `transform: rotate()` 屬性旋轉，所以我沒有用 `translate()`來置中。因為我們知道寬度是 150vw，所以只需要把多出來的 50vw 切一半丟到左邊就可以了。
 
@@ -74,7 +74,7 @@ https://codepen.io/elvismao/pen/dywjOyw
 
 https://codepen.io/elvismao/pen/JjwBbgg
 
-![純 CSS 波浪進度條成果](final.gif)
+![純 CSS 波浪進度條成果](final.webp)
 
 可以看出我有疊第二個，並且微調顏色圓角，並稍微延遲，讓他看起來不要過度整齊。外框是先疊一層白色 `border`，再一層藍色 `outline`。最後再加上一個文字，就完成了。
 

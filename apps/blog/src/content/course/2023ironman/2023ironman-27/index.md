@@ -16,7 +16,7 @@ date: 2023-10-11
 
 沒事我有先截圖。
 
-![成果](original.gif)
+![成果](original.webp)
 
 你有注意到嗎？第二排的導覽列在往下滾之後會固定在上方，並顯示出縮小版的 Logo。我覺得蠻可愛的，一個好的 UI 就事要有這種平常不會注意但讓體驗很順暢舒服的小巧思。我們來搭配昨天的 Animate On Scroll 原理來製作吧。
 
@@ -241,7 +241,7 @@ HTML 加上圖片
 
 iT 邦幫忙的作法是把右邊的選單用 `transform:translate()` 往左平移遮住它。我把上面的選單設成半透明讓你看。
 
-![半透明看選單移動效果](cover.gif)
+![半透明看選單移動效果](cover.webp)
 
 這個方法很不錯，但我今天想和你分享另外一個做法。就是直接使用 width 控制。
 
@@ -266,7 +266,7 @@ nav > div > img {
 
 https://codepen.io/elvismao/pen/WNLPYON
 
-![成果](final.gif)
+![成果](final.webp)
 
 以上就是我今天的分享，歡迎在 [Instagram](https://www.instagram.com/emtech.cc) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://emtech.cc/)，也歡迎訂閱我新開的[YouTube 頻道：網棧](https://www.youtube.com/@webpallet)。
 
