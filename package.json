@@ -10,9 +10,11 @@
 		"format:check": "prettier --check .",
 		"lint": "pnpm -r typecheck",
 		"new": "node scripts/new-post.mjs",
-		"prepare": "sh -c 'command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1 && git config core.hooksPath .githooks || true'",
+		"prepare": "sh -c 'if command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1; then git config core.hooksPath .githooks; fi'",
 		"test": "pnpm -r test",
-		"typecheck": "pnpm -r typecheck"
+		"typecheck": "pnpm -r typecheck",
+		"verify:file-sizes": "node scripts/verify-file-sizes.mjs",
+		"verify:posts": "node scripts/verify-posts.mjs"
 	},
 	"devDependencies": {
 		"prettier": "^3.8.3",

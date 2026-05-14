@@ -209,3 +209,17 @@ Email 會 normalize 後只儲存 SHA-256 hash，用於產生 Gravatar URL，不�
 ## License
 
 毛哥EM 製作。原始碼以 Apache-2.0，文章以 CC BY-SA 4.0 授權釋出。
+
+感謝以下朋友們的貢獻：
+
+![gthanks contributors](https://gthanks.yorukot.me/image?target=elvisdragonmao%2Femtech&include_bots=false&width=1500&shape=square&limit=2000)
+
+也感謝所有的讀者們。
+
+<a href="https://www.star-history.com/?repos=elvisdragonmao%2Femtech&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=elvisdragonmao/emtech&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=elvisdragonmao/emtech&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=elvisdragonmao/emtech&type=date&legend=top-left" />
+ </picture>
+</a>
