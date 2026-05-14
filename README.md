@@ -1,5 +1,7 @@
 # 毛哥EM資訊密技
 
+[![CI](https://github.com/elvisdragonmao/emtech/actions/workflows/ci.yml/badge.svg)](https://github.com/elvisdragonmao/emtech/actions/workflows/ci.yml) [![Format](https://github.com/elvisdragonmao/emtech/actions/workflows/format.yml/badge.svg)](https://github.com/elvisdragonmao/emtech/actions/workflows/format.yml)
+
 毛哥EM 從國二經營至今的部落格。分享技術、經驗、專案、與生活。
 
 <https://emtech.cc>
