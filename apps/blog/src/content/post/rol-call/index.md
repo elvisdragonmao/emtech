@@ -81,7 +81,7 @@ function doGet(e) {
 https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9MHDxWaOYXFwZgE3rRHDzCakzTxs/exec
 ```
 
-![部屬網頁應用程式](/static/img/gas.webp)
+![部屬網頁應用程式](gas.webp)
 
 ## 步驟三：建立網頁
 
