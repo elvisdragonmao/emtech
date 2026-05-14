@@ -67,7 +67,7 @@ window.addEventListener("scroll", function () {
 
 https://codepen.io/elvismao/pen/vYvZagX
 
-![Alt text](boom.gif)
+![滾動視差爆炸酷！](boom.gif)
 
 ```html
 <h1>引爆炸彈</h1>

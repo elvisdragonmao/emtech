@@ -46,7 +46,7 @@ date: 2023-09-29
 
 CSS 的部分我想要製作使用新擬物化設計 Neumorphism，或是說 Soft UI 的風格。有點像 iPhone3 擬物化設計跟 iPhone5 之後現代扁平化設計結合。有很明顯得陰影但又很有質感。
 
-![](example.webp)
+![新擬物化設計介面範例](example.webp)
 
 來源：[Payment a (Neumorphism)](https://codepen.io/sdbrannum/pen/PowKRGj)
 

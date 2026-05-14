@@ -15,7 +15,7 @@ date: 2024-05-01
 
 當時安裝時我就天真的打入 `pip install tensorflow`...
 
-![](try.webp)
+![pip install tensorflow 安裝失敗畫面](try.webp)
 
 好吧看來沒有那麼簡單。過程中踩到了一些坑，今天就來整理一下安裝的過程。
 
@@ -120,7 +120,7 @@ jupyter notebook
 
 這樣就完成了啦！你的瀏覽器應該會自動開啟 Jupyter Notebook，以下是我運行我的模型並繪製圖表的結果。可以看到整個過程只花費了 4 毫秒。
 
-![](result.png)
+![Jupyter Notebook 執行模型結果](result.png)
 
 之後每次要啟動 Tensorflow 和 Jupyter Notebook 只要輸入以下指令即可。
 
@@ -130,6 +130,6 @@ source .venv/bin/activate
 jupyter notebook
 ```
 
-![](open.webp)
+![啟動 Jupyter Notebook 的終端機畫面](open.webp)
 
 希望這篇文章能夠幫助到你。如果你有任何問題都可以在 IG 留言，也歡迎在 [Instagram](https://www.instagram.com/em.tec.blog) 和 [Google 新聞](https://news.google.com/publications/CAAqBwgKMKXLvgswsubVAw?ceid=TW:zh-Hant&oc=3)追蹤[毛哥EM資訊密技](https://em-tec.github.io/)。

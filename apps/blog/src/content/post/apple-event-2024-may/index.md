@@ -11,7 +11,7 @@ date: 2024-05-07
 
 ## 全新 iPad Pro：超薄、超強
 
-![](look-pro.webp)
+![全新 iPad Pro 外觀](look-pro.webp)
 
 今年的 iPad Pro 不僅在外觀上出奇地輕薄易攜，搭載了全新的 Apple M4 晶片 (直接跳過 M3)，使其性能達到了新的高度。讓我們來看看這款 iPad Pro 的亮點：
 

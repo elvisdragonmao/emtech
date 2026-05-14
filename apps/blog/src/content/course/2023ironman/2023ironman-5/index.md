@@ -12,7 +12,7 @@ date: 2023-09-19
 
 https://codepen.io/elvismao/pen/YzdzvdV
 
-![Alt text](loading.gif)
+![載入中](loading.gif)
 
 可以看出來每個方塊的縮放速度是一樣的，只是越往右下就越有延遲對吧。昨天我們學到可以在 `animation` 設定延遲，其實也可以在 `animation-delay` 個別設定。讓我們來一步步用前面幾天學到的知識做出這個動畫吧。
 
@@ -20,7 +20,7 @@ https://codepen.io/elvismao/pen/YzdzvdV
 
 在想要怎麼切板時可以尋找找齊排列的矩形來群組。以下是我想到的切版方式。
 
-![cut](cut.webp)
+![切版方式](cut.webp)
 
 不知道這樣你知道如何下手了嗎？
 
@@ -166,7 +166,7 @@ https://codepen.io/elvismao/pen/LYMZeZE?editors=1100
 
 有點像 Windows 更新動畫。首先我們先來製作圓圈。我畫了一張圖希望讓你更好理解。
 
-![Alt text](spin.webp)
+![旋轉](spin.webp)
 
 我們把一個正方形放在畫面中間，並在裡面放入一個圓形。只要讓正方形旋轉裡面的圓形就會做圓周運動。我們只需要多疊幾個，並設定動畫的延遲及持續時間即可做出這個動畫。
 

@@ -12,7 +12,7 @@ date: 2023-10-12
 
 應用應該不用我多說，不管是公司網站展示產品，學校輪播榮譽榜，還是業界案例輪播介紹都會使用到 slider。而我今天忙到晚上九點半才開始寫文章是因為白天在做這個心理測驗，左右滑動效果也是使用 slider。
 
-![](slider.gif)
+![左右滑動心理測驗 slider](slider.gif)
 
 不過想到要定位、還要偵測各種滑鼠點擊、移動、手機點擊就十分麻煩。你寫 code 累 debug 累瀏覽器也累要一直監聽…歸剛欸…
 
@@ -44,7 +44,7 @@ scroll-snap-type: both mandatory;
 
 我的用法如下，外元素設定`scroll-snap-type: x mandatory`，內元素設定對齊位置`  scroll-snap-align: center`置中。完整版面如下：
 
-![](layout.webp)
+![scroll-snap slider 版面](layout.webp)
 
 ```html
 <section>
