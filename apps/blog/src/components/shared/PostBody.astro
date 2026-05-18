@@ -931,13 +931,21 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	.article-content :global(.callout-important > strong),
 	.article-content :global(.callout-warning > strong),
 	.article-content :global(.callout-caution > strong) {
-		display: block;
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
 		margin-bottom: 0.45rem;
 		font-family: var(--font-mono);
 		font-size: 1rem;
 		font-weight: 800;
 		line-height: 1.4;
 		color: var(--callout-title);
+	}
+
+	.article-content :global(.callout-icon) {
+		flex: 0 0 auto;
+		width: 1.125rem;
+		height: 1.125rem;
 	}
 
 	.article-content :global(.callout-note > p),
