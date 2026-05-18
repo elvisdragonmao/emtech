@@ -486,7 +486,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		gap: 1rem;
 		margin-bottom: 1rem;
 		padding: 0.75rem 1rem;
-		background: oklch(100% 0 0 / 84%);
+		background: var(--color-surface-glass);
 		border: 1px solid var(--color-border);
 	}
 
@@ -565,7 +565,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		width: 100%;
 		padding: 0.5rem 1rem;
 		color: var(--color-text);
-		background: oklch(100% 0 0 / 84%);
+		background: var(--color-surface-glass);
 		border: 1px solid var(--color-border);
 		outline: none;
 		transition: border-color 160ms ease;
@@ -603,7 +603,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 	.comments :global(.comment-card) {
 		padding: 1rem;
-		background: oklch(100% 0 0 / 88%);
+		background: var(--color-surface-glass-strong);
 		border: 1px solid var(--color-border);
 		display: flex;
 		flex-direction: column;
@@ -611,7 +611,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 	}
 
 	.comments :global(.comment-card.reply-target) {
-		background: color-mix(in oklch, var(--color-surface-soft) 72%, white);
+		background: color-mix(in oklch, var(--color-surface-soft) 72%, var(--color-surface));
 		border-color: var(--color-accent);
 	}
 
@@ -695,7 +695,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		display: none;
 		margin-top: 0.25rem;
 		padding: 1rem;
-		background: color-mix(in oklch, var(--color-surface-soft) 82%, white);
+		background: color-mix(in oklch, var(--color-surface-soft) 82%, var(--color-surface));
 		border: 1px solid var(--color-accent);
 	}
 

@@ -52,7 +52,7 @@ const jsonLd = structuredData ? (Array.isArray(structuredData) ? structuredData 
 		<meta name="description" content={description} />
 		<meta name="author" content={authors[0] ?? "毛哥EM"} />
 		<meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
-		<meta name="theme-color" content="#f7fbff" />
+		<meta name="theme-color" content="#f7fbff" data-theme-color />
 		<link rel="canonical" href={canonicalUrl} />
 		<link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} RSS`} href={absoluteUrl("/rss.xml")} />
 		<link rel="icon" href="/img/favicon/favicon.ico" />
@@ -89,6 +89,29 @@ const jsonLd = structuredData ? (Array.isArray(structuredData) ? structuredData 
 				</>
 			)
 		}
+		<script is:inline>
+			(() => {
+				const storageKey = "emtech:theme";
+				const themeColors = { light: "#f7fbff", dark: "#141821" };
+
+				const getTheme = () => {
+					try {
+						const stored = window.localStorage.getItem(storageKey);
+						return stored === "dark" ? "dark" : "light";
+					} catch {
+						return "light";
+					}
+				};
+
+				const applyTheme = theme => {
+					document.documentElement.dataset.theme = theme;
+					document.documentElement.style.colorScheme = theme;
+					document.querySelector("[data-theme-color]")?.setAttribute("content", themeColors[theme]);
+				};
+
+				applyTheme(getTheme());
+			})();
+		</script>
 		{jsonLd.map(item => <script is:inline type="application/ld+json" set:html={safeJsonLd(withSchemaContext(item))} />)}
 		<title>{fullTitle}</title>
 		<ClientRouter />
@@ -141,7 +164,7 @@ const jsonLd = structuredData ? (Array.isArray(structuredData) ? structuredData 
 		width: var(--page-padding);
 		content: "";
 		border-inline: 1px solid var(--color-border);
-		background: repeating-linear-gradient(135deg, transparent 0 0.5rem, oklch(92% 0.012 250 / 72%) 0.5rem 0.75rem), oklch(100% 0 0 / 55%);
+		background: repeating-linear-gradient(135deg, transparent 0 0.5rem, var(--color-hatch-glass) 0.5rem 0.75rem), var(--color-inset-highlight);
 	}
 
 	.page-shell::before {
@@ -152,7 +175,7 @@ const jsonLd = structuredData ? (Array.isArray(structuredData) ? structuredData 
 		right: 0;
 	}
 
-	@media (max-width: 53.75rem) {
+	@media (max-width: 40rem) {
 		.page-shell::before,
 		.page-shell::after {
 			display: none;

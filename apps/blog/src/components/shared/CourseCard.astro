@@ -44,7 +44,7 @@ const imageHeight = typeof course.image === "string" ? undefined : course.image?
 		display: grid;
 		grid-template-rows: auto 1fr;
 		min-height: 100%;
-		background: oklch(100% 0 0 / 88%);
+		background: var(--color-surface-glass-strong);
 		border: 1px solid var(--color-border);
 		overflow: hidden;
 		transition:
@@ -106,7 +106,7 @@ const imageHeight = typeof course.image === "string" ? undefined : course.image?
 		font-size: 0.75rem;
 		font-weight: 800;
 		color: var(--color-ink);
-		background: oklch(100% 0 0 / 84%);
+		background: var(--color-surface-glass);
 	}
 
 	.content {

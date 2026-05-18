@@ -430,7 +430,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 		font-size: 0.75rem;
 		font-weight: 700;
 		color: var(--color-text);
-		background: oklch(100% 0 0 / 84%);
+		background: var(--color-surface-glass);
 		border: 1px solid var(--color-border);
 		transition:
 			background 180ms ease,
@@ -554,7 +554,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 		left: 0;
 		height: 5rem;
 		pointer-events: none;
-		background: linear-gradient(to bottom, oklch(100% 0 0 / 0%), oklch(100% 0 0 / 96%));
+		background: linear-gradient(to bottom, transparent, var(--color-surface-glass-strong));
 	}
 
 	.tag-more-link {
@@ -625,7 +625,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 	.more-link:hover {
 		transform: translateY(-0.18rem);
 		border-color: var(--color-accent);
-		background: oklch(100% 0 0 / 92%);
+		background: var(--color-surface-glass-strong);
 	}
 
 	.more-link[hidden] {
