@@ -97,7 +97,7 @@ if(a>b){
 
 ### 101.Hello C++
 
-```C++
+```cpp
 #include<iostream>
 
 using namespace std;
