@@ -39,6 +39,9 @@
 	--color-bg: oklch(99% 0.004 235);
 	--color-surface: oklch(100% 0 0);
 	--color-surface-soft: oklch(98% 0.006 235);
+	--color-surface-glass: oklch(100% 0 0 / 84%);
+	--color-surface-glass-strong: oklch(100% 0 0 / 92%);
+	--color-surface-glass-soft: oklch(100% 0 0 / 76%);
 	--color-paper: oklch(97.2% 0.02 78);
 	--color-ink: oklch(17% 0.022 255);
 	--color-text: oklch(28% 0.025 255);
@@ -49,7 +52,12 @@
 	--color-grid: oklch(83% 0.05 225);
 	--color-grid-soft: oklch(92% 0.026 225);
 	--color-grid-line: oklch(94% 0.012 240);
+	--color-grid-dot: oklch(83% 0.05 225 / 55%);
 	--color-hatch: oklch(92% 0.012 250);
+	--color-hatch-glass: oklch(92% 0.012 250 / 72%);
+	--color-header-bg: oklch(99% 0.004 235 / 88%);
+	--color-header-menu-bg: oklch(99% 0.004 235 / 94%);
+	--color-inset-highlight: oklch(100% 0 0 / 55%);
 	--color-accent: oklch(71% 0.15 225);
 	--color-accent-strong: oklch(61% 0.17 232);
 	--color-accent-soft: oklch(93% 0.045 220);
@@ -61,12 +69,57 @@
 	--color-pink: oklch(72% 0.18 350);
 	--color-code-bg: oklch(22% 0.03 260);
 	--color-code-ink: oklch(91% 0.018 250);
+	--color-selection-bg: oklch(71% 0.15 225 / 30%);
 	--shadow-soft: 0 1.75rem 5.75rem oklch(17% 0.022 255 / 9%);
 	--shadow-card: 0 1.25rem 2.5rem oklch(17% 0.022 255 / 8%);
+	--shadow-menu: 0 1rem 2rem oklch(17% 0.022 255 / 8%);
+	--logo-filter: none;
 	--font-sans: "IBMPlexSansTC", "IBM Plex Sans Chinese TC", sans-serif;
 	--font-mono: JetBrainsMono, "JetBrains Mono", monospace;
 	--site-width: 93.75rem;
 	color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+	--color-bg: oklch(18% 0.022 255);
+	--color-surface: oklch(23% 0.024 255);
+	--color-surface-soft: oklch(27% 0.026 255);
+	--color-surface-glass: oklch(23% 0.024 255 / 84%);
+	--color-surface-glass-strong: oklch(25% 0.026 255 / 92%);
+	--color-surface-glass-soft: oklch(22% 0.022 255 / 76%);
+	--color-paper: oklch(26% 0.026 78);
+	--color-ink: oklch(94% 0.012 250);
+	--color-text: oklch(84% 0.018 250);
+	--color-muted: oklch(67% 0.022 250);
+	--color-faint: oklch(51% 0.022 250);
+	--color-border: oklch(35% 0.026 255);
+	--color-border-strong: oklch(48% 0.032 248);
+	--color-grid: oklch(48% 0.06 225);
+	--color-grid-soft: oklch(32% 0.034 225);
+	--color-grid-line: oklch(25% 0.026 250);
+	--color-grid-dot: oklch(54% 0.06 225 / 22%);
+	--color-hatch: oklch(31% 0.026 250);
+	--color-hatch-glass: oklch(32% 0.028 250 / 56%);
+	--color-header-bg: oklch(18% 0.022 255 / 88%);
+	--color-header-menu-bg: oklch(19% 0.024 255 / 96%);
+	--color-inset-highlight: oklch(100% 0 0 / 8%);
+	--color-accent: oklch(76% 0.14 225);
+	--color-accent-strong: oklch(82% 0.13 225);
+	--color-accent-soft: oklch(31% 0.072 225);
+	--color-purple: oklch(76% 0.11 305);
+	--color-purple-soft: oklch(31% 0.055 305);
+	--color-yellow: oklch(86% 0.15 96);
+	--color-orange: oklch(76% 0.16 42);
+	--color-green: oklch(76% 0.12 155);
+	--color-pink: oklch(77% 0.15 350);
+	--color-code-bg: oklch(15% 0.026 260);
+	--color-code-ink: oklch(92% 0.018 250);
+	--color-selection-bg: oklch(76% 0.14 225 / 28%);
+	--shadow-soft: 0 1.75rem 5.75rem oklch(0% 0 0 / 34%);
+	--shadow-card: 0 1.25rem 2.5rem oklch(0% 0 0 / 28%);
+	--shadow-menu: 0 1rem 2rem oklch(0% 0 0 / 34%);
+	--logo-filter: invert(1);
+	color-scheme: dark;
 }
 
 html {
@@ -97,7 +150,7 @@ body {
 	min-height: 100vh;
 	background:
 		linear-gradient(90deg, transparent calc(100% - 1px), var(--color-grid-line) 1px), linear-gradient(180deg, transparent calc(100% - 1px), var(--color-grid-line) 1px),
-		radial-gradient(circle, oklch(83% 0.05 225 / 55%) 1px, transparent 1.5px), var(--color-bg);
+		radial-gradient(circle, var(--color-grid-dot) 1px, transparent 1.5px), var(--color-bg);
 	background-size:
 		12rem 12rem,
 		12rem 12rem,
@@ -133,6 +186,10 @@ video {
 	max-width: 100%;
 }
 
+img[src="/img/logo.svg"] {
+	filter: var(--logo-filter);
+}
+
 a {
 	color: inherit;
 	text-decoration: none;
@@ -151,7 +208,7 @@ button {
 
 ::selection {
 	color: var(--color-ink);
-	background: oklch(71% 0.15 225 / 30%);
+	background: var(--color-selection-bg);
 }
 
 .sr-only {
@@ -184,6 +241,6 @@ button {
 }
 
 .card {
-	background: oklch(100% 0 0 / 82%);
+	background: var(--color-surface-glass);
 	border: 1px solid var(--color-border);
 }
