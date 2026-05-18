@@ -118,7 +118,6 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		let toastHideTimer = 0;
 		let toastHiddenTimer = 0;
 		const copyResetTimers = new Set<number>();
-		const tocContainer = document.querySelector<HTMLElement>("aside.toc");
 		const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"));
 		const tocHeadings = tocLinks
 			.map(link => {
@@ -132,14 +131,8 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			for (const { id: itemId, link } of tocHeadings) {
 				const isActive = itemId === id;
 				link.classList.toggle("active", isActive);
-				if (isActive) {
-					link.setAttribute("aria-current", "location");
-					if (tocContainer) {
-						tocContainer.scrollTo({ top: link.offsetTop - tocContainer.clientHeight / 2, behavior: "smooth" });
-					}
-				} else {
-					link.removeAttribute("aria-current");
-				}
+				if (isActive) link.setAttribute("aria-current", "location");
+				else link.removeAttribute("aria-current");
 			}
 		};
 
@@ -470,14 +463,6 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		position: sticky;
 		top: 6rem;
 		padding-top: 1.25rem;
-		box-sizing: border-box;
-		max-height: calc(100vh - 6rem);
-		overflow-y: auto;
-		scrollbar-width: none;
-	}
-
-	.toc::-webkit-scrollbar {
-		display: none;
 	}
 
 	.toc-label {
