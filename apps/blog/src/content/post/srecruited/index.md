@@ -42,7 +42,7 @@ description: 2025 上半年 Rewind。
 
 我面試過的除了資工來不及寫以外其他都幾乎是逐字稿等級的紀錄。除了當日記紀錄也希望能供學弟妹參考。
 
-> 標籤：[特殊選才](https://emtech.cc/tag/%E7%89%B9%E6%AE%8A%E9%81%B8%E6%89%8D)
+> 標籤：[特殊選才](https://emtech.cc/?tag=特殊選才#archive)
 
 ## 英文辯論
 

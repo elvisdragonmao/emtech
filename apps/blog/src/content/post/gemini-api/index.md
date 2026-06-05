@@ -226,7 +226,7 @@ Gemini 還有很多其他的設定，例如 `max_tokens` 用來設定最大回�
 		<h1>Gemini API 聊天 Demo</h1>
 		<p>
 			毛哥EM 製作
-			<a href="https://emtech.cc/post/gemini-html">教學文章</a>
+			<a href="https://emtech.cc/p/gemini-api/">教學文章</a>
 		</p>
 		<div id="chatHistory">
 			<!-- Chat history will appear here -->

@@ -805,7 +805,7 @@ nav {
 }
 ```
 
-[Screen Recording 2026-03-23 at 11.30.08 AM.webp](position-fixed-demo.webp)
+![Fixed 定位效果示範](position-fixed-demo.webp)
 
 ## Sticky
 
@@ -848,7 +848,7 @@ h2 {
 }
 ```
 
-[Screen Recording 2026-03-23 at 2.42.56 PM.webp](position-sticky-demo.webp)
+![Sticky 定位效果示範](position-sticky-demo.webp)
 
 > [!NOTE]
 >

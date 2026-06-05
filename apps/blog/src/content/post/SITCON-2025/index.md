@@ -42,7 +42,7 @@ description: 今年 SITCON 一樣很讚。
 
 現在相關書籍很多，網路上的資源很豐富，找有興趣的主題搜尋都很多文章或影片。最簡單的就是去找一系列鐵人賽的文章讀完跟著做，就能學到很多東西了。
 
-我的部落格有一些以前不專業的 [基礎語法](https://emtech.cc/category/%E7%A8%8B%E5%BC%8F%E6%95%99%E5%AD%B8) 和 [去年鐵人賽的教學文章](https://emtech.cc/category/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC)，可以給你做參考。其他議程提到的資源可以參考 [這次議程的 GitHub Repo](https://github.com/elvisdragonmao/SITCON2025)。
+我的部落格有一些以前不專業的 [基礎語法](https://emtech.cc/?category=程式教學#archive) 和 [去年鐵人賽的教學文章](https://emtech.cc/?category=網頁開發#archive)，可以給你做參考。其他議程提到的資源可以參考 [這次議程的 GitHub Repo](https://github.com/elvisdragonmao/SITCON2025)。
 
 > 要怎麼學會國中數學
 
@@ -100,7 +100,7 @@ CSS 高斯模糊（`backdrop-filter: blur()` 或 `filter: blur()`）在某些情
 
 - [買一台比較好的電腦](https://emtech.cc/p/win-macbook)
 - 不要用這麼多 (減少半徑、用 `overflow:hidden`、`clip-path` 等等屬性控制範圍)
-- [騙瀏覽器啟動 GPU 硬體加速](https://emtech.cc/p/2023ironman-20) (`will-change`、`transform3D`)
+- [騙瀏覽器啟動 GPU 硬體加速](https://emtech.cc/course/2023ironman/2023ironman-20/) (`will-change`、`transform3D`)
 
 ### 請問要如何配合 Figma 設計出好看的網頁，包跨轉場動畫那些等，可以直接轉成 HTML 嗎
 
@@ -128,7 +128,7 @@ CSS 高斯模糊（`backdrop-filter: blur()` 或 `filter: blur()`）在某些情
 
 ### 要怎麼考上交大 🛐 -By Ching
 
-[我的部落格 #特殊選才](https://emtech.cc/tag/%E7%89%B9%E6%AE%8A%E9%81%B8%E6%89%8D) 有整理出每一間學校的面試問題以及準備的建議，希望對你們有幫助。
+[我的部落格 #特殊選才](https://emtech.cc/?tag=特殊選才#archive) 有整理出每一間學校的面試問題以及準備的建議，希望對你們有幫助。
 
 > 其實我比較想問 Ching 大佬怎麼從交大轉到台大 🛐
 

@@ -10,11 +10,11 @@ description: "本文將教授如何使用程式製作一個簡單的點名網頁
 
 本文將教授如何使用程式製作一個簡單的點名網頁。透過這個點名系統，你可以方便地管理你的學生出席狀況，並且隨時查詢歷史出席紀錄。我們將使用 Google Apps Script, GitHub 和 Google Sheets 來建立這個點名系統。**我敢保證即使你完全不會程式也可以在 5 分鐘內完成**。本文會詳細說明從建立 Google Sheets 到部屬網頁的步驟，並提供完整的程式碼和演示網頁。
 
-> 我在兩年前曾經寫過一篇[【Google Apps Script】自製點名系統](https://emtech.cc/post/frog_check_in/)，出乎意料地幫助到許多人，所以我決定重新寫一次，比上次更容易製作和操作，也更好看一些 (我覺得啦)。
+> 我在兩年前曾經寫過一篇[【Google Apps Script】自製點名系統](https://emtech.cc/p/frog_check_in/)，出乎意料地幫助到許多人，所以我決定重新寫一次，比上次更容易製作和操作，也更好看一些 (我覺得啦)。
 
 ## 範例網頁
 
-首先，我們先來看一下最終的成果。這是我們要製作的點名系統的演示網頁。你可以點擊[這裡](https:/g.elvismao.com/roll-call)查看完整的演示網頁。他有以下幾個功能
+首先，我們先來看一下最終的成果。這是我們要製作的點名系統的演示網頁。你可以點擊[這裡](https://g.elvismao.com/roll-call)查看完整的演示網頁。他有以下幾個功能
 
 - 點名：點擊學生姓名，即可完成點名
 - 新增學生：輸入學生姓名點擊新增按鈕，即可新增學生
@@ -369,7 +369,7 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
 			<footer>
 				<a href="elvisdragonmao.github.io/">毛哥EM</a>
 				製作 |
-				<a href="https://emtech.cc/post/roll-call">教學</a>
+				<a href="https://emtech.cc/p/rol-call/">教學</a>
 			</footer>
 		</main>
 		<script>

@@ -200,7 +200,7 @@ HDD 一顆 6T，一顆 4T。先買了 6T 沒保固，覺得壞了所以又買了
 
 跟想像中一樣。雖然音質遠不如手邊有線以及 Bose QuietComfort 消噪耳塞 Ultra，但我真的超常用 Find My 找耳機，所以對於我來說是個正確的選擇。而且麥克風和通透效果也非常讚。
 
-> 延伸閱讀：[Hmmm 2：我該繼續買大便化的 Spotify 嗎？- AirPods Pro 3](https://emtech.cc/p/hmmm-2#AirPods-Pro-3)
+> 延伸閱讀：[Hmmm 2：我該繼續買大便化的 Spotify 嗎？- AirPods Pro 3](https://emtech.cc/course/hmmm/hmmm-2/#AirPods-Pro-3)
 
 其實還有很多是因為進宿舍買的，但因為有不少所以就留一篇一起講吧。
 

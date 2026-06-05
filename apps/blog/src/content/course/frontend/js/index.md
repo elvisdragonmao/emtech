@@ -77,7 +77,7 @@ console.log(true);
 
 不過不用擔心如果你沒有讀過前兩篇也可以直接跟著這篇練習，JavaScript 的部分會從頭開始講解。
 
-> 回顧：[環境建置與 HTML 完全指南](https://emtech.cc/p/html/)
+> 回顧：[環境建置與 HTML 完全指南](https://emtech.cc/course/frontend/html/)
 
 打開 Live Server 之後你可以點擊 F12 進入開發者工具，接著點擊主控台（Console）就可以看到 `console.log()` 印出來的內容了。之後網頁有錯誤也會在這裡顯示（像是現在底下紅紅的那樣）。
 

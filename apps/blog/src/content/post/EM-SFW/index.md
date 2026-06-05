@@ -18,12 +18,12 @@ description: "班上因為又有人確診又有人隔離又開始使用視訊會
 >
 > - 開發者：毛哥EM(我)
 > - 程式類型：免費開源網站
-> - 網站位置：[毛哥EM 的基地](https:/elvismao.com/code/EM-SFW)
+> - 網站位置：[毛哥EM 的基地](https://elvismao.com/code/EM-SFW)
 > - 縮短網址：[is.gd/EMSFW](https://is.gd/EMSFW)
 
 ## 使用教學
 
-進入<https:/elvismao.com/code/EMSFW>(不分大小寫，或輸入縮短網址[is.gd/EMSFW](https://is.gd/EMSFW)也可以）並同意讀取鏡頭。如果忘記網址可以搜尋「EM-SFW」或「毛哥EM」找到網站
+進入<https://elvismao.com/code/EMSFW>(不分大小寫，或輸入縮短網址[is.gd/EMSFW](https://is.gd/EMSFW)也可以）並同意讀取鏡頭。如果忘記網址可以搜尋「EM-SFW」或「毛哥EM」找到網站
 
 你會看到一個簡單的設定畫面。你可以點擊`z`來開啟/關閉這個畫面。
 

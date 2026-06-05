@@ -112,4 +112,4 @@ DNS 是大家都可以建立的。比如說中華電信或是 Google 都有他�
 
 既然現在你已經知道網頁最基本的運作原理了，那我們現在來開始寫 HTML 吧！
 
-> 下一篇：[環境建置與 HTML 完全指南](https://emtech.cc/p/html)
+> 下一篇：[環境建置與 HTML 完全指南](https://emtech.cc/course/frontend/html/)

@@ -14,7 +14,7 @@ description: "平常討論事情有時會需要臨時做筆記或馬上呈現內
 >
 > ### CrossDown
 >
-> - 網站：<https:/g.elvismao.com/CrossDown/>
+> - 網站：<https://g.elvismao.com/CrossDown/>
 > - GitHub: <https://github.com/elvisdragonmao/CrossDown>
 
 > 好不容易忙完午休沒事，就花了下午下課時間搞出來了它。分享給大家，希望大家喜歡。
