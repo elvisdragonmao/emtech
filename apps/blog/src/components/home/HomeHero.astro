@@ -69,7 +69,7 @@ const featuredArticles = recentPosts.map((p, index) => {
 		{
 			featuredArticles.map(article => (
 				<a class="feature-note" href={article.href}>
-					{article.imageSrc ? <img src={article.imageSrc} width={article.imageWidth} height={article.imageHeight} alt={article.title} /> : <div class="thumb-placeholder" aria-hidden="true" />}
+					{article.imageSrc ? <img src={article.imageSrc} width={article.imageWidth} height={article.imageHeight} alt="" /> : <div class="thumb-placeholder" aria-hidden="true" />}
 					<div>
 						<span>{article.tag}</span>
 						<strong>{article.title}</strong>
