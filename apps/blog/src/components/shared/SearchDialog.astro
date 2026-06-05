@@ -272,7 +272,7 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 	}
 
 	.search-field:focus-within {
-		outline: 2px solid var(--color-accent-strong);
+		outline: 2px solid var(--color-focus-ring);
 		outline-offset: -2px;
 		background: var(--color-surface);
 	}
@@ -286,6 +286,10 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 		color: var(--color-ink);
 		background: transparent;
 		border: 0;
+	}
+
+	.search-field input:focus-visible {
+		outline: none;
 	}
 
 	.search-field input::placeholder {
@@ -325,7 +329,7 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 	:global(.search-results a:focus-visible) {
 		color: var(--color-ink);
 		background: var(--color-accent-soft);
-		outline: 2px solid var(--color-accent-strong);
+		outline: 2px solid var(--color-focus-ring);
 		outline-offset: -2px;
 	}
 
