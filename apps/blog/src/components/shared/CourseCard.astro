@@ -25,7 +25,7 @@ const imageHeight = typeof course.image === "string" ? undefined : course.image?
 
 <a class:list={["course-card", `accent-${course.accent}`, { featured }]} href={course.href}>
 	<div class="visual">
-		{imageSrc ? <img src={imageSrc} width={imageWidth} height={imageHeight} alt={course.title} loading="lazy" /> : <div class="placeholder" aria-hidden="true" />}
+		{imageSrc ? <img src={imageSrc} width={imageWidth} height={imageHeight} alt="" loading="lazy" /> : <div class="placeholder" aria-hidden="true" />}
 		<span><BookOpen size={15} stroke-width={1.8} aria-hidden="true" />Course</span>
 	</div>
 	<div class="content">

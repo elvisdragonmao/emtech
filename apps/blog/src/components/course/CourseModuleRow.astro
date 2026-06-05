@@ -24,7 +24,7 @@ const imageHeight = typeof module.image === "string" ? undefined : module.image?
 <a class="module-row" href={module.href}>
 	<span class="module-number">{module.number}</span>
 	<div class="thumb">
-		{imageSrc ? <img src={imageSrc} width={imageWidth} height={imageHeight} alt={module.title} loading="lazy" /> : <div class="thumb-placeholder" aria-hidden="true" />}
+		{imageSrc ? <img src={imageSrc} width={imageWidth} height={imageHeight} alt="" loading="lazy" /> : <div class="thumb-placeholder" aria-hidden="true" />}
 	</div>
 	<div class="module-content">
 		<h3>{module.title}</h3>
