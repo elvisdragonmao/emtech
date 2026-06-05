@@ -9,8 +9,8 @@ description: "此系列已停更，歡迎可以參考我重新專寫的網頁開
 
 # EP.2 5 分鐘完結 HTML
 
-> 此系列已停更，歡迎可以參考我重新專寫的[網頁開發](https://emtech.cc/category/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC)教學。  
-> 此主題新版的對應文章為：[環境建置與 HTML 完全指南](https://emtech.cc/p/html)
+> 此系列已停更，歡迎可以參考我重新專寫的[網頁開發](https://emtech.cc/?category=網頁開發#archive)教學。
+> 此主題新版的對應文章為：[環境建置與 HTML 完全指南](https://emtech.cc/course/frontend/html/)
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。今天我要讓你 5 分鐘學會所有常用的 HTML 語法。
 
@@ -379,7 +379,7 @@ blue
 
 記住，radio 是只能選一個的，就想你的收音機一樣，你一次只能聽一個頻道。我們在 HTML 裡面會使用`name`屬性來指定一組單選框，這樣瀏覽器才知道這些單選框是一組的。而 value 代表了選擇他的值，比如說我們選擇了 red，那麼瀏覽器就會把 red 的值傳給伺服器。
 
-HTML 還有很多種輸入框，比如說日期、時間、檔案、顏色等等，足夠我們花一個影片介紹。你可以參考[我之前做的這個筆記](https:/g.elvismao.com/notes/posts/html-form/)來預習。
+HTML 還有很多種輸入框，比如說日期、時間、檔案、顏色等等，足夠我們花一個影片介紹。你可以參考[我之前做的這個筆記](https://g.elvismao.com/notes/posts/html-form/)來預習。
 
 ## 互動元素
 

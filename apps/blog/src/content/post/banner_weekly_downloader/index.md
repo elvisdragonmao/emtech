@@ -10,7 +10,7 @@ description: "當時在製作的時候正是疫情爆發的時間，教會聚會
 
 當時在製作的時候正是疫情爆發的時間，教會聚會全面改成線上，且只有提供週報的圖片檔，因此製作了一個可以下載週報的網站。即使現在疫情已經過去，我還是習慣使用這它
 
-> 好久沒有寫部落格文章了～最近都在忙著 <s>認真讀書</s> 、更新[毛哥EM 的基地](https:/elvismao.com)及製作 Line 機器人。最近編程編到有點頭痛，想說把欠了很久的文章寫完，休息一下
+> 好久沒有寫部落格文章了～最近都在忙著 <s>認真讀書</s> 、更新[毛哥EM 的基地](https://elvismao.com)及製作 Line 機器人。最近編程編到有點頭痛，想說把欠了很久的文章寫完，休息一下
 
 > [!NOTE]
 >
@@ -18,7 +18,7 @@ description: "當時在製作的時候正是疫情爆發的時間，教會聚會
 >
 > - 開發者：毛哥EM(我)
 > - 類型：網站
-> - 連結：[iCloud](https:/elvismao.com/code/weekly)
+> - 連結：[iCloud](https://elvismao.com/code/weekly)
 
 ## 當週週報連結
 
@@ -26,7 +26,7 @@ description: "當時在製作的時候正是疫情爆發的時間，教會聚會
 
 周間時當週週報教會可能還未釋出，若無法下載（出現 404）請過一陣子再試。
 
-[https:/elvismao.com/code/weekly/redirect/](https:/elvismao.com/code/weekly/redirect/)
+[https://elvismao.com/code/weekly/redirect/](https://elvismao.com/code/weekly/redirect/)
 
 ## ios 捷徑（稍後更新連結）
 
@@ -36,6 +36,6 @@ description: "當時在製作的時候正是疫情爆發的時間，教會聚會
 >
 > ### 小提醒
 >
-> - 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/post/shortcut-untrusted_shortcut/)提供的方法。
+> - 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/p/shortcut-untrusted_Shortcut/)提供的方法。
 > - 此網站及捷徑皆為開源項目，歡迎到[GitHub](https://github.com/elvisdragonmao/elvisdragonmao.github.io/tree/main/code/weekly)查看。
 > - 你也可以用 Siri 執行這個捷徑。

@@ -34,7 +34,7 @@ description: 見人說人話，見鬼說鬼話才是從好辯士邁向勝利者�
 
 最後你還可以到他的 email，目的是在傳送證據卡時也可以把他加進 email chain 裡面（寄一份副本給他。）
 
-而這是另外一位[曾經判我們輸的評審](/post/debate-chungHsin#過程)。
+而這是另外一位[曾經判我們輸的評審](/p/debate-chungHsin/#過程)。
 
 ![Jonas 頻審的 Paradigm](jonas.webp)
 

@@ -269,7 +269,7 @@ Windows 官方有一個很棒的官方工具叫做 [PowerToys](https://learn.mic
 
 [emmet](https://emmet.io/) 是一個很棒的功能，可以讓你快速地寫出 HTML、CSS、以及其他軟體。比如說你可以輸入 `div.container>ul>li*5` 然後按 `tab` 就會自動生成一個包含 5 個列表項目的無序列表。
 
-> 延伸閱讀：[Day2 如何打的更快 | Emmet & 預測輸入](https://emtech.cc/p/2023ironman-2)
+> 延伸閱讀：[Day2 如何打的更快 | Emmet & 預測輸入](https://emtech.cc/course/2023ironman/2023ironman-2/)
 
 同時如果你有很常用的指令可以設定成 Code Snippet，這樣就可以快速地插入程式碼片段。比如說我有一個 CSS Code Snippet 只需要輸入 `mid` 然後按 `tab` 可以快速插入：
 

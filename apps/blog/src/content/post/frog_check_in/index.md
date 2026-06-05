@@ -14,7 +14,7 @@ description: "大眼蛙教練的課程是以堂數做計算，也就是來一次
 >
 > ### 大眼蛙教練點名系統這篇文章出乎意料地幫助到許多人，因此我在 2023 年重新寫了一次，比上次更容易製作和操作，也更好看一些 (我覺得啦)。
 >
-> 建議閱讀這篇文章：<https://emtech.cc/post/rol-call/>
+> 建議閱讀這篇文章：<https://emtech.cc/p/rol-call/>
 
 ![首頁](frog_check_in-home.png)
 
@@ -334,7 +334,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 		<button onclick="window.location='search.html';">查詢紀錄</button>
 		<button onclick="window.location='sign-up.html';">新增學生</button>
 		<p>
-			<a href="https:/g.elvismao.com">毛哥EM</a>
+			<a href="https://g.elvismao.com">毛哥EM</a>
 			製作
 		</p>
 	</main>
@@ -365,7 +365,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 		<input type="text" class="form-control" id="name" />
 		<button type="button" id="sendOrder">新增</button>
 		<p>
-			<a href="https:/g.elvismao.com">毛哥EM</a>
+			<a href="https://g.elvismao.com">毛哥EM</a>
 			製作
 			<br />
 			送出後請稍等數秒 勿重複新增
@@ -513,7 +513,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
   <div id="students"></div>
   <h2>已到學生</h2>
   <p class="ed" id="ed"></p>
-  <p><a href="https:/g.elvismao.com">毛哥EM</a>製作</p>
+  <p><a href="https://g.elvismao.com">毛哥EM</a>製作</p>
  </main>
 </body>
 ```
@@ -555,7 +555,7 @@ HTML 是網頁的檔案，有點像 Word 檔，而 CSS 是用來裝飾 HTML 的�
 			</tbody>
 		</table>
 		<p>
-			<a href="https:/g.elvismao.com">毛哥EM</a>
+			<a href="https://g.elvismao.com">毛哥EM</a>
 			製作
 			<br />
 			送出後請稍等數秒

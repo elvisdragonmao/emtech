@@ -46,7 +46,7 @@ description: "今天是第二十一天，已經走完 2/3 的路程，我媽還�
 
 ![Firefox profiler-ui 設定畫面](config.webp)
 
-接下來是暖暖包時間，我們要來翻滾 1000 個 `<div>` 正方形。你可以自行貼上以下程式碼，或是用[我的](https://emtech.cc/post/2023ironman-21/test.html)。然後點擊切換按鈕來切換動畫方式。
+接下來是暖暖包時間，我們要來翻滾 1000 個 `<div>` 正方形。你可以自行貼上以下程式碼，或是用[我的](https://emtech.cc/course/2023ironman/2023ironman-21/test.html)。然後點擊切換按鈕來切換動畫方式。
 
 ```html
 <div id="header">

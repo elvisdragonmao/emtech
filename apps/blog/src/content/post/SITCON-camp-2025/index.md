@@ -52,7 +52,7 @@ description: 在 SITCON Camp 2025 中，我們資訊組做了很酷的網站和�
 
 講了這麼多，我們到底做了什麼？
 
-這次資訊組有我、[Wolf](https://wolf-yuan.dev/)、[德生](KoukeNeko)、和 [Tony](https://tony2100.xyz/)。這次我們重點在官網以及點數系統。
+這次資訊組有我、[Wolf](https://wolf-yuan.dev/)、[德生](https://github.com/KoukeNeko)、和 [Tony](https://tony2100.xyz/)。這次我們重點在官網以及點數系統。
 
 ## 官網
 
@@ -193,7 +193,7 @@ SITCON Camp 是一個很硬的營隊，沒有營火晚會。連續五天全部�
 
 身爲資訊組長每天活動結束之後我們還需要開檢討會議。測試系統、確認細流、處理當天發生的各種奇妙爛事。有人把其他人電腦重置（`rf -rf /`），房間有老鼠蟑螂，一大群人半夜偷跑出去，學員有抽煙需求...每天的活動和計劃都需要臨時調整，需要想一堆方案。十分感謝所有工作人員一起努力。
 
-感謝資訊組的 [Wolf](https://wolf-yuan.dev/)、[德生](KoukeNeko)、和 [Tony](https://tony2100.xyz/)，我們一起做出這個神奇的系統。尤其是德生，感謝他這兩個月一直在熬夜到五六點幫我們點數系統寫新功能，幫我們守夜擋下半夜甲方的攻擊。謝謝 [GCP](https://cloud.google.com/?hl=zh-TW) 免費讓我們薅了一堆羊毛。感謝 [Fearnot](https://github.com/fearnot221) 外送食物給我們資訊組，還有每天幫大家訂咖啡。感謝橘子這麼用心照顧這麼多學員。感謝 [Nelson](https://nelsongx.com/) 的網路線，還有幫我們找出四捨五入的大 bug。感謝 [康喔](https://kangjw.me/) 半夜 DDoS 和大量賭博，讓我們能即時調整架構和邏輯，才沒有任何學員卡頓或賺大錢。感謝紀錄組超快的出圖速度。感謝 [Ricky](https://ricky.place/) 的飲料和雞排。感謝隊輔還有 [Denny](https://denny.one/) 陪伴學員們一同爆肝完成專案。
+感謝資訊組的 [Wolf](https://wolf-yuan.dev/)、[德生](https://github.com/KoukeNeko)、和 [Tony](https://tony2100.xyz/)，我們一起做出這個神奇的系統。尤其是德生，感謝他這兩個月一直在熬夜到五六點幫我們點數系統寫新功能，幫我們守夜擋下半夜甲方的攻擊。謝謝 [GCP](https://cloud.google.com/?hl=zh-TW) 免費讓我們薅了一堆羊毛。感謝 [Fearnot](https://github.com/fearnot221) 外送食物給我們資訊組，還有每天幫大家訂咖啡。感謝橘子這麼用心照顧這麼多學員。感謝 [Nelson](https://nelsongx.com/) 的網路線，還有幫我們找出四捨五入的大 bug。感謝 [康喔](https://kangjw.me/) 半夜 DDoS 和大量賭博，讓我們能即時調整架構和邏輯，才沒有任何學員卡頓或賺大錢。感謝紀錄組超快的出圖速度。感謝 [Ricky](https://ricky.place/) 的飲料和雞排。感謝隊輔還有 [Denny](https://denny.one/) 陪伴學員們一同爆肝完成專案。
 
 ![SITCON Camp 2025 團體照](group.webp)
 
