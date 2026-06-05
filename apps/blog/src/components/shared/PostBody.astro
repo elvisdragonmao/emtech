@@ -115,6 +115,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		const controller = new AbortController();
 		const { signal } = controller;
 		let readObserver: IntersectionObserver | null = null;
+		let embedObserver: MutationObserver | null = null;
 		let toastHideTimer = 0;
 		let toastHiddenTimer = 0;
 		const copyResetTimers = new Set<number>();
@@ -166,6 +167,44 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			updateToc();
 			window.addEventListener("scroll", queueTocUpdate, { passive: true, signal });
 			window.addEventListener("resize", queueTocUpdate, { signal });
+		}
+
+		const articleContent = document.querySelector<HTMLElement>(".article-content");
+		const embeddedFrameTitle = (frame: HTMLIFrameElement) => {
+			const src = frame.getAttribute("src") ?? "";
+			if (/instagram\.com/i.test(src) || frame.classList.contains("instagram-media")) return "Instagram 貼文嵌入內容";
+			if (/youtube(?:-nocookie)?\.com|youtu\.be/i.test(src)) return "YouTube 影片嵌入內容";
+			if (/facebook\.com/i.test(src)) return "Facebook 貼文嵌入內容";
+			if (/codepen\.io/i.test(src)) return "CodePen 範例嵌入內容";
+			return "嵌入內容";
+		};
+		const ensureFrameTitle = (frame: HTMLIFrameElement) => {
+			const hasName = frame.getAttribute("title")?.trim() || frame.getAttribute("aria-label")?.trim() || frame.getAttribute("aria-labelledby")?.trim();
+			if (!hasName) frame.title = embeddedFrameTitle(frame);
+		};
+		const ensureFrameTitles = (root: ParentNode) => {
+			if (root instanceof HTMLIFrameElement) {
+				ensureFrameTitle(root);
+				return;
+			}
+
+			for (const frame of root.querySelectorAll<HTMLIFrameElement>("iframe")) {
+				ensureFrameTitle(frame);
+			}
+		};
+
+		if (articleContent) {
+			ensureFrameTitles(articleContent);
+			if (typeof window.MutationObserver === "function") {
+				embedObserver = new MutationObserver(mutations => {
+					for (const mutation of mutations) {
+						for (const node of mutation.addedNodes) {
+							if (node instanceof HTMLElement || node instanceof DocumentFragment) ensureFrameTitles(node);
+						}
+					}
+				});
+				embedObserver.observe(articleContent, { childList: true, subtree: true });
+			}
 		}
 
 		const progressArticle = document.querySelector<HTMLElement>("[data-progress-storage-key][data-progress-item-id]");
@@ -379,6 +418,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			controller.abort();
 			if (tocFrame) window.cancelAnimationFrame(tocFrame);
 			readObserver?.disconnect();
+			embedObserver?.disconnect();
 			window.clearTimeout(toastHideTimer);
 			window.clearTimeout(toastHiddenTimer);
 			for (const timer of copyResetTimers) window.clearTimeout(timer);
@@ -1081,8 +1121,9 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			padding: 1.5rem;
 		}
 
+		.tldr-callout > span[aria-hidden],
 		.article-content :global(.callout-tldr > span[aria-hidden]) {
-			font-size: 3.25rem;
+			display: none;
 		}
 	}
 </style>
