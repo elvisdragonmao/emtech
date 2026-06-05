@@ -59,7 +59,7 @@
 	--color-header-menu-bg: oklch(99% 0.004 235 / 94%);
 	--color-inset-highlight: oklch(100% 0 0 / 55%);
 	--color-accent: oklch(71% 0.15 225);
-	--color-accent-strong: oklch(61% 0.17 232);
+	--color-accent-strong: oklch(50% 0.16 232);
 	--color-accent-soft: oklch(93% 0.045 220);
 	--color-purple: oklch(57% 0.11 305);
 	--color-purple-soft: oklch(92% 0.035 305);
@@ -132,13 +132,10 @@ html {
 	-webkit-font-smoothing: antialiased;
 }
 
-:where(a, button, select, summary):focus-visible {
+:where(a, button, select, summary):focus-visible,
+:where(input, textarea):focus-visible {
 	outline: 2px solid var(--color-accent-strong);
 	outline-offset: 3px;
-}
-
-:where(input, textarea):focus {
-	outline: none;
 }
 
 :where(main):focus {

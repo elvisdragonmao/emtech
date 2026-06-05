@@ -137,7 +137,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 		</div>
 
 		<aside>
-			<a class="card discord-card" href="https://dc.elvismao.com" target="_blank">
+			<a class="card discord-card" href="https://dc.elvismao.com" target="_blank" rel="noreferrer" aria-label="加入 Discord 討論（另開新視窗）">
 				<div>Discord</div>
 				<h3>遇到問題嗎？</h3>
 				<p>歡迎加入 Discord 與我們一起討論！</p>
@@ -447,7 +447,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 
 	.category-tabs button[aria-pressed="true"],
 	.tag-cloud button[aria-pressed="true"] {
-		color: var(--color-accent-strong);
+		color: var(--color-ink);
 		background: var(--color-accent-soft);
 		border-color: var(--color-accent);
 	}

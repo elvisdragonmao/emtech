@@ -63,7 +63,8 @@ const structuredData = [
 			<h1>課程</h1>
 			<p class="lead">鐵人賽系列文章和詳細的程式開發與設計教學</p>
 		</header>
-		<section class="courses-body">
+		<section class="courses-body" aria-labelledby="course-list-title">
+			<h2 id="course-list-title" class="sr-only">課程列表</h2>
 			<div class="course-grid-top">
 				{topCourses.map(course => <CourseCard course={course} />)}
 			</div>
