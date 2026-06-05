@@ -223,10 +223,10 @@ HTML 就是這樣建立一個又一個地”元素” (element) 。因為寫 HTM
 
 <table>
   <tr>
-    <th>國家</th>
-    <th>首都</th>
-    <th>人口</th>
-    <th>語言</th>
+    <th scope="col">國家</th>
+    <th scope="col">首都</th>
+    <th scope="col">人口</th>
+    <th scope="col">語言</th>
   </tr>
   <tr>
     <td>USA</td>
@@ -278,8 +278,8 @@ HTML 就是這樣建立一個又一個地”元素” (element) 。因為寫 HTM
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>金額</th>
+      <th scope="col">項目</th>
+      <th scope="col">金額</th>
     </tr>
   </thead>
   <tbody>
@@ -298,7 +298,7 @@ HTML 就是這樣建立一個又一個地”元素” (element) 。因為寫 HTM
   </tbody>
   <tfoot>
     <tr>
-      <th>總金額</th>
+      <th scope="row">總金額</th>
       <td>$57,290</td>
     </tr>
   </tfoot>
@@ -312,9 +312,9 @@ HTML 就是這樣建立一個又一個地”元素” (element) 。因為寫 HTM
 
 <table>
   <tr>
-    <th>1</th>
-    <th>2</th>
-    <th>3</th>
+    <th scope="col">1</th>
+    <th scope="col">2</th>
+    <th scope="col">3</th>
   </tr>
   <tr>
     <td>4</td>

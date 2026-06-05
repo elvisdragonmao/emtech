@@ -247,6 +247,20 @@ const relatedCards = related.map(p => {
 			padding: 3.25rem 1rem 0;
 		}
 
+		.related-grid {
+			grid-auto-columns: unset;
+			grid-auto-flow: row;
+			grid-template-columns: minmax(0, 1fr);
+			margin: 0;
+			overflow-x: visible;
+			padding: 0;
+			scroll-snap-type: none;
+		}
+
+		.more-card {
+			min-height: 7rem;
+		}
+
 		.related-wrap > h2 {
 			font-size: 2.35rem;
 		}

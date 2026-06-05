@@ -410,10 +410,30 @@ img 資料夾裡面的 logo.png
 </table>
 ```
 
-| 國家   | 首都            | 人口        | 語言    |
-| ------ | --------------- | ----------- | ------- |
-| USA    | Washington D.C. | 309 million | English |
-| Sweden | Stockholm       | 9 million   | Swedish |
+<table>
+	<thead>
+		<tr>
+			<th scope="col">國家</th>
+			<th scope="col">首都</th>
+			<th scope="col">人口</th>
+			<th scope="col">語言</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USA</td>
+			<td>Washington D.C.</td>
+			<td>309 million</td>
+			<td>English</td>
+		</tr>
+		<tr>
+			<td>Sweden</td>
+			<td>Stockholm</td>
+			<td>9 million</td>
+			<td>Swedish</td>
+		</tr>
+	</tbody>
+</table>
 
 你可以使用 `<thead>` (table header), `<tbody>` (table body) 和 `<tfoot>` (table footer) 元素來區分表格的不同部分，這樣有助於瀏覽器和搜尋引擎了解表格的結構。
 
@@ -448,12 +468,34 @@ img 資料夾裡面的 logo.png
 </table>
 ```
 
-| 項目       | 金額    |
-| ---------- | ------- |
-| iPhone 11  | $24,900 |
-| AirPods    | $6,490  |
-| iPad Pro   | $25,900 |
-| **總金額** | $57,290 |
+<table>
+	<thead>
+		<tr>
+			<th scope="col">項目</th>
+			<th scope="col">金額</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>iPhone 11</td>
+			<td>$24,900</td>
+		</tr>
+		<tr>
+			<td>AirPods</td>
+			<td>$6,490</td>
+		</tr>
+		<tr>
+			<td>iPad Pro</td>
+			<td>$25,900</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th scope="row">總金額</th>
+			<td>$57,290</td>
+		</tr>
+	</tfoot>
+</table>
 
 ### 合併儲存格：colspan 和 rowspan 屬性
 
@@ -481,9 +523,9 @@ img 資料夾裡面的 logo.png
 
 <table>
 	<tr>
-		<th>1</th>
-		<th>2</th>
-		<th>3</th>
+		<th scope="col">1</th>
+		<th scope="col">2</th>
+		<th scope="col">3</th>
 	</tr>
 	<tr>
 		<td>4</td>
