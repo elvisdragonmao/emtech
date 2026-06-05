@@ -510,21 +510,21 @@ color: var(--nord7);
 
 或是你可以使用預設的 Nord 顏色組。使用方式就是預設那樣，只要修改數字就好了。對應的顏色如下：
 
-<p style="background-color: #2E3440;">--nord0: #2E3440;</p>
-<p style="background-color: #3B4252;">--nord1: #3B4252;</p>
-<p style="background-color: #434C5E;">--nord2: #434C5E;</p>
-<p style="background-color: #4C566A;">--nord3: #4C566A;</p>
-<p style="background-color: #D8DEE9;">--nord4: #D8DEE9;</p>
-<p style="background-color: #E5E9F0;">--nord5: #E5E9F0;</p>
-<p style="background-color: #ECEFF4;">--nord6: #ECEFF4;</p>
-<p style="background-color: #8FBCBB;">--nord7: #8FBCBB;</p>
-<p style="background-color: #88C0D0;">--nord8: #88C0D0;</p>
-<p style="background-color: #81A1C1;">--nord9: #81A1C1;</p>
-<p style="background-color: #5E81AC;">--nord10: #5E81AC;</p>
-<p style="background-color: #BF616A;">--nord11: #BF616A;</p>
-<p style="background-color: #D08770;">--nord12: #D08770;</p>
-<p style="background-color: #EBCB8B;">--nord13: #EBCB8B;</p>
-<p style="background-color: #A3BE8C;">--nord14: #A3BE8C;</p>
-<p style="background-color: #B48EAD;">--nord15: #B48EAD;</p>
+<p style="background-color: #2E3440; color: #fff;">--nord0: #2E3440;</p>
+<p style="background-color: #3B4252; color: #fff;">--nord1: #3B4252;</p>
+<p style="background-color: #434C5E; color: #fff;">--nord2: #434C5E;</p>
+<p style="background-color: #4C566A; color: #fff;">--nord3: #4C566A;</p>
+<p style="background-color: #D8DEE9; color: #000;">--nord4: #D8DEE9;</p>
+<p style="background-color: #E5E9F0; color: #000;">--nord5: #E5E9F0;</p>
+<p style="background-color: #ECEFF4; color: #000;">--nord6: #ECEFF4;</p>
+<p style="background-color: #8FBCBB; color: #000;">--nord7: #8FBCBB;</p>
+<p style="background-color: #88C0D0; color: #000;">--nord8: #88C0D0;</p>
+<p style="background-color: #81A1C1; color: #000;">--nord9: #81A1C1;</p>
+<p style="background-color: #5E81AC; color: #000;">--nord10: #5E81AC;</p>
+<p style="background-color: #BF616A; color: #000;">--nord11: #BF616A;</p>
+<p style="background-color: #D08770; color: #000;">--nord12: #D08770;</p>
+<p style="background-color: #EBCB8B; color: #000;">--nord13: #EBCB8B;</p>
+<p style="background-color: #A3BE8C; color: #000;">--nord14: #A3BE8C;</p>
+<p style="background-color: #B48EAD; color: #000;">--nord15: #B48EAD;</p>
 
 希望你喜歡這個網頁！如果你覺得這篇文章有幫助到你歡迎在[Instagram](https://instagram.com/em.tec.blog)或[Google 新聞](https://news.google.com/s/CBIwgtnWzKAB?sceid=TW:zh-Hant&sceid=TW:zh-Hant&r=11&oc=1)追蹤毛哥EM資訊密技。如果你有任何問題，歡迎直接到毛哥EM資訊密技的 Instagram 私訊我，我很樂意協助解決你的問題。
