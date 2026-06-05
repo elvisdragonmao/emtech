@@ -260,7 +260,7 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 		padding: 0.3rem 0.45rem;
 		font-family: var(--font-mono);
 		font-size: 0.72rem;
-		color: var(--color-muted);
+		color: var(--color-text);
 		background: var(--color-surface-soft);
 		border: 1px solid var(--color-border);
 	}
@@ -271,16 +271,21 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 		border-bottom: 1px solid var(--color-border);
 	}
 
+	.search-field:focus-within {
+		outline: 2px solid var(--color-accent-strong);
+		outline-offset: -2px;
+		background: var(--color-surface);
+	}
+
 	.search-field input {
 		width: 100%;
 		font-size: 1.5rem;
 		font-weight: 600;
 		line-height: 1;
-		letter-spacing: -0.05em;
+		letter-spacing: 0;
 		color: var(--color-ink);
 		background: transparent;
 		border: 0;
-		outline: none;
 	}
 
 	.search-field input::placeholder {
@@ -292,7 +297,7 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
 		font-weight: 700;
-		color: var(--color-muted);
+		color: var(--color-text);
 		background: var(--color-surface-soft);
 		border-bottom: 1px solid var(--color-border);
 	}

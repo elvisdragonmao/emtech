@@ -32,7 +32,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		</button>
 	</div>
 
-	<div class="notice" data-notice role="status" aria-live="polite"></div>
+	<div class="notice" data-notice role="status" aria-live="polite" hidden></div>
 
 	<div class="form-host" data-form-host>
 		<form class="comment-form" data-comment-form>
@@ -567,8 +567,9 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		color: var(--color-text);
 		background: var(--color-surface-glass);
 		border: 1px solid var(--color-border);
-		outline: none;
-		transition: border-color 160ms ease;
+		transition:
+			border-color 160ms ease,
+			box-shadow 160ms ease;
 	}
 
 	textarea {
@@ -578,6 +579,13 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 	input:focus,
 	textarea:focus {
 		border-color: var(--color-accent);
+	}
+
+	input:focus-visible,
+	textarea:focus-visible {
+		outline: 2px solid var(--color-accent-strong);
+		outline-offset: 3px;
+		box-shadow: 0 0 0 0.25rem var(--color-accent-soft);
 	}
 
 	.replying {
