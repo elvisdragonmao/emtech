@@ -705,6 +705,15 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		margin: 0 auto;
 	}
 
+	.article-content :global(.instagram-media p),
+	.article-content :global(.instagram-media p a) {
+		color: oklch(34% 0.028 255) !important;
+	}
+
+	.article-content :global(.instagram-media [style*="#3897f0"]) {
+		color: #005ea8 !important;
+	}
+
 	/* code blocks */
 	.article-content :global(pre) {
 		overflow-x: auto;
@@ -755,7 +764,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		font-size: 0.72rem;
 		font-weight: 800;
 		line-height: 1;
-		color: oklch(91% 0.018 250 / 74%);
+		color: var(--color-code-ink);
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		white-space: nowrap;
@@ -777,7 +786,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		font-size: 0.7rem;
 		font-weight: 800;
 		line-height: 1;
-		color: oklch(91% 0.018 250 / 72%);
+		color: var(--color-code-ink);
 		letter-spacing: 0.08em;
 		background: transparent;
 		border: 0;
@@ -839,6 +848,11 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		flex: 0 0 auto;
 		line-height: inherit;
 		white-space: inherit;
+	}
+
+	.article-content :global(.code-block [style*="#6A737D"]),
+	.article-content :global(.code-block [style*="#6a737d"]) {
+		color: oklch(74% 0.018 250) !important;
 	}
 
 	.article-content :global(.code-block .line::before) {

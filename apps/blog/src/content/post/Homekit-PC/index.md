@@ -17,7 +17,7 @@ thumbnail: ./power.webp
 
 > [!NOTE]
 >
-> ### Android 能使用嗎？
+> ## Android 能使用嗎？
 >
 > 我們要使用的函式庫是 Homespan，它支援的是 Homekit 而不是 Matter 協議，因此可能無法在安卓裝置使用。你可以尋找其他函式庫或著替代解決方案。
 
