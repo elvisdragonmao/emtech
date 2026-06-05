@@ -61,6 +61,7 @@
 	--color-accent: oklch(71% 0.15 225);
 	--color-accent-strong: oklch(50% 0.16 232);
 	--color-accent-soft: oklch(93% 0.045 220);
+	--color-focus-ring: oklch(58% 0.13 232);
 	--color-purple: oklch(57% 0.11 305);
 	--color-purple-soft: oklch(92% 0.035 305);
 	--color-yellow: oklch(88% 0.16 96);
@@ -106,6 +107,7 @@
 	--color-accent: oklch(76% 0.14 225);
 	--color-accent-strong: oklch(82% 0.13 225);
 	--color-accent-soft: oklch(31% 0.072 225);
+	--color-focus-ring: oklch(78% 0.12 225);
 	--color-purple: oklch(76% 0.11 305);
 	--color-purple-soft: oklch(31% 0.055 305);
 	--color-yellow: oklch(86% 0.15 96);
@@ -134,7 +136,7 @@ html {
 
 :where(a, button, select, summary):focus-visible,
 :where(input, textarea):focus-visible {
-	outline: 2px solid var(--color-accent-strong);
+	outline: 2px solid var(--color-focus-ring);
 	outline-offset: 3px;
 }
 
