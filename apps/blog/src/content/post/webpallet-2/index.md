@@ -9,12 +9,13 @@ description: "此系列已停更，歡迎可以參考我重新專寫的網頁開
 
 # EP.2 5 分鐘完結 HTML
 
-> 此系列已停更，歡迎可以參考我重新專寫的[網頁開發](https://emtech.cc/?category=網頁開發#archive)教學。
-> 此主題新版的對應文章為：[環境建置與 HTML 完全指南](https://emtech.cc/course/frontend/html/)
+> 此系列已停更，歡迎可以參考我重新專寫的[網頁開發](https://emtech.cc/?category=網頁開發#archive)教學。此主題新版的對應文章為：[環境建置與 HTML 完全指南](https://emtech.cc/course/frontend/html/)
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。今天我要讓你 5 分鐘學會所有常用的 HTML 語法。
 
-<iframe width="560" src="https://www.youtube-nocookie.com/embed/3NV8ZQtfQm0?si=hh0oS6Qi06ZpiJDe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" src="https://www.youtube-nocookie.com/embed/3NV8ZQtfQm0?si=hh0oS6Qi06ZpiJDe" title="網棧 EP.2 HTML 基礎教學影片" aria-describedby="webpallet-2-video-desc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<p id="webpallet-2-video-desc">影片替代內容：這支影片介紹常用 HTML 元素與基本語法，包含文字、連結、圖片、表單、iframe、audio、video 與版面元素。本文已提供同等的文字版教學與範例，可直接閱讀下方內容。</p>
 
 HTML 叫做超文本標記語言 (Hyper Text Markup Language)。故名思義就是標記一下文字，要記得 HTML 主要功能不是為了裝飾，目的是讓**瀏覽器知道這個是什麼**。比如說 Google 想知道網站標題會去找裡面的`<h1>`；而給盲人用的語音閱讀器在看到`<strong>`會加重語氣。裝飾文字是 CSS 的工作，下禮拜就來講）
 
@@ -411,7 +412,9 @@ iframe 是用來嵌入網頁的，比如說我們要嵌入 YouTube 影片，你�
 ></iframe>
 ```
 
-<iframe width="560" src="https://www.youtube.com/embed/lOecpIqOjjY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" src="https://www.youtube.com/embed/lOecpIqOjjY" title="YouTube iframe 嵌入範例" aria-describedby="webpallet-2-iframe-demo-desc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<p id="webpallet-2-iframe-demo-desc">影片替代內容：此嵌入僅用來示範 iframe 可以放入 YouTube 播放器；本節重點是 iframe 語法，觀看影片不是理解本段教學的必要條件。</p>
 
 ### Audio
 
@@ -421,7 +424,9 @@ Audio 是用來播放音樂的，我們可以用`<audio>`元素建立，然後�
 <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls></audio>
 ```
 
-<audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls></audio>
+<audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" aria-describedby="webpallet-2-audio-demo-desc" controls></audio>
+
+<p id="webpallet-2-audio-demo-desc">音訊替代內容：這是一段純音樂範例，沒有語音、旁白或教學內容；用途是示範 audio 元素加入 controls 後會顯示播放器控制項。</p>
 
 如果加入`controls`屬性，就會顯示播放器，讓使用者可以控制音樂的播放。
 
@@ -433,7 +438,9 @@ Video 是用來播放影片的，我們可以用`<video>`元素建立，然後�
 <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
 ```
 
-<video src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
+<video src="https://www.w3schools.com/html/mov_bbb.mp4" aria-describedby="webpallet-2-video-demo-desc" controls></video>
+
+<p id="webpallet-2-video-demo-desc">影片替代內容：這是一段用來示範 video 元素的動畫短片片段；本節重點是 video 元素與播放器控制項，不需要觀看影片劇情即可理解教學內容。</p>
 
 同樣的如果加入`controls`屬性就可以讓使用者控制影片的播放。
 

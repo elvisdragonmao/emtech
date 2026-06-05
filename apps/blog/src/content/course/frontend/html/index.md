@@ -628,7 +628,9 @@ iframe 是用來嵌入網頁的，比如說我們要嵌入 YouTube 影片，你�
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IxX_QHay02M?si=deCPLpJ2e9ZAZu2F"></iframe>
 ```
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IxX_QHay02M?si=deCPLpJ2e9ZAZu2F"></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IxX_QHay02M?si=deCPLpJ2e9ZAZu2F" title="YouTube iframe 嵌入範例" aria-describedby="frontend-html-iframe-demo-desc"></iframe>
+
+<p id="frontend-html-iframe-demo-desc">影片替代內容：此嵌入僅用來示範 iframe 可以放入 YouTube 播放器；本節重點是 iframe 元素，觀看影片不是理解本段教學的必要條件。</p>
 
 ### audio
 
@@ -638,7 +640,9 @@ Audio 是用來播放音樂的，我們可以用 `<audio>` 元素建立，然後
 <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls></audio>
 ```
 
-<audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls></audio>
+<audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" aria-describedby="frontend-html-audio-demo-desc" controls></audio>
+
+<p id="frontend-html-audio-demo-desc">音訊替代內容：這是一段純音樂範例，沒有語音、旁白或教學內容；用途是示範 audio 元素加入 controls 後會顯示播放器控制項。</p>
 
 如果加入 `controls` 屬性，就會顯示播放器，讓使用者可以控制音樂的播放。
 
@@ -650,7 +654,9 @@ Video 是用來播放影片的，我們可以用 `<video>` 元素建立，然後
 <video src="https://cdn.emtech.cc/spinning-fish.mp4" controls></video>
 ```
 
-<video src="https://cdn.emtech.cc/spinning-fish.mp4" controls></video>
+<video src="https://cdn.emtech.cc/spinning-fish.mp4" aria-describedby="frontend-html-video-demo-desc" controls></video>
+
+<p id="frontend-html-video-demo-desc">影片替代內容：影片畫面是一隻旋轉的魚，沒有語音或教學旁白；用途是示範 video 元素加入 controls 後會顯示播放器控制項。</p>
 
 如果加入 `controls` 屬性就可以讓使用者控制影片的播放。
 

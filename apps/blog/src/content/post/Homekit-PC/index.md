@@ -13,7 +13,9 @@ thumbnail: ./power.webp
 
 今天，我就要來和你分享如何使用 ESP32 加入 Homekit，讓你可以透過 iPhone 開機電腦和查看狀態。
 
-<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F676807707915952&width=300&show_text=false&height=676&appId" width="300" height="676" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F676807707915952&width=300&show_text=false&height=676&appId" title="使用 iPhone 開機電腦的 Facebook Reel 示範" aria-describedby="homekit-pc-video-desc" width="300" height="676" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+
+<p id="homekit-pc-video-desc">影片替代內容：短片示範使用 iPhone 的家庭 App 控制 ESP32 HomeKit 配件，讓電腦開機並查看狀態。下方文字完整說明原理、材料、接線與燒錄流程。</p>
 
 > [!NOTE]
 >
