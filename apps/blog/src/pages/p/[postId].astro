@@ -31,6 +31,16 @@ const description = entry.data.description ?? extractExcerpt(entry.body);
 const entryTags = normalizeTerms(entry.data.tags);
 const entryCategories = normalizeTerms(entry.data.categories);
 const tag = formatHashTags(entryTags.length > 0 ? entryTags : entryCategories);
+const heroTagLinks =
+	entryTags.length > 0
+		? entryTags.map(term => ({
+				label: `#${term.replace(/^#+/, "")}`,
+				href: `/?tag=${encodeURIComponent(term)}#archive`
+			}))
+		: entryCategories.map(term => ({
+				label: `#${term.replace(/^#+/, "")}`,
+				href: `/?category=${encodeURIComponent(term)}#archive`
+			}));
 const modifiedTime = entry.data.lastmod ?? entry.data.date;
 const authors = [entry.data.authors].flat().filter((author): author is string => Boolean(author));
 const displayAuthors = authors.map(author => (author === "elvismao" ? "毛哥EM" : author));
@@ -130,6 +140,7 @@ const relatedCards = related.map(p => {
 	<main id="main-content" class="article-page" tabindex="-1">
 		<PostBody
 			tag={tag}
+			tagLinks={heroTagLinks}
 			title={title}
 			image={thumbnail}
 			meta={meta}
