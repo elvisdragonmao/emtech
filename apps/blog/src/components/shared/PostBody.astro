@@ -3,8 +3,14 @@ import { ArrowLeft, ArrowRight } from "@lucide/astro";
 import type { ImageInput, MetaItem, TocHeading } from "@/utils/content";
 import MetaTable from "./MetaTable.astro";
 
+type TagLink = {
+	label: string;
+	href: string;
+};
+
 interface Props {
 	tag: string;
+	tagLinks?: TagLink[];
 	title: string;
 	image?: ImageInput;
 	meta: MetaItem[];
@@ -19,7 +25,7 @@ interface Props {
 	layout?: "post" | "course";
 }
 
-const { tag, title, image, meta, tldr, headings = [], previousHref, previousTitle, nextHref, nextTitle, progressStorageKey, progressItemId, layout = "post" } = Astro.props;
+const { tag, tagLinks = [], title, image, meta, tldr, headings = [], previousHref, previousTitle, nextHref, nextTitle, progressStorageKey, progressItemId, layout = "post" } = Astro.props;
 const imageSrc = typeof image === "string" ? image : image?.src;
 const imageWidth = typeof image === "string" ? undefined : image?.width;
 const imageHeight = typeof image === "string" ? undefined : image?.height;
@@ -34,7 +40,20 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 <section class:list={["article-hero", { "course-layout": isCourseLayout }]}>
 	<div></div>
 	<div class="hero-main">
-		<p class="tag">{tag}</p>
+		{
+			tagLinks.length > 0 ? (
+				<div class="tag" aria-label="文章標籤">
+					{tagLinks.map((link, index) => (
+						<>
+							<a href={link.href}>{link.label}</a>
+							{index < tagLinks.length - 1 && " "}
+						</>
+					))}
+				</div>
+			) : (
+				<p class="tag">{tag}</p>
+			)
+		}
 		<h1 data-pagefind-meta="title">{title}</h1>
 		<MetaTable items={meta} />
 	</div>
@@ -469,6 +488,19 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		color: var(--color-accent-strong);
 	}
 
+	.tag a {
+		display: inline-block;
+		color: inherit;
+		transition:
+			color 160ms ease,
+			transform 160ms ease;
+	}
+
+	.tag a:hover {
+		color: var(--color-accent);
+		transform: translateY(-0.08rem);
+	}
+
 	h1 {
 		margin: 1.25rem 0 2rem;
 		font-size: 4rem;
@@ -576,7 +608,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 
 	.article-content {
 		min-width: 0;
-		font-size: 1rem;
+		font-size: 17px;
 		line-height: 2;
 		color: var(--color-text);
 		overflow-wrap: break-word;
@@ -1081,12 +1113,12 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		}
 
 		.article-content {
-			font-size: 0.98rem;
+			font-size: 17px;
 		}
 
 		.article-content :global(blockquote) {
 			padding: 1rem 1.1rem 1rem 1.35rem;
-			font-size: 1rem;
+			font-size: 17px;
 		}
 
 		.article-content :global(h2) {
