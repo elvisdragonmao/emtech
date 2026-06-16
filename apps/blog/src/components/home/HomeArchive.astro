@@ -100,7 +100,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 
 <section id="archive" class="section-block">
 	<SectionTitle eyebrow="Archive / Content Index" title="單篇文章分類" />
-	<div class="category-tabs" aria-label="文章分類">
+	<div class="category-tabs" role="group" aria-label="文章分類">
 		{
 			categories.map(category => (
 				<button type="button" data-filter-button data-filter-type="category" data-filter-value={category.value} aria-pressed={category.value === FEATURED_CATEGORY ? "true" : "false"}>
@@ -136,13 +136,13 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 			</button>
 		</div>
 
-		<aside>
-			<a class="card discord-card" href="https://dc.elvismao.com" target="_blank" rel="noreferrer" aria-label="加入 Discord 討論（另開新視窗）">
+		<div class="archive-sidebar">
+			<a class="card discord-card" href="https://dc.elvismao.com" target="_blank" rel="noreferrer">
 				<div>Discord</div>
 				<h3>遇到問題嗎？</h3>
-				<p>歡迎加入 Discord 與我們一起討論！</p>
+				<p>歡迎加入 Discord 與我們一起討論！<span class="sr-only">（另開新視窗）</span></p>
 			</a>
-			<div class="card tag-cloud" data-tag-cloud aria-label="標籤雲">
+			<div class="card tag-cloud" data-tag-cloud role="group" aria-label="標籤雲">
 				{
 					tags.map(({ tag, count }) => (
 						<button type="button" data-filter-button data-filter-type="tag" data-filter-value={tag} aria-pressed="false">
@@ -156,7 +156,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 				<span data-tag-more-label>顯示更多標籤</span>
 				<ChevronDown size={18} stroke-width={1.8} aria-hidden="true" />
 			</button>
-		</aside>
+		</div>
 	</div>
 </section>
 
@@ -492,7 +492,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 		height: 100%;
 	}
 
-	aside {
+	.archive-sidebar {
 		position: sticky;
 		top: 6rem;
 		height: fit-content;
@@ -653,7 +653,7 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 			grid-template-columns: 1fr;
 		}
 
-		aside {
+		.archive-sidebar {
 			position: static;
 		}
 	}

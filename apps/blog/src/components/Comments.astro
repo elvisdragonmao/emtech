@@ -63,7 +63,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		</form>
 	</div>
 
-	<div class="comment-list" data-comment-list role="list" aria-live="polite"></div>
+	<div class="comment-list" data-comment-list aria-live="polite"></div>
 </section>
 
 <script>
@@ -215,6 +215,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 		const loadComments = async () => {
 			if (!list) return;
+			list.removeAttribute("role");
 			list.textContent = "載入留言中…";
 			try {
 				const response = await fetch(apiUrl(`/api/comments?pagePath=${encodeURIComponent(pagePath)}`), { credentials: "include", signal });
@@ -230,6 +231,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		};
 
 		const renderComments = (comments: PublicComment[], container: HTMLElement) => {
+			container.removeAttribute("role");
 			const byParent = new Map<string, PublicComment[]>();
 			for (const comment of comments) {
 				const key = comment.parentId ?? "";
@@ -241,11 +243,14 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 				for (const comment of group) {
 					const article = renderComment(comment);
 					target.appendChild(article);
-					const replies = document.createElement("div");
-					replies.className = "replies";
-					replies.setAttribute("role", "list");
-					article.appendChild(replies);
-					renderGroup(comment.id, replies);
+					const childComments = byParent.get(comment.id) ?? [];
+					if (childComments.length) {
+						const replies = document.createElement("div");
+						replies.className = "replies";
+						replies.setAttribute("role", "list");
+						article.appendChild(replies);
+						renderGroup(comment.id, replies);
+					}
 					const replySlot = document.createElement("div");
 					replySlot.className = "reply-form-slot";
 					article.appendChild(replySlot);
@@ -253,7 +258,9 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			};
 
 			renderGroup("", container);
-			if (!container.childElementCount) {
+			if (container.querySelector("[role='listitem']")) {
+				container.setAttribute("role", "list");
+			} else {
 				const empty = document.createElement("p");
 				empty.className = "empty";
 				empty.textContent = "還沒有留言。";
