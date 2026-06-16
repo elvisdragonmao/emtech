@@ -88,7 +88,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		{
 			tocItems.length > 0 ? (
 				<>
-					<span class="toc-label">On This Page</span>
+					<span class="toc-label">本頁目錄</span>
 					{tocItems.map(item => (
 						<a href={`#${item.slug}`} class:list={[{ "toc-h3": item.depth === 3 }]} data-toc-link={item.slug}>
 							{item.text}
@@ -112,9 +112,9 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		{
 			tldr && (
 				<aside class="tldr-callout">
-					<strong>TL;DR</strong>
+					<strong>重點摘要</strong>
 					<p>{tldr}</p>
-					<span aria-hidden="true">TL;DR</span>
+					<span aria-hidden="true">重點摘要</span>
 				</aside>
 			)
 		}

@@ -15,7 +15,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 <section id="comments" class="comments" data-comments-root data-page-path={pagePath} data-api-base={commentApiBaseUrl} data-turnstile-site-key={turnstileSiteKey}>
 	<div class="comments-heading">
 		<div>
-			<p class="eyebrow">Comments</p>
+			<p class="eyebrow">留言</p>
 			<h2>留言區</h2>
 		</div>
 		<a class="github-login" data-github-login href={`${commentApiBaseUrl}/api/auth/github/start?returnTo=${encodeURIComponent(`${pagePath}#comments`)}`}>
@@ -43,17 +43,24 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 			</div>
 			<label data-identity-field>
 				顯示名稱
-				<input name="name" type="text" maxlength="80" autocomplete="name" placeholder="Anonymous" />
+				<input name="name" type="text" maxlength="80" autocomplete="name" placeholder="匿名" />
 			</label>
 			<label data-identity-field>
-				Email
+				電子郵件
 				<input name="email" type="email" autocomplete="email" spellcheck="false" placeholder="只用於 Gravatar 頭像，不會公開" />
 			</label>
 			<label class="message">
 				留言
 				<textarea name="body" rows="5" maxlength="3000" required placeholder="寫下你的想法"></textarea>
 			</label>
-			{turnstileSiteKey && <div class="turnstile cf-turnstile" data-sitekey={turnstileSiteKey} />}
+			{
+				turnstileSiteKey && (
+					<div class="turnstile-field">
+						<p>安全驗證</p>
+						<div class="turnstile cf-turnstile" data-sitekey={turnstileSiteKey} aria-label="Cloudflare Turnstile 安全驗證" />
+					</div>
+				)
+			}
 			<div class="actions">
 				<button type="submit">
 					<Send size={14} stroke-width={1.8} aria-hidden="true" />
@@ -562,9 +569,19 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 	.message,
 	.actions,
-	.turnstile,
+	.turnstile-field,
 	.replying {
 		grid-column: 1 / -1;
+	}
+
+	.turnstile-field {
+		display: grid;
+		gap: 0.5rem;
+	}
+
+	.turnstile-field p {
+		font-size: 1rem;
+		color: var(--color-text);
 	}
 
 	input,

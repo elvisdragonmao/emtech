@@ -88,7 +88,7 @@ const structuredData = [
 	<main id="main-content" class="course-page" tabindex="-1">
 		<section class="course-hero">
 			<div class="hero-copy">
-				<p class="eyebrow">Course</p>
+				<p class="eyebrow">課程</p>
 				<h1>{courseData.title}</h1>
 				<p class="lead">{courseData.description}</p>
 				{
@@ -96,7 +96,7 @@ const structuredData = [
 						<div class="outcomes">
 							{outcomes.map((item, i) => (
 								<article>
-									<span>Outcome {String(i + 1).padStart(2, "0")}</span>
+									<span>學習目標 {String(i + 1).padStart(2, "0")}</span>
 									<h2>{item.title}</h2>
 									<p>{item.text}</p>
 								</article>
@@ -106,11 +106,11 @@ const structuredData = [
 				}
 			</div>
 			<article class="overview-card">
-				<span>Course overview</span>
+				<span>課程總覽</span>
 				<h2>{totalModules} 單元</h2>
-				<p>Target audience: {courseData.meta ?? "所有學習者"}</p>
+				<p>適合對象：{courseData.meta ?? "所有學習者"}</p>
 				<div class="progress">
-					<strong>Reading path</strong>
+					<strong>閱讀路徑</strong>
 					<i></i>
 				</div>
 				{courseThumbnailSrc && <img class="overview-thumb" src={courseThumbnailSrc} width={courseThumbnailWidth} height={courseThumbnailHeight} alt={courseData.title} />}

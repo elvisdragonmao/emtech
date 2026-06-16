@@ -10,9 +10,9 @@ const courses = await getCollection("course");
 const LAUNCH_DATE = "2021-06-05";
 
 const stats = [
-	{ label: "Post", value: String(allPosts.length) },
-	{ label: "Course", value: String(courses.length) },
-	{ label: "Lived for", value: "--", livedFor: true }
+	{ label: "文章", value: String(allPosts.length) },
+	{ label: "課程", value: String(courses.length) },
+	{ label: "已運行", value: "--", livedFor: true }
 ];
 
 // 2 most recent posts
