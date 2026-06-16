@@ -62,16 +62,23 @@ const imageHeight = typeof course.image === "string" ? undefined : course.image?
 	.accent-blue {
 		--accent-color: var(--color-accent);
 		--accent-soft: var(--color-accent-soft);
+		--accent-text: #006b8a;
 	}
 
 	.accent-purple {
 		--accent-color: var(--color-purple);
 		--accent-soft: var(--color-purple-soft);
+		--accent-text: #70518f;
 	}
 
 	.accent-yellow {
 		--accent-color: var(--color-yellow);
 		--accent-soft: var(--color-paper);
+		--accent-text: #755900;
+	}
+
+	:global(:root[data-theme="dark"]) .course-card {
+		--accent-text: var(--accent-color);
 	}
 
 	.visual {
@@ -120,7 +127,7 @@ const imageHeight = typeof course.image === "string" ? undefined : course.image?
 		font-size: 0.75rem;
 		font-weight: 800;
 		letter-spacing: 0.04em;
-		color: var(--accent-color);
+		color: var(--accent-text);
 	}
 
 	h3 {
