@@ -36,6 +36,7 @@ import { ArrowUp } from "@lucide/astro";
 		button.addEventListener(
 			"click",
 			() => {
+				document.getElementById("main-content")?.focus({ preventScroll: true });
 				window.scrollTo({
 					top: 0,
 					behavior: prefersReducedMotion.matches ? "auto" : "smooth"
