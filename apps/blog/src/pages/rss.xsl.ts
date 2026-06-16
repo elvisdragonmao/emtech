@@ -23,11 +23,11 @@ const xsl = `<?xml version="1.0" encoding="UTF-8"?>
 						--color-surface: oklch(100% 0 0);
 						--color-ink: oklch(17% 0.022 255);
 						--color-text: oklch(28% 0.025 255);
-						--color-muted: oklch(58% 0.025 255);
+						--color-muted: oklch(54.8% 0.025 255);
 						--color-border: oklch(89% 0.018 255);
 						--color-grid-line: oklch(94% 0.012 240);
 						--color-accent: oklch(71% 0.15 225);
-						--color-accent-strong: oklch(61% 0.17 232);
+						--color-accent-strong: oklch(52.9% 0.15 225);
 						--shadow-card: 0 1.25rem 2.5rem oklch(17% 0.022 255 / 8%);
 						--font-sans: "IBMPlexSansTC", "IBM Plex Sans Chinese TC", sans-serif;
 						--font-mono: JetBrainsMono, "JetBrains Mono", monospace;

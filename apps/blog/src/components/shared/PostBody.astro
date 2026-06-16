@@ -1087,22 +1087,22 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 
 	.article-content :global(.callout-tip) {
 		--callout-rule: var(--color-green);
-		--callout-title: oklch(44% 0.13 155);
+		--callout-title: var(--color-green-text);
 	}
 
 	.article-content :global(.callout-important) {
 		--callout-rule: var(--color-purple);
-		--callout-title: var(--color-purple);
+		--callout-title: var(--color-purple-text);
 	}
 
 	.article-content :global(.callout-warning) {
 		--callout-rule: var(--color-orange);
-		--callout-title: oklch(50% 0.15 42);
+		--callout-title: var(--color-orange-text);
 	}
 
 	.article-content :global(.callout-caution) {
 		--callout-rule: var(--color-pink);
-		--callout-title: oklch(48% 0.17 350);
+		--callout-title: var(--color-pink-text);
 	}
 
 	.article-content :global(.callout-note > strong),
