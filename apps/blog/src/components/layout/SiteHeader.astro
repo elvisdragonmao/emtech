@@ -2,7 +2,7 @@
 import { Menu, Moon, Search, Sun, X } from "@lucide/astro";
 
 interface Props {
-	active?: "home" | "blog" | "course";
+	active?: "home" | "blog" | "course" | "sitemap";
 }
 
 const { active } = Astro.props;
@@ -10,7 +10,8 @@ const { active } = Astro.props;
 const navItems = [
 	{ label: "首頁", href: "/", key: "home" },
 	{ label: "文章", href: "/archive/", key: "blog" },
-	{ label: "課程", href: "/course/", key: "course" }
+	{ label: "課程", href: "/course/", key: "course" },
+	{ label: "導覽", href: "/sitemap/", key: "sitemap" }
 ];
 ---
 
@@ -422,7 +423,7 @@ const navItems = [
 			right: 0;
 			left: 0;
 			display: grid;
-			grid-template-columns: repeat(3, minmax(0, 1fr));
+			grid-template-columns: repeat(4, minmax(0, 1fr));
 			gap: 0;
 			height: auto;
 			padding: 0.35rem;

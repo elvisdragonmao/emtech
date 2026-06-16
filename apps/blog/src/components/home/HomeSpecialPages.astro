@@ -6,6 +6,7 @@ const specialPages = [
 	{ title: "交個朋友", description: "訂閱我的電子報", href: "https://elvismao.com/zh-Hant/hmmm/" },
 	{ title: "友情連結", description: "我的好捧油們！", href: "/friends/" },
 	{ title: "關於本站", description: "這裡的故事", href: "/p/about/" },
+	{ title: "網站導覽", description: "站內內容清單", href: "/sitemap/" },
 	{ title: "RSS", description: "不被演算法操控！", href: "/rss.xml" }
 ];
 ---
@@ -34,7 +35,7 @@ const specialPages = [
 
 	.special-grid {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-columns: repeat(5, minmax(0, 1fr));
 		border: 1px solid var(--color-border);
 	}
 
@@ -100,16 +101,16 @@ const specialPages = [
 		transition: transform 180ms ease;
 	}
 
-	@media (max-width: 57.5rem) {
+	@media (max-width: 72rem) {
 		.special-grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 
-		.special-grid a:nth-child(odd) {
+		.special-grid a:nth-child(3n + 1) {
 			border-left: none;
 		}
 
-		.special-grid a:nth-child(n + 3) {
+		.special-grid a:nth-child(n + 4) {
 			border-top: 1px solid var(--color-border);
 		}
 	}
