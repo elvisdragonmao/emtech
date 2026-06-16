@@ -54,7 +54,7 @@ source venv/bin/activate
 這裡節錄一小段，你可以看到不同的版本對應的 Python 版本和 Raspberry Pi 版本。
 
 | Device                | OS                                | Distribution     | Architecture    | Python ver | Note                       |
-| :-------------------- | :-------------------------------- | :--------------- | :-------------- | :--------- | :------------------------- |
+| --------------------- | --------------------------------- | ---------------- | --------------- | ---------- | -------------------------- |
 | RaspberryPi3/4,PiZero | Ubuntu 21.04/Debian/RaspberryPiOS | Hirsute/Bullseye | aarch64 / armv8 | 3.9.x      | 64bit, glibc2.33/glibc2.31 |
 | RaspberryPi3/4        | Ubuntu 22.04                      | Jammy            | aarch64 / armv8 | 3.10.x     | 64bit, glibc2.35           |
 | RaspberryPi4/5,PiZero | Debian/RaspberryPiOS              | Bookworm         | aarch64 / armv8 | 3.11.x     | 64bit, glibc2.36           |
