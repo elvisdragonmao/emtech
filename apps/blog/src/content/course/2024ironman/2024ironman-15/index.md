@@ -12,7 +12,7 @@ description: "《史記》「以貌取人，失之子羽」說明了 SSH 身分�
 
 在部署服務時，SSH（安全外殼協定）是一種常見且安全的方式來遠程管理和部署應用程序。使用 SSH 密鑰進行身分驗證可以確保部署過程的安全性，避免使用明文密碼而引發的安全風險。今天，我們將探討如何設定 SSH 密鑰以實現自動化部署。
 
-> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/15>
+> 今日範例程式：[開啟第 15 天範例程式](https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/15)
 
 ## 1. 設定 SSH 密鑰
 

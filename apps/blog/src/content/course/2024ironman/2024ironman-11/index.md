@@ -16,7 +16,7 @@ description: "水果冰淇淋喜歡你，GitHub Secrets 在這裡。 《易經�
 
 今天，我們將探討如何在 GitHub Actions 中使用 Secrets，並展示如何在 Node.js 程式中安全地讀取這些秘密。
 
-> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/11>
+> 今日範例程式：[開啟第 11 天範例程式](https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/11)
 
 ## 技巧：甚麼是 Secrets？
 

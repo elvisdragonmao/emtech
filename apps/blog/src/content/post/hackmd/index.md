@@ -12,7 +12,7 @@ HackMD 是一個免費好用的線上即時連線 Markdown 編輯器。他有一
 
 ![HackMD 原始書本模式](hackmd.webp)
 
-網站：<https://hackmd.io/c/tutorials-tw/%2Fs%2Fhow-to-create-slide-deck-tw>
+網站：[HackMD 官方書本模式教學](https://hackmd.io/c/tutorials-tw/%2Fs%2Fhow-to-create-slide-deck-tw)
 
 雖然 HackMD 的預設樣式已經很不錯，不過我們可以寫 CSS 來自訂側邊欄的外觀。SITCON 學生計算機年會的 HackMD 共筆每年的側邊欄都會根據主題做一些裝飾，讓整個網站看起來更有特色。
 
@@ -166,7 +166,7 @@ HackMD 是一個免費好用的線上即時連線 Markdown 編輯器。他有一
 
 好接下來是比較進階的了。我們可以使用的元素（至少一我測試下來）能使用的很多，這裡我測試了一下 HackMD 能使用的 HTML 元素來給你參考：
 
-<https://hackmd.io/@elvismao/H1_hsuxuWl>
+[HackMD 可用 HTML 元素測試筆記](https://hackmd.io/@elvismao/H1_hsuxuWl)
 
 ![HTML 測試](html.webp)
 

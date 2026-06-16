@@ -12,7 +12,7 @@ description: "GitHub Actions 如同九方皋相馬，見其所見，不見其所
 
 今天我們要來討論如何使用 GitHub Actions 來自動化 Git 操作，例如自動編輯文件、提交（commit）變更以及推送（push）程式到儲存庫中。這些操作可以讓你的開發流程更為順暢，尤其在一些重複性任務上，例如定期更新版本號、自動生成文件或部署後自動提交紀錄等。今天將介紹兩種方法：一種是手動使用 Shell 指令，另一種是使用現成的 GitHub Actions 函式庫。
 
-> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/3>
+> 今日範例程式：[開啟第 3 天範例程式](https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/3)
 
 ## 國小複習：什麼是 Git？
 

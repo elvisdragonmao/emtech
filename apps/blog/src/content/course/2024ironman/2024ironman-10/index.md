@@ -12,7 +12,7 @@ description: "從孟母三遷的故事可以看出孟子在不同環境的相容
 
 今天，我們要來探討如何使用 GitHub Actions 的矩陣構建策略來進行多平台測試。這種策略允許我們在多個環境下運行測試，確保程式在不同的 Node.js 版本或操作系統中都能正常工作。這對於維持應用的兼容性和穩定性至關重要。
 
-> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/10>
+> 今日範例程式：[開啟第 10 天範例程式](https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/10)
 
 ## 矩陣構建策略是什麼？
 
