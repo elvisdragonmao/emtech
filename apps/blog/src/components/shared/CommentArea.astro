@@ -91,6 +91,11 @@ const { compact = false } = Astro.props;
 			box-shadow 160ms ease;
 	}
 
+	input::placeholder,
+	textarea::placeholder {
+		color: var(--color-placeholder);
+	}
+
 	textarea {
 		resize: vertical;
 	}
