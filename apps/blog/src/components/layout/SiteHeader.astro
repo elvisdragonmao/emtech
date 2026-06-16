@@ -89,19 +89,28 @@ const navItems = [
 			themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
 		};
 
-		const setMenuOpen = (isOpen: boolean) => {
+		const setMenuOpen = (isOpen: boolean, options: { focusNav?: boolean; restoreFocus?: boolean } = {}) => {
 			if (!header || !nav || !menuToggle) return;
 			header.classList.toggle("is-menu-open", isOpen);
 			menuToggle.setAttribute("aria-expanded", String(isOpen));
 			menuToggle.setAttribute("aria-label", isOpen ? "關閉導覽選單" : "開啟導覽選單");
 			nav.toggleAttribute("inert", mobileMenu.matches && !isOpen);
 			nav.setAttribute("aria-hidden", String(mobileMenu.matches && !isOpen));
+
+			if (isOpen && options.focusNav) {
+				window.requestAnimationFrame(() => nav.querySelector<HTMLAnchorElement>("a[href]")?.focus());
+			}
+
+			if (!isOpen && options.restoreFocus) {
+				menuToggle.focus();
+			}
 		};
 
 		menuToggle?.addEventListener(
 			"click",
 			() => {
-				setMenuOpen(!header?.classList.contains("is-menu-open"));
+				const nextOpen = !(header?.classList.contains("is-menu-open") ?? false);
+				setMenuOpen(nextOpen, { focusNav: nextOpen });
 			},
 			{ signal }
 		);
@@ -131,7 +140,9 @@ const navItems = [
 		window.addEventListener(
 			"keydown",
 			event => {
-				if (event.key === "Escape") setMenuOpen(false);
+				if (event.key === "Escape" && header?.classList.contains("is-menu-open")) {
+					setMenuOpen(false, { restoreFocus: true });
+				}
 			},
 			{ signal }
 		);
@@ -162,6 +173,12 @@ const navItems = [
 		border-bottom: 1px solid var(--color-border);
 		background: var(--color-header-bg);
 		backdrop-filter: blur(1.25rem);
+	}
+
+	@media (max-width: 43rem), (max-height: 32rem) {
+		.site-header-container {
+			position: static;
+		}
 	}
 
 	.site-header {
@@ -400,7 +417,7 @@ const navItems = [
 		}
 
 		.main-nav {
-			position: fixed;
+			position: absolute;
 			top: calc(100% + 1px);
 			right: 0;
 			left: 0;
