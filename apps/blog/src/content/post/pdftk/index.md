@@ -271,4 +271,4 @@ pdftk broken.pdf output fixed.pdf
 
 這篇資訊量有點大，建議可以加入書籤需要的時候再來看一下
 
-[參考資料](http://lybhu.blog.sohu.com/144036460.html)
+[PDFtk 指令參考資料](http://lybhu.blog.sohu.com/144036460.html)

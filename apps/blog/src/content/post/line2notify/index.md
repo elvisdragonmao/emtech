@@ -36,7 +36,7 @@ description: "你是否有群組充滿著垃圾訊息？用 Line Bot & Line Noti
 
 Line Notify 是個比較冷門但是非常好用的工具。我們可以透過他來從第三方 (如你的網站、或是 ios 捷徑) 無限量的廣播訊息到指定的群組，或是單獨發給你。
 
-https://notify-bot.line.me/my/ => 發行權杖 => 把那一串複製下來，等一下要用。
+[Line Notify 個人頁面](https://notify-bot.line.me/my/) => 發行權杖 => 把那一串複製下來，等一下要用。
 
 要給 Line 看這一串他才知道要傳送訊息到哪裡。使用 Line Notify 而不是 Line 機器人的原因是免費版的官方帳號一個月只能傳送 500 則訊息，但 Line Notify 則沒有限制。
 

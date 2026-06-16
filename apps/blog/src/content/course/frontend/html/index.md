@@ -62,7 +62,7 @@ brew install git
 
 推薦你可以使用上面或是類似的方式。如果不行的話跟 VS Code 一樣直接去官網下載下一步下一步下一步也是可以。
 
-> Git 官網：https://git-scm.com/
+> Git 官網：[Git 官方網站](https://git-scm.com/)
 
 > 如果你用的是 Linux 的話那應該不用我教吧。（需要的話再叫助教）
 
@@ -602,7 +602,7 @@ blue
 
 HTML 還有很多種輸入框，比如說日期、時間、檔案、顏色等等，有興趣可以參考 MDN。
 
-> 延伸閱讀：https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input
+> 延伸閱讀：[MDN input 元素文件](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input)
 
 ## 互動元素
 

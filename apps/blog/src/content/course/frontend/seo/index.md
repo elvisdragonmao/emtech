@@ -547,7 +547,7 @@ Search Console 可以讓你看到很多很實際的東西：
 - 網站效能問題（Core Web Vitals）
 - 手動處罰或安全性問題
 
-> 網頁：https://search.google.com/search-console
+> 網頁：[Google Search Console](https://search.google.com/search-console)
 
 進到網站之後你會需要先驗證網站是你的。可以透過在網頁根目錄放一個指定的檔案，或是在 DNS 設定。礙於篇幅這裡就先不多提了。
 

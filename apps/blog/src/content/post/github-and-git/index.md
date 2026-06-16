@@ -136,7 +136,7 @@ ghp_5xcCouSaccQcDw87FRFL6B0IaX0nzJ4MdWaK
 
 SSH 像是一個信物。我們生成一個 SSH，並告訴 GitHub 說只要有拿這個東西就有權限做哪些事。如果你是使用 GitHub Destop 的話上傳時不用輸入密碼。因為 GitHub 自動幫你生成了 SSH 並存在你的帳號。
 
-如何設定可以先參考[這篇文章](https://cynthiachuang.github.io/Generating-a-Ssh-Key-and-Adding-It-to-the-GitHub/)或是[官方文件](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+如何設定可以先參考[Cynthia Chuang 的 SSH Key 設定教學](https://cynthiachuang.github.io/Generating-a-Ssh-Key-and-Adding-It-to-the-GitHub/)或是[GitHub SSH Key 官方文件](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 ## 衝突！？
 

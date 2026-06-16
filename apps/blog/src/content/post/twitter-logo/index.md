@@ -16,7 +16,7 @@ description: "我自製了一個描述檔可以建立一個書籤在主畫面。
 
 想要一個原本 Twitter 的 Logo，你可以安裝我自製的這個描述檔。
 
-1. 首先請你到[我的 GitHub 頁面](https://github.com/EM-Tec/EM-Tec.github.io/releases/tag/post-attach)點擊`Twitter Logo.mobileconfig`下載我的描述檔。
+1. 首先請你到[GitHub Release 下載頁面](https://github.com/EM-Tec/EM-Tec.github.io/releases/tag/post-attach)點擊`Twitter Logo.mobileconfig`下載我的描述檔。
 
 ![下載我的描述檔](twitter-logo-github.webp)
 

@@ -152,7 +152,7 @@ div:target ~ section {
 
 ## 成果
 
-最終成果如下：https://codepen.io/elvismao/pen/jOXpJXX
+最終成果如下：[開啟 Day 19 CodePen 範例](https://codepen.io/elvismao/pen/jOXpJXX)
 
 ![純 CSS 做出圖片 Lightbox](final.webp)
 

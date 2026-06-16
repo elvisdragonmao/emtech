@@ -168,7 +168,9 @@ element.style.animation = `marquee ${time}ms forwards linear`;
 
 所以把速率計算都丟入函式內，整理一下樣式，完整程式碼如下。
 
-https://codepen.io/elvismao/pen/YzdZdKv ![跑馬燈成果](final.webp)
+[開啟 Day 10 CodePen 範例](https://codepen.io/elvismao/pen/YzdZdKv)
+
+![跑馬燈成果](final.webp)
 
 ```html
 <div class="marquee">

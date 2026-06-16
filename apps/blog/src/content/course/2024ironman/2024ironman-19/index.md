@@ -148,7 +148,7 @@ Vercel 最方便的是它會在每次程式推送後自動部署你的應用程�
 
 比如說我最用的就是在某些分支取消自動部屬，因為有些東西就是還沒做完每天都要看他噴錯寄 email 罵我也是很煩的。
 
-> 參考配置：https://vercel.com/docs/projects/project-configuration
+> 參考配置：[Vercel 專案設定文件](https://vercel.com/docs/projects/project-configuration)
 
 ```json
 {

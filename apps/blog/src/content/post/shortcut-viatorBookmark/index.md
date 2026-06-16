@@ -28,5 +28,5 @@ description: "只須點一下即可快速連結到衛道的網頁或檔案"
 >
 > ### 小提醒
 >
-> - 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/p/shortcut-untrusted_Shortcut/)提供的方法。
+> - 如果手機說無法加入不受信任的捷徑，請參考[允許不受信任捷徑教學](https://emtech.cc/p/shortcut-untrusted_Shortcut/)提供的方法。
 > - 你也可以用 Siri 執行這個捷徑。

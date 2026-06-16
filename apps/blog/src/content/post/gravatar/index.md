@@ -16,7 +16,7 @@ description: "你是否常常煩惱每次更換頭像每個社群平台都需要
 
 ### 如何註冊和使用 Gravatar
 
-1. **註冊 Gravatar 帳號**：首先，你需要在 Gravatar 官方網站（https://en.gravatar.com/）上註冊一個帳號。這個過程非常簡單，只需要提供你的電子郵件地址。
+1. **註冊 Gravatar 帳號**：首先，你需要在 [Gravatar 官方網站](https://en.gravatar.com/) 上註冊一個帳號。這個過程非常簡單，只需要提供你的電子郵件地址。
 
 ![使用 email 註冊](sign.webp)
 

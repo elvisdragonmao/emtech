@@ -36,6 +36,6 @@ description: "當時在製作的時候正是疫情爆發的時間，教會聚會
 >
 > ### 小提醒
 >
-> - 如果手機說無法加入不受信任的捷徑，請參考[這篇文章](https://emtech.cc/p/shortcut-untrusted_Shortcut/)提供的方法。
+> - 如果手機說無法加入不受信任的捷徑，請參考[允許不受信任捷徑教學](https://emtech.cc/p/shortcut-untrusted_Shortcut/)提供的方法。
 > - 此網站及捷徑皆為開源項目，歡迎到[GitHub](https://github.com/elvisdragonmao/elvisdragonmao.github.io/tree/main/code/weekly)查看。
 > - 你也可以用 Siri 執行這個捷徑。
