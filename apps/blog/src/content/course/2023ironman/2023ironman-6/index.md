@@ -39,7 +39,9 @@ position: 屬性;
 
 來一個範例讓大家分辨它們不同的效果
 
-https://codepen.io/elvismao/pen/rNoYOKZ ![範例](sunny.webp)
+[開啟 Day 6 CodePen 範例](https://codepen.io/elvismao/pen/rNoYOKZ)
+
+![範例](sunny.webp)
 
 ```html
 <div class="sun">Fixed</div>

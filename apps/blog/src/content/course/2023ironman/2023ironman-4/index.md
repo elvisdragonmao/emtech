@@ -206,7 +206,9 @@ body {
 animation: drive 3s forwards;
 ```
 
-https://codepen.io/elvismao/pen/NWeKpjj ![drive 3s forwards](car.webp)
+[開啟 Day 4 第 3 個 CodePen 範例](https://codepen.io/elvismao/pen/NWeKpjj)
+
+![drive 3s forwards](car.webp)
 
 CSS Animation 的語法如下
 
@@ -229,7 +231,7 @@ animation:
 
 ## 速度曲線
 
-我們在前面不管是設定 transition 還是 animation 都有時間曲線可以設定。可以根據你的需求做調整，也可以使用 `cubic-bezier()` 來自訂曲線。你可以使用[這個網站](https://cubic-bezier.com/)生成看看，不過我覺得內建的已經很夠用了。
+我們在前面不管是設定 transition 還是 animation 都有時間曲線可以設定。可以根據你的需求做調整，也可以使用 `cubic-bezier()` 來自訂曲線。你可以使用[cubic-bezier 產生器](https://cubic-bezier.com/)生成看看，不過我覺得內建的已經很夠用了。
 
 ![Ease](ease.webp)
 

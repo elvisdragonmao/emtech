@@ -488,7 +488,7 @@ https://script.google.com/macros/s/AKfycbzxqGIMBbLkCka2aveltdVHYtdG-k_X98qzSd_V9
 
 #### Use this template
 
-第二個方式也很簡單，請先到這個[GitHub 倉庫](https://github.com/elvisdragonmao/roll-call)並點擊右上角的 Fork，或是 Use this template。倉庫名稱 Repository name 會成為你的網址 (例如：https://你的 GitHub 帳號.github.io/倉庫名稱)，然後點擊 Create repository from template。
+第二個方式也很簡單，請先到這個[點名系統 GitHub 倉庫](https://github.com/elvisdragonmao/roll-call)並點擊右上角的 Fork，或是 Use this template。倉庫名稱 Repository name 會成為你的網址 (例如：`https://你的 GitHub 帳號.github.io/倉庫名稱`)，然後點擊 Create repository from template。
 
 請點擊檔案`index.html`並點擊右上角的鉛筆按鈕編輯，把[第 265 行](https://github.com/elvisdragonmao/roll-call/blob/b694aec4381906980277b202fbc7909c95e2c544/index.html#L265)的雙引號裡面換成剛才複製的網頁應用程式網址，然後按下儲存。
 

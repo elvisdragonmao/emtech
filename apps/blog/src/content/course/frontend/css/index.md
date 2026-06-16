@@ -624,7 +624,7 @@ align-content: flex-start | flex-end | center | space-between | space-around | s
 
 ### 我不喜歡乖乖排隊 align-items
 
-我們可以使用 **`align-self`** 設定單獨一個元素的特別往另一邊靠。很少用的屬性。語法可以參考 MDN：https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference/Properties/align-self
+我們可以使用 **`align-self`** 設定單獨一個元素的特別往另一邊靠。很少用的屬性。語法可以參考 [MDN align-self 文件](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference/Properties/align-self)。
 
 ### 剩下的空間給誰？flex-grow
 
