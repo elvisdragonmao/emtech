@@ -53,6 +53,7 @@ export async function GET() {
 		{ loc: absoluteUrl("/"), lastmod: new Date(Math.max(latestPostDate, latestLessonDate)), changefreq: "weekly", priority: 1 },
 		{ loc: absoluteUrl("/archive/"), lastmod: new Date(latestPostDate), changefreq: "weekly", priority: 0.8 },
 		{ loc: absoluteUrl("/course/"), lastmod: new Date(latestLessonDate), changefreq: "weekly", priority: 0.8 },
+		{ loc: absoluteUrl("/sitemap/"), lastmod: new Date(Math.max(latestPostDate, latestLessonDate)), changefreq: "weekly", priority: 0.7 },
 		{ loc: absoluteUrl("/friends/"), changefreq: "monthly", priority: 0.5 }
 	];
 

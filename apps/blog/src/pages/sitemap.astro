@@ -1,0 +1,419 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import { extractTitle, formatDate } from "@/utils/content";
+import { itemListSchema, publisherSchema, webPageSchema } from "@/utils/seo";
+
+const posts = (await getCollection("post")).filter(post => !post.data.draft).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const courses = (await getCollection("course")).sort((a, b) => a.data.displayOrder - b.data.displayOrder || a.data.title.localeCompare(b.data.title));
+const lessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
+
+const mainPages = [
+	{ title: "首頁", href: "/", description: "最新內容、課程入口與網站介紹" },
+	{ title: "文章歸檔", href: "/archive/", description: "所有文章依年份與日期排列" },
+	{ title: "課程", href: "/course/", description: "系列課程與單元列表" },
+	{ title: "友情連結", href: "/friends/", description: "朋友網站與推薦連結" },
+	{ title: "關於本站", href: "/p/about/", description: "本站背景與作者資訊" },
+	{ title: "RSS", href: "/rss.xml", description: "訂閱網站更新" }
+];
+
+const lessonsByCourse = new Map<string, typeof lessons>();
+for (const lesson of lessons) {
+	const [courseId] = lesson.id.split("/");
+	if (!courseId) continue;
+	if (!lessonsByCourse.has(courseId)) lessonsByCourse.set(courseId, []);
+	lessonsByCourse.get(courseId)!.push(lesson);
+}
+
+for (const course of courses) {
+	const courseLessons = lessonsByCourse.get(course.id) ?? [];
+	const order = new Map(course.data.order.map((lessonId, index) => [lessonId, index]));
+	courseLessons.sort((a, b) => {
+		const aId = a.id.split("/")[1] ?? a.id;
+		const bId = b.id.split("/")[1] ?? b.id;
+		return (order.get(aId) ?? Number.MAX_SAFE_INTEGER) - (order.get(bId) ?? Number.MAX_SAFE_INTEGER) || a.data.date.getTime() - b.data.date.getTime();
+	});
+}
+
+const postsByYear = new Map<number, typeof posts>();
+for (const post of posts) {
+	const year = post.data.date.getFullYear();
+	if (!postsByYear.has(year)) postsByYear.set(year, []);
+	postsByYear.get(year)!.push(post);
+}
+const years = [...postsByYear.keys()].sort((a, b) => b - a);
+
+const allSitemapItems = [
+	...mainPages.map(page => ({ url: page.href, name: page.title })),
+	...courses.map(course => ({ url: `/course/${course.id}/`, name: course.data.title })),
+	...lessons.map(lesson => {
+		const [courseId, lessonId] = lesson.id.split("/");
+		return {
+			url: `/course/${courseId}/${lessonId}/`,
+			name: extractTitle(lesson.body) || lesson.data.description || lessonId
+		};
+	}),
+	...posts.map(post => ({ url: `/p/${post.id}/`, name: extractTitle(post.body) || post.id }))
+];
+
+const structuredData = [
+	publisherSchema(),
+	webPageSchema({ url: "/sitemap/", title: "網站導覽", description: "毛哥EM資訊密技的網站導覽、定位點與鍵盤快速操作說明。", type: "CollectionPage" }),
+	itemListSchema(allSitemapItems, "https://emtech.cc/sitemap/#page-list")
+];
+---
+
+<Layout title="網站導覽" description="毛哥EM資訊密技的網站導覽、定位點與鍵盤快速操作說明。" active="sitemap" canonicalPath="/sitemap/" ogType="website" structuredData={structuredData}>
+	<main id="main-content" class="sitemap-page" tabindex="-1">
+		<header class="sitemap-header">
+			<p class="eyebrow">Site Map</p>
+			<h1>網站導覽</h1>
+			<p class="lead">這裡整理本站主要頁面、課程單元與文章清單。</p>
+		</header>
+
+		<section class="help-panel" aria-labelledby="access-help-title">
+			<h2 id="access-help-title">定位點與快速鍵</h2>
+			<ul>
+				<li>每頁最前方都有「跳到主要內容」連結。使用鍵盤 <kbd>Tab</kbd> 聚焦後按 <kbd>Enter</kbd>，可直接前往該頁的 <code>#main-content</code>。</li>
+				<li>頁首主要導覽可前往首頁、文章、課程與本網站導覽頁。</li>
+				<li>站內搜尋可點選頁首搜尋按鈕；在非輸入欄位時，也可按 <kbd>/</kbd> 或 <kbd>Ctrl</kbd> + <kbd>K</kbd>，macOS 可按 <kbd>Command</kbd> + <kbd>K</kbd> 開啟。</li>
+				<li>搜尋視窗開啟後可用 <kbd>Esc</kbd> 關閉，焦點會回到原本啟動搜尋的控制項。</li>
+			</ul>
+		</section>
+
+		<section class="sitemap-section" aria-labelledby="main-pages-title">
+			<h2 id="main-pages-title">主要頁面</h2>
+			<div class="main-page-grid">
+				{
+					mainPages.map(page => (
+						<a class="main-page-link" href={page.href}>
+							<strong>{page.title}</strong>
+							<span>{page.description}</span>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="sitemap-section" aria-labelledby="courses-title">
+			<h2 id="courses-title">課程與單元</h2>
+			<div class="course-list">
+				{
+					courses.map(course => {
+						const courseLessons = lessonsByCourse.get(course.id) ?? [];
+						return (
+							<section class="course-group" aria-labelledby={`course-${course.id}`}>
+								<div class="course-heading">
+									<h3 id={`course-${course.id}`}>
+										<a href={`/course/${course.id}/`}>{course.data.title}</a>
+									</h3>
+									<p>{course.data.description}</p>
+								</div>
+								{courseLessons.length > 0 ? (
+									<ol>
+										{courseLessons.map(lesson => {
+											const [, lessonId] = lesson.id.split("/");
+											const title = extractTitle(lesson.body) || lesson.data.description || lessonId;
+											return (
+												<li>
+													<a href={`/course/${course.id}/${lessonId}/`}>
+														<span>{title}</span>
+														<time datetime={lesson.data.date.toISOString()}>{formatDate(lesson.data.date)}</time>
+													</a>
+												</li>
+											);
+										})}
+									</ol>
+								) : (
+									<p class="empty-note">此課程尚未公開單元。</p>
+								)}
+							</section>
+						);
+					})
+				}
+			</div>
+		</section>
+
+		<section class="sitemap-section" aria-labelledby="posts-title">
+			<h2 id="posts-title">文章</h2>
+			<div class="post-years">
+				{
+					years.map(year => (
+						<section class="year-group" aria-labelledby={`post-year-${year}`}>
+							<h3 id={`post-year-${year}`}>{year}</h3>
+							<ol>
+								{postsByYear.get(year)!.map(post => {
+									const title = extractTitle(post.body) || post.id;
+									return (
+										<li>
+											<a href={`/p/${post.id}/`}>
+												<span>{title}</span>
+												<time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+											</a>
+										</li>
+									);
+								})}
+							</ol>
+						</section>
+					))
+				}
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.sitemap-page {
+		width: min(var(--site-width), 100%);
+		margin-inline: auto;
+		padding: 5.5rem 2rem 7.5rem;
+	}
+
+	.sitemap-header {
+		padding-bottom: 3rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.eyebrow {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.09em;
+		color: var(--color-muted);
+		text-transform: uppercase;
+	}
+
+	.lead {
+		max-width: 42rem;
+		margin-top: 1.5rem;
+		font-size: 1.5rem;
+		font-weight: 700;
+		line-height: 1.45;
+		color: var(--color-muted);
+	}
+
+	.help-panel {
+		margin-top: 2rem;
+		padding: 1.5rem;
+		background: var(--color-surface-glass-strong);
+		border: 1px solid var(--color-border);
+	}
+
+	.help-panel h2,
+	.sitemap-section h2 {
+		font-size: 1.75rem;
+		line-height: 1.15;
+		letter-spacing: -0.04em;
+		color: var(--color-ink);
+	}
+
+	.help-panel ul {
+		display: grid;
+		gap: 0.75rem;
+		margin-top: 1rem;
+		padding-left: 1.25rem;
+		line-height: 1.8;
+	}
+
+	kbd,
+	code {
+		font-family: var(--font-mono);
+		font-size: 0.85em;
+		color: var(--color-ink);
+		background: var(--color-surface-soft);
+		border: 1px solid var(--color-border);
+	}
+
+	kbd {
+		display: inline-block;
+		padding: 0.1rem 0.35rem;
+	}
+
+	code {
+		padding: 0.1rem 0.3rem;
+	}
+
+	.sitemap-section {
+		margin-top: 4rem;
+	}
+
+	.main-page-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		margin-top: 1.25rem;
+		border: 1px solid var(--color-border);
+	}
+
+	.main-page-link {
+		display: grid;
+		gap: 0.5rem;
+		min-height: 8rem;
+		padding: 1.25rem;
+		background: var(--color-surface-glass);
+		border-left: 1px solid var(--color-border);
+		transition:
+			background 160ms ease,
+			color 160ms ease;
+	}
+
+	.main-page-link:nth-child(3n + 1) {
+		border-left: 0;
+	}
+
+	.main-page-link:nth-child(n + 4) {
+		border-top: 1px solid var(--color-border);
+	}
+
+	.main-page-link:hover {
+		color: var(--color-accent-strong);
+		background: var(--color-surface-soft);
+	}
+
+	.main-page-link strong {
+		font-size: 1.25rem;
+		line-height: 1.25;
+		color: var(--color-ink);
+	}
+
+	.main-page-link span,
+	.course-heading p,
+	.empty-note {
+		line-height: 1.65;
+		color: var(--color-muted);
+	}
+
+	.course-list,
+	.post-years {
+		display: grid;
+		gap: 2rem;
+		margin-top: 1.25rem;
+	}
+
+	.course-group,
+	.year-group {
+		display: grid;
+		grid-template-columns: minmax(14rem, 0.34fr) minmax(0, 1fr);
+		gap: 1.5rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.course-heading h3,
+	.year-group h3 {
+		font-size: 1.25rem;
+		line-height: 1.3;
+		letter-spacing: -0.03em;
+		color: var(--color-ink);
+	}
+
+	.course-heading a,
+	.year-group h3 {
+		color: var(--color-ink);
+	}
+
+	.course-heading a:hover {
+		color: var(--color-accent-strong);
+	}
+
+	.course-heading p {
+		margin-top: 0.75rem;
+	}
+
+	.course-group ol,
+	.year-group ol {
+		display: grid;
+		list-style: none;
+		border-top: 1px solid var(--color-ink);
+	}
+
+	.course-group li,
+	.year-group li {
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.course-group li a,
+	.year-group li a {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		gap: 1rem;
+		align-items: baseline;
+		padding: 0.85rem 0;
+		color: var(--color-text);
+	}
+
+	.course-group li a:hover,
+	.year-group li a:hover {
+		color: var(--color-accent-strong);
+	}
+
+	.course-group li span,
+	.year-group li span {
+		min-width: 0;
+		font-weight: 700;
+		line-height: 1.45;
+		color: inherit;
+	}
+
+	time {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	@media (max-width: 57.5rem) {
+		.main-page-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.main-page-link,
+		.main-page-link:nth-child(3n + 1) {
+			border-left: 1px solid var(--color-border);
+		}
+
+		.main-page-link:nth-child(odd) {
+			border-left: 0;
+		}
+
+		.main-page-link:nth-child(n + 3) {
+			border-top: 1px solid var(--color-border);
+		}
+
+		.course-group,
+		.year-group {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.sitemap-page {
+			padding: 3.25rem 1rem 5.5rem;
+		}
+
+		.help-panel {
+			padding: 1.15rem;
+		}
+
+		.main-page-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.main-page-link,
+		.main-page-link:nth-child(odd),
+		.main-page-link:nth-child(3n + 1) {
+			border-left: 0;
+		}
+
+		.main-page-link:nth-child(n + 2) {
+			border-top: 1px solid var(--color-border);
+		}
+
+		.course-group li a,
+		.year-group li a {
+			grid-template-columns: 1fr;
+			gap: 0.25rem;
+		}
+	}
+</style>
