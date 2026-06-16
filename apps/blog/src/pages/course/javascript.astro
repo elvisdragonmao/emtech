@@ -1,3 +1,20 @@
 ---
-return Astro.redirect("/course/frontend/js/", 301);
+const target = "/course/frontend/js/";
 ---
+
+<!doctype html>
+<html lang="zh-Hant">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="refresh" content={`0;url=${target}`} />
+		<meta name="robots" content="noindex" />
+		<link rel="canonical" href={target} />
+		<title>轉往 JavaScript 課程 | 毛哥EM資訊密技</title>
+	</head>
+	<body>
+		<main id="main-content">
+			<p>JavaScript 課程已搬移至 <a href={target}>前端 JavaScript 課程頁</a>。</p>
+		</main>
+	</body>
+</html>

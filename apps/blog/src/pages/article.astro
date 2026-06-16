@@ -1,3 +1,20 @@
 ---
-return Astro.redirect("/archive/", 301);
+const target = "/archive/";
 ---
+
+<!doctype html>
+<html lang="zh-Hant">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="refresh" content={`0;url=${target}`} />
+		<meta name="robots" content="noindex" />
+		<link rel="canonical" href={target} />
+		<title>轉往文章列表 | 毛哥EM資訊密技</title>
+	</head>
+	<body>
+		<main id="main-content">
+			<p>文章列表已搬移至 <a href={target}>文章封存頁</a>。</p>
+		</main>
+	</body>
+</html>
