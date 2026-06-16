@@ -230,7 +230,7 @@ div {
 
 ## 成果
 
-https://codepen.io/elvismao/pen/bGOxLoV
+[開啟 Day 22 CodePen 範例](https://codepen.io/elvismao/pen/bGOxLoV)
 
 ![成果](final.webp)
 

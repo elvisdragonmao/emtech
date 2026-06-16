@@ -32,7 +32,7 @@ description: 馬丁格爾策略的規則是：在每一輪遊戲中，你下注�
 
 我寫了一個簡單的 HTML 網頁來模擬馬丁格爾策略。
 
-網址：<https://elvismao.com/code/martingale/>
+網址：[開啟馬丁格爾策略模擬器](https://elvismao.com/code/martingale/)
 
 ![模擬](模擬.webp)
 

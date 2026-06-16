@@ -28,7 +28,7 @@ description: "這個腳本能在 GitHub 頁面上添加一個按鈕，點擊後�
 
 ### 2. 安裝腳本
 
-點擊 [這裡](https://greasyfork.org/en/scripts/494749-copy-github-repo-name) 進入 Greasy Fork 安裝頁面，點擊安裝即可。
+開啟 [Copy GitHub Repo Name 的 Greasy Fork 安裝頁面](https://greasyfork.org/en/scripts/494749-copy-github-repo-name)，點擊安裝即可。
 
 ![安裝腳本](install.webp)
 

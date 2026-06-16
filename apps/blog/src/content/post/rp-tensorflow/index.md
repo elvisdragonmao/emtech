@@ -49,7 +49,7 @@ source venv/bin/activate
 
 直接使用 pip 安裝 Tensorflow 會遇到問題，因此我們要手動安裝。請你先到這個 GitHub 頁面查看版本對照表：
 
-<https://github.com/PINTO0309/Tensorflow-bin/#usage>
+[查看 Tensorflow-bin 版本對照表](https://github.com/PINTO0309/Tensorflow-bin/#usage)
 
 這裡節錄一小段，你可以看到不同的版本對應的 Python 版本和 Raspberry Pi 版本。
 

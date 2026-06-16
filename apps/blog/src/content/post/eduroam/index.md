@@ -14,7 +14,7 @@ eduroam 是一個來自歐洲的計畫，讓全球的科研和教育機構可以
 
 在開始連接之前，請你先到[教育體系單一簽入服務](https://www.sso.edu.tw/register)註冊帳號，必須填真實資料，還可以自己設定電子郵件名稱 (`自訂名稱`@mail.edu.tw)。如果你國中學校就有使用但你不知道密碼的話可以點擊忘記密碼。
 
-註冊網址：<https://www.sso.edu.tw/register>
+註冊網址：[教育體系單一簽入服務註冊頁](https://www.sso.edu.tw/register)
 
 [教育部電子郵件 mail.edu.tw](https://mail.edu.tw) 很慢，UI 很醜，常常檔信，不建議一般正常使用。但是很多軟體如果使用這個教育電子郵件可以獲成很多優惠或升級。也有一些軟體是一定要使用自己學校的信箱 (如 `@g.sysh.tc.edu.tw`)
 

@@ -66,7 +66,7 @@ window.addEventListener("scroll", function () {
 
 以下是一個簡單的範例。
 
-https://codepen.io/elvismao/pen/vYvZagX
+[開啟 Day 12 第 1 個 CodePen 範例](https://codepen.io/elvismao/pen/vYvZagX)
 
 ![滾動視差爆炸酷！](boom.webp)
 
@@ -180,7 +180,7 @@ window.addEventListener("scroll", function () {
 
 這樣就完成了。來看看成果，十分有趣對吧！
 
-https://codepen.io/elvismao/pen/gOZRQex
+[開啟 Day 12 第 2 個 CodePen 範例](https://codepen.io/elvismao/pen/gOZRQex)
 
 ![Final](spin.webp)
 

@@ -13,7 +13,7 @@ description: "「讀書人的事，能算偷麼？」孔乙己如果是使用 Gi
 在這篇教程中，我們將探討如何使用 GitHub Actions 來自動運行 Python 爬蟲腳本，並處理和存儲抓取的資料。這個過程包括設定 GitHub Actions 工作流程、運行爬蟲腳本以及將結果存儲到不同的地方（如文件或資料庫）。
 
 > 今日範例程式：[開啟第 22 天範例程式](https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/22)  
-> 專案 Repo: <https://github.com/elvisdragonmao/2024SpecAdmitNotifier>
+> 專案 Repo: [查看 2024SpecAdmitNotifier 原始碼](https://github.com/elvisdragonmao/2024SpecAdmitNotifier)
 
 ## 背景與目標
 

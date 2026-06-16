@@ -20,7 +20,7 @@ description: "你知道學生在在學期間於全世界皆可使用免費 Wi-Fi
 >
 > - 開發者：教育部
 > - 程式類型：官方網站
-> - 網址:<https://www.sso.edu.tw/register>
+> - 網址：[教育體系單一簽入服務註冊頁](https://www.sso.edu.tw/register)
 
 ### 啟用 Eduroam
 
@@ -28,7 +28,7 @@ description: "你知道學生在在學期間於全世界皆可使用免費 Wi-Fi
 
 ## 微軟 Office 365 教育版
 
-到[微軟 Office 365 教育版雲端服務啟用網站](https://o365.k12cc.tw/)啟用 Office365。登入即可使用。Office 的網站是<https://www.office.com/>
+到[微軟 Office 365 教育版雲端服務啟用網站](https://o365.k12cc.tw/)啟用 Office365。登入即可使用。Office 的網站是 [Microsoft 365 首頁](https://www.office.com/)
 
 記得 Office 的帳號是`自訂英文@ms.edu.tw`而不是`自訂英文@mail.edu.tw`喔！
 
@@ -53,7 +53,7 @@ description: "你知道學生在在學期間於全世界皆可使用免費 Wi-Fi
 > - 開發者：泛歐洲科研與教育網路協會
 > - 服務地區：全球
 > - 程式類型：官方網站
-> - 官網:<https://eduroam.org/>(不用到這裡)
+> - 官網：[eduroam 官方網站](https://eduroam.org/)(不用到這裡)
 
 #### iPhone & iPad / Windows 10 & 11
 

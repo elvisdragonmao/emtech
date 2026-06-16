@@ -38,7 +38,7 @@ description: 簡單來說好好去讀書吧。無論你全部猜 C、平均猜 A
 >
 > 猜題策略模擬器
 >
-> <https://elvismao.com/code/c-strategy/>
+> [開啟猜題策略模擬器](https://elvismao.com/code/c-strategy/)
 
 為了進一步驗證數學結果，我們可以使用 JavaScript 模擬上述三種策略。以下是模擬器的功能：
 
@@ -73,7 +73,7 @@ function simulate(numQuestions, simulations, strategy) {
 }
 ```
 
-完整的程式碼包含 HTML、CSS 和 JavaScript，可以生成一個互動網頁，讓使用者自行選擇模擬次數和策略。你可以在 [這裡](https://github.com/elvisdragonmao/elvisdragonmao.github.io/tree/main/code/c-strategy) 查看完整的原始碼。
+完整的程式碼包含 HTML、CSS 和 JavaScript，可以生成一個互動網頁，讓使用者自行選擇模擬次數和策略。你可以在 [GitHub 查看猜題策略模擬器原始碼](https://github.com/elvisdragonmao/elvisdragonmao.github.io/tree/main/code/c-strategy)。
 
 ![猜題策略模擬器](run.webp)
 

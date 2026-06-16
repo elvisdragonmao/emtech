@@ -110,7 +110,7 @@ input:checked ~ .light {
 
 最後成果如下
 
-https://codepen.io/elvismao/pen/KKbZjOq
+[開啟 Day 14 CodePen 範例](https://codepen.io/elvismao/pen/KKbZjOq)
 
 ![開關成果](final.webp)
 

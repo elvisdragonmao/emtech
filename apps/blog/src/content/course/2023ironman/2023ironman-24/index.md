@@ -11,7 +11,7 @@ description: "今天我們要來做這個紓壓的效果："
 
 今天我們要來做這個紓壓的效果：
 
-https://codepen.io/elvismao/pen/poqqoLr
+[開啟 Day 24 CodePen 範例](https://codepen.io/elvismao/pen/poqqoLr)
 
 ![成果](final.webp)
 

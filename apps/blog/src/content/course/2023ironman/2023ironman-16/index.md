@@ -342,7 +342,7 @@ updateClock();
 
 終於成功啦！有個 87% 像吧 w
 
-https://codepen.io/elvismao/pen/wvRXMLG
+[開啟 Day 16 CodePen 範例](https://codepen.io/elvismao/pen/wvRXMLG)
 
 ![Final](final.webp)
 

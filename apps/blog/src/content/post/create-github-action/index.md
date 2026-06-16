@@ -22,7 +22,7 @@ GitHub Actions 是 GitHub 提供的一個 CI/CD 服務，可以讓你在 GitHub 
 
 ## 步驟一：建立一個 Repository
 
-首先，你需要在 GitHub 上建立一個 Repository ([點我](https://github.com/new))。這個 Repository 將用來存放你的 Action 程式，以及一些必要的文件。我們會使用 Node.js 來實現這個 Action。
+首先，你需要在 GitHub 上建立一個 Repository ([建立新的 GitHub Repository](https://github.com/new))。這個 Repository 將用來存放你的 Action 程式，以及一些必要的文件。我們會使用 Node.js 來實現這個 Action。
 
 > `.gitignore` 建議不要選擇 `Node`，因為這樣會忽略 `node_modules` 資料夾。
 

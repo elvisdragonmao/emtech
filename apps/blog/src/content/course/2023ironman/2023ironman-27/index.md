@@ -265,7 +265,7 @@ nav > div > img {
 
 成果如下
 
-https://codepen.io/elvismao/pen/WNLPYON
+[開啟 Day 27 CodePen 範例](https://codepen.io/elvismao/pen/WNLPYON)
 
 ![成果](final.webp)
 

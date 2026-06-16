@@ -21,7 +21,7 @@ description: "我們都知道 CSS 動畫可以用 @keyframes 來做，但是他�
 
 這裡是一個我做的範例。你可以看到當元素的上方超出畫面時`top`就會變負值。當元素的下方超出畫面時`bottom`的值會大於螢幕高度。那麼我們只需要有任何一部分有顯示在畫面上就可以觸發動畫了。
 
-https://codepen.io/elvismao/pen/ExGrxjX
+[開啟 Day 26 第 1 個 CodePen 範例](https://codepen.io/elvismao/pen/ExGrxjX)
 
 ![getBoundingClientRect()](getBoundingClientRect.webp)
 
@@ -157,7 +157,7 @@ ok 成功，我們來多做幾個更浮誇的動畫。
 
 好啦成果如下，你可以試著滾動一下頁面看看。今天這幾行程式碼就一次取代了 [Animate.css](https://animate.style/)、[WOW.js](https://wowjs.uk/)、[AOS](https://michalsnik.github.io/aos/)、[ScrollReveal](https://scrollrevealjs.org/) 這些函式庫，而且還有更簡單更高的自訂性。
 
-https://codepen.io/elvismao/pen/rNoPBZe
+[開啟 Day 26 第 2 個 CodePen 範例](https://codepen.io/elvismao/pen/rNoPBZe)
 
 ![所有效果](final.webp)
 
