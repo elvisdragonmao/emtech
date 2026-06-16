@@ -233,13 +233,6 @@ const lessonListId = `course-lesson-list-${courseId}`;
 			border: 0;
 		}
 
-		.course-toggle span,
-		.course-toggle strong {
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-		}
-
 		.course-toggle span {
 			font-family: var(--font-mono);
 			font-size: 0.7rem;
@@ -247,9 +240,11 @@ const lessonListId = `course-lesson-list-${courseId}`;
 			letter-spacing: 0.08em;
 			color: var(--color-muted);
 			text-transform: uppercase;
+			white-space: nowrap;
 		}
 
 		.course-toggle strong {
+			overflow-wrap: anywhere;
 			font-size: 0.95rem;
 			line-height: 1.2;
 		}
