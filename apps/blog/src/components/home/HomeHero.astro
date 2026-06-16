@@ -45,25 +45,25 @@ const featuredArticles = recentPosts.map((p, index) => {
 			<h1>毛哥EM<br />資訊密技</h1>
 			<p class="hero-subtitle">科技、設計、毛茸茸</p>
 		</div>
-		<div class="card stats-panel" aria-label="網站統計">
+		<dl class="card stats-panel" aria-label="網站統計">
 			{
 				stats.map(stat => (
 					<div>
-						<span>{stat.label}</span>
+						<dt>{stat.label}</dt>
 						{stat.livedFor ? (
-							<strong data-lived-for data-launch-date={LAUNCH_DATE} aria-live="polite">
+							<dd data-lived-for data-launch-date={LAUNCH_DATE} aria-live="polite">
 								{stat.value}
-							</strong>
+							</dd>
 						) : (
-							<strong>{stat.value}</strong>
+							<dd>{stat.value}</dd>
 						)}
 					</div>
 				))
 			}
-		</div>
+		</dl>
 	</div>
 
-	<div class="hero-gallery" aria-label="精選內容">
+	<div class="hero-gallery" role="group" aria-label="精選內容">
 		<picture>
 			<source media="(prefers-reduced-motion: reduce)" srcset="/img/dragon-still.webp" />
 			<img class="dragon" src="/img/dragon.webp" alt="毛哥EM 角色插圖" data-dragon-image data-animated-src="/img/dragon.webp" data-still-src="/img/dragon-still.webp" />
@@ -207,6 +207,7 @@ const featuredArticles = recentPosts.map((p, index) => {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		max-width: 35rem;
+		margin: 0;
 	}
 
 	.stats-panel div {
@@ -218,7 +219,7 @@ const featuredArticles = recentPosts.map((p, index) => {
 		border-left: 0;
 	}
 
-	.stats-panel span {
+	.stats-panel dt {
 		display: block;
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
@@ -228,9 +229,9 @@ const featuredArticles = recentPosts.map((p, index) => {
 		text-transform: uppercase;
 	}
 
-	.stats-panel strong {
+	.stats-panel dd {
 		display: block;
-		margin-top: 0.5rem;
+		margin: 0.5rem 0 0;
 		font-size: 1.75rem;
 		line-height: 1.75rem;
 		letter-spacing: -0.04em;
@@ -435,7 +436,7 @@ const featuredArticles = recentPosts.map((p, index) => {
 			font-size: 1.25rem;
 		}
 
-		.stats-panel div:last-child strong {
+		.stats-panel div:last-child dd {
 			font-size: max(1.25rem, 5vw);
 		}
 
