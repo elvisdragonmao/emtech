@@ -14,7 +14,7 @@ description: "司馬遷如果使用 GitHub Actions 就可以自動更新《史�
 
 我們要使用 Actions 自動從 `fonts.json` 文件中生成一個格式化的字體列表並更新 `README.md` 文件。這包括讀取 JSON 文件內容、生成 Markdown 表格，以及在 README 文件中更新這些內容。
 
-> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/20>
+> 今日範例程式：[開啟第 20 天範例程式](https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/20)
 
 ## 1. 背景與目標
 

@@ -14,7 +14,7 @@ description: "老子能夠無為而治，正是因為他掌握了 GitHub Actions
 
 > 當然，如果你使用的是 Zeabur 或是 Vercel 這樣的部屬平台，在 push 之後他們就會自動部屬，這樣也不錯。
 
-> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/14>
+> 今日範例程式：[開啟第 14 天範例程式](https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/14)
 
 ## 1. 使用 GitHub Actions 部署到 AWS S3
 

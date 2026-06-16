@@ -12,7 +12,7 @@ description: "戰國時期張儀遊說各國開放 API 給秦整合，才能夠�
 
 在這篇教程中，我們將探討如何整合外部 API 和服務，自動化 GitHub issue 管理，並使用 CodeRabbit 自動進行程式審查，Vercel 與 Zeabur 來實現自動化部屬。
 
-> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/19>
+> 今日範例程式：[開啟第 19 天範例程式](https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/19)
 
 ## 自動化 GitHub Issue 管理
 

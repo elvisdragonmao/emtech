@@ -12,7 +12,7 @@ description: "子曰：「不在其位，不謀其政。」說明了多階段工
 
 設計一個穩定且高效的 CI/CD（持續整合與持續部署）流程是至關重要的。這不僅能夠提高開發效率，還能確保應用的品質。我們今天要在 Node.js 專案中使用 GitHub Actions 搭建一個多階段 CI/CD 流程，涵蓋構建、測試、部署和發布。
 
-> 今日範例程式：<https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/23>
+> 今日範例程式：[開啟第 23 天範例程式](https://github.com/elvisdragonmao/2024-GitHub-Actions/tree/main/23)
 
 ## 設定 Node.js 專案
 
