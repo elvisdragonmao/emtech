@@ -211,14 +211,67 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 				ensureFrameTitle(frame);
 			}
 		};
+		const isAnimatedGif = (image: HTMLImageElement) => {
+			const source = image.currentSrc || image.getAttribute("src") || "";
+			if (!source) return false;
+
+			try {
+				return new URL(source, window.location.href).pathname.toLowerCase().endsWith(".gif");
+			} catch {
+				return source.toLowerCase().split("?")[0].endsWith(".gif");
+			}
+		};
+		let animatedImageControlIndex = 0;
+		const ensureAnimatedImageControl = (image: HTMLImageElement) => {
+			if (image.dataset.animationControlReady === "true" || !isAnimatedGif(image)) return;
+
+			image.dataset.animationControlReady = "true";
+			if (!image.id) {
+				animatedImageControlIndex += 1;
+				image.id = `animated-image-${animatedImageControlIndex}`;
+			}
+
+			const control = document.createElement("button");
+			const imageLabel = image.alt.trim();
+			control.type = "button";
+			control.className = "animated-image-toggle";
+			control.setAttribute("aria-controls", image.id);
+			control.setAttribute("aria-pressed", "false");
+			if (imageLabel) control.setAttribute("aria-label", `隱藏動畫圖片：${imageLabel}`);
+
+			const setHidden = (hidden: boolean) => {
+				image.hidden = hidden;
+				control.textContent = hidden ? "顯示動畫圖片" : "隱藏動畫圖片";
+				control.setAttribute("aria-pressed", String(hidden));
+				if (imageLabel) control.setAttribute("aria-label", `${hidden ? "顯示" : "隱藏"}動畫圖片：${imageLabel}`);
+			};
+
+			setHidden(false);
+			control.addEventListener("click", () => setHidden(!image.hidden), { signal });
+			image.after(control);
+		};
+		const ensureAnimatedImageControls = (root: ParentNode) => {
+			if (root instanceof HTMLImageElement) {
+				ensureAnimatedImageControl(root);
+				return;
+			}
+
+			for (const image of root.querySelectorAll<HTMLImageElement>("img")) {
+				ensureAnimatedImageControl(image);
+			}
+		};
 
 		if (articleContent) {
 			ensureFrameTitles(articleContent);
+			ensureAnimatedImageControls(articleContent);
 			if (typeof window.MutationObserver === "function") {
 				embedObserver = new MutationObserver(mutations => {
 					for (const mutation of mutations) {
 						for (const node of mutation.addedNodes) {
-							if (node instanceof HTMLElement || node instanceof DocumentFragment) ensureFrameTitles(node);
+							if (node instanceof HTMLElement || node instanceof DocumentFragment) {
+								ensureFrameTitles(node);
+								ensureAnimatedImageControls(node);
+							}
 						}
 					}
 				});
@@ -767,6 +820,31 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		height: auto;
 		display: block;
 		object-fit: contain;
+	}
+
+	.article-content :global(.animated-image-toggle) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: fit-content;
+		max-width: 100%;
+		min-height: 2.75rem;
+		margin-top: 0.75rem;
+		padding: 0.65rem 0.95rem;
+		font: inherit;
+		font-size: 0.95rem;
+		line-height: 1.2;
+		color: var(--color-bg);
+		background: var(--color-text);
+		border: 2px solid var(--color-text);
+		border-radius: 0.45rem;
+		cursor: pointer;
+	}
+
+	.article-content :global(.animated-image-toggle:hover),
+	.article-content :global(.animated-image-toggle:focus-visible) {
+		color: var(--color-text);
+		background: var(--color-bg);
 	}
 
 	.article-content :global(figure) {
