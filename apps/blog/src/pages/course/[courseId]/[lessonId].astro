@@ -169,20 +169,20 @@ const structuredData = [
 					{
 						prevLesson && (
 							<a href={`/course/${courseId}/${prevId}/`}>
-								<span>Previous</span>
+								<span>上一篇</span>
 								<strong>{extractTitle(prevLesson.body) || prevLesson.data.description || prevId}</strong>
 								<ArrowLeft size={16} stroke-width={1.8} aria-hidden="true" />
 							</a>
 						)
 					}
 					<a class="current" href={`/course/${courseId}/`}>
-						<span>Back to course</span>
+						<span>回到課程</span>
 						<strong>{courseEntry?.data.title ?? courseId}</strong>
 					</a>
 					{
 						nextLesson && (
 							<a href={`/course/${courseId}/${nextId}/`}>
-								<span>Next</span>
+								<span>下一篇</span>
 								<strong>{extractTitle(nextLesson.body) || nextLesson.data.description || nextId}</strong>
 								<ArrowRight size={16} stroke-width={1.8} aria-hidden="true" />
 							</a>

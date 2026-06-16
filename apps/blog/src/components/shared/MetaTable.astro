@@ -9,13 +9,20 @@ interface Props {
 }
 
 const { items } = Astro.props;
+const labelText: Record<string, string> = {
+	Date: "日期",
+	Category: "分類",
+	"Read Time": "閱讀時間",
+	Word: "字數",
+	"Last Mod": "最後更新"
+};
 ---
 
 <dl class="meta-table">
 	{
 		items.map(item => (
 			<div>
-				<dt>{item.label}</dt>
+				<dt>{labelText[item.label] ?? item.label}</dt>
 				<dd>{item.value}</dd>
 			</div>
 		))

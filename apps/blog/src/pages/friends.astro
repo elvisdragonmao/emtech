@@ -56,7 +56,7 @@ const structuredData = [
 <Layout title="友情連結" description="有朋自遠方來，不亦悅乎？這裡收藏毛哥EM的朋友們與他們的網站。" canonicalPath="/friends/" ogType="website" structuredData={structuredData}>
 	<main id="main-content" class="friends-page" tabindex="-1">
 		<header class="friends-header" aria-labelledby="friends-title">
-			<p class="eyebrow">Friends</p>
+			<p class="eyebrow">朋友</p>
 			<div class="header-grid">
 				<div>
 					<h1 id="friends-title">友情連結</h1>
@@ -75,7 +75,7 @@ const structuredData = [
 					<section class="friend-section" aria-labelledby={`section-${section.title}`}>
 						<div class="section-heading">
 							<h2 id={`section-${section.title}`}>{section.title}</h2>
-							<p>{section.friends.length} links</p>
+							<p>{section.friends.length} 個連結</p>
 						</div>
 						<div class="friend-grid">
 							{section.friends.map(friend => {
@@ -105,7 +105,7 @@ const structuredData = [
 
 		<section class="comments-panel" aria-label="友情連結留言區">
 			<div class="comments-note">
-				<p class="eyebrow">Request</p>
+				<p class="eyebrow">申請收錄</p>
 				<p>如果你也想出現在這裡，或是想加我，歡迎在底下留言提供照片、網址、簡介等資訊給我嗷！</p>
 			</div>
 			<Comments pagePath="/friends/" />
