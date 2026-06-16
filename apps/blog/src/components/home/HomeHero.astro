@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { Pause, Play } from "@lucide/astro";
 import type { ImageMetadata } from "astro";
 import { extractTitle, formatDate, resolvePostThumbnail } from "@/utils/content";
 
@@ -63,7 +64,15 @@ const featuredArticles = recentPosts.map((p, index) => {
 	</div>
 
 	<div class="hero-gallery" aria-label="精選內容">
-		<img class="dragon" src="/img/dragon.webp" alt="毛哥EM 角色插圖" />
+		<picture>
+			<source media="(prefers-reduced-motion: reduce)" srcset="/img/dragon-still.webp" />
+			<img class="dragon" src="/img/dragon.webp" alt="毛哥EM 角色插圖" data-dragon-image data-animated-src="/img/dragon.webp" data-still-src="/img/dragon-still.webp" />
+		</picture>
+		<button class="motion-toggle" type="button" aria-label="暫停角色插圖動畫" aria-pressed="false" data-dragon-toggle data-motion-state="playing">
+			<Pause class="pause-icon" size={16} stroke-width={2} aria-hidden="true" />
+			<Play class="play-icon" size={16} stroke-width={2} aria-hidden="true" />
+			<span class="sr-only" data-motion-label>暫停角色插圖動畫</span>
+		</button>
 		<div class="circle circle-one"></div>
 		<div class="circle circle-two"></div>
 		{
@@ -87,6 +96,12 @@ const featuredArticles = recentPosts.map((p, index) => {
 	setupPageLifecycle("home-hero", () => {
 		const livedFor = document.querySelector("[data-lived-for]");
 		const launchDate = livedFor?.getAttribute("data-launch-date");
+		const dragon = document.querySelector<HTMLImageElement>("[data-dragon-image]");
+		const dragonToggle = document.querySelector<HTMLButtonElement>("[data-dragon-toggle]");
+		const dragonToggleLabel = document.querySelector<HTMLElement>("[data-motion-label]");
+		const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+		const controller = new AbortController();
+		const { signal } = controller;
 
 		if (livedFor instanceof HTMLElement && launchDate) {
 			const launch = new Date(`${launchDate}T00:00:00`);
@@ -96,6 +111,40 @@ const featuredArticles = recentPosts.map((p, index) => {
 
 			livedFor.textContent = `${years}y ${remainingDays}d`;
 		}
+
+		if (dragon && dragonToggle) {
+			const animatedSrc = dragon.dataset.animatedSrc ?? "/img/dragon.webp";
+			const stillSrc = dragon.dataset.stillSrc ?? "/img/dragon-still.webp";
+
+			const setDragonPaused = (isPaused: boolean) => {
+				dragon.src = isPaused ? stillSrc : animatedSrc;
+				dragonToggle.dataset.motionState = isPaused ? "paused" : "playing";
+				dragonToggle.setAttribute("aria-pressed", String(isPaused));
+				const label = isPaused ? "播放角色插圖動畫" : "暫停角色插圖動畫";
+				dragonToggle.setAttribute("aria-label", label);
+				if (dragonToggleLabel) dragonToggleLabel.textContent = label;
+			};
+
+			dragonToggle.addEventListener(
+				"click",
+				() => {
+					setDragonPaused(dragonToggle.dataset.motionState !== "paused");
+				},
+				{ signal }
+			);
+
+			reducedMotion.addEventListener(
+				"change",
+				event => {
+					if (event.matches) setDragonPaused(true);
+				},
+				{ signal }
+			);
+
+			setDragonPaused(reducedMotion.matches);
+		}
+
+		return () => controller.abort();
 	});
 </script>
 
@@ -202,6 +251,44 @@ const featuredArticles = recentPosts.map((p, index) => {
 		height: auto;
 		/* filter: drop-shadow(0 2rem 2.25rem oklch(71% 0.15 225 / 20%)); */
 		transform: translateX(9rem) rotate(-4deg);
+	}
+
+	.motion-toggle {
+		position: absolute;
+		right: 0.75rem;
+		bottom: 8.25rem;
+		z-index: 4;
+		display: inline-grid;
+		place-items: center;
+		width: 2.75rem;
+		height: 2.75rem;
+		color: var(--color-ink);
+		background: var(--color-surface-glass-strong);
+		border: 1px solid var(--color-border);
+		box-shadow: var(--shadow-card);
+		backdrop-filter: blur(0.75rem);
+		transition:
+			border-color 160ms ease,
+			transform 160ms ease;
+	}
+
+	.motion-toggle:hover,
+	.motion-toggle:focus-visible {
+		border-color: var(--color-accent);
+		transform: translateY(-0.125rem);
+	}
+
+	.motion-toggle svg {
+		grid-area: 1 / 1;
+	}
+
+	.motion-toggle .play-icon,
+	.motion-toggle[data-motion-state="paused"] .pause-icon {
+		display: none;
+	}
+
+	.motion-toggle[data-motion-state="paused"] .play-icon {
+		display: block;
 	}
 
 	.circle {
@@ -314,6 +401,11 @@ const featuredArticles = recentPosts.map((p, index) => {
 			transform: translateX(1rem) rotate(-4deg);
 		}
 
+		.motion-toggle {
+			right: 1rem;
+			bottom: 7rem;
+		}
+
 		.circle-one {
 			right: 1rem;
 		}
@@ -368,6 +460,11 @@ const featuredArticles = recentPosts.map((p, index) => {
 
 		.dragon {
 			width: min(45rem, 100%);
+		}
+
+		.motion-toggle {
+			right: 0.75rem;
+			bottom: 6.5rem;
 		}
 
 		.feature-note {
