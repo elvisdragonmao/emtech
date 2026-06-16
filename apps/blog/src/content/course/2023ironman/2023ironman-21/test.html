@@ -1,22 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hant">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>CSS 與 requestAnimationFrame 動畫效能比較</title>
 		<style>
+			body {
+				overflow-x: hidden;
+				font-family: system-ui, sans-serif;
+			}
+
 			#header {
-				position: sticky;
-				top: 0.5rem;
 				margin: 0 0.5rem;
 				z-index: 100;
 				background-color: lightgreen;
 			}
 
+			#header h1 {
+				margin: 0;
+				font-size: 1.25rem;
+			}
+
 			#box-container {
 				margin-top: 1.5rem;
 				display: grid;
-				grid-template-columns: repeat(40, 1fr);
+				grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
 				gap: 15px;
 			}
 
@@ -28,6 +36,16 @@
 
 			.css-animation {
 				animation: animate 6s linear 0s infinite alternate;
+			}
+
+			body.motion-paused .css-animation {
+				animation-play-state: paused;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.css-animation {
+					animation-play-state: paused;
+				}
 			}
 
 			@keyframes animate {
@@ -44,15 +62,19 @@
 
 	<body>
 		<div id="header">
-			<button id="toggle-button">切换</button>
-			<span id="type">CSS Animation</span>
+			<h1>動畫效能比較</h1>
+			<button id="toggle-button">切換動畫實作</button>
+			<button id="pause-button" aria-pressed="false">暫停動畫</button>
+			<span id="type">CSS 動畫</span>
 		</div>
-		<div id="box-container"></div>
+		<div id="box-container" aria-hidden="true"></div>
 		<script>
 			const boxes = [];
 			const button = document.getElementById("toggle-button");
+			const pauseButton = document.getElementById("pause-button");
 			const boxContainer = document.getElementById("box-container");
 			const animationType = document.getElementById("type");
+			const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 			// create boxes
 			for (let i = 0; i < 1000; i++) {
@@ -63,24 +85,50 @@
 				boxes.push(div.style);
 			}
 
-			let toggleStatus = true;
+			let useCssAnimation = true;
+			let isPaused = reducedMotion.matches;
 			let rafId;
 			button.addEventListener("click", () => {
-				if (toggleStatus) {
-					animationType.textContent = " requestAnimationFrame";
+				if (useCssAnimation) {
+					animationType.textContent = "requestAnimationFrame";
 					for (const child of boxContainer.children) {
 						child.classList.remove("css-animation");
 					}
-					rafId = window.requestAnimationFrame(animate);
+					useCssAnimation = false;
+					start = null;
+					if (!isPaused) rafId = window.requestAnimationFrame(animate);
 				} else {
 					window.cancelAnimationFrame(rafId);
-					animationType.textContent = " CSS animation";
+					animationType.textContent = "CSS 動畫";
 					for (const child of boxContainer.children) {
 						child.classList.add("css-animation");
 					}
+					useCssAnimation = true;
 				}
-				toggleStatus = !toggleStatus;
 			});
+
+			pauseButton.addEventListener("click", () => {
+				setPaused(!isPaused);
+			});
+
+			reducedMotion.addEventListener("change", event => {
+				if (event.matches) setPaused(true);
+			});
+
+			function setPaused(paused) {
+				isPaused = paused;
+				document.body.classList.toggle("motion-paused", isPaused);
+				pauseButton.textContent = isPaused ? "播放動畫" : "暫停動畫";
+				pauseButton.setAttribute("aria-pressed", String(isPaused));
+				if (isPaused) {
+					window.cancelAnimationFrame(rafId);
+					return;
+				}
+				if (!useCssAnimation) {
+					start = null;
+					rafId = window.requestAnimationFrame(animate);
+				}
+			}
 
 			const duration = 6000;
 			const translateX = 500;
@@ -88,6 +136,7 @@
 			const scale = 1.4 - 0.6;
 			let start;
 			function animate(time) {
+				if (isPaused || useCssAnimation) return;
 				if (!start) {
 					start = time;
 					rafId = window.requestAnimationFrame(animate);
@@ -113,6 +162,8 @@
 				}
 				rafId = window.requestAnimationFrame(animate);
 			}
+
+			setPaused(isPaused);
 		</script>
 	</body>
 </html>
