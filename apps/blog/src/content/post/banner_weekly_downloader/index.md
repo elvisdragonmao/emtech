@@ -26,7 +26,7 @@ description: "當時在製作的時候正是疫情爆發的時間，教會聚會
 
 周間時當週週報教會可能還未釋出，若無法下載（出現 404）請過一陣子再試。
 
-[https://elvismao.com/code/weekly/redirect/](https://elvismao.com/code/weekly/redirect/)
+[開啟當週週報下載連結](https://elvismao.com/code/weekly/redirect/)
 
 ## ios 捷徑（稍後更新連結）
 

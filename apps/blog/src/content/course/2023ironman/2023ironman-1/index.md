@@ -46,7 +46,7 @@ description: "哈囉大家好我是毛哥EM，歡迎來到 【不用庫 也能�
 
 我使用 Animate.CSS 想要製作一個車開進來的效果，只需要加入一個 class 就可以了…
 
-https://codepen.io/elvismao/pen/bGObqWq
+[開啟 Day 1 CodePen 範例](https://codepen.io/elvismao/pen/bGObqWq)
 
 等等我們的定位怎麼跑掉啦？仔細一看原來 Animate.css 也是使用 `transform` 屬性來製作動畫，所以我們互相衝突了。
 

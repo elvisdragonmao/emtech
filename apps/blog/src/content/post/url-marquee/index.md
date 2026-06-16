@@ -47,7 +47,7 @@ history.replaceState(state, title, url);
 
 放在毛哥EM 的基地你可以去玩玩：
 
-<https://elvismao.com/code/url-marquee/>
+[開啟網址跑馬燈範例](https://elvismao.com/code/url-marquee/)
 
 ![網址跑馬燈 - 毛哥EM 的基地](./image.webp)
 

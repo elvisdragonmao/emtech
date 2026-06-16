@@ -11,7 +11,7 @@ description: "假設你今天想製作這個載入動畫…"
 
 假設你今天想製作這個載入動畫…
 
-https://codepen.io/elvismao/pen/YzdzvdV
+[開啟 Day 5 第 1 個 CodePen 範例](https://codepen.io/elvismao/pen/YzdzvdV)
 
 ![載入中](loading.webp)
 
@@ -161,7 +161,7 @@ animation: 1.5s ease-in-out infinite zoom;
 
 ## 圓圈 Loading 動畫
 
-https://codepen.io/elvismao/pen/LYMZeZE?editors=1100
+[開啟 Day 5 第 2 個 CodePen 範例](https://codepen.io/elvismao/pen/LYMZeZE?editors=1100)
 
 ![有點像 Windows10 更新動畫](spin.webp)
 

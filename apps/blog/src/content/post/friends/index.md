@@ -9,4 +9,4 @@ description: 此頁已搬移至 /friends
 
 # 友情連結
 
-此頁已搬移至[這裡](https://emtech.cc/friends)。
+此頁已搬移至[友情連結頁面](https://emtech.cc/friends)。

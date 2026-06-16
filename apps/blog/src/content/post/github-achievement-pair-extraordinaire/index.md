@@ -55,7 +55,7 @@ git push --set-upstream origin new-feature
 
 #### 1. 安裝 GitHub CLI
 
-首先請你先確保你有安裝 [GitHub CLI](https://cli.github.com/)。如果你還沒有安裝，可以參考 [這裡](https://github.com/cli/cli#installation) 來安裝。
+首先請你先確保你有安裝 [GitHub CLI](https://cli.github.com/)。如果你還沒有安裝，可以參考 [GitHub CLI 安裝說明](https://github.com/cli/cli#installation)。
 
 #### 2. 使用 Bash 腳本
 

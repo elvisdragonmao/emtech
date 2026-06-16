@@ -61,7 +61,7 @@ description: 使用 RSS 讓你奪回資訊的掌控權，讓你決定你要看�
 
 ![Fluent Reader 初始畫面](fluent-mac.webp)
 
-我們輸入毛哥EM資訊密技的 RSS 網址：<https://emtech.cc/rss.xml>
+我們輸入毛哥EM資訊密技的 RSS 網址：[毛哥EM資訊密技 RSS](https://emtech.cc/rss.xml)
 
 ![添加來源](fluent-new.webp)
 
@@ -159,7 +159,7 @@ FreshRSS 支援 Google Reader API，讓你可以使用第三方的閱讀器來�
 
 ### /rss
 
-部落格或一般網站通常會把 RSS 放在 `/rss`，如 <https://www.iach.cc/rss.xml>。
+部落格或一般網站通常會把 RSS 放在 `/rss`，如 [iach.cc RSS](https://www.iach.cc/rss.xml)。
 
 ### 找按鈕
 
@@ -171,7 +171,7 @@ FreshRSS 支援 Google Reader API，讓你可以使用第三方的閱讀器來�
 
 有一些網站的 RSS 藏得比較深一點或是根本沒寫，這時你可以點擊 F12 打開開發者工具搜尋 RSS 來找到。
 
-比如說 Apple Newsroom 的 RSS 是：<https://www.apple.com/tw/newsroom/rss-feed.rss>
+比如說 Apple Newsroom 的 RSS 是：[Apple Newsroom RSS](https://www.apple.com/tw/newsroom/rss-feed.rss)
 
 ![Apple Newsroom 的 RSS](apple.webp)
 
@@ -179,11 +179,11 @@ FreshRSS 支援 Google Reader API，讓你可以使用第三方的閱讀器來�
 
 YouTube 的 RSS 網址是：
 
-<https://www.youtube.com/feeds/videos.xml?channel_id=頻道 ID>。
+`https://www.youtube.com/feeds/videos.xml?channel_id=頻道 ID`。
 
 頻道 ID 可能是網址後面那一段：
 
-<https://www.youtube.com/channel/UCksDP7GImFEZyAIwJk_QxLw>
+[YouTube 頻道網址範例](https://www.youtube.com/channel/UCksDP7GImFEZyAIwJk_QxLw)
 
 中的 `UCksDP7GImFEZyAIwJk_QxLw`
 
@@ -191,7 +191,7 @@ YouTube 的 RSS 網址是：
 
 比如說如果你看到的網址是：
 
-<https://www.youtube.com/@妙妙男爵>
+[YouTube Handle 網址範例](https://www.youtube.com/@妙妙男爵)
 
 那你可以從 HTML 中直接尋找 RSS，就可以得到 RSS 網址了。
 

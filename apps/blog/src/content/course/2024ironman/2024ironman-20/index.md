@@ -22,7 +22,7 @@ emfont 是一個免費的繁體中文 Web Font 服務。在之前字體列表存
 
 ![表格效果](table.webp)
 
-> emfont GitHub: <https://github.com/emfont/emfont>
+> emfont GitHub: [查看 emfont 原始碼](https://github.com/emfont/emfont)
 
 今天我們要來復刻這個專案。首先請你準備 `fonts.json`。你可以透過上面的 GitHub 連結下載。這個 JSON 文件包含了字體的詳細訊息，例如名稱、風格、字種、版本、許可證和來源。以下是 JSON 文件的一部分內容：
 

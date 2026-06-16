@@ -20,7 +20,7 @@ description: "宋·張端義《貴耳集》上卷：「言簡理盡，遂成王�
 
 我曾經有看到有人是使用 GitHub Actions 在某天堂漫畫網站下載漫畫碎片，組裝完之後上傳到 GitHub 作為 Artifact 來下載。這樣的操作方式也是蠻很有趣的。有興趣進行相關*學術研究*的朋友可以參考一下。
 
-<https://github.com/jiayaoO3O/18-comic-finder>
+[查看 18-comic-finder 專案](https://github.com/jiayaoO3O/18-comic-finder)
 
 ## 實作：壓縮工作目錄並上傳作為工件
 

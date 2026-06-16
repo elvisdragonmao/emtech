@@ -235,7 +235,7 @@ itemsContainer.addEventListener("scroll", function () {
 }
 ```
 
-https://codepen.io/elvismao/pen/dywrReK
+[開啟 Day 28 CodePen 範例](https://codepen.io/elvismao/pen/dywrReK)
 
 ![成果](final.webp)
 

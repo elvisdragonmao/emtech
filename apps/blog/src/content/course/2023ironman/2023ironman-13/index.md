@@ -122,7 +122,7 @@ function changeFontColor(c) {
 
 這樣就完成啦
 
-https://codepen.io/elvismao/pen/abPVWBJ
+[開啟 Day 13 CodePen 範例](https://codepen.io/elvismao/pen/abPVWBJ)
 
 ![顏色選單成果](final.webp)
 

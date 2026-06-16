@@ -44,7 +44,7 @@ description: "在這篇文章我要介紹 Remove.bg 這個超讚的去被網站�
 
 ### 使用方法
 
-要使用 Remove.bg 的 API 你需要一個用來辨識你是誰的 API Key（仗權）。請先到[這裡](https://accounts.kaleido.ai/users/sign_in#api-key)註冊一個帳號，你可以直接使用 Google 登入，並複製你的 API Key。
+要使用 Remove.bg 的 API 你需要一個用來辨識你是誰的 API Key（仗權）。請先到 [Remove.bg API Key 註冊頁面](https://accounts.kaleido.ai/users/sign_in#api-key) 註冊一個帳號，你可以直接使用 Google 登入，並複製你的 API Key。
 
 Remove.bg 提供每個帳號每個月 50 次的免費使用。對一般人來說已經很足夠了，但如果還需要更多的話可以升級方案<s>或再註冊一個帳號</s>
 

@@ -162,7 +162,7 @@ div {
 
 你可以狂加讓他群魔亂舞起來。
 
-https://codepen.io/elvismao/pen/mdaabzQ?editors=1100
+[開啟 Day 23 CodePen 範例](https://codepen.io/elvismao/pen/mdaabzQ?editors=1100)
 
 ![你可以狂加讓他群魔亂舞起來](final.webp)
 

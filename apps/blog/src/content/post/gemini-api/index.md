@@ -168,9 +168,9 @@ Gemini 還有很多其他的設定，例如 `max_tokens` 用來設定最大回�
 
 ## 3. 製作線上對話網站
 
-我們使用剛才學到的知識來製作一個簡單的線上對話網站，裡面運用了剛才所提到的連續對話功能。直接上完成程式碼，你也可以在[這裡](https://elvismao.com/code/gemini/)貼上你的 API 來直接體驗。
+我們使用剛才學到的知識來製作一個簡單的線上對話網站，裡面運用了剛才所提到的連續對話功能。直接上完成程式碼，你也可以在 [Gemini API 對話 Demo](https://elvismao.com/code/gemini/) 貼上你的 API 來直接體驗。
 
-> Demo: [https://elvismao.com/code/gemini/](https://elvismao.com/code/gemini/)
+> Demo: [開啟 Gemini API 對話 Demo](https://elvismao.com/code/gemini/)
 
 ```html
 <!doctype html>

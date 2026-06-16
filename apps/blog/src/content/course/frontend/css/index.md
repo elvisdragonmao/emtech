@@ -860,7 +860,7 @@ h2 {
 
 來一個範例讓大家分辨它們不同的效果
 
-[https://codepen.io/elvismao/pen/rNoYOKZ](https://codepen.io/elvismao/pen/rNoYOKZ)
+[開啟定位效果 CodePen 範例](https://codepen.io/elvismao/pen/rNoYOKZ)
 
 ![sunny.webp](sunny.webp)
 
@@ -995,7 +995,7 @@ a:active {
 }
 ```
 
-<a href="#transition 轉場" id="myLink">這是一個超連結</a>
+<a href="#transition-轉場" id="myLink">這是一個超連結</a>
 
 <style>
 	#myLink {

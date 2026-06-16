@@ -469,7 +469,7 @@ https://example.com/product/123
 
 #### 1. robots.txt
 
-`robots.txt` 是放在網站根目錄的規則檔，告訴爬蟲哪些路徑不要抓。比如說毛哥EM資訊密技的 Sitemap 在 <https://emtech.cc/robots.txt>
+`robots.txt` 是放在網站根目錄的規則檔，告訴爬蟲哪些路徑不要抓。比如說毛哥EM資訊密技的 Sitemap 在 [emtech.cc robots.txt](https://emtech.cc/robots.txt)
 
 一個 `robots.txt` 可能長這樣：
 

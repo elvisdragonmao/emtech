@@ -150,7 +150,7 @@ ssh-keygen -t ed25519 -C "deploy-key" -f deploy_key
 
 這樣你就完成了設定，當你 push 你的 `base-repo-sub` Repo 的 `main` branch 的時候，GitHub Actions 就會自動把 `base-repo-sub` Repo 的內容部署到 `base-repo` Repo 的 `/sub/` 路徑下囉！
 
-<https://elvisdragonmao.github.io/base-repo/sub/>
+[開啟部署後的 `/sub/` 範例頁](https://elvisdragonmao.github.io/base-repo/sub/)
 
 ### 重新執行 GitHub Actions
 

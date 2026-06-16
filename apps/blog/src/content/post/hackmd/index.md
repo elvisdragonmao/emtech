@@ -196,7 +196,7 @@ Checkbox 應該是 HackMD 裡面唯一可以用點擊來儲存狀態的 HTML 元
 
 這裡的範例很簡單，你可使用 Label 來連結到 Checkbox，然後把勾選框隱藏掉就可以弄的更好看自由的排版了。
 
-以上的範例在這裡：<https://hackmd.io/@elvismao/S1GVRHDaZe>
+以上的範例在這裡：[開啟 HackMD checkbox 篩選範例](https://hackmd.io/@elvismao/S1GVRHDaZe)
 
 ### 使用 iframe
 
@@ -204,7 +204,7 @@ Checkbox 應該是 HackMD 裡面唯一可以用點擊來儲存狀態的 HTML 元
 
 ![Flipper](flipper.webp)
 
-範例連結：<https://hackmd.io/@elvismao/HJ8DERdTWg/>
+範例連結：[開啟 HackMD iframe 範例](https://hackmd.io/@elvismao/HJ8DERdTWg/)
 
 ```markdown
 - [<iframe src="https://codepen.io/Maseone/full/vYBdGP"></iframe>](https://hackmd.io/@SITCON/H1l3jk7jkl)
@@ -325,7 +325,7 @@ Repo 在這裡：[sitcon-tw/2026-hackmd](https://github.com/sitcon-tw/2026-hackm
 
 同時還有使用上面的那些技巧進行裝飾。
 
-原始碼可以參考：<https://hackmd.io/4jAeIIewROm9mJeARzVcaQ?both>
+原始碼可以參考：[查看 HackMD 書本模式範例原始碼](https://hackmd.io/4jAeIIewROm9mJeARzVcaQ?both)
 
 ## 總結
 

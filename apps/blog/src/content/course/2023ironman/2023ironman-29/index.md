@@ -215,7 +215,7 @@ filter: blur(30px);
 
 好啦結合在一起完成了，我們來看看成果吧。
 
-https://codepen.io/elvismao/pen/OJrGmyW
+[開啟 Day 29 CodePen 範例](https://codepen.io/elvismao/pen/OJrGmyW)
 
 ![完成後的太空粒子與地球動畫](final.webp)
 

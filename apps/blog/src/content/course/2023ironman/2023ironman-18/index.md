@@ -181,7 +181,7 @@ animation:
 
 成果如下
 
-<https://codepen.io/elvismao/pen/abPjjMd>
+[開啟 Day 18 CodePen 範例](https://codepen.io/elvismao/pen/abPjjMd)
 
 ![完成後的 DVD 反彈動畫](okay.webp)
 
