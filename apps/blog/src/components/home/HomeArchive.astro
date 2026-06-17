@@ -38,7 +38,7 @@ const taggedFeaturedPosts = sortedPosts.filter(p => {
 });
 const featuredOrder = new Map([...recentFeaturedPosts, ...taggedFeaturedPosts].map((p, index) => [p.id, index]));
 
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
 
 const archiveArticles = sortedPosts.map(p => {
 	const tags = normalizeTerms(p.data.tags);

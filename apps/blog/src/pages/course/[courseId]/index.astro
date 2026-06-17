@@ -30,7 +30,7 @@ const lessons = allLessons
 	});
 
 // Discover thumbnails for lessons
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
+const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
 
 // Course-level thumbnail
 const courseThumbnail = resolveCourseThumbnail(courseEntry, allThumbs);

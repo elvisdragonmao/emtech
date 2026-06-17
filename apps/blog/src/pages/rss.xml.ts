@@ -38,8 +38,8 @@ export async function GET() {
 	const lessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
 	const courses = await getCollection("course");
 	const courseNames = new Map(courses.map(course => [course.id, course.data.title]));
-	const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
-	const lessonThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
+	const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
+	const lessonThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
 
 	const postItems: FeedItem[] = posts.map(post => {
 		const title = extractTitle(post.body) || post.id;
