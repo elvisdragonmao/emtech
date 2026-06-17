@@ -166,7 +166,7 @@ const navItems = [
 	.site-header-container {
 		position: sticky;
 		top: 0;
-		z-index: 20;
+		z-index: 80;
 		margin-inline: calc(var(--page-padding, 0rem) * -1);
 		padding-inline: var(--page-padding, 0rem);
 		border-bottom: 1px solid var(--color-border);
@@ -174,7 +174,7 @@ const navItems = [
 		backdrop-filter: blur(1.25rem);
 	}
 
-	@media (max-width: 43rem), (max-height: 32rem) {
+	@media (max-height: 32rem) {
 		.site-header-container {
 			position: static;
 		}
@@ -420,6 +420,7 @@ const navItems = [
 			top: calc(100% + 1px);
 			right: 0;
 			left: 0;
+			z-index: 1;
 			display: grid;
 			grid-template-columns: repeat(4, minmax(0, 1fr));
 			gap: 0;
