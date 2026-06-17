@@ -1,5 +1,5 @@
 ---
-import { Map, MessageSquare } from "@lucide/astro";
+import { Bug } from "@lucide/astro";
 import { siGithub, siRss } from "simple-icons";
 import SimpleIcon from "@/components/shared/SimpleIcon.astro";
 ---
@@ -7,12 +7,16 @@ import SimpleIcon from "@/components/shared/SimpleIcon.astro";
 <footer class="site-footer">
 	<a class="footer-action" href="/"><img src="/img/logo.svg" alt="毛哥EM資訊密技首頁" class="footer-logo" width="32" height="37" /></a>
 	<div class="footer-brand">
-		<p>©2021 - 2026 毛哥EM</p>
-		<p>原創文章採 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0（另開新視窗）</a> 授權，轉載請註明來源。</p>
+		<div class="footer-brand-copy">
+			<p>©2021 - 2026 毛哥EM</p>
+			<p>原創文章採 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0（另開新視窗）</a> 授權，轉載請註明來源。</p>
+		</div>
+		<a class="footer-accessibility-badge" href="https://accessibility.moda.gov.tw/Applications/Detail?category=20260605161909" title="無障礙網站">
+			<img src="/img/accessibility.svg" width="88" height="31" alt="通過AA檢測等級無障礙網頁檢測" />
+		</a>
 	</div>
-	<a class="footer-action" href="/sitemap/" aria-label="網站導覽"><Map size={21} stroke-width={1.7} aria-hidden="true" /></a>
 	<a class="footer-action" href="https://github.com/elvisdragonmao/emtech/issues" target="_blank" rel="noreferrer" aria-label="到 GitHub Issues 留言（另開新視窗）">
-		<MessageSquare size={21} stroke-width={1.7} aria-hidden="true" />
+		<Bug size={21} stroke-width={1.7} aria-hidden="true" />
 	</a>
 	<a class="footer-action" href="https://github.com/elvisdragonmao/emtech" target="_blank" rel="noreferrer" aria-label="GitHub 專案（另開新視窗）"><SimpleIcon icon={siGithub} size={21} /></a>
 	<a class="footer-action" href="/rss.xml" aria-label="RSS 訂閱"><SimpleIcon icon={siRss} size={21} /></a>
@@ -41,12 +45,21 @@ import SimpleIcon from "@/components/shared/SimpleIcon.astro";
 	}
 
 	.footer-brand {
+		display: flex;
+		flex-wrap: wrap;
 		flex: 1;
+		align-items: center;
+		gap: 1rem 1.5rem;
 		padding: 1.25rem;
 		line-height: 1;
 	}
 
-	.footer-brand p:first-child {
+	.footer-brand-copy {
+		flex: 1 1 18rem;
+		min-width: min(100%, 18rem);
+	}
+
+	.footer-brand-copy p:first-child {
 		font-size: 1rem;
 		font-weight: 700;
 		color: var(--color-text);
@@ -56,6 +69,18 @@ import SimpleIcon from "@/components/shared/SimpleIcon.astro";
 	.footer-brand a {
 		color: var(--color-accent-strong);
 		transition: color 160ms ease;
+	}
+
+	.footer-accessibility-badge {
+		display: inline-flex;
+		flex: 0 0 auto;
+		align-items: center;
+		margin-left: auto;
+	}
+
+	.footer-accessibility-badge img {
+		width: 8rem;
+		height: auto;
 	}
 
 	.footer-action {
@@ -76,7 +101,7 @@ import SimpleIcon from "@/components/shared/SimpleIcon.astro";
 	@media (max-width: 43rem) {
 		.site-footer {
 			display: grid;
-			grid-template-columns: repeat(5, minmax(0, 1fr));
+			grid-template-columns: repeat(4, minmax(0, 1fr));
 			gap: 0;
 			width: calc(100% + 2rem);
 			margin-left: -1rem;
