@@ -1,9 +1,45 @@
 {
-	"title": "Figma 專業實戰（未完成）",
-	"description": "Figma 專業實戰",
-	"displayOrder": 3,
+	"title": "Figma 完整入門：從畫面設計到工程交付",
+	"description": "給有前端、程式背景，也給完全沒有設計經驗的學習者。不是只背工具按鈕，而是理解版面、元件、樣式、變數、互動原型與工程交付如何連在一起。",
+	"displayOrder": 2,
 	"accent": "purple",
-	"thumbnail": "../frontend/js/thumbnail.webp",
-	"meta": "零基礎 / 還沒寫完",
-	"order": []
+	"thumbnail": "figma/thumbnail.webp",
+	"meta": "Figma / 21 篇 / 課程",
+	"order": [
+		"what-is-figma",
+		"figma-file-structure",
+		"figma-basic-card",
+		"figma-auto-layout",
+		"figma-frame-group-section",
+		"figma-constraints",
+		"figma-responsive-hero-section",
+		"figma-styles",
+		"figma-components",
+		"figma-variables",
+		"figma-modes",
+		"figma-mini-design-system",
+		"figma-prototype",
+		"figma-collaboration",
+		"figma-dev-mode",
+		"figma-library",
+		"figma-handoff-checklist",
+		"figjam",
+		"figma-sites",
+		"figma-slides",
+		"figma-draw-vector"
+	],
+	"outcomes": [
+		{
+			"title": "建立 Figma 的完整心智模型",
+			"text": "能分清 Project、Page、Frame、Layer、Component、Library 等概念，不再只是把 Figma 當成可以多人編輯的畫圖工具。"
+		},
+		{
+			"title": "建立元件化與設計系統思維",
+			"text": "能使用 Styles、Components、Auto Layout、Variables、Modes 與 Library，把重複的 UI 整理成可重用、可調整、可交付的系統。"
+		},
+		{
+			"title": "完成從設計到工程交付的流程",
+			"text": "能製作 Prototype、整理協作留言、使用 Dev Mode，並用交付檢查清單確認設計稿是否真的可以進入開發。"
+		}
+	]
 }

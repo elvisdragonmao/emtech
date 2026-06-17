@@ -26,3 +26,6 @@ apps/comments-worker/.dev.vars
 
 # jetbrains setting folder
 .idea/
+
+# Reference data downloading
+docs/

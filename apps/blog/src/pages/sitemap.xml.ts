@@ -44,8 +44,8 @@ export async function GET() {
 	const posts = (await getCollection("post")).filter(post => !post.data.draft);
 	const courses = await getCollection("course");
 	const lessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
-	const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
-	const courseThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
+	const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
+	const courseThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
 	const latestPostDate = posts.reduce((acc, post) => Math.max(acc, (post.data.lastmod ?? post.data.date).getTime()), 0);
 	const latestLessonDate = lessons.reduce((acc, lesson) => Math.max(acc, (lesson.data.lastmod ?? lesson.data.date).getTime()), 0);
 

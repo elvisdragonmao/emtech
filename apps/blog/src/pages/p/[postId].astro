@@ -23,7 +23,7 @@ if (!entry) return Astro.redirect("/404");
 
 const { Content, headings } = await render(entry);
 
-const thumbnails = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,webp}", { eager: true });
+const thumbnails = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
 const thumbnail: ImageInput = resolvePostThumbnail(entry, thumbnails);
 
 const title = headings[0]?.text ?? postId;
