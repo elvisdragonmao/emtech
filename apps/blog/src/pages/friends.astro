@@ -85,7 +85,7 @@ const structuredData = [
 
 								return (
 									<a class="friend-card" href={friend.url} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noreferrer" : undefined}>
-										<div class="avatar" aria-hidden={imageSrc ? undefined : "true"}>
+										<div class:list={["avatar", { "avatar-fallback": !imageSrc }]} aria-hidden={imageSrc ? undefined : "true"}>
 											{imageSrc ? <img src={imageSrc} alt={`${friend.name} 頭像`} loading="lazy" decoding="async" /> : <span>{friend.name.slice(0, 1)}</span>}
 										</div>
 										<div class="friend-content">
@@ -271,7 +271,10 @@ const structuredData = [
 		font-size: 1.6rem;
 		font-weight: 800;
 		color: var(--color-accent-strong);
-		background: linear-gradient(135deg, var(--color-accent-soft), var(--color-surface)), radial-gradient(circle at 20% 20%, var(--color-accent) 0 0.4rem, transparent 0.45rem);
+	}
+
+	.avatar:not(.avatar-fallback) {
+		background: var(--color-surface-soft);
 		border: 1px solid var(--color-border);
 		border-radius: 999px;
 	}

@@ -16,7 +16,7 @@ describe("email helpers", () => {
 describe("gravatar helpers", () => {
 	it("generates a gravatar URL from a hash", () => {
 		const url = gravatarUrlFromHash("abc123", 128);
-		expect(url).toBe("https://www.gravatar.com/avatar/abc123?s=128&d=identicon&r=g");
+		expect(url).toBe("https://www.gravatar.com/avatar/abc123?s=128&d=404&r=g");
 	});
 
 	it("generates a gravatar URL for an email without including the raw email", async () => {

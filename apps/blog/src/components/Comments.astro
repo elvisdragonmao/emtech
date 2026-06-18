@@ -285,6 +285,10 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 			const avatar = document.createElement("span");
 			avatar.className = "avatar";
+			const showAvatarFallback = () => {
+				avatar.replaceChildren();
+				avatar.classList.add("avatar-fallback");
+			};
 			if (comment.author.avatarUrl) {
 				const img = document.createElement("img");
 				img.src = comment.author.avatarUrl;
@@ -292,7 +296,10 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 				img.width = 44;
 				img.height = 44;
 				img.loading = "lazy";
+				img.addEventListener("error", showAvatarFallback, { once: true });
 				avatar.appendChild(img);
+			} else {
+				showAvatarFallback();
 			}
 
 			const meta = document.createElement("div");
@@ -665,10 +672,11 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		width: 2.75rem;
 		height: 2.75rem;
 		overflow: hidden;
+	}
+
+	.comments :global(.avatar:not(.avatar-fallback)) {
 		border-radius: 50%;
-		background:
-			radial-gradient(circle at 35% 35%, var(--color-yellow), transparent 30%), radial-gradient(circle at 70% 30%, var(--color-pink), transparent 34%),
-			linear-gradient(135deg, var(--color-accent), var(--color-purple));
+		background: var(--color-surface-soft);
 	}
 
 	.comments :global(.avatar img) {

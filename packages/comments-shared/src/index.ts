@@ -47,7 +47,7 @@ export async function emailHash(email: string): Promise<string> {
 
 export function gravatarUrlFromHash(hash: string, size = 96): string {
 	const safeSize = Number.isFinite(size) ? Math.min(Math.max(Math.trunc(size), 1), 2048) : 96;
-	return `https://www.gravatar.com/avatar/${hash}?s=${safeSize}&d=identicon&r=g`;
+	return `https://www.gravatar.com/avatar/${hash}?s=${safeSize}&d=404&r=g`;
 }
 
 export async function gravatarUrlForEmail(email: string, size = 96): Promise<string> {
