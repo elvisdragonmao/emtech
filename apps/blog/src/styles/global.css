@@ -237,27 +237,28 @@ button {
 }
 
 .avatar-fallback {
-	--avatar-line: color-mix(in oklch, var(--color-accent) 30%, transparent);
-	--avatar-line-soft: color-mix(in oklch, var(--color-purple) 22%, transparent);
-	--avatar-line-strong: color-mix(in oklch, var(--color-accent-strong) 42%, transparent);
+	--avatar-line: color-mix(in oklch, var(--color-accent) 24%, transparent);
+	--avatar-line-soft: color-mix(in oklch, var(--color-purple) 18%, transparent);
+	--avatar-line-strong: color-mix(in oklch, var(--color-accent-strong) 48%, transparent);
+	--avatar-mark: color-mix(in oklch, var(--color-accent-strong) 54%, transparent);
 	position: relative;
 	isolation: isolate;
 	overflow: hidden;
 	color: var(--color-accent-strong);
 	background:
 		linear-gradient(90deg, var(--avatar-line) 1px, transparent 1px), linear-gradient(0deg, var(--avatar-line) 1px, transparent 1px),
-		radial-gradient(circle at 28% 24%, color-mix(in oklch, var(--color-yellow) 58%, transparent) 0 11%, transparent 20%),
-		radial-gradient(circle at 76% 72%, color-mix(in oklch, var(--color-pink) 50%, transparent) 0 10%, transparent 19%),
-		linear-gradient(135deg, color-mix(in oklch, var(--color-accent-soft) 82%, var(--color-surface)), color-mix(in oklch, var(--color-purple-soft) 54%, var(--color-surface)));
+		linear-gradient(135deg, transparent 0 48%, color-mix(in oklch, var(--color-surface) 40%, transparent) 48% 52%, transparent 52%),
+		linear-gradient(135deg, color-mix(in oklch, var(--color-accent-soft) 74%, var(--color-surface)), color-mix(in oklch, var(--color-purple-soft) 36%, var(--color-surface)));
 	background-size:
 		0.72rem 0.72rem,
 		0.72rem 0.72rem,
 		100% 100%,
-		100% 100%,
 		100% 100%;
 	border: 1px solid color-mix(in oklch, var(--color-accent) 24%, var(--color-border));
 	border-radius: 28%;
-	box-shadow: inset 0 0 0 0.18rem var(--color-inset-highlight);
+	box-shadow:
+		inset 0 0 0 0.14rem var(--color-inset-highlight),
+		inset 0 0 0 1px color-mix(in oklch, var(--color-surface) 62%, transparent);
 }
 
 .avatar-fallback::before,
@@ -269,20 +270,30 @@ button {
 }
 
 .avatar-fallback::before {
-	inset: 19%;
+	inset: 17%;
 	border: 1px solid var(--avatar-line-strong);
 	border-radius: 50%;
-	box-shadow:
-		0 0 0 0.35rem var(--avatar-line),
-		0 0 0 0.7rem var(--avatar-line-soft);
-}
-
-.avatar-fallback::after {
 	background:
 		linear-gradient(90deg, transparent calc(50% - 0.5px), var(--avatar-line-strong) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
 		linear-gradient(0deg, transparent calc(50% - 0.5px), var(--avatar-line-strong) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
 		linear-gradient(45deg, transparent calc(50% - 0.5px), var(--avatar-line-soft) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
 		linear-gradient(-45deg, transparent calc(50% - 0.5px), var(--avatar-line-soft) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+	box-shadow:
+		0 0 0 0.28rem var(--avatar-line),
+		0 0 0 0.62rem var(--avatar-line-soft);
+}
+
+.avatar-fallback::after {
+	background:
+		linear-gradient(var(--avatar-mark) 0 0) left 18% top 18% / 24% 1px no-repeat,
+		linear-gradient(var(--avatar-mark) 0 0) left 18% top 18% / 1px 24% no-repeat,
+		linear-gradient(var(--avatar-mark) 0 0) right 18% top 18% / 24% 1px no-repeat,
+		linear-gradient(var(--avatar-mark) 0 0) right 18% top 18% / 1px 24% no-repeat,
+		linear-gradient(var(--avatar-mark) 0 0) left 18% bottom 18% / 24% 1px no-repeat,
+		linear-gradient(var(--avatar-mark) 0 0) left 18% bottom 18% / 1px 24% no-repeat,
+		linear-gradient(var(--avatar-mark) 0 0) right 18% bottom 18% / 24% 1px no-repeat,
+		linear-gradient(var(--avatar-mark) 0 0) right 18% bottom 18% / 1px 24% no-repeat,
+		linear-gradient(90deg, transparent calc(50% - 0.5px), color-mix(in oklch, var(--color-surface) 52%, transparent) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px));
 }
 
 .avatar-fallback > span {
