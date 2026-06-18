@@ -31,7 +31,7 @@ const { compact = false } = Astro.props;
 
 	<article class="comment-card">
 		<div class="comment-head">
-			<span class="avatar"></span>
+			<span class="avatar avatar-fallback"></span>
 			<div>
 				<strong>毛哥EM</strong>
 				<time datetime="2025-05-12">2025-05-12</time>
@@ -176,10 +176,6 @@ const { compact = false } = Astro.props;
 	.avatar {
 		width: 2.75rem;
 		height: 2.75rem;
-		border-radius: 50%;
-		background:
-			radial-gradient(circle at 35% 35%, var(--color-yellow), transparent 30%), radial-gradient(circle at 70% 30%, var(--color-pink), transparent 34%),
-			linear-gradient(135deg, var(--color-accent), var(--color-purple));
 	}
 
 	strong,

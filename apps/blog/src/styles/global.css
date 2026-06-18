@@ -236,6 +236,61 @@ button {
 	border: 0;
 }
 
+.avatar-fallback {
+	--avatar-line: color-mix(in oklch, var(--color-accent) 30%, transparent);
+	--avatar-line-soft: color-mix(in oklch, var(--color-purple) 22%, transparent);
+	--avatar-line-strong: color-mix(in oklch, var(--color-accent-strong) 42%, transparent);
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	color: var(--color-accent-strong);
+	background:
+		linear-gradient(90deg, var(--avatar-line) 1px, transparent 1px), linear-gradient(0deg, var(--avatar-line) 1px, transparent 1px),
+		radial-gradient(circle at 28% 24%, color-mix(in oklch, var(--color-yellow) 58%, transparent) 0 11%, transparent 20%),
+		radial-gradient(circle at 76% 72%, color-mix(in oklch, var(--color-pink) 50%, transparent) 0 10%, transparent 19%),
+		linear-gradient(135deg, color-mix(in oklch, var(--color-accent-soft) 82%, var(--color-surface)), color-mix(in oklch, var(--color-purple-soft) 54%, var(--color-surface)));
+	background-size:
+		0.72rem 0.72rem,
+		0.72rem 0.72rem,
+		100% 100%,
+		100% 100%,
+		100% 100%;
+	border: 1px solid color-mix(in oklch, var(--color-accent) 24%, var(--color-border));
+	border-radius: 28%;
+	box-shadow: inset 0 0 0 0.18rem var(--color-inset-highlight);
+}
+
+.avatar-fallback::before,
+.avatar-fallback::after {
+	position: absolute;
+	inset: 0;
+	content: "";
+	pointer-events: none;
+}
+
+.avatar-fallback::before {
+	inset: 19%;
+	border: 1px solid var(--avatar-line-strong);
+	border-radius: 50%;
+	box-shadow:
+		0 0 0 0.35rem var(--avatar-line),
+		0 0 0 0.7rem var(--avatar-line-soft);
+}
+
+.avatar-fallback::after {
+	background:
+		linear-gradient(90deg, transparent calc(50% - 0.5px), var(--avatar-line-strong) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+		linear-gradient(0deg, transparent calc(50% - 0.5px), var(--avatar-line-strong) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+		linear-gradient(45deg, transparent calc(50% - 0.5px), var(--avatar-line-soft) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+		linear-gradient(-45deg, transparent calc(50% - 0.5px), var(--avatar-line-soft) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+}
+
+.avatar-fallback > span {
+	position: relative;
+	z-index: 1;
+	text-shadow: 0 1px 0 var(--color-inset-highlight);
+}
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
