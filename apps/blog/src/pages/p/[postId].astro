@@ -26,7 +26,7 @@ const { Content, headings } = await render(entry);
 const thumbnails = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
 const thumbnail: ImageInput = resolvePostThumbnail(entry, thumbnails);
 
-const title = headings[0]?.text ?? postId;
+const title = extractTitle(entry.body) || headings[0]?.text || postId;
 const description = entry.data.description ?? extractExcerpt(entry.body);
 const entryTags = normalizeTerms(entry.data.tags);
 const entryCategories = normalizeTerms(entry.data.categories);

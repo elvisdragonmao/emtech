@@ -47,7 +47,7 @@ const { Content, headings } = await render(entry);
 const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
 const thumbnail = resolveLessonThumbnail(entry, allThumbs);
 
-const title = headings[0]?.text ?? lessonId;
+const title = extractTitle(entry.body) || headings[0]?.text || lessonId;
 const description = entry.data.description ?? extractExcerpt(entry.body);
 const entryTags = normalizeTerms(entry.data.tags);
 const entryCategories = normalizeTerms(entry.data.categories);

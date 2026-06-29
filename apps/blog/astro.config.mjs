@@ -5,6 +5,7 @@ import { rehypeAccessibleEmbeds, remarkAccessibleRawHtml, remarkNormalizeContent
 import { rehypeCallouts } from "./src/plugins/rehype-callouts.js";
 import { rehypeCodeBlocks } from "./src/plugins/rehype-code-blocks.js";
 import { rehypeImageCaptions } from "./src/plugins/rehype-image-captions.js";
+import { remarkStripContentTitle } from "./src/plugins/remark-strip-content-title.js";
 
 export default defineConfig({
 	output: "static",
@@ -13,7 +14,7 @@ export default defineConfig({
 		service: passthroughImageService()
 	},
 	markdown: {
-		remarkPlugins: [remarkAccessibleRawHtml, remarkNormalizeContentHeadings],
+		remarkPlugins: [remarkAccessibleRawHtml, remarkStripContentTitle, remarkNormalizeContentHeadings],
 		rehypePlugins: [rehypeCallouts, rehypeImageCaptions, rehypeAccessibleEmbeds, rehypeCodeBlocks]
 	},
 	vite: {
