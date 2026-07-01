@@ -1166,15 +1166,6 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		overflow: hidden;
 	}
 
-	:global(html.image-preview-open .site-header-container) {
-		pointer-events: none;
-	}
-
-	:global(html.image-preview-open .page-shell::before),
-	:global(html.image-preview-open .page-shell::after) {
-		pointer-events: none;
-	}
-
 	.article-content :global(h1) {
 		display: none;
 	}
@@ -1523,8 +1514,10 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	.image-preview-overlay {
 		position: fixed;
 		inset: 0;
+		z-index: 140;
 		display: block;
 		cursor: pointer;
+		isolation: isolate;
 		pointer-events: auto;
 		overscroll-behavior: contain;
 	}
@@ -1536,7 +1529,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	.image-preview-backdrop {
 		position: fixed;
 		inset: 0;
-		z-index: 60;
+		z-index: 0;
 		background: oklch(12% 0.022 255 / 0%);
 		backdrop-filter: blur(0);
 		cursor: pointer;
@@ -1570,7 +1563,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		position: fixed;
 		top: calc(1rem + env(safe-area-inset-top));
 		right: calc(1rem + env(safe-area-inset-right));
-		z-index: 90;
+		z-index: 2;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -1620,7 +1613,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	.image-preview-stage {
 		position: fixed;
 		inset: 0;
-		z-index: 70;
+		z-index: 1;
 		overflow: auto;
 		overscroll-behavior: contain;
 		cursor: pointer;
@@ -1670,7 +1663,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		position: fixed;
 		left: calc(1rem + env(safe-area-inset-left));
 		bottom: calc(1rem + env(safe-area-inset-bottom));
-		z-index: 90;
+		z-index: 2;
 		max-width: min(32rem, calc(100vw - 2rem));
 		padding: 0.75rem 0.9rem;
 		font-family: var(--font-mono);
