@@ -128,6 +128,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 <div class:list={["reading-toast", { "course-layout": isCourseLayout }]} data-reading-toast role="status" aria-live="polite" hidden>閱讀完成已紀錄</div>
 
 <div class="image-preview-overlay" data-image-preview-overlay hidden>
+	<div class="image-preview-backdrop" data-image-preview-backdrop aria-hidden="true"></div>
 	<section class="image-preview-dialog" data-image-preview-dialog role="dialog" aria-modal="true" aria-labelledby="image-preview-title" aria-describedby="image-preview-help" tabindex="-1">
 		<p id="image-preview-title" class="sr-only">圖片預覽</p>
 		<div class="image-preview-stage" data-image-preview-stage tabindex="0">
@@ -215,6 +216,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 
 		const articleContent = document.querySelector<HTMLElement>(".article-content");
 		const imagePreviewOverlay = document.querySelector<HTMLElement>("[data-image-preview-overlay]");
+		const imagePreviewBackdrop = imagePreviewOverlay?.querySelector<HTMLElement>("[data-image-preview-backdrop]");
 		const imagePreviewDialog = imagePreviewOverlay?.querySelector<HTMLElement>("[data-image-preview-dialog]");
 		const imagePreviewStage = imagePreviewOverlay?.querySelector<HTMLElement>("[data-image-preview-stage]");
 		const imagePreviewCanvas = imagePreviewOverlay?.querySelector<HTMLElement>("[data-image-preview-canvas]");
@@ -234,7 +236,6 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		let previewBaseWidth = 0;
 		let previewBaseHeight = 0;
 		let previewCloseTimer = 0;
-		let previewSettleTimer = 0;
 		const embeddedFrameTitle = (frame: HTMLIFrameElement) => {
 			const src = frame.getAttribute("src") ?? "";
 			if (/instagram\.com/i.test(src) || frame.classList.contains("instagram-media")) return "Instagram 貼文嵌入內容";
@@ -369,13 +370,16 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			previewBaseHeight = Math.max(1, naturalHeight * fitRatio);
 			return { width: previewBaseWidth * previewZoom, height: previewBaseHeight * previewZoom };
 		};
-		const positionPreviewImage = (announce = false) => {
+		const positionPreviewImage = (announce = false, anchor: { clientX: number; clientY: number } | null = null) => {
 			if (!imagePreviewImage || !imagePreviewStage || !imagePreviewCanvas || imagePreviewOverlay?.hidden) return;
 
 			const previousScrollWidth = Math.max(imagePreviewStage.scrollWidth, 1);
 			const previousScrollHeight = Math.max(imagePreviewStage.scrollHeight, 1);
 			const scrollX = (imagePreviewStage.scrollLeft + imagePreviewStage.clientWidth / 2) / previousScrollWidth;
 			const scrollY = (imagePreviewStage.scrollTop + imagePreviewStage.clientHeight / 2) / previousScrollHeight;
+			const previousRect = imagePreviewImage.getBoundingClientRect();
+			const anchorXRatio = previousRect.width > 0 && anchor ? (anchor.clientX - previousRect.left) / previousRect.width : 0.5;
+			const anchorYRatio = previousRect.height > 0 && anchor ? (anchor.clientY - previousRect.top) / previousRect.height : 0.5;
 			const { width, height } = previewFitSize();
 			const canvasWidth = Math.max(window.innerWidth, width + 64);
 			const canvasHeight = Math.max(window.innerHeight, height + 64);
@@ -390,6 +394,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			imagePreviewImage.style.width = `${width}px`;
 			imagePreviewImage.style.height = `${height}px`;
 			imagePreviewStage.classList.toggle("is-zoomed", previewZoom > 1.01);
+			imagePreviewStage.classList.toggle("is-max-zoom", previewZoom >= maxPreviewZoom);
 			if (imagePreviewZoomOut) {
 				imagePreviewZoomOut.disabled = previewZoom <= minPreviewZoom;
 				imagePreviewZoomOut.setAttribute("aria-label", `縮小圖片，目前 ${percent}`);
@@ -401,16 +406,26 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 
 			requestAnimationFrame(() => {
 				if (!imagePreviewStage) return;
-				const nextLeft = imagePreviewStage.scrollWidth * scrollX - imagePreviewStage.clientWidth / 2;
-				const nextTop = imagePreviewStage.scrollHeight * scrollY - imagePreviewStage.clientHeight / 2;
-				imagePreviewStage.scrollTo({ left: Math.max(0, nextLeft), top: Math.max(0, nextTop) });
+				if (anchor && imagePreviewImage && previousRect.width > 0 && previousRect.height > 0) {
+					const nextRect = imagePreviewImage.getBoundingClientRect();
+					const nextAnchorX = nextRect.left + nextRect.width * anchorXRatio;
+					const nextAnchorY = nextRect.top + nextRect.height * anchorYRatio;
+					imagePreviewStage.scrollTo({
+						left: Math.max(0, imagePreviewStage.scrollLeft + nextAnchorX - anchor.clientX),
+						top: Math.max(0, imagePreviewStage.scrollTop + nextAnchorY - anchor.clientY)
+					});
+				} else {
+					const nextLeft = imagePreviewStage.scrollWidth * scrollX - imagePreviewStage.clientWidth / 2;
+					const nextTop = imagePreviewStage.scrollHeight * scrollY - imagePreviewStage.clientHeight / 2;
+					imagePreviewStage.scrollTo({ left: Math.max(0, nextLeft), top: Math.max(0, nextTop) });
+				}
 			});
 
 			if (announce && imagePreviewLive) imagePreviewLive.textContent = `圖片縮放 ${percent}`;
 		};
-		const setPreviewZoom = (nextZoom: number, announce = true) => {
+		const setPreviewZoom = (nextZoom: number, announce = true, anchor: { clientX: number; clientY: number } | null = null) => {
 			previewZoom = clampPreviewZoom(nextZoom);
-			positionPreviewImage(announce);
+			positionPreviewImage(announce, anchor);
 		};
 		const placePreviewAtRect = (rect: DOMRect) => {
 			if (!imagePreviewImage || !imagePreviewCanvas) return;
@@ -447,15 +462,32 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 				updatePreviewFit();
 			});
 		};
+		const restorePreviewSourceVisibility = () => {
+			const sourceImage = activePreviewSourceImage;
+			if (!sourceImage) {
+				activePreviewTrigger?.classList.remove("is-preview-source-hidden");
+				return;
+			}
+
+			const previousTransition = sourceImage.style.transition;
+			sourceImage.style.transition = "none";
+			activePreviewTrigger?.classList.remove("is-preview-source-hidden");
+			sourceImage.classList.remove("is-preview-source-hidden");
+			sourceImage.getBoundingClientRect();
+			requestAnimationFrame(() => {
+				if (!sourceImage.isConnected) return;
+				if (previousTransition) sourceImage.style.transition = previousTransition;
+				else sourceImage.style.removeProperty("transition");
+			});
+		};
 		const finishCloseImagePreview = (restoreFocus: boolean) => {
 			if (!imagePreviewOverlay || !imagePreviewImage) return;
 
+			restorePreviewSourceVisibility();
 			imagePreviewOverlay.hidden = true;
-			imagePreviewOverlay.classList.remove("is-open", "is-closing", "is-settled");
+			imagePreviewOverlay.classList.remove("is-open", "is-closing");
 			document.documentElement.classList.remove("image-preview-open");
 			activePreviewTrigger?.setAttribute("aria-expanded", "false");
-			activePreviewTrigger?.classList.remove("is-preview-source-hidden");
-			activePreviewSourceImage?.classList.remove("is-preview-source-hidden");
 			if (restoreFocus && activePreviewTrigger?.isConnected) activePreviewTrigger.focus();
 			activePreviewTrigger = null;
 			activePreviewSourceImage = null;
@@ -468,9 +500,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			if (!imagePreviewOverlay || !imagePreviewImage || imagePreviewOverlay.hidden || imagePreviewOverlay.classList.contains("is-closing")) return;
 
 			window.clearTimeout(previewCloseTimer);
-			window.clearTimeout(previewSettleTimer);
 			const sourceRect = previewSourceRect();
-			imagePreviewOverlay.classList.remove("is-settled");
 			imagePreviewOverlay.classList.add("is-closing");
 			imagePreviewOverlay.classList.remove("is-open");
 			if (sourceRect) movePreviewBackToRect(sourceRect);
@@ -485,7 +515,6 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			if (sourceRect.width <= 0 || sourceRect.height <= 0) return;
 
 			window.clearTimeout(previewCloseTimer);
-			window.clearTimeout(previewSettleTimer);
 			activePreviewTrigger?.setAttribute("aria-expanded", "false");
 			activePreviewTrigger?.classList.remove("is-preview-source-hidden");
 			activePreviewSourceImage?.classList.remove("is-preview-source-hidden");
@@ -503,7 +532,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			imagePreviewLive.textContent = "圖片預覽已開啟。按 Escape 關閉，或使用放大和縮小按鈕調整圖片大小。";
 			trigger.setAttribute("aria-expanded", "true");
 			imagePreviewOverlay.hidden = false;
-			imagePreviewOverlay.classList.remove("is-open", "is-closing", "is-settled");
+			imagePreviewOverlay.classList.remove("is-open", "is-closing");
 			document.documentElement.classList.add("image-preview-open");
 			imagePreviewStage.scrollTo({ left: 0, top: 0 });
 			placePreviewAtRect(sourceRect);
@@ -513,11 +542,6 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 				imagePreviewOverlay.classList.add("is-open");
 				imagePreviewDialog.focus();
 				positionPreviewImage(false);
-				previewSettleTimer = window.setTimeout(() => {
-					if (!imagePreviewOverlay.hidden && imagePreviewOverlay.classList.contains("is-open") && !imagePreviewOverlay.classList.contains("is-closing")) {
-						imagePreviewOverlay.classList.add("is-settled");
-					}
-				}, 360);
 			});
 		};
 		const ensureImagePreviewTrigger = (image: HTMLImageElement) => {
@@ -564,15 +588,36 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		};
 
 		imagePreviewImage?.addEventListener("load", updatePreviewFit, { signal });
+		imagePreviewImage?.addEventListener(
+			"click",
+			event => {
+				event.preventDefault();
+				event.stopPropagation();
+				const nextZoom = previewZoom >= maxPreviewZoom ? 1 : previewZoom + previewZoomStep;
+				setPreviewZoom(nextZoom, true, { clientX: event.clientX, clientY: event.clientY });
+			},
+			{ signal }
+		);
 		imagePreviewZoomOut?.addEventListener("click", () => setPreviewZoom(previewZoom - previewZoomStep), { signal });
 		imagePreviewZoomIn?.addEventListener("click", () => setPreviewZoom(previewZoom + previewZoomStep), { signal });
 		imagePreviewClose?.addEventListener("click", () => closeImagePreview(), { signal });
 		window.addEventListener("resize", queuePreviewFit, { signal });
+		imagePreviewStage?.addEventListener(
+			"wheel",
+			event => {
+				if (!event.ctrlKey) return;
+
+				event.preventDefault();
+				const nextZoom = previewZoom * Math.exp(-event.deltaY * 0.002);
+				setPreviewZoom(nextZoom, true, { clientX: event.clientX, clientY: event.clientY });
+			},
+			{ signal, passive: false }
+		);
 		imagePreviewOverlay?.addEventListener(
 			"click",
 			event => {
 				const target = event.target;
-				if (target === imagePreviewOverlay || target === imagePreviewDialog || target === imagePreviewStage || target === imagePreviewCanvas) closeImagePreview();
+				if (target === imagePreviewOverlay || target === imagePreviewBackdrop || target === imagePreviewDialog || target === imagePreviewStage || target === imagePreviewCanvas) closeImagePreview();
 			},
 			{ signal }
 		);
@@ -873,7 +918,6 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			if (tocFrame) window.cancelAnimationFrame(tocFrame);
 			if (previewResizeFrame) window.cancelAnimationFrame(previewResizeFrame);
 			window.clearTimeout(previewCloseTimer);
-			window.clearTimeout(previewSettleTimer);
 			finishCloseImagePreview(false);
 			readObserver?.disconnect();
 			embedObserver?.disconnect();
@@ -1120,6 +1164,15 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	:global(html.image-preview-open),
 	:global(html.image-preview-open body) {
 		overflow: hidden;
+	}
+
+	:global(html.image-preview-open .site-header-container) {
+		pointer-events: none;
+	}
+
+	:global(html.image-preview-open .page-shell::before),
+	:global(html.image-preview-open .page-shell::after) {
+		pointer-events: none;
 	}
 
 	.article-content :global(h1) {
@@ -1470,32 +1523,37 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	.image-preview-overlay {
 		position: fixed;
 		inset: 0;
-		z-index: 70;
 		display: block;
-		background: oklch(12% 0.022 255 / 0%);
-		backdrop-filter: blur(0);
+		cursor: pointer;
+		pointer-events: auto;
 		overscroll-behavior: contain;
-		transition:
-			background 220ms ease,
-			backdrop-filter 240ms ease;
 	}
 
 	.image-preview-overlay[hidden] {
 		display: none;
 	}
 
-	.image-preview-overlay.is-open {
+	.image-preview-backdrop {
+		position: fixed;
+		inset: 0;
+		z-index: 60;
+		background: oklch(12% 0.022 255 / 0%);
+		backdrop-filter: blur(0);
+		cursor: pointer;
+		pointer-events: none;
+		transition:
+			background 220ms ease,
+			backdrop-filter 240ms ease;
+	}
+
+	.image-preview-overlay.is-open .image-preview-backdrop {
 		background: oklch(12% 0.022 255 / 72%);
 		backdrop-filter: blur(0.8rem);
 	}
 
-	.image-preview-overlay.is-closing {
+	.image-preview-overlay.is-closing .image-preview-backdrop {
 		background: oklch(12% 0.022 255 / 0%);
 		backdrop-filter: blur(0);
-	}
-
-	.image-preview-overlay.is-settled {
-		z-index: 160;
 	}
 
 	.image-preview-dialog {
@@ -1503,20 +1561,23 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		inset: 0;
 		color: var(--color-code-ink);
 		background: transparent;
+		cursor: pointer;
 		outline: 0;
+		pointer-events: auto;
 	}
 
 	.image-preview-controls {
 		position: fixed;
 		top: calc(1rem + env(safe-area-inset-top));
 		right: calc(1rem + env(safe-area-inset-right));
-		z-index: 2;
+		z-index: 90;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		gap: 0;
 		opacity: 0;
 		box-shadow: 0 1rem 2.5rem oklch(0% 0 0 / 32%);
+		pointer-events: auto;
 		transition: opacity 140ms ease;
 	}
 
@@ -1559,15 +1620,19 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	.image-preview-stage {
 		position: fixed;
 		inset: 0;
+		z-index: 70;
 		overflow: auto;
 		overscroll-behavior: contain;
+		cursor: pointer;
 		outline: 0;
+		pointer-events: auto;
 	}
 
 	.image-preview-canvas {
 		position: relative;
 		min-width: 100vw;
 		min-height: 100vh;
+		cursor: pointer;
 	}
 
 	.image-preview-stage:focus-visible {
@@ -1588,6 +1653,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		object-fit: contain;
 		background: transparent;
 		box-shadow: 0 1.5rem 4rem oklch(0% 0 0 / 42%);
+		cursor: zoom-in;
 		transition:
 			top 320ms cubic-bezier(0.22, 1, 0.36, 1),
 			left 320ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -1596,11 +1662,15 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		user-select: none;
 	}
 
+	.image-preview-stage.is-max-zoom img {
+		cursor: zoom-out;
+	}
+
 	.image-preview-caption {
 		position: fixed;
 		left: calc(1rem + env(safe-area-inset-left));
 		bottom: calc(1rem + env(safe-area-inset-bottom));
-		z-index: 2;
+		z-index: 90;
 		max-width: min(32rem, calc(100vw - 2rem));
 		padding: 0.75rem 0.9rem;
 		font-family: var(--font-mono);
@@ -1614,6 +1684,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		opacity: 0;
 		box-shadow: 0 1rem 2.5rem oklch(0% 0 0 / 30%);
 		backdrop-filter: blur(0.9rem);
+		pointer-events: none;
 		transition: opacity 140ms ease;
 	}
 
