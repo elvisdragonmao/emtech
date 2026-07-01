@@ -230,11 +230,14 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		const minPreviewZoom = 0.5;
 		const maxPreviewZoom = 4;
 		const previewZoomStep = 0.25;
+		const previewReturnMs = 340;
+		const previewReleaseMs = 190;
 		let activePreviewTrigger: HTMLElement | null = null;
 		let activePreviewSourceImage: HTMLImageElement | null = null;
 		let previewZoom = 1;
 		let previewBaseWidth = 0;
 		let previewBaseHeight = 0;
+		let previewReleaseTimer = 0;
 		let previewCloseTimer = 0;
 		const embeddedFrameTitle = (frame: HTMLIFrameElement) => {
 			const src = frame.getAttribute("src") ?? "";
@@ -483,9 +486,11 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		const finishCloseImagePreview = (restoreFocus: boolean) => {
 			if (!imagePreviewOverlay || !imagePreviewImage) return;
 
+			window.clearTimeout(previewReleaseTimer);
+			window.clearTimeout(previewCloseTimer);
 			restorePreviewSourceVisibility();
 			imagePreviewOverlay.hidden = true;
-			imagePreviewOverlay.classList.remove("is-open", "is-closing");
+			imagePreviewOverlay.classList.remove("is-open", "is-closing", "is-releasing");
 			document.documentElement.classList.remove("image-preview-open");
 			activePreviewTrigger?.setAttribute("aria-expanded", "false");
 			if (restoreFocus && activePreviewTrigger?.isConnected) activePreviewTrigger.focus();
@@ -499,12 +504,20 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		const closeImagePreview = (restoreFocus = true) => {
 			if (!imagePreviewOverlay || !imagePreviewImage || imagePreviewOverlay.hidden || imagePreviewOverlay.classList.contains("is-closing")) return;
 
+			window.clearTimeout(previewReleaseTimer);
 			window.clearTimeout(previewCloseTimer);
 			const sourceRect = previewSourceRect();
 			imagePreviewOverlay.classList.add("is-closing");
-			imagePreviewOverlay.classList.remove("is-open");
+			imagePreviewOverlay.classList.remove("is-open", "is-releasing");
 			if (sourceRect) movePreviewBackToRect(sourceRect);
-			previewCloseTimer = window.setTimeout(() => finishCloseImagePreview(restoreFocus), sourceRect ? 360 : 1);
+			previewReleaseTimer = window.setTimeout(
+				() => {
+					restorePreviewSourceVisibility();
+					imagePreviewOverlay.classList.add("is-releasing");
+					previewCloseTimer = window.setTimeout(() => finishCloseImagePreview(restoreFocus), previewReleaseMs);
+				},
+				sourceRect ? previewReturnMs : 1
+			);
 		};
 		const openImagePreview = (image: HTMLImageElement, trigger: HTMLElement) => {
 			if (!imagePreviewOverlay || !imagePreviewDialog || !imagePreviewImage || !imagePreviewCaption || !imagePreviewLive || !imagePreviewStage) return;
@@ -514,6 +527,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			const sourceRect = image.getBoundingClientRect();
 			if (sourceRect.width <= 0 || sourceRect.height <= 0) return;
 
+			window.clearTimeout(previewReleaseTimer);
 			window.clearTimeout(previewCloseTimer);
 			activePreviewTrigger?.setAttribute("aria-expanded", "false");
 			activePreviewTrigger?.classList.remove("is-preview-source-hidden");
@@ -532,7 +546,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			imagePreviewLive.textContent = "圖片預覽已開啟。按 Escape 關閉，或使用放大和縮小按鈕調整圖片大小。";
 			trigger.setAttribute("aria-expanded", "true");
 			imagePreviewOverlay.hidden = false;
-			imagePreviewOverlay.classList.remove("is-open", "is-closing");
+			imagePreviewOverlay.classList.remove("is-open", "is-closing", "is-releasing");
 			document.documentElement.classList.add("image-preview-open");
 			imagePreviewStage.scrollTo({ left: 0, top: 0 });
 			placePreviewAtRect(sourceRect);
@@ -917,6 +931,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			controller.abort();
 			if (tocFrame) window.cancelAnimationFrame(tocFrame);
 			if (previewResizeFrame) window.cancelAnimationFrame(previewResizeFrame);
+			window.clearTimeout(previewReleaseTimer);
 			window.clearTimeout(previewCloseTimer);
 			finishCloseImagePreview(false);
 			readObserver?.disconnect();
@@ -1545,8 +1560,16 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	}
 
 	.image-preview-overlay.is-closing .image-preview-backdrop {
+		background: oklch(12% 0.022 255 / 72%);
+		backdrop-filter: blur(0.8rem);
+	}
+
+	.image-preview-overlay.is-releasing .image-preview-backdrop {
 		background: oklch(12% 0.022 255 / 0%);
 		backdrop-filter: blur(0);
+		transition:
+			background 190ms ease,
+			backdrop-filter 190ms ease;
 	}
 
 	.image-preview-dialog {
@@ -1687,7 +1710,9 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	}
 
 	.image-preview-overlay.is-closing .image-preview-controls,
-	.image-preview-overlay.is-closing .image-preview-caption {
+	.image-preview-overlay.is-releasing .image-preview-controls,
+	.image-preview-overlay.is-closing .image-preview-caption,
+	.image-preview-overlay.is-releasing .image-preview-caption {
 		opacity: 0;
 	}
 
