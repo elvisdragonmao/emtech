@@ -1,5 +1,5 @@
 ---
-import { ArrowLeft, ArrowRight } from "@lucide/astro";
+import { ArrowLeft, ArrowRight, X, ZoomIn, ZoomOut } from "@lucide/astro";
 import type { ImageInput, MetaItem, TocHeading } from "@/utils/content";
 import MetaTable from "./MetaTable.astro";
 
@@ -127,6 +127,30 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 
 <div class:list={["reading-toast", { "course-layout": isCourseLayout }]} data-reading-toast role="status" aria-live="polite" hidden>閱讀完成已紀錄</div>
 
+<div class="image-preview-overlay" data-image-preview-overlay hidden>
+	<section class="image-preview-dialog" data-image-preview-dialog role="dialog" aria-modal="true" aria-labelledby="image-preview-title" aria-describedby="image-preview-help" tabindex="-1">
+		<p id="image-preview-title" class="sr-only">圖片預覽</p>
+		<div class="image-preview-stage" data-image-preview-stage tabindex="0">
+			<div class="image-preview-canvas" data-image-preview-canvas>
+				<img data-image-preview-image alt="" draggable="false" />
+			</div>
+		</div>
+		<p class="image-preview-caption" data-image-preview-caption hidden></p>
+		<div class="image-preview-controls" aria-label="圖片預覽控制項">
+			<button class="image-preview-control" type="button" data-image-preview-zoom-in aria-label="放大圖片，目前 100%" title="放大圖片">
+				<ZoomIn size={22} stroke-width={1.9} aria-hidden="true" />
+			</button>
+			<button class="image-preview-control" type="button" data-image-preview-zoom-out aria-label="縮小圖片，目前 100%" title="縮小圖片">
+				<ZoomOut size={22} stroke-width={1.9} aria-hidden="true" />
+			</button>
+			<button class="image-preview-control" type="button" data-image-preview-close aria-label="關閉圖片預覽" title="關閉圖片預覽">
+				<X size={22} stroke-width={1.9} aria-hidden="true" />
+			</button>
+		</div>
+		<p id="image-preview-help" class="sr-only" data-image-preview-live aria-live="polite">按 Escape 關閉圖片預覽。使用放大和縮小按鈕調整圖片大小；圖片放大後可捲動查看細節。</p>
+	</section>
+</div>
+
 <script>
 	import { setupPageLifecycle } from "@/scripts/pageLifecycle";
 
@@ -137,6 +161,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		let embedObserver: MutationObserver | null = null;
 		let toastHideTimer = 0;
 		let toastHiddenTimer = 0;
+		let previewResizeFrame = 0;
 		const copyResetTimers = new Set<number>();
 		const tocContainer = document.querySelector<HTMLElement>("aside.toc");
 		const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"));
@@ -189,6 +214,27 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		}
 
 		const articleContent = document.querySelector<HTMLElement>(".article-content");
+		const imagePreviewOverlay = document.querySelector<HTMLElement>("[data-image-preview-overlay]");
+		const imagePreviewDialog = imagePreviewOverlay?.querySelector<HTMLElement>("[data-image-preview-dialog]");
+		const imagePreviewStage = imagePreviewOverlay?.querySelector<HTMLElement>("[data-image-preview-stage]");
+		const imagePreviewCanvas = imagePreviewOverlay?.querySelector<HTMLElement>("[data-image-preview-canvas]");
+		const imagePreviewImage = imagePreviewOverlay?.querySelector<HTMLImageElement>("[data-image-preview-image]");
+		const imagePreviewCaption = imagePreviewOverlay?.querySelector<HTMLElement>("[data-image-preview-caption]");
+		const imagePreviewLive = imagePreviewOverlay?.querySelector<HTMLElement>("[data-image-preview-live]");
+		const imagePreviewZoomOut = imagePreviewOverlay?.querySelector<HTMLButtonElement>("[data-image-preview-zoom-out]");
+		const imagePreviewZoomIn = imagePreviewOverlay?.querySelector<HTMLButtonElement>("[data-image-preview-zoom-in]");
+		const imagePreviewClose = imagePreviewOverlay?.querySelector<HTMLButtonElement>("[data-image-preview-close]");
+		const imagePreviewFocusableSelector = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex='-1'])";
+		const minPreviewZoom = 0.5;
+		const maxPreviewZoom = 4;
+		const previewZoomStep = 0.25;
+		let activePreviewTrigger: HTMLElement | null = null;
+		let activePreviewSourceImage: HTMLImageElement | null = null;
+		let previewZoom = 1;
+		let previewBaseWidth = 0;
+		let previewBaseHeight = 0;
+		let previewCloseTimer = 0;
+		let previewSettleTimer = 0;
 		const embeddedFrameTitle = (frame: HTMLIFrameElement) => {
 			const src = frame.getAttribute("src") ?? "";
 			if (/instagram\.com/i.test(src) || frame.classList.contains("instagram-media")) return "Instagram 貼文嵌入內容";
@@ -260,10 +306,345 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 				ensureAnimatedImageControl(image);
 			}
 		};
+		const clampPreviewZoom = (zoom: number) => Math.min(maxPreviewZoom, Math.max(minPreviewZoom, Math.round(zoom * 100) / 100));
+		const isImageHref = (href: string) => {
+			try {
+				return /\.(?:avif|gif|jpe?g|png|svg|webp)$/i.test(new URL(href, window.location.href).pathname);
+			} catch {
+				return /\.(?:avif|gif|jpe?g|png|svg|webp)(?:[?#].*)?$/i.test(href);
+			}
+		};
+		const imageSource = (image: HTMLImageElement) => image.currentSrc || image.src || image.getAttribute("src") || "";
+		const sameImageHref = (href: string, image: HTMLImageElement) => {
+			const source = imageSource(image);
+			if (!source) return false;
+
+			try {
+				return new URL(href, window.location.href).href === new URL(source, window.location.href).href;
+			} catch {
+				return href === source;
+			}
+		};
+		const imageCaption = (image: HTMLImageElement) => image.closest("figure")?.querySelector("figcaption")?.textContent?.trim() || image.alt.trim() || image.title.trim();
+		const imageTriggerLabel = (image: HTMLImageElement) => {
+			const caption = imageCaption(image);
+			return caption ? `開啟圖片預覽：${caption}` : "開啟圖片預覽";
+		};
+		const onlyImageAnchor = (image: HTMLImageElement) => {
+			const anchor = image.closest("a");
+			if (!anchor || anchor.closest("[data-image-preview-overlay]")) return null;
+			const meaningfulChildren = Array.from(anchor.childNodes).filter(node => {
+				if (node === image) return true;
+				if (node.nodeType === Node.TEXT_NODE) return Boolean(node.textContent?.trim());
+				return true;
+			});
+
+			return meaningfulChildren.length === 1 && meaningfulChildren[0] === image ? anchor : null;
+		};
+		const previewSourceFor = (image: HTMLImageElement, trigger: HTMLElement) => trigger.dataset.imagePreviewSrc || imageSource(image);
+		const previewFocusableElements = () =>
+			imagePreviewOverlay
+				? Array.from(imagePreviewOverlay.querySelectorAll<HTMLElement>(imagePreviewFocusableSelector)).filter(element => !element.hasAttribute("disabled") && element.getClientRects().length > 0)
+				: [];
+		const previewSourceRect = () => {
+			const image = activePreviewSourceImage;
+			if (!image?.isConnected) return null;
+
+			const rect = image.getBoundingClientRect();
+			if (rect.width <= 0 || rect.height <= 0) return null;
+			return rect;
+		};
+		const imageNaturalSize = () => {
+			const naturalWidth = imagePreviewImage?.naturalWidth || activePreviewSourceImage?.naturalWidth || previewBaseWidth || 1;
+			const naturalHeight = imagePreviewImage?.naturalHeight || activePreviewSourceImage?.naturalHeight || previewBaseHeight || 1;
+			return { naturalWidth, naturalHeight };
+		};
+		const previewFitSize = () => {
+			const { naturalWidth, naturalHeight } = imageNaturalSize();
+			const fitWidth = Math.max(1, window.innerWidth - 96);
+			const fitHeight = Math.max(1, window.innerHeight - 96);
+			const fitRatio = Math.min(fitWidth / naturalWidth, fitHeight / naturalHeight, 1);
+
+			previewBaseWidth = Math.max(1, naturalWidth * fitRatio);
+			previewBaseHeight = Math.max(1, naturalHeight * fitRatio);
+			return { width: previewBaseWidth * previewZoom, height: previewBaseHeight * previewZoom };
+		};
+		const positionPreviewImage = (announce = false) => {
+			if (!imagePreviewImage || !imagePreviewStage || !imagePreviewCanvas || imagePreviewOverlay?.hidden) return;
+
+			const previousScrollWidth = Math.max(imagePreviewStage.scrollWidth, 1);
+			const previousScrollHeight = Math.max(imagePreviewStage.scrollHeight, 1);
+			const scrollX = (imagePreviewStage.scrollLeft + imagePreviewStage.clientWidth / 2) / previousScrollWidth;
+			const scrollY = (imagePreviewStage.scrollTop + imagePreviewStage.clientHeight / 2) / previousScrollHeight;
+			const { width, height } = previewFitSize();
+			const canvasWidth = Math.max(window.innerWidth, width + 64);
+			const canvasHeight = Math.max(window.innerHeight, height + 64);
+			const left = Math.max(32, (canvasWidth - width) / 2);
+			const top = Math.max(32, (canvasHeight - height) / 2);
+			const percent = `${Math.round(previewZoom * 100)}%`;
+
+			imagePreviewCanvas.style.width = `${canvasWidth}px`;
+			imagePreviewCanvas.style.height = `${canvasHeight}px`;
+			imagePreviewImage.style.left = `${left}px`;
+			imagePreviewImage.style.top = `${top}px`;
+			imagePreviewImage.style.width = `${width}px`;
+			imagePreviewImage.style.height = `${height}px`;
+			imagePreviewStage.classList.toggle("is-zoomed", previewZoom > 1.01);
+			if (imagePreviewZoomOut) {
+				imagePreviewZoomOut.disabled = previewZoom <= minPreviewZoom;
+				imagePreviewZoomOut.setAttribute("aria-label", `縮小圖片，目前 ${percent}`);
+			}
+			if (imagePreviewZoomIn) {
+				imagePreviewZoomIn.disabled = previewZoom >= maxPreviewZoom;
+				imagePreviewZoomIn.setAttribute("aria-label", `放大圖片，目前 ${percent}`);
+			}
+
+			requestAnimationFrame(() => {
+				if (!imagePreviewStage) return;
+				const nextLeft = imagePreviewStage.scrollWidth * scrollX - imagePreviewStage.clientWidth / 2;
+				const nextTop = imagePreviewStage.scrollHeight * scrollY - imagePreviewStage.clientHeight / 2;
+				imagePreviewStage.scrollTo({ left: Math.max(0, nextLeft), top: Math.max(0, nextTop) });
+			});
+
+			if (announce && imagePreviewLive) imagePreviewLive.textContent = `圖片縮放 ${percent}`;
+		};
+		const setPreviewZoom = (nextZoom: number, announce = true) => {
+			previewZoom = clampPreviewZoom(nextZoom);
+			positionPreviewImage(announce);
+		};
+		const placePreviewAtRect = (rect: DOMRect) => {
+			if (!imagePreviewImage || !imagePreviewCanvas) return;
+			imagePreviewCanvas.style.width = `${window.innerWidth}px`;
+			imagePreviewCanvas.style.height = `${window.innerHeight}px`;
+			imagePreviewImage.style.left = `${rect.left}px`;
+			imagePreviewImage.style.top = `${rect.top}px`;
+			imagePreviewImage.style.width = `${rect.width}px`;
+			imagePreviewImage.style.height = `${rect.height}px`;
+		};
+		const movePreviewBackToRect = (rect: DOMRect) => {
+			if (!imagePreviewImage || !imagePreviewCanvas || !imagePreviewStage) return;
+
+			const currentRect = imagePreviewImage.getBoundingClientRect();
+			imagePreviewImage.style.transition = "none";
+			imagePreviewStage.scrollTo({ left: 0, top: 0 });
+			imagePreviewCanvas.style.width = `${window.innerWidth}px`;
+			imagePreviewCanvas.style.height = `${window.innerHeight}px`;
+			imagePreviewImage.style.left = `${currentRect.left}px`;
+			imagePreviewImage.style.top = `${currentRect.top}px`;
+			imagePreviewImage.style.width = `${currentRect.width}px`;
+			imagePreviewImage.style.height = `${currentRect.height}px`;
+			imagePreviewImage.getBoundingClientRect();
+			imagePreviewImage.style.removeProperty("transition");
+			placePreviewAtRect(rect);
+		};
+		const updatePreviewFit = () => {
+			positionPreviewImage(false);
+		};
+		const queuePreviewFit = () => {
+			if (previewResizeFrame) return;
+			previewResizeFrame = window.requestAnimationFrame(() => {
+				previewResizeFrame = 0;
+				updatePreviewFit();
+			});
+		};
+		const finishCloseImagePreview = (restoreFocus: boolean) => {
+			if (!imagePreviewOverlay || !imagePreviewImage) return;
+
+			imagePreviewOverlay.hidden = true;
+			imagePreviewOverlay.classList.remove("is-open", "is-closing", "is-settled");
+			document.documentElement.classList.remove("image-preview-open");
+			activePreviewTrigger?.setAttribute("aria-expanded", "false");
+			activePreviewTrigger?.classList.remove("is-preview-source-hidden");
+			activePreviewSourceImage?.classList.remove("is-preview-source-hidden");
+			if (restoreFocus && activePreviewTrigger?.isConnected) activePreviewTrigger.focus();
+			activePreviewTrigger = null;
+			activePreviewSourceImage = null;
+			imagePreviewImage.removeAttribute("src");
+			imagePreviewImage.alt = "";
+			imagePreviewImage.removeAttribute("style");
+			imagePreviewCanvas?.removeAttribute("style");
+		};
+		const closeImagePreview = (restoreFocus = true) => {
+			if (!imagePreviewOverlay || !imagePreviewImage || imagePreviewOverlay.hidden || imagePreviewOverlay.classList.contains("is-closing")) return;
+
+			window.clearTimeout(previewCloseTimer);
+			window.clearTimeout(previewSettleTimer);
+			const sourceRect = previewSourceRect();
+			imagePreviewOverlay.classList.remove("is-settled");
+			imagePreviewOverlay.classList.add("is-closing");
+			imagePreviewOverlay.classList.remove("is-open");
+			if (sourceRect) movePreviewBackToRect(sourceRect);
+			previewCloseTimer = window.setTimeout(() => finishCloseImagePreview(restoreFocus), sourceRect ? 360 : 1);
+		};
+		const openImagePreview = (image: HTMLImageElement, trigger: HTMLElement) => {
+			if (!imagePreviewOverlay || !imagePreviewDialog || !imagePreviewImage || !imagePreviewCaption || !imagePreviewLive || !imagePreviewStage) return;
+
+			const source = previewSourceFor(image, trigger);
+			if (!source) return;
+			const sourceRect = image.getBoundingClientRect();
+			if (sourceRect.width <= 0 || sourceRect.height <= 0) return;
+
+			window.clearTimeout(previewCloseTimer);
+			window.clearTimeout(previewSettleTimer);
+			activePreviewTrigger?.setAttribute("aria-expanded", "false");
+			activePreviewTrigger?.classList.remove("is-preview-source-hidden");
+			activePreviewSourceImage?.classList.remove("is-preview-source-hidden");
+			activePreviewTrigger = trigger;
+			activePreviewSourceImage = image;
+			previewZoom = 1;
+			previewBaseWidth = sourceRect.width;
+			previewBaseHeight = sourceRect.height;
+
+			const caption = imageCaption(image);
+			imagePreviewImage.alt = image.alt.trim();
+			imagePreviewImage.src = source;
+			imagePreviewCaption.textContent = caption;
+			imagePreviewCaption.hidden = !caption;
+			imagePreviewLive.textContent = "圖片預覽已開啟。按 Escape 關閉，或使用放大和縮小按鈕調整圖片大小。";
+			trigger.setAttribute("aria-expanded", "true");
+			imagePreviewOverlay.hidden = false;
+			imagePreviewOverlay.classList.remove("is-open", "is-closing", "is-settled");
+			document.documentElement.classList.add("image-preview-open");
+			imagePreviewStage.scrollTo({ left: 0, top: 0 });
+			placePreviewAtRect(sourceRect);
+			trigger.classList.add("is-preview-source-hidden");
+			image.classList.add("is-preview-source-hidden");
+			requestAnimationFrame(() => {
+				imagePreviewOverlay.classList.add("is-open");
+				imagePreviewDialog.focus();
+				positionPreviewImage(false);
+				previewSettleTimer = window.setTimeout(() => {
+					if (!imagePreviewOverlay.hidden && imagePreviewOverlay.classList.contains("is-open") && !imagePreviewOverlay.classList.contains("is-closing")) {
+						imagePreviewOverlay.classList.add("is-settled");
+					}
+				}, 360);
+			});
+		};
+		const ensureImagePreviewTrigger = (image: HTMLImageElement) => {
+			if (image.dataset.imagePreviewReady === "true" || image.closest("[data-image-preview-overlay], picture")) return;
+
+			const label = imageTriggerLabel(image);
+			const anchor = onlyImageAnchor(image);
+			if (anchor) {
+				if (!isImageHref(anchor.href) && !sameImageHref(anchor.href, image)) return;
+				image.dataset.imagePreviewReady = "true";
+				anchor.dataset.imagePreviewSrc = anchor.href;
+				anchor.classList.add("image-preview-trigger");
+				if (image.classList.contains("hero-image")) anchor.classList.add("hero-image-preview-trigger");
+				anchor.setAttribute("aria-haspopup", "dialog");
+				anchor.setAttribute("aria-expanded", "false");
+				anchor.setAttribute("aria-label", label);
+				return;
+			}
+
+			if (image.closest("a, button")) return;
+
+			const parent = image.parentNode;
+			if (!parent) return;
+
+			image.dataset.imagePreviewReady = "true";
+			const button = document.createElement("button");
+			button.type = "button";
+			button.className = image.classList.contains("hero-image") ? "image-preview-trigger hero-image-preview-trigger" : "image-preview-trigger";
+			button.setAttribute("aria-haspopup", "dialog");
+			button.setAttribute("aria-expanded", "false");
+			button.setAttribute("aria-label", label);
+			parent.insertBefore(button, image);
+			button.append(image);
+		};
+		const ensureImagePreviewTriggers = (root: ParentNode) => {
+			if (root instanceof HTMLImageElement) {
+				ensureImagePreviewTrigger(root);
+				return;
+			}
+
+			for (const image of root.querySelectorAll<HTMLImageElement>("img")) {
+				ensureImagePreviewTrigger(image);
+			}
+		};
+
+		imagePreviewImage?.addEventListener("load", updatePreviewFit, { signal });
+		imagePreviewZoomOut?.addEventListener("click", () => setPreviewZoom(previewZoom - previewZoomStep), { signal });
+		imagePreviewZoomIn?.addEventListener("click", () => setPreviewZoom(previewZoom + previewZoomStep), { signal });
+		imagePreviewClose?.addEventListener("click", () => closeImagePreview(), { signal });
+		window.addEventListener("resize", queuePreviewFit, { signal });
+		imagePreviewOverlay?.addEventListener(
+			"click",
+			event => {
+				const target = event.target;
+				if (target === imagePreviewOverlay || target === imagePreviewDialog || target === imagePreviewStage || target === imagePreviewCanvas) closeImagePreview();
+			},
+			{ signal }
+		);
+		document.addEventListener(
+			"keydown",
+			event => {
+				if (!imagePreviewOverlay || imagePreviewOverlay.hidden) return;
+
+				if (event.key === "Escape") {
+					event.preventDefault();
+					closeImagePreview();
+					return;
+				}
+
+				if (event.key === "Tab") {
+					const focusable = previewFocusableElements();
+					const first = focusable[0];
+					const last = focusable[focusable.length - 1];
+					if (first && last) {
+						const activeElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+						if (!activeElement || !focusable.includes(activeElement)) {
+							event.preventDefault();
+							(event.shiftKey ? last : first).focus();
+						} else if (event.shiftKey && activeElement === first) {
+							event.preventDefault();
+							last.focus();
+						} else if (!event.shiftKey && activeElement === last) {
+							event.preventDefault();
+							first.focus();
+						}
+					}
+					return;
+				}
+
+				if ((event.key === "+" || event.key === "=") && !event.metaKey && !event.ctrlKey && !event.altKey) {
+					event.preventDefault();
+					setPreviewZoom(previewZoom + previewZoomStep);
+					return;
+				}
+
+				if ((event.key === "-" || event.key === "_") && !event.metaKey && !event.ctrlKey && !event.altKey) {
+					event.preventDefault();
+					setPreviewZoom(previewZoom - previewZoomStep);
+					return;
+				}
+
+				if (event.key === "0" && !event.metaKey && !event.ctrlKey && !event.altKey) {
+					event.preventDefault();
+					setPreviewZoom(1);
+				}
+			},
+			{ signal }
+		);
 
 		if (articleContent) {
+			articleContent.addEventListener(
+				"click",
+				event => {
+					const trigger = event.target instanceof Element ? event.target.closest<HTMLElement>(".image-preview-trigger") : null;
+					if (!trigger || !articleContent.contains(trigger)) return;
+
+					const image = trigger.querySelector("img");
+					if (!(image instanceof HTMLImageElement)) return;
+
+					event.preventDefault();
+					openImagePreview(image, trigger);
+				},
+				{ signal }
+			);
 			ensureFrameTitles(articleContent);
 			ensureAnimatedImageControls(articleContent);
+			ensureImagePreviewTriggers(articleContent);
 			if (typeof window.MutationObserver === "function") {
 				embedObserver = new MutationObserver(mutations => {
 					for (const mutation of mutations) {
@@ -271,6 +652,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 							if (node instanceof HTMLElement || node instanceof DocumentFragment) {
 								ensureFrameTitles(node);
 								ensureAnimatedImageControls(node);
+								ensureImagePreviewTriggers(node);
 							}
 						}
 					}
@@ -489,6 +871,10 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		return () => {
 			controller.abort();
 			if (tocFrame) window.cancelAnimationFrame(tocFrame);
+			if (previewResizeFrame) window.cancelAnimationFrame(previewResizeFrame);
+			window.clearTimeout(previewCloseTimer);
+			window.clearTimeout(previewSettleTimer);
+			finishCloseImagePreview(false);
 			readObserver?.disconnect();
 			embedObserver?.disconnect();
 			window.clearTimeout(toastHideTimer);
@@ -731,6 +1117,11 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		height: fit-content;
 	}
 
+	:global(html.image-preview-open),
+	:global(html.image-preview-open body) {
+		overflow: hidden;
+	}
+
 	.article-content :global(h1) {
 		display: none;
 	}
@@ -820,6 +1211,59 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		height: auto;
 		display: block;
 		object-fit: contain;
+	}
+
+	.article-content :global(.image-preview-trigger) {
+		display: block;
+		width: fit-content;
+		max-width: 100%;
+		padding: 0;
+		margin: 0 auto;
+		line-height: 0;
+		color: inherit;
+		background: transparent;
+		border: 0;
+		box-shadow: none;
+		cursor: zoom-in;
+	}
+
+	.article-content :global(a.image-preview-trigger) {
+		border-bottom: 0;
+	}
+
+	.article-content :global(.hero-image-preview-trigger) {
+		margin: 0 auto 1.5rem;
+	}
+
+	.article-content :global(.hero-image-preview-trigger .hero-image) {
+		margin: 0;
+	}
+
+	.article-content :global(.image-preview-trigger img) {
+		transition:
+			opacity 180ms ease,
+			filter 160ms ease,
+			box-shadow 160ms ease,
+			transform 160ms ease;
+	}
+
+	.article-content :global(.image-preview-trigger:hover img),
+	.article-content :global(.image-preview-trigger:focus img),
+	.article-content :global(.image-preview-trigger:focus-visible img) {
+		filter: saturate(1.04) contrast(1.02);
+		box-shadow:
+			0 1.35rem 2.6rem oklch(17% 0.022 255 / 18%),
+			0 0.45rem 1rem oklch(50% 0.16 232 / 18%);
+	}
+
+	.article-content :global(.image-preview-trigger:focus),
+	.article-content :global(.image-preview-trigger:focus-visible) {
+		outline: 0;
+	}
+
+	.article-content :global(.image-preview-trigger.is-preview-source-hidden img),
+	.article-content :global(img.is-preview-source-hidden) {
+		opacity: 0;
 	}
 
 	.article-content :global(.animated-image-toggle) {
@@ -1023,6 +1467,170 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		color: var(--color-muted);
 	}
 
+	.image-preview-overlay {
+		position: fixed;
+		inset: 0;
+		z-index: 70;
+		display: block;
+		background: oklch(12% 0.022 255 / 0%);
+		backdrop-filter: blur(0);
+		overscroll-behavior: contain;
+		transition:
+			background 220ms ease,
+			backdrop-filter 240ms ease;
+	}
+
+	.image-preview-overlay[hidden] {
+		display: none;
+	}
+
+	.image-preview-overlay.is-open {
+		background: oklch(12% 0.022 255 / 72%);
+		backdrop-filter: blur(0.8rem);
+	}
+
+	.image-preview-overlay.is-closing {
+		background: oklch(12% 0.022 255 / 0%);
+		backdrop-filter: blur(0);
+	}
+
+	.image-preview-overlay.is-settled {
+		z-index: 160;
+	}
+
+	.image-preview-dialog {
+		position: fixed;
+		inset: 0;
+		color: var(--color-code-ink);
+		background: transparent;
+		outline: 0;
+	}
+
+	.image-preview-controls {
+		position: fixed;
+		top: calc(1rem + env(safe-area-inset-top));
+		right: calc(1rem + env(safe-area-inset-right));
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0;
+		opacity: 0;
+		box-shadow: 0 1rem 2.5rem oklch(0% 0 0 / 32%);
+		transition: opacity 140ms ease;
+	}
+
+	.image-preview-control {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 3rem;
+		height: 3rem;
+		padding: 0;
+		color: var(--color-code-ink);
+		background: oklch(17% 0.022 255 / 78%);
+		border: 1px solid oklch(100% 0 0 / 18%);
+		border-radius: 0;
+		backdrop-filter: blur(0.9rem);
+		transition:
+			background 140ms ease,
+			border-color 140ms ease,
+			box-shadow 140ms ease,
+			color 140ms ease;
+	}
+
+	.image-preview-control:hover,
+	.image-preview-control:focus,
+	.image-preview-control:focus-visible {
+		color: var(--color-code-ink);
+		background: oklch(24% 0.03 255 / 88%);
+		border-color: oklch(76% 0.14 225 / 78%);
+		box-shadow:
+			0 1rem 2.2rem oklch(0% 0 0 / 38%),
+			0 0.35rem 1rem oklch(76% 0.14 225 / 28%);
+		outline: 0;
+	}
+
+	.image-preview-control:disabled {
+		cursor: not-allowed;
+		opacity: 0.48;
+	}
+
+	.image-preview-stage {
+		position: fixed;
+		inset: 0;
+		overflow: auto;
+		overscroll-behavior: contain;
+		outline: 0;
+	}
+
+	.image-preview-canvas {
+		position: relative;
+		min-width: 100vw;
+		min-height: 100vh;
+	}
+
+	.image-preview-stage:focus-visible {
+		outline: 0;
+	}
+
+	.image-preview-stage:focus-visible img {
+		box-shadow:
+			0 1.5rem 4rem oklch(0% 0 0 / 42%),
+			0 0.7rem 2.2rem oklch(76% 0.14 225 / 32%);
+	}
+
+	.image-preview-stage img {
+		position: absolute;
+		display: block;
+		max-width: none;
+		max-height: none;
+		object-fit: contain;
+		background: transparent;
+		box-shadow: 0 1.5rem 4rem oklch(0% 0 0 / 42%);
+		transition:
+			top 320ms cubic-bezier(0.22, 1, 0.36, 1),
+			left 320ms cubic-bezier(0.22, 1, 0.36, 1),
+			width 320ms cubic-bezier(0.22, 1, 0.36, 1),
+			height 320ms cubic-bezier(0.22, 1, 0.36, 1);
+		user-select: none;
+	}
+
+	.image-preview-caption {
+		position: fixed;
+		left: calc(1rem + env(safe-area-inset-left));
+		bottom: calc(1rem + env(safe-area-inset-bottom));
+		z-index: 2;
+		max-width: min(32rem, calc(100vw - 2rem));
+		padding: 0.75rem 0.9rem;
+		font-family: var(--font-mono);
+		font-size: 0.95rem;
+		font-weight: 700;
+		line-height: 1.45;
+		color: var(--color-code-ink);
+		text-align: left;
+		background: oklch(17% 0.022 255 / 78%);
+		border: 1px solid oklch(100% 0 0 / 18%);
+		opacity: 0;
+		box-shadow: 0 1rem 2.5rem oklch(0% 0 0 / 30%);
+		backdrop-filter: blur(0.9rem);
+		transition: opacity 140ms ease;
+	}
+
+	.image-preview-overlay.is-open .image-preview-controls,
+	.image-preview-overlay.is-open .image-preview-caption {
+		opacity: 1;
+	}
+
+	.image-preview-overlay.is-closing .image-preview-controls,
+	.image-preview-overlay.is-closing .image-preview-caption {
+		opacity: 0;
+	}
+
+	.image-preview-caption[hidden] {
+		display: none;
+	}
+
 	/* ── Callout blocks ──────────────────────────────── */
 
 	/* > [!TLDR] / > [!SUMMARY] → prominent accent callout */
@@ -1176,6 +1784,23 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	}
 
 	@media (max-width: 40rem) {
+		.image-preview-controls {
+			top: calc(0.75rem + env(safe-area-inset-top));
+			right: calc(0.75rem + env(safe-area-inset-right));
+		}
+
+		.image-preview-control {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+
+		.image-preview-caption {
+			left: calc(0.75rem + env(safe-area-inset-left));
+			bottom: calc(0.75rem + env(safe-area-inset-bottom));
+			max-width: min(26rem, calc(100vw - 1.5rem));
+			font-size: 0.82rem;
+		}
+
 		.reading-toast {
 			--reading-toast-top: 4.5rem;
 		}
