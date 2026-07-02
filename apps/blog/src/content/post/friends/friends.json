@@ -82,8 +82,20 @@
 					"description": "據說這隻柴犬叼著毛哥的 SSD 從臺北跑到臺中"
 				},
 				{
+					"name": "GlassFoxowo's Notebook",
+					"url": "https://note.glassfoxowo.com/",
+					"image": "glassfoxowo.webp",
+					"description": "玻狸的笔记本，全是水，偶尔能找到一些技术文章。"
+				},
+				{
+					"name": "雷顿",
+					"url": "https://leidun.pp.ua",
+					"image": "leidun.webp",
+					"description": "他睡觉时真的不打雷"
+				},
+				{
 					"name": "SamHacker",
-					"url": "https://510208.github.io/",
+					"url": "https://samhacker.xyz/",
 					"image": "https://gravatar.com/avatar/f7598bd8d4aba38d7219341f81a162fc842376b3b556b1995cbb97271d9e2915?&size=128",
 					"description": "把 GitHub 當垃圾桶的高中牲"
 				}
