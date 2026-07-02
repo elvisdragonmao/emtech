@@ -1,10 +1,11 @@
-import { gravatarUrlFromHash } from "@emtech/comments-shared";
+import { gravatarUrlFromHash, sha256Hex } from "@emtech/comments-shared";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { notifyDiscordComment } from "../src/notifications/discord";
 import type { Env, SessionUser } from "../src/types";
 
 type DiscordPayload = {
 	avatar_url?: string;
+	allowed_mentions?: { parse: string[] };
 	embeds: Array<{
 		fields: Array<{ name: string; value: string; inline: boolean }>;
 	}>;
@@ -31,6 +32,7 @@ describe("Discord comment notifications", () => {
 		});
 
 		expect(payload.avatar_url).toBe(githubUser.avatarUrl);
+		expect(payload.allowed_mentions).toEqual({ parse: [] });
 		expect(payload.embeds[0]?.fields).toContainEqual({ name: "頁面", value: "[/friends/](https://emtech.cc/friends/)", inline: true });
 		expect(payload.embeds[0]?.fields).toContainEqual({ name: "回覆", value: "是", inline: true });
 		expect(payload.embeds[0]?.fields.map(field => field.name)).not.toContain("留言 ID");
@@ -45,7 +47,17 @@ describe("Discord comment notifications", () => {
 			user: null
 		});
 
-		expect(payload.avatar_url).toBe(gravatarUrlFromHash(emailHash));
+		expect(payload.avatar_url).toBe(gravatarUrlFromHash(emailHash, 96, "identicon"));
+	});
+
+	it("uses a deterministic fallback avatar when no remote avatar exists", async () => {
+		const payload = await sendNotificationPayload({
+			name: "Display Name",
+			emailHash: null,
+			user: null
+		});
+
+		expect(payload.avatar_url).toBe(gravatarUrlFromHash(await sha256Hex("Display Name"), 96, "identicon"));
 	});
 });
 

@@ -1,4 +1,4 @@
-import { gravatarUrlFromHash, type CommentStatus } from "@emtech/comments-shared";
+import { gravatarUrlFromHash, sha256Hex, type CommentStatus } from "@emtech/comments-shared";
 import type { Env, SessionUser } from "../types";
 
 type DiscordField = { name: string; value: string; inline: boolean };
@@ -20,11 +20,12 @@ type CommentNotification = {
 export async function notifyDiscordComment(env: Env, comment: CommentNotification): Promise<void> {
 	if (!env.DISCORD_WEBHOOK_URL) return;
 
-	const avatarUrl = avatarUrlForComment(comment);
+	const avatarUrl = await avatarUrlForComment(comment);
 	const response = await fetch(env.DISCORD_WEBHOOK_URL, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({
+			allowed_mentions: { parse: [] },
 			...(avatarUrl ? { avatar_url: avatarUrl } : {}),
 			embeds: [
 				{
@@ -66,10 +67,12 @@ function authorName(comment: CommentNotification): string {
 	return comment.name ?? "Anonymous";
 }
 
-function avatarUrlForComment(comment: CommentNotification): string | null {
+async function avatarUrlForComment(comment: CommentNotification): Promise<string | null> {
 	if (comment.user?.avatarUrl) return comment.user.avatarUrl;
-	if (comment.emailHash) return gravatarUrlFromHash(comment.emailHash);
-	return null;
+	if (comment.emailHash) return gravatarUrlFromHash(comment.emailHash, 96, "identicon");
+
+	const seed = comment.name ?? comment.id;
+	return gravatarUrlFromHash(await sha256Hex(seed), 96, "identicon");
 }
 
 function pageLink(env: Env, pagePath: string): string {
