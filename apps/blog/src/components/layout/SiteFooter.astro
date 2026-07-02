@@ -1,5 +1,5 @@
 ---
-import { Bug } from "@lucide/astro";
+import { Bug, SquareArrowOutUpRight } from "@lucide/astro";
 import { siGithub, siRss } from "simple-icons";
 import SimpleIcon from "@/components/shared/SimpleIcon.astro";
 ---
@@ -9,16 +9,24 @@ import SimpleIcon from "@/components/shared/SimpleIcon.astro";
 	<div class="footer-brand">
 		<div class="footer-brand-copy">
 			<p>©2021 - 2026 毛哥EM</p>
-			<p>原創文章採 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0（另開新視窗）</a> 授權，轉載請註明來源。</p>
+			<p>
+				原創文章採
+				<a class="external-link" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
+					CC BY-SA 4.0
+					<SquareArrowOutUpRight class="external-link-icon" size={13} stroke-width={1.9} aria-hidden="true" />
+					<span class="sr-only">新分頁開啟</span>
+				</a>
+				授權，轉載請註明來源。
+			</p>
 		</div>
 		<a class="footer-accessibility-badge" href="https://accessibility.moda.gov.tw/Applications/Detail?category=20260605161909" title="無障礙網站">
 			<img src="/img/accessibility.svg" width="88" height="31" alt="通過AA檢測等級無障礙網頁檢測" />
 		</a>
 	</div>
-	<a class="footer-action" href="https://github.com/elvisdragonmao/emtech/issues" target="_blank" rel="noreferrer" aria-label="到 GitHub Issues 留言（另開新視窗）">
+	<a class="footer-action" href="https://github.com/elvisdragonmao/emtech/issues" target="_blank" rel="noreferrer" aria-label="到 GitHub Issues 留言，新分頁開啟">
 		<Bug size={21} stroke-width={1.7} aria-hidden="true" />
 	</a>
-	<a class="footer-action" href="https://github.com/elvisdragonmao/emtech" target="_blank" rel="noreferrer" aria-label="GitHub 專案（另開新視窗）"><SimpleIcon icon={siGithub} size={21} /></a>
+	<a class="footer-action" href="https://github.com/elvisdragonmao/emtech" target="_blank" rel="noreferrer" aria-label="GitHub 專案，新分頁開啟"><SimpleIcon icon={siGithub} size={21} /></a>
 	<a class="footer-action" href="/rss.xml" aria-label="RSS 訂閱"><SimpleIcon icon={siRss} size={21} /></a>
 </footer>
 
@@ -69,6 +77,20 @@ import SimpleIcon from "@/components/shared/SimpleIcon.astro";
 	.footer-brand a {
 		color: var(--color-accent-strong);
 		transition: color 160ms ease;
+	}
+
+	.footer-brand .external-link {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.18rem;
+	}
+
+	.external-link-icon {
+		display: inline-block;
+		flex: 0 0 auto;
+		width: 0.85em;
+		height: 0.85em;
+		vertical-align: -0.1em;
 	}
 
 	.footer-accessibility-badge {

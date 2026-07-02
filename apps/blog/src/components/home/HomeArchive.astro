@@ -1,5 +1,5 @@
 ---
-import { ChevronDown } from "@lucide/astro";
+import { ChevronDown, SquareArrowOutUpRight } from "@lucide/astro";
 import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
 import ArticleCard from "@/components/shared/ArticleCard.astro";
@@ -140,7 +140,11 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 			<a class="card discord-card" href="https://dc.elvismao.com" target="_blank" rel="noreferrer">
 				<div>Discord</div>
 				<h3>遇到問題嗎？</h3>
-				<p>歡迎加入 Discord 與我們一起討論！<span class="sr-only">（另開新視窗）</span></p>
+				<p>
+					歡迎加入 Discord 與我們一起討論！
+					<SquareArrowOutUpRight class="external-link-icon" size={14} stroke-width={1.9} aria-hidden="true" />
+					<span class="sr-only">新分頁開啟</span>
+				</p>
 			</a>
 			<div class="card tag-cloud" data-tag-cloud role="group" aria-label="標籤雲">
 				{
@@ -527,10 +531,21 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 	}
 
 	.discord-card p {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.25rem;
 		margin-top: 0.75rem;
 		font-size: 0.75rem;
 		line-height: 1.7;
 		color: var(--color-muted);
+	}
+
+	.external-link-icon {
+		display: inline-block;
+		flex: 0 0 auto;
+		width: 0.95em;
+		height: 0.95em;
+		vertical-align: -0.12em;
 	}
 
 	.tag-cloud {

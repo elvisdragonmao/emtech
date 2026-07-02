@@ -1,5 +1,5 @@
 ---
-import { Globe } from "@lucide/astro";
+import { Globe, SquareArrowOutUpRight } from "@lucide/astro";
 import { siGithub, siInstagram } from "simple-icons";
 import SimpleIcon from "./SimpleIcon.astro";
 
@@ -23,7 +23,9 @@ const { copyright = false } = Astro.props;
 				<p class="bio">
 					本部落格皆屬原創文章，採{" "}
 					<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
-						CC BY-SA 4.0（另開新視窗）
+						CC BY-SA 4.0
+						<SquareArrowOutUpRight class="external-link-icon" size={14} stroke-width={1.9} aria-hidden="true" />
+						<span class="sr-only">新分頁開啟</span>
 					</a>{" "}
 					授權，
 					<br />
@@ -31,15 +33,17 @@ const { copyright = false } = Astro.props;
 					<br />
 					這篇文章對你有幫助嗎？
 					<a href="https://www.buymeacoffee.com/elvismao" target="_blank" rel="noreferrer">
-						考慮幫我買瓶 Red Bull？（另開新視窗）
+						考慮幫我買瓶 Red Bull？
+						<SquareArrowOutUpRight class="external-link-icon" size={14} stroke-width={1.9} aria-hidden="true" />
+						<span class="sr-only">新分頁開啟</span>
 					</a>
 				</p>
 			)
 		}
 		<nav class="links" aria-label="社群連結">
-			<a href="https://elvismao.com" target="_blank" rel="noreferrer" aria-label="個人網站（另開新視窗）"><Globe size={22} stroke-width={1.7} aria-hidden="true" /></a>
-			<a href="https://github.com/" target="_blank" rel="noreferrer" aria-label="GitHub（另開新視窗）"><SimpleIcon icon={siGithub} size={22} /></a>
-			<a href="https://instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram（另開新視窗）"><SimpleIcon icon={siInstagram} size={22} /></a>
+			<a href="https://elvismao.com" target="_blank" rel="noreferrer" aria-label="個人網站，新分頁開啟"><Globe size={22} stroke-width={1.7} aria-hidden="true" /></a>
+			<a href="https://github.com/elvisdragonmao" target="_blank" rel="noreferrer" aria-label="GitHub，新分頁開啟"><SimpleIcon icon={siGithub} size={22} /></a>
+			<a href="https://instagram.com/elvisdragonmao" target="_blank" rel="noreferrer" aria-label="Instagram，新分頁開啟"><SimpleIcon icon={siInstagram} size={22} /></a>
 		</nav>
 	</div>
 	<div class="dragon-container">
@@ -93,7 +97,18 @@ const { copyright = false } = Astro.props;
 	}
 
 	.bio a {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.2rem;
 		color: var(--color-accent-strong);
+	}
+
+	.external-link-icon {
+		display: inline-block;
+		flex: 0 0 auto;
+		width: 0.875em;
+		height: 0.875em;
+		vertical-align: -0.1em;
 	}
 
 	.links {
