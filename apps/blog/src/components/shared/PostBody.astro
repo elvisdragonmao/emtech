@@ -320,6 +320,13 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			}
 		};
 		const imageSource = (image: HTMLImageElement) => image.currentSrc || image.src || image.getAttribute("src") || "";
+		const previewViewportSize = () => {
+			const viewport = window.visualViewport;
+			return {
+				width: Math.max(1, viewport?.width ?? window.innerWidth),
+				height: Math.max(1, viewport?.height ?? window.innerHeight)
+			};
+		};
 		const sameImageHref = (href: string, image: HTMLImageElement) => {
 			const source = imageSource(image);
 			if (!source) return false;
@@ -406,8 +413,9 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		};
 		const previewFitSize = () => {
 			const { naturalWidth, naturalHeight } = imageNaturalSize();
-			const fitWidth = Math.max(1, window.innerWidth - 96);
-			const fitHeight = Math.max(1, window.innerHeight - 96);
+			const { width: viewportWidth, height: viewportHeight } = previewViewportSize();
+			const fitWidth = Math.max(1, viewportWidth - 96);
+			const fitHeight = Math.max(1, viewportHeight - 96);
 			const fitRatio = Math.min(fitWidth / naturalWidth, fitHeight / naturalHeight, 1);
 
 			previewBaseWidth = Math.max(1, naturalWidth * fitRatio);
@@ -425,8 +433,9 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			const anchorXRatio = previousRect.width > 0 && anchor ? (anchor.clientX - previousRect.left) / previousRect.width : 0.5;
 			const anchorYRatio = previousRect.height > 0 && anchor ? (anchor.clientY - previousRect.top) / previousRect.height : 0.5;
 			const { width, height } = previewFitSize();
-			const canvasWidth = Math.max(window.innerWidth, width + 64);
-			const canvasHeight = Math.max(window.innerHeight, height + 64);
+			const { width: viewportWidth, height: viewportHeight } = previewViewportSize();
+			const canvasWidth = Math.max(viewportWidth, width + 64);
+			const canvasHeight = Math.max(viewportHeight, height + 64);
 			const left = Math.max(32, (canvasWidth - width) / 2);
 			const top = Math.max(32, (canvasHeight - height) / 2);
 			const percent = `${Math.round(previewZoom * 100)}%`;
@@ -473,8 +482,9 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		};
 		const placePreviewAtRect = (rect: DOMRect) => {
 			if (!imagePreviewImage || !imagePreviewCanvas) return;
-			imagePreviewCanvas.style.width = `${window.innerWidth}px`;
-			imagePreviewCanvas.style.height = `${window.innerHeight}px`;
+			const { width: viewportWidth, height: viewportHeight } = previewViewportSize();
+			imagePreviewCanvas.style.width = `${viewportWidth}px`;
+			imagePreviewCanvas.style.height = `${viewportHeight}px`;
 			imagePreviewImage.style.left = `${rect.left}px`;
 			imagePreviewImage.style.top = `${rect.top}px`;
 			imagePreviewImage.style.width = `${rect.width}px`;
@@ -486,8 +496,9 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 			const currentRect = imagePreviewImage.getBoundingClientRect();
 			imagePreviewImage.style.transition = "none";
 			imagePreviewStage.scrollTo({ left: 0, top: 0 });
-			imagePreviewCanvas.style.width = `${window.innerWidth}px`;
-			imagePreviewCanvas.style.height = `${window.innerHeight}px`;
+			const { width: viewportWidth, height: viewportHeight } = previewViewportSize();
+			imagePreviewCanvas.style.width = `${viewportWidth}px`;
+			imagePreviewCanvas.style.height = `${viewportHeight}px`;
 			imagePreviewImage.style.left = `${currentRect.left}px`;
 			imagePreviewImage.style.top = `${currentRect.top}px`;
 			imagePreviewImage.style.width = `${currentRect.width}px`;
@@ -666,6 +677,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		imagePreviewZoomIn?.addEventListener("click", () => setPreviewZoom(previewZoom + previewZoomStep), { signal });
 		imagePreviewClose?.addEventListener("click", () => closeImagePreview(), { signal });
 		window.addEventListener("resize", queuePreviewFit, { signal });
+		window.visualViewport?.addEventListener("resize", queuePreviewFit, { signal });
 		window.addEventListener("resize", queueArticleImageFit, { signal });
 		imagePreviewStage?.addEventListener(
 			"wheel",
@@ -1585,9 +1597,13 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 
 	.image-preview-overlay {
 		position: fixed;
-		inset: 0;
+		inset: 0 auto auto 0;
 		z-index: 140;
 		display: block;
+		width: 100vw;
+		height: 100vh;
+		height: 100dvh;
+		overflow: clip;
 		cursor: pointer;
 		isolation: isolate;
 		pointer-events: auto;
@@ -1600,8 +1616,11 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 
 	.image-preview-backdrop {
 		position: fixed;
-		inset: 0;
+		inset: 0 auto auto 0;
 		z-index: 0;
+		width: 100vw;
+		height: 100vh;
+		height: 100dvh;
 		background: oklch(12% 0.022 255 / 0%);
 		backdrop-filter: blur(0);
 		cursor: pointer;
@@ -1631,7 +1650,10 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 
 	.image-preview-dialog {
 		position: fixed;
-		inset: 0;
+		inset: 0 auto auto 0;
+		width: 100vw;
+		height: 100vh;
+		height: 100dvh;
 		color: var(--color-code-ink);
 		background: transparent;
 		cursor: pointer;
@@ -1692,8 +1714,11 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 
 	.image-preview-stage {
 		position: fixed;
-		inset: 0;
+		inset: 0 auto auto 0;
 		z-index: 1;
+		width: 100vw;
+		height: 100vh;
+		height: 100dvh;
 		overflow: auto;
 		overscroll-behavior: contain;
 		cursor: pointer;
@@ -1705,6 +1730,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 		position: relative;
 		min-width: 100vw;
 		min-height: 100vh;
+		min-height: 100dvh;
 		cursor: pointer;
 	}
 
