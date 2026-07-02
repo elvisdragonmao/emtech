@@ -1,6 +1,7 @@
 import { checkSpam } from "@emtech/comments-shared";
 import { describe, expect, it } from "vitest";
 import { hashIp, signedValue, verifySignedValue } from "../src/utils/crypto";
+import { allowedOrigin } from "../src/utils/http";
 import { browserLabel, deviceLabel, locationLabel } from "../src/utils/request-context";
 import { adminStatusSchema, createCommentSchema } from "../src/utils/validation";
 
@@ -59,5 +60,33 @@ describe("public request context", () => {
 		expect(deviceLabel(ua)).toBe("Mac");
 		expect(browserLabel(ua)).toBe("Firefox");
 		expect(locationLabel({ city: "Taipei", region: "Taiwan", country: "TW" })).toBe("Taipei, Taiwan, TW");
+	});
+});
+
+describe("CORS utilities", () => {
+	const allowedOrigins = "http://localhost:4321,https://emtech.cc";
+
+	it("allows exact configured origins", () => {
+		const request = new Request("https://api.emtech.cc/api/comments", {
+			headers: { Origin: "https://emtech.cc" }
+		});
+
+		expect(allowedOrigin(request, allowedOrigins)).toBe("https://emtech.cc");
+	});
+
+	it("allows alternate loopback dev ports when localhost is configured", () => {
+		const request = new Request("https://api.emtech.cc/api/comments", {
+			headers: { Origin: "http://localhost:4322" }
+		});
+
+		expect(allowedOrigin(request, allowedOrigins)).toBe("http://localhost:4322");
+	});
+
+	it("rejects unlisted non-loopback origins", () => {
+		const request = new Request("https://api.emtech.cc/api/comments", {
+			headers: { Origin: "https://localhost.example.com" }
+		});
+
+		expect(allowedOrigin(request, allowedOrigins)).toBeNull();
 	});
 });

@@ -157,8 +157,7 @@ const commentMetaIcons = {
 		const controller = new AbortController();
 		const { signal } = controller;
 		const configuredApiBase = root.dataset.apiBase ?? "";
-		const isLocalPage = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-		const apiBase = isLocalPage && configuredApiBase === "https://api.emtech.cc" ? `${window.location.protocol}//${window.location.hostname}:8787` : configuredApiBase;
+		const apiBase = configuredApiBase;
 		const pagePath = root.dataset.pagePath ?? location.pathname;
 		const form = root.querySelector<HTMLFormElement>("[data-comment-form]");
 		const formHost = root.querySelector<HTMLElement>("[data-form-host]");
