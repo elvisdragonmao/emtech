@@ -83,6 +83,7 @@ export async function createComment(ctx: AppContext): Promise<Response> {
 			parentId: parsed.data.parentId ?? null,
 			body: parsed.data.body,
 			name,
+			emailHash: maybeEmailHash,
 			status,
 			deviceLabel: requestContext.deviceLabel,
 			browserLabel: requestContext.browserLabel,
