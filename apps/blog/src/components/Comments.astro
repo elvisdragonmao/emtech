@@ -1,7 +1,15 @@
 ---
 import { LogOut, Send } from "@lucide/astro";
-import { siGithub } from "simple-icons";
-import SimpleIcon from "@/components/shared/SimpleIcon.astro";
+import androidIconUrl from "@/assets/comment-icons/android.svg?url";
+import appleIconUrl from "@/assets/comment-icons/apple.svg?url";
+import chromeIconUrl from "@/assets/comment-icons/chrome.svg?url";
+import edgeIconUrl from "@/assets/comment-icons/microsoft-edge.svg?url";
+import firefoxIconUrl from "@/assets/comment-icons/firefox.svg?url";
+import githubIconUrl from "@/assets/comment-icons/github.svg?url";
+import linuxIconUrl from "@/assets/comment-icons/linux.svg?url";
+import operaIconUrl from "@/assets/comment-icons/opera.svg?url";
+import safariIconUrl from "@/assets/comment-icons/safari.svg?url";
+import windowsIconUrl from "@/assets/comment-icons/windows.svg?url";
 
 interface Props {
 	pagePath?: string;
@@ -10,16 +18,50 @@ interface Props {
 const { pagePath = Astro.url.pathname } = Astro.props;
 const commentApiBaseUrl = (import.meta.env.COMMENT_API_BASE_URL ?? import.meta.env.PUBLIC_COMMENT_API_BASE_URL ?? "https://api.emtech.cc").replace(/\/$/, "");
 const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
+
+type CommentMetaIcon = { src: string };
+
+const commentIcon = (src: string): CommentMetaIcon => ({ src });
+
+const commentMetaIcons = {
+	auth: {
+		github: commentIcon(githubIconUrl)
+	},
+	device: {
+		iPhone: commentIcon(appleIconUrl),
+		iPad: commentIcon(appleIconUrl),
+		"Android Phone": commentIcon(androidIconUrl),
+		Android: commentIcon(androidIconUrl),
+		Mac: commentIcon(appleIconUrl),
+		"Windows PC": commentIcon(windowsIconUrl),
+		Linux: commentIcon(linuxIconUrl)
+	},
+	browser: {
+		Chrome: commentIcon(chromeIconUrl),
+		Firefox: commentIcon(firefoxIconUrl),
+		Safari: commentIcon(safariIconUrl),
+		Opera: commentIcon(operaIconUrl),
+		Edge: commentIcon(edgeIconUrl)
+	}
+} satisfies Record<string, Record<string, CommentMetaIcon>>;
 ---
 
-<section id="comments" class="comments" data-comments-root data-page-path={pagePath} data-api-base={commentApiBaseUrl} data-turnstile-site-key={turnstileSiteKey}>
+<section
+	id="comments"
+	class="comments"
+	data-comments-root
+	data-page-path={pagePath}
+	data-api-base={commentApiBaseUrl}
+	data-turnstile-site-key={turnstileSiteKey}
+	data-comment-meta-icons={JSON.stringify(commentMetaIcons)}
+>
 	<div class="comments-heading">
 		<div>
 			<p class="eyebrow">留言</p>
 			<h2>留言區</h2>
 		</div>
 		<a class="github-login" data-github-login href={`${commentApiBaseUrl}/api/auth/github/start?returnTo=${encodeURIComponent(`${pagePath}#comments`)}`}>
-			<SimpleIcon icon={siGithub} size={16} />
+			<img src={githubIconUrl} alt="" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true" />
 			GitHub 登入
 		</a>
 	</div>
@@ -100,6 +142,14 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		createdAt: string;
 	};
 
+	type CommentMetaIcon = { src: string };
+
+	type CommentMetaIcons = {
+		auth: Record<string, CommentMetaIcon | undefined>;
+		device: Record<string, CommentMetaIcon | undefined>;
+		browser: Record<string, CommentMetaIcon | undefined>;
+	};
+
 	setupPageLifecycle("comments", () => {
 		const root = document.querySelector<HTMLElement>("[data-comments-root]");
 		if (!root) return;
@@ -127,6 +177,13 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		let activeReplyCard: HTMLElement | null = null;
 		let turnstileWidgetId: string | null = null;
 		let turnstileRenderTimer = 0;
+		const metaIcons = (() => {
+			try {
+				return JSON.parse(root.dataset.commentMetaIcons ?? "{}") as CommentMetaIcons;
+			} catch {
+				return { auth: {}, device: {}, browser: {} };
+			}
+		})();
 
 		const getTurnstile = () => (window as unknown as { turnstile?: TurnstileApi }).turnstile;
 
@@ -167,6 +224,44 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		};
 
 		setNotice("");
+
+		const createMetaIcon = (icon: CommentMetaIcon) => {
+			const wrapper = document.createElement("span");
+			wrapper.className = "comment-meta-icon";
+			const img = document.createElement("img");
+			img.src = icon.src;
+			img.alt = "";
+			img.loading = "lazy";
+			img.decoding = "async";
+			img.setAttribute("aria-hidden", "true");
+			wrapper.appendChild(img);
+			return wrapper;
+		};
+
+		const appendMetaPill = (container: HTMLElement, label: string | null | undefined, icon?: CommentMetaIcon) => {
+			if (!label) return;
+			const tag = document.createElement("span");
+			tag.className = "comment-meta-pill";
+			tag.title = label;
+			if (icon) {
+				tag.classList.add("has-icon");
+				tag.setAttribute("aria-label", label);
+				const iconElement = createMetaIcon(icon);
+				iconElement.querySelector("img")?.addEventListener(
+					"error",
+					() => {
+						tag.classList.remove("has-icon");
+						tag.removeAttribute("aria-label");
+						tag.textContent = label;
+					},
+					{ once: true }
+				);
+				tag.appendChild(iconElement);
+			} else {
+				tag.textContent = label;
+			}
+			container.appendChild(tag);
+		};
 
 		const apiUrl = (path: string) => `${apiBase}${path}`;
 
@@ -316,14 +411,10 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 			const bottom = document.createElement("div");
 			bottom.className = "comment-bottom";
-			const tagLabels = [comment.author.type === "github" ? "GitHub 驗證" : "匿名留言", comment.meta?.device, comment.meta?.browser, comment.meta?.location].filter((label): label is string =>
-				Boolean(label)
-			);
-			for (const label of tagLabels) {
-				const tag = document.createElement("span");
-				tag.textContent = label;
-				bottom.appendChild(tag);
-			}
+			appendMetaPill(bottom, comment.author.type === "github" ? "GitHub 驗證" : "匿名留言", comment.author.type === "github" ? metaIcons.auth.github : undefined);
+			appendMetaPill(bottom, comment.meta?.device, comment.meta?.device ? metaIcons.device[comment.meta.device] : undefined);
+			appendMetaPill(bottom, comment.meta?.browser, comment.meta?.browser ? metaIcons.browser[comment.meta.browser] : undefined);
+			appendMetaPill(bottom, comment.meta?.location);
 			const reply = document.createElement("button");
 			reply.type = "button";
 			reply.textContent = "回覆";
@@ -441,6 +532,8 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 
 <style>
 	.comments {
+		--comment-logo-bg: oklch(98% 0.004 235);
+
 		width: min(57.5rem, 100%);
 		margin: 0 auto;
 	}
@@ -492,6 +585,15 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 	.github-login,
 	.actions button {
 		padding: 0.75rem 1rem;
+	}
+
+	.github-login img {
+		display: block;
+		width: 1rem;
+		height: 1rem;
+		padding: 0.1rem;
+		object-fit: contain;
+		background: var(--comment-logo-bg);
 	}
 
 	.github-login[hidden],
@@ -716,12 +818,35 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? import.meta.env.P
 		gap: 0.5rem;
 	}
 
-	.comments :global(.comment-bottom span) {
+	.comments :global(.comment-meta-pill) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 1.8rem;
+		min-height: 1.8rem;
 		padding: 0.25rem 0.5rem;
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
 		color: var(--color-muted);
 		border: 1px solid var(--color-border);
+	}
+
+	.comments :global(.comment-meta-pill.has-icon) {
+		width: 1.8rem;
+		padding: 0;
+		color: var(--color-ink);
+		background: var(--comment-logo-bg);
+	}
+
+	.comments :global(.comment-meta-icon),
+	.comments :global(.comment-meta-icon img) {
+		display: block;
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.comments :global(.comment-meta-icon img) {
+		object-fit: contain;
 	}
 
 	.comments :global(.comment-bottom button) {
