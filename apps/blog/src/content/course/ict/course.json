@@ -1,0 +1,9 @@
+{
+	"title": "創創工坊教材：數位創作入門",
+	"description": "從攝影棚入門、到平面設計、影音剪輯、音樂創作，帶你從零開始學習數位創作的基礎技能。",
+	"displayOrder": 6,
+	"accent": "blue",
+	"thumbnail": "thumbnail.webp",
+	"meta": "零基礎 / 交大 / 教育訓練",
+	"order": ["studio", "ps", "ai", "pr", "au", "fusion", "launchpad"]
+}
