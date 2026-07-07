@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [CSS]
-categories: [程式教學]
+categories: [基礎教學]
 date: 2026-03-30
 description: CSS 是用來裝飾網頁的語言，學會 CSS 你就能把網頁變得好看又好用。這篇文章會帶你快速入門 CSS，從基本的語法到一些常見的屬性，讓你能夠輕鬆上手。
 ---

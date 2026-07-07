@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Git, GitHub]
-categories: [程式教學]
+categories: [基礎教學]
 date: 2022-08-22
 description: "這一篇文章我會用簡單好理解的方式讓你學會基本的使用 GitHub 和 Git。且複製貼上就能成為工程師系列所搭建的網站都可以免費架設在 GitHub"
 ---

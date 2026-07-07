@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [C]
-categories: [程式教學]
+categories: [基礎教學]
 date: 2022-07-17
 description: "這是我自己學習的筆記，紀錄一些準備考試的重點，不適合新手閱讀"
 ---

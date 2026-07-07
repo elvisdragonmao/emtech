@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [JavaScript]
-categories: [程式教學]
+categories: [基礎教學]
 date: 2026-04-01
 description: 這份講義會從 JavaScript 基本語法開始，一路帶你走到 function、DOM 操作、event listener。
 ---
