@@ -10,8 +10,9 @@ import Layout from "@/layouts/Layout.astro";
 import { SITE_DESCRIPTION, SITE_NAME, authorSchema, itemListSchema, publisherSchema, webPageSchema, webSiteSchema } from "@/utils/seo";
 
 const posts = (await getCollection("post")).filter(post => !post.data.draft);
+const lessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
 const courses = await getCollection("course");
-const latestModified = [...posts.map(post => post.data.lastmod ?? post.data.date)].sort((a, b) => b.getTime() - a.getTime())[0];
+const latestModified = [...posts.map(post => post.data.lastmod ?? post.data.date), ...lessons.map(lesson => lesson.data.lastmod ?? lesson.data.date)].sort((a, b) => b.getTime() - a.getTime())[0];
 const structuredData = [
 	publisherSchema(),
 	authorSchema(),

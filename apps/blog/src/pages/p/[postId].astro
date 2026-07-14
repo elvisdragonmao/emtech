@@ -7,7 +7,20 @@ import ArticleCard from "@/components/shared/ArticleCard.astro";
 import Comments from "@/components/Comments.astro";
 import PostBody from "@/components/shared/PostBody.astro";
 import Layout from "@/layouts/Layout.astro";
-import { extractExcerpt, extractTitle, formatDate, formatHashTags, normalizeTerms, readingTime, resolvePostThumbnail, wordCount, type ImageInput, type MetaItem } from "@/utils/content";
+import {
+	extractExcerpt,
+	extractTitle,
+	formatDate,
+	formatHashTags,
+	normalizeTerms,
+	readingTime,
+	resolvePostThumbnail,
+	sortListedContentByDateDesc,
+	toListedContentItems,
+	wordCount,
+	type ImageInput,
+	type MetaItem
+} from "@/utils/content";
 import { blogPostingSchema, breadcrumbSchema, publisherSchema, webPageSchema, wordCountNumber } from "@/utils/seo";
 
 export async function getStaticPaths() {
@@ -17,6 +30,8 @@ export async function getStaticPaths() {
 
 const { postId } = Astro.params;
 const posts = (await getCollection("post")).filter(post => !post.data.draft);
+const lessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
+const courses = await getCollection("course");
 const entry = posts.find(p => p.id === postId);
 
 if (!entry) return Astro.redirect("/404");
@@ -24,12 +39,17 @@ if (!entry) return Astro.redirect("/404");
 const { Content, headings } = await render(entry);
 
 const thumbnails = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
+const lessonThumbnails = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
 const thumbnail: ImageInput = resolvePostThumbnail(entry, thumbnails);
 
 const title = extractTitle(entry.body) || headings[0]?.text || postId;
 const description = entry.data.description ?? extractExcerpt(entry.body);
 const entryTags = normalizeTerms(entry.data.tags);
 const entryCategories = normalizeTerms(entry.data.categories);
+const categoryLinks = entryCategories.map(term => ({
+	label: term,
+	href: `/?category=${encodeURIComponent(term)}#archive`
+}));
 const tag = formatHashTags(entryTags.length > 0 ? entryTags : entryCategories);
 const heroTagLinks =
 	entryTags.length > 0
@@ -73,17 +93,18 @@ const structuredData = [
 const contentText = entry.body ?? "";
 const meta: MetaItem[] = [
 	{ label: "Date", value: formatDate(entry.data.date) },
-	{ label: "Category", value: entryCategories[0] ?? "" },
+	{ label: "Category", value: entryCategories.join(" / "), links: categoryLinks },
 	{ label: "Read Time", value: readingTime(contentText) },
 	{ label: "Word", value: wordCount(contentText) },
 	{ label: "Last Mod", value: formatDate(entry.data.date) }
 ];
 
-const allPosts = posts;
-const postsByDate = [...allPosts].sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
-const currentPostIndex = postsByDate.findIndex(p => p.id === postId);
-const previousPost = currentPostIndex > 0 ? postsByDate[currentPostIndex - 1] : null;
-const nextPost = currentPostIndex >= 0 && currentPostIndex < postsByDate.length - 1 ? postsByDate[currentPostIndex + 1] : null;
+const currentContentId = `post:${postId}`;
+const allContent = sortListedContentByDateDesc(toListedContentItems(posts, lessons, courses, thumbnails, lessonThumbnails));
+const contentByDate = [...allContent].sort((a, b) => a.date.getTime() - b.date.getTime() || a.id.localeCompare(b.id));
+const currentContentIndex = contentByDate.findIndex(item => item.id === currentContentId);
+const previousContent = currentContentIndex > 0 ? contentByDate[currentContentIndex - 1] : null;
+const nextContent = currentContentIndex >= 0 && currentContentIndex < contentByDate.length - 1 ? contentByDate[currentContentIndex + 1] : null;
 
 type RelatedFilter = {
 	type: "tag" | "category";
@@ -92,33 +113,33 @@ type RelatedFilter = {
 
 const relatedFilters: RelatedFilter[] = [...entryTags.slice(0, 2).map(value => ({ type: "tag" as const, value })), ...entryCategories.slice(0, 1).map(value => ({ type: "category" as const, value }))];
 
-const getRelatedPosts = (filter: RelatedFilter) =>
-	allPosts
-		.filter(p => {
-			if (p.id === postId || !filter.value) return false;
-			const terms = filter.type === "tag" ? normalizeTerms(p.data.tags) : normalizeTerms(p.data.categories);
+const getRelatedContent = (filter: RelatedFilter) =>
+	allContent
+		.filter(item => {
+			if (item.id === currentContentId || !filter.value) return false;
+			const terms = filter.type === "tag" ? item.tags : item.categories;
 			return terms.includes(filter.value);
 		})
-		.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+		.sort((a, b) => b.date.getTime() - a.date.getTime())
 		.slice(0, 10);
 
-const relatedResult = relatedFilters.map(filter => ({ filter, posts: getRelatedPosts(filter) })).find(result => result.posts.length > 0);
+const relatedResult = relatedFilters.map(filter => ({ filter, items: getRelatedContent(filter) })).find(result => result.items.length > 0);
 const relatedFilterType = relatedResult?.filter.type ?? relatedFilters[0]?.type ?? "category";
 const relatedFilterValue = relatedResult?.filter.value ?? relatedFilters[0]?.value ?? "";
-const related = relatedResult?.posts ?? [];
+const related = relatedResult?.items ?? [];
 
 const moreRelatedHref = relatedFilterValue ? `/?${relatedFilterType}=${encodeURIComponent(relatedFilterValue)}#archive` : "/#archive";
 
 // Build related article card data (needs thumbnail discovery)
-const relatedCards = related.map(p => {
+const relatedCards = related.map(item => {
 	return {
-		title: extractTitle(p.body) || p.id,
-		href: `/p/${p.id}/`,
-		image: resolvePostThumbnail(p, thumbnails),
-		tag: formatHashTags(normalizeTerms(p.data.tags).length > 0 ? p.data.tags : p.data.categories),
-		description: p.data.description ?? "",
-		category: p.data.categories[0],
-		date: formatDate(p.data.date)
+		title: item.title,
+		href: item.href,
+		image: item.image,
+		tag: item.tag,
+		description: item.description,
+		category: item.categories[0],
+		date: formatDate(item.date)
 	};
 });
 ---
@@ -146,10 +167,10 @@ const relatedCards = related.map(p => {
 			meta={meta}
 			tldr={description}
 			headings={headings}
-			previousHref={previousPost ? `/p/${previousPost.id}/` : undefined}
-			previousTitle={previousPost ? extractTitle(previousPost.body) || previousPost.id : undefined}
-			nextHref={nextPost ? `/p/${nextPost.id}/` : undefined}
-			nextTitle={nextPost ? extractTitle(nextPost.body) || nextPost.id : undefined}
+			previousHref={previousContent?.href}
+			previousTitle={previousContent?.title}
+			nextHref={nextContent?.href}
+			nextTitle={nextContent?.title}
 		>
 			<Content />
 		</PostBody>

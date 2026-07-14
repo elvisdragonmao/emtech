@@ -51,7 +51,21 @@ const title = extractTitle(entry.body) || headings[0]?.text || lessonId;
 const description = entry.data.description ?? extractExcerpt(entry.body);
 const entryTags = normalizeTerms(entry.data.tags);
 const entryCategories = normalizeTerms(entry.data.categories);
+const categoryLinks = entryCategories.map(term => ({
+	label: term,
+	href: `/?category=${encodeURIComponent(term)}#archive`
+}));
 const tag = formatHashTags(entryTags.length > 0 ? entryTags : entryCategories);
+const heroTagLinks =
+	entryTags.length > 0
+		? entryTags.map(term => ({
+				label: `#${term.replace(/^#+/, "")}`,
+				href: `/?tag=${encodeURIComponent(term)}#archive`
+			}))
+		: entryCategories.map(term => ({
+				label: `#${term.replace(/^#+/, "")}`,
+				href: `/?category=${encodeURIComponent(term)}#archive`
+			}));
 const modifiedTime = entry.data.lastmod ?? entry.data.date;
 const courseUrl = `/course/${courseId}/`;
 const lessonUrl = `/course/${courseId}/${lessonId}/`;
@@ -62,7 +76,7 @@ const nextId = nextLesson?.id.replace(`${courseId}/`, "");
 const contentText = entry.body ?? "";
 const meta: MetaItem[] = [
 	{ label: "Date", value: formatDate(entry.data.date) },
-	{ label: "Category", value: entryCategories[0] ?? "" },
+	{ label: "Category", value: entryCategories.join(" / "), links: categoryLinks },
 	{ label: "Read Time", value: readingTime(contentText) },
 	{ label: "Word", value: wordCount(contentText) },
 	{ label: "Last Mod", value: formatDate(entry.data.date) }
@@ -154,6 +168,7 @@ const structuredData = [
 				<PostBody
 					layout="course"
 					tag={tag}
+					tagLinks={heroTagLinks}
 					title={title}
 					image={thumbnail}
 					meta={meta}

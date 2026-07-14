@@ -2,38 +2,39 @@
 import { getCollection } from "astro:content";
 import { Pause, Play } from "@lucide/astro";
 import type { ImageMetadata } from "astro";
-import { extractTitle, formatDate, resolvePostThumbnail } from "@/utils/content";
+import { formatDate, sortListedContentByDateDesc, toListedContentItems } from "@/utils/content";
 
 const allPosts = (await getCollection("post")).filter(post => !post.data.draft);
+const allLessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
 const courses = await getCollection("course");
+const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
+const lessonThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
+const allContent = sortListedContentByDateDesc(toListedContentItems(allPosts, allLessons, courses, postThumbs, lessonThumbs));
 
 const LAUNCH_DATE = "2021-06-05";
 
 const stats = [
-	{ label: "文章", value: String(allPosts.length) },
+	{ label: "文章", value: String(allContent.length) },
 	{ label: "課程", value: String(courses.length) },
 	{ label: "已運行", value: "--", livedFor: true }
 ];
 
-// 2 most recent posts
-const recentPosts = [...allPosts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 2);
+const recentContent = allContent.slice(0, 2);
 
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
+const articleTags = ["最新內容", "次新內容"];
 
-const articleTags = ["最新文章", "次新文章"];
-
-const featuredArticles = recentPosts.map((p, index) => {
-	const image = resolvePostThumbnail(p, allThumbs);
+const featuredArticles = recentContent.map((item, index) => {
+	const image = item.image;
 	return {
-		tag: articleTags[index] ?? "最新文章",
-		title: extractTitle(p.body) || p.id,
-		description: p.data.description ?? "",
-		href: `/p/${p.id}/`,
+		tag: articleTags[index] ?? "最新內容",
+		title: item.title,
+		description: item.description,
+		href: item.href,
 		image,
 		imageSrc: typeof image === "string" ? image : image?.src,
 		imageWidth: typeof image === "string" ? undefined : image?.width,
 		imageHeight: typeof image === "string" ? undefined : image?.height,
-		date: formatDate(p.data.date)
+		date: formatDate(item.date)
 	};
 });
 ---

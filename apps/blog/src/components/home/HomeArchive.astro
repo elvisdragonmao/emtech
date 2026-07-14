@@ -4,21 +4,13 @@ import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
 import ArticleCard from "@/components/shared/ArticleCard.astro";
 import SectionTitle from "@/components/shared/SectionTitle.astro";
-import { extractTitle, formatDate, resolvePostThumbnail } from "@/utils/content";
+import { formatDate, sortListedContentByDateDesc, toListedContentItems } from "@/utils/content";
 
 const INITIAL_VISIBLE_ARTICLES = 9;
 const LOAD_MORE_ARTICLES = 12;
 const FEATURED_CATEGORY = "精選";
 const HERO_ARTICLE_COUNT = 2;
 const FEATURED_RECENT_COUNT = 3;
-
-const normalizeTerms = (terms: string[]) =>
-	terms.flatMap(term =>
-		term
-			.split(/[，,]/)
-			.map(part => part.trim())
-			.filter(Boolean)
-	);
 
 type CategoryStat = {
 	count: number;
@@ -28,34 +20,34 @@ type CategoryStat = {
 const sortTagsByFrequency = (a: [string, number], b: [string, number]) => b[1] - a[1] || a[0].localeCompare(b[0], "zh-Hant");
 
 const allPosts = (await getCollection("post")).filter(post => !post.data.draft);
-const sortedPosts = [...allPosts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const allLessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
+const courses = await getCollection("course");
+const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
+const lessonThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
+const sortedContent = sortListedContentByDateDesc(toListedContentItems(allPosts, allLessons, courses, postThumbs, lessonThumbs));
 
-const recentFeaturedPosts = sortedPosts.slice(HERO_ARTICLE_COUNT, HERO_ARTICLE_COUNT + FEATURED_RECENT_COUNT);
-const recentFeaturedIds = new Set(recentFeaturedPosts.map(p => p.id));
-const taggedFeaturedPosts = sortedPosts.filter(p => {
-	const terms = [...normalizeTerms(p.data.categories), ...normalizeTerms(p.data.tags)];
-	return terms.includes(FEATURED_CATEGORY) && !recentFeaturedIds.has(p.id);
+const recentFeaturedContent = sortedContent.slice(HERO_ARTICLE_COUNT, HERO_ARTICLE_COUNT + FEATURED_RECENT_COUNT);
+const recentFeaturedIds = new Set(recentFeaturedContent.map(item => item.id));
+const taggedFeaturedContent = sortedContent.filter(item => {
+	const terms = [...item.categories, ...item.tags];
+	return terms.includes(FEATURED_CATEGORY) && !recentFeaturedIds.has(item.id);
 });
-const featuredOrder = new Map([...recentFeaturedPosts, ...taggedFeaturedPosts].map((p, index) => [p.id, index]));
+const featuredOrder = new Map([...recentFeaturedContent, ...taggedFeaturedContent].map((item, index) => [item.id, index]));
 
-const allThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
-
-const archiveArticles = sortedPosts.map(p => {
-	const tags = normalizeTerms(p.data.tags);
-	const categories = normalizeTerms(p.data.categories);
-	const featuredRank = featuredOrder.get(p.id) ?? null;
+const archiveArticles = sortedContent.map(item => {
+	const featuredRank = featuredOrder.get(item.id) ?? null;
 
 	return {
-		title: extractTitle(p.body) || p.id,
-		href: `/p/${p.id}/`,
-		image: resolvePostThumbnail(p, allThumbs),
-		tag: tags[0] ? `#${tags[0]}` : (categories[0] ?? ""),
-		tags,
-		description: p.data.description ?? "",
-		category: categories[0],
-		categories,
+		title: item.title,
+		href: item.href,
+		image: item.image,
+		tag: item.tag,
+		tags: item.tags,
+		description: item.description,
+		category: item.categories[0],
+		categories: item.categories,
 		featuredRank,
-		date: formatDate(p.data.date)
+		date: formatDate(item.date)
 	};
 });
 
@@ -64,16 +56,16 @@ const featuredArticleCount = featuredOrder.size;
 const categoryStats = new Map<string, CategoryStat>();
 const tagFreq = new Map<string, number>();
 
-for (const p of sortedPosts) {
-	for (const category of new Set(normalizeTerms(p.data.categories))) {
+for (const item of sortedContent) {
+	for (const category of new Set(item.categories)) {
 		const current = categoryStats.get(category) ?? { count: 0, latest: 0 };
 		categoryStats.set(category, {
 			count: current.count + 1,
-			latest: Math.max(current.latest, p.data.date.getTime())
+			latest: Math.max(current.latest, item.date.getTime())
 		});
 	}
 
-	for (const tag of new Set(normalizeTerms(p.data.tags))) {
+	for (const tag of new Set(item.tags)) {
 		tagFreq.set(tag, (tagFreq.get(tag) ?? 0) + 1);
 	}
 }
@@ -81,7 +73,7 @@ for (const p of sortedPosts) {
 if (!categoryStats.has(FEATURED_CATEGORY) && featuredArticleCount > 0) {
 	categoryStats.set(FEATURED_CATEGORY, {
 		count: featuredArticleCount,
-		latest: recentFeaturedPosts[0]?.data.date.getTime() ?? 0
+		latest: recentFeaturedContent[0]?.date.getTime() ?? 0
 	});
 }
 
@@ -92,15 +84,15 @@ const categories = [...categoryStats.entries()]
 		return bStat.latest - aStat.latest || a.localeCompare(b, "zh-Hant");
 	})
 	.map(([category]) => ({
-		label: category === FEATURED_CATEGORY ? "精選文章" : category,
+		label: category === FEATURED_CATEGORY ? "精選內容" : category,
 		value: category
 	}));
 const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count]) => ({ tag, count }));
 ---
 
 <section id="archive" class="section-block">
-	<SectionTitle eyebrow="文章索引" title="單篇文章分類" />
-	<div class="category-tabs" role="group" aria-label="文章分類">
+	<SectionTitle eyebrow="內容索引" title="文章與課程分類" />
+	<div class="category-tabs" role="group" aria-label="文章與課程分類">
 		{
 			categories.map(category => (
 				<button type="button" data-filter-button data-filter-type="category" data-filter-value={category.value} aria-pressed={category.value === FEATURED_CATEGORY ? "true" : "false"}>

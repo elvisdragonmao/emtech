@@ -1,40 +1,45 @@
 ---
 import { getCollection } from "astro:content";
+import type { ImageMetadata } from "astro";
 import Layout from "@/layouts/Layout.astro";
-import { extractTitle, formatDate } from "@/utils/content";
+import { formatDate, sortListedContentByDateDesc, toListedContentItems } from "@/utils/content";
 import { itemListSchema, publisherSchema, webPageSchema } from "@/utils/seo";
 
 const allPosts = (await getCollection("post")).filter(post => !post.data.draft);
-const sorted = [...allPosts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const allLessons = (await getCollection("lesson")).filter(lesson => !lesson.data.draft);
+const courses = await getCollection("course");
+const postThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/post/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
+const lessonThumbs = import.meta.glob<{ default: ImageMetadata }>("/src/content/course/**/thumbnail.{avif,gif,jpeg,jpg,png,svg,webp}", { eager: true });
+const sorted = sortListedContentByDateDesc(toListedContentItems(allPosts, allLessons, courses, postThumbs, lessonThumbs));
 
 // Group by year
 const byYear = new Map<number, typeof sorted>();
-for (const post of sorted) {
-	const year = post.data.date.getFullYear();
+for (const item of sorted) {
+	const year = item.date.getFullYear();
 	if (!byYear.has(year)) byYear.set(year, []);
-	byYear.get(year)!.push(post);
+	byYear.get(year)!.push(item);
 }
 const years = [...byYear.keys()].sort((a, b) => b - a);
-const latestModified = sorted[0]?.data.lastmod ?? sorted[0]?.data.date;
+const latestModified = sorted[0]?.modified ?? sorted[0]?.date;
 const structuredData = [
 	publisherSchema(),
-	webPageSchema({ url: "/archive/", title: "歸檔", description: "所有文章依時間排列", type: "CollectionPage", dateModified: latestModified }),
+	webPageSchema({ url: "/archive/", title: "歸檔", description: "所有文章與課程單元依時間排列", type: "CollectionPage", dateModified: latestModified }),
 	itemListSchema(
-		sorted.map(post => ({
-			url: `/p/${post.id}/`,
-			name: extractTitle(post.body) || post.id
+		sorted.map(item => ({
+			url: item.href,
+			name: item.title
 		})),
 		"https://emtech.cc/archive/#post-list"
 	)
 ];
 ---
 
-<Layout title="歸檔" description="所有文章依時間排列" active="blog" canonicalPath="/archive/" ogType="website" structuredData={structuredData}>
+<Layout title="歸檔" description="所有文章與課程單元依時間排列" active="blog" canonicalPath="/archive/" ogType="website" structuredData={structuredData}>
 	<main id="main-content" class="archive-page" tabindex="-1">
 		<header class="archive-header">
-			<p class="eyebrow">文章時間軸</p>
+			<p class="eyebrow">內容時間軸</p>
 			<h1>歸檔</h1>
-			<p class="lead">{allPosts.length} 篇文章</p>
+			<p class="lead">{sorted.length} 篇內容</p>
 		</header>
 
 		<div class="archive-timeline">
@@ -43,15 +48,14 @@ const structuredData = [
 					<section class="year-group">
 						<h2 class="year-label">{year}</h2>
 						<ol class="post-list">
-							{byYear.get(year)!.map(post => {
-								const title = extractTitle(post.body) || post.id;
-								const category = post.data.categories[0] ?? "";
-								const tag = post.data.tags[0] ?? "";
+							{byYear.get(year)!.map(item => {
+								const category = item.kind === "lesson" ? (item.categories.find(value => value !== "課程") ?? item.categories[0] ?? "") : (item.categories[0] ?? "");
+								const tag = item.tags[0] ?? "";
 								return (
 									<li>
-										<a href={`/p/${post.id}/`} class="post-row">
-											<time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-											<span class="title">{title}</span>
+										<a href={item.href} class="post-row">
+											<time datetime={item.date.toISOString()}>{formatDate(item.date)}</time>
+											<span class="title">{item.title}</span>
 											{(category || tag) && (
 												<span class="terms">
 													{category && <span class="cat">{category}</span>}

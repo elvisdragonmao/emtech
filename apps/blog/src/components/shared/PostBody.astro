@@ -35,6 +35,7 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
 const isCourseLayout = layout === "course";
 const pagefindType = isCourseLayout ? "課程" : "文章";
 const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
+const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標籤";
 ---
 
 <section class:list={["article-hero", { "course-layout": isCourseLayout }]}>
@@ -42,7 +43,7 @@ const pagefindDate = meta.find(item => item.label === "Date")?.value ?? "";
 	<div class="hero-main">
 		{
 			tagLinks.length > 0 ? (
-				<div class="tag" aria-label="文章標籤">
+				<div class="tag" aria-label={termLabel}>
 					{tagLinks.map((link, index) => (
 						<>
 							<a href={link.href}>{link.label}</a>

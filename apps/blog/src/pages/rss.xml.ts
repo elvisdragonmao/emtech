@@ -1,4 +1,4 @@
-import { extractExcerpt, extractTitle, normalizeTerms, resolveLessonThumbnail, resolvePostThumbnail } from "@/utils/content";
+import { extractExcerpt, extractTitle, resolveLessonThumbnail, resolvePostThumbnail, uniqueTerms } from "@/utils/content";
 import { AUTHOR_NAME, SITE_DESCRIPTION, SITE_LANGUAGE, SITE_NAME, absoluteUrl, toSeoImage, type SeoImage } from "@/utils/seo";
 import type { ImageMetadata } from "astro";
 import { getCollection } from "astro:content";
@@ -49,7 +49,7 @@ export async function GET() {
 			url: absoluteUrl(`/p/${post.id}/`),
 			description: post.data.description ?? extractExcerpt(post.body),
 			date: post.data.lastmod ?? post.data.date,
-			categories: [...normalizeTerms(post.data.categories), ...normalizeTerms(post.data.tags)],
+			categories: uniqueTerms([...post.data.categories, ...post.data.tags]),
 			thumbnail: thumbnail ? toSeoImage(thumbnail, title) : undefined
 		};
 	});
@@ -65,7 +65,7 @@ export async function GET() {
 			url: absoluteUrl(`/course/${courseId}/${lessonId}/`),
 			description: lesson.data.description ?? extractExcerpt(lesson.body),
 			date: lesson.data.lastmod ?? lesson.data.date,
-			categories: ["課程", ...(courseTitle ? [courseTitle] : []), ...normalizeTerms(lesson.data.tags)],
+			categories: uniqueTerms(["課程", ...lesson.data.categories, ...lesson.data.tags]),
 			thumbnail: thumbnail ? toSeoImage(thumbnail, title) : undefined
 		};
 	});

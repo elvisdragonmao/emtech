@@ -3,6 +3,7 @@
  */
 
 import type { ImageMetadata } from "astro";
+import type { CollectionEntry } from "astro:content";
 
 export type ImageInput = string | ImageMetadata | null;
 
@@ -15,9 +16,18 @@ type ThumbnailEntry = {
 
 type ThumbnailMap = Record<string, { default: ImageMetadata }>;
 
+type PostEntry = CollectionEntry<"post">;
+type CourseEntry = CollectionEntry<"course">;
+type LessonEntry = CollectionEntry<"lesson">;
+
 export type MetaItem = {
 	label: string;
 	value: string;
+	href?: string;
+	links?: {
+		label: string;
+		href: string;
+	}[];
 };
 
 export type TocHeading = {
@@ -63,7 +73,16 @@ export function extractExcerpt(body: string | undefined): string {
 }
 
 export function normalizeTerms(terms: string[] | undefined): string[] {
-	return (terms ?? []).map(term => term.trim()).filter(Boolean);
+	return (terms ?? []).flatMap(term =>
+		term
+			.split(/[，,]/)
+			.map(part => part.trim())
+			.filter(Boolean)
+	);
+}
+
+export function uniqueTerms(terms: string[] | undefined): string[] {
+	return [...new Set(normalizeTerms(terms))];
 }
 
 export function formatHashTags(terms: string[] | undefined): string {
@@ -110,6 +129,97 @@ export function resolveCourseThumbnail(entry: ThumbnailEntry, thumbnails: Thumbn
 export function resolveLessonThumbnail(entry: ThumbnailEntry, thumbnails: ThumbnailMap): ImageInput {
 	const thumbnail = entry.data.thumbnail?.trim();
 	return resolveContentThumbnail(thumbnail, `/src/content/course/${entry.id}`, `/src/content/course/${entry.id}/thumbnail.webp`, thumbnails);
+}
+
+export type ListedContentKind = "post" | "lesson";
+
+export type ListedContentItem = {
+	kind: ListedContentKind;
+	id: string;
+	entryId: string;
+	title: string;
+	href: string;
+	image: ImageInput;
+	tag: string;
+	tags: string[];
+	categories: string[];
+	description: string;
+	body: string | undefined;
+	date: Date;
+	modified: Date;
+	courseId?: string;
+	lessonId?: string;
+	courseTitle?: string;
+};
+
+function visibleTag(tags: string[], categories: string[]): string {
+	return formatHashTags(tags.length > 0 ? tags : categories);
+}
+
+export function toPostListItem(post: PostEntry, thumbnails: ThumbnailMap): ListedContentItem {
+	const tags = uniqueTerms(post.data.tags);
+	const categories = uniqueTerms(post.data.categories);
+
+	return {
+		kind: "post",
+		id: `post:${post.id}`,
+		entryId: post.id,
+		title: extractTitle(post.body) || post.id,
+		href: `/p/${post.id}/`,
+		image: resolvePostThumbnail(post, thumbnails),
+		tag: visibleTag(tags, categories),
+		tags,
+		categories,
+		description: post.data.description ?? extractExcerpt(post.body),
+		body: post.body,
+		date: post.data.date,
+		modified: post.data.lastmod ?? post.data.date
+	};
+}
+
+export function toLessonListItem(lesson: LessonEntry, thumbnails: ThumbnailMap, courseTitle?: string): ListedContentItem | null {
+	const [courseId, lessonId] = lesson.id.split("/");
+	if (!courseId || !lessonId) return null;
+
+	const tags = uniqueTerms(lesson.data.tags);
+	const categories = uniqueTerms(["課程", ...lesson.data.categories]);
+	const title = extractTitle(lesson.body) || lesson.data.description || lessonId;
+
+	return {
+		kind: "lesson",
+		id: `lesson:${lesson.id}`,
+		entryId: lesson.id,
+		title,
+		href: `/course/${courseId}/${lessonId}/`,
+		image: resolveLessonThumbnail(lesson, thumbnails),
+		tag: visibleTag(tags, categories),
+		tags,
+		categories,
+		description: lesson.data.description ?? extractExcerpt(lesson.body),
+		body: lesson.body,
+		date: lesson.data.date,
+		modified: lesson.data.lastmod ?? lesson.data.date,
+		courseId,
+		lessonId,
+		courseTitle
+	};
+}
+
+export function toListedContentItems(posts: PostEntry[], lessons: LessonEntry[], courses: CourseEntry[], postThumbnails: ThumbnailMap, lessonThumbnails: ThumbnailMap): ListedContentItem[] {
+	const courseTitles = new Map(courses.map(course => [course.id, course.data.title]));
+
+	return [
+		...posts.map(post => toPostListItem(post, postThumbnails)),
+		...lessons.flatMap(lesson => {
+			const [courseId] = lesson.id.split("/");
+			const item = toLessonListItem(lesson, lessonThumbnails, courseTitles.get(courseId));
+			return item ? [item] : [];
+		})
+	];
+}
+
+export function sortListedContentByDateDesc(items: ListedContentItem[]): ListedContentItem[] {
+	return [...items].sort((a, b) => b.date.getTime() - a.date.getTime());
 }
 
 export type { ImageMetadata };

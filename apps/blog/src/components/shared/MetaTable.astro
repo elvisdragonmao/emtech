@@ -1,8 +1,5 @@
 ---
-type MetaItem = {
-	label: string;
-	value: string;
-};
+import type { MetaItem } from "@/utils/content";
 
 interface Props {
 	items: MetaItem[];
@@ -23,7 +20,20 @@ const labelText: Record<string, string> = {
 		items.map(item => (
 			<div>
 				<dt>{labelText[item.label] ?? item.label}</dt>
-				<dd>{item.value}</dd>
+				<dd>
+					{item.links && item.links.length > 0 ? (
+						item.links.map((link, index) => (
+							<>
+								<a href={link.href}>{link.label}</a>
+								{index < item.links!.length - 1 && <span aria-hidden="true"> / </span>}
+							</>
+						))
+					) : item.href ? (
+						<a href={item.href}>{item.value}</a>
+					) : (
+						item.value
+					)}
+				</dd>
 			</div>
 		))
 	}
@@ -63,6 +73,16 @@ const labelText: Record<string, string> = {
 		font-weight: 700;
 		color: var(--color-text);
 		overflow-wrap: anywhere;
+	}
+
+	dd a {
+		color: var(--color-accent-strong);
+		text-decoration: none;
+		text-underline-offset: 0.18em;
+	}
+
+	dd a:hover {
+		text-decoration: underline;
 	}
 
 	@media (max-width: 48.75rem) {
