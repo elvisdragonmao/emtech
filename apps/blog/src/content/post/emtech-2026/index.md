@@ -1,7 +1,7 @@
 ---
 authors: elvismao
 tags: [Astro, Cloudflare, 自製, 關於]
-categories: [軟體開發]
+categories: [生活雜談]
 date: 2026-05-13
 description: 用 Astro 重寫了一次，新增課程系統和留言系統，架構更清晰，維護更方便。
 ---
