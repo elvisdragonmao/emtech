@@ -51,9 +51,7 @@ git update-index --again
 3. 丟給 Prettier 去格式化這些檔案，並加上 `--ignore-unknown` 來忽略 Prettier 不支援的檔案類型。
 4. `git update-index --again`：重新 add 一次剛才 add 過的檔案。
 
-> [!NOTE]
->
-> ### 🚫💩 lint-staged
+> [!NOTE] 🚫💩 lint-staged
 >
 > 可以看到這裡的指令開始有點長了。如果你想要添加更複雜的可以考慮使用 [lint-staged](https://github.com/lint-staged/lint-staged)。
 

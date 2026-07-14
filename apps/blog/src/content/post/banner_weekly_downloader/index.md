@@ -12,9 +12,7 @@ description: "當時在製作的時候正是疫情爆發的時間，教會聚會
 
 > 好久沒有寫部落格文章了～最近都在忙著 <s>認真讀書</s> 、更新[毛哥EM 的基地](https://elvismao.com)及製作 Line 機器人。最近編程編到有點頭痛，想說把欠了很久的文章寫完，休息一下
 
-> [!NOTE]
->
-> ### 旌旗教會週報下載器
+> [!NOTE] 旌旗教會週報下載器
 >
 > - 開發者：毛哥EM(我)
 > - 類型：網站
@@ -32,9 +30,7 @@ description: "當時在製作的時候正是疫情爆發的時間，教會聚會
 
 若你使用的是 ios 裝置，你可以使用我製作的捷徑腳本來快速取得當天、上一次、或指定日期的週報。
 
-> [!NOTE]
->
-> ### 小提醒
+> [!NOTE] 小提醒
 >
 > - 如果手機說無法加入不受信任的捷徑，請參考[允許不受信任捷徑教學](https://emtech.cc/p/shortcut-untrusted_Shortcut/)提供的方法。
 > - 此網站及捷徑皆為開源項目，歡迎到[GitHub](https://github.com/elvisdragonmao/elvisdragonmao.github.io/tree/main/code/weekly)查看。

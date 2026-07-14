@@ -20,9 +20,7 @@ description: "在某些情況下，例如學校或公司網路封鎖了 SSH 預�
 sudo vim /etc/ssh/sshd_config
 ```
 
-> [!NOTE]
->
-> ### Vim 基本操作
+> [!NOTE] Vim 基本操作
 >
 > - **打開文件**：輸入 `vim 文件名`。
 > - **進入編輯模式**：按 `i` 鍵進入插入模式。

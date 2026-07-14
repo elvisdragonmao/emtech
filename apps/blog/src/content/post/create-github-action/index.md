@@ -14,9 +14,7 @@ GitHub Actions 是 GitHub 提供的一個 CI/CD 服務，可以讓你在 GitHub 
 
 > 成果倉庫：[GitHub-issue-2-Notion](https://github.com/elvisdragonmao/GitHub-issue-2-Notion)
 
-> [!NOTE]
->
-> ### 溫馨提醒
+> [!NOTE] 溫馨提醒
 >
 > 我們今天因為目標是要上架至 Marketplace，所以步驟相對於製作一般的 Action 比較不一樣一點。
 

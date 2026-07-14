@@ -46,8 +46,6 @@ git config --global core.excludesfile ~/.gitignore_global
 
 這樣就完成了！現在 Git 就會永遠忽略 `.DS_Store` 檔案了。
 
-> [!NOTE]
->
-> gitignore.io
+> [!NOTE] gitignore.io
 >
 > [gitignore.io](https://www.toptal.com/developers/gitignore) 是一個可以幫你產生 `.gitignore` 檔案的網站。跟你在創 GitHub Repo 的時候可以選擇一樣，你可以在上面選擇你需要的語言、框架、IDE 等等，然後它會幫你產生一個適合你的 `.gitignore` 檔案，這樣就不用自己手動寫了。不過裡面的 `.DS_Store` 可能不會被包含在裡面，所以還是建議你自己手動加上去。

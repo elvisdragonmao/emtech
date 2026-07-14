@@ -10,9 +10,7 @@ description: "你是否有群組充滿著垃圾訊息？用 Line Bot & Line Noti
 
 你是否有群組充滿著垃圾訊息？用 Line Bot & Line Notify 轉發重要訊息給自己！不用程式經驗，複製貼上就好了！
 
-> [!NOTE]
->
-> ### Line Notify 停用
+> [!NOTE] Line Notify 停用
 >
 > Line Notify 已經停用，請參考我寫的這篇新文章：
 >
@@ -44,9 +42,7 @@ Line Notify 是個比較冷門但是非常好用的工具。我們可以透過�
 
 ### 建立 API(Google Apps Script)
 
-> [!NOTE]
->
-> ### Google Apps Script
+> [!NOTE] Google Apps Script
 >
 > 開發者:Google 類型：免費網站（可付費升級）網址：[script.google.com](https://script.google.com)
 
@@ -90,9 +86,9 @@ function doPost(e) {
 - `id!="某人id"` - 只要某人
 - `id!="某人id" || id!="某人id"` - 只要某一群人
 
-> [!NOTE]
+> [!NOTE] 小叮嚀
 >
-> ### 小叮嚀 為避免程式碼站太多空間，可能會部分隱藏。請記得展開或直接複製。
+> 為避免程式碼站太多空間，可能會部分隱藏。請記得展開或直接複製。
 
 ![Google Apps Script 快速教學](../rol-call/gas.webp)
 

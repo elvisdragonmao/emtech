@@ -22,7 +22,7 @@ description: 見人說人話，見鬼說鬼話才是從好辯士邁向勝利者�
 
 ![Tabroom Judges](tabroom.webp)
 
-> [!NOTE]
+> [!NOTE] 我的 Judge Paradigm
 >
 > 你在 [Tabroom Judge Paradigms](https://www.tabroom.com/index/paradigm.mhtml) 上可以搜尋 Elvis Mao 或[點擊此連結](https://www.tabroom.com/index/paradigm.mhtml?search_first=Elvis&search_last=Mao)查看我的 Paradigm 喔！
 

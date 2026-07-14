@@ -14,9 +14,7 @@ description: 今年 SITCON 一樣很讚。
 
 > 哦對了你們打錯字或沒有遵循中文文案排版指北的我~~一率懶得回答~~順便就幫你們修正了。
 
-> [!NOTE]
->
-> 相關資源
+> [!NOTE] 相關資源
 >
 > 這次議程的簡報、Credit、和相關資源都整理在 [GitHub Repo](https://github.com/elvisdragonmao/SITCON2025) 裡面。
 

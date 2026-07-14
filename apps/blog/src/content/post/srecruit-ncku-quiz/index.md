@@ -14,9 +14,7 @@ description: 很難，很累。從早上九點寫到下午四點，中間排隊�
 
 成功大學特殊選才乙組上機考考題分享。
 
-> [!NOTE]
->
-> 注意事項
+> [!NOTE] 注意事項
 >
 > 以下題目根據我和好幾位朋友的記憶[蒸餾](https://en.wikipedia.org/wiki/Knowledge_distillation)而成，內容可能有些許出入 (聽起來比較簡潔且像人話)，僅供參考。
 
@@ -187,9 +185,7 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=/maps/map.yaml
 
 可以參考基因遺傳演算法 (Genetic Algorithm) 或其他演算法。程式分為三個區塊，裡面分別都有一些小問題要修復。每個區塊五分共十五分。接著你可以嘗試最佳化它，依照速度最高可以再獲得 7 分。
 
-> [!NOTE]
->
-> ### 小提示
+> [!NOTE] 小提示
 >
 > 一些語法錯誤直接 GPT 解就可以了。
 

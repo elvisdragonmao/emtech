@@ -24,9 +24,7 @@ description: "使用 OBS 攝取 Zoom 的視窗。"
 
 請先到到官網下載並安裝。安裝方式和其他軟體差不多
 
-> [!NOTE]
->
-> ### Zoom
+> [!NOTE] Zoom
 >
 > - 開發者:Zoom Video Communications
 > - 軟體類型：商業軟體
@@ -56,9 +54,9 @@ description: "使用 OBS 攝取 Zoom 的視窗。"
 
 回到視訊，點選最小化。視窗會小到你只能看到自己。
 
-> [!NOTE]
+> [!NOTE] 小提醒
 >
-> ### 小提醒如果縮小畫面還是有名字的話，可以把視窗放大再縮小一次。
+> 如果縮小畫面還是有名字的話，可以把視窗放大再縮小一次。
 
 ### OBS 設定
 
@@ -80,9 +78,9 @@ description: "使用 OBS 攝取 Zoom 的視窗。"
 
 可視情況調整
 
-> [!NOTE]
+> [!NOTE] 小提醒
 >
-> ### 小提醒要放到最大記得選「Fit to screen」而不是「Stretch to screen」，否則你的臉會變形。
+> 要放到最大記得選「Fit to screen」而不是「Stretch to screen」，否則你的臉會變形。
 
 6.新增色鍵色鍵 (Color Key) 可以去除指定的顏色。你可以根據情況調整參數，自己試試看
 

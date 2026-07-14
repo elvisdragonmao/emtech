@@ -10,9 +10,7 @@ description: "平常討論事情有時會需要臨時做筆記或馬上呈現內
 
 平常討論事情有時會需要臨時做筆記或馬上呈現內容給大家，但常又不是使用自己的電腦，且網路及環境很差。因此，我製作了這一個好看輕量的線上 markdown 編輯器。不只直覺好用，且會額外將成果顯示在獨立視窗，可直接全屏投影到第二螢幕上，呈現更好的效果~~避免被偷看其他分頁~~。最方便是開會還有上課要對答案可以快速清楚地打讓出來呈現。
 
-> [!NOTE]
->
-> ### CrossDown
+> [!NOTE] CrossDown
 >
 > - 網站：[開啟 CrossDown 網站](https://g.elvismao.com/CrossDown/)
 > - GitHub: [查看 CrossDown 原始碼](https://github.com/elvisdragonmao/CrossDown)

@@ -398,9 +398,7 @@ switch (role) {
 一般使用者
 ```
 
-> [!NOTE]
->
-> ## 小練習 1：條件判斷
+> [!NOTE] 小練習 1：條件判斷
 >
 > 請寫一段程式：
 >
@@ -627,9 +625,7 @@ fruits.forEach(fruit => {
 });
 ```
 
-> [!NOTE]
->
-> ## 小練習 2：陣列
+> [!NOTE] 小練習 2：陣列
 >
 > 給你下面的陣列：
 >
@@ -835,9 +831,7 @@ const welcome = () => {
 const square = x => x * x;
 ```
 
-> [!NOTE]
->
-> ## 小練習 3：函式
+> [!NOTE] 小練習 3：函式
 >
 > 請寫一個函式 `isEven(number)`：
 >
@@ -1128,9 +1122,7 @@ title.classList.toggle("active");
 - 顯示/隱藏內容
 - 切換深色模式 class
 
-> [!NOTE]
->
-> ## 小練習 4：DOM 基本操作
+> [!NOTE] 小練習 4：DOM 基本操作
 >
 > 給你這段 HTML：
 >
@@ -1379,9 +1371,7 @@ form.addEventListener("submit", e => {
 });
 ```
 
-> [!NOTE]
->
-> ## 小練習 5：事件監聽
+> [!NOTE] 小練習 5：事件監聽
 >
 > HTML：
 >

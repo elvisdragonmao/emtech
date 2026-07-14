@@ -14,9 +14,7 @@ description: 把除了 merge 以外的 commit 接上去，讓 commit 紀錄變�
 
 很明顯這應該要是一條簡單的直線，但卻變成他幫你搞得像你開了一個新分支。這時候我們可以使用 `reset`, `rebase` 和 `cherry-pick` 來清理 commit 的歷史。
 
-> [!NOTE]
->
-> 想要根治這個問題嗎？
+> [!NOTE] 想要根治這個問題嗎？
 >
 > 延伸閱讀：[如何設定 VSCode 和 Terminal Git pull 使用 rebase 而不是 merge](https://emtech.cc/p/vscode-git-pull)
 

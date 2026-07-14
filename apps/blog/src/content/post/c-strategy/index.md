@@ -34,9 +34,7 @@ description: 簡單來說好好去讀書吧。無論你全部猜 C、平均猜 A
 
 ## 程式模擬
 
-> [!NOTE]
->
-> 猜題策略模擬器
+> [!NOTE] 猜題策略模擬器
 >
 > [開啟猜題策略模擬器](https://elvismao.com/code/c-strategy/)
 

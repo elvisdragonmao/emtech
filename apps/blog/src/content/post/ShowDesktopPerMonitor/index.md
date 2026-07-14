@@ -14,9 +14,7 @@ description: "使用多個螢幕可以使工作效率大幅提升。不過如果
 
 這個專案是開源在 GitHub 上的，基本上可以安心使用。雖然已經很久沒有更新了，但目前沒有任何問題。
 
-> [!NOTE]
->
-> ### ShowDesktopPerMonitor
+> [!NOTE] ShowDesktopPerMonitor
 >
 > - 開發者:CryptKat
 > - 類型：免費開源軟體

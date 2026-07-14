@@ -207,9 +207,7 @@ jobs:
 
 記得要自己調整裡面 Build 的指令以及要傳的資料夾喔！
 
-> [!NOTE]
->
-> ### Worktree 是什麼
+> [!NOTE] Worktree 是什麼
 >
 > Worktree 是 Git 內建功能幫你複製貼上整個 Repo 資料夾（但是共用 .git）讓你可以編輯兩個 branch，方便我們搬檔案到另一個 branch。
 
