@@ -88,8 +88,7 @@ description: UTFG 是 2025 年開始每年在在新竹豐邑喜來登大飯店�
 
 活動結束後的晚上，我第一次真正體會到什麼叫做展後憂鬱。
 
-> [!NOTE]
-> 展後憂鬱現象（俗稱「展後憂鬱症」或 Post-Convention Blues, PCB，亦常被社群稱為 Post-Convention Depression, PCD），泛指參與者在展覽或大型聚會結束前後，因環境、社交與心理狀態的顯著變化，而可能經歷的短暫身心調適階段。常見的感受與狀態包括情緒低落、疲勞、食慾變化、肌肉酸痛、失眠、精神難以集中等。 （資料來源：[毛毛大百科](https://fursuiters.fandom.com/zh-tw/wiki/%E5%B1%95%E5%BE%8C%E6%86%82%E9%AC%B1%E7%97%87%E5%80%99%E7%BE%A4)）
+> [!NOTE] 展後憂鬱現象（俗稱「展後憂鬱症」或 Post-Convention Blues, PCB，亦常被社群稱為 Post-Convention Depression, PCD），泛指參與者在展覽或大型聚會結束前後，因環境、社交與心理狀態的顯著變化，而可能經歷的短暫身心調適階段。常見的感受與狀態包括情緒低落、疲勞、食慾變化、肌肉酸痛、失眠、精神難以集中等。 （資料來源：[毛毛大百科](https://fursuiters.fandom.com/zh-tw/wiki/%E5%B1%95%E5%BE%8C%E6%86%82%E9%AC%B1%E7%97%87%E5%80%99%E7%BE%A4)）
 
 一開始我只是坐在旅館對面的星巴克工作，卻突然覺得很焦慮、身體很不舒服。後來越想越難過。
 
