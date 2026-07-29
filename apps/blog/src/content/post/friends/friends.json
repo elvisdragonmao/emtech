@@ -88,8 +88,14 @@
 					"description": "玻狸的笔记本，全是水，偶尔能找到一些技术文章。"
 				},
 				{
+					"name": "Whitedragon",
+					"url": "https://nightfury.tw",
+					"image": "nightfury.webp",
+					"description": "一隻喜歡玩電腦的龍"
+				},
+				{
 					"name": "雷顿",
-					"url": "https://leidun.pp.ua",
+					"url": "https://blog.houman.top/",
 					"image": "leidun.webp",
 					"description": "他睡觉时真的不打雷"
 				},
