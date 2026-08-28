@@ -182,11 +182,20 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 		const tagButtons = tagCloud ? Array.from(tagCloud.querySelectorAll<HTMLButtonElement>("[data-filter-button]")) : [];
 		const loadStep = Number(loadMore?.dataset.loadStep ?? 12);
 		const initialVisible = Number(archiveGrid?.dataset.initialVisible ?? 6);
-		const searchParams = new URLSearchParams(window.location.search);
-		const requestedTag = searchParams.get("tag");
-		const requestedCategory = searchParams.get("category");
 		let visibleCount = initialVisible;
-		let activeFilter: ActiveFilter | null = requestedTag ? { type: "tag", value: requestedTag } : requestedCategory ? { type: "category", value: requestedCategory } : DEFAULT_FILTER;
+
+		const getFilterFromUrl = (): ActiveFilter | null => {
+			const searchParams = new URLSearchParams(window.location.search);
+			const requestedTag = searchParams.get("tag");
+			const requestedCategory = searchParams.get("category");
+
+			if (requestedTag) return { type: "tag", value: requestedTag };
+			if (requestedCategory) return { type: "category", value: requestedCategory };
+			if (searchParams.get("view") === "all") return null;
+			return DEFAULT_FILTER;
+		};
+
+		let activeFilter: ActiveFilter | null = getFilterFromUrl();
 
 		const parseTerms = (value: string | undefined) => {
 			if (!value) return [];
@@ -252,6 +261,19 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 			}
 		};
 
+		const updateFilterUrl = () => {
+			const url = new URL(window.location.href);
+			url.searchParams.delete("tag");
+			url.searchParams.delete("category");
+			url.searchParams.delete("view");
+
+			if (activeFilter) url.searchParams.set(activeFilter.type, activeFilter.value);
+			else url.searchParams.set("view", "all");
+
+			url.hash = "archive";
+			window.history.pushState({}, "", `${url.pathname}${url.search}${url.hash}`);
+		};
+
 		const applyArchiveState = (animateVisibleCards = false) => {
 			const matchingCards = sortMatchingCards(archiveCards.filter(cardMatchesFilter));
 			const visibleCards = matchingCards.slice(0, visibleCount);
@@ -285,10 +307,21 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 					activeFilter = activeFilter?.type === type && activeFilter.value === value ? null : { type, value };
 					visibleCount = initialVisible;
 					applyArchiveState(true);
+					updateFilterUrl();
 				},
 				{ signal }
 			);
 		}
+
+		window.addEventListener(
+			"popstate",
+			() => {
+				activeFilter = getFilterFromUrl();
+				visibleCount = initialVisible;
+				applyArchiveState(true);
+			},
+			{ signal }
+		);
 
 		loadMore?.addEventListener(
 			"click",
