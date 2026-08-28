@@ -14,6 +14,7 @@ ALLOWED_ORIGINS = "http://localhost:4321,https://emtech.cc"
 COMMENT_DEFAULT_STATUS_ANON = "approved"
 COMMENT_DEFAULT_STATUS_GITHUB = "approved"
 GITHUB_REDIRECT_URI = "https://api.emtech.cc/api/auth/github/callback"
+BLOG_ORIGIN = "https://emtech.cc"
 
 [[routes]]
 pattern = "api.emtech.cc"

@@ -1,10 +1,38 @@
 import { sha256Hex } from "@emtech/comments-shared";
 
 const encoder = new TextEncoder();
+const decoder = new TextDecoder();
 
 function base64Url(bytes: ArrayBuffer): string {
 	const binary = String.fromCharCode(...new Uint8Array(bytes));
 	return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+}
+
+function fromBase64Url(value: string): Uint8Array {
+	const normalized = value.replaceAll("-", "+").replaceAll("_", "/");
+	const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, "=");
+	const binary = atob(padded);
+	return Uint8Array.from(binary, character => character.charCodeAt(0));
+}
+
+async function privateValueKey(secret: string): Promise<CryptoKey> {
+	const material = await crypto.subtle.digest("SHA-256", encoder.encode(`comment-email:${secret}`));
+	return crypto.subtle.importKey("raw", material, { name: "AES-GCM" }, false, ["encrypt", "decrypt"]);
+}
+
+export async function encryptPrivateValue(value: string, secret: string): Promise<string> {
+	if (!secret) throw new Error("Private value encryption secret is required");
+	const iv = crypto.getRandomValues(new Uint8Array(12));
+	const ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, await privateValueKey(secret), encoder.encode(value));
+	return `${base64Url(iv.buffer)}.${base64Url(ciphertext)}`;
+}
+
+export async function decryptPrivateValue(value: string, secret: string): Promise<string> {
+	if (!secret) throw new Error("Private value encryption secret is required");
+	const [encodedIv, encodedCiphertext] = value.split(".");
+	if (!encodedIv || !encodedCiphertext) throw new Error("Invalid encrypted private value");
+	const plaintext = await crypto.subtle.decrypt({ name: "AES-GCM", iv: fromBase64Url(encodedIv) }, await privateValueKey(secret), fromBase64Url(encodedCiphertext));
+	return decoder.decode(plaintext);
 }
 
 export async function hmacSha256Base64Url(secret: string, value: string): Promise<string> {

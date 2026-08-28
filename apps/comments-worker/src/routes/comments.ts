@@ -1,9 +1,10 @@
-import { emailHash, type CommentStatus } from "@emtech/comments-shared";
+import { emailHash, normalizeEmail, type CommentStatus } from "@emtech/comments-shared";
 import { getSessionUser } from "../auth/session";
 import { insertComment, listApprovedComments, parentExists, setCommentReaction } from "../db/comments";
 import { logDiscordNotificationFailure, notifyDiscordComment } from "../notifications/discord";
+import { logThreadEmailFailure, notifyThreadReply } from "../notifications/thread-email";
 import type { AppContext } from "../types";
-import { hashIp, randomId, secretHash } from "../utils/crypto";
+import { encryptPrivateValue, hashIp, randomId, secretHash } from "../utils/crypto";
 import { clientIp, json, readJson } from "../utils/http";
 import { publicRequestContext } from "../utils/request-context";
 import { createCommentSchema, listCommentsSchema, setReactionSchema } from "../utils/validation";
@@ -56,18 +57,20 @@ export async function createComment(ctx: AppContext): Promise<Response> {
 	const name = parsed.data.name && parsed.data.name.length > 0 ? parsed.data.name : null;
 	const normalizedEmail = parsed.data.email && parsed.data.email.length > 0 ? parsed.data.email : null;
 	const maybeEmailHash = normalizedEmail ? await emailHash(normalizedEmail) : null;
+	const notificationEmailCiphertext = normalizedEmail && ctx.env.EMAIL_ENCRYPTION_KEY ? await encryptPrivateValue(normalizeEmail(normalizedEmail), ctx.env.EMAIL_ENCRYPTION_KEY) : null;
 	const userAgent = ctx.request.headers.get("User-Agent") ?? "";
 	const userAgentHash = userAgent ? await secretHash(userAgent, ctx.env.IP_HASH_SECRET) : null;
 	const requestContext = publicRequestContext(ctx.request);
 	const commentId = randomId();
 
-	await insertComment(ctx.env, {
+	const createdAt = await insertComment(ctx.env, {
 		id: commentId,
 		pagePath: parsed.data.pagePath,
 		parentId: parsed.data.parentId ?? null,
 		body: parsed.data.body,
 		name,
 		emailHash: maybeEmailHash,
+		notificationEmailCiphertext,
 		status,
 		ipHash,
 		userAgentHash,
@@ -92,6 +95,20 @@ export async function createComment(ctx: AppContext): Promise<Response> {
 			user
 		}).catch(error => logDiscordNotificationFailure(error, commentId))
 	);
+
+	if (parsed.data.parentId && status === "approved") {
+		ctx.executionCtx.waitUntil(
+			notifyThreadReply(ctx.env, {
+				commentId,
+				pagePath: parsed.data.pagePath,
+				parentId: parsed.data.parentId,
+				body: parsed.data.body,
+				authorName: user ? `@${user.login}` : (name ?? "Anonymous"),
+				authorEmailHash: maybeEmailHash,
+				createdAt
+			}).catch(error => logThreadEmailFailure(error, commentId))
+		);
+	}
 
 	return json({ ok: true, status, commentId }, { status: 201 }, ctx.corsHeaders);
 }

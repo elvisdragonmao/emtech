@@ -10,6 +10,15 @@ export type Env = {
 	TURNSTILE_SECRET_KEY: string;
 	ALLOWED_ORIGINS: string;
 	DISCORD_WEBHOOK_URL?: string;
+	BLOG_ORIGIN?: string;
+	EMAIL_ENCRYPTION_KEY?: string;
+	SMTP_HOST?: string;
+	SMTP_PORT?: string;
+	SMTP_USERNAME?: string;
+	SMTP_PASSWORD?: string;
+	SMTP_SECURITY?: string;
+	SMTP_FROM_EMAIL?: string;
+	SMTP_FROM_NAME?: string;
 	COMMENT_DEFAULT_STATUS_ANON?: CommentStatus;
 	COMMENT_DEFAULT_STATUS_GITHUB?: CommentStatus;
 };

@@ -88,13 +88,14 @@ const commentMetaIcons = {
 				<span data-replying-label></span>
 				<button type="button" data-cancel-reply>取消回覆</button>
 			</div>
-			<label data-identity-field>
+			<label data-anonymous-identity-field>
 				顯示名稱
 				<input name="name" type="text" maxlength="80" autocomplete="name" placeholder="匿名" />
 			</label>
-			<label data-identity-field>
+			<label>
 				電子郵件
-				<input name="email" type="email" autocomplete="email" spellcheck="false" placeholder="只用於 Gravatar 頭像，不會公開" />
+				<input name="email" type="email" autocomplete="email" spellcheck="false" placeholder="用於頭像與討論串回覆通知，不會公開" />
+				<small>這個討論串有新回覆時會寄信通知你；表情符號回應不會寄信。</small>
 			</label>
 			<label class="message">
 				留言
@@ -193,7 +194,7 @@ const commentMetaIcons = {
 		const replying = root.querySelector<HTMLElement>("[data-replying]");
 		const replyingLabel = root.querySelector<HTMLElement>("[data-replying-label]");
 		const cancelReply = root.querySelector<HTMLButtonElement>("[data-cancel-reply]");
-		const identityFields = Array.from(root.querySelectorAll<HTMLElement>("[data-identity-field]"));
+		const anonymousIdentityFields = Array.from(root.querySelectorAll<HTMLElement>("[data-anonymous-identity-field]"));
 		const reactionIconTemplate = root.querySelector<HTMLTemplateElement>("[data-reaction-icon-template]");
 		let isAuthenticated = false;
 		let activeReplyCard: HTMLElement | null = null;
@@ -481,7 +482,7 @@ const commentMetaIcons = {
 					authPanel.hidden = false;
 					loginLink.hidden = true;
 					isAuthenticated = true;
-					for (const field of identityFields) {
+					for (const field of anonymousIdentityFields) {
 						field.hidden = true;
 						for (const input of field.querySelectorAll<HTMLInputElement>("input")) input.value = "";
 					}
@@ -725,7 +726,7 @@ const commentMetaIcons = {
 							pagePath,
 							parentId: data.get("parentId") || undefined,
 							name: isAuthenticated ? undefined : data.get("name") || undefined,
-							email: isAuthenticated ? undefined : data.get("email") || undefined,
+							email: data.get("email") || undefined,
 							body: data.get("body"),
 							turnstileToken
 						})
@@ -835,7 +836,7 @@ const commentMetaIcons = {
 
 	.github-login[hidden],
 	.auth-panel[hidden],
-	[data-identity-field][hidden] {
+	[data-anonymous-identity-field][hidden] {
 		display: none;
 	}
 
@@ -911,6 +912,12 @@ const commentMetaIcons = {
 		gap: 0.25rem;
 		font-size: 1rem;
 		color: var(--color-text);
+	}
+
+	label small {
+		font-size: 0.78rem;
+		line-height: 1.5;
+		color: var(--color-muted);
 	}
 
 	.message,

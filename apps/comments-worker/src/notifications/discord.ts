@@ -1,5 +1,6 @@
 import { gravatarUrlFromHash, sha256Hex, type CommentStatus } from "@emtech/comments-shared";
 import type { Env, SessionUser } from "../types";
+import { publicBlogOrigin } from "../utils/origins";
 
 type DiscordField = { name: string; value: string; inline: boolean };
 
@@ -78,29 +79,6 @@ async function avatarUrlForComment(comment: CommentNotification): Promise<string
 function pageLink(env: Env, pagePath: string): string {
 	const url = new URL(pagePath, publicBlogOrigin(env)).toString();
 	return `[${escapeDiscordLinkText(pagePath)}](${escapeDiscordLinkUrl(url)})`;
-}
-
-function publicBlogOrigin(env: Env): string {
-	const origins = env.ALLOWED_ORIGINS.split(",").map(origin => origin.trim());
-	const publicOrigin = origins.map(parseHttpOrigin).find(origin => origin && !isLoopbackHostname(new URL(origin).hostname));
-	if (publicOrigin) return publicOrigin;
-
-	return origins.map(parseHttpOrigin).find((origin): origin is string => Boolean(origin)) ?? "https://emtech.cc";
-}
-
-function parseHttpOrigin(origin: string): string | null {
-	if (!origin) return null;
-	try {
-		const url = new URL(origin);
-		if (url.protocol !== "http:" && url.protocol !== "https:") return null;
-		return url.origin;
-	} catch {
-		return null;
-	}
-}
-
-function isLoopbackHostname(hostname: string): boolean {
-	return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1" || hostname === "[::1]";
 }
 
 function escapeDiscordLinkText(value: string): string {

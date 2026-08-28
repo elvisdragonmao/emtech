@@ -1,6 +1,6 @@
 import { checkSpam } from "@emtech/comments-shared";
 import { describe, expect, it } from "vitest";
-import { hashIp, signedValue, verifySignedValue } from "../src/utils/crypto";
+import { decryptPrivateValue, encryptPrivateValue, hashIp, signedValue, verifySignedValue } from "../src/utils/crypto";
 import { allowedOrigin } from "../src/utils/http";
 import { browserLabel, deviceLabel, locationLabel } from "../src/utils/request-context";
 import { adminStatusSchema, createCommentSchema, setReactionSchema } from "../src/utils/validation";
@@ -43,6 +43,14 @@ describe("privacy utilities", () => {
 		const hashed = await hashIp("203.0.113.42", "secret-salt");
 		expect(hashed).not.toContain("203.0.113.42");
 		expect(hashed).toHaveLength(64);
+	});
+
+	it("encrypts notification addresses at rest", async () => {
+		const encrypted = await encryptPrivateValue("reader@example.com", "encryption-secret");
+
+		expect(encrypted).not.toContain("reader@example.com");
+		expect(await decryptPrivateValue(encrypted, "encryption-secret")).toBe("reader@example.com");
+		await expect(decryptPrivateValue(encrypted, "different-secret")).rejects.toThrow();
 	});
 });
 

@@ -103,6 +103,7 @@ export async function insertComment(
 		body: string;
 		name: string | null;
 		emailHash: string | null;
+		notificationEmailCiphertext: string | null;
 		status: CommentStatus;
 		ipHash: string | null;
 		userAgentHash: string | null;
@@ -111,16 +112,16 @@ export async function insertComment(
 		locationLabel: string | null;
 		user: SessionUser | null;
 	}
-): Promise<void> {
+): Promise<string> {
 	const now = new Date().toISOString();
 	const authorType = data.user ? "github" : data.emailHash ? "gravatar" : data.name ? "named" : "anonymous";
 
 	await env.COMMENTS_DB.prepare(
 		`INSERT INTO comments (
 			id, page_path, parent_id, body, author_type, author_name, email_hash,
-			github_user_id, github_login, github_avatar_url, status, ip_hash,
+			notification_email_ciphertext, github_user_id, github_login, github_avatar_url, status, ip_hash,
 			user_agent_hash, device_label, browser_label, location_label, created_at, updated_at
-		) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+		) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 	)
 		.bind(
 			data.id,
@@ -130,6 +131,7 @@ export async function insertComment(
 			authorType,
 			data.user ? data.user.login : data.name,
 			data.emailHash,
+			data.notificationEmailCiphertext,
 			data.user?.githubUserId ?? null,
 			data.user?.login ?? null,
 			data.user?.avatarUrl ?? null,
@@ -143,4 +145,5 @@ export async function insertComment(
 			now
 		)
 		.run();
+	return now;
 }

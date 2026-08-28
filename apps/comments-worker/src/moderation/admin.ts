@@ -1,6 +1,7 @@
 import type { CommentStatus } from "@emtech/comments-shared";
 import { getSessionUser } from "../auth/session";
 import { publicCommentFromRow } from "../db/comments";
+import { logThreadEmailFailure, notifyThreadReply } from "../notifications/thread-email";
 import type { AppContext, CommentRow } from "../types";
 import { randomId } from "../utils/crypto";
 import { json } from "../utils/http";
@@ -64,12 +65,35 @@ export async function moderateComment(ctx: AppContext, commentId: string, action
 
 	const status = statusByAction[action];
 	const now = new Date().toISOString();
+	const comment = await ctx.env.COMMENTS_DB.prepare(
+		`SELECT id, page_path, parent_id, body, author_type, author_name, email_hash, github_user_id, github_login, github_avatar_url, status, device_label, browser_label, location_label, created_at, updated_at
+		 FROM comments WHERE id = ?`
+	)
+		.bind(commentId)
+		.first<CommentRow>();
+	if (!comment) {
+		return json({ error: "Comment not found" }, { status: 404 }, ctx.corsHeaders);
+	}
 	const result = await ctx.env.COMMENTS_DB.prepare("UPDATE comments SET status = ?, updated_at = ? WHERE id = ?").bind(status, now, commentId).run();
 	if (result.meta.changes === 0) {
 		return json({ error: "Comment not found" }, { status: 404 }, ctx.corsHeaders);
 	}
 
 	await ctx.env.COMMENTS_DB.prepare("INSERT INTO moderation_log (id, comment_id, action, reason, created_at) VALUES (?, ?, ?, ?, ?)").bind(randomId(), commentId, action, null, now).run();
+
+	if (action === "approve" && comment.status !== "approved" && comment.parent_id) {
+		ctx.executionCtx.waitUntil(
+			notifyThreadReply(ctx.env, {
+				commentId: comment.id,
+				pagePath: comment.page_path,
+				parentId: comment.parent_id,
+				body: comment.body,
+				authorName: comment.github_login ? `@${comment.github_login}` : (comment.author_name ?? "Anonymous"),
+				authorEmailHash: comment.email_hash,
+				createdAt: comment.created_at
+			}).catch(error => logThreadEmailFailure(error, comment.id))
+		);
+	}
 
 	return json({ ok: true, id: commentId, status }, {}, ctx.corsHeaders);
 }
