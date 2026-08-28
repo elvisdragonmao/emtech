@@ -372,6 +372,7 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 			const width = Math.max(1, intrinsicSize.width * fitRatio);
 			const height = Math.max(1, intrinsicSize.height * fitRatio);
 
+			trigger.style.aspectRatio = `${intrinsicSize.width} / ${intrinsicSize.height}`;
 			trigger.style.width = `${width}px`;
 			trigger.style.height = `${height}px`;
 			image.style.width = "100%";
@@ -2225,6 +2226,10 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 			line-height: 1.6;
 			color: #222;
 			overflow: visible;
+		}
+
+		.article-content :global(.image-preview-trigger) {
+			height: auto !important;
 		}
 
 		.hero-image,
