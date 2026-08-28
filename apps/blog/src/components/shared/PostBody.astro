@@ -1283,7 +1283,9 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 
 	.article-content :global(p + p),
 	.article-content :global(p + ul),
-	.article-content :global(p + ol) {
+	.article-content :global(p + ol),
+	.article-content :global(ul + p),
+	.article-content :global(ol + p) {
 		margin-top: 1.25rem;
 	}
 
