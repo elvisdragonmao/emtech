@@ -8,6 +8,7 @@
 		"build": "astro build",
 		"dev": "astro dev",
 		"preview": "astro preview",
+		"test": "node --test src/plugins/*.test.js",
 		"typecheck": "astro check"
 	},
 	"dependencies": {

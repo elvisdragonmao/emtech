@@ -37,6 +37,20 @@ pnpm --filter comments-worker dev
 
 `pnpm dev` 會啟動 blog。Worker 請另外開一個 terminal 跑 `pnpm --filter comments-worker dev`。
 
+文章或課程要嵌入 YouTube 時，使用 shortcode，不要手動貼 iframe：
+
+```md
+{{youtube id="3NV8ZQtfQm0" title="影片標題"}}
+```
+
+`id` 是 YouTube 網址中的 11 字元影片 ID，`title` 必填且應描述影片內容。如果 shortcode 後一段以「影片替代內容：」開頭，建置時會自動產生 ID 並用 `aria-describedby` 關聯，不需要手動填 ID：
+
+```md
+{{youtube id="3NV8ZQtfQm0" title="影片標題"}}
+
+影片替代內容：……
+```
+
 常用檢查：
 
 ```bash

@@ -13,9 +13,9 @@ description: "此系列已停更，歡迎可以參考我重新專寫的網頁開
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。今天我要讓你 5 分鐘學會所有常用的 HTML 語法。
 
-<iframe width="560" src="https://www.youtube-nocookie.com/embed/3NV8ZQtfQm0?si=hh0oS6Qi06ZpiJDe" title="網棧 EP.2 HTML 基礎教學影片" aria-describedby="webpallet-2-video-desc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{youtube id="3NV8ZQtfQm0" title="網棧 EP.2 HTML 基礎教學影片"}}
 
-<p id="webpallet-2-video-desc">影片替代內容：這支影片介紹常用 HTML 元素與基本語法，包含文字、連結、圖片、表單、iframe、audio、video 與版面元素。本文已提供同等的文字版教學與範例，可直接閱讀下方內容。</p>
+影片替代內容：這支影片介紹常用 HTML 元素與基本語法，包含文字、連結、圖片、表單、iframe、audio、video 與版面元素。本文已提供同等的文字版教學與範例，可直接閱讀下方內容。
 
 HTML 叫做超文本標記語言 (Hyper Text Markup Language)。故名思義就是標記一下文字，要記得 HTML 主要功能不是為了裝飾，目的是讓**瀏覽器知道這個是什麼**。比如說 Google 想知道網站標題會去找裡面的`<h1>`；而給盲人用的語音閱讀器在看到`<strong>`會加重語氣。裝飾文字是 CSS 的工作，下禮拜就來講）
 
@@ -412,9 +412,9 @@ iframe 是用來嵌入網頁的，比如說我們要嵌入 YouTube 影片，你�
 ></iframe>
 ```
 
-<iframe width="560" src="https://www.youtube.com/embed/lOecpIqOjjY" title="YouTube iframe 嵌入範例" aria-describedby="webpallet-2-iframe-demo-desc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+{{youtube id="lOecpIqOjjY" title="YouTube iframe 嵌入範例"}}
 
-<p id="webpallet-2-iframe-demo-desc">影片替代內容：此嵌入僅用來示範 iframe 可以放入 YouTube 播放器；本節重點是 iframe 語法，觀看影片不是理解本段教學的必要條件。</p>
+影片替代內容：此嵌入僅用來示範 iframe 可以放入 YouTube 播放器；本節重點是 iframe 語法，觀看影片不是理解本段教學的必要條件。
 
 ### Audio
 

@@ -626,9 +626,9 @@ iframe 是用來嵌入網頁的，比如說我們要嵌入 YouTube 影片，你�
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IxX_QHay02M?si=deCPLpJ2e9ZAZu2F"></iframe>
 ```
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IxX_QHay02M?si=deCPLpJ2e9ZAZu2F" title="YouTube iframe 嵌入範例" aria-describedby="frontend-html-iframe-demo-desc"></iframe>
+{{youtube id="IxX_QHay02M" title="YouTube iframe 嵌入範例"}}
 
-<p id="frontend-html-iframe-demo-desc">影片替代內容：此嵌入僅用來示範 iframe 可以放入 YouTube 播放器；本節重點是 iframe 元素，觀看影片不是理解本段教學的必要條件。</p>
+影片替代內容：此嵌入僅用來示範 iframe 可以放入 YouTube 播放器；本節重點是 iframe 元素，觀看影片不是理解本段教學的必要條件。
 
 ### audio
 

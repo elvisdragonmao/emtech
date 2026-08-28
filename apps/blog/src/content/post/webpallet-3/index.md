@@ -15,9 +15,9 @@ description: "此系列已停更，歡迎可以參考我重新專寫的網頁開
 
 CSS 的功能是來裝飾 HTML 的，因此這部影片假設你已經會使用 Codepen 和 HTML 了，如果還沒有的話建議你先去看 EP.2 十分鐘完結 HTML 喔。有一些部分可能比較難理解，但我相信你只要多練習幾次就可以了。
 
-<iframe width="560" src="https://www.youtube-nocookie.com/embed/WrNpToBObo0?si=ObuDcZHDTcmjBs2y" title="網棧 EP.3 CSS 基礎教學影片" aria-describedby="webpallet-3-video-desc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{youtube id="WrNpToBObo0" title="網棧 EP.3 CSS 基礎教學影片"}}
 
-<p id="webpallet-3-video-desc">影片替代內容：這支影片介紹 CSS 基礎，包含選取元素、設定文字與區塊樣式，以及用 CSS 裝飾網頁。本文已提供同等的文字教學與範例，可直接閱讀下方內容。</p>
+影片替代內容：這支影片介紹 CSS 基礎，包含選取元素、設定文字與區塊樣式，以及用 CSS 裝飾網頁。本文已提供同等的文字教學與範例，可直接閱讀下方內容。
 
 ## 簡單的 CSS
 

@@ -13,9 +13,9 @@ description: "此系列已停更，歡迎可以參考我重新專寫的網頁開
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。今天我們要來聊聊什麼是網站。
 
-<iframe width="560" src="https://www.youtube-nocookie.com/embed/lOecpIqOjjY?si=kh_Yr1m4bhFP2sGe" title="網棧 EP.1 什麼是網站影片" aria-describedby="webpallet-1-video-desc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{youtube id="lOecpIqOjjY" title="網棧 EP.1 什麼是網站影片"}}
 
-<p id="webpallet-1-video-desc">影片替代內容：這支影片說明網站是瀏覽器開啟的文件、網站通常由 HTML、CSS 與 JavaScript 組成，並介紹伺服器如何回應使用者請求。本文已整理相同主題的文字說明，可直接閱讀下方內容取得主要資訊。</p>
+影片替代內容：這支影片說明網站是瀏覽器開啟的文件、網站通常由 HTML、CSS 與 JavaScript 組成，並介紹伺服器如何回應使用者請求。本文已整理相同主題的文字說明，可直接閱讀下方內容取得主要資訊。
 
 相信大家看過 Word 檔對吧，Word 檔是要用 Microsoft Word 打開的文件，副檔名是.docx
 

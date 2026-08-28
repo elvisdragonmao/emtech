@@ -12,9 +12,9 @@ description: "此系列已停更，歡迎可以參考我重新專寫的網頁開
 
 哈囉大家好，我是毛哥EM，歡迎來到網棧。這是毛哥EM資訊密技的全新系列，我們將討論各種網頁設計的技術與技巧。
 
-<iframe width="560" src="https://www.youtube-nocookie.com/embed/oBIl0DzXujw?si=H7eokhcI1sxLu0Se" title="網棧 EP.0 歡迎來到網棧影片" aria-describedby="webpallet-0-video-desc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{youtube id="oBIl0DzXujw" title="網棧 EP.0 歡迎來到網棧影片"}}
 
-<p id="webpallet-0-video-desc">影片替代內容：這支影片介紹網棧系列的方向，說明前五集會帶大家認識網站、HTML、CSS、JavaScript 與架站流程。下方文字已提供同等的系列介紹與更新資訊。</p>
+影片替代內容：這支影片介紹網棧系列的方向，說明前五集會帶大家認識網站、HTML、CSS、JavaScript 與架站流程。下方文字已提供同等的系列介紹與更新資訊。
 
 在前面的五集中，我會講解什麼是網頁，並快速帶大家認識 HTML、CSS、JavaScript，還有如何架設網站。接下來我深入討論每一個細節，以及如何做出各種效果與功能。
 

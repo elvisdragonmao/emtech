@@ -1343,6 +1343,16 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 		object-fit: contain;
 	}
 
+	.article-content :global(.youtube-embed) {
+		display: block;
+		width: 100%;
+		height: auto;
+		margin: 2rem 0;
+		aspect-ratio: 16 / 9;
+		border: 0;
+		box-shadow: var(--shadow-card);
+	}
+
 	.article-content :global(.image-preview-trigger) {
 		display: block;
 		width: fit-content;

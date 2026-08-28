@@ -15,9 +15,9 @@ description: "此系列已停更，歡迎可以參考我重新專寫的網頁開
 
 在我們開始之前讓我先簡單介紹什麼是 VSCode。VSCode 是一個整合式開發環境 Integrated Development Environment（簡稱 IDE）。因為寫程式需要同時用到很多工具，包括寫程式的文字編輯器，終端機，瀏覽器等。這時如果你有一個軟體可以做到所有的功能，還可以在需要其他功能時直接下載擴充，是不是十分的方便！
 
-<iframe width="560" src="https://www.youtube-nocookie.com/embed/bWQtC3WyuBQ?si=ps1Tfy-tfc41rfY-" title="網棧 VS Code 與擴充功能教學影片" aria-describedby="webpallet-4-video-desc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{youtube id="bWQtC3WyuBQ" title="網棧 VS Code 與擴充功能教學影片"}}
 
-<p id="webpallet-4-video-desc">影片替代內容：這支影片示範安裝與使用 VS Code、建立網頁檔案、使用即時預覽，以及介紹常用擴充功能。本文已提供相同主題的文字步驟與說明。</p>
+影片替代內容：這支影片示範安裝與使用 VS Code、建立網頁檔案、使用即時預覽，以及介紹常用擴充功能。本文已提供相同主題的文字步驟與說明。
 
 ## 安裝軟體
 
