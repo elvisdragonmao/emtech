@@ -12,6 +12,7 @@
 		"typecheck": "astro check"
 	},
 	"dependencies": {
+		"@emtech/comments-shared": "workspace:*",
 		"@lucide/astro": "^1.14.0",
 		"astro": "^6.3.1",
 		"astro-pagefind": "^2.0.0",

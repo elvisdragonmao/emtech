@@ -26,6 +26,9 @@ importers:
 
   apps/blog:
     dependencies:
+      '@emtech/comments-shared':
+        specifier: workspace:*
+        version: link:../../packages/comments-shared
       '@lucide/astro':
         specifier: ^1.14.0
         version: 1.14.0(astro@6.3.1(rollup@4.60.3)(yaml@2.8.4))

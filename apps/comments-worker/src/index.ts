@@ -1,7 +1,7 @@
 import { listAdminComments, moderateComment } from "./moderation/admin";
 import { adminUi } from "./routes/admin-ui";
 import { authMe, githubCallback, githubStart, logout } from "./routes/auth";
-import { createComment, listComments } from "./routes/comments";
+import { createComment, listComments, updateCommentReaction } from "./routes/comments";
 import type { AppContext, Env } from "./types";
 import { corsHeaders, json, routeNotFound } from "./utils/http";
 
@@ -49,6 +49,11 @@ async function route(ctx: AppContext): Promise<Response> {
 
 	if (method === "GET" && pathname === "/api/comments") return listComments(ctx);
 	if (method === "POST" && pathname === "/api/comments") return createComment(ctx);
+
+	const reactionMatch = pathname.match(/^\/api\/comments\/([^/]+)\/reactions$/);
+	if (method === "POST" && reactionMatch?.[1]) {
+		return updateCommentReaction(ctx, decodeURIComponent(reactionMatch[1]));
+	}
 
 	if (method === "GET" && pathname === "/api/auth/github/start") return githubStart(ctx);
 	if (method === "GET" && pathname === "/api/auth/github/callback") return githubCallback(ctx);

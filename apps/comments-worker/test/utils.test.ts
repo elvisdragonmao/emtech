@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { hashIp, signedValue, verifySignedValue } from "../src/utils/crypto";
 import { allowedOrigin } from "../src/utils/http";
 import { browserLabel, deviceLabel, locationLabel } from "../src/utils/request-context";
-import { adminStatusSchema, createCommentSchema } from "../src/utils/validation";
+import { adminStatusSchema, createCommentSchema, setReactionSchema } from "../src/utils/validation";
 
 describe("comment validation", () => {
 	it("requires a non-empty body", () => {
@@ -20,6 +20,13 @@ describe("comment validation", () => {
 			turnstileToken: "token"
 		});
 		expect(result.success).toBe(true);
+	});
+
+	it("accepts supported reactions and rejects arbitrary text", () => {
+		const reaction = { visitorId: "anonymous-browser-id", emoji: "👍", active: true };
+
+		expect(setReactionSchema.safeParse(reaction).success).toBe(true);
+		expect(setReactionSchema.safeParse({ ...reaction, emoji: "not-an-emoji" }).success).toBe(false);
 	});
 });
 

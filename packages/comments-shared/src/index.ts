@@ -1,6 +1,21 @@
 export type AuthorType = "anonymous" | "named" | "gravatar" | "github";
 export type CommentStatus = "pending" | "approved" | "rejected" | "spam" | "deleted";
 
+export const COMMENT_REACTION_GROUPS = [
+	{ label: "推薦", emojis: ["👍", "❤️", "😮", "❓", "🛐", "😭"] },
+	{ label: "表情", emojis: ["😀", "😂", "🥹", "😍", "🤔", "😅", "😎", "🥳", "😴", "😡", "🤯", "👀"] },
+	{ label: "手勢", emojis: ["👏", "🙌", "🤝", "🙏", "👌", "✌️", "🤞", "💪", "🫡", "👋", "👉", "👎"] },
+	{ label: "符號", emojis: ["❤️", "💔", "🔥", "✨", "💯", "✅", "❌", "⚠️", "❓", "❗", "💡", "🎉"] },
+	{ label: "其他", emojis: ["🛐", "😭", "🚀", "🐉", "🐱", "🌈", "☕", "🍿", "🎨", "💻", "📌", "🫠"] }
+] as const;
+
+export const COMMENT_REACTION_EMOJIS = [...new Set(COMMENT_REACTION_GROUPS.flatMap(group => group.emojis))];
+
+export type CommentReaction = {
+	emoji: string;
+	count: number;
+};
+
 export type PublicComment = {
 	id: string;
 	pagePath: string;
@@ -16,6 +31,7 @@ export type PublicComment = {
 		browser: string | null;
 		location: string | null;
 	};
+	reactions: CommentReaction[];
 	createdAt: string;
 };
 

@@ -1,15 +1,16 @@
 import { emailHash, type CommentStatus } from "@emtech/comments-shared";
 import { getSessionUser } from "../auth/session";
-import { insertComment, listApprovedComments, parentExists } from "../db/comments";
+import { insertComment, listApprovedComments, parentExists, setCommentReaction } from "../db/comments";
 import { logDiscordNotificationFailure, notifyDiscordComment } from "../notifications/discord";
 import type { AppContext } from "../types";
 import { hashIp, randomId, secretHash } from "../utils/crypto";
 import { clientIp, json, readJson } from "../utils/http";
 import { publicRequestContext } from "../utils/request-context";
-import { createCommentSchema, listCommentsSchema } from "../utils/validation";
+import { createCommentSchema, listCommentsSchema, setReactionSchema } from "../utils/validation";
 
 const RATE_LIMIT_WINDOW_SECONDS = 60 * 10;
 const RATE_LIMIT_MAX = 8;
+const REACTION_RATE_LIMIT_MAX = 60;
 
 export async function listComments(ctx: AppContext): Promise<Response> {
 	const parsed = listCommentsSchema.safeParse({ pagePath: ctx.url.searchParams.get("pagePath") });
@@ -39,7 +40,7 @@ export async function createComment(ctx: AppContext): Promise<Response> {
 
 	const ip = clientIp(ctx.request);
 	const ipHash = await hashIp(ip, ctx.env.IP_HASH_SECRET);
-	const limited = await hitRateLimit(ctx, `comment:${ipHash}`);
+	const limited = await hitRateLimit(ctx, `comment:${ipHash}`, RATE_LIMIT_MAX);
 	if (limited) {
 		return json({ error: "Rate limit exceeded" }, { status: 429 }, ctx.corsHeaders);
 	}
@@ -95,6 +96,32 @@ export async function createComment(ctx: AppContext): Promise<Response> {
 	return json({ ok: true, status, commentId }, { status: 201 }, ctx.corsHeaders);
 }
 
+export async function updateCommentReaction(ctx: AppContext, commentId: string): Promise<Response> {
+	const body = await readJson(ctx.request);
+	const parsed = setReactionSchema.safeParse(body);
+	if (!parsed.success) {
+		return json({ error: "Invalid reaction", issues: parsed.error.issues.map(issue => issue.message) }, { status: 400 }, ctx.corsHeaders);
+	}
+
+	const ipHash = await hashIp(clientIp(ctx.request), ctx.env.IP_HASH_SECRET);
+	if (await hitRateLimit(ctx, `reaction:${ipHash}`, REACTION_RATE_LIMIT_MAX)) {
+		return json({ error: "Rate limit exceeded" }, { status: 429 }, ctx.corsHeaders);
+	}
+
+	const visitorHash = await secretHash(parsed.data.visitorId, ctx.env.IP_HASH_SECRET);
+	const reactions = await setCommentReaction(ctx.env, {
+		commentId,
+		visitorHash,
+		emoji: parsed.data.emoji,
+		active: parsed.data.active
+	});
+	if (!reactions) {
+		return json({ error: "Comment not found" }, { status: 404 }, ctx.corsHeaders);
+	}
+
+	return json({ ok: true, reactions }, {}, ctx.corsHeaders);
+}
+
 export function isTurnstileDisabled(secret: string | undefined): boolean {
 	return !secret || secret === "dev-disabled";
 }
@@ -115,7 +142,7 @@ async function verifyTurnstile(secret: string, token: string, remoteIp: string):
 	return data.success === true;
 }
 
-async function hitRateLimit(ctx: AppContext, key: string): Promise<boolean> {
+async function hitRateLimit(ctx: AppContext, key: string, max: number): Promise<boolean> {
 	const now = new Date();
 	const windowStart = new Date(now.getTime() - RATE_LIMIT_WINDOW_SECONDS * 1000).toISOString();
 	const current = await ctx.env.COMMENTS_DB.prepare("SELECT count, window_start AS windowStart FROM rate_limits WHERE key = ?").bind(key).first<{ count: number; windowStart: string }>();
@@ -127,7 +154,7 @@ async function hitRateLimit(ctx: AppContext, key: string): Promise<boolean> {
 
 	const nextCount = current.count + 1;
 	await ctx.env.COMMENTS_DB.prepare("UPDATE rate_limits SET count = ?, updated_at = ? WHERE key = ?").bind(nextCount, now.toISOString(), key).run();
-	return nextCount > RATE_LIMIT_MAX;
+	return nextCount > max;
 }
 
 function statusFromEnv(value: string | undefined, fallback: CommentStatus): CommentStatus {
