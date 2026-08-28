@@ -302,6 +302,61 @@ button {
 	text-shadow: 0 1px 0 var(--color-inset-highlight);
 }
 
+@page {
+	size: A4;
+	margin: 16mm 15mm 18mm;
+}
+
+@media print {
+	:root,
+	:root[data-theme="dark"] {
+		--color-bg: #fff;
+		--color-surface: #fff;
+		--color-surface-soft: #f5f5f5;
+		--color-surface-glass: #fff;
+		--color-surface-glass-strong: #fff;
+		--color-surface-glass-soft: #fff;
+		--color-ink: #111;
+		--color-text: #222;
+		--color-muted: #555;
+		--color-border: #ccc;
+		--color-border-strong: #999;
+		--color-accent: #4a90ad;
+		--color-accent-strong: #075d80;
+		--color-accent-soft: #eaf5f9;
+		--color-code-bg: #f4f4f4;
+		--color-code-ink: #111;
+		--shadow-soft: none;
+		--shadow-card: none;
+		--shadow-menu: none;
+		color-scheme: light;
+	}
+
+	html,
+	body {
+		min-width: 0;
+		min-height: 0;
+		color: #222;
+		background: #fff !important;
+	}
+
+	.page-shell {
+		min-height: 0 !important;
+		padding: 0 !important;
+		overflow: visible !important;
+	}
+
+	.page-shell::before,
+	.page-shell::after,
+	.site-header-container,
+	.site-footer,
+	.search-dialog,
+	.scroll-to-top,
+	.skip-link {
+		display: none !important;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,

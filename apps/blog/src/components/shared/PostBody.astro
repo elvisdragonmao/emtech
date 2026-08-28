@@ -2107,4 +2107,241 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 			display: none;
 		}
 	}
+
+	@media print {
+		.article-hero,
+		.article-hero.course-layout,
+		.article-shell,
+		.article-shell.course-layout {
+			display: block;
+			width: 100%;
+			max-width: none;
+			margin: 0;
+		}
+
+		.article-hero {
+			padding-bottom: 6mm;
+			border-bottom: 1px solid #999;
+			break-inside: avoid;
+		}
+
+		.article-hero > div:first-child,
+		.article-shell > div:last-child,
+		.toc,
+		.hero-side-nav,
+		.reading-toast,
+		.image-preview-overlay {
+			display: none !important;
+		}
+
+		.tag,
+		.tag a {
+			font-size: 9pt;
+			color: #075d80;
+		}
+
+		h1 {
+			margin: 3mm 0 5mm;
+			font-size: 26pt;
+			line-height: 1.15;
+			letter-spacing: -0.035em;
+			color: #111;
+		}
+
+		.hero-main :global(.meta-table) {
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+			background: #fff;
+			border-color: #aaa;
+		}
+
+		.hero-main :global(.meta-table div) {
+			min-height: 0;
+			padding: 2.5mm;
+			border-color: #ccc;
+		}
+
+		.hero-main :global(.meta-table dt) {
+			font-size: 7.5pt;
+			color: #555;
+		}
+
+		.hero-main :global(.meta-table dd) {
+			margin-top: 1.5mm;
+			font-size: 9pt;
+			color: #222;
+		}
+
+		.article-shell {
+			margin-top: 7mm;
+		}
+
+		.article-content {
+			width: 100%;
+			font-size: 10.5pt;
+			line-height: 1.6;
+			color: #222;
+			overflow: visible;
+		}
+
+		.hero-image,
+		.article-content :global(img:not(.hero-image)) {
+			max-height: 150mm;
+			box-shadow: none;
+			break-inside: avoid;
+		}
+
+		.hero-image {
+			max-height: 105mm;
+			margin-bottom: 6mm;
+		}
+
+		.article-content :global(h2),
+		.article-content :global(h3),
+		.article-content :global(h4),
+		.article-content :global(h5) {
+			color: #111;
+			break-after: avoid-page;
+		}
+
+		.article-content :global(h2) {
+			margin: 10mm 0 4mm;
+			font-size: 20pt;
+		}
+
+		.article-content :global(h3) {
+			margin: 7mm 0 3mm;
+			font-size: 15pt;
+		}
+
+		.article-content :global(h4) {
+			margin: 6mm 0 3mm;
+			font-size: 12pt;
+		}
+
+		.article-content :global(p),
+		.article-content :global(li) {
+			orphans: 3;
+			widows: 3;
+		}
+
+		.article-content :global(a) {
+			color: #075d80;
+			text-decoration: underline;
+			text-underline-offset: 0.12em;
+			border: 0;
+		}
+
+		.article-content :global(blockquote) {
+			border-color: #777;
+			break-inside: avoid;
+		}
+
+		.article-content :global(table) {
+			display: table;
+			width: 100%;
+			max-width: 100%;
+			margin: 6mm 0;
+			overflow: visible;
+			font-size: 8.5pt;
+			line-height: 1.4;
+			background: #fff;
+			border-color: #999;
+			break-inside: auto;
+		}
+
+		.article-content :global(thead) {
+			display: table-header-group;
+		}
+
+		.article-content :global(tr) {
+			break-inside: avoid;
+		}
+
+		.article-content :global(th),
+		.article-content :global(td) {
+			min-width: 0;
+			padding: 1.6mm 2mm;
+			overflow-wrap: anywhere;
+			border-color: #bbb;
+		}
+
+		.article-content :global(th) {
+			font-size: 7.5pt;
+			background: #eaf5f9;
+		}
+
+		.article-content :global(figure) {
+			break-inside: avoid;
+		}
+
+		.article-content :global(.youtube-embed),
+		.article-content :global(.animated-image-toggle),
+		.article-content :global(.code-copy-button) {
+			display: none !important;
+		}
+
+		.article-content :global(pre),
+		.article-content :global(.code-block) {
+			margin: 6mm 0;
+			overflow: visible;
+			color: #111 !important;
+			background: #f4f4f4 !important;
+			border-color: #aaa;
+			box-shadow: none;
+		}
+
+		.article-content :global(.code-block-toolbar) {
+			min-height: 0;
+			color: #111;
+			background: #e9e9e9;
+			border-color: #aaa;
+		}
+
+		.article-content :global(.code-block-language) {
+			padding: 2mm 3mm;
+			font-size: 7.5pt;
+			color: #111;
+		}
+
+		.article-content :global(.code-block pre code) {
+			min-width: 0;
+			white-space: pre-wrap;
+		}
+
+		.article-content :global(.code-block .line) {
+			display: block;
+			min-height: 0;
+			padding-right: 3mm;
+			white-space: pre-wrap;
+			overflow-wrap: anywhere;
+		}
+
+		.article-content :global(.code-block .line > *) {
+			white-space: pre-wrap;
+		}
+
+		.article-content :global(.code-block .line::before) {
+			display: inline-block;
+			width: 2.5em;
+			margin-right: 1em;
+			color: #666;
+		}
+
+		.tldr-callout,
+		.article-content :global(.callout-tldr),
+		.article-content :global(.callout-note),
+		.article-content :global(.callout-tip),
+		.article-content :global(.callout-important),
+		.article-content :global(.callout-warning),
+		.article-content :global(.callout-caution) {
+			background: #fff;
+			box-shadow: none;
+			break-inside: avoid;
+		}
+
+		.tldr-callout > span[aria-hidden],
+		.article-content :global(.callout-tldr > span[aria-hidden]) {
+			display: none;
+		}
+	}
 </style>

@@ -305,4 +305,17 @@ const relatedCards = related.map(item => {
 			margin-top: 2rem;
 		}
 	}
+
+	@media print {
+		.article-page {
+			width: 100%;
+			padding: 0;
+		}
+
+		.about-wrap,
+		.comments-wrap,
+		.related-wrap {
+			display: none !important;
+		}
+	}
 </style>
