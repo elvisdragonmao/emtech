@@ -1335,6 +1335,61 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 		margin-top: 0.4rem;
 	}
 
+	.article-content :global(table) {
+		display: block;
+		width: max-content;
+		max-width: 100%;
+		margin: 2rem 0;
+		overflow-x: auto;
+		font-size: 0.95rem;
+		line-height: 1.5;
+		border: 1px solid var(--color-border-strong);
+		border-collapse: separate;
+		border-spacing: 0;
+		background: var(--color-surface-glass-soft);
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.article-content :global(th),
+	.article-content :global(td) {
+		min-width: 7rem;
+		padding: 0.8rem 1rem;
+		text-align: left;
+		vertical-align: top;
+		border-right: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.article-content :global(th) {
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+		font-weight: 800;
+		letter-spacing: 0.025em;
+		color: var(--color-ink);
+		background: var(--color-accent-soft);
+	}
+
+	.article-content :global(tbody tr:nth-child(even)) {
+		background: var(--color-surface-glass);
+	}
+
+	.article-content :global(tr:last-child > *) {
+		border-bottom: 0;
+	}
+
+	.article-content :global(tr > :last-child) {
+		border-right: 0;
+	}
+
+	.article-content :global(caption) {
+		padding: 0.75rem 1rem;
+		font-size: 0.875rem;
+		font-weight: 700;
+		color: var(--color-muted);
+		text-align: left;
+		caption-side: bottom;
+	}
+
 	.article-content :global(img:not(.hero-image)) {
 		max-width: 100%;
 		max-height: min(34rem, 82vh);
