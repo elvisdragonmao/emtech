@@ -21,7 +21,7 @@ import {
 	type ImageInput,
 	type MetaItem
 } from "@/utils/content";
-import { blogPostingSchema, breadcrumbSchema, publisherSchema, webPageSchema, wordCountNumber } from "@/utils/seo";
+import { absoluteUrl, blogPostingSchema, breadcrumbSchema, publisherSchema, webPageSchema, wordCountNumber } from "@/utils/seo";
 
 export async function getStaticPaths() {
 	const posts = (await getCollection("post")).filter(post => !post.data.draft);
@@ -64,6 +64,7 @@ const heroTagLinks =
 const modifiedTime = entry.data.lastmod ?? entry.data.date;
 const authors = [entry.data.authors].flat().filter((author): author is string => Boolean(author));
 const displayAuthors = authors.map(author => (author === "elvismao" ? "毛哥EM" : author));
+const printUrl = absoluteUrl(`/p/${postId}/`);
 const breadcrumbId = `https://emtech.cc/p/${postId}/#breadcrumb`;
 const structuredData = [
 	publisherSchema(),
@@ -171,6 +172,7 @@ const relatedCards = related.map(item => {
 			previousTitle={previousContent?.title}
 			nextHref={nextContent?.href}
 			nextTitle={nextContent?.title}
+			printUrl={printUrl}
 		>
 			<Content />
 		</PostBody>
@@ -312,10 +314,15 @@ const relatedCards = related.map(item => {
 			padding: 0;
 		}
 
-		.about-wrap,
 		.comments-wrap,
 		.related-wrap {
 			display: none !important;
+		}
+
+		.about-wrap {
+			display: block;
+			margin-top: 12mm;
+			break-inside: avoid;
 		}
 	}
 </style>

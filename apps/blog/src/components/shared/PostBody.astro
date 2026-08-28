@@ -23,9 +23,10 @@ interface Props {
 	progressStorageKey?: string;
 	progressItemId?: string;
 	layout?: "post" | "course";
+	printUrl?: string;
 }
 
-const { tag, tagLinks = [], title, image, meta, tldr, headings = [], previousHref, previousTitle, nextHref, nextTitle, progressStorageKey, progressItemId, layout = "post" } = Astro.props;
+const { tag, tagLinks = [], title, image, meta, tldr, headings = [], previousHref, previousTitle, nextHref, nextTitle, progressStorageKey, progressItemId, layout = "post", printUrl } = Astro.props;
 const imageSrc = typeof image === "string" ? image : image?.src;
 const imageWidth = typeof image === "string" ? undefined : image?.width;
 const imageHeight = typeof image === "string" ? undefined : image?.height;
@@ -57,6 +58,16 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 		}
 		<h1 data-pagefind-meta="title">{title}</h1>
 		<MetaTable items={meta} />
+		{
+			printUrl && (
+				<dl class="print-url">
+					<dt>列印網址</dt>
+					<dd>
+						<a href={printUrl}>{printUrl}</a>
+					</dd>
+				</dl>
+			)
+		}
 	</div>
 	{
 		!isCourseLayout && (
@@ -1024,6 +1035,10 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 
 	.hero-main {
 		min-width: 0;
+	}
+
+	.print-url {
+		display: none;
 	}
 
 	.hero-side-nav {
@@ -2171,6 +2186,35 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 			color: #222;
 		}
 
+		.print-url {
+			display: grid;
+			grid-template-columns: 24mm minmax(0, 1fr);
+			gap: 2.5mm;
+			align-items: baseline;
+			margin-top: 2.5mm;
+			padding: 2mm 2.5mm;
+			font-family: var(--font-mono);
+			font-size: 8pt;
+			line-height: 1.4;
+			border: 1px solid #aaa;
+			break-inside: avoid;
+		}
+
+		.print-url dt {
+			font-weight: 800;
+			color: #555;
+		}
+
+		.print-url dd {
+			min-width: 0;
+			overflow-wrap: anywhere;
+		}
+
+		.print-url a {
+			color: #075d80;
+			text-decoration: none;
+		}
+
 		.article-shell {
 			margin-top: 7mm;
 		}
@@ -2327,8 +2371,6 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 			color: #666;
 		}
 
-		.tldr-callout,
-		.article-content :global(.callout-tldr),
 		.article-content :global(.callout-note),
 		.article-content :global(.callout-tip),
 		.article-content :global(.callout-important),
@@ -2339,9 +2381,9 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 			break-inside: avoid;
 		}
 
-		.tldr-callout > span[aria-hidden],
-		.article-content :global(.callout-tldr > span[aria-hidden]) {
-			display: none;
+		.tldr-callout,
+		.article-content :global(.callout-tldr) {
+			break-inside: avoid;
 		}
 	}
 </style>

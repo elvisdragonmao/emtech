@@ -169,4 +169,69 @@ const { copyright = false } = Astro.props;
 			width: 33.333%;
 		} */
 	}
+
+	@media print {
+		.about-card {
+			width: 100%;
+			padding: 8mm;
+			overflow: hidden;
+			background: #fff;
+			border: 1px solid #4a90ad;
+			box-shadow: none;
+			break-inside: avoid;
+		}
+
+		.about-card::before {
+			inset: 3mm;
+			border-color: #d5d5d5;
+		}
+
+		.eyebrow {
+			font-size: 7.5pt;
+			color: #555;
+		}
+
+		h2 {
+			margin-top: 2.5mm;
+			font-size: 20pt;
+			color: #111;
+		}
+
+		.bio {
+			max-width: 125mm;
+			margin-top: 3mm;
+			font-size: 9pt;
+			line-height: 1.45;
+			color: #444;
+		}
+
+		.bio a {
+			color: #075d80;
+			text-decoration: underline;
+		}
+
+		.links {
+			gap: 4mm;
+			margin-top: 4mm;
+		}
+
+		.links a {
+			color: #444;
+		}
+
+		.dragon-container {
+			min-width: 38mm;
+			height: auto;
+		}
+
+		.dragon {
+			top: -3mm;
+			right: 0;
+			bottom: auto;
+			left: auto;
+			width: 38mm;
+			margin: 0;
+			filter: none;
+		}
+	}
 </style>
