@@ -15,6 +15,11 @@ COMMENT_DEFAULT_STATUS_ANON = "approved"
 COMMENT_DEFAULT_STATUS_GITHUB = "approved"
 GITHUB_REDIRECT_URI = "https://api.emtech.cc/api/auth/github/callback"
 BLOG_ORIGIN = "https://emtech.cc"
+SMTP_HOST = "mail.smtp2go.com"
+SMTP_PORT = "587"
+SMTP_SECURITY = "starttls"
+SMTP_FROM_EMAIL = "no-reply@emtech.cc"
+SMTP_FROM_NAME = "毛哥EM資訊密技"
 
 [[routes]]
 pattern = "api.emtech.cc"
