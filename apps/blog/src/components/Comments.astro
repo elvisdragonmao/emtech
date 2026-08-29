@@ -58,7 +58,7 @@ const commentMetaIcons = {
 	data-recommended-reactions={JSON.stringify(COMMENT_REACTION_RECOMMENDED_EMOJIS)}
 >
 	<template data-reaction-icon-template>
-		<Smile size={20} stroke-width={2} aria-hidden="true" />
+		<Smile size={16} stroke-width={1.6} aria-hidden="true" />
 	</template>
 	<div class="comments-heading">
 		<div>
@@ -201,8 +201,10 @@ const commentMetaIcons = {
 		let activeReplyCard: HTMLElement | null = null;
 		let openReactionButton: HTMLButtonElement | null = null;
 		let activeReactionView: ReactionView | null = null;
+		let reactionPickerAnimation: Animation | null = null;
 		let turnstileWidgetId: string | null = null;
 		let turnstileRenderTimer = 0;
+		const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 		const reactionViews = new Map<string, ReactionView>();
 		const recommendedReactions = (() => {
 			try {
@@ -411,14 +413,80 @@ const commentMetaIcons = {
 			}
 		};
 
-		const closeReactionPicker = (options: { focus?: boolean } = {}) => {
-			if (!openReactionButton) return;
+		const stopReactionPickerAnimation = () => {
+			reactionPickerAnimation?.cancel();
+			reactionPickerAnimation = null;
+			reactionPicker.removeAttribute("data-motion");
+		};
+
+		const finishClosingReactionPicker = () => {
 			reactionPicker.hidden = true;
-			openReactionButton.setAttribute("aria-expanded", "false");
-			if (options.focus) openReactionButton.focus();
+			reactionPicker.removeAttribute("aria-hidden");
+			reactionPicker.removeAttribute("data-motion");
+			root.appendChild(reactionPicker);
+		};
+
+		const closeReactionPicker = (options: { focus?: boolean; immediate?: boolean } = {}) => {
+			if (!openReactionButton && reactionPicker.hidden) return;
+			const closingButton = openReactionButton;
+			closingButton?.setAttribute("aria-expanded", "false");
+			if (options.focus) closingButton?.focus();
 			openReactionButton = null;
 			activeReactionView = null;
-			root.appendChild(reactionPicker);
+			stopReactionPickerAnimation();
+
+			if (options.immediate || reducedMotion.matches) {
+				finishClosingReactionPicker();
+				return;
+			}
+
+			reactionPicker.dataset.motion = "closing";
+			reactionPicker.setAttribute("aria-hidden", "true");
+			const animation = reactionPicker.animate(
+				[
+					{ opacity: 1, transform: "translateY(0) scale(1)" },
+					{ opacity: 0, transform: "translateY(0.4rem) scale(0.985)" }
+				],
+				{ duration: 140, easing: "cubic-bezier(0.4, 0, 1, 1)", fill: "both" }
+			);
+			reactionPickerAnimation = animation;
+			void animation.finished
+				.then(() => {
+					if (reactionPickerAnimation !== animation) return;
+					reactionPickerAnimation = null;
+					finishClosingReactionPicker();
+					animation.cancel();
+				})
+				.catch(() => undefined);
+		};
+
+		const openReactionPicker = (view: ReactionView, button: HTMLButtonElement, host: HTMLElement) => {
+			stopReactionPickerAnimation();
+			activeReactionView = view;
+			openReactionButton = button;
+			host.prepend(reactionPicker);
+			reactionPicker.hidden = false;
+			reactionPicker.removeAttribute("aria-hidden");
+			button.setAttribute("aria-expanded", "true");
+
+			if (reducedMotion.matches) return;
+			reactionPicker.dataset.motion = "opening";
+			const animation = reactionPicker.animate(
+				[
+					{ opacity: 0, transform: "translateY(0.5rem) scale(0.98)" },
+					{ opacity: 1, transform: "translateY(0) scale(1)" }
+				],
+				{ duration: 190, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "both" }
+			);
+			reactionPickerAnimation = animation;
+			void animation.finished
+				.then(() => {
+					if (reactionPickerAnimation !== animation) return;
+					reactionPickerAnimation = null;
+					reactionPicker.removeAttribute("data-motion");
+					animation.cancel();
+				})
+				.catch(() => undefined);
 		};
 
 		const updateReactionPicker = () => {
@@ -640,7 +708,7 @@ const commentMetaIcons = {
 		};
 
 		const renderComments = (comments: PublicComment[], container: HTMLElement) => {
-			closeReactionPicker();
+			closeReactionPicker({ immediate: true });
 			reactionViews.clear();
 			container.removeAttribute("role");
 			const byParent = new Map<string, PublicComment[]>();
@@ -746,11 +814,7 @@ const commentMetaIcons = {
 					const opening = reactionPicker.hidden || activeReactionView?.comment.id !== view.comment.id;
 					closeReactionPicker();
 					if (!opening) return;
-					activeReactionView = view;
-					openReactionButton = reactionButton;
-					commentActions.prepend(reactionPicker);
-					reactionPicker.hidden = false;
-					reactionButton.setAttribute("aria-expanded", "true");
+					openReactionPicker(view, reactionButton, commentActions);
 					void showReactionPickerCategory("recommended");
 					void loadEmojiCategories().catch(() => undefined);
 				},
@@ -891,7 +955,8 @@ const commentMetaIcons = {
 		return () => {
 			window.clearTimeout(turnstileRenderTimer);
 			activeReplyCard?.classList.remove("reply-target");
-			closeReactionPicker();
+			closeReactionPicker({ immediate: true });
+			stopReactionPickerAnimation();
 			reactionPicker.remove();
 			const turnstile = getTurnstile();
 			if (turnstileWidgetId) turnstile?.remove?.(turnstileWidgetId);
@@ -1212,6 +1277,13 @@ const commentMetaIcons = {
 		margin-left: auto;
 	}
 
+	.comments :global(.comment-bottom .comment-actions > button) {
+		box-sizing: border-box;
+		height: 1.8rem;
+		padding: 0.25rem 0.55rem;
+		font-size: 0.78rem;
+	}
+
 	.comments :global(.reaction-count) {
 		min-height: 1.8rem;
 		padding: 0.25rem 0.55rem;
@@ -1234,18 +1306,20 @@ const commentMetaIcons = {
 		line-height: 1;
 	}
 
-	.comments :global(.comment-bottom .reaction-trigger) {
+	.comments :global(.comment-bottom .comment-actions > .reaction-trigger) {
 		justify-content: center;
-		width: 2.25rem;
-		height: 2.25rem;
+		width: 1.8rem;
+		height: 1.8rem;
 		padding: 0;
 	}
 
-	.comments :global(.comment-bottom .reaction-trigger svg) {
+	.comments :global(.comment-bottom .comment-actions > .reaction-trigger svg) {
 		display: block;
 		flex: none;
-		width: 1.25rem;
-		height: 1.25rem;
+		width: 1rem;
+		height: 1rem;
+		min-width: 1rem;
+		max-width: none;
 	}
 
 	.comments :global(.reaction-picker) {
@@ -1261,6 +1335,11 @@ const commentMetaIcons = {
 		background: color-mix(in oklch, var(--color-surface) 94%, var(--color-surface-soft));
 		border: 1px solid var(--color-accent-strong);
 		box-shadow: 0 1rem 2.5rem oklch(23% 0.04 240 / 18%);
+		transform-origin: bottom right;
+	}
+
+	.comments :global(.reaction-picker[data-motion]) {
+		will-change: opacity, transform;
 	}
 
 	.comments :global(.reaction-picker[hidden]) {
@@ -1469,6 +1548,7 @@ const commentMetaIcons = {
 			width: auto;
 			height: min(32rem, calc(100dvh - 2rem));
 			max-height: none;
+			transform-origin: bottom center;
 		}
 	}
 </style>
