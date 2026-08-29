@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { checkSpam, emailHash, gravatarUrlForEmail, gravatarUrlFromHash, isValidEmail, normalizeEmail, sanitizeCommentBody } from "../src/index";
+import { checkSpam, emailHash, gravatarUrlForEmail, gravatarUrlFromHash, isValidCommentReactionEmoji, isValidEmail, normalizeEmail, sanitizeCommentBody } from "../src/index";
 
 describe("email helpers", () => {
 	it("normalizes email before hashing", async () => {
@@ -37,5 +37,19 @@ describe("comment content helpers", () => {
 		expect(checkSpam("hello hello hello hello").action).toBe("pending");
 		expect(checkSpam("repeatrepeatrepeatrepeat").action).toBe("pending");
 		expect(checkSpam("x").action).toBe("pending");
+	});
+});
+
+describe("comment reaction helpers", () => {
+	it("accepts one complete RGI emoji sequence", () => {
+		for (const emoji of ["😀", "👨🏽‍💻", "👨‍👩‍👧‍👦", "🇹🇼", "1️⃣", "🏳️‍⚧️"]) {
+			expect(isValidCommentReactionEmoji(emoji)).toBe(true);
+		}
+	});
+
+	it("rejects text and multiple emoji", () => {
+		for (const value of ["", "hello", "©", "😀😀", "👍 ok"]) {
+			expect(isValidCommentReactionEmoji(value)).toBe(false);
+		}
 	});
 });

@@ -1,7 +1,5 @@
-import { COMMENT_REACTION_EMOJIS, isValidEmail } from "@emtech/comments-shared";
+import { isValidCommentReactionEmoji, isValidEmail } from "@emtech/comments-shared";
 import { z } from "zod";
-
-const commentReactionEmojis = new Set<string>(COMMENT_REACTION_EMOJIS);
 
 const optionalTrimmed = (max: number) =>
 	z
@@ -46,7 +44,7 @@ export const listCommentsSchema = z.object({
 
 export const setReactionSchema = z.object({
 	visitorId: z.string().trim().min(16).max(128),
-	emoji: z.string().refine(value => commentReactionEmojis.has(value), "Unsupported emoji"),
+	emoji: z.string().trim().min(1).max(64).refine(isValidCommentReactionEmoji, "Unsupported emoji"),
 	active: z.boolean()
 });
 

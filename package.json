@@ -9,6 +9,7 @@
 		"dev": "pnpm --filter blog dev",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
+		"generate:comment-emojis": "node scripts/generate-comment-emoji-data.mjs",
 		"lint": "pnpm -r typecheck",
 		"new": "node scripts/new-post.mjs",
 		"prepare": "sh -c 'if command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1; then git config core.hooksPath .githooks; fi'",

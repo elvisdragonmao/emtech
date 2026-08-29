@@ -1,15 +1,19 @@
 export type AuthorType = "anonymous" | "named" | "gravatar" | "github";
 export type CommentStatus = "pending" | "approved" | "rejected" | "spam" | "deleted";
 
-export const COMMENT_REACTION_GROUPS = [
-	{ label: "推薦", emojis: ["👍", "❤️", "😮", "❓", "🛐", "😭"] },
-	{ label: "表情", emojis: ["😀", "😂", "🥹", "😍", "🤔", "😅", "😎", "🥳", "😴", "😡", "🤯", "👀"] },
-	{ label: "手勢", emojis: ["👏", "🙌", "🤝", "🙏", "👌", "✌️", "🤞", "💪", "🫡", "👋", "👉", "👎"] },
-	{ label: "符號", emojis: ["❤️", "💔", "🔥", "✨", "💯", "✅", "❌", "⚠️", "❓", "❗", "💡", "🎉"] },
-	{ label: "其他", emojis: ["🛐", "😭", "🚀", "🐉", "🐱", "🌈", "☕", "🍿", "🎨", "💻", "📌", "🫠"] }
-] as const;
+export const COMMENT_REACTION_RECOMMENDED_EMOJIS = ["👍", "❤️", "😮", "❓", "🛐", "😭"] as const;
 
-export const COMMENT_REACTION_EMOJIS = [...new Set(COMMENT_REACTION_GROUPS.flatMap(group => group.emojis))];
+const RGI_EMOJI_PATTERN = (() => {
+	try {
+		return new RegExp("^\\p{RGI_Emoji}$", "v");
+	} catch {
+		return null;
+	}
+})();
+
+export function isValidCommentReactionEmoji(value: string): boolean {
+	return value.length > 0 && value.length <= 64 && Boolean(RGI_EMOJI_PATTERN?.test(value));
+}
 
 export type CommentReaction = {
 	emoji: string;

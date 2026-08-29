@@ -22,11 +22,16 @@ describe("comment validation", () => {
 		expect(result.success).toBe(true);
 	});
 
-	it("accepts supported reactions and rejects arbitrary text", () => {
+	it("accepts RGI emoji sequences and rejects arbitrary text", () => {
 		const reaction = { visitorId: "anonymous-browser-id", emoji: "👍", active: true };
 
 		expect(setReactionSchema.safeParse(reaction).success).toBe(true);
+		for (const emoji of ["🦊", "👨🏽‍💻", "👨‍👩‍👧‍👦", "🇹🇼", "1️⃣", "🏳️‍⚧️"]) {
+			expect(setReactionSchema.safeParse({ ...reaction, emoji }).success).toBe(true);
+		}
 		expect(setReactionSchema.safeParse({ ...reaction, emoji: "not-an-emoji" }).success).toBe(false);
+		expect(setReactionSchema.safeParse({ ...reaction, emoji: "😀😀" }).success).toBe(false);
+		expect(setReactionSchema.safeParse({ ...reaction, emoji: "©" }).success).toBe(false);
 	});
 });
 

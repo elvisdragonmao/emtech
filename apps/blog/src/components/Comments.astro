@@ -1,5 +1,5 @@
 ---
-import { COMMENT_REACTION_GROUPS } from "@emtech/comments-shared";
+import { COMMENT_REACTION_RECOMMENDED_EMOJIS } from "@emtech/comments-shared";
 import { LogOut, Send, Smile } from "@lucide/astro";
 import androidIconUrl from "@/assets/comment-icons/android.svg?url";
 import appleIconUrl from "@/assets/comment-icons/apple.svg?url";
@@ -55,7 +55,7 @@ const commentMetaIcons = {
 	data-api-base={commentApiBaseUrl}
 	data-turnstile-site-key={turnstileSiteKey}
 	data-comment-meta-icons={JSON.stringify(commentMetaIcons)}
-	data-reaction-groups={JSON.stringify(COMMENT_REACTION_GROUPS)}
+	data-recommended-reactions={JSON.stringify(COMMENT_REACTION_RECOMMENDED_EMOJIS)}
 >
 	<template data-reaction-icon-template>
 		<Smile size={16} stroke-width={1.8} aria-hidden="true" />
@@ -154,15 +154,16 @@ const commentMetaIcons = {
 		count: number;
 	};
 
-	type ReactionGroup = {
+	type EmojiCategory = {
+		id: string;
 		label: string;
-		emojis: string[];
+		icon: string;
+		emojis: readonly string[];
 	};
 
 	type ReactionView = {
 		comment: PublicComment;
 		bar: HTMLElement;
-		picker: HTMLElement;
 	};
 
 	type CommentMetaIcon = { src: string };
@@ -198,21 +199,35 @@ const commentMetaIcons = {
 		const reactionIconTemplate = root.querySelector<HTMLTemplateElement>("[data-reaction-icon-template]");
 		let isAuthenticated = false;
 		let activeReplyCard: HTMLElement | null = null;
-		let openReactionPicker: HTMLElement | null = null;
 		let openReactionButton: HTMLButtonElement | null = null;
+		let activeReactionView: ReactionView | null = null;
 		let turnstileWidgetId: string | null = null;
 		let turnstileRenderTimer = 0;
 		const reactionViews = new Map<string, ReactionView>();
-		const reactionGroups = (() => {
+		const recommendedReactions = (() => {
 			try {
-				return JSON.parse(root.dataset.reactionGroups ?? "[]") as ReactionGroup[];
+				return JSON.parse(root.dataset.recommendedReactions ?? "[]") as string[];
 			} catch {
 				return [];
 			}
 		})();
-		const allowedReactions = new Set(reactionGroups.flatMap(group => group.emojis));
+		const emojiCategoryNavigation = [
+			{ id: "recommended", label: "推薦", icon: "⭐" },
+			{ id: "smileys-emotion", label: "表情", icon: "😀" },
+			{ id: "people-body", label: "人物", icon: "👋" },
+			{ id: "animals-nature", label: "動物與自然", icon: "🐻" },
+			{ id: "food-drink", label: "飲食", icon: "🍜" },
+			{ id: "travel-places", label: "旅遊與地點", icon: "🚗" },
+			{ id: "activities", label: "活動", icon: "⚽" },
+			{ id: "objects", label: "物件", icon: "💡" },
+			{ id: "symbols", label: "符號", icon: "❤️" },
+			{ id: "flags", label: "旗幟", icon: "🏳️" }
+		] as const;
+		const reactionBatchSize = 120;
+		let emojiCategoriesPromise: Promise<readonly EmojiCategory[]> | null = null;
 		const reactionStorageKey = "emtech-comment-reactions:v1";
 		const reactionVisitorStorageKey = "emtech-comment-reaction-visitor:v1";
+		const isStorableReaction = (value: unknown): value is string => typeof value === "string" && value.length > 0 && value.length <= 64;
 		const createReactionVisitorId = () => globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`;
 		const readReactionVisitorId = () => {
 			try {
@@ -230,7 +245,7 @@ const commentMetaIcons = {
 				const parsed = JSON.parse(localStorage.getItem(reactionStorageKey) ?? "{}") as Record<string, unknown>;
 				return Object.fromEntries(
 					Object.entries(parsed)
-						.map(([commentId, emojis]) => [commentId, Array.isArray(emojis) ? emojis.filter((emoji): emoji is string => typeof emoji === "string" && allowedReactions.has(emoji)) : []])
+						.map(([commentId, emojis]) => [commentId, Array.isArray(emojis) ? emojis.filter(isStorableReaction) : []])
 						.filter(([, emojis]) => emojis.length > 0)
 				) as Record<string, string[]>;
 			} catch {
@@ -327,6 +342,62 @@ const commentMetaIcons = {
 
 		const apiUrl = (path: string) => `${apiBase}${path}`;
 		const hasOwnReaction = (commentId: string, emoji: string) => ownReactions[commentId]?.includes(emoji) ?? false;
+		const reactionPicker = document.createElement("div");
+		const reactionPickerHeading = document.createElement("p");
+		const reactionPickerClose = document.createElement("button");
+		const reactionPickerScroll = document.createElement("div");
+		const reactionPickerGrid = document.createElement("div");
+		const reactionPickerStatus = document.createElement("p");
+		const reactionPickerNavigation = document.createElement("div");
+		let activePickerCategoryId = "recommended";
+		let activePickerEmojis: readonly string[] = recommendedReactions;
+		let renderedPickerEmojiCount = 0;
+		let pickerCategoryRequest = 0;
+
+		reactionPicker.className = "reaction-picker";
+		reactionPicker.hidden = true;
+		reactionPicker.setAttribute("role", "dialog");
+		reactionPicker.setAttribute("aria-labelledby", "comment-reaction-picker-heading");
+		reactionPickerHeading.id = "comment-reaction-picker-heading";
+		reactionPickerHeading.className = "reaction-picker-heading";
+		reactionPickerClose.type = "button";
+		reactionPickerClose.className = "reaction-picker-close";
+		reactionPickerClose.textContent = "×";
+		reactionPickerClose.setAttribute("aria-label", "關閉 Emoji 選擇器");
+		const reactionPickerToolbar = document.createElement("div");
+		reactionPickerToolbar.className = "reaction-picker-toolbar";
+		reactionPickerToolbar.append(reactionPickerHeading, reactionPickerClose);
+		reactionPickerScroll.className = "reaction-picker-scroll";
+		reactionPickerGrid.className = "reaction-picker-grid";
+		reactionPickerGrid.setAttribute("role", "tabpanel");
+		reactionPickerStatus.className = "reaction-picker-status";
+		reactionPickerStatus.setAttribute("role", "status");
+		reactionPickerStatus.hidden = true;
+		reactionPickerScroll.append(reactionPickerGrid, reactionPickerStatus);
+		reactionPickerNavigation.className = "reaction-picker-navigation";
+		reactionPickerNavigation.setAttribute("role", "tablist");
+		reactionPickerNavigation.setAttribute("aria-label", "Emoji 分類");
+		for (const category of emojiCategoryNavigation) {
+			const button = document.createElement("button");
+			button.type = "button";
+			button.id = `comment-emoji-category-${category.id}`;
+			button.className = "reaction-category";
+			button.dataset.emojiCategory = category.id;
+			button.textContent = category.icon;
+			button.title = category.label;
+			button.setAttribute("role", "tab");
+			button.setAttribute("aria-label", category.label);
+			button.setAttribute("aria-selected", String(category.id === activePickerCategoryId));
+			reactionPickerNavigation.appendChild(button);
+		}
+		reactionPicker.append(reactionPickerToolbar, reactionPickerScroll, reactionPickerNavigation);
+		root.appendChild(reactionPicker);
+
+		const loadEmojiCategories = () => {
+			emojiCategoriesPromise ??= import("@/data/comment-emojis.generated").then(module => module.COMMENT_EMOJI_CATEGORIES);
+			return emojiCategoriesPromise;
+		};
+
 		const saveOwnReaction = (commentId: string, emoji: string, active: boolean) => {
 			const selected = new Set(ownReactions[commentId] ?? []);
 			if (active) selected.add(emoji);
@@ -341,20 +412,81 @@ const commentMetaIcons = {
 		};
 
 		const closeReactionPicker = (options: { focus?: boolean } = {}) => {
-			if (!openReactionPicker || !openReactionButton) return;
-			openReactionPicker.hidden = true;
+			if (!openReactionButton) return;
+			reactionPicker.hidden = true;
 			openReactionButton.setAttribute("aria-expanded", "false");
 			if (options.focus) openReactionButton.focus();
-			openReactionPicker = null;
 			openReactionButton = null;
+			activeReactionView = null;
+			root.appendChild(reactionPicker);
 		};
 
-		const updateReactionPicker = (view: ReactionView) => {
-			for (const button of view.picker.querySelectorAll<HTMLButtonElement>("[data-reaction-emoji]")) {
+		const updateReactionPicker = () => {
+			if (!activeReactionView) return;
+			for (const button of reactionPicker.querySelectorAll<HTMLButtonElement>("[data-reaction-emoji]")) {
 				const emoji = button.dataset.reactionEmoji ?? "";
-				const selected = hasOwnReaction(view.comment.id, emoji);
+				const selected = hasOwnReaction(activeReactionView.comment.id, emoji);
 				button.setAttribute("aria-pressed", String(selected));
 				button.dataset.selected = String(selected);
+			}
+		};
+
+		const appendReactionPickerBatch = () => {
+			if (renderedPickerEmojiCount >= activePickerEmojis.length) return;
+			const fragment = document.createDocumentFragment();
+			const nextLimit = Math.min(renderedPickerEmojiCount + reactionBatchSize, activePickerEmojis.length);
+			for (const emoji of activePickerEmojis.slice(renderedPickerEmojiCount, nextLimit)) {
+				const button = document.createElement("button");
+				button.type = "button";
+				button.className = "reaction-option";
+				button.dataset.reactionEmoji = emoji;
+				button.textContent = emoji;
+				button.setAttribute("aria-label", `使用 ${emoji} 回應`);
+				fragment.appendChild(button);
+			}
+			renderedPickerEmojiCount = nextLimit;
+			reactionPickerGrid.appendChild(fragment);
+			updateReactionPicker();
+		};
+
+		const showReactionPickerCategory = async (categoryId: string) => {
+			const request = ++pickerCategoryRequest;
+			activePickerCategoryId = categoryId;
+			const navigationItem = emojiCategoryNavigation.find(category => category.id === categoryId) ?? emojiCategoryNavigation[0];
+			reactionPicker.dataset.category = navigationItem.id;
+			reactionPickerHeading.textContent = navigationItem.label;
+			reactionPickerGrid.setAttribute("aria-labelledby", `comment-emoji-category-${navigationItem.id}`);
+			for (const button of reactionPickerNavigation.querySelectorAll<HTMLButtonElement>("[data-emoji-category]")) {
+				const selected = button.dataset.emojiCategory === navigationItem.id;
+				button.setAttribute("aria-selected", String(selected));
+				button.dataset.selected = String(selected);
+			}
+			reactionPickerScroll.scrollTop = 0;
+			reactionPickerGrid.replaceChildren();
+			reactionPickerStatus.hidden = true;
+			renderedPickerEmojiCount = 0;
+
+			if (navigationItem.id === "recommended") {
+				activePickerEmojis = recommendedReactions;
+				appendReactionPickerBatch();
+				return;
+			}
+
+			activePickerEmojis = [];
+			reactionPickerStatus.textContent = "載入完整 Emoji…";
+			reactionPickerStatus.hidden = false;
+			try {
+				const categories = await loadEmojiCategories();
+				if (request !== pickerCategoryRequest || signal.aborted) return;
+				const category = categories.find(item => item.id === navigationItem.id);
+				activePickerEmojis = category?.emojis ?? [];
+				reactionPickerStatus.hidden = activePickerEmojis.length > 0;
+				reactionPickerStatus.textContent = activePickerEmojis.length > 0 ? "" : "這個分類目前沒有可用的 Emoji。";
+				appendReactionPickerBatch();
+			} catch {
+				if (request !== pickerCategoryRequest || signal.aborted) return;
+				reactionPickerStatus.textContent = "完整 Emoji 載入失敗，請稍後再試。";
+				reactionPickerStatus.hidden = false;
 			}
 		};
 
@@ -384,11 +516,10 @@ const commentMetaIcons = {
 		};
 
 		const toggleReaction = async (view: ReactionView, emoji: string) => {
-			if (!allowedReactions.has(emoji)) return;
+			if (!isStorableReaction(emoji)) return;
 			const active = !hasOwnReaction(view.comment.id, emoji);
-			const relatedButtons = Array.from(view.bar.querySelectorAll<HTMLButtonElement>(`[data-reaction-emoji="${CSS.escape(emoji)}"]`)).concat(
-				Array.from(view.picker.querySelectorAll<HTMLButtonElement>(`[data-reaction-emoji="${CSS.escape(emoji)}"]`))
-			);
+			const pickerButtons = activeReactionView?.comment.id === view.comment.id ? Array.from(reactionPicker.querySelectorAll<HTMLButtonElement>(`[data-reaction-emoji="${CSS.escape(emoji)}"]`)) : [];
+			const relatedButtons = Array.from(view.bar.querySelectorAll<HTMLButtonElement>(`[data-reaction-emoji="${CSS.escape(emoji)}"]`)).concat(pickerButtons);
 			for (const button of relatedButtons) button.disabled = true;
 
 			try {
@@ -404,7 +535,7 @@ const commentMetaIcons = {
 				view.comment.reactions = result.reactions;
 				saveOwnReaction(view.comment.id, emoji, active);
 				updateReactionBar(view);
-				updateReactionPicker(view);
+				updateReactionPicker();
 			} catch (error) {
 				if (error instanceof DOMException && error.name === "AbortError") return;
 				setNotice(error instanceof Error ? error.message : "表情符號回應失敗", "error");
@@ -413,35 +544,33 @@ const commentMetaIcons = {
 			}
 		};
 
-		const createReactionPicker = (view: ReactionView) => {
-			const picker = view.picker;
-			picker.className = "reaction-picker";
-			picker.hidden = true;
-			picker.setAttribute("role", "dialog");
-			picker.setAttribute("aria-label", "選擇表情符號回應");
-			for (const group of reactionGroups) {
-				const section = document.createElement("section");
-				section.className = "reaction-picker-group";
-				const heading = document.createElement("p");
-				heading.className = "reaction-picker-heading";
-				heading.textContent = group.label;
-				const grid = document.createElement("div");
-				grid.className = "reaction-picker-grid";
-				for (const emoji of group.emojis) {
-					const button = document.createElement("button");
-					button.type = "button";
-					button.className = "reaction-option";
-					button.dataset.reactionEmoji = emoji;
-					button.textContent = emoji;
-					button.setAttribute("aria-label", `使用 ${emoji} 回應`);
-					button.addEventListener("click", () => void toggleReaction(view, emoji), { signal });
-					grid.appendChild(button);
-				}
-				section.append(heading, grid);
-				picker.appendChild(section);
-			}
-			updateReactionPicker(view);
-		};
+		reactionPickerGrid.addEventListener(
+			"click",
+			event => {
+				const button = event.target instanceof Element ? event.target.closest<HTMLButtonElement>("[data-reaction-emoji]") : null;
+				const emoji = button?.dataset.reactionEmoji;
+				if (!activeReactionView || !emoji) return;
+				void toggleReaction(activeReactionView, emoji);
+			},
+			{ signal }
+		);
+		reactionPickerNavigation.addEventListener(
+			"click",
+			event => {
+				const button = event.target instanceof Element ? event.target.closest<HTMLButtonElement>("[data-emoji-category]") : null;
+				if (!button?.dataset.emojiCategory) return;
+				void showReactionPickerCategory(button.dataset.emojiCategory);
+			},
+			{ signal }
+		);
+		reactionPickerScroll.addEventListener(
+			"scroll",
+			() => {
+				if (reactionPickerScroll.scrollHeight - reactionPickerScroll.scrollTop - reactionPickerScroll.clientHeight < 180) appendReactionPickerBatch();
+			},
+			{ passive: true, signal }
+		);
+		reactionPickerClose.addEventListener("click", () => closeReactionPicker({ focus: true }), { signal });
 
 		const rerenderTurnstile = () => {
 			if (!form) return;
@@ -511,6 +640,7 @@ const commentMetaIcons = {
 		};
 
 		const renderComments = (comments: PublicComment[], container: HTMLElement) => {
+			closeReactionPicker();
 			reactionViews.clear();
 			container.removeAttribute("role");
 			const byParent = new Map<string, PublicComment[]>();
@@ -599,10 +729,8 @@ const commentMetaIcons = {
 			reactionBar.setAttribute("aria-label", "表情符號回應");
 			const commentActions = document.createElement("div");
 			commentActions.className = "comment-actions";
-			const reactionPicker = document.createElement("div");
-			const view = { comment, bar: reactionBar, picker: reactionPicker };
+			const view = { comment, bar: reactionBar };
 			reactionViews.set(comment.id, view);
-			createReactionPicker(view);
 			updateReactionBar(view);
 			const reactionButton = document.createElement("button");
 			reactionButton.type = "button";
@@ -615,13 +743,16 @@ const commentMetaIcons = {
 			reactionButton.addEventListener(
 				"click",
 				() => {
-					const opening = reactionPicker.hidden;
+					const opening = reactionPicker.hidden || activeReactionView?.comment.id !== view.comment.id;
 					closeReactionPicker();
 					if (!opening) return;
+					activeReactionView = view;
+					openReactionButton = reactionButton;
+					commentActions.prepend(reactionPicker);
 					reactionPicker.hidden = false;
 					reactionButton.setAttribute("aria-expanded", "true");
-					openReactionPicker = reactionPicker;
-					openReactionButton = reactionButton;
+					void showReactionPickerCategory("recommended");
+					void loadEmojiCategories().catch(() => undefined);
 				},
 				{ signal }
 			);
@@ -646,7 +777,7 @@ const commentMetaIcons = {
 				},
 				{ signal }
 			);
-			commentActions.append(reactionPicker, reactionButton, reply);
+			commentActions.append(reactionButton, reply);
 			bottom.append(reactionBar, commentActions);
 			article.append(head, body, bottom);
 			return article;
@@ -671,14 +802,14 @@ const commentMetaIcons = {
 		document.addEventListener(
 			"click",
 			event => {
-				if (openReactionPicker && event.target instanceof Node && !openReactionPicker.parentElement?.contains(event.target)) closeReactionPicker();
+				if (openReactionButton && event.target instanceof Node && !reactionPicker.contains(event.target) && !openReactionButton.contains(event.target)) closeReactionPicker();
 			},
 			{ signal }
 		);
 		document.addEventListener(
 			"keydown",
 			event => {
-				if (event.key === "Escape" && openReactionPicker) closeReactionPicker({ focus: true });
+				if (event.key === "Escape" && openReactionButton) closeReactionPicker({ focus: true });
 			},
 			{ signal }
 		);
@@ -689,8 +820,8 @@ const commentMetaIcons = {
 				ownReactions = readOwnReactions();
 				for (const view of reactionViews.values()) {
 					updateReactionBar(view);
-					updateReactionPicker(view);
 				}
+				updateReactionPicker();
 			},
 			{ signal }
 		);
@@ -761,6 +892,7 @@ const commentMetaIcons = {
 			window.clearTimeout(turnstileRenderTimer);
 			activeReplyCard?.classList.remove("reply-target");
 			closeReactionPicker();
+			reactionPicker.remove();
 			const turnstile = getTurnstile();
 			if (turnstileWidgetId) turnstile?.remove?.(turnstileWidgetId);
 			controller.abort();
@@ -1119,11 +1251,10 @@ const commentMetaIcons = {
 		bottom: calc(100% + 0.55rem);
 		z-index: 8;
 		display: grid;
-		gap: 0.85rem;
-		width: min(20rem, calc(100vw - 2rem));
-		max-height: min(25rem, 70vh);
-		padding: 0.85rem;
-		overflow-y: auto;
+		grid-template-rows: auto minmax(0, 1fr) auto;
+		width: min(23rem, calc(100vw - 2rem));
+		height: min(31rem, 76vh);
+		overflow: hidden;
 		background: color-mix(in oklch, var(--color-surface) 94%, var(--color-surface-soft));
 		border: 1px solid var(--color-accent-strong);
 		box-shadow: 0 1rem 2.5rem oklch(23% 0.04 240 / 18%);
@@ -1133,13 +1264,13 @@ const commentMetaIcons = {
 		display: none;
 	}
 
-	.comments :global(.reaction-picker-group) {
-		display: grid;
-		gap: 0.45rem;
-	}
-
-	.comments :global(.reaction-picker-group:first-child) {
-		padding-bottom: 0.85rem;
+	.comments :global(.reaction-picker-toolbar) {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		min-height: 2.75rem;
+		padding: 0.65rem 0.85rem;
 		border-bottom: 1px solid var(--color-border);
 	}
 
@@ -1152,10 +1283,36 @@ const commentMetaIcons = {
 		color: var(--color-muted);
 	}
 
+	.comments :global(.reaction-picker-close) {
+		display: grid;
+		place-items: center;
+		width: 1.75rem;
+		height: 1.75rem;
+		padding: 0;
+		font-family: system-ui, sans-serif;
+		font-size: 1.35rem;
+		font-weight: 400;
+		line-height: 1;
+		background: transparent;
+		border-color: transparent;
+	}
+
+	.comments :global(.reaction-picker-scroll) {
+		min-height: 0;
+		padding: 0.75rem;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		scrollbar-gutter: stable;
+	}
+
 	.comments :global(.reaction-picker-grid) {
 		display: grid;
+		grid-template-columns: repeat(8, 1fr);
+		gap: 0.2rem;
+	}
+
+	.comments :global(.reaction-picker[data-category="recommended"] .reaction-picker-grid) {
 		grid-template-columns: repeat(6, 1fr);
-		gap: 0.3rem;
 	}
 
 	.comments :global(.reaction-picker .reaction-option) {
@@ -1165,17 +1322,69 @@ const commentMetaIcons = {
 		aspect-ratio: 1;
 		padding: 0;
 		font-family: system-ui, sans-serif;
-		font-size: 1.35rem;
+		font-size: 1.4rem;
 		line-height: 1;
 		background: transparent;
 		border-color: transparent;
 	}
 
-	.comments :global(.reaction-picker .reaction-option:hover) {
+	.comments :global(.reaction-picker .reaction-option:hover),
+	.comments :global(.reaction-picker .reaction-option:focus-visible),
+	.comments :global(.reaction-picker-close:hover),
+	.comments :global(.reaction-picker-close:focus-visible),
+	.comments :global(.reaction-category:hover),
+	.comments :global(.reaction-category:focus-visible) {
 		background: var(--color-surface-soft);
 		border-color: var(--color-border);
 		box-shadow: none;
 		transform: none;
+	}
+
+	.comments :global(.reaction-picker-status) {
+		grid-column: 1 / -1;
+		padding: 1rem 0.25rem;
+		font-size: 0.85rem;
+		color: var(--color-muted);
+	}
+
+	.comments :global(.reaction-picker-status[hidden]) {
+		display: none;
+	}
+
+	.comments :global(.reaction-picker-navigation) {
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: 2rem;
+		justify-content: space-between;
+		gap: 0.2rem;
+		padding: 0.4rem;
+		overflow-x: auto;
+		background: color-mix(in oklch, var(--color-surface-soft) 58%, var(--color-surface));
+		border-top: 1px solid var(--color-border);
+		scrollbar-width: none;
+	}
+
+	.comments :global(.reaction-picker-navigation::-webkit-scrollbar) {
+		display: none;
+	}
+
+	.comments :global(.reaction-category) {
+		display: grid;
+		place-items: center;
+		width: 2rem;
+		height: 2rem;
+		padding: 0;
+		font-family: system-ui, sans-serif;
+		font-size: 1rem;
+		line-height: 1;
+		background: transparent;
+		border-color: transparent;
+	}
+
+	.comments :global(.reaction-category[data-selected="true"]) {
+		background: oklch(93% 0.045 220 / 55%);
+		border-color: var(--color-accent-strong);
+		box-shadow: inset 0 -0.15rem 0 oklch(71% 0.15 225 / 22%);
 	}
 
 	.comments :global(.comment-meta-pill) {
@@ -1261,7 +1470,8 @@ const commentMetaIcons = {
 			left: 1rem;
 			z-index: 100;
 			width: auto;
-			max-height: calc(100dvh - 2rem);
+			height: min(32rem, calc(100dvh - 2rem));
+			max-height: none;
 		}
 	}
 </style>
