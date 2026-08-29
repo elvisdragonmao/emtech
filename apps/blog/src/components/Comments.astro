@@ -1,6 +1,6 @@
 ---
 import { COMMENT_REACTION_RECOMMENDED_EMOJIS } from "@emtech/comments-shared";
-import { LogOut, Send, Smile } from "@lucide/astro";
+import { LogOut, Send, Smile, Trash2 } from "@lucide/astro";
 import androidIconUrl from "@/assets/comment-icons/android.svg?url";
 import appleIconUrl from "@/assets/comment-icons/apple.svg?url";
 import chromeIconUrl from "@/assets/comment-icons/chrome.svg?url";
@@ -59,6 +59,9 @@ const commentMetaIcons = {
 >
 	<template data-reaction-icon-template>
 		<Smile size={16} stroke-width={1.6} aria-hidden="true" />
+	</template>
+	<template data-delete-icon-template>
+		<Trash2 size={14} stroke-width={1.8} aria-hidden="true" />
 	</template>
 	<div class="comments-heading">
 		<div>
@@ -140,12 +143,16 @@ const commentMetaIcons = {
 			name: string;
 			avatarUrl: string | null;
 		};
+		deleted?: boolean;
 		meta: {
 			device: string | null;
 			browser: string | null;
 			location: string | null;
 		};
 		reactions: CommentReaction[];
+		capabilities?: {
+			canDelete: boolean;
+		};
 		createdAt: string;
 	};
 
@@ -197,6 +204,7 @@ const commentMetaIcons = {
 		const cancelReply = root.querySelector<HTMLButtonElement>("[data-cancel-reply]");
 		const anonymousIdentityFields = Array.from(root.querySelectorAll<HTMLElement>("[data-anonymous-identity-field]"));
 		const reactionIconTemplate = root.querySelector<HTMLTemplateElement>("[data-reaction-icon-template]");
+		const deleteIconTemplate = root.querySelector<HTMLTemplateElement>("[data-delete-icon-template]");
 		let isAuthenticated = false;
 		let activeReplyCard: HTMLElement | null = null;
 		let openReactionButton: HTMLButtonElement | null = null;
@@ -750,6 +758,7 @@ const commentMetaIcons = {
 		const renderComment = (comment: PublicComment) => {
 			const article = document.createElement("article");
 			article.className = "comment-card";
+			article.classList.toggle("comment-deleted", comment.deleted === true);
 			article.setAttribute("role", "listitem");
 
 			const head = document.createElement("div");
@@ -788,10 +797,12 @@ const commentMetaIcons = {
 
 			const bottom = document.createElement("div");
 			bottom.className = "comment-bottom";
-			appendMetaPill(bottom, comment.author.type === "github" ? "GitHub 驗證" : "匿名留言", comment.author.type === "github" ? metaIcons.auth.github : undefined);
-			appendMetaPill(bottom, comment.meta?.device, comment.meta?.device ? metaIcons.device[comment.meta.device] : undefined);
-			appendMetaPill(bottom, comment.meta?.browser, comment.meta?.browser ? metaIcons.browser[comment.meta.browser] : undefined);
-			appendMetaPill(bottom, comment.meta?.location);
+			if (!comment.deleted) {
+				appendMetaPill(bottom, comment.author.type === "github" ? "GitHub 驗證" : "匿名留言", comment.author.type === "github" ? metaIcons.auth.github : undefined);
+				appendMetaPill(bottom, comment.meta?.device, comment.meta?.device ? metaIcons.device[comment.meta.device] : undefined);
+				appendMetaPill(bottom, comment.meta?.browser, comment.meta?.browser ? metaIcons.browser[comment.meta.browser] : undefined);
+				appendMetaPill(bottom, comment.meta?.location);
+			}
 			const reactionBar = document.createElement("div");
 			reactionBar.className = "reaction-bar";
 			reactionBar.setAttribute("aria-label", "表情符號回應");
@@ -841,9 +852,45 @@ const commentMetaIcons = {
 				},
 				{ signal }
 			);
-			commentActions.append(reactionButton, reply);
+			if (!comment.deleted) commentActions.append(reactionButton, reply);
+			if (comment.capabilities?.canDelete) {
+				const remove = document.createElement("button");
+				remove.type = "button";
+				remove.className = "delete-comment";
+				remove.setAttribute("aria-label", "刪除自己的留言");
+				if (deleteIconTemplate) remove.appendChild(deleteIconTemplate.content.cloneNode(true));
+				remove.append("刪除");
+				remove.addEventListener(
+					"click",
+					async () => {
+						if (!window.confirm("確定要刪除這則留言嗎？")) return;
+						remove.disabled = true;
+						remove.setAttribute("aria-busy", "true");
+						try {
+							const response = await fetch(apiUrl(`/api/comments/${encodeURIComponent(comment.id)}/delete`), {
+								method: "POST",
+								credentials: "include",
+								signal
+							});
+							const result = await response.json();
+							if (!response.ok) throw new Error(result.error ?? "留言刪除失敗");
+							if (activeReplyCard === article) resetReply();
+							setNotice("留言已刪除。", "success");
+							await loadComments();
+						} catch (error) {
+							if (error instanceof DOMException && error.name === "AbortError") return;
+							setNotice(error instanceof Error ? error.message : "留言刪除失敗", "error");
+							remove.disabled = false;
+							remove.removeAttribute("aria-busy");
+						}
+					},
+					{ signal }
+				);
+				commentActions.appendChild(remove);
+			}
 			bottom.append(reactionBar, commentActions);
-			article.append(head, body, bottom);
+			article.append(head, body);
+			if (!comment.deleted) article.appendChild(bottom);
 			return article;
 		};
 
@@ -1203,6 +1250,15 @@ const commentMetaIcons = {
 		border-color: var(--color-accent);
 	}
 
+	.comments :global(.comment-card.comment-deleted) {
+		background: color-mix(in oklch, var(--color-surface-soft) 74%, var(--color-surface));
+	}
+
+	.comments :global(.comment-card.comment-deleted > p) {
+		font-style: italic;
+		color: var(--color-muted);
+	}
+
 	.comments :global(.comment-head) {
 		display: flex;
 		align-items: center;
@@ -1283,6 +1339,17 @@ const commentMetaIcons = {
 		height: 1.8rem;
 		padding: 0.25rem 0.55rem;
 		font-size: 0.78rem;
+	}
+
+	.comments :global(.comment-bottom .comment-actions > .delete-comment) {
+		color: oklch(45% 0.16 28);
+		border-color: oklch(70% 0.1 28);
+	}
+
+	.comments :global(.comment-bottom .comment-actions > .delete-comment:hover) {
+		color: oklch(40% 0.17 28);
+		background: oklch(94% 0.035 28);
+		border-color: oklch(58% 0.16 28);
 	}
 
 	.comments :global(.reaction-count) {

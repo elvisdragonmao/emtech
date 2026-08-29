@@ -1,7 +1,7 @@
 import { listAdminComments, moderateComment } from "./moderation/admin";
 import { adminUi } from "./routes/admin-ui";
 import { authMe, githubCallback, githubStart, logout } from "./routes/auth";
-import { createComment, listComments, updateCommentReaction } from "./routes/comments";
+import { createComment, deleteComment, listComments, updateCommentReaction } from "./routes/comments";
 import { unsubscribeCommentThread } from "./routes/email-notifications";
 import type { AppContext, Env } from "./types";
 import { corsHeaders, json, routeNotFound } from "./utils/http";
@@ -51,6 +51,10 @@ async function route(ctx: AppContext): Promise<Response> {
 	if (method === "GET" && pathname === "/api/comments") return listComments(ctx);
 	if (method === "POST" && pathname === "/api/comments") return createComment(ctx);
 	if ((method === "GET" || method === "POST") && pathname === "/api/comments/unsubscribe") return unsubscribeCommentThread(ctx);
+	const deleteMatch = pathname.match(/^\/api\/comments\/([^/]+)\/delete$/);
+	if (method === "POST" && deleteMatch?.[1]) {
+		return deleteComment(ctx, decodeURIComponent(deleteMatch[1]));
+	}
 
 	const reactionMatch = pathname.match(/^\/api\/comments\/([^/]+)\/reactions$/);
 	if (method === "POST" && reactionMatch?.[1]) {

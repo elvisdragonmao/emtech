@@ -1,6 +1,6 @@
 import { emailHash, normalizeEmail, type CommentStatus } from "@emtech/comments-shared";
 import { getSessionUser } from "../auth/session";
-import { insertComment, listApprovedComments, parentExists, setCommentReaction } from "../db/comments";
+import { deleteCommentOwnedBy, insertComment, listApprovedComments, parentExists, setCommentReaction } from "../db/comments";
 import { logDiscordNotificationFailure, notifyDiscordComment } from "../notifications/discord";
 import { logThreadEmailFailure, notifyThreadReply } from "../notifications/thread-email";
 import type { AppContext } from "../types";
@@ -19,7 +19,21 @@ export async function listComments(ctx: AppContext): Promise<Response> {
 		return json({ error: "Invalid pagePath" }, { status: 400 }, ctx.corsHeaders);
 	}
 
-	return json({ comments: await listApprovedComments(ctx.env, parsed.data.pagePath) }, {}, ctx.corsHeaders);
+	const user = await getSessionUser(ctx.request, ctx.env);
+	return json({ comments: await listApprovedComments(ctx.env, parsed.data.pagePath, user?.githubUserId ?? null) }, {}, ctx.corsHeaders);
+}
+
+export async function deleteComment(ctx: AppContext, commentId: string): Promise<Response> {
+	const user = await getSessionUser(ctx.request, ctx.env);
+	if (!user) {
+		return json({ error: "Unauthorized" }, { status: 401 }, ctx.corsHeaders);
+	}
+
+	if (!(await deleteCommentOwnedBy(ctx.env, commentId, user.githubUserId))) {
+		return json({ error: "Comment not found" }, { status: 404 }, ctx.corsHeaders);
+	}
+
+	return json({ ok: true, id: commentId, status: "deleted" }, {}, ctx.corsHeaders);
 }
 
 export async function createComment(ctx: AppContext): Promise<Response> {

@@ -7,40 +7,52 @@ type CommentReactionRow = {
 	count: number;
 };
 
-export function publicCommentFromRow(row: CommentRow, reactions: CommentReaction[] = []): PublicComment {
+type PublicCommentOptions = {
+	currentGithubUserId?: number | null;
+	redactDeleted?: boolean;
+};
+
+export function publicCommentFromRow(row: CommentRow, reactions: CommentReaction[] = [], options: PublicCommentOptions = {}): PublicComment {
+	const deleted = row.status === "deleted";
+	const redactDeleted = deleted && options.redactDeleted;
 	const isGithub = row.author_type === "github";
-	const name = row.github_login ?? row.author_name ?? "Anonymous";
-	const avatarUrl = isGithub ? row.github_avatar_url : row.email_hash ? gravatarUrlFromHash(row.email_hash) : null;
+	const name = redactDeleted ? "已刪除的留言" : (row.github_login ?? row.author_name ?? "Anonymous");
+	const avatarUrl = redactDeleted ? null : isGithub ? row.github_avatar_url : row.email_hash ? gravatarUrlFromHash(row.email_hash) : null;
 
 	return {
 		id: row.id,
 		pagePath: row.page_path,
 		parentId: row.parent_id,
-		body: sanitizeCommentBody(row.body),
+		body: redactDeleted ? "此留言已由作者刪除。" : sanitizeCommentBody(row.body),
+		deleted,
 		author: {
-			type: row.author_type,
+			type: redactDeleted ? "anonymous" : row.author_type,
 			name: escapeHtml(name),
 			avatarUrl
 		},
 		meta: {
-			device: row.device_label ? escapeHtml(row.device_label) : null,
-			browser: row.browser_label ? escapeHtml(row.browser_label) : null,
-			location: row.location_label ? escapeHtml(row.location_label) : null
+			device: redactDeleted ? null : row.device_label ? escapeHtml(row.device_label) : null,
+			browser: redactDeleted ? null : row.browser_label ? escapeHtml(row.browser_label) : null,
+			location: redactDeleted ? null : row.location_label ? escapeHtml(row.location_label) : null
 		},
-		reactions,
+		reactions: redactDeleted ? [] : reactions,
+		capabilities: {
+			canDelete: !deleted && options.currentGithubUserId != null && row.github_user_id === options.currentGithubUserId
+		},
 		createdAt: row.created_at
 	};
 }
 
-export async function listApprovedComments(env: Env, pagePath: string): Promise<PublicComment[]> {
+export async function listApprovedComments(env: Env, pagePath: string, currentGithubUserId: number | null = null): Promise<PublicComment[]> {
 	const { results } = await env.COMMENTS_DB.prepare(
 		`SELECT id, page_path, parent_id, body, author_type, author_name, email_hash, github_user_id, github_login, github_avatar_url, status, device_label, browser_label, location_label, created_at, updated_at
 		 FROM comments
-		 WHERE page_path = ? AND status = 'approved'
+		 WHERE page_path = ? AND status IN ('approved', 'deleted')
 		 ORDER BY created_at ASC`
 	)
 		.bind(pagePath)
 		.all<CommentRow>();
+	const visibleRows = visibleCommentRows(results);
 
 	const reactionsByComment = new Map<string, CommentReaction[]>();
 	const { results: reactionRows } = await env.COMMENTS_DB.prepare(
@@ -61,7 +73,39 @@ export async function listApprovedComments(env: Env, pagePath: string): Promise<
 		reactionsByComment.set(reaction.comment_id, commentReactions);
 	}
 
-	return results.map(row => publicCommentFromRow(row, reactionsByComment.get(row.id)));
+	return visibleRows.map(row =>
+		publicCommentFromRow(row, reactionsByComment.get(row.id), {
+			currentGithubUserId,
+			redactDeleted: true
+		})
+	);
+}
+
+export function visibleCommentRows(rows: CommentRow[]): CommentRow[] {
+	const rowsById = new Map(rows.map(row => [row.id, row]));
+	const visibleIds = new Set(rows.filter(row => row.status === "approved").map(row => row.id));
+
+	for (const row of rows) {
+		if (row.status !== "approved") continue;
+		let parentId = row.parent_id;
+		const visited = new Set<string>();
+		while (parentId && !visited.has(parentId)) {
+			visited.add(parentId);
+			const parent = rowsById.get(parentId);
+			if (!parent || parent.status !== "deleted") break;
+			visibleIds.add(parent.id);
+			parentId = parent.parent_id;
+		}
+	}
+
+	return rows.filter(row => visibleIds.has(row.id));
+}
+
+export async function deleteCommentOwnedBy(env: Env, commentId: string, githubUserId: number): Promise<boolean> {
+	const result = await env.COMMENTS_DB.prepare("UPDATE comments SET status = 'deleted', updated_at = ? WHERE id = ? AND github_user_id = ? AND status != 'deleted'")
+		.bind(new Date().toISOString(), commentId, githubUserId)
+		.run();
+	return result.meta.changes > 0;
 }
 
 export async function setCommentReaction(env: Env, data: { commentId: string; visitorHash: string; emoji: string; active: boolean }): Promise<CommentReaction[] | null> {

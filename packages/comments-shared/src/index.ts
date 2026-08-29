@@ -25,6 +25,7 @@ export type PublicComment = {
 	pagePath: string;
 	parentId: string | null;
 	body: string;
+	deleted: boolean;
 	author: {
 		type: AuthorType;
 		name: string;
@@ -36,6 +37,9 @@ export type PublicComment = {
 		location: string | null;
 	};
 	reactions: CommentReaction[];
+	capabilities: {
+		canDelete: boolean;
+	};
 	createdAt: string;
 };
 
