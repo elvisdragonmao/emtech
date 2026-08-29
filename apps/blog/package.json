@@ -14,7 +14,7 @@
 	"dependencies": {
 		"@emtech/comments-shared": "workspace:*",
 		"@lucide/astro": "^1.14.0",
-		"astro": "^6.3.1",
+		"astro": "^6.4.6",
 		"astro-pagefind": "^2.0.0",
 		"simple-icons": "^16.19.0"
 	},
