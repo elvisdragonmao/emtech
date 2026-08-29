@@ -16,7 +16,6 @@ describe("thread reply email template", () => {
 		expect(rendered.subject).toContain("毛哥");
 		expect(rendered.html).toContain("毛哥EM資訊密技");
 		expect(rendered.html).toContain("查看完整討論");
-		expect(rendered.html).toContain("表情符號回應不會寄信");
 		expect(rendered.text).toContain("https://emtech.cc/p/example/#comments");
 	});
 

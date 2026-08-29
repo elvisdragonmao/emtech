@@ -56,8 +56,8 @@ export function renderThreadReplyEmail(input: ThreadReplyEmailInput): RenderedEm
 					<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:640px;background:#ffffff;border:1px solid #1888b2;border-top:6px solid #1888b2;">
 						<tr>
 							<td class="email-pad" style="padding:28px 32px 24px;border-bottom:1px solid #c8dde6;">
-								<p style="margin:0 0 8px;color:#58717e;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;">Thread update / 留言通知</p>
-								<p style="margin:0 0 18px;font-size:20px;font-weight:800;letter-spacing:-0.5px;">✦ 毛哥EM資訊密技</p>
+								<p style="margin:0 0 8px;color:#58717e;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;">留言通知</p>
+								<p style="margin:0 0 18px;font-size:20px;font-weight:800;letter-spacing:-0.5px;">毛哥EM資訊密技</p>
 								<h1 class="email-title" style="margin:0;font-size:30px;line-height:1.2;letter-spacing:-1.2px;">有人回覆了你參與的留言</h1>
 							</td>
 						</tr>
@@ -79,7 +79,7 @@ export function renderThreadReplyEmail(input: ThreadReplyEmailInput): RenderedEm
 						</tr>
 						<tr>
 							<td class="email-pad" style="padding:20px 32px;color:#58717e;font-size:12px;line-height:1.7;background:#f7fafb;border-top:1px solid #c8dde6;">
-								<p style="margin:0 0 8px;">你收到這封信，是因為你曾在這個討論串留下 Email。表情符號回應不會寄信。</p>
+								<p style="margin:0 0 8px;">你收到這封信，是因為你曾在這個討論串留下 Email。</p>
 								<p style="margin:0;"><a href="${escapeHtml(input.unsubscribeUrl)}" style="color:#146f94;text-decoration:underline;">取消這個討論串的通知</a></p>
 							</td>
 						</tr>
