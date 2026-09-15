@@ -185,22 +185,20 @@ const relatedCards = related.map(item => {
 			<Comments pagePath={Astro.url.pathname} />
 		</section>
 
-		{
-			relatedCards.length > 0 && (
-				<section class="related-wrap">
-					<h2>相關文章</h2>
-					<div class="related-grid">
-						{relatedCards.map(related => (
-							<ArticleCard article={related} />
-						))}
-						<a class="more-card card" href={moreRelatedHref}>
-							想要更多？
-							<ArrowRight size={18} stroke-width={1.8} aria-hidden="true" />
-						</a>
-					</div>
-				</section>
-			)
-		}
+		{relatedCards.length > 0 && (
+			<section class="related-wrap">
+				<h2>相關文章</h2>
+				<div class="related-grid">
+					{relatedCards.map(related => (
+						<ArticleCard article={related} />
+					))}
+					<a class="more-card card" href={moreRelatedHref}>
+						想要更多？
+						<ArrowRight size={18} stroke-width={1.8} aria-hidden="true" />
+					</a>
+				</div>
+			</section>
+		)}
 	</main>
 </Layout>
 

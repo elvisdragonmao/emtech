@@ -64,43 +64,45 @@ const structuredData = [
 				</div>
 				<div class="hero-note" aria-label={`目前收錄 ${totalFriends} 位朋友`}>
 					<span>{totalFriends}</span>
-					<p>位朋友<br />與他們的網站</p>
+					<p>
+						位朋友
+						<br />
+						與他們的網站
+					</p>
 				</div>
 			</div>
 		</header>
 
 		<div class="sections-stack">
-			{
-				sections.map(section => (
-					<section class="friend-section" aria-labelledby={`section-${section.title}`}>
-						<div class="section-heading">
-							<h2 id={`section-${section.title}`}>{section.title}</h2>
-							<p>{section.friends.length} 個連結</p>
-						</div>
-						<div class="friend-grid">
-							{section.friends.map(friend => {
-								const imageSrc = resolveImageSrc(friend.image);
-								const isExternal = /^https?:\/\//i.test(friend.url);
-								const host = isExternal ? new URL(friend.url).hostname.replace(/^www\./, "") : "emtech.cc";
+			{sections.map(section => (
+				<section class="friend-section" aria-labelledby={`section-${section.title}`}>
+					<div class="section-heading">
+						<h2 id={`section-${section.title}`}>{section.title}</h2>
+						<p>{section.friends.length} 個連結</p>
+					</div>
+					<div class="friend-grid">
+						{section.friends.map(friend => {
+							const imageSrc = resolveImageSrc(friend.image);
+							const isExternal = /^https?:\/\//i.test(friend.url);
+							const host = isExternal ? new URL(friend.url).hostname.replace(/^www\./, "") : "emtech.cc";
 
-								return (
-									<a class="friend-card" href={friend.url} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noreferrer" : undefined}>
-										<div class:list={["avatar", { "avatar-fallback": !imageSrc }]} aria-hidden={imageSrc ? undefined : "true"}>
-											{imageSrc ? <img src={imageSrc} alt={`${friend.name} 頭像`} loading="lazy" decoding="async" /> : <span>{friend.name.slice(0, 1)}</span>}
-										</div>
-										<div class="friend-content">
-											<h3>{friend.name}</h3>
-											<p>{friend.description}</p>
-											<span class="friend-url">{host}</span>
-										</div>
-										<ArrowUpRight class="card-arrow" size={19} stroke-width={1.8} aria-hidden="true" />
-									</a>
-								);
-							})}
-						</div>
-					</section>
-				))
-			}
+							return (
+								<a class="friend-card" href={friend.url} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noreferrer" : undefined}>
+									<div class:list={["avatar", { "avatar-fallback": !imageSrc }]} aria-hidden={imageSrc ? undefined : "true"}>
+										{imageSrc ? <img src={imageSrc} alt={`${friend.name} 頭像`} loading="lazy" decoding="async" /> : <span>{friend.name.slice(0, 1)}</span>}
+									</div>
+									<div class="friend-content">
+										<h3>{friend.name}</h3>
+										<p>{friend.description}</p>
+										<span class="friend-url">{host}</span>
+									</div>
+									<ArrowUpRight class="card-arrow" size={19} stroke-width={1.8} aria-hidden="true" />
+								</a>
+							);
+						})}
+					</div>
+				</section>
+			))}
 		</div>
 
 		<section class="comments-panel" aria-label="友情連結留言區">

@@ -24,8 +24,13 @@ const { compact = false } = Astro.props;
 			<textarea name="body" rows="5">我想說話</textarea>
 		</label>
 		<div class="actions">
-			<button type="button"><Send size={14} stroke-width={1.8} aria-hidden="true" />送出</button>
-			<span>或是先 <a href="/">登入</a></span>
+			<button type="button">
+				<Send size={14} stroke-width={1.8} aria-hidden="true" />
+				送出
+			</button>
+			<span>
+				或是先 <a href="/">登入</a>
+			</span>
 		</div>
 	</form>
 

@@ -42,94 +42,84 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 <section class:list={["article-hero", { "course-layout": isCourseLayout }]}>
 	<div></div>
 	<div class="hero-main">
-		{
-			tagLinks.length > 0 ? (
-				<div class="tag" aria-label={termLabel}>
-					{tagLinks.map((link, index) => (
-						<>
-							<a href={link.href}>{link.label}</a>
-							{index < tagLinks.length - 1 && " "}
-						</>
-					))}
-				</div>
-			) : (
-				<p class="tag">{tag}</p>
-			)
-		}
+		{tagLinks.length > 0 ? (
+			<div class="tag" aria-label={termLabel}>
+				{tagLinks.map((link, index) => (
+					<>
+						<a href={link.href}>{link.label}</a>
+						{index < tagLinks.length - 1 && " "}
+					</>
+				))}
+			</div>
+		) : (
+			<p class="tag">{tag}</p>
+		)}
 		<h1 data-pagefind-meta="title">{title}</h1>
 		<MetaTable items={meta} />
-		{
-			printUrl && (
-				<dl class="print-url">
-					<dt>此頁列印自毛哥EM資訊密技</dt>
-					<dd>
-						<a href={printUrl}>{printUrl}</a>
-					</dd>
-				</dl>
-			)
-		}
+		{printUrl && (
+			<dl class="print-url">
+				<dt>此頁列印自毛哥EM資訊密技</dt>
+				<dd>
+					<a href={printUrl}>{printUrl}</a>
+				</dd>
+			</dl>
+		)}
 	</div>
-	{
-		!isCourseLayout && (
-			<aside class="hero-side-nav" aria-label="文章導覽">
-				{(previousHref || nextHref) && (
-					<div class="side-nav">
-						{previousHref && (
-							<a href={previousHref}>
-								<ArrowLeft size={14} stroke-width={1.8} aria-hidden="true" />
-								<span>上一篇</span>
-								<strong>{previousTitle ?? "上一篇"}</strong>
-							</a>
-						)}
-						{nextHref && (
-							<a href={nextHref}>
-								<strong>{nextTitle ?? "下一篇"}</strong>
-								<span>下一篇</span>
-								<ArrowRight size={14} stroke-width={1.8} aria-hidden="true" />
-							</a>
-						)}
-					</div>
-				)}
-			</aside>
-		)
-	}
+	{!isCourseLayout && (
+		<aside class="hero-side-nav" aria-label="文章導覽">
+			{(previousHref || nextHref) && (
+				<div class="side-nav">
+					{previousHref && (
+						<a href={previousHref}>
+							<ArrowLeft size={14} stroke-width={1.8} aria-hidden="true" />
+							<span>上一篇</span>
+							<strong>{previousTitle ?? "上一篇"}</strong>
+						</a>
+					)}
+					{nextHref && (
+						<a href={nextHref}>
+							<strong>{nextTitle ?? "下一篇"}</strong>
+							<span>下一篇</span>
+							<ArrowRight size={14} stroke-width={1.8} aria-hidden="true" />
+						</a>
+					)}
+				</div>
+			)}
+		</aside>
+	)}
 </section>
 
 <section class:list={["article-shell", { "course-layout": isCourseLayout }]}>
 	<aside class="toc" aria-label="文章目錄">
-		{
-			tocItems.length > 0 ? (
-				<>
-					<span class="toc-label">本頁目錄</span>
-					{tocItems.map(item => (
-						<a href={`#${item.slug}`} class:list={[{ "toc-h3": item.depth === 3 }]} data-toc-link={item.slug}>
-							{item.text}
-						</a>
-					))}
-				</>
-			) : null
-		}
+		{tocItems.length > 0 ? (
+			<>
+				<span class="toc-label">本頁目錄</span>
+				{tocItems.map(item => (
+					<a href={`#${item.slug}`} class:list={[{ "toc-h3": item.depth === 3 }]} data-toc-link={item.slug}>
+						{item.text}
+					</a>
+				))}
+			</>
+		) : null}
 	</aside>
 
 	<article id="content" class="article-content" data-pagefind-body data-progress-storage-key={progressStorageKey} data-progress-item-id={progressItemId}>
-		<span class="sr-only" data-pagefind-meta="type">{pagefindType}</span>
-		{
-			pagefindDate && (
-				<span class="sr-only" data-pagefind-meta="date" data-pagefind-sort="date">
-					{pagefindDate}
-				</span>
-			)
-		}
+		<span class="sr-only" data-pagefind-meta="type">
+			{pagefindType}
+		</span>
+		{pagefindDate && (
+			<span class="sr-only" data-pagefind-meta="date" data-pagefind-sort="date">
+				{pagefindDate}
+			</span>
+		)}
 		{imageSrc && <img class="hero-image" src={imageSrc} width={imageWidth} height={imageHeight} alt={title} />}
-		{
-			tldr && (
-				<aside class="tldr-callout">
-					<strong>簡單來說</strong>
-					<p>{tldr}</p>
-					<span aria-hidden="true">TL;DR</span>
-				</aside>
-			)
-		}
+		{tldr && (
+			<aside class="tldr-callout">
+				<strong>簡單來說</strong>
+				<p>{tldr}</p>
+				<span aria-hidden="true">TL;DR</span>
+			</aside>
+		)}
 		<slot />
 		<div data-read-complete-sentinel aria-hidden="true"></div>
 	</article>
@@ -137,12 +127,16 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 	<div></div>
 </section>
 
-<div class:list={["reading-toast", { "course-layout": isCourseLayout }]} data-reading-toast role="status" aria-live="polite" hidden>閱讀完成已紀錄</div>
+<div class:list={["reading-toast", { "course-layout": isCourseLayout }]} data-reading-toast role="status" aria-live="polite" hidden>
+	閱讀完成已紀錄
+</div>
 
 <div class="image-preview-overlay" data-image-preview-overlay hidden>
 	<div class="image-preview-backdrop" data-image-preview-backdrop aria-hidden="true"></div>
 	<section class="image-preview-dialog" data-image-preview-dialog role="dialog" aria-modal="true" aria-labelledby="image-preview-title" aria-describedby="image-preview-help" tabindex="-1">
-		<p id="image-preview-title" class="sr-only">圖片預覽</p>
+		<p id="image-preview-title" class="sr-only">
+			圖片預覽
+		</p>
 		<div class="image-preview-stage" data-image-preview-stage tabindex="0">
 			<div class="image-preview-canvas" data-image-preview-canvas>
 				<img data-image-preview-image alt="" draggable="false" />
@@ -160,7 +154,9 @@ const termLabel = isCourseLayout ? "課程分類與標籤" : "文章分類與標
 				<X size={22} stroke-width={1.9} aria-hidden="true" />
 			</button>
 		</div>
-		<p id="image-preview-help" class="sr-only" data-image-preview-live aria-live="polite">按 Escape 關閉圖片預覽。使用放大和縮小按鈕調整圖片大小；圖片放大後可捲動查看細節。</p>
+		<p id="image-preview-help" class="sr-only" data-image-preview-live aria-live="polite">
+			按 Escape 關閉圖片預覽。使用放大和縮小按鈕調整圖片大小；圖片放大後可捲動查看細節。
+		</p>
 	</section>
 </div>
 

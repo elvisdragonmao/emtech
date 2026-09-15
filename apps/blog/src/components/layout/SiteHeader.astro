@@ -22,13 +22,11 @@ const navItems = [
 		</a>
 
 		<nav id="site-main-nav" class="main-nav" aria-label="主要導覽">
-			{
-				navItems.map(item => (
-					<a href={item.href} class:list={[{ active: active === item.key }]} aria-current={active === item.key ? "page" : undefined}>
-						{item.label}
-					</a>
-				))
-			}
+			{navItems.map(item => (
+				<a href={item.href} class:list={[{ active: active === item.key }]} aria-current={active === item.key ? "page" : undefined}>
+					{item.label}
+				</a>
+			))}
 		</nav>
 
 		<div class="site-actions">

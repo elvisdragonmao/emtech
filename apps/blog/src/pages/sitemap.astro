@@ -74,89 +74,89 @@ const structuredData = [
 		<section class="help-panel" aria-labelledby="access-help-title">
 			<h2 id="access-help-title">定位點與快速鍵</h2>
 			<ul>
-				<li>每頁最前方都有「跳到主要內容」連結。使用鍵盤 <kbd>Tab</kbd> 聚焦後按 <kbd>Enter</kbd>，可直接前往該頁的 <code>#main-content</code>。</li>
+				<li>
+					每頁最前方都有「跳到主要內容」連結。使用鍵盤 <kbd>Tab</kbd> 聚焦後按 <kbd>Enter</kbd>，可直接前往該頁的 <code>#main-content</code>。
+				</li>
 				<li>頁首主要導覽可前往首頁、課程與本網站導覽頁。</li>
-				<li>站內搜尋可點選頁首搜尋按鈕；在非輸入欄位時，也可按 <kbd>Ctrl</kbd> + <kbd>K</kbd>，macOS 可按 <kbd>Command</kbd> + <kbd>K</kbd> 開啟。</li>
-				<li>搜尋視窗開啟後可用 <kbd>Esc</kbd> 關閉，焦點會回到原本啟動搜尋的控制項。</li>
+				<li>
+					站內搜尋可點選頁首搜尋按鈕；在非輸入欄位時，也可按 <kbd>Ctrl</kbd> + <kbd>K</kbd>，macOS 可按 <kbd>Command</kbd> + <kbd>K</kbd> 開啟。
+				</li>
+				<li>
+					搜尋視窗開啟後可用 <kbd>Esc</kbd> 關閉，焦點會回到原本啟動搜尋的控制項。
+				</li>
 			</ul>
 		</section>
 
 		<section class="sitemap-section" aria-labelledby="main-pages-title">
 			<h2 id="main-pages-title">主要頁面</h2>
 			<div class="main-page-grid">
-				{
-					mainPages.map(page => (
-						<a class="main-page-link" href={page.href}>
-							<strong>{page.title}</strong>
-							<span>{page.description}</span>
-						</a>
-					))
-				}
+				{mainPages.map(page => (
+					<a class="main-page-link" href={page.href}>
+						<strong>{page.title}</strong>
+						<span>{page.description}</span>
+					</a>
+				))}
 			</div>
 		</section>
 
 		<section class="sitemap-section" aria-labelledby="courses-title">
 			<h2 id="courses-title">課程與單元</h2>
 			<div class="course-list">
-				{
-					courses.map(course => {
-						const courseLessons = lessonsByCourse.get(course.id) ?? [];
-						return (
-							<section class="course-group" aria-labelledby={`course-${course.id}`}>
-								<div class="course-heading">
-									<h3 id={`course-${course.id}`}>
-										<a href={`/course/${course.id}/`}>{course.data.title}</a>
-									</h3>
-									<p>{course.data.description}</p>
-								</div>
-								{courseLessons.length > 0 ? (
-									<ol>
-										{courseLessons.map(lesson => {
-											const [, lessonId] = lesson.id.split("/");
-											const title = extractTitle(lesson.body) || lesson.data.description || lessonId;
-											return (
-												<li>
-													<a href={`/course/${course.id}/${lessonId}/`}>
-														<span>{title}</span>
-														<time datetime={lesson.data.date.toISOString()}>{formatDate(lesson.data.date)}</time>
-													</a>
-												</li>
-											);
-										})}
-									</ol>
-								) : (
-									<p class="empty-note">此課程尚未公開單元。</p>
-								)}
-							</section>
-						);
-					})
-				}
+				{courses.map(course => {
+					const courseLessons = lessonsByCourse.get(course.id) ?? [];
+					return (
+						<section class="course-group" aria-labelledby={`course-${course.id}`}>
+							<div class="course-heading">
+								<h3 id={`course-${course.id}`}>
+									<a href={`/course/${course.id}/`}>{course.data.title}</a>
+								</h3>
+								<p>{course.data.description}</p>
+							</div>
+							{courseLessons.length > 0 ? (
+								<ol>
+									{courseLessons.map(lesson => {
+										const [, lessonId] = lesson.id.split("/");
+										const title = extractTitle(lesson.body) || lesson.data.description || lessonId;
+										return (
+											<li>
+												<a href={`/course/${course.id}/${lessonId}/`}>
+													<span>{title}</span>
+													<time datetime={lesson.data.date.toISOString()}>{formatDate(lesson.data.date)}</time>
+												</a>
+											</li>
+										);
+									})}
+								</ol>
+							) : (
+								<p class="empty-note">此課程尚未公開單元。</p>
+							)}
+						</section>
+					);
+				})}
 			</div>
 		</section>
 
 		<section class="sitemap-section" aria-labelledby="posts-title">
 			<h2 id="posts-title">文章</h2>
 			<div class="post-years">
-				{
-					years.map(year => (
-						<section class="year-group" aria-labelledby={`post-year-${year}`}>
-							<h3 id={`post-year-${year}`}>{year}</h3>
-							<ol>
-								{postsByYear.get(year)!.map(post => {
-									const title = extractTitle(post.body) || post.id;
-									return (
-										<li>
-											<a href={`/p/${post.id}/`}>
-												<span>{title}</span>
-												<time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-											</a>
-										</li>
-									);
-								})}
-							</ol>
-						</section>
-					))
-				}
+				{years.map(year => (
+					<section class="year-group" aria-labelledby={`post-year-${year}`}>
+						<h3 id={`post-year-${year}`}>{year}</h3>
+						<ol>
+							{postsByYear.get(year)!.map(post => {
+								const title = extractTitle(post.body) || post.id;
+								return (
+									<li>
+										<a href={`/p/${post.id}/`}>
+											<span>{title}</span>
+											<time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+										</a>
+									</li>
+								);
+							})}
+						</ol>
+					</section>
+				))}
 			</div>
 		</section>
 	</main>

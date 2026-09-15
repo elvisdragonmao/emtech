@@ -6,13 +6,17 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
 	<section class="search-dialog" id="site-search" role="dialog" aria-modal="true" aria-labelledby="site-search-title">
 		<div class="search-head">
 			<p id="site-search-title">搜尋</p>
-			<button type="button" data-search-close aria-label="關閉搜尋">Esc</button>
+			<button type="button" data-search-close aria-label="關閉搜尋">
+				Esc
+			</button>
 		</div>
 		<label class="search-field">
 			<span class="sr-only">搜尋文章與課程內文</span>
 			<input data-search-input name="q" type="search" autocomplete="off" placeholder="搜尋標題、標籤或內文…" />
 		</label>
-		<div class="search-meta" data-search-meta role="status" aria-live="polite">輸入關鍵字開始搜尋</div>
+		<div class="search-meta" data-search-meta role="status" aria-live="polite">
+			輸入關鍵字開始搜尋
+		</div>
 		<ol class="search-results" data-search-results></ol>
 	</section>
 </div>

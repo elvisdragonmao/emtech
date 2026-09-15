@@ -41,7 +41,7 @@ const ICONS = {
 function loadLucideAstroIcon(iconName) {
 	const iconUrl = import.meta.resolve(`@lucide/astro/icons/${iconName}`);
 	const source = readFileSync(fileURLToPath(iconUrl), "utf8");
-	const marker = "createLucideIcon(";
+	const marker = '"node":';
 	const markerIndex = source.indexOf(marker);
 	if (markerIndex === -1) throw new Error(`Unable to read Lucide icon "${iconName}" from @lucide/astro.`);
 

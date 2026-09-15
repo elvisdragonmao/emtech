@@ -93,33 +93,29 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 <section id="archive" class="section-block">
 	<SectionTitle eyebrow="內容索引" title="文章與課程分類" />
 	<div class="category-tabs" role="group" aria-label="文章與課程分類">
-		{
-			categories.map(category => (
-				<button type="button" data-filter-button data-filter-type="category" data-filter-value={category.value} aria-pressed={category.value === FEATURED_CATEGORY ? "true" : "false"}>
-					{category.label}
-				</button>
-			))
-		}
+		{categories.map(category => (
+			<button type="button" data-filter-button data-filter-type="category" data-filter-value={category.value} aria-pressed={category.value === FEATURED_CATEGORY ? "true" : "false"}>
+				{category.label}
+			</button>
+		))}
 	</div>
 
 	<div class="archive-layout">
 		<div class="article-list">
 			<div class="article-grid" data-archive-grid data-initial-visible={INITIAL_VISIBLE_ARTICLES}>
-				{
-					archiveArticles.map(article => (
-						<div
-							class="article-card-shell is-seen"
-							data-archive-card
-							data-categories={JSON.stringify(article.categories)}
-							data-tags={JSON.stringify(article.tags)}
-							data-featured-rank={article.featuredRank}
-							style={article.featuredRank === null ? undefined : `--card-order: ${article.featuredRank}`}
-							hidden={article.featuredRank === null || article.featuredRank >= INITIAL_VISIBLE_ARTICLES}
-						>
-							<ArticleCard article={article} />
-						</div>
-					))
-				}
+				{archiveArticles.map(article => (
+					<div
+						class="article-card-shell is-seen"
+						data-archive-card
+						data-categories={JSON.stringify(article.categories)}
+						data-tags={JSON.stringify(article.tags)}
+						data-featured-rank={article.featuredRank}
+						style={article.featuredRank === null ? undefined : `--card-order: ${article.featuredRank}`}
+						hidden={article.featuredRank === null || article.featuredRank >= INITIAL_VISIBLE_ARTICLES}
+					>
+						<ArticleCard article={article} />
+					</div>
+				))}
 			</div>
 
 			<button class="card more-link" type="button" data-load-more data-load-step={LOAD_MORE_ARTICLES} hidden={featuredArticleCount <= INITIAL_VISIBLE_ARTICLES}>
@@ -139,14 +135,12 @@ const tags = [...tagFreq.entries()].sort(sortTagsByFrequency).map(([tag, count])
 				</p>
 			</a>
 			<div class="card tag-cloud" data-tag-cloud role="group" aria-label="標籤雲">
-				{
-					tags.map(({ tag, count }) => (
-						<button type="button" data-filter-button data-filter-type="tag" data-filter-value={tag} aria-pressed="false">
-							<span>#{tag}</span>
-							<small>{count}</small>
-						</button>
-					))
-				}
+				{tags.map(({ tag, count }) => (
+					<button type="button" data-filter-button data-filter-type="tag" data-filter-value={tag} aria-pressed="false">
+						<span>#{tag}</span>
+						<small>{count}</small>
+					</button>
+				))}
 			</div>
 			<button class="card more-link tag-more-link" type="button" data-tag-more hidden aria-expanded="false">
 				<span data-tag-more-label>顯示更多標籤</span>

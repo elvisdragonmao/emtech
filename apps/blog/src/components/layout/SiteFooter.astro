@@ -5,7 +5,9 @@ import SimpleIcon from "@/components/shared/SimpleIcon.astro";
 ---
 
 <footer class="site-footer">
-	<a class="footer-action" href="/"><img src="/img/logo.svg" alt="毛哥EM資訊密技首頁" class="footer-logo" width="32" height="37" /></a>
+	<a class="footer-action" href="/">
+		<img src="/img/logo.svg" alt="毛哥EM資訊密技首頁" class="footer-logo" width="32" height="37" />
+	</a>
 	<div class="footer-brand">
 		<div class="footer-brand-copy">
 			<p>©2021 - 2026 毛哥EM</p>
@@ -26,8 +28,12 @@ import SimpleIcon from "@/components/shared/SimpleIcon.astro";
 	<a class="footer-action" href="https://github.com/elvisdragonmao/emtech/issues" target="_blank" rel="noreferrer" aria-label="到 GitHub Issues 留言，新分頁開啟">
 		<Bug size={21} stroke-width={1.7} aria-hidden="true" />
 	</a>
-	<a class="footer-action" href="https://github.com/elvisdragonmao/emtech" target="_blank" rel="noreferrer" aria-label="GitHub 專案，新分頁開啟"><SimpleIcon icon={siGithub} size={21} /></a>
-	<a class="footer-action" href="/rss.xml" aria-label="RSS 訂閱"><SimpleIcon icon={siRss} size={21} /></a>
+	<a class="footer-action" href="https://github.com/elvisdragonmao/emtech" target="_blank" rel="noreferrer" aria-label="GitHub 專案，新分頁開啟">
+		<SimpleIcon icon={siGithub} size={21} />
+	</a>
+	<a class="footer-action" href="/rss.xml" aria-label="RSS 訂閱">
+		<SimpleIcon icon={siRss} size={21} />
+	</a>
 </footer>
 
 <style>

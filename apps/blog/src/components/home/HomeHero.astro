@@ -43,24 +43,26 @@ const featuredArticles = recentContent.map((item, index) => {
 	<div class="hero-copy">
 		<div class="hero-heading">
 			<p class="eyebrow">EMTECH.CC / ELVIS DRAGON MAO</p>
-			<h1>毛哥EM<br />資訊密技</h1>
+			<h1>
+				毛哥EM
+				<br />
+				資訊密技
+			</h1>
 			<p class="hero-subtitle">科技、設計、毛茸茸</p>
 		</div>
 		<dl class="card stats-panel" aria-label="網站統計">
-			{
-				stats.map(stat => (
-					<div>
-						<dt>{stat.label}</dt>
-						{stat.livedFor ? (
-							<dd data-lived-for data-launch-date={LAUNCH_DATE} aria-live="polite">
-								{stat.value}
-							</dd>
-						) : (
-							<dd>{stat.value}</dd>
-						)}
-					</div>
-				))
-			}
+			{stats.map(stat => (
+				<div>
+					<dt>{stat.label}</dt>
+					{stat.livedFor ? (
+						<dd data-lived-for data-launch-date={LAUNCH_DATE} aria-live="polite">
+							{stat.value}
+						</dd>
+					) : (
+						<dd>{stat.value}</dd>
+					)}
+				</div>
+			))}
 		</dl>
 	</div>
 
@@ -72,22 +74,22 @@ const featuredArticles = recentContent.map((item, index) => {
 		<button class="motion-toggle" type="button" aria-label="暫停角色插圖動畫" aria-pressed="false" data-dragon-toggle data-motion-state="playing">
 			<Pause class="pause-icon" size={16} stroke-width={2} aria-hidden="true" />
 			<Play class="play-icon" size={16} stroke-width={2} aria-hidden="true" />
-			<span class="sr-only" data-motion-label>暫停角色插圖動畫</span>
+			<span class="sr-only" data-motion-label>
+				暫停角色插圖動畫
+			</span>
 		</button>
 		<div class="circle circle-one"></div>
 		<div class="circle circle-two"></div>
-		{
-			featuredArticles.map(article => (
-				<a class="feature-note" href={article.href}>
-					{article.imageSrc ? <img src={article.imageSrc} width={article.imageWidth} height={article.imageHeight} alt="" /> : <div class="thumb-placeholder" aria-hidden="true" />}
-					<div>
-						<span>{article.tag}</span>
-						<strong>{article.title}</strong>
-						<small>{article.description}</small>
-					</div>
-				</a>
-			))
-		}
+		{featuredArticles.map(article => (
+			<a class="feature-note" href={article.href}>
+				{article.imageSrc ? <img src={article.imageSrc} width={article.imageWidth} height={article.imageHeight} alt="" /> : <div class="thumb-placeholder" aria-hidden="true" />}
+				<div>
+					<span>{article.tag}</span>
+					<strong>{article.title}</strong>
+					<small>{article.description}</small>
+				</div>
+			</a>
+		))}
 	</div>
 </section>
 

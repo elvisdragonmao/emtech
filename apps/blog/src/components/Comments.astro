@@ -1,6 +1,6 @@
 ---
 import { COMMENT_REACTION_RECOMMENDED_EMOJIS } from "@emtech/comments-shared";
-import { LogOut, Send, Smile, Trash2 } from "@lucide/astro";
+import { FaceSlightlySmiling, LogOut, Send, Trash } from "@lucide/astro";
 import androidIconUrl from "@/assets/comment-icons/android.svg?url";
 import appleIconUrl from "@/assets/comment-icons/apple.svg?url";
 import chromeIconUrl from "@/assets/comment-icons/chrome.svg?url";
@@ -58,10 +58,10 @@ const commentMetaIcons = {
 	data-recommended-reactions={JSON.stringify(COMMENT_REACTION_RECOMMENDED_EMOJIS)}
 >
 	<template data-reaction-icon-template>
-		<Smile size={16} stroke-width={1.6} aria-hidden="true" />
+		<FaceSlightlySmiling size={16} stroke-width={1.6} aria-hidden="true" />
 	</template>
 	<template data-delete-icon-template>
-		<Trash2 size={14} stroke-width={1.8} aria-hidden="true" />
+		<Trash size={14} stroke-width={1.8} aria-hidden="true" />
 	</template>
 	<div class="comments-heading">
 		<div>
@@ -89,7 +89,9 @@ const commentMetaIcons = {
 			<input type="hidden" name="parentId" data-parent-id />
 			<div class="replying" data-replying hidden>
 				<span data-replying-label></span>
-				<button type="button" data-cancel-reply>取消回覆</button>
+				<button type="button" data-cancel-reply>
+					取消回覆
+				</button>
 			</div>
 			<label data-anonymous-identity-field>
 				顯示名稱
@@ -104,14 +106,12 @@ const commentMetaIcons = {
 				留言
 				<textarea name="body" rows="5" maxlength="3000" required placeholder="寫下你的想法"></textarea>
 			</label>
-			{
-				turnstileSiteKey && (
-					<div class="turnstile-field">
-						<p>安全驗證</p>
-						<div class="turnstile cf-turnstile" data-sitekey={turnstileSiteKey} aria-label="Cloudflare Turnstile 安全驗證" />
-					</div>
-				)
-			}
+			{turnstileSiteKey && (
+				<div class="turnstile-field">
+					<p>安全驗證</p>
+					<div class="turnstile cf-turnstile" data-sitekey={turnstileSiteKey} aria-label="Cloudflare Turnstile 安全驗證" />
+				</div>
+			)}
 			<div class="actions">
 				<button type="submit">
 					<Send size={14} stroke-width={1.8} aria-hidden="true" />

@@ -29,19 +29,17 @@ const lessonListId = `course-lesson-list-${courseId}`;
 	</div>
 	<div class="course-list-panel" id={lessonListId} data-course-sidebar-panel>
 		<nav aria-label="課程章節">
-			{
-				lessons.map((lesson, i) => {
-					const isActive = lesson.id === currentId;
-					const number = String(i + 1).padStart(2, "0");
-					return (
-						<a class:list={[{ active: isActive }]} href={lesson.href} data-lesson-id={lesson.id} aria-current={isActive ? "page" : undefined}>
-							<span>{number}</span>
-							{lesson.title}
-							<CircleCheck size={15} stroke-width={1.8} aria-hidden="true" />
-						</a>
-					);
-				})
-			}
+			{lessons.map((lesson, i) => {
+				const isActive = lesson.id === currentId;
+				const number = String(i + 1).padStart(2, "0");
+				return (
+					<a class:list={[{ active: isActive }]} href={lesson.href} data-lesson-id={lesson.id} aria-current={isActive ? "page" : undefined}>
+						<span>{number}</span>
+						{lesson.title}
+						<CircleCheck size={15} stroke-width={1.8} aria-hidden="true" />
+					</a>
+				);
+			})}
 		</nav>
 	</div>
 </aside>

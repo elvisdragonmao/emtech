@@ -14,15 +14,13 @@ const specialPages = [
 <section class="section-block special-pages">
 	<SectionTitle eyebrow="Special Pages" title="疑，這是什麼？" />
 	<div class="special-grid">
-		{
-			specialPages.map(page => (
-				<a class="card" href={page.href}>
-					<h3>{page.title}</h3>
-					<p>{page.description}</p>
-					<ArrowRight size={17} stroke-width={1.8} aria-hidden="true" />
-				</a>
-			))
-		}
+		{specialPages.map(page => (
+			<a class="card" href={page.href}>
+				<h3>{page.title}</h3>
+				<p>{page.description}</p>
+				<ArrowRight size={17} stroke-width={1.8} aria-hidden="true" />
+			</a>
+		))}
 	</div>
 </section>
 

@@ -33,21 +33,21 @@ const featuredCourseRows = Array.from({ length: Math.ceil(featuredCourses.length
 <section id="courses" class="section-block courses-preview">
 	<SectionTitle eyebrow="課程" title="一篇像廢文<br>一系列看起來就挺有道理。" description="鐵人賽系列文章<br>和詳細的程式開發與設計教學" />
 	<div class="course-grid-top">
-		{topCourses.map(course => <CourseCard course={course} />)}
+		{topCourses.map(course => (
+			<CourseCard course={course} />
+		))}
 	</div>
-	{
-		featuredCourses.length > 0 && (
-			<div class="course-grid-featured">
-				{featuredCourseRows.map(row => (
-					<div class:list={["course-grid-featured-row", { single: row.length === 1 }]}>
-						{row.map(course => (
-							<CourseCard course={course} featured={true} />
-						))}
-					</div>
-				))}
-			</div>
-		)
-	}
+	{featuredCourses.length > 0 && (
+		<div class="course-grid-featured">
+			{featuredCourseRows.map(row => (
+				<div class:list={["course-grid-featured-row", { single: row.length === 1 }]}>
+					{row.map(course => (
+						<CourseCard course={course} featured={true} />
+					))}
+				</div>
+			))}
+		</div>
+	)}
 </section>
 
 <style>

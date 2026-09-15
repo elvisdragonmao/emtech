@@ -13,11 +13,12 @@
 	},
 	"dependencies": {
 		"@emtech/comments-shared": "workspace:*",
-		"zod": "^4.2.1"
+		"zod": "^4.6.5"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20260511.1",
-		"vitest": "^4.0.15",
-		"wrangler": "^4.18.0"
+		"@cloudflare/workers-types": "^5.20260914.1",
+		"vite": "^8.3.0",
+		"vitest": "^5.0.0",
+		"wrangler": "^4.131.2"
 	}
 }

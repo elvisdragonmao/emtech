@@ -19,14 +19,14 @@
 		"verify:posts": "node scripts/verify-posts.mjs"
 	},
 	"devDependencies": {
-		"prettier": "^3.8.4",
-		"prettier-plugin-astro": "^0.14.1",
+		"prettier": "^3.9.6",
+		"prettier-plugin-astro": "^1.0.0",
 		"prettier-plugin-organize-imports": "^4.3.0",
 		"prettier-plugin-packagejson": "^3.0.2",
 		"typescript": "^6.0.3",
 		"wrangler": "^4.131.2"
 	},
-	"packageManager": "pnpm@12.4.1+sha512.2e81e399d73fe8390dab25e06aa788ab7a5908248d2f5a370f82b481147a6a7a367bf8048f9a6fdb6460f21a66f0542dedb8b94ca2c8723596741920b1656d4c",
+	"packageManager": "pnpm@12.4.2+sha512.08adc6613180275c7c9edada39dcf08c9c61ad4e7eaf330a4f3461f102b0f907423454d117f98e72d47fef0616070644d7bffc973a6a57f5090a6d7c368b07c9",
 	"engines": {
 		"node": ">=22.12.0"
 	}

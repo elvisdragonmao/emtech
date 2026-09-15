@@ -75,20 +75,18 @@ const jsonLd = structuredData ? (Array.isArray(structuredData) ? structuredData 
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={seoImage.src} />
 		<meta name="twitter:image:alt" content={seoImage.alt} />
-		{
-			ogType === "article" && (
-				<>
-					{publishedTime && <meta property="article:published_time" content={new Date(publishedTime).toISOString()} />}
-					{modifiedTime && <meta property="article:modified_time" content={new Date(modifiedTime).toISOString()} />}
-					{authors.map(author => (
-						<meta property="article:author" content={author} />
-					))}
-					{tags.map(tag => (
-						<meta property="article:tag" content={tag} />
-					))}
-				</>
-			)
-		}
+		{ogType === "article" && (
+			<>
+				{publishedTime && <meta property="article:published_time" content={new Date(publishedTime).toISOString()} />}
+				{modifiedTime && <meta property="article:modified_time" content={new Date(modifiedTime).toISOString()} />}
+				{authors.map(author => (
+					<meta property="article:author" content={author} />
+				))}
+				{tags.map(tag => (
+					<meta property="article:tag" content={tag} />
+				))}
+			</>
+		)}
 		<script is:inline>
 			(() => {
 				const storageKey = "emtech:theme";
@@ -112,12 +110,16 @@ const jsonLd = structuredData ? (Array.isArray(structuredData) ? structuredData 
 				applyTheme(getTheme());
 			})();
 		</script>
-		{jsonLd.map(item => <script is:inline type="application/ld+json" set:html={safeJsonLd(withSchemaContext(item))} />)}
+		{jsonLd.map(item => (
+			<script is:inline type="application/ld+json" set:html={safeJsonLd(withSchemaContext(item))}></script>
+		))}
 		<title>{fullTitle}</title>
 		<ClientRouter />
 	</head>
 	<body>
-		<a class="skip-link" href="#main-content">跳到主要內容</a>
+		<a class="skip-link" href="#main-content">
+			跳到主要內容
+		</a>
 		<div class="page-shell">
 			<SiteHeader active={active} />
 			<slot />

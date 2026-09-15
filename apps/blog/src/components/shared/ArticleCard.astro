@@ -24,9 +24,7 @@ const imageHeight = typeof article.image === "string" ? undefined : article.imag
 ---
 
 <a class="article-card" href={article.href}>
-	<figure>
-		{imageSrc ? <img src={imageSrc} width={imageWidth} height={imageHeight} alt="" loading="lazy" /> : <div class="placeholder" aria-hidden="true" />}
-	</figure>
+	<figure>{imageSrc ? <img src={imageSrc} width={imageWidth} height={imageHeight} alt="" loading="lazy" /> : <div class="placeholder" aria-hidden="true" />}</figure>
 	<h3>{article.title}</h3>
 	<p class="tag">{article.tag}</p>
 </a>

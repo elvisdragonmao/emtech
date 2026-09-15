@@ -1,3 +1,4 @@
+import { unified } from "@astrojs/markdown-remark";
 import pagefind from "astro-pagefind";
 import { defineConfig, passthroughImageService } from "astro/config";
 import { fileURLToPath } from "node:url";
@@ -10,13 +11,17 @@ import { remarkYoutube } from "./src/plugins/remark-youtube.js";
 
 export default defineConfig({
 	output: "static",
+	// Astro 7 defaults to JSX whitespace rules, which drop the spaces between inline elements.
+	compressHTML: true,
 	integrations: [pagefind()],
 	image: {
 		service: passthroughImageService()
 	},
 	markdown: {
-		remarkPlugins: [remarkYoutube, remarkAccessibleRawHtml, remarkStripContentTitle, remarkNormalizeContentHeadings],
-		rehypePlugins: [rehypeCallouts, rehypeImageCaptions, rehypeAccessibleEmbeds, rehypeCodeBlocks]
+		processor: unified({
+			remarkPlugins: [remarkYoutube, remarkAccessibleRawHtml, remarkStripContentTitle, remarkNormalizeContentHeadings],
+			rehypePlugins: [rehypeCallouts, rehypeImageCaptions, rehypeAccessibleEmbeds, rehypeCodeBlocks]
+		})
 	},
 	vite: {
 		resolve: {

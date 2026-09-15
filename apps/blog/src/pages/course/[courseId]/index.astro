@@ -91,19 +91,17 @@ const structuredData = [
 				<p class="eyebrow">課程</p>
 				<h1>{courseData.title}</h1>
 				<p class="lead">{courseData.description}</p>
-				{
-					outcomes.length > 0 && (
-						<div class="outcomes">
-							{outcomes.map((item, i) => (
-								<article>
-									<span>學習目標 {String(i + 1).padStart(2, "0")}</span>
-									<h2>{item.title}</h2>
-									<p>{item.text}</p>
-								</article>
-							))}
-						</div>
-					)
-				}
+				{outcomes.length > 0 && (
+					<div class="outcomes">
+						{outcomes.map((item, i) => (
+							<article>
+								<span>學習目標 {String(i + 1).padStart(2, "0")}</span>
+								<h2>{item.title}</h2>
+								<p>{item.text}</p>
+							</article>
+						))}
+					</div>
+				)}
 			</div>
 			<article class="overview-card">
 				<span>課程總覽</span>
@@ -115,35 +113,43 @@ const structuredData = [
 				</div>
 				{courseThumbnailSrc && <img class="overview-thumb" src={courseThumbnailSrc} width={courseThumbnailWidth} height={courseThumbnailHeight} alt={courseData.title} />}
 				<div class="quick-stats">
-					<div><BookOpen size={18} stroke-width={1.8} aria-hidden="true" /><span>{totalModules} 章節</span></div>
+					<div>
+						<BookOpen size={18} stroke-width={1.8} aria-hidden="true" />
+						<span>{totalModules} 章節</span>
+					</div>
 					<div>
 						<Clock size={18} stroke-width={1.8} aria-hidden="true" />
 						<span>最後更新 {formatDate(latestDate)}</span>
 					</div>
-					<div><Users size={18} stroke-width={1.8} aria-hidden="true" /><span>適合<br />所有學習者</span></div>
+					<div>
+						<Users size={18} stroke-width={1.8} aria-hidden="true" />
+						<span>
+							適合
+							<br />
+							所有學習者
+						</span>
+					</div>
 				</div>
 			</article>
 		</section>
 
 		<section class="curriculum">
-			{
-				lessons.map((lesson, i) => {
-					const lessonId = lesson.id.replace(`${courseId}/`, "");
-					const thumb = resolveLessonThumbnail(lesson, allThumbs);
-					return (
-						<CourseModuleRow
-							module={{
-								number: `Module ${String(i + 1).padStart(2, "0")}`,
-								title: extractTitle(lesson.body) || lesson.data.description || lessonId,
-								description: lesson.data.description ?? extractExcerpt(lesson.body),
-								duration: readingTime(lesson.body ?? lesson.data.description ?? ""),
-								image: thumb,
-								href: `/course/${courseId}/${lessonId}/`
-							}}
-						/>
-					);
-				})
-			}
+			{lessons.map((lesson, i) => {
+				const lessonId = lesson.id.replace(`${courseId}/`, "");
+				const thumb = resolveLessonThumbnail(lesson, allThumbs);
+				return (
+					<CourseModuleRow
+						module={{
+							number: `Module ${String(i + 1).padStart(2, "0")}`,
+							title: extractTitle(lesson.body) || lesson.data.description || lessonId,
+							description: lesson.data.description ?? extractExcerpt(lesson.body),
+							duration: readingTime(lesson.body ?? lesson.data.description ?? ""),
+							image: thumb,
+							href: `/course/${courseId}/${lessonId}/`
+						}}
+					/>
+				);
+			})}
 		</section>
 		<section class="comments-wrap">
 			<Comments pagePath={Astro.url.pathname} />

@@ -12,14 +12,15 @@
 		"typecheck": "astro check"
 	},
 	"dependencies": {
+		"@astrojs/markdown-remark": "^7.3.1",
 		"@emtech/comments-shared": "workspace:*",
-		"@lucide/astro": "^1.14.0",
-		"astro": "^6.3.1",
-		"astro-pagefind": "^2.0.0",
-		"simple-icons": "^16.19.0"
+		"@lucide/astro": "^1.46.0",
+		"astro": "^7.3.2",
+		"astro-pagefind": "^2.0.1",
+		"simple-icons": "^16.31.0"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.9.9",
+		"@astrojs/check": "^0.9.10",
 		"unist-util-visit": "^5.1.0"
 	}
 }

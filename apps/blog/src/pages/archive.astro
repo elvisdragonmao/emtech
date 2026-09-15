@@ -43,33 +43,31 @@ const structuredData = [
 		</header>
 
 		<div class="archive-timeline">
-			{
-				years.map(year => (
-					<section class="year-group">
-						<h2 class="year-label">{year}</h2>
-						<ol class="post-list">
-							{byYear.get(year)!.map(item => {
-								const category = item.kind === "lesson" ? (item.categories.find(value => value !== "課程") ?? item.categories[0] ?? "") : (item.categories[0] ?? "");
-								const tag = item.tags[0] ?? "";
-								return (
-									<li>
-										<a href={item.href} class="post-row">
-											<time datetime={item.date.toISOString()}>{formatDate(item.date)}</time>
-											<span class="title">{item.title}</span>
-											{(category || tag) && (
-												<span class="terms">
-													{category && <span class="cat">{category}</span>}
-													{tag && <span class="tag">#{tag}</span>}
-												</span>
-											)}
-										</a>
-									</li>
-								);
-							})}
-						</ol>
-					</section>
-				))
-			}
+			{years.map(year => (
+				<section class="year-group">
+					<h2 class="year-label">{year}</h2>
+					<ol class="post-list">
+						{byYear.get(year)!.map(item => {
+							const category = item.kind === "lesson" ? (item.categories.find(value => value !== "課程") ?? item.categories[0] ?? "") : (item.categories[0] ?? "");
+							const tag = item.tags[0] ?? "";
+							return (
+								<li>
+									<a href={item.href} class="post-row">
+										<time datetime={item.date.toISOString()}>{formatDate(item.date)}</time>
+										<span class="title">{item.title}</span>
+										{(category || tag) && (
+											<span class="terms">
+												{category && <span class="cat">{category}</span>}
+												{tag && <span class="tag">#{tag}</span>}
+											</span>
+										)}
+									</a>
+								</li>
+							);
+						})}
+					</ol>
+				</section>
+			))}
 		</div>
 	</main>
 </Layout>
