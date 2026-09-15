@@ -6,7 +6,7 @@ date: 2026-09-15
 description: "從零開始學 Git 與 GitHub，用最白話的方式搞懂版本控制、Commit、Branch、Merge、Conflict、Pull Request 與 Code Review。看完就能自己操作，也能開始和團隊一起寫 Code。"
 ---
 
-## 從零開始學 Git 與 GitHub：從 final_final 到 Git 版本控制
+# Git 與 GitHub：從 final_final 到優雅的版本控制
 
 > [!NOTE] 簡報資源這篇教程歡迎可以搭配簡報：[Git & GitHub 基礎 - 毛哥EM的簡報](https://slides.elvismao.com/talks/git/) 一起服用
 
