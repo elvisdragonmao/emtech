@@ -8,7 +8,9 @@ description: "從零開始學 Git 與 GitHub，用最白話的方式搞懂版本
 
 # Git 與 GitHub：從 final_final 到優雅的版本控制
 
-> [!NOTE] 簡報資源這篇教程歡迎可以搭配簡報：[Git & GitHub 基礎 - 毛哥EM的簡報](https://slides.elvismao.com/talks/git/) 一起服用
+> [!NOTE] 簡報資源
+>
+> 這篇教程歡迎可以搭配簡報：[Git & GitHub 基礎 - 毛哥EM的簡報](https://slides.elvismao.com/talks/git/) 一起服用
 
 如果你曾經寫過程式、做過報告、剪過影片，或認真改過一份文件，你的電腦裡大概多少都出現過這種東西：
 
@@ -756,7 +758,9 @@ git commit -m "feat: say hello"
 
 ![alt text](commit.webp)
 
-> [!NOTE] Commit 失敗如果 Git 說 Author identity unknown，哪代表你還沒設定名字和 Email。記得回去上面設定 `git config --global user.name` 和 `git config --global user.email` 喔！
+> [!NOTE] Commit 失敗
+>
+> 如果 Git 說 Author identity unknown，那代表你還沒設定名字和 Email。記得回去上面設定 `git config --global user.name` 和 `git config --global user.email` 喔！
 
 ## Push 到 GitHub
 
@@ -871,7 +875,9 @@ git switch -c dev
 
 就是 Create。
 
-> [!NOTE] git checkout如果是舊教學，你也可能看到：
+> [!NOTE] git checkout
+>
+> 如果是舊教學，你也可能看到：
 >
 > ```bash
 > git checkout -b dev
