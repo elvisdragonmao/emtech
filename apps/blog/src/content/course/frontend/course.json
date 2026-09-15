@@ -5,7 +5,7 @@
 	"accent": "blue",
 	"thumbnail": "js/thumbnail.webp",
 	"meta": "零基礎 / 24 H / 課程",
-	"order": ["what-is-website", "html", "css", "js", "js-async", "seo", "git"],
+	"order": ["what-is-website", "html", "css", "js", "git", "js-async", "seo"],
 	"outcomes": [
 		{
 			"title": "讀懂 HTML 語意結構",
